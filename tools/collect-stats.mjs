@@ -1,0 +1,148 @@
+// =============================================================
+// 라이엇 공식 API로 상위 랭커 경기를 모아 시너지별 가중치 파일을 만듭니다.
+//
+// 사용법 (tft-deck-maker 폴더에서):
+//   1) tools/config.example.json 을 복사해서 tools/config.json 으로 이름 바꾸기
+//   2) config.json 의 apiKey 에 개발자 포털에서 받은 RGAPI-... 키 넣기
+//   3) node tools/collect-stats.mjs
+//
+// 결과: data/weights.json (+ 더블클릭 실행용 data/weights.js)
+// 받은 경기는 tools/cache/ 에 저장돼서, 중간에 멈춰도 다시 실행하면 이어서 진행됩니다.
+// =============================================================
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { aggregate, toWeights } from './stats-lib.mjs';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '..');
+const cfgPath = path.join(here, 'config.json');
+
+// 설정: tools/config.json (내 컴퓨터) 또는 환경변수 RIOT_API_KEY (GitHub Actions 등 서버)
+const fileCfg = fs.existsSync(cfgPath) ? JSON.parse(fs.readFileSync(cfgPath, 'utf8')) : {};
+if (process.env.RIOT_API_KEY) fileCfg.apiKey = process.env.RIOT_API_KEY;
+if (process.env.MAX_PLAYERS) fileCfg.maxPlayers = Number(process.env.MAX_PLAYERS);
+if (process.env.MATCHES_PER_PLAYER) fileCfg.matchesPerPlayer = Number(process.env.MATCHES_PER_PLAYER);
+if (!fileCfg.apiKey) {
+  console.error('API 키가 없어요. tools/config.json 에 apiKey 를 넣거나 환경변수 RIOT_API_KEY 를 설정해주세요.');
+  process.exit(1);
+}
+const cfg = {
+  platform: 'kr',        // 서버: kr, jp1, na1, euw1 ...
+  region: 'asia',        // 경기 조회용 지역: asia, americas, europe, sea
+  tiers: ['challenger', 'grandmaster', 'master'],
+  maxPlayers: 200,       // 경기를 가져올 플레이어 수
+  matchesPerPlayer: 20,  // 플레이어당 최근 경기 수
+  queueId: 1100,         // 1100 = 랭크 게임
+  requestIntervalMs: 1250, // 개발 키 제한(2분에 100회)을 넘지 않도록 요청 간격
+  ...fileCfg,
+};
+if (!/^RGAPI-/.test(cfg.apiKey || '')) {
+  console.error('config.json 의 apiKey 가 비어 있거나 형식이 달라요. RGAPI- 로 시작하는 키를 넣어주세요.');
+  process.exit(1);
+}
+
+const cacheDir = path.join(here, 'cache');
+fs.mkdirSync(cacheDir, { recursive: true });
+
+// ---------------- API 호출 (속도 제한 + 재시도) ----------------
+let last = 0;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+async function riot(host, apiPath) {
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const wait = last + cfg.requestIntervalMs - Date.now();
+    if (wait > 0) await sleep(wait);
+    last = Date.now();
+    const res = await fetch(`https://${host}.api.riotgames.com${apiPath}`, { headers: { 'X-Riot-Token': cfg.apiKey } });
+    if (res.ok) return res.json();
+    if (res.status === 429) {
+      const sec = Number(res.headers.get('retry-after') || 10);
+      console.log(`  요청 한도 초과 → ${sec}초 대기`);
+      await sleep(sec * 1000);
+      continue;
+    }
+    if (res.status === 401 || res.status === 403) {
+      throw new Error(`API 키가 거부됐어요 (HTTP ${res.status}). 개발 키는 24시간마다 만료되니 포털에서 다시 받아 config.json 에 넣어주세요.`);
+    }
+    if (res.status === 404) return null;
+    if (res.status >= 500) { await sleep(3000); continue; }
+    throw new Error(`HTTP ${res.status} — ${apiPath}`);
+  }
+  throw new Error(`재시도 실패 — ${apiPath}`);
+}
+
+// ---------------- 1. 상위 랭커 목록 ----------------
+async function topPlayers() {
+  const puuids = [];
+  for (const tier of cfg.tiers) {
+    const league = await riot(cfg.platform, `/tft/league/v1/${tier}?queue=RANKED_TFT`);
+    const entries = (league?.entries || []).sort((a, b) => b.leaguePoints - a.leaguePoints);
+    console.log(`${tier}: ${entries.length}명`);
+    for (const e of entries) {
+      if (puuids.length >= cfg.maxPlayers) return puuids;
+      let puuid = e.puuid;
+      if (!puuid && e.summonerId) { // 예전 응답 형식 대비
+        puuid = (await riot(cfg.platform, `/tft/summoner/v1/summoners/${e.summonerId}`))?.puuid;
+      }
+      if (puuid) puuids.push(puuid);
+    }
+  }
+  return puuids;
+}
+
+// ---------------- 2. 경기 ID ----------------
+async function matchIds(puuids) {
+  const ids = new Set();
+  for (const [i, p] of puuids.entries()) {
+    const list = await riot(cfg.region, `/tft/match/v1/matches/by-puuid/${p}/ids?count=${cfg.matchesPerPlayer}`);
+    (list || []).forEach(id => ids.add(id));
+    process.stdout.write(`\r경기 목록 ${i + 1}/${puuids.length} (경기 ${ids.size}개)`);
+  }
+  console.log();
+  return [...ids];
+}
+
+// ---------------- 3. 경기 상세 (캐시) ----------------
+async function fetchMatches(ids) {
+  const out = [];
+  for (const [i, id] of ids.entries()) {
+    const file = path.join(cacheDir, `${id}.json`);
+    let m;
+    if (fs.existsSync(file)) m = JSON.parse(fs.readFileSync(file, 'utf8'));
+    else {
+      m = await riot(cfg.region, `/tft/match/v1/matches/${id}`);
+      if (m) fs.writeFileSync(file, JSON.stringify(m));
+    }
+    if (m) out.push(m);
+    process.stdout.write(`\r경기 상세 ${i + 1}/${ids.length}`);
+  }
+  console.log();
+  return out;
+}
+
+// ---------------- 실행 ----------------
+try {
+  console.log(`서버 ${cfg.platform} / 지역 ${cfg.region} — 예상 소요: 약 ${Math.ceil((cfg.maxPlayers * (1 + 1 + cfg.matchesPerPlayer / 2)) * cfg.requestIntervalMs / 60000)}분 (캐시된 경기는 빠름)`);
+  const players = await topPlayers();
+  const ids = await matchIds(players);
+  const matches = await fetchMatches(ids);
+  const stats = aggregate(matches, { queueId: cfg.queueId });
+  if (!stats.games) throw new Error('쓸 수 있는 랭크 경기가 없어요. queueId 나 서버 설정을 확인해주세요.');
+  const weights = toWeights(stats);
+
+  const json = JSON.stringify(weights, null, 1);
+  fs.writeFileSync(path.join(root, 'data', 'weights.json'), json);
+  fs.writeFileSync(path.join(root, 'data', 'weights.js'), `window.TFT_WEIGHTS = ${json};\n`);
+
+  console.log(`\n완료: 세트 ${weights.setNumber}, 경기 ${matches.length}개, 플레이어 기록 ${weights.games}개`);
+  const rows = Object.entries(weights.traits).flatMap(([t, tiers]) =>
+    Object.entries(tiers).map(([tier, r]) => ({ t, tier, ...r }))).filter(r => r.games >= 30);
+  rows.sort((a, b) => a.avgPlace - b.avgPlace);
+  console.log('\n평균 등수가 좋은 시너지 단계 (30판 이상):');
+  for (const r of rows.slice(0, 10)) console.log(`  ${r.t} ${r.tier}단계  평균 ${r.avgPlace}등  순방 ${(r.top4 * 100).toFixed(0)}%  (${r.games}판)  가중치 ${r.weight}`);
+  console.log('\n→ data/weights.json, data/weights.js 저장. index.html 을 새로고침하면 반영돼요.');
+} catch (e) {
+  console.error('\n오류:', e.message);
+  process.exit(1);
+}

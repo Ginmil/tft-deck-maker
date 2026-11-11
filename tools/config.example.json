@@ -1,0 +1,8 @@
+{
+  "apiKey": "RGAPI-여기에-키-붙여넣기",
+  "platform": "kr",
+  "region": "asia",
+  "tiers": ["challenger", "grandmaster", "master"],
+  "maxPlayers": 200,
+  "matchesPerPlayer": 20
+}

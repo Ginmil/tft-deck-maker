@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>롤토체스 덱 메이커</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="logo">◆</span>
+      <div>
+        <h1>롤토체스 덱 메이커</h1>
+        <p id="setLabel" class="muted">데이터를 불러와 주세요</p>
+      </div>
+    </div>
+
+    <details class="databar" id="databar" open>
+      <summary>데이터 소스</summary>
+      <div class="row">
+        <input id="srcUrl" type="url" spellcheck="false" aria-label="데이터 URL">
+        <button id="btnFetch" class="btn primary">불러오기</button>
+      </div>
+      <div class="row">
+        <label class="btn ghost file">JSON 파일 열기<input id="fileInput" type="file" accept=".json,application/json" hidden></label>
+        <button id="btnSample" class="btn ghost">샘플 데이터 (테스트용)</button>
+        <select id="setSelect" aria-label="세트 선택" hidden></select>
+      </div>
+      <div class="row weights">
+        <label class="check"><input type="checkbox" id="useWeights" checked> <span id="weightLabel">통계 가중치 없음 (기본 점수)</span></label>
+        <label class="btn ghost file">가중치 파일 열기<input id="weightInput" type="file" accept=".json,application/json" hidden></label>
+      </div>
+      <p id="status" class="status muted"></p>
+    </details>
+  </header>
+
+  <main>
+    <section class="settings">
+      <label>레벨(인원)
+        <select id="size">
+          <option>6</option><option>7</option><option selected>8</option><option>9</option><option>10</option>
+        </select>
+      </label>
+      <label>최대 코스트
+        <select id="maxCost">
+          <option value="3">3코 이하</option><option value="4">4코 이하</option><option value="5" selected>전체</option>
+        </select>
+      </label>
+      <label>5코스트
+        <select id="max5">
+          <option value="0">안 씀</option><option value="1">1개까지</option><option value="2" selected>2개까지</option><option value="99">제한 없음</option>
+        </select>
+      </label>
+      <label id="specialWrap" hidden>특수 기물(<span id="specialName"></span>)
+        <select id="specialMode">
+          <option value="both" selected>있는 덱·없는 덱 둘 다</option><option value="with">포함</option><option value="without">제외</option>
+        </select>
+      </label>
+    </section>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab" data-tab="meta" role="tab">메타 덱</button>
+      <button class="tab active" data-tab="emblem" role="tab">상징 팀 메이커 <span class="tag">핵심</span></button>
+      <button class="tab" data-tab="traits" role="tab">시너지로 찾기</button>
+      <button class="tab" data-tab="items" role="tab">아이템으로 찾기</button>
+      <button class="tab" data-tab="builds" role="tab">챔피언 3신기</button>
+      <button class="tab" data-tab="builder" role="tab">배치툴</button>
+    </nav>
+
+    <!-- 3. 상징 -->
+    <section class="panel" id="panel-emblem">
+      <p class="help">가진 상징을 눌러 담으세요. 같은 상징을 여러 번 누르면 개수가 늘어나요. <b>상징으로만 열리는 시너지 단계</b>까지 자동으로 찾아줍니다.</p>
+      <div class="picked" id="emblemPicked"></div>
+      <input class="filter" id="emblemFilter" placeholder="상징 검색">
+      <div class="grid" id="emblemGrid"></div>
+      <details class="extra">
+        <summary>추가로 맞추고 싶은 시너지 (선택)</summary>
+        <div class="traitList" id="emblemTraitList"></div>
+      </details>
+      <button class="btn primary big" id="runEmblem">팀 만들기</button>
+    </section>
+
+    <!-- 1. 시너지 -->
+    <section class="panel" id="panel-traits" hidden>
+      <p class="help">원하는 시너지의 목표 단계를 눌러 고르세요. 여러 개를 함께 골라도 돼요.</p>
+      <input class="filter" id="traitFilter" placeholder="시너지 검색">
+      <div class="traitList" id="traitList"></div>
+      <button class="btn primary big" id="runTraits">덱 찾기</button>
+    </section>
+
+    <!-- 2. 아이템 -->
+    <section class="panel" id="panel-items" hidden>
+      <p class="help">가지고 있는 완성 아이템을 고르세요. 아이템을 가장 잘 쓰는 캐리와 그 캐리 중심 덱을 찾아줍니다.</p>
+      <div class="picked" id="itemPicked"></div>
+      <input class="filter" id="itemFilter" placeholder="아이템 검색">
+      <div class="grid" id="itemGrid"></div>
+      <button class="btn primary big" id="runItems">캐리 & 덱 찾기</button>
+    </section>
+
+    <!-- 0. 메타 덱 (랭커 통계) -->
+    <section class="panel" id="panel-meta" hidden>
+      <p class="help">상위권 랭커들의 <b>실제 최종 덱</b>을 "주력 시너지 + 핵심 캐리"로 묶어, 판수·평균 등수·순방률을 보여줘요. (통계 수집 후 표시)</p>
+      <div class="settings">
+        <label>정렬 <select id="metaSort"><option value="avg" selected>평균 등수</option><option value="pick">픽률</option><option value="win">1등률</option></select></label>
+        <label>최소 판수 <select id="metaMin"><option>8</option><option selected>15</option><option>30</option><option>50</option></select></label>
+      </div>
+      <div id="metaList" class="metaList"></div>
+    </section>
+
+    <!-- 4. 챔피언별 추천 아이템 -->
+    <section class="panel" id="panel-builds" hidden>
+      <p class="help">상위권 경기에서 각 챔피언이 실제로 든 <b>아이템 3개 조합</b> 중, 많이 쓰이면서 평균 등수가 좋은 조합이에요. (통계 수집 후 표시)</p>
+      <input class="filter" id="buildFilter" placeholder="챔피언·시너지 검색">
+      <div id="buildList" class="buildList"></div>
+    </section>
+
+    <!-- 5. 배치툴 -->
+    <section class="panel" id="panel-builder" hidden>
+      <div class="bdBar">
+        <input id="bdName" placeholder="배치 이름" class="bdNameIn">
+        <button class="btn primary" id="bdSave">저장</button>
+        <select id="bdLoad"></select>
+        <button class="btn ghost" id="bdCopy">코드 복사</button>
+        <button class="btn ghost" id="bdPaste">코드 붙여넣기</button>
+        <button class="btn ghost" id="bdAuto">자동 정렬</button>
+        <button class="btn ghost" id="bdClear">초기화</button>
+      </div>
+      <div class="bdTraits" id="bdTraits"></div>
+      <div class="bdMain">
+        <div class="bdLeft">
+          <div class="bdBoardHead"><span class="muted small">▲ 적 방향 (앞줄)</span><span id="bdCount" class="muted small"></span></div>
+          <div class="bdBoard" id="bdBoard"></div>
+          <p class="help small" id="bdHint"></p>
+          <div class="bdDetail" id="bdDetail" hidden></div>
+          <div class="bdTrash" id="bdTrash">보드 밖으로 끌어내면 빠져요 (여기에 놓아도 돼요)</div>
+        </div>
+        <div class="bdRight">
+          <div class="bdPoolHead">
+            <input class="filter" id="bdFilter" placeholder="챔피언·시너지 검색">
+            <div class="bdCosts" id="bdCosts"><button class="bp" data-cost="1">1</button><button class="bp" data-cost="2">2</button><button class="bp" data-cost="3">3</button><button class="bp" data-cost="4">4</button><button class="bp" data-cost="5">5</button></div>
+          </div>
+          <div class="bdPool" id="bdPool"></div>
+          <div class="bdItemHead"><div class="bdItemTabs" id="bdItemTabs"></div><input class="filter" id="bdItemFilter" placeholder="아이템 검색 (전체)"></div>
+          <div class="bdItemPool" id="bdItems"></div>
+        </div>
+      </div>
+      <div class="bdToast" id="bdToast"></div>
+    </section>
+
+    <section id="results" aria-live="polite"></section>
+  </main>
+
+  <footer class="muted">데이터: Community Dragon · 팬 제작 도구이며 Riot Games와 관련이 없습니다.</footer>
+
+  <script src="data/sample.js"></script>
+  <script src="data/weights.js" onerror="this.remove()"></script>
+  <script src="js/bundle.js"></script>
+</body>
+</html>
