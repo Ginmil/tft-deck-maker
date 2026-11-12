@@ -3,9 +3,9 @@
 // 데이터 → 어댑터(normalize) → 엔진(search) → 화면
 // =============================================================
 import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './adapters/cdragon.js';
-import { decksForTraits, decksForItems, emblemTeamMaker } from './engine/search.js';
+import { decksForTraits, decksForItems, emblemTeamMaker, decksFromBoard } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
-import { initBuilder, bdOpenDeck, bdOnData, bdRender } from './builder.js';
+import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits } from './builder.js';
 
 const $ = id => document.getElementById(id);
 const CACHE_KEY = `tft-deck-maker:data:v${ADAPTER_VERSION}`; // 어댑터를 고치면 버전을 올려 옛 캐시를 무시
@@ -254,9 +254,10 @@ function deckCard(d, i, byId) {
       ...((d.items?.[c.id]) || []).map(it => `<span>${esc(it.name)}</span>`),
     ].join('');
     const badge = c.id === carryId ? '<span class="badge carry">핵심</span>' : c.id === tankId ? '<span class="badge tank">탱커</span>' : '';
+    const added = d.board?.added.includes(c.id);
     const ui = d.unitInfo?.[c.id];
     const extra = ui ? `${ui.star3 >= 0.4 ? `<span class="star3" title="이 덱에서 ${Math.round(ui.star3 * 100)}%가 3성">★★★</span>` : ''}${ui.rate < 0.5 ? `<span class="flex" title="이 덱을 쓴 판 중 ${Math.round(ui.rate * 100)}%에 포함">선택 ${Math.round(ui.rate * 100)}%</span>` : ''}` : '';
-    return `<div class="unit ${c.id === carryId ? 'carry' : ''} ${c.id === tankId ? 'tank' : ''} ${ui && ui.rate < 0.5 ? 'flexunit' : ''}" data-cost="${c.cost}">${badge}${extra}
+    return `<div class="unit ${c.id === carryId ? 'carry' : ''} ${c.id === tankId ? 'tank' : ''} ${ui && ui.rate < 0.5 ? 'flexunit' : ''} ${added ? 'added' : ''}" data-cost="${c.cost}">${badge}${added ? '<span class="addTag">+ 추가</span>' : ''}${extra}
       ${c.icon ? `<img src="${esc(c.icon)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : '<img alt="">'}
       <span class="nm">${esc(c.name)}</span><span class="cost" title="${esc(c.roleFromStats || '스킬 설명·스탯으로 추정한 역할')}">${c.cost}코 · ${(c.role === 'AD' || c.role === 'AP') && (c.range ?? 4) < 3 ? '근접 ' : ''}${roleKo[c.role]}${c.roleFromStats ? '✓' : ''}${c.slots > 1 ? ` · ${c.slots}칸` : ''}</span>
       ${c.weights ? `<span class="cost" style="color:var(--gold)">${Object.entries(c.weights).map(([t, n]) => `${esc(traitName(t))} ×${n}`).join(', ')}</span>` : ''}
@@ -280,6 +281,7 @@ function deckCard(d, i, byId) {
       ${d.metaInfo ? `<span class="meta">${d.metaInfo}</span>` : `<span class="meta">점수 ${d.score.toFixed(1)} · 총 ${d.gold}골드${d.usedEmblems ? ` · 상징 ${d.usedEmblems}개 사용` : ''}${d.wastedEmblems ? ` · <span style="color:var(--danger)">상징 ${d.wastedEmblems}개는 단계를 못 올림</span>` : ''}${unused ? ` · <span style="color:var(--danger)">상징 ${unused}개 못 씀</span>` : ''}${d.desiredMet === false ? ' · 목표 미달성' : ''}</span>`}
     </div>
     <div class="units">${units}</div>
+    ${d.board?.removed.length ? `<div class="boardDiff">빼는 챔피언: ${d.board.removed.map(id => `<b>${esc(nameOf(id))}</b>`).join(', ')}</div>` : ''}
     ${[carryId, tankId].filter(Boolean).map(id => {
       const c = byId.get(id); const b = c && (d.builds?.[id] || buildsFor(c)[0]);
       return b ? `<div class="deckBuild"><span class="who">${id === carryId ? '핵심' : '탱커'} ${esc(c.name)}</span>${buildRow(b)}</div>` : '';
@@ -318,6 +320,7 @@ function bind() {
     getData: () => state.data, esc, traitName, roleKo, buildsFor,
     openTab: name => document.querySelector(`.tab[data-tab="${name}"]`)?.click(),
   });
+  $('bdRecommend').onclick = e => runBoard(e.currentTarget);
   $('metaSort').onchange = renderMeta;
   $('metaMin').onchange = renderMeta;
   $('btnSample').onclick = async () => {
@@ -417,19 +420,18 @@ function metaTier(avg, games) {
   const shrunk = (avg * games + 4.5 * 10) / (games + 10); // 판수가 적으면 평균 쪽으로 보정
   return shrunk <= 3.7 ? 'S' : shrunk <= 4.0 ? 'A' : shrunk <= 4.3 ? 'B' : 'C';
 }
-function renderMeta() {
+const metaAvailable = () => {
   const d = state.data, w = state.weights;
-  const box = $('metaList');
-  if (!d) { box.innerHTML = ''; return; }
-  if (!w?.comps?.length || w.setNumber !== d.set.number || !$('useWeights').checked) {
-    box.innerHTML = '<div class="empty">메타 덱 통계가 없어요. collect-stats.bat 으로 경기 데이터를 모은 뒤 새로고침하면 표시돼요.</div>';
-    return;
-  }
+  return !!(d && w?.comps?.length && w.setNumber === d.set.number && $('useWeights').checked);
+};
+const metaShrunk = m => (m.avgPlace * m.games + 45) / (m.games + 10); // 판수가 적으면 평균(4.5등) 쪽으로
+
+/** 통계의 메타 덱(comps) → 덱 카드 객체 목록 */
+function metaDecks(minGames) {
+  const d = state.data, w = state.weights;
+  if (!metaAvailable()) return [];
   const byLower = new Map(d.champions.map(c => [c.id.toLowerCase(), c]));
-  const byId = new Map(d.champions.map(c => [c.id, c]));
-  const minGames = Number($('metaMin').value);
-  const sortKey = $('metaSort').value;
-  const list = w.comps.filter(m => m.games >= minGames).map(m => {
+  return w.comps.filter(m => m.games >= minGames).map(m => {
     const carry = byLower.get(m.mainCarry || m.carry);
     if (!carry) return null;
     // 레벨만큼 자리 채우기: 자주 쓰인 순, 같은 챔피언의 다른 형태(럭스 등)는 하나만, 2칸 챔피언 고려
@@ -458,8 +460,21 @@ function renderMeta() {
       metaInfo: `평균 <b>${m.avgPlace}등</b> · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판 · 레벨 ${m.level}`,
     };
   }).filter(Boolean);
+}
+
+function renderMeta() {
+  const d = state.data, w = state.weights;
+  const box = $('metaList');
+  if (!d) { box.innerHTML = ''; return; }
+  if (!metaAvailable()) {
+    box.innerHTML = '<div class="empty">메타 덱 통계가 없어요. collect-stats.bat 으로 경기 데이터를 모은 뒤 새로고침하면 표시돼요.</div>';
+    return;
+  }
+  const byId = new Map(d.champions.map(c => [c.id, c]));
+  const sortKey = $('metaSort').value;
+  const list = metaDecks(Number($('metaMin').value));
   const sorters = {
-    avg: (a, b) => (a.m.avgPlace * a.m.games + 45) / (a.m.games + 10) - (b.m.avgPlace * b.m.games + 45) / (b.m.games + 10),
+    avg: (a, b) => metaShrunk(a.m) - metaShrunk(b.m),
     pick: (a, b) => b.m.playRate - a.m.playRate,
     win: (a, b) => b.m.win - a.m.win,
   };
@@ -467,6 +482,63 @@ function renderMeta() {
   box.innerHTML = list.length
     ? `<p class="legend">${w.games.toLocaleString()}명 기록 기준 · 자주 쓰인 순으로 레벨만큼 채움 · "선택 %" = 판마다 바뀌는 자리 · ★★★ = 3성 완성 비율 높음 · 핵심/탱커 = 랭커들이 딜템/탱템을 가장 많이 준 챔피언</p>` + list.slice(0, 30).map((x, i) => deckCard(x, i, byId)).join('')
     : '<div class="empty">조건에 맞는 메타 덱이 없어요. 최소 판수를 낮춰 보세요.</div>';
+}
+
+// ---------------- 내 보드 → 다음 수 추천 (배치툴) ----------------
+/** 내 보드와 챔피언이 많이 겹치는 메타 덱 (같은 챔피언의 다른 형태도 겹침으로 셈) */
+function metaNearBoard(board, carryId) {
+  const byId = new Map(state.data.champions.map(c => [c.id, c]));
+  const mine = board.map(u => byId.get(u.id)).filter(Boolean);
+  const bases = new Set(mine.map(c => c.base || c.id));
+  const need = Math.max(2, Math.ceil(mine.length / 2));
+  return metaDecks(8).map(d => {
+    const overlap = d.team.filter(c => bases.has(c.base || c.id)).length;
+    const carryMatch = carryId && d.core?.carry === carryId;
+    const ids = new Set(d.team.map(c => c.id));
+    return {
+      ...d, overlap, rank: overlap + (carryMatch ? 1.5 : 0) - metaShrunk(d.m) * 0.3,
+      board: { added: d.team.filter(c => !bases.has(c.base || c.id)).map(c => c.id), removed: mine.filter(c => !ids.has(c.id)).map(c => c.id) },
+      metaInfo: `<b>내 보드와 ${overlap}명 겹침</b>${carryMatch ? ' · 같은 핵심 캐리' : ''} · ${d.metaInfo}`,
+    };
+  }).filter(d => d.overlap >= need).sort((a, b) => b.rank - a.rank).slice(0, 3);
+}
+
+function runBoard(btn) {
+  const box = $('bdRecs');
+  if (!state.data) { setStatus('먼저 데이터를 불러와 주세요.', true); $('databar').open = true; return; }
+  const board = bdBoardUnits();
+  if (!board.length) { box.innerHTML = '<div class="empty">보드에 챔피언을 먼저 올려 주세요.</div>'; return; }
+  btn.disabled = true;
+  box.innerHTML = '<div class="empty">내 보드에서 이어갈 덱을 계산하고 있어요…</div>';
+  setTimeout(() => {
+    const t0 = performance.now();
+    try {
+      const size = Number($('bdRecSize').value), keepAll = !$('bdRecFlex').checked;
+      let res = null;
+      const decks = runSearch(o => { res = decksFromBoard(state.data, { ...o, board, size, keepAll }); return res.decks; });
+      const { info } = res;
+      const byId = new Map(state.data.champions.map(c => [c.id, c]));
+      const near = metaNearBoard(board, info.carry?.id);
+      for (const d of decks) {
+        const names = d.board.added.map(id => byId.get(id)?.name).filter(Boolean);
+        d.title = `레벨 ${res.size} · <b>+ ${esc(names.join(', '))}</b>`;
+      }
+      const head = `<div class="resultHead"><h2>다음 수 추천</h2><span class="legend">${((performance.now() - t0) / 1000).toFixed(1)}초 · 지금 ${board.length}명`
+        + `${info.carry ? ` · 핵심 캐리 <b>${esc(info.carry.name)}</b>` : ''}`
+        + `${info.emblems.length ? ` · 상징 ${info.emblems.map(traitName).map(esc).join(', ')}` : ''}`
+        + ` · 점선 = 새로 넣을 챔피언</span></div>`;
+      const metaHtml = near.length
+        ? `<h3 class="recSub">내 보드와 가까운 메타 덱</h3>${near.map((d, i) => deckCard(d, i, byId)).join('')}`
+        : metaAvailable() ? '<p class="muted small">내 보드와 절반 이상 겹치는 메타 덱이 없어요.</p>' : '';
+      const searchHtml = decks.length
+        ? `<h3 class="recSub">보드를 이어서 완성하는 덱</h3>${decks.map((d, i) => deckCard(d, i, byId)).join('')}`
+        : `<div class="empty">${keepAll && info.slots >= 10 ? '보드가 이미 꽉 찼어요 (최대 10레벨).' : '이어갈 덱을 찾지 못했어요. 목표 레벨을 바꾸거나 "바꿔도 돼요"를 켜 보세요.'}</div>`;
+      box.innerHTML = head + metaHtml + searchHtml;
+    } catch (e) {
+      console.error(e);
+      box.innerHTML = `<div class="empty">계산 중 오류가 났어요: ${esc(e.message)}</div>`;
+    } finally { btn.disabled = false; }
+  }, 30);
 }
 
 // ---------------- 아이템 조합식 툴팁 ----------------

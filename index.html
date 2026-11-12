@@ -126,6 +126,7 @@
         <button class="btn ghost" id="bdCopy">코드 복사</button>
         <button class="btn ghost" id="bdPaste">코드 붙여넣기</button>
         <button class="btn ghost" id="bdAuto">자동 정렬</button>
+        <button class="btn ghost" id="bdUndo" hidden>되돌리기</button>
         <button class="btn ghost" id="bdClear">초기화</button>
       </div>
       <div class="bdTraits" id="bdTraits"></div>
@@ -147,6 +148,17 @@
           <div class="bdItemPool" id="bdItems"></div>
         </div>
       </div>
+      <div class="bdRecBar">
+        <button class="btn primary big" id="bdRecommend">이 보드로 다음 수 추천</button>
+        <label>목표 레벨
+          <select id="bdRecSize">
+            <option value="0" selected>다음 레벨 (자동)</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="bdRecFlex"> 아이템 없는 챔피언은 바꿔도 돼요</label>
+        <span class="muted small">보드의 챔피언을 유지하고 남은 자리를 채워요 · 낀 상징은 상징으로, 딜 아이템을 가장 많이 든 챔피언은 핵심 캐리로 계산</span>
+      </div>
+      <div id="bdRecs" class="bdRecs" aria-live="polite"></div>
       <div class="bdToast" id="bdToast"></div>
     </section>
 

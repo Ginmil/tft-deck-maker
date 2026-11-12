@@ -19,16 +19,22 @@ const slotsUsed = team => team.reduce((s, c) => s + (c.slots || 1), 0);
  * @param opts.results    돌려줄 덱 수
  * @param opts.exclude    제외할 챔피언 id 배열 (예: 뽑기 어려운 럭스)
  * @param opts.max5       5코스트 챔피언 최대 수
+ * @param opts.prefer     되도록 남기고 싶은 챔피언 id 배열 (필수는 아님, 남기면 가산점)
+ * @param opts.preferBonus 남긴 챔피언 1명당 가산점
  */
 export function searchTeams(data, opts) {
   const {
     size = 8, required = [], desired = {}, emblems = [], carryIds = [],
     maxCost = 5, beamWidth = 200, results = 5, exclude = [], max5 = Infinity,
+    prefer = [], preferBonus = 2, minDiff = 2,
   } = opts;
   const byId = new Map(data.champions.map(c => [c.id, c]));
   const start = required.map(id => byId.get(id)).filter(Boolean);
-  const pool = data.champions.filter(c => c.cost <= maxCost && !required.includes(c.id) && !exclude.includes(c.id));
+  const preferSet = new Set(prefer);
+  // 이미 가진 챔피언은 코스트 제한과 상관없이 후보에 둠 (예: 3코 이하 설정인데 보드에 4코가 있음)
+  const pool = data.champions.filter(c => (c.cost <= maxCost || preferSet.has(c.id)) && !required.includes(c.id) && !exclude.includes(c.id));
   const evalOpts = { emblems, desired, carryIds, size };
+  const bonus = team => preferSet.size ? preferBonus * team.filter(c => preferSet.has(c.id)).length : 0;
 
   // 팀 자리 기준으로 채움 (장로 드래곤처럼 2칸 차지하는 챔피언 고려)
   let beam = [{ team: start, score: 0 }];
@@ -49,19 +55,19 @@ export function searchTeams(data, opts) {
         const k = keyOf(t);
         if (next.has(k)) continue;
         const ev = evaluateTeam(t, data, { ...evalOpts, partial: true });
-        next.set(k, { team: t, score: ev.score });
+        next.set(k, { team: t, score: ev.score + bonus(t) });
       }
     }
     if (!next.size) break;
     beam = [...next.values()].sort((a, b) => b.score - a.score).slice(0, beamWidth);
   }
 
-  const finals = beam.map(({ team }) => ({
-    team: [...team].sort((a, b) => a.cost - b.cost),
-    ...evaluateTeam(team, data, { ...evalOpts, partial: false }),
-  })).sort((a, b) => (b.desiredMet - a.desiredMet) || b.score - a.score);
+  const finals = beam.map(({ team }) => {
+    const ev = evaluateTeam(team, data, { ...evalOpts, partial: false });
+    return { team: [...team].sort((a, b) => a.cost - b.cost), ...ev, score: ev.score + bonus(team) };
+  }).sort((a, b) => (b.desiredMet - a.desiredMet) || b.score - a.score);
 
-  return diversify(finals, results);
+  return diversify(finals, results, minDiff);
 }
 
 /** 서로 2명 이상 다른 덱만 골라서 비슷한 결과가 반복되지 않게 함 */
@@ -139,6 +145,67 @@ function distributeItems(team, items, carryId) {
     if (best) slots[best.c.id].push(it);
   }
   return slots;
+}
+
+// -------------------------------------------------------------
+// 기능 4. 내 보드 → 다음 수 추천
+// 배치툴 보드의 챔피언을 유지한 채 남은 자리를 채워 완성 덱을 추천.
+// - 보드에 낀 상징은 상징으로 계산, 딜 아이템을 가장 많이 든 챔피언을 핵심 캐리로 고정
+// - keepAll=false 면 아이템·3성·캐리가 아닌 챔피언은 "되도록 유지"(가산점)만 하고 바꿀 수 있음
+// -------------------------------------------------------------
+/** 보드 칸 목록 → 챔피언·상징·캐리 정보 */
+export function readBoard(data, board) {
+  const byId = new Map(data.champions.map(c => [c.id, c]));
+  const emblemTrait = id => data.emblems.find(e => e.id === id || (e.ids || []).includes(id))?.trait;
+  const itemRole = id => data.items.find(i => i.id === id)?.role;
+  const units = [];
+  const emblems = [];
+  for (const u of board) {
+    const champ = byId.get(u.id);
+    if (!champ) continue;
+    let dmg = 0, tank = 0, real = 0;
+    for (const it of u.items || []) {
+      const t = emblemTrait(it);
+      if (t) { if (!champ.traits.includes(t)) emblems.push(t); continue; } // 이미 가진 시너지 상징은 효과 없음
+      real++;
+      const r = itemRole(it);
+      if (r === 'AD' || r === 'AP') dmg++;
+      if (r === 'TANK') tank++;
+    }
+    units.push({ champ, star: u.star || 2, items: u.items || [], dmg, tank, real });
+  }
+  // 핵심 캐리: 딜 아이템 수 → 아이템 수 → 별 → 코스트
+  const carry = [...units].filter(u => u.dmg > 0 || (u.real > 0 && u.tank === 0))
+    .sort((a, b) => b.dmg - a.dmg || b.real - a.real || b.star - a.star || b.champ.cost - a.champ.cost)[0]?.champ || null;
+  const slots = units.reduce((s, u) => s + (u.champ.slots || 1), 0);
+  return { units, emblems, carry, slots };
+}
+
+export function decksFromBoard(data, { board, size, keepAll = true, ...filters }) {
+  const info = readBoard(data, board);
+  if (!info.units.length) return { decks: [], info, size };
+  const isCore = u => keepAll || u.real > 0 || u.star >= 3 || u.champ.id === info.carry?.id;
+  const required = info.units.filter(isCore).map(u => u.champ.id);
+  const prefer = info.units.filter(u => !isCore(u)).map(u => u.champ.id);
+  const requiredSlots = info.units.filter(isCore).reduce((s, u) => s + (u.champ.slots || 1), 0);
+  // 목표 레벨: 지정 안 하면(0) 지금 보드 + 1. 모두 유지인데 보드보다 작으면 다음 레벨로 (최대 10)
+  let target = Math.min(10, size || info.slots + 1);
+  if (keepAll && target <= info.slots) target = Math.min(10, info.slots + 1);
+  if (requiredSlots >= target) return { decks: [], info, size: target };
+  const decks = searchTeams(data, {
+    ...filters, size: target, required, prefer, emblems: info.emblems,
+    carryIds: info.carry ? [info.carry.id] : [], results: 5,
+    minDiff: Math.min(2, target - requiredSlots), // 한 명만 추가할 때는 한 명만 달라도 다른 추천
+  });
+  const boardIds = new Set(info.units.map(u => u.champ.id));
+  for (const d of decks) {
+    const ids = new Set(d.team.map(c => c.id));
+    d.board = {
+      added: d.team.filter(c => !boardIds.has(c.id)).map(c => c.id),
+      removed: info.units.filter(u => !ids.has(u.champ.id)).map(u => u.champ.id),
+    };
+  }
+  return { decks, info, size: target };
 }
 
 // -------------------------------------------------------------

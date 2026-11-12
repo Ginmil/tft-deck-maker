@@ -26,6 +26,7 @@ export function initBuilder(ctx) {
     bdRenderPool();
   };
   $('bdClear').onclick = () => { bdState.cells = {}; bdState.selected = null; bdRender(); };
+  $('bdUndo').onclick = () => { const code = bdState.undo; bdState.undo = null; if (code) bdDecode(code); };
   $('bdAuto').onclick = () => {
     const units = Object.values(bdState.cells).map(u => ({ ...u, champ: bdChamp(u.id) })).filter(u => u.champ);
     bdState.cells = bdAutoPlace(units);
@@ -226,11 +227,30 @@ export function bdOpenDeck(d) {
     const star3 = (d.unitInfo?.[c.id]?.star3 || 0) >= 0.4;
     return { champ: c, star: star3 ? 3 : 2, items };
   });
-  bdState.cells = bdAutoPlace(units, { carryId, tankId });
+  if (d.board) {
+    // 내 보드 기반 추천: 지금 배치·아이템은 그대로 두고, 판매할 챔피언만 빼고 새 챔피언을 빈 칸에
+    bdState.undo = bdEncode();
+    const removed = new Set(d.board.removed), added = new Set(d.board.added);
+    for (const [i, u] of Object.entries(bdState.cells)) if (removed.has(u.id)) delete bdState.cells[i];
+    for (const u of units) {
+      if (!added.has(u.champ.id)) continue;
+      const idx = bdFreeCell(bdIsFront(u.champ));
+      if (idx != null) bdState.cells[idx] = { id: u.champ.id, star: u.star, items: u.items };
+    }
+    bdToast('추천 덱을 보드에 적용했어요 — 되돌리려면 "되돌리기"');
+  } else {
+    bdState.undo = null;
+    bdState.cells = bdAutoPlace(units, { carryId, tankId });
+    document.getElementById('bdName').value = (d.title || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  }
   bdState.selected = null;
-  document.getElementById('bdName').value = (d.title || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
   bd.openTab('builder');
   bdRender();
+}
+
+/** 지금 보드의 챔피언 목록 (다음 수 추천용) */
+export function bdBoardUnits() {
+  return Object.values(bdState.cells).map(u => ({ id: u.id, star: u.star, items: [...u.items] }));
 }
 
 // ---------------- 시너지 계산 (보드 기준) ----------------
@@ -293,6 +313,7 @@ export function bdRender() {
   const n = Object.keys(bdState.cells).length;
   const gold = Object.values(bdState.cells).reduce((s, u) => s + (bdChamp(u.id)?.cost || 0), 0);
   document.getElementById('bdCount').textContent = `${n}명 · ${gold}골드`;
+  document.getElementById('bdUndo').hidden = !bdState.undo;
   document.getElementById('bdHint').textContent =
     sel?.kind === 'item' ? `"${bdItemInfo(sel.id).name}" 선택됨 — 끼울 챔피언을 클릭하세요`
     : sel?.kind === 'cell' ? '선택됨 — 다른 칸을 클릭하면 이동, 아이템을 클릭하면 장착'
