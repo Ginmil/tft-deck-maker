@@ -923,7 +923,7 @@ const PRED_PER_POINT = 0.35; // 영향 점수 1 = 평균 등수 0.35등 변화�
 const PRED_MAX = 1.0;
 const MIN_BASE_GAMES = 8;    // 이전 패치 판수가 이보다 적으면 예측 안 함
 const MIN_ACTUAL_GAMES = 10; // 이번 패치 판수가 이보다 적으면 실측 비교 안 함
-const SMALL_MOVE = 0.15;     // 이보다 작은 변화는 "변화 거의 없음"
+const PLACE_SD = 2.29;       // 등수(1~8 고르게)의 표준편차 → 판수가 적을 때 평균 등수의 오차 계산용
 
 const has = (id, match) => String(id).toLowerCase().includes(String(match).toLowerCase());
 
@@ -958,26 +958,32 @@ function patchImpact(comp, changes) {
  * @param prevPatch 바로 이전 (밸런스) 패치 이름 — 예측의 기준 성적
  */
 function patchReport(comps, patch, prevPatch) {
+  // 평균 등수는 제로섬(8명이 1~8등을 나눔): 여러 덱이 함께 버프되면 서로 상쇄됨.
+  // → 메타 전체의 평균 영향(이전 패치 판수 가중)을 빼서 "다른 덱보다 얼마나 더" 영향받는지로 예측
+  const all = (comps || []).map(c => ({ c, ...patchImpact(c, patch.changes), base: c.byPatch?.[prevPatch], now: c.byPatch?.[patch.patch] }));
+  const weighted = all.filter(x => x.base?.games);
+  const totalGames = weighted.reduce((s, x) => s + x.base.games, 0);
+  const meanScore = totalGames ? weighted.reduce((s, x) => s + x.score * x.base.games, 0) / totalGames : 0;
   const rows = [];
-  for (const c of comps || []) {
-    const { hits, score } = patchImpact(c, patch.changes);
+  for (const { c, hits, score, base, now } of all) {
     if (!hits.length) continue;
-    const base = c.byPatch?.[prevPatch];
-    const now = c.byPatch?.[patch.patch];
-    const predDelta = Math.max(-PRED_MAX, Math.min(PRED_MAX, -PRED_PER_POINT * score)); // 음수 = 등수가 좋아짐
-    const row = { comp: c, hits, score, base: base && base.games >= MIN_BASE_GAMES ? base : null, now: now && now.games >= MIN_ACTUAL_GAMES ? now : null, predDelta };
+    const rel = score - meanScore;
+    const predDelta = Math.max(-PRED_MAX, Math.min(PRED_MAX, -PRED_PER_POINT * rel)); // 음수 = 등수가 좋아짐
+    const row = { comp: c, hits, score, rel, base: base && base.games >= MIN_BASE_GAMES ? base : null, now: now && now.games >= MIN_ACTUAL_GAMES ? now : null, predDelta };
     if (row.base) row.predAvg = pRound(row.base.avgPlace + predDelta, 2);
     if (row.base && row.now) {
       row.actualDelta = pRound(row.now.avgPlace - row.base.avgPlace, 2);
-      row.verdict = Math.abs(row.actualDelta) < SMALL_MOVE ? (Math.abs(predDelta) < SMALL_MOVE ? 'hit' : 'flat')
+      // 판수가 적으면 평균 등수 자체가 흔들림: 변화가 오차(표준오차)보다 작으면 "구분 어려움"
+      row.noise = pRound(PLACE_SD * Math.sqrt(1 / row.base.games + 1 / row.now.games), 2);
+      row.verdict = Math.abs(row.actualDelta) < row.noise || Math.abs(predDelta) < 0.05 ? 'flat'
         : Math.sign(row.actualDelta) === Math.sign(predDelta) ? 'hit' : 'miss';
     }
     rows.push(row);
   }
   // 영향이 큰 덱, 같으면 이전 패치 판수가 많은 덱부터
   rows.sort((a, b) => Math.abs(b.score) - Math.abs(a.score) || (b.base?.games || 0) - (a.base?.games || 0));
-  const judged = rows.filter(r => r.verdict);
-  return { rows, hits: judged.filter(r => r.verdict === 'hit').length, judged: judged.length };
+  const judged = rows.filter(r => r.verdict === 'hit' || r.verdict === 'miss');
+  return { rows, meanScore, hits: judged.filter(r => r.verdict === 'hit').length, judged: judged.length, flat: rows.filter(r => r.verdict === 'flat').length };
 }
 
 /** 일정표에서 이 패치 바로 전의 밸런스 패치 */
@@ -2042,7 +2048,7 @@ function renderPatch(selected) {
   else if (!rep.rows.length) predHtml = '<div class="empty">바뀐 챔피언·시너지를 쓰는 메타 덱이 없어요.</div>';
   else {
     const fmt = (s, avg) => s ? `<span class="tier t${metaTier(avg ?? s.avgPlace, s.games)}">${metaTier(avg ?? s.avgPlace, s.games)}</span> ${(avg ?? s.avgPlace).toFixed(2)}등` : '<span class="muted">—</span>';
-    const verdict = { hit: '<span class="pnVerdict hit">✓ 예측 적중</span>', miss: '<span class="pnVerdict miss">✗ 빗나감</span>', flat: '<span class="pnVerdict flat">– 변화 작음</span>' };
+    const verdict = { hit: '<span class="pnVerdict hit">✓ 예측 적중</span>', miss: '<span class="pnVerdict miss">✗ 빗나감</span>', flat: '<span class="pnVerdict flat">– 구분 어려움</span>' };
     const rows = rep.rows.filter(r => r.base || r.now).slice(0, 15).map(r => {
       const c = r.comp, carry = byLower.get(c.mainCarry || c.carry);
       const why = r.hits.map(h => {
@@ -2055,9 +2061,9 @@ function renderPatch(selected) {
         <td>${fmt(r.base)}<div class="muted small">${r.base ? r.base.games + '판' : '이전 패치 표본 부족'}</div></td>
         <td>${r.base ? fmt({ ...r.base }, r.predAvg) : '—'}<div>${dir}</div></td>
         <td>${fmt(r.now)}<div class="muted small">${r.now ? r.now.games + '판' : '이번 패치 표본 부족'}</div></td>
-        <td>${r.verdict ? verdict[r.verdict] : '<span class="muted small">판 쌓이는 중</span>'}</td></tr>`;
+        <td>${r.verdict ? `<span title="실제 변화 ${r.actualDelta > 0 ? '+' : ''}${r.actualDelta}등, 판수로 인한 오차 ±${r.noise}등">${verdict[r.verdict]}</span><div class="muted small">${r.actualDelta > 0 ? '+' : ''}${r.actualDelta}등 (±${r.noise})</div>` : '<span class="muted small">판 쌓이는 중</span>'}</td></tr>`;
     }).join('');
-    predHtml = `<p class="muted small">이전 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 핵심 캐리면 크게·탱커면 중간·구성원이면 작게, 주력 시너지 변경도 반영해 평균 등수 변화를 예측해요.${rep.judged ? ` 지금까지 <b>${rep.hits}/${rep.judged}</b>개 덱에서 예측 방향이 맞았어요.` : ''}</p>
+    predHtml = `<p class="muted small">이전 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 핵심 캐리면 크게·탱커면 중간·구성원이면 작게, 주력 시너지 변경도 반영해 평균 등수 변화를 예측해요. 평균 등수는 8명이 나눠 갖는 값이라, 메타 전체가 받은 평균 영향보다 <b>더</b> 받은 만큼만 오르내린다고 봐요.${rep.judged ? ` 실제 변화가 판수 오차보다 큰 덱 중 <b>${rep.hits}/${rep.judged}</b>개에서 예측 방향이 맞았어요 (나머지 ${rep.flat}개는 판수가 적거나 변화가 작아 구분 어려움).` : ''}</p>
       <div class="tableWrap"><table class="pnTable"><thead><tr><th>메타 덱 · 영향 원인</th><th>${esc(prev)} 실제</th><th>${esc(p.patch)} 예측</th><th>${esc(p.patch)} 실제</th><th>결과</th></tr></thead><tbody>${rows}</tbody></table></div>`;
   }
   box.innerHTML = `<div class="pnHead"><h3>${esc(p.patch)} 패치</h3><span class="muted small">${esc(p.date)} (태평양 시간) · 한국 서버는 보통 다음 날 아침 적용${p.source ? ` · <a href="${esc(p.source)}" target="_blank" rel="noopener">공식 패치노트</a>` : ''}</span></div>

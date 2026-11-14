@@ -102,8 +102,8 @@ const imp = patchImpact(comp, changes);
 assert.deepEqual(imp.hits.map(h => h.where), ['tank', 'core', 'flex', 'trait'], '니달리 두 형태는 한 번만');
 assert.ok(imp.score > 0, '버프가 더 큼');
 const rep = patchReport([comp], { patch: '18.6', changes }, '18.5');
-assert.equal(rep.rows[0].verdict, 'hit', '예측(좋아짐)과 실제(4.0→3.6) 방향 일치');
-assert.ok(rep.rows[0].predAvg < 4.0);
+assert.equal(rep.rows[0].verdict, 'flat', '덱이 하나뿐이면 상대 영향 0 → 예측 없음');
+{ const other = { trait: 'X', mainCarry: 'x', core: [{ id: 'x', rate: 1 }], byPatch: { '18.5': { games: 400, avgPlace: 4.5 }, '18.6': { games: 400, avgPlace: 4.6 } } }; const big = { ...comp, byPatch: { '18.5': { games: 400, avgPlace: 4.0 }, '18.6': { games: 400, avgPlace: 3.6 } } }; const r2 = patchReport([big, other], { patch: '18.6', changes }, '18.5'); assert.ok(r2.rows[0].predAvg < 4.0, '안 바뀐 덱보다 더 좋아질 것'); assert.equal(r2.rows[0].verdict, 'hit', '400판씩이면 0.4등 변화는 오차보다 큼'); }
 assert.equal(prevBalancePatch([{ patch: '18.5' }, { patch: '18.6' }, { patch: '18.7', balance: false }, { patch: '19.1' }], '19.1'), '18.6');
 console.log('영향 예측:', imp.score.toFixed(2), '점 → 예측', rep.rows[0].predAvg, '등 / 실제', comp.byPatch['18.6'].avgPlace, '등 →', rep.rows[0].verdict);
 console.log('패치 영향 예측 테스트 통과');
