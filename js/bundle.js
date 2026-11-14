@@ -2033,7 +2033,7 @@ function renderPatch(selected) {
       let icon = '', nm = c.name || c.match;
       if (kind === 'champion') { const ch = champsOf(c.match)[0]; if (ch) { icon = img(ch.icon); nm = ch.name; } }
       if (kind === 'trait') { const t = traitOf(c.match); if (t) { icon = img(t[1].icon); nm = t[1].name; } }
-      return `<div class="pnChange"><span class="pnIcon">${icon}</span><b>${esc(nm)}</b> <span class="pdelta ${cls}">${arrow} ${word}</span> <span class="muted small">${esc(c.note || '')}</span></div>`;
+      return `<div class="pnChange"><span class="pnIcon">${icon}</span><b>${esc(nm)}</b> <span class="pdelta ${cls}">${arrow} ${word}</span> <span class="muted small">${c.note && c.note !== word ? esc(c.note) : ''}</span></div>`;
     }).join('')}</div>`;
   }).join('');
 
@@ -2049,7 +2049,9 @@ function renderPatch(selected) {
   else {
     const fmt = (s, avg) => s ? `<span class="tier t${metaTier(avg ?? s.avgPlace, s.games)}">${metaTier(avg ?? s.avgPlace, s.games)}</span> ${(avg ?? s.avgPlace).toFixed(2)}등` : '<span class="muted">—</span>';
     const verdict = { hit: '<span class="pnVerdict hit">✓ 예측 적중</span>', miss: '<span class="pnVerdict miss">✗ 빗나감</span>', flat: '<span class="pnVerdict flat">– 구분 어려움</span>' };
-    const rows = rep.rows.filter(r => r.base || r.now).slice(0, 15).map(r => {
+    // 비교할 수 있는 덱(이전 패치 표본 있음) 먼저, 그중 실측 판정이 난 덱 먼저
+    const rank = r => (r.verdict === 'hit' || r.verdict === 'miss' ? 0 : r.verdict ? 1 : r.base ? 2 : 3);
+    const rows = rep.rows.filter(r => r.base || r.now).sort((a, b) => rank(a) - rank(b) || Math.abs(b.rel) - Math.abs(a.rel)).slice(0, 20).map(r => {
       const c = r.comp, carry = byLower.get(c.mainCarry || c.carry);
       const why = r.hits.map(h => {
         const nm = h.where === 'trait' ? traitName(c.trait) : byLower.get(h.id)?.name || h.id;
@@ -2061,7 +2063,7 @@ function renderPatch(selected) {
         <td>${fmt(r.base)}<div class="muted small">${r.base ? r.base.games + '판' : '이전 패치 표본 부족'}</div></td>
         <td>${r.base ? fmt({ ...r.base }, r.predAvg) : '—'}<div>${dir}</div></td>
         <td>${fmt(r.now)}<div class="muted small">${r.now ? r.now.games + '판' : '이번 패치 표본 부족'}</div></td>
-        <td>${r.verdict ? `<span title="실제 변화 ${r.actualDelta > 0 ? '+' : ''}${r.actualDelta}등, 판수로 인한 오차 ±${r.noise}등">${verdict[r.verdict]}</span><div class="muted small">${r.actualDelta > 0 ? '+' : ''}${r.actualDelta}등 (±${r.noise})</div>` : '<span class="muted small">판 쌓이는 중</span>'}</td></tr>`;
+        <td>${r.verdict ? `<span title="실제 변화 ${r.actualDelta > 0 ? '+' : ''}${r.actualDelta}등, 판수로 인한 오차 ±${r.noise}등">${verdict[r.verdict]}</span><div class="muted small">${r.actualDelta > 0 ? '+' : ''}${r.actualDelta}등 (±${r.noise})</div>` : `<span class="muted small">${r.base ? '이번 패치 판 쌓이는 중' : '비교 불가'}</span>`}</td></tr>`;
     }).join('');
     predHtml = `<p class="muted small">이전 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 핵심 캐리면 크게·탱커면 중간·구성원이면 작게, 주력 시너지 변경도 반영해 평균 등수 변화를 예측해요. 평균 등수는 8명이 나눠 갖는 값이라, 메타 전체가 받은 평균 영향보다 <b>더</b> 받은 만큼만 오르내린다고 봐요.${rep.judged ? ` 실제 변화가 판수 오차보다 큰 덱 중 <b>${rep.hits}/${rep.judged}</b>개에서 예측 방향이 맞았어요 (나머지 ${rep.flat}개는 판수가 적거나 변화가 작아 구분 어려움).` : ''}</p>
       <div class="tableWrap"><table class="pnTable"><thead><tr><th>메타 덱 · 영향 원인</th><th>${esc(prev)} 실제</th><th>${esc(p.patch)} 예측</th><th>${esc(p.patch)} 실제</th><th>결과</th></tr></thead><tbody>${rows}</tbody></table></div>`;
