@@ -317,3 +317,16 @@ footer { text-align: center; font-size: 12px; padding: 30px 16px; }
 .pnVerdict.hit { color: #5fd08a; }
 .pnVerdict.miss { color: var(--danger); }
 .pnVerdict.flat { color: var(--muted); }
+
+/* ---------- 아이템으로 찾기: 랭커 통계 ---------- */
+.icList { display: grid; gap: 8px; margin-bottom: 18px; }
+.icarry { display: grid; grid-template-columns: 34px minmax(170px, 1.1fr) minmax(200px, 1.3fr) minmax(260px, 2fr); gap: 10px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.icarry .rank { color: var(--accent2, #f0b232); font-weight: 700; }
+.icChamp { display: flex; align-items: center; gap: 8px; }
+.icChamp img { width: 40px; height: 40px; border-radius: 8px; }
+.icRates { display: flex; flex-wrap: wrap; gap: 6px; }
+.icRate { display: inline-flex; align-items: center; gap: 4px; }
+.icRate b { font-size: 13px; }
+.icBuild { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.icNext .bi { border-color: #d6a630; box-shadow: 0 0 0 1px #d6a630; }
+@media (max-width: 760px) { .icarry { grid-template-columns: 28px 1fr; } .icRates, .icBuild { grid-column: 2; } }

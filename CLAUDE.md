@@ -20,10 +20,12 @@
 - `js/engine/search.js` — 빔 서치. 옵션: `required`, `exclude`(특수 기물 제외), `max5`(5코스트 개수 제한), `prefer`(되도록 유지, 가산점), `minDiff`(결과끼리 최소 차이).
   - `craftPlans`/`recipeBook` — 재료 → 조합 추천. 재료를 짝짓는 모든 최대 매칭을 보고(짝 있는 재료는 남기지 않음), 캐리 1명(딜템 3칸)+탱커 1명(탱템 3칸) 기준 점수 → 캐리 유형(물리/마법/전사형)별 최고 조합 우선 최대 3개 → `decksForItems(carryId 고정)`. 결과에 `d.craft = { made: [{ result, from }], left }`.
   - `distributeItems` — 캐리 가산점은 그 캐리에게 맞는 아이템일 때만(물리 캐리에 대천사 X).
+  - **`itemAffinity`**(11/15) — 챔피언-아이템 궁합: 랭커 통계(`data.unitStats`, 30판 이상)가 있으면 "그 챔피언이 그 아이템을 낀 판 비율 × 3"(최대 1), 없으면 역할 기반 `itemFit`. `decksForItems`·`distributeItems`·`craftPlans` 모두 이걸 씀(애쉬에 스테락 주던 문제 해결).
+  - **`carriesForItems`** — 고른 아이템을 랭커들이 실제로 준 챔피언 TOP 5(낀 판 비율·아이템 몫·평균 등수) + 고른 아이템을 가장 많이 포함하는 실제 3신기(= 다음에 만들 아이템).
   - `decksFromBoard`/`readBoard` — 배치툴 보드 → 다음 수 추천. 보드 챔피언 = required("바꿔도 돼요"면 아이템·3성·캐리만 required, 나머지 prefer), 낀 상징 = emblems, 딜 아이템 최다 챔피언 = 핵심 캐리. 목표 레벨 0 = 보드+1. 결과에 `d.board = { added, removed }`.
 - `js/builder.js` — 배치툴(4×7 육각 보드, 드래그 앤 드롭, 아이템 분류 일반/찬란한/유물/상징, 저장·코드 공유, 덱 카드 → `bdOpenDeck`). `d.board` 가 있는 덱은 기존 배치·아이템을 유지한 채 빼는 챔피언만 빼고 새 챔피언을 빈 칸에 넣음 + "되돌리기".
 - `js/app.js` 의 `runBoard`/`metaNearBoard` — 다음 수 추천 화면(`#bdRecs`): 내 보드와 절반 이상 겹치는 메타 덱(최대 3) + 이어서 완성하는 덱(최대 5). `metaDecks(minGames)` 는 메타 덱 탭과 공용.
-- `js/app.js` — 화면 로직, 탭: 메타 덱 / 상징 팀 메이커 / 시너지로 찾기 / 아이템으로 찾기 / 챔피언 3신기 / 배치툴. 아이템 조합식 툴팁(`data-item` 속성).
+- `js/app.js` — 화면 로직, 탭: 메타 덱 / 패치 노트 / 상징 팀 메이커 / 아이템으로 찾기 / 챔피언 3신기 / 배치툴. **시너지로 찾기 탭은 11/15 삭제**(사용자 판단: 시너지로 덱을 고르는 일은 드물고, 캐리 하나로 짜는 건 배치툴이 맡음 — `decksForTraits` 엔진 함수는 남아 있음). 아이템 탭(완성)은 통계가 있으면 `renderItemStats`: 랭커가 준 챔피언 TOP 5 + 추천 3신기 + 그 캐리/3신기와 겹치는 메타 덱(캐리마다 최고 1개, 최대 4), 통계 없으면 예전 엔진 덱. 아이템 조합식 툴팁(`data-item` 속성).
 - **세트 데이터 사본** `data/set-snapshot.json` — `tools/snapshot-set.mjs` 가 Community Dragon 을 받아 어댑터로 변환한 결과(`{ adapterVersion, fetchedAt, data }`). `.github/workflows/snapshot.yml` 이 매일 + `cdragon.js` 를 고쳐 푸시할 때마다 갱신(키 불필요). 사이트는 캐시 → 사본 → 원본 순으로 시작하고, "불러오기"가 실패하면 사본으로 대신함(11/14 Community Dragon 장애 대응, 원본 요청은 45초 시간 제한). 어댑터 버전이 다르면 사본을 무시하므로 `ADAPTER_VERSION` 을 올린 뒤에는 snapshot 워크플로가 끝났는지 확인.
   - 아이콘도 같은 워크플로가 `data/icons/*.png` 로 복사하고 `data/icons/map.json`(원본 URL → 사본 경로)을 만듦. `app.js setData → localizeIcons` 가 캐시·사본·원본 어느 데이터든 이 표로 주소를 바꿈 (11/14 Community Dragon 이 아이콘 하나에 20초 걸린 일 대응).
 - `tools/collect-stats.mjs` + `tools/stats-lib.mjs` — 라이엇 API(TFT-LEAGUE-V1, TFT-MATCH-V1)로 랭커 경기 수집 → `data/weights.json`, `data/weights.js`. 키는 `tools/config.json`(gitignore) 또는 환경변수 `RIOT_API_KEY`.

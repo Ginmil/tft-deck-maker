@@ -3,7 +3,7 @@
 // 데이터 → 어댑터(normalize) → 엔진(search) → 화면
 // =============================================================
 import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './adapters/cdragon.js';
-import { decksForTraits, decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook } from './engine/search.js';
+import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
 import { patchReport, prevBalancePatch } from './engine/patch.js';
 import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits } from './builder.js';
@@ -175,7 +175,6 @@ const roleKo = { AD: '물리', AP: '마법', TANK: '탱커', FIGHTER: '전사', 
 
 function renderAllPickers() {
   renderEmblems(); renderItems();
-  renderTraitList('traitList', state.desired, $('traitFilter').value);
   renderTraitList('emblemTraitList', state.emblemDesired, '');
 }
 
@@ -191,7 +190,7 @@ function renderEmblems() {
 }
 
 const ITEM_HELP = {
-  full: '가지고 있는 완성 아이템을 고르세요. 아이템을 가장 잘 쓰는 캐리와 그 캐리 중심 덱을 찾아줍니다.',
+  full: '가지고 있는 완성 아이템을 고르세요. <b>랭커들이 이 아이템을 실제로 준 챔피언</b>, 그 챔피언의 3신기(다음에 만들 아이템), 이 아이템으로 갈 수 있는 메타 덱을 보여줘요.',
   comp: '가지고 있는 <b>재료 아이템</b>을 모두 담으세요(같은 재료는 여러 번). 어떻게 짝지어 만들지 3가지 방법과 각 방법에 맞는 덱을 추천해요.',
 };
 function renderItems() {
@@ -425,20 +424,13 @@ function bind() {
   };
 
   // 시너지
-  $('traitFilter').oninput = () => renderTraitList('traitList', state.desired, $('traitFilter').value);
   const toggleBp = (target, listId, q) => e => {
     const b = e.target.closest('.bp'); if (!b) return;
     const t = b.dataset.trait, bp = Number(b.dataset.bp);
     if (target[t] === bp) delete target[t]; else target[t] = bp;
     renderTraitList(listId, target, q());
   };
-  $('traitList').onclick = toggleBp(state.desired, 'traitList', () => $('traitFilter').value);
   $('emblemTraitList').onclick = toggleBp(state.emblemDesired, 'emblemTraitList', () => '');
-  $('runTraits').onclick = e => {
-    if (!Object.keys(state.desired).length) { $('results').innerHTML = '<div class="empty">시너지 단계를 하나 이상 골라 주세요.</div>'; return; }
-    const title = Object.entries(state.desired).map(([t, b]) => `${traitName(t)} ${b}`).join(' + ') + ' 덱';
-    run(e.currentTarget, title, o => decksForTraits(state.data, { ...o, desired: state.desired }));
-  };
 
   // 아이템
   $('itemFilter').oninput = renderItems;
@@ -456,6 +448,7 @@ function bind() {
       return;
     }
     if (!state.items.length) { $('results').innerHTML = '<div class="empty">아이템을 하나 이상 골라 주세요.</div>'; return; }
+    if (state.data?.unitStats) { renderItemStats(e.currentTarget); return; } // 랭커 통계가 있으면 통계 기반 화면
     run(e.currentTarget, '아이템에 맞는 캐리 & 덱', o => decksForItems(state.data, { ...o, itemIds: state.items }));
   };
 }
@@ -572,6 +565,43 @@ function renderPatchInfo() {
   box.innerHTML = `<b>${esc(p.current)} 패치</b> 기준 · 이번 패치 ${cur.toLocaleString()}경기`
     + (p.prev ? ` · 이전 패치(${esc(p.prev)}) ${prev.toLocaleString()}경기는 ${p.prevWeight > 0 ? '이번 패치 표본이 적어 일부만 반영' : '이번 패치 표본이 충분해 ▲▼ 비교에만 사용'}` : '')
     + ` · <span class="pdelta up">▲</span><span class="pdelta down">▼</span> = 이전 패치 대비 평균 등수 변화`;
+}
+
+// ---- 아이템으로 찾기: 랭커 통계 기반 ----
+function renderItemStats(btn) {
+  const d = state.data, o = opts();
+  const carriers = carriesForItems(d, { ...o, exclude: $('specialMode').value === 'without' ? specialIds() : [], itemIds: state.items });
+  const byId = new Map(d.champions.map(c => [c.id, c]));
+  const chosen = state.items;
+  const pct = x => `${Math.round(x * 100)}%`;
+  // 1) 랭커가 이 아이템을 준 챔피언
+  const carryHtml = carriers.length ? carriers.map((r, i) => `
+    <div class="icarry">
+      <span class="rank">#${i + 1}</span>
+      <div class="icChamp" data-cost="${r.champ.cost}">${img(r.champ.icon)}<div><b>${esc(r.champ.name)}</b><div class="muted small">${r.champ.cost}코 · 평균 ${r.avgPlace}등 · ${r.games.toLocaleString()}판</div></div></div>
+      <div class="icRates">${r.rates.map(q => `<span class="icRate" title="${esc(r.champ.name)}가 나온 판 중 ${pct(q.rate)}에서 이 아이템을 꼈고, 랭커 경기의 이 아이템 중 ${pct(q.share)}가 ${esc(r.champ.name)}에게 갔어요">${itemLabel(q.item.id)}<b>${pct(q.rate)}</b><span class="muted small">판</span></span>`).join('')}</div>
+      <div class="icBuild">${r.build ? `<span class="muted small">추천 3신기</span>${r.build.items.map(id => `<span class="${chosen.includes(id) ? '' : 'icNext'}">${itemLabel(id)}</span>`).join('')}<span class="bmeta">평균 ${r.build.avgPlace}등 · ${r.build.games}판${r.build.games < 15 ? ' <span class="lowconf">표본 적음</span>' : ''}</span>` : '<span class="muted small">고른 아이템이 들어간 3신기 기록 없음</span>'}</div>
+    </div>`).join('') : '<div class="empty">랭커 경기에서 이 아이템을 자주 낀 챔피언이 없어요.</div>';
+  // 2) 이 아이템으로 갈 수 있는 메타 덱: 위 챔피언이 핵심 캐리이거나, 핵심 캐리 3신기와 겹치는 덱
+  const carrierRank = new Map(carriers.map((r, i) => [r.champ.id.toLowerCase(), i]));
+  const metas = metaDecks(8).map(dk => {
+    const carryId = dk.m.mainCarry || dk.m.carry;
+    const build = dk.m.builds?.[carryId]?.items || [];
+    const rest = [...chosen];
+    let overlap = 0;
+    for (const it of build) { const k = rest.indexOf(it); if (k >= 0) { overlap++; rest.splice(k, 1); } }
+    const rank = carrierRank.has(carryId) ? carrierRank.get(carryId) : 99;
+    return { ...dk, overlap, rank, metaInfo: `${rank < 99 ? `<b>${rank + 1}위 캐리 덱</b> · ` : ''}${overlap ? `3신기와 아이템 ${overlap}개 일치 · ` : ''}${dk.metaInfo}` };
+  }).filter(x => x.rank < 99 || x.overlap > 0)
+    .sort((a, b) => (a.rank - b.rank) || (b.overlap - a.overlap) || (metaShrunk(a.m) - metaShrunk(b.m)))
+    .filter((x, i, arr) => arr.findIndex(y => y.rank === x.rank && x.rank < 99) === i || x.rank === 99) // 캐리마다 가장 좋은 덱 하나
+    .slice(0, 4);
+  $('results').innerHTML = `
+    <div class="resultHead"><h2>랭커들이 이 아이템을 준 챔피언</h2><span class="legend">${esc(curPatch() ? curPatch() + ' 패치 · ' : '')}랭커 경기 기준 · "판" = 그 챔피언이 나온 판 중 이 아이템을 낀 비율 · 노란 테두리 = 다음에 만들 아이템</span></div>
+    <div class="icList">${carryHtml}</div>
+    <div class="resultHead"><h2>이 아이템으로 가는 메타 덱</h2></div>
+    ${metas.length ? metas.map((dk, i) => deckCard(dk, i, byId)).join('') : '<div class="empty">이 아이템을 쓰는 메타 덱이 없어요 (최소 8판).</div>'}`;
+  btn?.blur();
 }
 
 // ---- 패치 노트 탭 ----

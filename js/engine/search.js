@@ -103,6 +103,61 @@ export function itemFit(champ, item) {
   return FIT[item.role]?.[champ.role] ?? 0;
 }
 
+// -------------------------------------------------------------
+// 랭커 통계 기반 챔피언-아이템 궁합 (통계가 있으면 역할 추정보다 우선)
+// -------------------------------------------------------------
+const STAT_MIN_GAMES = 30; // 이보다 적게 나온 챔피언은 통계를 믿지 않음
+const unitStatOf = (data, champ) => {
+  const u = data.unitStats?.[champ.id.toLowerCase()];
+  return u && u.games >= STAT_MIN_GAMES ? u : null;
+};
+/**
+ * 챔피언이 이 아이템을 얼마나 잘 쓰는지 0~1.
+ * 통계: 랭커 경기에서 이 챔피언이 이 아이템을 낀 비율(판당) × 3 (33% 이상이면 1)
+ * 통계 없음: 역할 기반 itemFit (통계 파일은 있는데 표본이 적은 챔피언은 낮춰서)
+ */
+export function itemAffinity(data, champ, item) {
+  const u = unitStatOf(data, champ);
+  if (!u) return itemFit(champ, item) * (data.unitStats ? 0.3 : 1);
+  return Math.min(1, ((u.items?.[item.id] || 0) / u.games) * 3);
+}
+
+/**
+ * 고른 아이템을 랭커들이 실제로 준 챔피언 순위 (통계 필요)
+ * rate = 이 챔피언이 그 아이템을 낀 판 비율, share = 그 아이템 전체 중 이 챔피언에게 간 비율
+ * build = 고른 아이템을 가장 많이 포함하는 실제 3신기 중 성적이 좋은 것 (= 다음에 만들 아이템)
+ */
+export function carriesForItems(data, { itemIds, maxCost = 5, exclude = [], max5 = Infinity, top = 5 }) {
+  if (!data.unitStats) return [];
+  const items = itemIds.map(id => data.items.find(i => i.id === id) || { id }).filter(Boolean);
+  const total = {};
+  for (const u of Object.values(data.unitStats)) for (const [id, n] of Object.entries(u.items || {})) total[id] = (total[id] || 0) + n;
+  const want = itemIds.reduce((m, id) => (m[id] = (m[id] || 0) + 1, m), {});
+  const rows = [];
+  for (const champ of data.champions) {
+    if (champ.cost > maxCost || exclude.includes(champ.id) || (champ.cost === 5 && max5 < 1)) continue;
+    const u = unitStatOf(data, champ);
+    if (!u) continue;
+    let score = 0;
+    const rates = Object.entries(want).map(([id, k]) => {
+      const n = u.items?.[id] || 0;
+      const rate = n / u.games, aff = Math.min(1, rate * 1.5); // 67% 이상 끼면 만점 (순위 구분용으로 넓게)
+      score += aff * (k > 1 ? 1 + 0.5 * (k - 1) : 1); // 같은 아이템 2개째는 절반
+      return { item: items.find(i => i.id === id), rate, share: total[id] ? n / total[id] : 0 };
+    });
+    if (!rates.some(r => r.rate >= 0.05)) continue;
+    // 실제 3신기 중 고른 아이템과 가장 많이 겹치는 것 → 성적순
+    const build = (u.builds || []).map(b => {
+      const rest = [...itemIds];
+      let overlap = 0;
+      for (const it of b.items) { const i = rest.indexOf(it); if (i >= 0) { overlap++; rest.splice(i, 1); } }
+      return { ...b, overlap, shrunk: (b.avgPlace * b.games + 4.5 * 5) / (b.games + 5) };
+    }).filter(b => b.overlap > 0).sort((a, b) => b.overlap - a.overlap || a.shrunk - b.shrunk)[0] || null;
+    rows.push({ champ, score, rates, games: u.games, avgPlace: u.avgPlace, carryRate: u.carryRate, build });
+  }
+  return rows.sort((a, b) => b.score - a.score || a.avgPlace - b.avgPlace).slice(0, top);
+}
+
 export function decksForItems(data, { itemIds, size, maxCost, emblems = [], top = 3, carryId = null, ...filters }) {
   const { exclude = [], max5 = Infinity } = filters;
   const items = itemIds.map(id => data.items.find(i => i.id === id)).filter(Boolean);
@@ -111,8 +166,8 @@ export function decksForItems(data, { itemIds, size, maxCost, emblems = [], top 
   const ranked = data.champions
     .filter(c => carryId ? c.id === carryId : c.cost <= maxCost && !exclude.includes(c.id) && !(c.cost === 5 && max5 < 1))
     .map(c => {
-      const fit = items.reduce((s, it) => s + itemFit(c, it), 0);
-      return { champ: c, fit, rank: fit * (1 + 0.15 * c.cost) };
+      const fit = items.reduce((s, it) => s + itemAffinity(data, c, it), 0);
+      return { champ: c, fit, rank: fit * (1 + (data.unitStats ? 0.05 : 0.15) * c.cost) }; // 통계가 있으면 코스트 가산은 작게
     })
     .filter(r => r.fit > 0)
     .sort((a, b) => b.rank - a.rank)
@@ -129,18 +184,18 @@ export function decksForItems(data, { itemIds, size, maxCost, emblems = [], top 
     const [deck] = searchTeams(data, {
       size, maxCost, desired, emblems, required: [champ.id], carryIds: [champ.id], results: 1, ...filters,
     });
-    return deck ? { carry: champ, fit, items: distributeItems(deck.team, items, champ.id), ...deck } : null;
+    return deck ? { carry: champ, fit, items: distributeItems(data, deck.team, items, champ.id), ...deck } : null;
   }).filter(Boolean);
 }
 
 /** 아이템을 덱 안에서 가장 잘 맞는 챔피언에게 배분 (최대 3칸) */
-function distributeItems(team, items, carryId) {
+function distributeItems(data, team, items, carryId) {
   const slots = Object.fromEntries(team.map(c => [c.id, []]));
   const sorted = [...items].sort((a, b) => (a.role === 'FLEX') - (b.role === 'FLEX'));
   for (const it of sorted) {
     const best = team
       .filter(c => slots[c.id].length < 3)
-      .map(c => { const fit = itemFit(c, it); return { c, f: fit + (c.id === carryId && it.role !== 'TANK' && fit > 0 ? 0.5 : 0) + c.cost * 0.05 }; })
+      .map(c => { const fit = itemAffinity(data, c, it); return { c, f: fit + (c.id === carryId && it.role !== 'TANK' && fit > 0 ? 0.5 : 0) + c.cost * 0.05 }; })
       .sort((a, b) => b.f - a.f)[0];
     if (best) slots[best.c.id].push(it);
   }
@@ -185,7 +240,7 @@ function pairings(components, book, limit = 20000) {
 }
 
 /** 아이템 묶음 점수: 캐리 1명(딜템 3칸) + 탱커 1명(탱템 3칸) + 나머지 */
-function planScore(items, emblems, champs) {
+function planScore(data, items, emblems, champs) {
   const best = (pool, filter, costW) => {
     let top = { score: 0, champ: null, used: [] };
     for (const c of champs) {
@@ -193,7 +248,7 @@ function planScore(items, emblems, champs) {
       const seen = {};
       const fits = pool.map((it, k) => {
         const dup = seen[it.id] = (seen[it.id] || 0) + 1;
-        return { k, f: itemFit(c, it) * (dup > 1 ? 0.6 : 1) }; // 같은 아이템 중복은 효율이 떨어짐
+        return { k, f: itemAffinity(data, c, it) * (dup > 1 ? 0.6 : 1) }; // 같은 아이템 중복은 효율이 떨어짐
       }).filter(x => x.f > 0).sort((a, b) => b.f - a.f).slice(0, 3);
       const sc = fits.reduce((s, x) => s + x.f, 0) * (1 + costW * c.cost);
       if (sc > top.score) top = { score: sc, champ: c, used: fits.map(x => x.k) };
@@ -221,7 +276,7 @@ export function craftPlans(data, { components, plans = 3, size, maxCost, ...filt
     const items = p.made.filter(m => m.result.kind === 'item').map(m => m.result);
     const emblems = p.made.filter(m => m.result.kind === 'emblem').map(m => m.result.trait);
     if (!items.length) continue;
-    scored.push({ ...p, items, emblems, ...planScore(items, emblems, champs) });
+    scored.push({ ...p, items, emblems, ...planScore(data, items, emblems, champs) });
   }
   scored.sort((a, b) => b.score - a.score);
   // 비슷한 조합만 나오지 않게: 먼저 캐리 유형(물리/마법/전사형)별 최고 조합, 남는 자리는 아이템이 2개 이상 다른 조합
