@@ -427,7 +427,9 @@ export function emblemTeamMaker(data, { emblems, size, maxCost, desired = {}, ..
 // - 점수: 랭커 통계 궁합(itemAffinity) + 이미 캐리 아이템을 든 챔피언에게 몰아주기 + 랭커 3신기와 일치하면 가산
 // - 상징: 그 시너지가 없는 챔피언에게, 시너지 단계가 실제로 올라가면 높게
 // -------------------------------------------------------------
-export function assignItems(data, { board, inventory, carryIdx = null }) {
+export function assignItems(data, { board, inventory, carryIdx = null, carries = null }) {
+  // 사용자가 고른 "아이템 줄 챔피언"(여러 명 가능). 고르면 일반 아이템은 이 챔피언들에게만 줌.
+  const carrySet = new Set((carries ?? (carryIdx != null ? [carryIdx] : [])).map(Number));
   const byId = new Map(data.champions.map(c => [c.id, c]));
   const emblemOf = id => data.emblems.find(e => e.id === id || (e.ids || []).includes(id));
   const componentIds = new Set((data.components || []).map(c => c.id));
@@ -452,20 +454,29 @@ export function assignItems(data, { board, inventory, carryIdx = null }) {
     return { idx: b.idx, champ, star: b.star || 2, held, free: Math.max(0, 3 - held.length) };
   }).filter(Boolean);
 
-  const aff = (u, it) => itemAffinity(data, u.champ, it.statId ? { ...it, id: it.statId } : it);
+  // 고른 챔피언인데 랭커 통계상 아이템 홀더가 아닌 경우(5코 나르: 375판, 아이템 3개 든 판 4%)는 통계로 판단할 수 없으니
+  // 역할 기준 궁합을 함께 봄. 통계가 충분한 홀더(니달리·아펠리오스)는 통계만 — 역할로 보면 적응가 니달리가 AP 로 잡힘
+  const thinStats = u => { const st = data.unitStats?.[u.champ.id.toLowerCase()]; return !st || st.games < 30 || (st.carryRate || 0) < 0.15; };
+  const aff = (u, it) => {
+    const x = it.statId ? { ...it, id: it.statId } : it;
+    const a = itemAffinity(data, u.champ, x);
+    return carrySet.has(u.idx) && thinStats(u) && !isAdaptorChamp(u.champ) ? Math.max(a, itemFit(u.champ, x) * 0.7) : a;
+  };
+  const canHold = u => !carrySet.size || carrySet.has(u.idx);
+  function isAdaptorChamp(c) { return c.traits.some(t => /Adaptor/i.test(t) || /공격력과 주문력 중 어느 쪽이 높은지/.test(data.traits[t]?.desc || '')); }
   // 이미 아이템(딜템 등)을 든 챔피언 = 그 덱의 아이템 홀더 → 같은 계열 아이템을 몰아줌
   // (게임에서 이미 아이템을 준 챔피언 = 키우기로 정한 캐리. 다른 챔피언이 통계상 조금 더 잘 써도 몰아주는 게 보통 더 셈 — 사용자 피드백 11/15 로 +100%/개)
   // 사용자가 "몰아줄 캐리"로 고른 챔피언은 캐리템 2개를 든 것과 같은 대우
-  const holderBonus = u => 1 + 1.0 * (u.idx === carryIdx ? 2 : Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length));
+  const holderBonus = u => 1 + 1.0 * (carrySet.has(u.idx) ? 2 : Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length));
   // 적응가(공격력·주문력 중 높은 쪽을 씀): 물리 아이템과 마법 아이템을 섞으면 한쪽은 버리는 셈
-  const isAdaptor = u => u.champ.traits.some(t => /Adaptor/i.test(t) || /공격력과 주문력 중 어느 쪽이 높은지/.test(data.traits[t]?.desc || ''));
+  const isAdaptor = u => isAdaptorChamp(u.champ);
   const buildsOf = u => data.unitStats?.[u.champ.id.toLowerCase()]?.builds || [];
   // 아이템 홀더 가중치: 랭커 경기에서 이 챔피언이 아이템 3개를 든 비율(carryRate).
   // 롤체는 나눠 주기보다 한 챔피언에 몰아줘야 함 → 홀더가 아닌 챔피언(요릭 0.08 등)에게 준 아이템은 가치가 작음
   const unitWeight = u => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
     const w = st && st.games >= 30 ? Math.max(0.3, Math.min(1.4, 0.3 + 1.4 * (st.carryRate || 0))) : 1;
-    return u.idx === carryIdx ? Math.max(w, 1.3) : w;
+    return carrySet.has(u.idx) ? Math.max(w, 1.3) : w;
   };
   const unitValue = (u, added) => {
     let v = 0;
@@ -511,7 +522,7 @@ export function assignItems(data, { board, inventory, carryIdx = null }) {
       let best = null;
       for (const u of units) {
         const list = slots.get(u);
-        if (list.length >= u.free) continue;
+        if (list.length >= u.free || !canHold(u)) continue;
         const gain = unitValue(u, [...list, it]) - unitValue(u, list);
         if (!best || gain > best.gain) best = { u, gain };
       }
@@ -524,7 +535,7 @@ export function assignItems(data, { board, inventory, carryIdx = null }) {
       outer: for (const u of units) {
         for (const [k, it] of slots.get(u).entries()) {
           for (const v of units) {
-            if (v === u) continue;
+            if (v === u || !canHold(v)) continue;
             const lu = slots.get(u), lv = slots.get(v);
             if (lv.length < v.free) { // 옮기기
               lu.splice(k, 1); lv.push(it);
@@ -574,12 +585,12 @@ export function assignItems(data, { board, inventory, carryIdx = null }) {
   const allPlans = comps.length ? pairings(comps, book, 100000) : [{ made: [], left: [] }];
   // 재료가 많으면 짝짓는 방법이 수만 가지(15개 ≈ 3만) → 빠른 어림 점수로 추린 뒤 상위만 제대로 배분
   // 어림 점수 = 아이템마다 "가장 잘 쓰는 챔피언 한 명"의 가치, 남은 칸 수만큼 큰 것부터 합
-  const totalFree = units.reduce((s, u) => s + u.free, 0);
+  const totalFree = units.filter(canHold).reduce((s, u) => s + u.free, 0);
   const bestVal = new Map();
   const quickOf = id => {
     if (!bestVal.has(id)) {
       const it = lookup(id);
-      bestVal.set(id, it.kind === 'emblem' ? 0.6 : Math.max(0, ...units.filter(u => u.free).map(u => aff(u, it) * holderBonus(u) * unitWeight(u))));
+      bestVal.set(id, it.kind === 'emblem' ? 0.6 : Math.max(0, ...units.filter(u => u.free && canHold(u)).map(u => aff(u, it) * holderBonus(u) * unitWeight(u))));
     }
     return bestVal.get(id);
   };
@@ -608,7 +619,7 @@ export function assignItems(data, { board, inventory, carryIdx = null }) {
   const reasonOf = (u, it) => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
     const rate = st && st.games >= 30 ? (st.items?.[it.statId || it.id] || 0) / st.games : null;
-    return { rate };
+    return { rate, roleBased: carrySet.has(u.idx) && thinStats(u) && !isAdaptorChamp(u.champ) };
   };
   const assignments = [];
   for (const u of units) {

@@ -8,7 +8,7 @@
 const BD_ROWS = 4, BD_COLS = 7;            // 0행 = 맨 앞줄(적과 가까운 줄), 3행 = 맨 뒷줄
 const BD_SAVE_KEY = 'tft-deck-maker:boards';
 let bd = null;                              // ctx
-const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal', inv: [], invMode: false }; // cells[idx] = { id, star, items: [] }, inv = 남은 아이템
+const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal', inv: [], invMode: false, carries: new Set() }; // cells[idx] = { id, star, items: [] }, inv = 남은 아이템
 
 const bdIdx = (r, c) => r * BD_COLS + c;
 const bdData = () => bd.getData();
@@ -127,6 +127,12 @@ export function initBuilder(ctx) {
   // 남은 아이템 (자동 배분용)
   $('bdInvMode').onchange = e => { bdState.invMode = e.target.checked; if (bdState.invMode) bdState.selected = null; bdRender(); };
   $('bdInvClear').onclick = () => { bdState.inv = []; bdRenderInv(); };
+  $('bdCarries').onclick = e => {
+    const b = e.target.closest('.bdCarry'); if (!b) return;
+    const k = b.dataset.idx;
+    if (bdState.carries.has(k)) bdState.carries.delete(k); else bdState.carries.add(k);
+    bdRenderInv();
+  };
   $('bdInv').onclick = e => {
     const b = e.target.closest('button[data-i]'); if (!b) return;
     bdState.inv.splice(Number(b.dataset.i), 1); bdRenderInv();
@@ -270,15 +276,14 @@ export function bdOpenDeck(d) {
 
 function bdRenderInv() {
   const box = document.getElementById('bdInv'); if (!box) return;
-  // "몰아줄 캐리" 목록 = 보드 위 챔피언 (고른 값 유지)
-  const sel = document.getElementById('bdAssignCarry');
-  if (sel) {
-    const cur = sel.value;
-    const units = Object.entries(bdState.cells).map(([idx, u]) => ({ idx, c: bdChamp(u.id) })).filter(x => x.c)
+  // "아이템 줄 챔피언" = 보드 위 챔피언 아이콘, 눌러서 여러 명 선택 (보드에서 빠진 챔피언은 선택 해제)
+  const pick = document.getElementById('bdCarries');
+  if (pick) {
+    const units = Object.entries(bdState.cells).map(([idx, u]) => ({ idx, u, c: bdChamp(u.id) })).filter(x => x.c)
       .sort((a, b) => b.c.cost - a.c.cost || a.c.name.localeCompare(b.c.name, 'ko'));
-    sel.innerHTML = '<option value="">자동 (이미 템을 든 챔피언·랭커 통계)</option>'
-      + units.map(x => `<option value="${x.idx}">${bd.esc(x.c.name)} (${x.c.cost}코)</option>`).join('');
-    sel.value = units.some(x => x.idx === cur) ? cur : '';
+    for (const k of [...bdState.carries]) if (!bdState.cells[k]) bdState.carries.delete(k);
+    pick.innerHTML = units.map(x => `<button class="bdCarry${bdState.carries.has(x.idx) ? ' on' : ''}" data-idx="${x.idx}" data-cost="${x.c.cost}" title="${bd.esc(x.c.name)}">${x.c.icon ? `<img src="${bd.esc(x.c.icon)}" alt="" onerror="this.remove()">` : ''}<span>${bd.esc(x.c.name)}</span>${x.u.items.length ? `<i>${x.u.items.length}</i>` : ''}</button>`).join('')
+      || '<span class="muted small">보드에 챔피언을 올리면 여기에 나와요</span>';
   }
   box.innerHTML = bdState.inv.map((id, i) => {
     const it = bdItemInfo(id);
@@ -287,6 +292,8 @@ function bdRenderInv() {
 }
 /** 남은 아이템 목록 (자동 배분용) */
 export function bdInventory() { return [...bdState.inv]; }
+/** 사용자가 고른 "아이템 줄 챔피언" 칸 번호들 */
+export function bdCarries() { return [...bdState.carries].map(Number); }
 /** 자동 배분 결과를 보드에 넣기: [{ idx, itemId }] + 남길 아이템 목록 (되돌리기 가능) */
 export function bdApplyItems(list, keep) {
   bdState.undo = bdEncode();

@@ -6,7 +6,7 @@ import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './a
 import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems, assignItems } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
 import { patchReport, prevBalancePatch } from './engine/patch.js';
-import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits, bdInventory, bdApplyItems } from './builder.js';
+import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits, bdInventory, bdApplyItems, bdCarries } from './builder.js';
 
 const $ = id => document.getElementById(id);
 const CACHE_KEY = `tft-deck-maker:data:v${ADAPTER_VERSION}`; // 어댑터를 고치면 버전을 올려 옛 캐시를 무시
@@ -831,9 +831,8 @@ function runAssign() {
   const board = bdBoardUnits(), inventory = bdInventory();
   if (!board.length) { box.innerHTML = '<div class="empty">보드에 지금 덱을 먼저 올려 주세요.</div>'; return; }
   if (!inventory.length) { box.innerHTML = '<div class="empty">"오른쪽 아이템을 누르면 여기에 담기"를 체크하고 남은 아이템을 담아 주세요.</div>'; return; }
-  const carrySel = $('bdAssignCarry').value;
-  const carryIdx = carrySel === '' ? null : Number(carrySel);
-  const r = assignItems(state.data, { board, inventory, carryIdx });
+  const carries = bdCarries();
+  const r = assignItems(state.data, { board, inventory, carries });
   lastAssign = r;
   const compName = id => state.data.components.find(c => c.id === id)?.name || id;
   // 챔피언별로 묶어서
@@ -845,6 +844,7 @@ function runAssign() {
   }
   const why = a => a.emblem
     ? `${esc(traitName(a.emblem.trait))} ${a.emblem.from} → ${a.emblem.to}${a.emblem.reaches ? ' <b class="good">단계 달성</b>' : ''}`
+    : a.roleBased ? '<span class="muted" title="랭커 경기에서 이 챔피언이 아이템을 든 기록이 적어 역할(물리/마법/탱커)로 판단했어요">랭커 기록 적음 → 역할 기준</span>'
     : a.rate != null ? `랭커 ${Math.round(a.rate * 100)}%가 이 챔피언에게` : '역할 기준';
   const rows = groups.map(g => `<div class="asgRow"><div class="asgChamp" data-cost="${g.champ.cost}">${img(g.champ.icon)}<div><b>${esc(g.champ.name)}</b>${r.buildMatch?.[g.idx] ? `<div class="small good" title="최종 아이템 3개가 랭커들이 실제로 쓴 조합과 같아요">랭커 3신기 · ${r.buildMatch[g.idx].games}판 ${r.buildMatch[g.idx].avgPlace}등</div>` : ''}</div></div>
     <div class="asgItems">${g.list.map(a => `<div class="asgItem">${itemLabel(a.item.id)}${a.from ? `<span class="muted small">${esc(a.from.map(compName).join(' + '))} 조합</span>` : ''}<span class="small">${why(a)}</span></div>`).join('')}</div></div>`).join('');
@@ -853,7 +853,7 @@ function runAssign() {
     ...r.leftComponents.map(id => `${itemLabel(id)}<span class="muted small">짝이 없는 재료</span>`),
   ];
   box.innerHTML = `
-    <div class="resultHead"><h3>아이템 배분 추천</h3><span class="legend">${curPatch() ? esc(curPatch()) + ' 패치 · ' : ''}랭커 경기에서 그 챔피언이 그 아이템을 낀 비율 기준 · ${carryIdx != null ? `<b>${esc(board.find(b => b.idx === carryIdx) ? state.data.champions.find(c => c.id === board.find(b => b.idx === carryIdx).id)?.name : '')}</b>에게 몰아줌` : '이미 아이템을 든 챔피언에게 몰아줌'} · 적응가는 물리/마법 아이템을 섞지 않음</span></div>
+    <div class="resultHead"><h3>아이템 배분 추천</h3><span class="legend">${curPatch() ? esc(curPatch()) + ' 패치 · ' : ''}랭커 경기에서 그 챔피언이 그 아이템을 낀 비율 기준 · ${carries.length ? `<b>${esc(carries.map(i => state.data.champions.find(c => c.id === board.find(b => b.idx === i)?.id)?.name).filter(Boolean).join('·'))}</b>에게만 줌` : '이미 아이템을 든 챔피언에게 몰아줌'} · 적응가는 물리/마법 아이템을 섞지 않음</span></div>
     ${rows || '<div class="empty">줄 수 있는 아이템이 없어요.</div>'}
     ${kept.length ? `<div class="asgKeep"><b>보관</b>${kept.map(k => `<span class="asgItem">${k}</span>`).join('')}</div>` : ''}
     ${r.assignments.length ? '<button class="btn primary" id="bdAssignApply">보드에 적용</button>' : ''}`;

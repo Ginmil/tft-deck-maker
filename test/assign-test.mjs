@@ -70,6 +70,20 @@ if (fs.existsSync(snapPath) && fs.existsSync(wPath)) {
         assert.ok(Date.now() - t0 < 5000, '재료 15개도 몇 초 안에');
         console.log('실데이터 적응가 니달리 시나리오 통과 (무한·스테락·밤의 끝자락, AP 아이템 없음)');
       }
+
+      // 아이템 줄 챔피언 여러 명 선택 (11/15): 랭커 기록상 홀더가 아닌 5코 나르도 고르면 아이템을 받고,
+      // 고르지 않은 챔피언은 일반 아이템을 받지 않음
+      const gNames = ['릴리아', '오른', '헤카림', '알리스타', '다이애나', '나르', '아펠리오스', '자야'];
+      if (gNames.every(rc)) {
+        const gInv = ['곡궁', '쇠사슬 조끼', 'B.F. 대검', '거인의 허리띠', '연습용 장갑', '음전자 망토', '곡궁', '쓸데없이 큰 지팡이', '음전자 망토', 'B.F. 대검', 'B.F. 대검', '거인의 허리띠', '거인의 허리띠', '거인의 허리띠', '쇠사슬 조끼', '쇠사슬 조끼', '여신의 눈물', '음전자 망토'].map(rp);
+        const picked = ['나르', '아펠리오스', '릴리아'].map(n => gNames.indexOf(n));
+        const gr = assignItems(rd, { board: gNames.map((n, i) => ({ idx: i, id: rc(n), star: 2, items: [] })), inventory: gInv, carries: picked });
+        assert.ok(gr.assignments.every(a => a.item.kind === 'emblem' || picked.includes(a.idx)), '고르지 않은 챔피언에게 일반 아이템');
+        const gnar = gr.assignments.filter(a => a.champ.name === '나르');
+        assert.ok(gnar.length >= 2 && gnar.every(a => a.item.role !== 'TANK'), `나르: ${gnar.map(a => a.item.name)}`);
+        assert.equal(gr.assignments.filter(a => a.champ.name === '아펠리오스').length, 3);
+        console.log('실데이터 여러 캐리 선택 시나리오 통과 (나르:', gnar.map(a => a.item.name).join('·') + ')');
+      }
     }
   }
 }

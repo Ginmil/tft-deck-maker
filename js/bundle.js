@@ -984,7 +984,9 @@ function emblemTeamMaker(data, { emblems, size, maxCost, desired = {}, ...filter
 // - 점수: 랭커 통계 궁합(itemAffinity) + 이미 캐리 아이템을 든 챔피언에게 몰아주기 + 랭커 3신기와 일치하면 가산
 // - 상징: 그 시너지가 없는 챔피언에게, 시너지 단계가 실제로 올라가면 높게
 // -------------------------------------------------------------
-function assignItems(data, { board, inventory, carryIdx = null }) {
+function assignItems(data, { board, inventory, carryIdx = null, carries = null }) {
+  // 사용자가 고른 "아이템 줄 챔피언"(여러 명 가능). 고르면 일반 아이템은 이 챔피언들에게만 줌.
+  const carrySet = new Set((carries ?? (carryIdx != null ? [carryIdx] : [])).map(Number));
   const byId = new Map(data.champions.map(c => [c.id, c]));
   const emblemOf = id => data.emblems.find(e => e.id === id || (e.ids || []).includes(id));
   const componentIds = new Set((data.components || []).map(c => c.id));
@@ -1009,20 +1011,29 @@ function assignItems(data, { board, inventory, carryIdx = null }) {
     return { idx: b.idx, champ, star: b.star || 2, held, free: Math.max(0, 3 - held.length) };
   }).filter(Boolean);
 
-  const aff = (u, it) => itemAffinity(data, u.champ, it.statId ? { ...it, id: it.statId } : it);
+  // 고른 챔피언인데 랭커 통계상 아이템 홀더가 아닌 경우(5코 나르: 375판, 아이템 3개 든 판 4%)는 통계로 판단할 수 없으니
+  // 역할 기준 궁합을 함께 봄. 통계가 충분한 홀더(니달리·아펠리오스)는 통계만 — 역할로 보면 적응가 니달리가 AP 로 잡힘
+  const thinStats = u => { const st = data.unitStats?.[u.champ.id.toLowerCase()]; return !st || st.games < 30 || (st.carryRate || 0) < 0.15; };
+  const aff = (u, it) => {
+    const x = it.statId ? { ...it, id: it.statId } : it;
+    const a = itemAffinity(data, u.champ, x);
+    return carrySet.has(u.idx) && thinStats(u) && !isAdaptorChamp(u.champ) ? Math.max(a, itemFit(u.champ, x) * 0.7) : a;
+  };
+  const canHold = u => !carrySet.size || carrySet.has(u.idx);
+  function isAdaptorChamp(c) { return c.traits.some(t => /Adaptor/i.test(t) || /공격력과 주문력 중 어느 쪽이 높은지/.test(data.traits[t]?.desc || '')); }
   // 이미 아이템(딜템 등)을 든 챔피언 = 그 덱의 아이템 홀더 → 같은 계열 아이템을 몰아줌
   // (게임에서 이미 아이템을 준 챔피언 = 키우기로 정한 캐리. 다른 챔피언이 통계상 조금 더 잘 써도 몰아주는 게 보통 더 셈 — 사용자 피드백 11/15 로 +100%/개)
   // 사용자가 "몰아줄 캐리"로 고른 챔피언은 캐리템 2개를 든 것과 같은 대우
-  const holderBonus = u => 1 + 1.0 * (u.idx === carryIdx ? 2 : Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length));
+  const holderBonus = u => 1 + 1.0 * (carrySet.has(u.idx) ? 2 : Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length));
   // 적응가(공격력·주문력 중 높은 쪽을 씀): 물리 아이템과 마법 아이템을 섞으면 한쪽은 버리는 셈
-  const isAdaptor = u => u.champ.traits.some(t => /Adaptor/i.test(t) || /공격력과 주문력 중 어느 쪽이 높은지/.test(data.traits[t]?.desc || ''));
+  const isAdaptor = u => isAdaptorChamp(u.champ);
   const buildsOf = u => data.unitStats?.[u.champ.id.toLowerCase()]?.builds || [];
   // 아이템 홀더 가중치: 랭커 경기에서 이 챔피언이 아이템 3개를 든 비율(carryRate).
   // 롤체는 나눠 주기보다 한 챔피언에 몰아줘야 함 → 홀더가 아닌 챔피언(요릭 0.08 등)에게 준 아이템은 가치가 작음
   const unitWeight = u => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
     const w = st && st.games >= 30 ? Math.max(0.3, Math.min(1.4, 0.3 + 1.4 * (st.carryRate || 0))) : 1;
-    return u.idx === carryIdx ? Math.max(w, 1.3) : w;
+    return carrySet.has(u.idx) ? Math.max(w, 1.3) : w;
   };
   const unitValue = (u, added) => {
     let v = 0;
@@ -1068,7 +1079,7 @@ function assignItems(data, { board, inventory, carryIdx = null }) {
       let best = null;
       for (const u of units) {
         const list = slots.get(u);
-        if (list.length >= u.free) continue;
+        if (list.length >= u.free || !canHold(u)) continue;
         const gain = unitValue(u, [...list, it]) - unitValue(u, list);
         if (!best || gain > best.gain) best = { u, gain };
       }
@@ -1081,7 +1092,7 @@ function assignItems(data, { board, inventory, carryIdx = null }) {
       outer: for (const u of units) {
         for (const [k, it] of slots.get(u).entries()) {
           for (const v of units) {
-            if (v === u) continue;
+            if (v === u || !canHold(v)) continue;
             const lu = slots.get(u), lv = slots.get(v);
             if (lv.length < v.free) { // 옮기기
               lu.splice(k, 1); lv.push(it);
@@ -1131,12 +1142,12 @@ function assignItems(data, { board, inventory, carryIdx = null }) {
   const allPlans = comps.length ? pairings(comps, book, 100000) : [{ made: [], left: [] }];
   // 재료가 많으면 짝짓는 방법이 수만 가지(15개 ≈ 3만) → 빠른 어림 점수로 추린 뒤 상위만 제대로 배분
   // 어림 점수 = 아이템마다 "가장 잘 쓰는 챔피언 한 명"의 가치, 남은 칸 수만큼 큰 것부터 합
-  const totalFree = units.reduce((s, u) => s + u.free, 0);
+  const totalFree = units.filter(canHold).reduce((s, u) => s + u.free, 0);
   const bestVal = new Map();
   const quickOf = id => {
     if (!bestVal.has(id)) {
       const it = lookup(id);
-      bestVal.set(id, it.kind === 'emblem' ? 0.6 : Math.max(0, ...units.filter(u => u.free).map(u => aff(u, it) * holderBonus(u) * unitWeight(u))));
+      bestVal.set(id, it.kind === 'emblem' ? 0.6 : Math.max(0, ...units.filter(u => u.free && canHold(u)).map(u => aff(u, it) * holderBonus(u) * unitWeight(u))));
     }
     return bestVal.get(id);
   };
@@ -1165,7 +1176,7 @@ function assignItems(data, { board, inventory, carryIdx = null }) {
   const reasonOf = (u, it) => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
     const rate = st && st.games >= 30 ? (st.items?.[it.statId || it.id] || 0) / st.games : null;
-    return { rate };
+    return { rate, roleBased: carrySet.has(u.idx) && thinStats(u) && !isAdaptorChamp(u.champ) };
   };
   const assignments = [];
   for (const u of units) {
@@ -1294,7 +1305,7 @@ function pRound(x, d) { return Math.round(x * 10 ** d) / 10 ** d; }
 const BD_ROWS = 4, BD_COLS = 7;            // 0행 = 맨 앞줄(적과 가까운 줄), 3행 = 맨 뒷줄
 const BD_SAVE_KEY = 'tft-deck-maker:boards';
 let bd = null;                              // ctx
-const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal', inv: [], invMode: false }; // cells[idx] = { id, star, items: [] }, inv = 남은 아이템
+const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal', inv: [], invMode: false, carries: new Set() }; // cells[idx] = { id, star, items: [] }, inv = 남은 아이템
 
 const bdIdx = (r, c) => r * BD_COLS + c;
 const bdData = () => bd.getData();
@@ -1413,6 +1424,12 @@ function initBuilder(ctx) {
   // 남은 아이템 (자동 배분용)
   $('bdInvMode').onchange = e => { bdState.invMode = e.target.checked; if (bdState.invMode) bdState.selected = null; bdRender(); };
   $('bdInvClear').onclick = () => { bdState.inv = []; bdRenderInv(); };
+  $('bdCarries').onclick = e => {
+    const b = e.target.closest('.bdCarry'); if (!b) return;
+    const k = b.dataset.idx;
+    if (bdState.carries.has(k)) bdState.carries.delete(k); else bdState.carries.add(k);
+    bdRenderInv();
+  };
   $('bdInv').onclick = e => {
     const b = e.target.closest('button[data-i]'); if (!b) return;
     bdState.inv.splice(Number(b.dataset.i), 1); bdRenderInv();
@@ -1556,15 +1573,14 @@ function bdOpenDeck(d) {
 
 function bdRenderInv() {
   const box = document.getElementById('bdInv'); if (!box) return;
-  // "몰아줄 캐리" 목록 = 보드 위 챔피언 (고른 값 유지)
-  const sel = document.getElementById('bdAssignCarry');
-  if (sel) {
-    const cur = sel.value;
-    const units = Object.entries(bdState.cells).map(([idx, u]) => ({ idx, c: bdChamp(u.id) })).filter(x => x.c)
+  // "아이템 줄 챔피언" = 보드 위 챔피언 아이콘, 눌러서 여러 명 선택 (보드에서 빠진 챔피언은 선택 해제)
+  const pick = document.getElementById('bdCarries');
+  if (pick) {
+    const units = Object.entries(bdState.cells).map(([idx, u]) => ({ idx, u, c: bdChamp(u.id) })).filter(x => x.c)
       .sort((a, b) => b.c.cost - a.c.cost || a.c.name.localeCompare(b.c.name, 'ko'));
-    sel.innerHTML = '<option value="">자동 (이미 템을 든 챔피언·랭커 통계)</option>'
-      + units.map(x => `<option value="${x.idx}">${bd.esc(x.c.name)} (${x.c.cost}코)</option>`).join('');
-    sel.value = units.some(x => x.idx === cur) ? cur : '';
+    for (const k of [...bdState.carries]) if (!bdState.cells[k]) bdState.carries.delete(k);
+    pick.innerHTML = units.map(x => `<button class="bdCarry${bdState.carries.has(x.idx) ? ' on' : ''}" data-idx="${x.idx}" data-cost="${x.c.cost}" title="${bd.esc(x.c.name)}">${x.c.icon ? `<img src="${bd.esc(x.c.icon)}" alt="" onerror="this.remove()">` : ''}<span>${bd.esc(x.c.name)}</span>${x.u.items.length ? `<i>${x.u.items.length}</i>` : ''}</button>`).join('')
+      || '<span class="muted small">보드에 챔피언을 올리면 여기에 나와요</span>';
   }
   box.innerHTML = bdState.inv.map((id, i) => {
     const it = bdItemInfo(id);
@@ -1573,6 +1589,8 @@ function bdRenderInv() {
 }
 /** 남은 아이템 목록 (자동 배분용) */
 function bdInventory() { return [...bdState.inv]; }
+/** 사용자가 고른 "아이템 줄 챔피언" 칸 번호들 */
+function bdCarries() { return [...bdState.carries].map(Number); }
 /** 자동 배분 결과를 보드에 넣기: [{ idx, itemId }] + 남길 아이템 목록 (되돌리기 가능) */
 function bdApplyItems(list, keep) {
   bdState.undo = bdEncode();
@@ -2598,9 +2616,8 @@ function runAssign() {
   const board = bdBoardUnits(), inventory = bdInventory();
   if (!board.length) { box.innerHTML = '<div class="empty">보드에 지금 덱을 먼저 올려 주세요.</div>'; return; }
   if (!inventory.length) { box.innerHTML = '<div class="empty">"오른쪽 아이템을 누르면 여기에 담기"를 체크하고 남은 아이템을 담아 주세요.</div>'; return; }
-  const carrySel = $('bdAssignCarry').value;
-  const carryIdx = carrySel === '' ? null : Number(carrySel);
-  const r = assignItems(state.data, { board, inventory, carryIdx });
+  const carries = bdCarries();
+  const r = assignItems(state.data, { board, inventory, carries });
   lastAssign = r;
   const compName = id => state.data.components.find(c => c.id === id)?.name || id;
   // 챔피언별로 묶어서
@@ -2612,6 +2629,7 @@ function runAssign() {
   }
   const why = a => a.emblem
     ? `${esc(traitName(a.emblem.trait))} ${a.emblem.from} → ${a.emblem.to}${a.emblem.reaches ? ' <b class="good">단계 달성</b>' : ''}`
+    : a.roleBased ? '<span class="muted" title="랭커 경기에서 이 챔피언이 아이템을 든 기록이 적어 역할(물리/마법/탱커)로 판단했어요">랭커 기록 적음 → 역할 기준</span>'
     : a.rate != null ? `랭커 ${Math.round(a.rate * 100)}%가 이 챔피언에게` : '역할 기준';
   const rows = groups.map(g => `<div class="asgRow"><div class="asgChamp" data-cost="${g.champ.cost}">${img(g.champ.icon)}<div><b>${esc(g.champ.name)}</b>${r.buildMatch?.[g.idx] ? `<div class="small good" title="최종 아이템 3개가 랭커들이 실제로 쓴 조합과 같아요">랭커 3신기 · ${r.buildMatch[g.idx].games}판 ${r.buildMatch[g.idx].avgPlace}등</div>` : ''}</div></div>
     <div class="asgItems">${g.list.map(a => `<div class="asgItem">${itemLabel(a.item.id)}${a.from ? `<span class="muted small">${esc(a.from.map(compName).join(' + '))} 조합</span>` : ''}<span class="small">${why(a)}</span></div>`).join('')}</div></div>`).join('');
@@ -2620,7 +2638,7 @@ function runAssign() {
     ...r.leftComponents.map(id => `${itemLabel(id)}<span class="muted small">짝이 없는 재료</span>`),
   ];
   box.innerHTML = `
-    <div class="resultHead"><h3>아이템 배분 추천</h3><span class="legend">${curPatch() ? esc(curPatch()) + ' 패치 · ' : ''}랭커 경기에서 그 챔피언이 그 아이템을 낀 비율 기준 · ${carryIdx != null ? `<b>${esc(board.find(b => b.idx === carryIdx) ? state.data.champions.find(c => c.id === board.find(b => b.idx === carryIdx).id)?.name : '')}</b>에게 몰아줌` : '이미 아이템을 든 챔피언에게 몰아줌'} · 적응가는 물리/마법 아이템을 섞지 않음</span></div>
+    <div class="resultHead"><h3>아이템 배분 추천</h3><span class="legend">${curPatch() ? esc(curPatch()) + ' 패치 · ' : ''}랭커 경기에서 그 챔피언이 그 아이템을 낀 비율 기준 · ${carries.length ? `<b>${esc(carries.map(i => state.data.champions.find(c => c.id === board.find(b => b.idx === i)?.id)?.name).filter(Boolean).join('·'))}</b>에게만 줌` : '이미 아이템을 든 챔피언에게 몰아줌'} · 적응가는 물리/마법 아이템을 섞지 않음</span></div>
     ${rows || '<div class="empty">줄 수 있는 아이템이 없어요.</div>'}
     ${kept.length ? `<div class="asgKeep"><b>보관</b>${kept.map(k => `<span class="asgItem">${k}</span>`).join('')}</div>` : ''}
     ${r.assignments.length ? '<button class="btn primary" id="bdAssignApply">보드에 적용</button>' : ''}`;
