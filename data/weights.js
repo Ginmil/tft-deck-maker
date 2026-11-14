@@ -2,17 +2,17 @@ window.TFT_WEIGHTS = {
  "setNumber": 18,
  "games": 11999,
  "patch": {
-  "current": "18.6B",
+  "current": "18.7",
   "prev": "18.6",
   "prevWeight": 0.5822,
   "mature": false,
   "matches": {
-   "18.5": 398,
+   "18.5": 397,
    "18.6": 1453,
-   "18.6B": 654
+   "18.7": 654
   }
  },
- "generatedAt": "2026-11-14T14:54:42.220Z",
+ "generatedAt": "2026-11-14T15:16:36.509Z",
  "method": {
   "prior": 30,
   "strength": 0.35,
@@ -9110,6 +9110,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 2.13,
     "top4": 0.875
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 6,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 1.57,
+     "top4": 1
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 2.33,
+     "top4": 1
+    }
    }
   },
   {
@@ -9253,6 +9270,23 @@ window.TFT_WEIGHTS = {
     "games": 29,
     "avgPlace": 2.21,
     "top4": 0.931
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 2.38,
+     "top4": 0.875
+    },
+    "18.6": {
+     "games": 21,
+     "avgPlace": 2.14,
+     "top4": 0.952
+    },
+    "18.7": {
+     "games": 12,
+     "avgPlace": 2.83,
+     "top4": 0.833
+    }
    }
   },
   {
@@ -9396,6 +9430,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 2.38,
     "top4": 0.875
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 2.67,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 5,
+     "avgPlace": 2.2,
+     "top4": 0.8
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 4,
+     "top4": 1
+    }
    }
   },
   {
@@ -9539,6 +9590,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 1.89,
     "top4": 0.889
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 6,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 8,
+     "avgPlace": 1.38,
+     "top4": 1
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 5,
+     "top4": 0.333
+    }
    }
   },
   {
@@ -9682,6 +9750,23 @@ window.TFT_WEIGHTS = {
     "games": 14,
     "avgPlace": 2.29,
     "top4": 0.929
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 2,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 12,
+     "avgPlace": 2.33,
+     "top4": 0.917
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 3.83,
+     "top4": 0.667
+    }
    }
   },
   {
@@ -9825,6 +9910,23 @@ window.TFT_WEIGHTS = {
     "games": 14,
     "avgPlace": 3.14,
     "top4": 0.714
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 2.2,
+     "top4": 0.8
+    },
+    "18.6": {
+     "games": 9,
+     "avgPlace": 3.67,
+     "top4": 0.667
+    },
+    "18.7": {
+     "games": 8,
+     "avgPlace": 2.13,
+     "top4": 0.875
+    }
    }
   },
   {
@@ -9968,6 +10070,23 @@ window.TFT_WEIGHTS = {
     "games": 28,
     "avgPlace": 2.86,
     "top4": 0.786
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 2.75,
+     "top4": 0.75
+    },
+    "18.6": {
+     "games": 24,
+     "avgPlace": 2.88,
+     "top4": 0.792
+    },
+    "18.7": {
+     "games": 17,
+     "avgPlace": 2.82,
+     "top4": 0.765
+    }
    }
   },
   {
@@ -10111,6 +10230,23 @@ window.TFT_WEIGHTS = {
     "games": 77,
     "avgPlace": 2.81,
     "top4": 0.818
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 17,
+     "avgPlace": 3.24,
+     "top4": 0.706
+    },
+    "18.6": {
+     "games": 60,
+     "avgPlace": 2.68,
+     "top4": 0.85
+    },
+    "18.7": {
+     "games": 16,
+     "avgPlace": 2.94,
+     "top4": 0.875
+    }
    }
   },
   {
@@ -10254,6 +10390,23 @@ window.TFT_WEIGHTS = {
     "games": 28,
     "avgPlace": 3.32,
     "top4": 0.643
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 3.25,
+     "top4": 0.625
+    },
+    "18.6": {
+     "games": 20,
+     "avgPlace": 3.35,
+     "top4": 0.65
+    },
+    "18.7": {
+     "games": 17,
+     "avgPlace": 2.41,
+     "top4": 0.765
+    }
    }
   },
   {
@@ -10376,6 +10529,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 2.56,
     "top4": 0.889
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 1.86,
+     "top4": 1
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 4.5,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -10386,7 +10556,7 @@ window.TFT_WEIGHTS = {
    "games": 77,
    "avgPlace": 3.06,
    "top4": 0.756,
-   "win": 0.283,
+   "win": 0.282,
    "patchGames": 77,
    "playRate": 0.0147,
    "level": 8,
@@ -10516,9 +10686,26 @@ window.TFT_WEIGHTS = {
     "top4": 0.74
    },
    "before": {
-    "games": 202,
-    "avgPlace": 2.88,
-    "top4": 0.817
+    "games": 201,
+    "avgPlace": 2.89,
+    "top4": 0.816
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 42,
+     "avgPlace": 2.74,
+     "top4": 0.833
+    },
+    "18.6": {
+     "games": 159,
+     "avgPlace": 2.93,
+     "top4": 0.811
+    },
+    "18.7": {
+     "games": 77,
+     "avgPlace": 3.1,
+     "top4": 0.74
+    }
    }
   },
   {
@@ -10662,6 +10849,23 @@ window.TFT_WEIGHTS = {
     "games": 56,
     "avgPlace": 3.07,
     "top4": 0.768
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 13,
+     "avgPlace": 3,
+     "top4": 0.846
+    },
+    "18.6": {
+     "games": 43,
+     "avgPlace": 3.09,
+     "top4": 0.744
+    },
+    "18.7": {
+     "games": 18,
+     "avgPlace": 3.11,
+     "top4": 0.722
+    }
    }
   },
   {
@@ -10805,6 +11009,23 @@ window.TFT_WEIGHTS = {
     "games": 30,
     "avgPlace": 3.13,
     "top4": 0.867
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 9,
+     "avgPlace": 2.89,
+     "top4": 0.889
+    },
+    "18.6": {
+     "games": 21,
+     "avgPlace": 3.24,
+     "top4": 0.857
+    },
+    "18.7": {
+     "games": 9,
+     "avgPlace": 3,
+     "top4": 0.778
+    }
    }
   },
   {
@@ -10941,6 +11162,23 @@ window.TFT_WEIGHTS = {
     "games": 10,
     "avgPlace": 3.3,
     "top4": 0.7
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 3,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 9,
+     "avgPlace": 3.33,
+     "top4": 0.667
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 1,
+     "top4": 1
+    }
    }
   },
   {
@@ -11084,6 +11322,23 @@ window.TFT_WEIGHTS = {
     "games": 99,
     "avgPlace": 2.85,
     "top4": 0.778
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 31,
+     "avgPlace": 2.94,
+     "top4": 0.774
+    },
+    "18.6": {
+     "games": 68,
+     "avgPlace": 2.81,
+     "top4": 0.779
+    },
+    "18.7": {
+     "games": 37,
+     "avgPlace": 3.24,
+     "top4": 0.703
+    }
    }
   },
   {
@@ -11227,6 +11482,23 @@ window.TFT_WEIGHTS = {
     "games": 34,
     "avgPlace": 3.15,
     "top4": 0.706
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 2.83,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 28,
+     "avgPlace": 3.21,
+     "top4": 0.714
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 3,
+     "top4": 0.833
+    }
    }
   },
   {
@@ -11366,6 +11638,18 @@ window.TFT_WEIGHTS = {
     "games": 11,
     "avgPlace": 3.18,
     "top4": 0.818
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 4,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 9,
+     "avgPlace": 3,
+     "top4": 0.778
+    }
    }
   },
   {
@@ -11509,6 +11793,23 @@ window.TFT_WEIGHTS = {
     "games": 46,
     "avgPlace": 3.09,
     "top4": 0.761
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 2,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 40,
+     "avgPlace": 3.25,
+     "top4": 0.725
+    },
+    "18.7": {
+     "games": 19,
+     "avgPlace": 3.37,
+     "top4": 0.684
+    }
    }
   },
   {
@@ -11652,6 +11953,23 @@ window.TFT_WEIGHTS = {
     "games": 42,
     "avgPlace": 3.02,
     "top4": 0.833
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 10,
+     "avgPlace": 3.8,
+     "top4": 0.7
+    },
+    "18.6": {
+     "games": 32,
+     "avgPlace": 2.78,
+     "top4": 0.875
+    },
+    "18.7": {
+     "games": 9,
+     "avgPlace": 4,
+     "top4": 0.778
+    }
    }
   },
   {
@@ -11795,6 +12113,23 @@ window.TFT_WEIGHTS = {
     "games": 30,
     "avgPlace": 3.57,
     "top4": 0.633
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 4,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 25,
+     "avgPlace": 3.48,
+     "top4": 0.68
+    },
+    "18.7": {
+     "games": 17,
+     "avgPlace": 3.06,
+     "top4": 0.706
+    }
    }
   },
   {
@@ -11938,6 +12273,23 @@ window.TFT_WEIGHTS = {
     "games": 25,
     "avgPlace": 3.16,
     "top4": 0.72
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 3.8,
+     "top4": 0.6
+    },
+    "18.6": {
+     "games": 20,
+     "avgPlace": 3,
+     "top4": 0.75
+    },
+    "18.7": {
+     "games": 7,
+     "avgPlace": 3.86,
+     "top4": 0.429
+    }
    }
   },
   {
@@ -12081,6 +12433,23 @@ window.TFT_WEIGHTS = {
     "games": 16,
     "avgPlace": 3.63,
     "top4": 0.625
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 4,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 13,
+     "avgPlace": 3.54,
+     "top4": 0.615
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 2.25,
+     "top4": 1
+    }
    }
   },
   {
@@ -12224,6 +12593,23 @@ window.TFT_WEIGHTS = {
     "games": 24,
     "avgPlace": 3.54,
     "top4": 0.667
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 2,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 22,
+     "avgPlace": 3.68,
+     "top4": 0.636
+    },
+    "18.7": {
+     "games": 12,
+     "avgPlace": 3.08,
+     "top4": 0.833
+    }
    }
   },
   {
@@ -12367,6 +12753,23 @@ window.TFT_WEIGHTS = {
     "games": 26,
     "avgPlace": 3.23,
     "top4": 0.731
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 9,
+     "avgPlace": 3.44,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 17,
+     "avgPlace": 3.12,
+     "top4": 0.765
+    },
+    "18.7": {
+     "games": 7,
+     "avgPlace": 4,
+     "top4": 0.571
+    }
    }
   },
   {
@@ -12510,6 +12913,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 3.67,
     "top4": 0.778
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 4,
+     "top4": 0.75
+    },
+    "18.6": {
+     "games": 5,
+     "avgPlace": 3.4,
+     "top4": 0.8
+    },
+    "18.7": {
+     "games": 5,
+     "avgPlace": 3,
+     "top4": 1
+    }
    }
   },
   {
@@ -12653,6 +13073,23 @@ window.TFT_WEIGHTS = {
     "games": 76,
     "avgPlace": 3.42,
     "top4": 0.711
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 16,
+     "avgPlace": 4.19,
+     "top4": 0.625
+    },
+    "18.6": {
+     "games": 60,
+     "avgPlace": 3.22,
+     "top4": 0.733
+    },
+    "18.7": {
+     "games": 17,
+     "avgPlace": 3.47,
+     "top4": 0.706
+    }
    }
   },
   {
@@ -12796,6 +13233,23 @@ window.TFT_WEIGHTS = {
     "games": 12,
     "avgPlace": 3.58,
     "top4": 0.667
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 8,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 11,
+     "avgPlace": 3.18,
+     "top4": 0.727
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 2,
+     "top4": 1
+    }
    }
   },
   {
@@ -12939,6 +13393,23 @@ window.TFT_WEIGHTS = {
     "games": 10,
     "avgPlace": 3.4,
     "top4": 0.7
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 5,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 9,
+     "avgPlace": 3.22,
+     "top4": 0.778
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 3.67,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -13082,6 +13553,23 @@ window.TFT_WEIGHTS = {
     "games": 114,
     "avgPlace": 3.56,
     "top4": 0.64
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 38,
+     "avgPlace": 3.26,
+     "top4": 0.737
+    },
+    "18.6": {
+     "games": 76,
+     "avgPlace": 3.71,
+     "top4": 0.592
+    },
+    "18.7": {
+     "games": 36,
+     "avgPlace": 3.5,
+     "top4": 0.75
+    }
    }
   },
   {
@@ -13225,6 +13713,23 @@ window.TFT_WEIGHTS = {
     "games": 730,
     "avgPlace": 3.9,
     "top4": 0.612
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 135,
+     "avgPlace": 3.85,
+     "top4": 0.63
+    },
+    "18.6": {
+     "games": 595,
+     "avgPlace": 3.91,
+     "top4": 0.608
+    },
+    "18.7": {
+     "games": 292,
+     "avgPlace": 3.49,
+     "top4": 0.688
+    }
    }
   },
   {
@@ -13368,6 +13873,23 @@ window.TFT_WEIGHTS = {
     "games": 44,
     "avgPlace": 3.8,
     "top4": 0.682
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 3.5,
+     "top4": 0.625
+    },
+    "18.6": {
+     "games": 36,
+     "avgPlace": 3.86,
+     "top4": 0.694
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 3.09,
+     "top4": 0.727
+    }
    }
   },
   {
@@ -13511,6 +14033,23 @@ window.TFT_WEIGHTS = {
     "games": 18,
     "avgPlace": 3.72,
     "top4": 0.611
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 5,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 16,
+     "avgPlace": 3.56,
+     "top4": 0.688
+    },
+    "18.7": {
+     "games": 8,
+     "avgPlace": 3.25,
+     "top4": 0.625
+    }
    }
   },
   {
@@ -13654,6 +14193,23 @@ window.TFT_WEIGHTS = {
     "games": 24,
     "avgPlace": 3.92,
     "top4": 0.583
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 3.6,
+     "top4": 0.6
+    },
+    "18.6": {
+     "games": 19,
+     "avgPlace": 4,
+     "top4": 0.579
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 3.09,
+     "top4": 0.727
+    }
    }
   },
   {
@@ -13797,6 +14353,23 @@ window.TFT_WEIGHTS = {
     "games": 10,
     "avgPlace": 3.6,
     "top4": 0.7
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 5.33,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 2.86,
+     "top4": 0.857
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 3.67,
+     "top4": 0.667
+    }
    }
   },
   {
@@ -13940,6 +14513,23 @@ window.TFT_WEIGHTS = {
     "games": 24,
     "avgPlace": 3.29,
     "top4": 0.833
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 4.43,
+     "top4": 0.714
+    },
+    "18.6": {
+     "games": 17,
+     "avgPlace": 2.82,
+     "top4": 0.882
+    },
+    "18.7": {
+     "games": 7,
+     "avgPlace": 4.71,
+     "top4": 0.429
+    }
    }
   },
   {
@@ -14079,6 +14669,18 @@ window.TFT_WEIGHTS = {
     "games": 15,
     "avgPlace": 3.67,
     "top4": 0.6
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 9,
+     "avgPlace": 4,
+     "top4": 0.556
+    },
+    "18.6": {
+     "games": 6,
+     "avgPlace": 3.17,
+     "top4": 0.667
+    }
    }
   },
   {
@@ -14222,6 +14824,23 @@ window.TFT_WEIGHTS = {
     "games": 11,
     "avgPlace": 3.91,
     "top4": 0.545
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 5,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 10,
+     "avgPlace": 3.8,
+     "top4": 0.6
+    },
+    "18.7": {
+     "games": 5,
+     "avgPlace": 3.2,
+     "top4": 0.8
+    }
    }
   },
   {
@@ -14365,6 +14984,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 3.56,
     "top4": 0.667
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 3,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 8,
+     "avgPlace": 3.63,
+     "top4": 0.625
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 5,
+     "top4": 0
+    }
    }
   },
   {
@@ -14508,6 +15144,23 @@ window.TFT_WEIGHTS = {
     "games": 32,
     "avgPlace": 3.63,
     "top4": 0.656
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 3.8,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 27,
+     "avgPlace": 3.59,
+     "top4": 0.704
+    },
+    "18.7": {
+     "games": 9,
+     "avgPlace": 3.89,
+     "top4": 0.667
+    }
    }
   },
   {
@@ -14651,6 +15304,23 @@ window.TFT_WEIGHTS = {
     "games": 20,
     "avgPlace": 3.55,
     "top4": 0.6
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 4.83,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 14,
+     "avgPlace": 3,
+     "top4": 0.714
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 4.75,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -14794,6 +15464,23 @@ window.TFT_WEIGHTS = {
     "games": 44,
     "avgPlace": 4.11,
     "top4": 0.545
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 3.57,
+     "top4": 0.571
+    },
+    "18.6": {
+     "games": 37,
+     "avgPlace": 4.22,
+     "top4": 0.541
+    },
+    "18.7": {
+     "games": 13,
+     "avgPlace": 3.23,
+     "top4": 0.692
+    }
    }
   },
   {
@@ -14933,149 +15620,18 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 3.78,
     "top4": 0.667
-   }
-  },
-  {
-   "trait": "DA_18_Summoner",
-   "carry": "da_crimsonraptor18",
-   "mainCarry": "da_crimsonraptor18",
-   "mainTank": "da_18_hecarim",
-   "games": 15,
-   "avgPlace": 3.79,
-   "top4": 0.658,
-   "win": 0.048,
-   "patchGames": 15,
-   "playRate": 0.0029,
-   "level": 8,
-   "core": [
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 1,
-     "star3": 0.96,
-     "off": 72.4,
-     "tank": 9.2
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.96,
-     "star3": 0.59,
-     "off": 2.9,
-     "tank": 64.7
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.91,
-     "star3": 0,
-     "off": 1.2,
-     "tank": 33
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.9,
-     "star3": 0,
-     "off": 45.6,
-     "tank": 4.2
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.83,
-     "star3": 0.43,
-     "off": 3.3,
-     "tank": 31.9
-    },
-    {
-     "id": "da_18_xayah",
-     "rate": 0.79,
-     "star3": 0,
-     "off": 5.7,
-     "tank": 0
-    },
-    {
-     "id": "da_18_azir",
-     "rate": 0.65,
-     "star3": 0.09,
-     "off": 6.7,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.47,
-     "star3": 0.04,
-     "off": 0,
-     "tank": 2.3
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_scuttlecrab18",
-     "rate": 0.19,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rengar",
-     "rate": 0.11,
-     "star3": 0.68,
-     "off": 5.3,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.06,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_gnarsmall",
-     "rate": 0.06,
-     "star3": 0,
-     "off": 0.6,
-     "tank": 0
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.06,
-     "star3": 0,
-     "off": 3.6,
-     "tank": 0
-    }
-   ],
-   "builds": {
-    "da_crimsonraptor18": {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_TitansResolve"
-     ],
-     "games": 4,
-     "avgPlace": 4.1
-    },
-    "da_18_hecarim": {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
+   },
+   "byPatch": {
+    "18.5": {
      "games": 2,
-     "avgPlace": 2
+     "avgPlace": 4.5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 3.57,
+     "top4": 0.714
     }
-   },
-   "now": {
-    "games": 15,
-    "avgPlace": 3.33,
-    "top4": 0.8
-   },
-   "before": {
-    "games": 29,
-    "avgPlace": 4.14,
-    "top4": 0.552
    }
   },
   {
@@ -15219,6 +15775,183 @@ window.TFT_WEIGHTS = {
     "games": 87,
     "avgPlace": 3.4,
     "top4": 0.69
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 29,
+     "avgPlace": 3.34,
+     "top4": 0.69
+    },
+    "18.6": {
+     "games": 58,
+     "avgPlace": 3.43,
+     "top4": 0.69
+    },
+    "18.7": {
+     "games": 28,
+     "avgPlace": 4.07,
+     "top4": 0.571
+    }
+   }
+  },
+  {
+   "trait": "DA_18_Summoner",
+   "carry": "da_crimsonraptor18",
+   "mainCarry": "da_crimsonraptor18",
+   "mainTank": "da_18_hecarim",
+   "games": 15,
+   "avgPlace": 3.82,
+   "top4": 0.649,
+   "win": 0.049,
+   "patchGames": 15,
+   "playRate": 0.0029,
+   "level": 8,
+   "core": [
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 1,
+     "star3": 0.96,
+     "off": 72.4,
+     "tank": 9.2
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.96,
+     "star3": 0.59,
+     "off": 2.9,
+     "tank": 64.7
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.91,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 33
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 45.6,
+     "tank": 4.2
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.83,
+     "star3": 0.43,
+     "off": 3.3,
+     "tank": 31.9
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.79,
+     "star3": 0,
+     "off": 5.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.65,
+     "star3": 0.09,
+     "off": 6.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.47,
+     "star3": 0.04,
+     "off": 0,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_scuttlecrab18",
+     "rate": 0.19,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rengar",
+     "rate": 0.11,
+     "star3": 0.68,
+     "off": 5.3,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_gnarsmall",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 3.6,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_crimsonraptor18": {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_TitansResolve"
+     ],
+     "games": 4,
+     "avgPlace": 4.1
+    },
+    "da_18_hecarim": {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 2,
+     "avgPlace": 2
+    }
+   },
+   "now": {
+    "games": 15,
+    "avgPlace": 3.33,
+    "top4": 0.8
+   },
+   "before": {
+    "games": 28,
+    "avgPlace": 4.18,
+    "top4": 0.536
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 5.33,
+     "top4": 0.167
+    },
+    "18.6": {
+     "games": 22,
+     "avgPlace": 3.86,
+     "top4": 0.636
+    },
+    "18.7": {
+     "games": 15,
+     "avgPlace": 3.33,
+     "top4": 0.8
+    }
    }
   },
   {
@@ -15362,6 +16095,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 3.33,
     "top4": 0.667
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 4.67,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 6,
+     "avgPlace": 2.67,
+     "top4": 0.833
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 6,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -15505,6 +16255,23 @@ window.TFT_WEIGHTS = {
     "games": 78,
     "avgPlace": 3.87,
     "top4": 0.679
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 19,
+     "avgPlace": 4.11,
+     "top4": 0.632
+    },
+    "18.6": {
+     "games": 59,
+     "avgPlace": 3.8,
+     "top4": 0.695
+    },
+    "18.7": {
+     "games": 34,
+     "avgPlace": 3.82,
+     "top4": 0.647
+    }
    }
   },
   {
@@ -15648,6 +16415,23 @@ window.TFT_WEIGHTS = {
     "games": 188,
     "avgPlace": 4.01,
     "top4": 0.59
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 38,
+     "avgPlace": 4.47,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 150,
+     "avgPlace": 3.89,
+     "top4": 0.613
+    },
+    "18.7": {
+     "games": 59,
+     "avgPlace": 3.81,
+     "top4": 0.644
+    }
    }
   },
   {
@@ -15791,6 +16575,23 @@ window.TFT_WEIGHTS = {
     "games": 59,
     "avgPlace": 3.51,
     "top4": 0.644
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 13,
+     "avgPlace": 3.54,
+     "top4": 0.692
+    },
+    "18.6": {
+     "games": 46,
+     "avgPlace": 3.5,
+     "top4": 0.63
+    },
+    "18.7": {
+     "games": 15,
+     "avgPlace": 4.33,
+     "top4": 0.4
+    }
    }
   },
   {
@@ -15934,6 +16735,23 @@ window.TFT_WEIGHTS = {
     "games": 24,
     "avgPlace": 3.42,
     "top4": 0.708
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 9,
+     "avgPlace": 3.44,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 15,
+     "avgPlace": 3.4,
+     "top4": 0.733
+    },
+    "18.7": {
+     "games": 12,
+     "avgPlace": 4.67,
+     "top4": 0.417
+    }
    }
   },
   {
@@ -16077,6 +16895,23 @@ window.TFT_WEIGHTS = {
     "games": 27,
     "avgPlace": 3.96,
     "top4": 0.593
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 4.67,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 21,
+     "avgPlace": 3.76,
+     "top4": 0.619
+    },
+    "18.7": {
+     "games": 14,
+     "avgPlace": 3.79,
+     "top4": 0.643
+    }
    }
   },
   {
@@ -16220,6 +17055,23 @@ window.TFT_WEIGHTS = {
     "games": 77,
     "avgPlace": 3.58,
     "top4": 0.688
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 19,
+     "avgPlace": 4.21,
+     "top4": 0.579
+    },
+    "18.6": {
+     "games": 58,
+     "avgPlace": 3.38,
+     "top4": 0.724
+    },
+    "18.7": {
+     "games": 21,
+     "avgPlace": 4.29,
+     "top4": 0.476
+    }
    }
   },
   {
@@ -16363,6 +17215,23 @@ window.TFT_WEIGHTS = {
     "games": 20,
     "avgPlace": 3.75,
     "top4": 0.8
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 18,
+     "avgPlace": 3.61,
+     "top4": 0.833
+    },
+    "18.7": {
+     "games": 13,
+     "avgPlace": 4.23,
+     "top4": 0.462
+    }
    }
   },
   {
@@ -16506,6 +17375,23 @@ window.TFT_WEIGHTS = {
     "games": 53,
     "avgPlace": 4.04,
     "top4": 0.566
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 17,
+     "avgPlace": 3.59,
+     "top4": 0.647
+    },
+    "18.6": {
+     "games": 36,
+     "avgPlace": 4.25,
+     "top4": 0.528
+    },
+    "18.7": {
+     "games": 12,
+     "avgPlace": 3.83,
+     "top4": 0.75
+    }
    }
   },
   {
@@ -16649,6 +17535,23 @@ window.TFT_WEIGHTS = {
     "games": 53,
     "avgPlace": 4.23,
     "top4": 0.566
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 16,
+     "avgPlace": 3.56,
+     "top4": 0.813
+    },
+    "18.6": {
+     "games": 37,
+     "avgPlace": 4.51,
+     "top4": 0.459
+    },
+    "18.7": {
+     "games": 12,
+     "avgPlace": 3.67,
+     "top4": 0.417
+    }
    }
   },
   {
@@ -16792,6 +17695,23 @@ window.TFT_WEIGHTS = {
     "games": 49,
     "avgPlace": 3.59,
     "top4": 0.714
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 13,
+     "avgPlace": 3.62,
+     "top4": 0.615
+    },
+    "18.6": {
+     "games": 36,
+     "avgPlace": 3.58,
+     "top4": 0.75
+    },
+    "18.7": {
+     "games": 19,
+     "avgPlace": 4.53,
+     "top4": 0.526
+    }
    }
   },
   {
@@ -16935,6 +17855,23 @@ window.TFT_WEIGHTS = {
     "games": 98,
     "avgPlace": 4.09,
     "top4": 0.592
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 24,
+     "avgPlace": 4.21,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 74,
+     "avgPlace": 4.05,
+     "top4": 0.622
+    },
+    "18.7": {
+     "games": 27,
+     "avgPlace": 4.04,
+     "top4": 0.63
+    }
    }
   },
   {
@@ -17078,6 +18015,23 @@ window.TFT_WEIGHTS = {
     "games": 112,
     "avgPlace": 4.06,
     "top4": 0.598
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 19,
+     "avgPlace": 4.21,
+     "top4": 0.579
+    },
+    "18.6": {
+     "games": 93,
+     "avgPlace": 4.03,
+     "top4": 0.602
+    },
+    "18.7": {
+     "games": 46,
+     "avgPlace": 4.09,
+     "top4": 0.63
+    }
    }
   },
   {
@@ -17221,6 +18175,23 @@ window.TFT_WEIGHTS = {
     "games": 289,
     "avgPlace": 4.06,
     "top4": 0.578
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 59,
+     "avgPlace": 3.9,
+     "top4": 0.559
+    },
+    "18.6": {
+     "games": 230,
+     "avgPlace": 4.1,
+     "top4": 0.583
+    },
+    "18.7": {
+     "games": 85,
+     "avgPlace": 4.09,
+     "top4": 0.565
+    }
    }
   },
   {
@@ -17343,6 +18314,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 4.44,
     "top4": 0.444
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 2.67,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 6,
+     "avgPlace": 5.33,
+     "top4": 0.333
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 2.5,
+     "top4": 1
+    }
    }
   },
   {
@@ -17486,6 +18474,23 @@ window.TFT_WEIGHTS = {
     "games": 45,
     "avgPlace": 3.78,
     "top4": 0.6
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 12,
+     "avgPlace": 3.83,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 33,
+     "avgPlace": 3.76,
+     "top4": 0.576
+    },
+    "18.7": {
+     "games": 19,
+     "avgPlace": 4.47,
+     "top4": 0.632
+    }
    }
   },
   {
@@ -17629,6 +18634,23 @@ window.TFT_WEIGHTS = {
     "games": 13,
     "avgPlace": 4.08,
     "top4": 0.692
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 7,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 12,
+     "avgPlace": 3.83,
+     "top4": 0.75
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 4.25,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -17772,6 +18794,23 @@ window.TFT_WEIGHTS = {
     "games": 85,
     "avgPlace": 3.92,
     "top4": 0.624
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 20,
+     "avgPlace": 4.15,
+     "top4": 0.6
+    },
+    "18.6": {
+     "games": 65,
+     "avgPlace": 3.85,
+     "top4": 0.631
+    },
+    "18.7": {
+     "games": 27,
+     "avgPlace": 4.3,
+     "top4": 0.63
+    }
    }
   },
   {
@@ -17915,6 +18954,23 @@ window.TFT_WEIGHTS = {
     "games": 18,
     "avgPlace": 4.22,
     "top4": 0.722
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 4.75,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 14,
+     "avgPlace": 4.07,
+     "top4": 0.786
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 3.75,
+     "top4": 0.75
+    }
    }
   },
   {
@@ -18058,6 +19114,23 @@ window.TFT_WEIGHTS = {
     "games": 17,
     "avgPlace": 4.24,
     "top4": 0.588
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 5.67,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 14,
+     "avgPlace": 3.93,
+     "top4": 0.643
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 3.75,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -18201,6 +19274,23 @@ window.TFT_WEIGHTS = {
     "games": 356,
     "avgPlace": 4.08,
     "top4": 0.545
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 71,
+     "avgPlace": 4.03,
+     "top4": 0.549
+    },
+    "18.6": {
+     "games": 285,
+     "avgPlace": 4.09,
+     "top4": 0.544
+    },
+    "18.7": {
+     "games": 140,
+     "avgPlace": 4.16,
+     "top4": 0.521
+    }
    }
   },
   {
@@ -18344,6 +19434,23 @@ window.TFT_WEIGHTS = {
     "games": 35,
     "avgPlace": 4.03,
     "top4": 0.571
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 10,
+     "avgPlace": 3.6,
+     "top4": 0.6
+    },
+    "18.6": {
+     "games": 25,
+     "avgPlace": 4.2,
+     "top4": 0.56
+    },
+    "18.7": {
+     "games": 9,
+     "avgPlace": 4.44,
+     "top4": 0.444
+    }
    }
   },
   {
@@ -18487,6 +19594,23 @@ window.TFT_WEIGHTS = {
     "games": 21,
     "avgPlace": 4.05,
     "top4": 0.619
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 4.4,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 16,
+     "avgPlace": 3.94,
+     "top4": 0.688
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 4.36,
+     "top4": 0.455
+    }
    }
   },
   {
@@ -18630,6 +19754,23 @@ window.TFT_WEIGHTS = {
     "games": 33,
     "avgPlace": 4.18,
     "top4": 0.606
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 3.5,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 27,
+     "avgPlace": 4.33,
+     "top4": 0.593
+    },
+    "18.7": {
+     "games": 13,
+     "avgPlace": 4.15,
+     "top4": 0.538
+    }
    }
   },
   {
@@ -18773,6 +19914,23 @@ window.TFT_WEIGHTS = {
     "games": 29,
     "avgPlace": 4.21,
     "top4": 0.586
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 4.13,
+     "top4": 0.625
+    },
+    "18.6": {
+     "games": 21,
+     "avgPlace": 4.24,
+     "top4": 0.571
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 4.18,
+     "top4": 0.545
+    }
    }
   },
   {
@@ -18916,6 +20074,23 @@ window.TFT_WEIGHTS = {
     "games": 36,
     "avgPlace": 4,
     "top4": 0.611
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 5.17,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 30,
+     "avgPlace": 3.77,
+     "top4": 0.633
+    },
+    "18.7": {
+     "games": 9,
+     "avgPlace": 4.67,
+     "top4": 0.444
+    }
    }
   },
   {
@@ -19059,6 +20234,23 @@ window.TFT_WEIGHTS = {
     "games": 12,
     "avgPlace": 4.5,
     "top4": 0.583
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 5,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 11,
+     "avgPlace": 4.45,
+     "top4": 0.636
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 2.5,
+     "top4": 1
+    }
    }
   },
   {
@@ -19202,6 +20394,23 @@ window.TFT_WEIGHTS = {
     "games": 24,
     "avgPlace": 4.25,
     "top4": 0.458
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 9,
+     "avgPlace": 4.33,
+     "top4": 0.556
+    },
+    "18.6": {
+     "games": 15,
+     "avgPlace": 4.2,
+     "top4": 0.4
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 4.17,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -19345,6 +20554,23 @@ window.TFT_WEIGHTS = {
     "games": 178,
     "avgPlace": 4.31,
     "top4": 0.573
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 34,
+     "avgPlace": 4.5,
+     "top4": 0.559
+    },
+    "18.6": {
+     "games": 144,
+     "avgPlace": 4.26,
+     "top4": 0.576
+    },
+    "18.7": {
+     "games": 49,
+     "avgPlace": 4.24,
+     "top4": 0.469
+    }
    }
   },
   {
@@ -19488,6 +20714,23 @@ window.TFT_WEIGHTS = {
     "games": 291,
     "avgPlace": 4.44,
     "top4": 0.519
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 49,
+     "avgPlace": 4.29,
+     "top4": 0.592
+    },
+    "18.6": {
+     "games": 242,
+     "avgPlace": 4.48,
+     "top4": 0.504
+    },
+    "18.7": {
+     "games": 126,
+     "avgPlace": 4.23,
+     "top4": 0.579
+    }
    }
   },
   {
@@ -19497,7 +20740,7 @@ window.TFT_WEIGHTS = {
    "mainTank": "da_18_malphite",
    "games": 67,
    "avgPlace": 4.32,
-   "top4": 0.574,
+   "top4": 0.575,
    "win": 0.12,
    "patchGames": 67,
    "playRate": 0.0128,
@@ -19628,9 +20871,26 @@ window.TFT_WEIGHTS = {
     "top4": 0.597
    },
    "before": {
-    "games": 185,
-    "avgPlace": 4.59,
-    "top4": 0.497
+    "games": 184,
+    "avgPlace": 4.58,
+    "top4": 0.5
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 29,
+     "avgPlace": 4.66,
+     "top4": 0.483
+    },
+    "18.6": {
+     "games": 155,
+     "avgPlace": 4.56,
+     "top4": 0.503
+    },
+    "18.7": {
+     "games": 67,
+     "avgPlace": 4.24,
+     "top4": 0.597
+    }
    }
   },
   {
@@ -19774,6 +21034,23 @@ window.TFT_WEIGHTS = {
     "games": 26,
     "avgPlace": 4.46,
     "top4": 0.538
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 4.43,
+     "top4": 0.429
+    },
+    "18.6": {
+     "games": 19,
+     "avgPlace": 4.47,
+     "top4": 0.579
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 3.83,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -19917,6 +21194,23 @@ window.TFT_WEIGHTS = {
     "games": 42,
     "avgPlace": 4.86,
     "top4": 0.452
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 34,
+     "avgPlace": 4.82,
+     "top4": 0.441
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 3.36,
+     "top4": 0.727
+    }
    }
   },
   {
@@ -20060,6 +21354,23 @@ window.TFT_WEIGHTS = {
     "games": 32,
     "avgPlace": 4.28,
     "top4": 0.531
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 24,
+     "avgPlace": 4.04,
+     "top4": 0.542
+    },
+    "18.7": {
+     "games": 5,
+     "avgPlace": 4.6,
+     "top4": 0.6
+    }
    }
   },
   {
@@ -20203,6 +21514,23 @@ window.TFT_WEIGHTS = {
     "games": 26,
     "avgPlace": 4.62,
     "top4": 0.538
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 4,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 25,
+     "avgPlace": 4.64,
+     "top4": 0.52
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 2.67,
+     "top4": 1
+    }
    }
   },
   {
@@ -20346,6 +21674,23 @@ window.TFT_WEIGHTS = {
     "games": 20,
     "avgPlace": 4.45,
     "top4": 0.45
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 3.13,
+     "top4": 0.75
+    },
+    "18.6": {
+     "games": 12,
+     "avgPlace": 5.33,
+     "top4": 0.25
+    },
+    "18.7": {
+     "games": 7,
+     "avgPlace": 4.14,
+     "top4": 0.571
+    }
    }
   },
   {
@@ -20489,6 +21834,23 @@ window.TFT_WEIGHTS = {
     "games": 41,
     "avgPlace": 4.78,
     "top4": 0.488
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 4.17,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 35,
+     "avgPlace": 4.89,
+     "top4": 0.457
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 3.73,
+     "top4": 0.727
+    }
    }
   },
   {
@@ -20632,6 +21994,23 @@ window.TFT_WEIGHTS = {
     "games": 20,
     "avgPlace": 4.4,
     "top4": 0.45
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 4.67,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 17,
+     "avgPlace": 4.35,
+     "top4": 0.412
+    },
+    "18.7": {
+     "games": 7,
+     "avgPlace": 4.43,
+     "top4": 0.571
+    }
    }
   },
   {
@@ -20775,6 +22154,23 @@ window.TFT_WEIGHTS = {
     "games": 116,
     "avgPlace": 3.9,
     "top4": 0.629
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 29,
+     "avgPlace": 3.72,
+     "top4": 0.621
+    },
+    "18.6": {
+     "games": 87,
+     "avgPlace": 3.95,
+     "top4": 0.632
+    },
+    "18.7": {
+     "games": 47,
+     "avgPlace": 4.64,
+     "top4": 0.511
+    }
    }
   },
   {
@@ -20918,6 +22314,23 @@ window.TFT_WEIGHTS = {
     "games": 838,
     "avgPlace": 4.53,
     "top4": 0.482
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 171,
+     "avgPlace": 4.91,
+     "top4": 0.427
+    },
+    "18.6": {
+     "games": 667,
+     "avgPlace": 4.43,
+     "top4": 0.496
+    },
+    "18.7": {
+     "games": 294,
+     "avgPlace": 4.44,
+     "top4": 0.514
+    }
    }
   },
   {
@@ -21040,6 +22453,23 @@ window.TFT_WEIGHTS = {
     "games": 10,
     "avgPlace": 4.5,
     "top4": 0.5
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 4.5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 8,
+     "avgPlace": 4.5,
+     "top4": 0.5
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 4,
+     "top4": 1
+    }
    }
   },
   {
@@ -21048,8 +22478,8 @@ window.TFT_WEIGHTS = {
    "mainCarry": "da_18_ahri",
    "mainTank": "da_18_sett",
    "games": 31,
-   "avgPlace": 4.46,
-   "top4": 0.492,
+   "avgPlace": 4.48,
+   "top4": 0.489,
    "win": 0.144,
    "patchGames": 31,
    "playRate": 0.0059,
@@ -21180,9 +22610,26 @@ window.TFT_WEIGHTS = {
     "top4": 0.516
    },
    "before": {
-    "games": 75,
-    "avgPlace": 4.93,
-    "top4": 0.453
+    "games": 74,
+    "avgPlace": 4.97,
+    "top4": 0.446
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 22,
+     "avgPlace": 4.5,
+     "top4": 0.545
+    },
+    "18.6": {
+     "games": 52,
+     "avgPlace": 5.17,
+     "top4": 0.404
+    },
+    "18.7": {
+     "games": 31,
+     "avgPlace": 4.16,
+     "top4": 0.516
+    }
    }
   },
   {
@@ -21326,6 +22773,23 @@ window.TFT_WEIGHTS = {
     "games": 31,
     "avgPlace": 4.55,
     "top4": 0.419
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 4.86,
+     "top4": 0.429
+    },
+    "18.6": {
+     "games": 24,
+     "avgPlace": 4.46,
+     "top4": 0.417
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 4.36,
+     "top4": 0.545
+    }
    }
   },
   {
@@ -21469,6 +22933,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 3.89,
     "top4": 0.667
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 4,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 3.86,
+     "top4": 0.714
+    },
+    "18.7": {
+     "games": 5,
+     "avgPlace": 5.6,
+     "top4": 0.2
+    }
    }
   },
   {
@@ -21612,6 +23093,23 @@ window.TFT_WEIGHTS = {
     "games": 28,
     "avgPlace": 4.5,
     "top4": 0.5
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 3.6,
+     "top4": 0.6
+    },
+    "18.6": {
+     "games": 23,
+     "avgPlace": 4.7,
+     "top4": 0.478
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 4.5,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -21755,6 +23253,23 @@ window.TFT_WEIGHTS = {
     "games": 29,
     "avgPlace": 4.55,
     "top4": 0.552
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 4,
+     "top4": 0.75
+    },
+    "18.6": {
+     "games": 25,
+     "avgPlace": 4.64,
+     "top4": 0.52
+    },
+    "18.7": {
+     "games": 22,
+     "avgPlace": 4.45,
+     "top4": 0.545
+    }
    }
   },
   {
@@ -21898,6 +23413,23 @@ window.TFT_WEIGHTS = {
     "games": 28,
     "avgPlace": 4.39,
     "top4": 0.536
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 4.6,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 23,
+     "avgPlace": 4.35,
+     "top4": 0.565
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 4.73,
+     "top4": 0.545
+    }
    }
   },
   {
@@ -22041,6 +23573,23 @@ window.TFT_WEIGHTS = {
     "games": 23,
     "avgPlace": 4.13,
     "top4": 0.565
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 2.8,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 18,
+     "avgPlace": 4.5,
+     "top4": 0.444
+    },
+    "18.7": {
+     "games": 8,
+     "avgPlace": 5.5,
+     "top4": 0.375
+    }
    }
   },
   {
@@ -22184,6 +23733,23 @@ window.TFT_WEIGHTS = {
     "games": 44,
     "avgPlace": 3.82,
     "top4": 0.682
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 18,
+     "avgPlace": 3.78,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 26,
+     "avgPlace": 3.85,
+     "top4": 0.692
+    },
+    "18.7": {
+     "games": 19,
+     "avgPlace": 5.26,
+     "top4": 0.316
+    }
    }
   },
   {
@@ -22327,6 +23893,23 @@ window.TFT_WEIGHTS = {
     "games": 35,
     "avgPlace": 4.8,
     "top4": 0.371
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 7.33,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 32,
+     "avgPlace": 4.56,
+     "top4": 0.406
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 4,
+     "top4": 0.545
+    }
    }
   },
   {
@@ -22470,6 +24053,23 @@ window.TFT_WEIGHTS = {
     "games": 165,
     "avgPlace": 4.76,
     "top4": 0.418
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 47,
+     "avgPlace": 4.4,
+     "top4": 0.511
+    },
+    "18.6": {
+     "games": 118,
+     "avgPlace": 4.91,
+     "top4": 0.381
+    },
+    "18.7": {
+     "games": 46,
+     "avgPlace": 4.43,
+     "top4": 0.543
+    }
    }
   },
   {
@@ -22613,6 +24213,23 @@ window.TFT_WEIGHTS = {
     "games": 55,
     "avgPlace": 4.36,
     "top4": 0.545
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 16,
+     "avgPlace": 4.69,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 39,
+     "avgPlace": 4.23,
+     "top4": 0.564
+    },
+    "18.7": {
+     "games": 25,
+     "avgPlace": 4.68,
+     "top4": 0.48
+    }
    }
   },
   {
@@ -22756,6 +24373,183 @@ window.TFT_WEIGHTS = {
     "games": 11,
     "avgPlace": 4.64,
     "top4": 0.455
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 6.67,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 8,
+     "avgPlace": 3.88,
+     "top4": 0.625
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 4,
+     "top4": 0.5
+    }
+   }
+  },
+  {
+   "trait": "DA_18_Adaptor",
+   "carry": "da_kogmaw18_ad",
+   "mainCarry": "da_kogmaw18_ad",
+   "mainTank": "da_vi18",
+   "games": 19,
+   "avgPlace": 4.55,
+   "top4": 0.477,
+   "win": 0.086,
+   "patchGames": 19,
+   "playRate": 0.0036,
+   "level": 7,
+   "core": [
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 1,
+     "star3": 0.87,
+     "off": 121.4,
+     "tank": 2
+    },
+    {
+     "id": "da_18_masteryi_ad",
+     "rate": 1,
+     "star3": 0.72,
+     "off": 88.2,
+     "tank": 10.2
+    },
+    {
+     "id": "da_vi18",
+     "rate": 1,
+     "star3": 0.49,
+     "off": 10.7,
+     "tank": 82.2
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 39.5,
+     "tank": 2
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.95,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 1
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.81,
+     "star3": 0,
+     "off": 4.3,
+     "tank": 24.9
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.62,
+     "star3": 0.2,
+     "off": 4.6,
+     "tank": 27.5
+    },
+    {
+     "id": "da_18_rengar",
+     "rate": 0.24,
+     "star3": 0.52,
+     "off": 20.7,
+     "tank": 4.9
+    },
+    {
+     "id": "da_18_akali_ad",
+     "rate": 0.14,
+     "star3": 0.17,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 4.6,
+     "tank": 0
+    },
+    {
+     "id": "da_gromp18_ap",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_karma18",
+     "rate": 0.08,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_yunara",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_kogmaw18_ad": {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 2,
+     "avgPlace": 4.66
+    },
+    "da_vi18": {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 3,
+     "avgPlace": 5.06
+    }
+   },
+   "now": {
+    "games": 19,
+    "avgPlace": 4.79,
+    "top4": 0.421
+   },
+   "before": {
+    "games": 51,
+    "avgPlace": 4.31,
+    "top4": 0.529
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 13,
+     "avgPlace": 4.08,
+     "top4": 0.538
+    },
+    "18.6": {
+     "games": 38,
+     "avgPlace": 4.39,
+     "top4": 0.526
+    },
+    "18.7": {
+     "games": 19,
+     "avgPlace": 4.79,
+     "top4": 0.421
+    }
    }
   },
   {
@@ -22899,6 +24693,23 @@ window.TFT_WEIGHTS = {
     "games": 36,
     "avgPlace": 4.53,
     "top4": 0.583
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 4.13,
+     "top4": 0.625
+    },
+    "18.6": {
+     "games": 28,
+     "avgPlace": 4.64,
+     "top4": 0.571
+    },
+    "18.7": {
+     "games": 19,
+     "avgPlace": 4.58,
+     "top4": 0.526
+    }
    }
   },
   {
@@ -23042,6 +24853,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 4.13,
     "top4": 0.5
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 2,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 4.43,
+     "top4": 0.429
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 5.67,
+     "top4": 0.333
+    }
    }
   },
   {
@@ -23185,6 +25013,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 5.11,
     "top4": 0.333
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 8,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 8,
+     "avgPlace": 4.75,
+     "top4": 0.375
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 2,
+     "top4": 1
+    }
    }
   },
   {
@@ -23328,6 +25173,23 @@ window.TFT_WEIGHTS = {
     "games": 646,
     "avgPlace": 4.48,
     "top4": 0.523
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 122,
+     "avgPlace": 4.25,
+     "top4": 0.566
+    },
+    "18.6": {
+     "games": 524,
+     "avgPlace": 4.54,
+     "top4": 0.513
+    },
+    "18.7": {
+     "games": 239,
+     "avgPlace": 4.57,
+     "top4": 0.481
+    }
    }
   },
   {
@@ -23471,6 +25333,23 @@ window.TFT_WEIGHTS = {
     "games": 308,
     "avgPlace": 4.39,
     "top4": 0.529
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 59,
+     "avgPlace": 4.12,
+     "top4": 0.61
+    },
+    "18.6": {
+     "games": 249,
+     "avgPlace": 4.45,
+     "top4": 0.51
+    },
+    "18.7": {
+     "games": 90,
+     "avgPlace": 4.6,
+     "top4": 0.467
+    }
    }
   },
   {
@@ -23614,149 +25493,23 @@ window.TFT_WEIGHTS = {
     "games": 53,
     "avgPlace": 4.36,
     "top4": 0.491
-   }
-  },
-  {
-   "trait": "DA_18_Adaptor",
-   "carry": "da_kogmaw18_ad",
-   "mainCarry": "da_kogmaw18_ad",
-   "mainTank": "da_vi18",
-   "games": 19,
-   "avgPlace": 4.57,
-   "top4": 0.471,
-   "win": 0.085,
-   "patchGames": 19,
-   "playRate": 0.0036,
-   "level": 7,
-   "core": [
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 1,
-     "star3": 0.87,
-     "off": 121.4,
-     "tank": 2
-    },
-    {
-     "id": "da_18_masteryi_ad",
-     "rate": 1,
-     "star3": 0.72,
-     "off": 88.2,
-     "tank": 10.2
-    },
-    {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0.49,
-     "off": 10.7,
-     "tank": 82.2
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.96,
-     "star3": 0,
-     "off": 39.5,
-     "tank": 2
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.95,
-     "star3": 0,
-     "off": 1.6,
-     "tank": 1
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.81,
-     "star3": 0,
-     "off": 4.3,
-     "tank": 24.9
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.62,
-     "star3": 0.2,
-     "off": 4.6,
-     "tank": 27.5
-    },
-    {
-     "id": "da_18_rengar",
-     "rate": 0.24,
-     "star3": 0.52,
-     "off": 20.7,
-     "tank": 4.9
-    },
-    {
-     "id": "da_18_akali_ad",
-     "rate": 0.14,
-     "star3": 0.17,
-     "off": 1.2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.1,
-     "star3": 0,
-     "off": 4.6,
-     "tank": 0
-    },
-    {
-     "id": "da_gromp18_ap",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_karma18",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 0.6,
-     "tank": 0.6
-    },
-    {
-     "id": "da_18_yunara",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 1.2,
-     "tank": 0
-    }
-   ],
-   "builds": {
-    "da_kogmaw18_ad": {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 4.66
-    },
-    "da_vi18": {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 5.06
-    }
    },
-   "now": {
-    "games": 19,
-    "avgPlace": 4.79,
-    "top4": 0.421
-   },
-   "before": {
-    "games": 52,
-    "avgPlace": 4.37,
-    "top4": 0.519
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 5.63,
+     "top4": 0.375
+    },
+    "18.6": {
+     "games": 45,
+     "avgPlace": 4.13,
+     "top4": 0.511
+    },
+    "18.7": {
+     "games": 25,
+     "avgPlace": 4.72,
+     "top4": 0.4
+    }
    }
   },
   {
@@ -23900,6 +25653,23 @@ window.TFT_WEIGHTS = {
     "games": 90,
     "avgPlace": 4.57,
     "top4": 0.478
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 23,
+     "avgPlace": 4.78,
+     "top4": 0.391
+    },
+    "18.6": {
+     "games": 67,
+     "avgPlace": 4.49,
+     "top4": 0.507
+    },
+    "18.7": {
+     "games": 23,
+     "avgPlace": 4.57,
+     "top4": 0.478
+    }
    }
   },
   {
@@ -24043,6 +25813,23 @@ window.TFT_WEIGHTS = {
     "games": 15,
     "avgPlace": 4.47,
     "top4": 0.4
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 5.33,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 12,
+     "avgPlace": 4.25,
+     "top4": 0.5
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 4.83,
+     "top4": 0.333
+    }
    }
   },
   {
@@ -24186,6 +25973,23 @@ window.TFT_WEIGHTS = {
     "games": 511,
     "avgPlace": 4.89,
     "top4": 0.425
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 112,
+     "avgPlace": 4.72,
+     "top4": 0.446
+    },
+    "18.6": {
+     "games": 399,
+     "avgPlace": 4.94,
+     "top4": 0.419
+    },
+    "18.7": {
+     "games": 172,
+     "avgPlace": 4.55,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -24329,6 +26133,23 @@ window.TFT_WEIGHTS = {
     "games": 18,
     "avgPlace": 4.83,
     "top4": 0.444
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 5.86,
+     "top4": 0.286
+    },
+    "18.6": {
+     "games": 11,
+     "avgPlace": 4.18,
+     "top4": 0.545
+    },
+    "18.7": {
+     "games": 9,
+     "avgPlace": 4.11,
+     "top4": 0.778
+    }
    }
   },
   {
@@ -24472,6 +26293,23 @@ window.TFT_WEIGHTS = {
     "games": 25,
     "avgPlace": 4.84,
     "top4": 0.4
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 3.67,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 22,
+     "avgPlace": 5,
+     "top4": 0.364
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 3,
+     "top4": 0.667
+    }
    }
   },
   {
@@ -24615,6 +26453,23 @@ window.TFT_WEIGHTS = {
     "games": 29,
     "avgPlace": 4.59,
     "top4": 0.517
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 4.38,
+     "top4": 0.375
+    },
+    "18.6": {
+     "games": 21,
+     "avgPlace": 4.67,
+     "top4": 0.571
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 4.67,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -24758,6 +26613,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 4,
     "top4": 0.75
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 3,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 4.14,
+     "top4": 0.714
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 7,
+     "top4": 0
+    }
    }
   },
   {
@@ -24901,6 +26773,23 @@ window.TFT_WEIGHTS = {
     "games": 10,
     "avgPlace": 4.5,
     "top4": 0.5
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 4.67,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 4.43,
+     "top4": 0.429
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 4.73,
+     "top4": 0.364
+    }
    }
   },
   {
@@ -25044,6 +26933,23 @@ window.TFT_WEIGHTS = {
     "games": 18,
     "avgPlace": 5,
     "top4": 0.389
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 5.71,
+     "top4": 0.286
+    },
+    "18.6": {
+     "games": 11,
+     "avgPlace": 4.55,
+     "top4": 0.455
+    },
+    "18.7": {
+     "games": 10,
+     "avgPlace": 4,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -25187,6 +27093,23 @@ window.TFT_WEIGHTS = {
     "games": 31,
     "avgPlace": 4.68,
     "top4": 0.484
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 9,
+     "avgPlace": 4.67,
+     "top4": 0.444
+    },
+    "18.6": {
+     "games": 22,
+     "avgPlace": 4.68,
+     "top4": 0.5
+    },
+    "18.7": {
+     "games": 7,
+     "avgPlace": 4.57,
+     "top4": 0.429
+    }
    }
   },
   {
@@ -25330,6 +27253,23 @@ window.TFT_WEIGHTS = {
     "games": 47,
     "avgPlace": 4.64,
     "top4": 0.447
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 16,
+     "avgPlace": 4.75,
+     "top4": 0.438
+    },
+    "18.6": {
+     "games": 31,
+     "avgPlace": 4.58,
+     "top4": 0.452
+    },
+    "18.7": {
+     "games": 23,
+     "avgPlace": 4.7,
+     "top4": 0.435
+    }
    }
   },
   {
@@ -25473,6 +27413,23 @@ window.TFT_WEIGHTS = {
     "games": 38,
     "avgPlace": 4.66,
     "top4": 0.421
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 10,
+     "avgPlace": 5.5,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 28,
+     "avgPlace": 4.36,
+     "top4": 0.429
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 4.73,
+     "top4": 0.455
+    }
    }
   },
   {
@@ -25616,6 +27573,23 @@ window.TFT_WEIGHTS = {
     "games": 242,
     "avgPlace": 4.74,
     "top4": 0.446
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 55,
+     "avgPlace": 4.73,
+     "top4": 0.455
+    },
+    "18.6": {
+     "games": 187,
+     "avgPlace": 4.74,
+     "top4": 0.444
+    },
+    "18.7": {
+     "games": 68,
+     "avgPlace": 4.68,
+     "top4": 0.471
+    }
    }
   },
   {
@@ -25759,6 +27733,23 @@ window.TFT_WEIGHTS = {
     "games": 43,
     "avgPlace": 4.77,
     "top4": 0.395
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 11,
+     "avgPlace": 5,
+     "top4": 0.455
+    },
+    "18.6": {
+     "games": 32,
+     "avgPlace": 4.69,
+     "top4": 0.375
+    },
+    "18.7": {
+     "games": 14,
+     "avgPlace": 4.57,
+     "top4": 0.429
+    }
    }
   },
   {
@@ -25902,6 +27893,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 3.75,
     "top4": 0.625
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 1,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 6,
+     "avgPlace": 4.67,
+     "top4": 0.5
+    },
+    "18.7": {
+     "games": 5,
+     "avgPlace": 6.2,
+     "top4": 0.2
+    }
    }
   },
   {
@@ -26045,6 +28053,23 @@ window.TFT_WEIGHTS = {
     "games": 32,
     "avgPlace": 5.19,
     "top4": 0.375
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 11,
+     "avgPlace": 5.82,
+     "top4": 0.273
+    },
+    "18.6": {
+     "games": 21,
+     "avgPlace": 4.86,
+     "top4": 0.429
+    },
+    "18.7": {
+     "games": 11,
+     "avgPlace": 3.82,
+     "top4": 0.545
+    }
    }
   },
   {
@@ -26184,6 +28209,18 @@ window.TFT_WEIGHTS = {
     "games": 10,
     "avgPlace": 4.7,
     "top4": 0.5
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 7,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 9,
+     "avgPlace": 4.44,
+     "top4": 0.556
+    }
    }
   },
   {
@@ -26327,6 +28364,23 @@ window.TFT_WEIGHTS = {
     "games": 119,
     "avgPlace": 4.55,
     "top4": 0.513
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 24,
+     "avgPlace": 5.21,
+     "top4": 0.375
+    },
+    "18.6": {
+     "games": 95,
+     "avgPlace": 4.39,
+     "top4": 0.547
+    },
+    "18.7": {
+     "games": 39,
+     "avgPlace": 4.82,
+     "top4": 0.436
+    }
    }
   },
   {
@@ -26470,6 +28524,23 @@ window.TFT_WEIGHTS = {
     "games": 250,
     "avgPlace": 4.53,
     "top4": 0.532
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 51,
+     "avgPlace": 4.76,
+     "top4": 0.529
+    },
+    "18.6": {
+     "games": 199,
+     "avgPlace": 4.47,
+     "top4": 0.533
+    },
+    "18.7": {
+     "games": 92,
+     "avgPlace": 4.77,
+     "top4": 0.402
+    }
    }
   },
   {
@@ -26613,6 +28684,23 @@ window.TFT_WEIGHTS = {
     "games": 38,
     "avgPlace": 4.79,
     "top4": 0.474
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 3.2,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 33,
+     "avgPlace": 5.03,
+     "top4": 0.394
+    },
+    "18.7": {
+     "games": 10,
+     "avgPlace": 4.6,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -26756,6 +28844,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 4.63,
     "top4": 0.5
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 5,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 5,
+     "avgPlace": 4.4,
+     "top4": 0.4
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 5,
+     "top4": 0.333
+    }
    }
   },
   {
@@ -26899,6 +29004,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 5,
     "top4": 0.375
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 6,
+     "avgPlace": 5,
+     "top4": 0.333
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 4,
+     "top4": 0.667
+    }
    }
   },
   {
@@ -27042,6 +29164,23 @@ window.TFT_WEIGHTS = {
     "games": 43,
     "avgPlace": 5.12,
     "top4": 0.395
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 4.33,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 40,
+     "avgPlace": 5.18,
+     "top4": 0.375
+    },
+    "18.7": {
+     "games": 20,
+     "avgPlace": 4.35,
+     "top4": 0.6
+    }
    }
   },
   {
@@ -27185,6 +29324,23 @@ window.TFT_WEIGHTS = {
     "games": 258,
     "avgPlace": 4.69,
     "top4": 0.473
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 55,
+     "avgPlace": 4.2,
+     "top4": 0.582
+    },
+    "18.6": {
+     "games": 203,
+     "avgPlace": 4.82,
+     "top4": 0.443
+    },
+    "18.7": {
+     "games": 78,
+     "avgPlace": 4.76,
+     "top4": 0.462
+    }
    }
   },
   {
@@ -27328,6 +29484,23 @@ window.TFT_WEIGHTS = {
     "games": 15,
     "avgPlace": 4.2,
     "top4": 0.533
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 4.5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 13,
+     "avgPlace": 4.15,
+     "top4": 0.538
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 6.75,
+     "top4": 0
+    }
    }
   },
   {
@@ -27471,6 +29644,23 @@ window.TFT_WEIGHTS = {
     "games": 70,
     "avgPlace": 5.09,
     "top4": 0.343
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 19,
+     "avgPlace": 4.63,
+     "top4": 0.421
+    },
+    "18.6": {
+     "games": 51,
+     "avgPlace": 5.25,
+     "top4": 0.314
+    },
+    "18.7": {
+     "games": 15,
+     "avgPlace": 4.33,
+     "top4": 0.6
+    }
    }
   },
   {
@@ -27614,6 +29804,23 @@ window.TFT_WEIGHTS = {
     "games": 43,
     "avgPlace": 5.02,
     "top4": 0.395
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 4.83,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 37,
+     "avgPlace": 5.05,
+     "top4": 0.378
+    },
+    "18.7": {
+     "games": 16,
+     "avgPlace": 4.44,
+     "top4": 0.563
+    }
    }
   },
   {
@@ -27757,6 +29964,23 @@ window.TFT_WEIGHTS = {
     "games": 66,
     "avgPlace": 4.82,
     "top4": 0.439
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 20,
+     "avgPlace": 5.25,
+     "top4": 0.35
+    },
+    "18.6": {
+     "games": 46,
+     "avgPlace": 4.63,
+     "top4": 0.478
+    },
+    "18.7": {
+     "games": 17,
+     "avgPlace": 4.71,
+     "top4": 0.471
+    }
    }
   },
   {
@@ -27900,6 +30124,23 @@ window.TFT_WEIGHTS = {
     "games": 807,
     "avgPlace": 4.83,
     "top4": 0.426
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 131,
+     "avgPlace": 4.81,
+     "top4": 0.427
+    },
+    "18.6": {
+     "games": 676,
+     "avgPlace": 4.84,
+     "top4": 0.426
+    },
+    "18.7": {
+     "games": 370,
+     "avgPlace": 4.77,
+     "top4": 0.427
+    }
    }
   },
   {
@@ -28043,6 +30284,23 @@ window.TFT_WEIGHTS = {
     "games": 106,
     "avgPlace": 5.01,
     "top4": 0.396
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 21,
+     "avgPlace": 4.81,
+     "top4": 0.381
+    },
+    "18.6": {
+     "games": 85,
+     "avgPlace": 5.06,
+     "top4": 0.4
+    },
+    "18.7": {
+     "games": 34,
+     "avgPlace": 4.65,
+     "top4": 0.441
+    }
    }
   },
   {
@@ -28186,6 +30444,23 @@ window.TFT_WEIGHTS = {
     "games": 96,
     "avgPlace": 4.64,
     "top4": 0.469
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 17,
+     "avgPlace": 4.24,
+     "top4": 0.588
+    },
+    "18.6": {
+     "games": 79,
+     "avgPlace": 4.72,
+     "top4": 0.443
+    },
+    "18.7": {
+     "games": 31,
+     "avgPlace": 4.87,
+     "top4": 0.387
+    }
    }
   },
   {
@@ -28329,6 +30604,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 4.44,
     "top4": 0.556
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 4.75,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 5,
+     "avgPlace": 4.2,
+     "top4": 0.6
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 8,
+     "top4": 0
+    }
    }
   },
   {
@@ -28472,6 +30764,23 @@ window.TFT_WEIGHTS = {
     "games": 49,
     "avgPlace": 4.73,
     "top4": 0.408
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 3,
+     "top4": 0.8
+    },
+    "18.6": {
+     "games": 44,
+     "avgPlace": 4.93,
+     "top4": 0.364
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 5,
+     "top4": 0.333
+    }
    }
   },
   {
@@ -28615,6 +30924,23 @@ window.TFT_WEIGHTS = {
     "games": 105,
     "avgPlace": 4.42,
     "top4": 0.486
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 27,
+     "avgPlace": 4,
+     "top4": 0.519
+    },
+    "18.6": {
+     "games": 78,
+     "avgPlace": 4.56,
+     "top4": 0.474
+    },
+    "18.7": {
+     "games": 37,
+     "avgPlace": 5,
+     "top4": 0.459
+    }
    }
   },
   {
@@ -28758,6 +31084,23 @@ window.TFT_WEIGHTS = {
     "games": 40,
     "avgPlace": 5.35,
     "top4": 0.35
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 4.71,
+     "top4": 0.571
+    },
+    "18.6": {
+     "games": 33,
+     "avgPlace": 5.48,
+     "top4": 0.303
+    },
+    "18.7": {
+     "games": 26,
+     "avgPlace": 4.38,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -28901,6 +31244,23 @@ window.TFT_WEIGHTS = {
     "games": 71,
     "avgPlace": 4.7,
     "top4": 0.437
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 11,
+     "avgPlace": 5.09,
+     "top4": 0.364
+    },
+    "18.6": {
+     "games": 60,
+     "avgPlace": 4.63,
+     "top4": 0.45
+    },
+    "18.7": {
+     "games": 29,
+     "avgPlace": 4.9,
+     "top4": 0.483
+    }
    }
   },
   {
@@ -29044,6 +31404,23 @@ window.TFT_WEIGHTS = {
     "games": 21,
     "avgPlace": 5.05,
     "top4": 0.476
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 4.5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 17,
+     "avgPlace": 5.18,
+     "top4": 0.471
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 3.75,
+     "top4": 0.75
+    }
    }
   },
   {
@@ -29187,6 +31564,23 @@ window.TFT_WEIGHTS = {
     "games": 118,
     "avgPlace": 5.18,
     "top4": 0.381
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 25,
+     "avgPlace": 4.8,
+     "top4": 0.48
+    },
+    "18.6": {
+     "games": 93,
+     "avgPlace": 5.28,
+     "top4": 0.355
+    },
+    "18.7": {
+     "games": 45,
+     "avgPlace": 4.69,
+     "top4": 0.444
+    }
    }
   },
   {
@@ -29330,6 +31724,23 @@ window.TFT_WEIGHTS = {
     "games": 47,
     "avgPlace": 4.74,
     "top4": 0.362
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 4.86,
+     "top4": 0.286
+    },
+    "18.6": {
+     "games": 40,
+     "avgPlace": 4.72,
+     "top4": 0.375
+    },
+    "18.7": {
+     "games": 15,
+     "avgPlace": 5,
+     "top4": 0.4
+    }
    }
   },
   {
@@ -29473,6 +31884,23 @@ window.TFT_WEIGHTS = {
     "games": 111,
     "avgPlace": 4.79,
     "top4": 0.477
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 30,
+     "avgPlace": 4.67,
+     "top4": 0.433
+    },
+    "18.6": {
+     "games": 81,
+     "avgPlace": 4.84,
+     "top4": 0.494
+    },
+    "18.7": {
+     "games": 37,
+     "avgPlace": 4.89,
+     "top4": 0.378
+    }
    }
   },
   {
@@ -29616,6 +32044,23 @@ window.TFT_WEIGHTS = {
     "games": 49,
     "avgPlace": 4.73,
     "top4": 0.429
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 3.75,
+     "top4": 0.625
+    },
+    "18.6": {
+     "games": 41,
+     "avgPlace": 4.93,
+     "top4": 0.39
+    },
+    "18.7": {
+     "games": 13,
+     "avgPlace": 5.08,
+     "top4": 0.462
+    }
    }
   },
   {
@@ -29759,6 +32204,23 @@ window.TFT_WEIGHTS = {
     "games": 88,
     "avgPlace": 4.86,
     "top4": 0.443
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 22,
+     "avgPlace": 5.5,
+     "top4": 0.273
+    },
+    "18.6": {
+     "games": 66,
+     "avgPlace": 4.65,
+     "top4": 0.5
+    },
+    "18.7": {
+     "games": 43,
+     "avgPlace": 4.88,
+     "top4": 0.512
+    }
    }
   },
   {
@@ -29902,6 +32364,23 @@ window.TFT_WEIGHTS = {
     "games": 10,
     "avgPlace": 5,
     "top4": 0.4
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 8,
+     "avgPlace": 5,
+     "top4": 0.375
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 4.67,
+     "top4": 0.333
+    }
    }
   },
   {
@@ -30045,6 +32524,23 @@ window.TFT_WEIGHTS = {
     "games": 23,
     "avgPlace": 5.22,
     "top4": 0.348
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 5.67,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 20,
+     "avgPlace": 5.15,
+     "top4": 0.35
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 3.83,
+     "top4": 0.667
+    }
    }
   },
   {
@@ -30188,6 +32684,23 @@ window.TFT_WEIGHTS = {
     "games": 21,
     "avgPlace": 4.81,
     "top4": 0.524
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 5.2,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 16,
+     "avgPlace": 4.69,
+     "top4": 0.563
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 6,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -30331,6 +32844,23 @@ window.TFT_WEIGHTS = {
     "games": 12,
     "avgPlace": 4.75,
     "top4": 0.417
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 4,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 10,
+     "avgPlace": 4.9,
+     "top4": 0.4
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 7,
+     "top4": 0
+    }
    }
   },
   {
@@ -30474,6 +33004,183 @@ window.TFT_WEIGHTS = {
     "games": 11,
     "avgPlace": 5.55,
     "top4": 0.364
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 7,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 10,
+     "avgPlace": 5.4,
+     "top4": 0.4
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 3.83,
+     "top4": 0.667
+    }
+   }
+  },
+  {
+   "trait": "DA_18_Defender",
+   "carry": "da_18_akali_ad",
+   "mainCarry": "da_18_akali_ad",
+   "mainTank": "da_18_ornn",
+   "games": 45,
+   "avgPlace": 4.95,
+   "top4": 0.425,
+   "win": 0.04,
+   "patchGames": 45,
+   "playRate": 0.0086,
+   "level": 7,
+   "core": [
+    {
+     "id": "da_18_akali_ad",
+     "rate": 1,
+     "star3": 0.95,
+     "off": 303,
+     "tank": 1
+    },
+    {
+     "id": "da_18_leona",
+     "rate": 0.99,
+     "star3": 0.91,
+     "off": 15.5,
+     "tank": 82.9
+    },
+    {
+     "id": "da_18_camille",
+     "rate": 0.98,
+     "star3": 0.95,
+     "off": 210.4,
+     "tank": 32.2
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.97,
+     "star3": 0.91,
+     "off": 11.6,
+     "tank": 227.1
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.96,
+     "star3": 0.94,
+     "off": 178,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.83,
+     "star3": 0.02,
+     "off": 10.8,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.82,
+     "star3": 0.02,
+     "off": 2.2,
+     "tank": 5.2
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 14.9,
+     "tank": 0
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.2
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.02,
+     "star3": 0.27,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_18_akali_ad": {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_InfinityEdge"
+     ],
+     "games": 19,
+     "avgPlace": 5.14
+    },
+    "da_18_ornn": {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 6,
+     "avgPlace": 3.97
+    }
+   },
+   "now": {
+    "games": 45,
+    "avgPlace": 4.8,
+    "top4": 0.467
+   },
+   "before": {
+    "games": 130,
+    "avgPlace": 5.3,
+    "top4": 0.331
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 32,
+     "avgPlace": 5.47,
+     "top4": 0.281
+    },
+    "18.6": {
+     "games": 98,
+     "avgPlace": 5.24,
+     "top4": 0.347
+    },
+    "18.7": {
+     "games": 45,
+     "avgPlace": 4.8,
+     "top4": 0.467
+    }
    }
   },
   {
@@ -30617,149 +33324,23 @@ window.TFT_WEIGHTS = {
     "games": 105,
     "avgPlace": 5.16,
     "top4": 0.4
-   }
-  },
-  {
-   "trait": "DA_18_Defender",
-   "carry": "da_18_akali_ad",
-   "mainCarry": "da_18_akali_ad",
-   "mainTank": "da_18_ornn",
-   "games": 45,
-   "avgPlace": 4.96,
-   "top4": 0.424,
-   "win": 0.04,
-   "patchGames": 45,
-   "playRate": 0.0086,
-   "level": 7,
-   "core": [
-    {
-     "id": "da_18_akali_ad",
-     "rate": 1,
-     "star3": 0.95,
-     "off": 303,
-     "tank": 1
-    },
-    {
-     "id": "da_18_leona",
-     "rate": 0.99,
-     "star3": 0.91,
-     "off": 15.5,
-     "tank": 82.9
-    },
-    {
-     "id": "da_18_camille",
-     "rate": 0.98,
-     "star3": 0.95,
-     "off": 210.4,
-     "tank": 32.2
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.97,
-     "star3": 0.91,
-     "off": 11.6,
-     "tank": 227.1
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 0.96,
-     "star3": 0.94,
-     "off": 178,
-     "tank": 1.7
-    },
-    {
-     "id": "da_18_kayle",
-     "rate": 0.83,
-     "star3": 0.02,
-     "off": 10.8,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sejuani",
-     "rate": 0.82,
-     "star3": 0.02,
-     "off": 2.2,
-     "tank": 5.2
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 14.9,
-     "tank": 0
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 1.2,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.05,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.03,
-     "star3": 0,
-     "off": 0.6,
-     "tank": 1.2
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.03,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.02,
-     "star3": 0.27,
-     "off": 0,
-     "tank": 1.7
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.02,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    }
-   ],
-   "builds": {
-    "da_18_akali_ad": {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_InfinityEdge"
-     ],
-     "games": 19,
-     "avgPlace": 5.14
-    },
-    "da_18_ornn": {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 6,
-     "avgPlace": 3.97
-    }
    },
-   "now": {
-    "games": 45,
-    "avgPlace": 4.8,
-    "top4": 0.467
-   },
-   "before": {
-    "games": 131,
-    "avgPlace": 5.31,
-    "top4": 0.328
+   "byPatch": {
+    "18.5": {
+     "games": 18,
+     "avgPlace": 5.56,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 87,
+     "avgPlace": 5.08,
+     "top4": 0.414
+    },
+    "18.7": {
+     "games": 49,
+     "avgPlace": 4.86,
+     "top4": 0.469
+    }
    }
   },
   {
@@ -30903,6 +33484,23 @@ window.TFT_WEIGHTS = {
     "games": 35,
     "avgPlace": 5.43,
     "top4": 0.371
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 11,
+     "avgPlace": 5.55,
+     "top4": 0.273
+    },
+    "18.6": {
+     "games": 24,
+     "avgPlace": 5.38,
+     "top4": 0.417
+    },
+    "18.7": {
+     "games": 19,
+     "avgPlace": 4.47,
+     "top4": 0.579
+    }
    }
   },
   {
@@ -31046,6 +33644,23 @@ window.TFT_WEIGHTS = {
     "games": 157,
     "avgPlace": 4.68,
     "top4": 0.49
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 40,
+     "avgPlace": 4.85,
+     "top4": 0.425
+    },
+    "18.6": {
+     "games": 117,
+     "avgPlace": 4.62,
+     "top4": 0.513
+    },
+    "18.7": {
+     "games": 51,
+     "avgPlace": 5.08,
+     "top4": 0.353
+    }
    }
   },
   {
@@ -31189,149 +33804,23 @@ window.TFT_WEIGHTS = {
     "games": 61,
     "avgPlace": 5.03,
     "top4": 0.393
-   }
-  },
-  {
-   "trait": "DA_18_Sprykin",
-   "carry": "da_18_teemo",
-   "mainCarry": "da_18_teemo",
-   "mainTank": "da_18_alistar",
-   "games": 10,
-   "avgPlace": 5,
-   "top4": 0.4,
-   "win": 0.022,
-   "patchGames": 10,
-   "playRate": 0.0019,
-   "level": 8,
-   "core": [
-    {
-     "id": "da_18_teemo",
-     "rate": 1,
-     "star3": 0.86,
-     "off": 67.8,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kobuko",
-     "rate": 0.91,
-     "star3": 0.5,
-     "off": 4.3,
-     "tank": 15.3
-    },
-    {
-     "id": "da_18_veigar",
-     "rate": 0.77,
-     "star3": 0.35,
-     "off": 11.3,
-     "tank": 1.2
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 0.71,
-     "star3": 0.24,
-     "off": 1.2,
-     "tank": 18.5
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.65,
-     "star3": 0.73,
-     "off": 2.3,
-     "tank": 26.8
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 0.54,
-     "star3": 0.32,
-     "off": 19.5,
-     "tank": 2.2
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.46,
-     "star3": 0,
-     "off": 0.6,
-     "tank": 5.9
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.34,
-     "star3": 0,
-     "off": 15.9,
-     "tank": 0.6
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.29,
-     "star3": 0,
-     "off": 0,
-     "tank": 2.3
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.27,
-     "star3": 0,
-     "off": 0.6,
-     "tank": 2.6
-    },
-    {
-     "id": "da_18_tristana",
-     "rate": 0.22,
-     "star3": 0.2,
-     "off": 4.9,
-     "tank": 0
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.16,
-     "star3": 0.27,
-     "off": 3.2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_reksai",
-     "rate": 0.16,
-     "star3": 0.47,
-     "off": 0,
-     "tank": 3.5
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.14,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 3.6
-    }
-   ],
-   "builds": {
-    "da_18_teemo": {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
-     ],
-     "games": 3,
-     "avgPlace": 3.32
-    },
-    "da_18_alistar": {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 6
-    }
    },
-   "now": {
-    "games": 10,
-    "avgPlace": 5,
-    "top4": 0.4
-   },
-   "before": {
-    "games": 30,
-    "avgPlace": 5,
-    "top4": 0.4
+   "byPatch": {
+    "18.5": {
+     "games": 13,
+     "avgPlace": 5.54,
+     "top4": 0.231
+    },
+    "18.6": {
+     "games": 48,
+     "avgPlace": 4.9,
+     "top4": 0.438
+    },
+    "18.7": {
+     "games": 26,
+     "avgPlace": 4.92,
+     "top4": 0.385
+    }
    }
   },
   {
@@ -31475,6 +33964,23 @@ window.TFT_WEIGHTS = {
     "games": 20,
     "avgPlace": 5.05,
     "top4": 0.3
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 5.33,
+     "top4": 0.167
+    },
+    "18.6": {
+     "games": 14,
+     "avgPlace": 4.93,
+     "top4": 0.357
+    },
+    "18.7": {
+     "games": 8,
+     "avgPlace": 4.88,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -31618,6 +34124,183 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 4.56,
     "top4": 0.444
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 4,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 5,
+     "avgPlace": 5,
+     "top4": 0.4
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 6,
+     "top4": 0.25
+    }
+   }
+  },
+  {
+   "trait": "DA_18_Sprykin",
+   "carry": "da_18_teemo",
+   "mainCarry": "da_18_teemo",
+   "mainTank": "da_18_alistar",
+   "games": 10,
+   "avgPlace": 5.02,
+   "top4": 0.386,
+   "win": 0.023,
+   "patchGames": 10,
+   "playRate": 0.0019,
+   "level": 8,
+   "core": [
+    {
+     "id": "da_18_teemo",
+     "rate": 1,
+     "star3": 0.86,
+     "off": 67.8,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kobuko",
+     "rate": 0.91,
+     "star3": 0.5,
+     "off": 4.3,
+     "tank": 15.3
+    },
+    {
+     "id": "da_18_veigar",
+     "rate": 0.77,
+     "star3": 0.35,
+     "off": 11.3,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.71,
+     "star3": 0.24,
+     "off": 1.2,
+     "tank": 18.5
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.65,
+     "star3": 0.73,
+     "off": 2.3,
+     "tank": 26.8
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.54,
+     "star3": 0.32,
+     "off": 19.5,
+     "tank": 2.2
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.46,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 5.9
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 15.9,
+     "tank": 0.6
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.29,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 2.6
+    },
+    {
+     "id": "da_18_tristana",
+     "rate": 0.22,
+     "star3": 0.2,
+     "off": 4.9,
+     "tank": 0
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.16,
+     "star3": 0.27,
+     "off": 3.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.16,
+     "star3": 0.47,
+     "off": 0,
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.14,
+     "star3": 0.5,
+     "off": 0,
+     "tank": 3.6
+    }
+   ],
+   "builds": {
+    "da_18_teemo": {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 3,
+     "avgPlace": 3.32
+    },
+    "da_18_alistar": {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 1,
+     "avgPlace": 6
+    }
+   },
+   "now": {
+    "games": 10,
+    "avgPlace": 5,
+    "top4": 0.4
+   },
+   "before": {
+    "games": 29,
+    "avgPlace": 5.03,
+    "top4": 0.379
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 6.57,
+     "top4": 0.143
+    },
+    "18.6": {
+     "games": 22,
+     "avgPlace": 4.55,
+     "top4": 0.455
+    },
+    "18.7": {
+     "games": 10,
+     "avgPlace": 5,
+     "top4": 0.4
+    }
    }
   },
   {
@@ -31761,6 +34444,23 @@ window.TFT_WEIGHTS = {
     "games": 92,
     "avgPlace": 5.14,
     "top4": 0.391
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 26,
+     "avgPlace": 5.31,
+     "top4": 0.346
+    },
+    "18.6": {
+     "games": 66,
+     "avgPlace": 5.08,
+     "top4": 0.409
+    },
+    "18.7": {
+     "games": 33,
+     "avgPlace": 5,
+     "top4": 0.394
+    }
    }
   },
   {
@@ -31904,6 +34604,23 @@ window.TFT_WEIGHTS = {
     "games": 17,
     "avgPlace": 4.82,
     "top4": 0.529
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 6,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 15,
+     "avgPlace": 4.67,
+     "top4": 0.6
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 6.33,
+     "top4": 0.333
+    }
    }
   },
   {
@@ -32047,6 +34764,23 @@ window.TFT_WEIGHTS = {
     "games": 14,
     "avgPlace": 5.43,
     "top4": 0.357
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 5.5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 12,
+     "avgPlace": 5.42,
+     "top4": 0.333
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 2.5,
+     "top4": 1
+    }
    }
   },
   {
@@ -32190,6 +34924,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 4.88,
     "top4": 0.375
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 2,
+     "top4": 1
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 5.29,
+     "top4": 0.286
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 5.33,
+     "top4": 0.167
+    }
    }
   },
   {
@@ -32333,6 +35084,23 @@ window.TFT_WEIGHTS = {
     "games": 159,
     "avgPlace": 5.24,
     "top4": 0.321
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 39,
+     "avgPlace": 4.95,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 120,
+     "avgPlace": 5.33,
+     "top4": 0.317
+    },
+    "18.7": {
+     "games": 30,
+     "avgPlace": 4.97,
+     "top4": 0.433
+    }
    }
   },
   {
@@ -32476,6 +35244,23 @@ window.TFT_WEIGHTS = {
     "games": 156,
     "avgPlace": 5.34,
     "top4": 0.321
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 37,
+     "avgPlace": 5.03,
+     "top4": 0.405
+    },
+    "18.6": {
+     "games": 119,
+     "avgPlace": 5.44,
+     "top4": 0.294
+    },
+    "18.7": {
+     "games": 43,
+     "avgPlace": 5,
+     "top4": 0.442
+    }
    }
   },
   {
@@ -32619,6 +35404,18 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 5,
     "top4": 0.444
+   },
+   "byPatch": {
+    "18.6": {
+     "games": 9,
+     "avgPlace": 5,
+     "top4": 0.444
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 5.67,
+     "top4": 0.333
+    }
    }
   },
   {
@@ -32762,6 +35559,23 @@ window.TFT_WEIGHTS = {
     "games": 29,
     "avgPlace": 4.76,
     "top4": 0.448
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 6.4,
+     "top4": 0.2
+    },
+    "18.6": {
+     "games": 24,
+     "avgPlace": 4.42,
+     "top4": 0.5
+    },
+    "18.7": {
+     "games": 9,
+     "avgPlace": 6.33,
+     "top4": 0.222
+    }
    }
   },
   {
@@ -32905,6 +35719,23 @@ window.TFT_WEIGHTS = {
     "games": 94,
     "avgPlace": 4.88,
     "top4": 0.436
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 28,
+     "avgPlace": 4.36,
+     "top4": 0.571
+    },
+    "18.6": {
+     "games": 66,
+     "avgPlace": 5.11,
+     "top4": 0.379
+    },
+    "18.7": {
+     "games": 34,
+     "avgPlace": 5.47,
+     "top4": 0.353
+    }
    }
   },
   {
@@ -33048,6 +35879,23 @@ window.TFT_WEIGHTS = {
     "games": 20,
     "avgPlace": 5,
     "top4": 0.35
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 4.86,
+     "top4": 0.429
+    },
+    "18.6": {
+     "games": 13,
+     "avgPlace": 5.08,
+     "top4": 0.308
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 8,
+     "top4": 0
+    }
    }
   },
   {
@@ -33191,6 +36039,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 5.25,
     "top4": 0.375
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 4,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 6,
+     "avgPlace": 5.67,
+     "top4": 0.333
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 5.5,
+     "top4": 0
+    }
    }
   },
   {
@@ -33334,6 +36199,18 @@ window.TFT_WEIGHTS = {
     "games": 11,
     "avgPlace": 5.18,
     "top4": 0.273
+   },
+   "byPatch": {
+    "18.6": {
+     "games": 11,
+     "avgPlace": 5.18,
+     "top4": 0.273
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 6,
+     "top4": 0
+    }
    }
   },
   {
@@ -33477,6 +36354,23 @@ window.TFT_WEIGHTS = {
     "games": 192,
     "avgPlace": 5.39,
     "top4": 0.318
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 39,
+     "avgPlace": 5.36,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 153,
+     "avgPlace": 5.4,
+     "top4": 0.314
+    },
+    "18.7": {
+     "games": 79,
+     "avgPlace": 5.3,
+     "top4": 0.342
+    }
    }
   },
   {
@@ -33620,6 +36514,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 5,
     "top4": 0.5
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 4.33,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 5,
+     "avgPlace": 5.4,
+     "top4": 0.4
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 6,
+     "top4": 0
+    }
    }
   },
   {
@@ -33763,6 +36674,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 5.38,
     "top4": 0.5
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 5,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 5.43,
+     "top4": 0.571
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 5,
+     "top4": 0
+    }
    }
   },
   {
@@ -33906,6 +36834,23 @@ window.TFT_WEIGHTS = {
     "games": 11,
     "avgPlace": 5.45,
     "top4": 0.364
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 7,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 10,
+     "avgPlace": 5.3,
+     "top4": 0.4
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 4,
+     "top4": 1
+    }
    }
   },
   {
@@ -34049,6 +36994,23 @@ window.TFT_WEIGHTS = {
     "games": 128,
     "avgPlace": 5.04,
     "top4": 0.422
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 19,
+     "avgPlace": 5.53,
+     "top4": 0.263
+    },
+    "18.6": {
+     "games": 109,
+     "avgPlace": 4.95,
+     "top4": 0.45
+    },
+    "18.7": {
+     "games": 44,
+     "avgPlace": 5.5,
+     "top4": 0.295
+    }
    }
   },
   {
@@ -34192,6 +37154,23 @@ window.TFT_WEIGHTS = {
     "games": 77,
     "avgPlace": 4.75,
     "top4": 0.416
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 20,
+     "avgPlace": 4.8,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 57,
+     "avgPlace": 4.74,
+     "top4": 0.421
+    },
+    "18.7": {
+     "games": 22,
+     "avgPlace": 5.95,
+     "top4": 0.227
+    }
    }
   },
   {
@@ -34335,6 +37314,23 @@ window.TFT_WEIGHTS = {
     "games": 91,
     "avgPlace": 5.07,
     "top4": 0.352
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 25,
+     "avgPlace": 5.04,
+     "top4": 0.32
+    },
+    "18.6": {
+     "games": 66,
+     "avgPlace": 5.08,
+     "top4": 0.364
+    },
+    "18.7": {
+     "games": 37,
+     "avgPlace": 5.57,
+     "top4": 0.27
+    }
    }
   },
   {
@@ -34478,6 +37474,23 @@ window.TFT_WEIGHTS = {
     "games": 23,
     "avgPlace": 5.35,
     "top4": 0.348
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 8,
+     "avgPlace": 4.75,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 15,
+     "avgPlace": 5.67,
+     "top4": 0.267
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 5.75,
+     "top4": 0.25
+    }
    }
   },
   {
@@ -34621,6 +37634,23 @@ window.TFT_WEIGHTS = {
     "games": 14,
     "avgPlace": 5.07,
     "top4": 0.286
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 7,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 13,
+     "avgPlace": 4.92,
+     "top4": 0.308
+    },
+    "18.7": {
+     "games": 10,
+     "avgPlace": 5.9,
+     "top4": 0.2
+    }
    }
   },
   {
@@ -34764,6 +37794,23 @@ window.TFT_WEIGHTS = {
     "games": 60,
     "avgPlace": 5.48,
     "top4": 0.317
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 6.14,
+     "top4": 0.286
+    },
+    "18.6": {
+     "games": 53,
+     "avgPlace": 5.4,
+     "top4": 0.321
+    },
+    "18.7": {
+     "games": 13,
+     "avgPlace": 5.38,
+     "top4": 0.308
+    }
    }
   },
   {
@@ -34907,6 +37954,23 @@ window.TFT_WEIGHTS = {
     "games": 23,
     "avgPlace": 5.35,
     "top4": 0.304
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 7,
+     "avgPlace": 6,
+     "top4": 0.286
+    },
+    "18.6": {
+     "games": 16,
+     "avgPlace": 5.06,
+     "top4": 0.313
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 6.33,
+     "top4": 0
+    }
    }
   },
   {
@@ -35050,6 +38114,18 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 5.11,
     "top4": 0.556
+   },
+   "byPatch": {
+    "18.6": {
+     "games": 9,
+     "avgPlace": 5.11,
+     "top4": 0.556
+    },
+    "18.7": {
+     "games": 3,
+     "avgPlace": 6.67,
+     "top4": 0
+    }
    }
   },
   {
@@ -35193,6 +38269,23 @@ window.TFT_WEIGHTS = {
     "games": 49,
     "avgPlace": 6.37,
     "top4": 0.204
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 9,
+     "avgPlace": 6.89,
+     "top4": 0.111
+    },
+    "18.6": {
+     "games": 40,
+     "avgPlace": 6.25,
+     "top4": 0.225
+    },
+    "18.7": {
+     "games": 17,
+     "avgPlace": 4.65,
+     "top4": 0.471
+    }
    }
   },
   {
@@ -35336,6 +38429,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 6,
     "top4": 0.25
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 8,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 5.71,
+     "top4": 0.286
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 4.75,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -35479,6 +38589,23 @@ window.TFT_WEIGHTS = {
     "games": 143,
     "avgPlace": 4.92,
     "top4": 0.399
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 30,
+     "avgPlace": 4.9,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 113,
+     "avgPlace": 4.92,
+     "top4": 0.398
+    },
+    "18.7": {
+     "games": 44,
+     "avgPlace": 5.91,
+     "top4": 0.25
+    }
    }
   },
   {
@@ -35622,6 +38749,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 6,
     "top4": 0.222
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 6.67,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 6,
+     "avgPlace": 5.67,
+     "top4": 0.333
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 4,
+     "top4": 0.5
+    }
    }
   },
   {
@@ -35765,6 +38909,23 @@ window.TFT_WEIGHTS = {
     "games": 12,
     "avgPlace": 5.58,
     "top4": 0.25
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 5.5,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 10,
+     "avgPlace": 5.6,
+     "top4": 0.3
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 6,
+     "top4": 0.25
+    }
    }
   },
   {
@@ -35908,6 +39069,23 @@ window.TFT_WEIGHTS = {
     "games": 9,
     "avgPlace": 5.44,
     "top4": 0.333
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 5.5,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 7,
+     "avgPlace": 5.43,
+     "top4": 0.286
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 6.5,
+     "top4": 0.25
+    }
    }
   },
   {
@@ -36051,6 +39229,23 @@ window.TFT_WEIGHTS = {
     "games": 47,
     "avgPlace": 5.83,
     "top4": 0.234
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 14,
+     "avgPlace": 5.71,
+     "top4": 0.286
+    },
+    "18.6": {
+     "games": 33,
+     "avgPlace": 5.88,
+     "top4": 0.212
+    },
+    "18.7": {
+     "games": 17,
+     "avgPlace": 5.76,
+     "top4": 0.235
+    }
    }
   },
   {
@@ -36194,6 +39389,23 @@ window.TFT_WEIGHTS = {
     "games": 8,
     "avgPlace": 5.88,
     "top4": 0.125
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 5.5,
+     "top4": 0.25
+    },
+    "18.6": {
+     "games": 4,
+     "avgPlace": 6.25,
+     "top4": 0
+    },
+    "18.7": {
+     "games": 2,
+     "avgPlace": 5.5,
+     "top4": 0
+    }
    }
   },
   {
@@ -36337,6 +39549,23 @@ window.TFT_WEIGHTS = {
     "games": 20,
     "avgPlace": 5.5,
     "top4": 0.35
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 4.6,
+     "top4": 0.6
+    },
+    "18.6": {
+     "games": 15,
+     "avgPlace": 5.8,
+     "top4": 0.267
+    },
+    "18.7": {
+     "games": 7,
+     "avgPlace": 6.71,
+     "top4": 0
+    }
    }
   },
   {
@@ -36480,6 +39709,23 @@ window.TFT_WEIGHTS = {
     "games": 15,
     "avgPlace": 5.87,
     "top4": 0.133
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 5.4,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 10,
+     "avgPlace": 6.1,
+     "top4": 0
+    },
+    "18.7": {
+     "games": 1,
+     "avgPlace": 6,
+     "top4": 0
+    }
    }
   },
   {
@@ -36623,6 +39869,23 @@ window.TFT_WEIGHTS = {
     "games": 25,
     "avgPlace": 5.92,
     "top4": 0.28
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 6,
+     "top4": 0.25
+    },
+    "18.6": {
+     "games": 21,
+     "avgPlace": 5.9,
+     "top4": 0.286
+    },
+    "18.7": {
+     "games": 10,
+     "avgPlace": 5.9,
+     "top4": 0.2
+    }
    }
   },
   {
@@ -36766,6 +40029,23 @@ window.TFT_WEIGHTS = {
     "games": 33,
     "avgPlace": 5.85,
     "top4": 0.273
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 6,
+     "avgPlace": 6.17,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 27,
+     "avgPlace": 5.78,
+     "top4": 0.259
+    },
+    "18.7": {
+     "games": 13,
+     "avgPlace": 6,
+     "top4": 0.154
+    }
    }
   },
   {
@@ -36909,6 +40189,23 @@ window.TFT_WEIGHTS = {
     "games": 10,
     "avgPlace": 6,
     "top4": 0.1
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 6.5,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 6,
+     "avgPlace": 5.67,
+     "top4": 0.167
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 6.17,
+     "top4": 0.167
+    }
    }
   },
   {
@@ -37052,6 +40349,23 @@ window.TFT_WEIGHTS = {
     "games": 10,
     "avgPlace": 6.4,
     "top4": 0.1
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 2,
+     "avgPlace": 7.5,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 8,
+     "avgPlace": 6.13,
+     "top4": 0.125
+    },
+    "18.7": {
+     "games": 6,
+     "avgPlace": 5.67,
+     "top4": 0.333
+    }
    }
   },
   {
@@ -37195,6 +40509,23 @@ window.TFT_WEIGHTS = {
     "games": 180,
     "avgPlace": 6.43,
     "top4": 0.156
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 39,
+     "avgPlace": 6.74,
+     "top4": 0.128
+    },
+    "18.6": {
+     "games": 141,
+     "avgPlace": 6.35,
+     "top4": 0.163
+    },
+    "18.7": {
+     "games": 73,
+     "avgPlace": 6.37,
+     "top4": 0.192
+    }
    }
   },
   {
@@ -37338,6 +40669,23 @@ window.TFT_WEIGHTS = {
     "games": 22,
     "avgPlace": 6.18,
     "top4": 0.273
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 3,
+     "avgPlace": 5.33,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 19,
+     "avgPlace": 6.32,
+     "top4": 0.263
+    },
+    "18.7": {
+     "games": 8,
+     "avgPlace": 7.25,
+     "top4": 0
+    }
    }
   },
   {
@@ -37481,6 +40829,23 @@ window.TFT_WEIGHTS = {
     "games": 30,
     "avgPlace": 6.57,
     "top4": 0.133
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 5,
+     "avgPlace": 6,
+     "top4": 0.4
+    },
+    "18.6": {
+     "games": 25,
+     "avgPlace": 6.68,
+     "top4": 0.08
+    },
+    "18.7": {
+     "games": 8,
+     "avgPlace": 6.88,
+     "top4": 0.125
+    }
    }
   },
   {
@@ -37624,6 +40989,23 @@ window.TFT_WEIGHTS = {
     "games": 11,
     "avgPlace": 7.18,
     "top4": 0
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 1,
+     "avgPlace": 7,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 10,
+     "avgPlace": 7.2,
+     "top4": 0
+    },
+    "18.7": {
+     "games": 4,
+     "avgPlace": 7,
+     "top4": 0
+    }
    }
   },
   {
@@ -37767,6 +41149,23 @@ window.TFT_WEIGHTS = {
     "games": 21,
     "avgPlace": 7.1,
     "top4": 0
+   },
+   "byPatch": {
+    "18.5": {
+     "games": 4,
+     "avgPlace": 7,
+     "top4": 0
+    },
+    "18.6": {
+     "games": 17,
+     "avgPlace": 7.12,
+     "top4": 0
+    },
+    "18.7": {
+     "games": 7,
+     "avgPlace": 7.29,
+     "top4": 0
+    }
    }
   }
  ]
