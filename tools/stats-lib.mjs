@@ -17,8 +17,9 @@ export function patchOf(m, schedule = null) {
   if (r) return `${Number(r[1])}.${Number(r[2])}`;
   const t = m?.info?.game_datetime;
   if (!schedule?.length || !t) return null;
+  // balance: false 인 패치(버그 수정만)는 직전 밸런스 패치와 같은 메타로 봄
   let found = null;
-  for (const p of schedule) if (patchStart(p) <= t) found = p.patch;
+  for (const p of schedule) if (patchStart(p) <= t && (p.balance !== false || !found)) found = p.patch;
   return found;
 }
 // 패치 순서: 일정표 순서, 없으면 숫자("18.6" < "18.6B" < "18.7")
@@ -63,7 +64,7 @@ export function patchWeights(matches, { queueId = 1100, setNumber = null, target
  * @param isCurrent 최신 패치 경기인지 (메타 덱의 "이번 패치만" 기록용)
  * @returns { setNumber, games, traits: { [traitId]: { [tier]: { games, sumPlace, top4, wins } } } }
  */
-export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf = () => 1, isCurrent = () => true } = {}) {
+export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf = () => 1, isCurrent = () => true, patchLabel = () => null } = {}) {
   const usable = matches.filter(m => m?.info && (!queueId || m.info.queue_id === queueId));
   // 세트 번호가 정해지지 않았으면 가장 최신 세트만 사용
   const latest = setNumber ?? Math.max(...usable.map(m => m.info.tft_set_number || 0));
@@ -76,8 +77,9 @@ export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf 
     if (m.info.tft_set_number !== latest) continue;
     const w = weightOf(m);
     const cur = isCurrent(m);
-    // 가중치 0인 이전 패치 경기도 메타 덱의 "이전 패치" 기록에는 넣음 (패치 전후 비교·티어 예측용)
-    if (!(w > 0)) { for (const p of m.info.participants || []) addComp(comps, p, p.placement, 0, false); continue; }
+    const label = patchLabel(m);
+    // 가중치 0인 이전 패치 경기도 메타 덱의 "패치별 성적" 기록에는 넣음 (패치 전후 비교·티어 예측용)
+    if (!(w > 0)) { for (const p of m.info.participants || []) addComp(comps, p, p.placement, 0, false, label); continue; }
     for (const p of m.info.participants || []) {
       games += w;
       if (cur) curGames++;
@@ -111,7 +113,7 @@ export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf 
           er.sumPlace += w * place;
         }
       }
-      addComp(comps, p, place, w, cur);
+      addComp(comps, p, place, w, cur, label);
       for (const t of p.traits || []) {
         if (!(t.tier_current > 0)) continue; // 발동 안 된 시너지는 제외
         const row = ((traits[t.name] ||= {})[t.tier_current] ||= { games: 0, sumPlace: 0, top4: 0, wins: 0 });
@@ -135,7 +137,7 @@ const tanky = u => itemsOf(u).filter(n => TANK_ITEM.test(n)).length;
 // 주력 시너지: 발동된 시너지 중(1명짜리 고유 시너지 제외) 유닛 수가 가장 많은 것
 // 핵심 캐리: 딜 아이템(탱커 아이템 제외)을 가장 많이 든 챔피언 → 같으면 별(3성) → 같으면 코스트
 //   (도적의 장갑 보유자는 아이템이 랜덤이라 제외)
-function addComp(comps, p, place, w = 1, cur = true) {
+function addComp(comps, p, place, w = 1, cur = true, label = null) {
   const traits = (p.traits || []).filter(t => t.tier_current > 0 && (t.tier_total || 2) > 1);
   const main = [...traits].sort((a, b) => (b.num_units - a.num_units) || ((b.style || 0) - (a.style || 0)))[0];
   if (!main) return;
@@ -147,18 +149,20 @@ function addComp(comps, p, place, w = 1, cur = true) {
   const carryId = String(carry.character_id).toLowerCase();
   const key = `${main.name}|${carryId}`;
   const c = (comps[key] ||= { trait: main.name, carry: carryId, games: 0, sumPlace: 0, top4: 0, wins: 0, sumLevel: 0, units: {}, traits: {}, builds: {},
-    now: { games: 0, sumPlace: 0, top4: 0, wins: 0 }, before: { games: 0, sumPlace: 0, top4: 0, wins: 0 } });
+    now: { games: 0, sumPlace: 0, top4: 0, wins: 0 }, before: { games: 0, sumPlace: 0, top4: 0, wins: 0 }, byPatch: {} });
   c.games += w;
   c.sumPlace += w * place;
   if (place <= 4) c.top4 += w;
   if (place === 1) c.wins += w;
   c.sumLevel += w * (p.level || 8);
   // 패치 비교용: 이번 패치 / 이전 패치 실제 판수 (가중치 없이)
-  const side = cur ? c.now : c.before;
-  side.games++;
-  side.sumPlace += place;
-  if (place <= 4) side.top4++;
-  if (place === 1) side.wins++;
+  for (const side of [cur ? c.now : c.before, label ? (c.byPatch[label] ||= { games: 0, sumPlace: 0, top4: 0, wins: 0 }) : null]) {
+    if (!side) continue;
+    side.games++;
+    side.sumPlace += place;
+    if (place <= 4) side.top4++;
+    if (place === 1) side.wins++;
+  }
   if (!(w > 0)) return; // 이전 패치(가중치 0)는 비교 기록만
   const seen = new Set();
   for (const u of units) {
@@ -247,6 +251,8 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
       playRate: round((c.now.games || c.games) / Math.max(1, c.now.games ? curPlayers : stats.games), 4), level, core, builds,
       // 패치 비교: 이번 패치만 / 이전 패치만 (가중치 없는 실제 판수)
       now: side(c.now), before: side(c.before),
+      // 패치별 실제 성적 (패치 노트 화면의 "예측 vs 실측")
+      byPatch: Object.fromEntries(Object.entries(c.byPatch || {}).map(([p, s]) => [p, side(s)])),
     };
   }).sort((a, b) => a.avgPlace - b.avgPlace);
   return {

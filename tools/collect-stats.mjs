@@ -12,7 +12,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { aggregate, toWeights, patchWeights } from './stats-lib.mjs';
+import { aggregate, toWeights, patchWeights, patchOf } from './stats-lib.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -153,7 +153,7 @@ try {
   let schedule = null;
   try { schedule = JSON.parse(fs.readFileSync(path.join(root, 'data', 'patches.json'), 'utf8')).patches; } catch { console.log('data/patches.json 이 없어 패치 구분 없이 집계해요'); }
   const pw = patchWeights(matches, { queueId: cfg.queueId, schedule });
-  const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, isCurrent: pw.isCurrent });
+  const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, isCurrent: pw.isCurrent, patchLabel: m => patchOf(m, schedule) });
   stats.patch = { current: pw.current, prev: pw.prev, prevWeight: pw.prevWeight, mature: pw.mature, matches: pw.counts };
   if (!pw.current) {
     const ex = matches.find(m => m?.info)?.info || {};

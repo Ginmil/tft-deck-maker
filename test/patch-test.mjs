@@ -74,3 +74,36 @@ const w3 = toWeights(aggregate(byDate, { weightOf: pw3.weightOf, isCurrent: pw3.
 assert.ok(deck(w3, 'Set99_C').avgPlace < deck(w3, 'Set99_A').avgPlace);
 console.log('날짜로 패치 판단:', JSON.stringify(pw3.counts), '이전 패치 가중치', pw3.prevWeight, '| C', deck(w3, 'Set99_C').avgPlace, '등 A', deck(w3, 'Set99_A').avgPlace, '등');
 console.log('날짜 기반 패치 테스트 통과');
+
+// balance: false 패치(버그 수정만)는 직전 패치와 합침 + 덱별 패치별 성적(byPatch)
+const sched2 = [{ patch: '18.6', date: '2026-11-04' }, { patch: '18.7', date: '2026-11-11', balance: false }];
+assert.equal(patchOf(at('2026-11-13T00:00:00Z', []), sched2), '18.6', '밸런스 변경 없는 18.7 은 18.6 으로');
+const pw4 = patchWeights(byDate, { schedule: sched2 });
+assert.equal(pw4.current, '18.6');
+assert.equal(pw4.prev, null);
+const w4 = toWeights(aggregate(byDate, { weightOf: pw3.weightOf, isCurrent: pw3.isCurrent, patchLabel: m => patchOf(m, schedule) }));
+const A4 = deck(w4, 'Set99_A');
+assert.equal(A4.byPatch['18.6'].games, 800);
+assert.equal(A4.byPatch['18.6B'].games, 200);
+console.log('덱별 패치별 성적:', JSON.stringify(A4.byPatch));
+console.log('밸런스 병합·byPatch 테스트 통과');
+
+// 패치 노트 → 메타 덱 영향 예측
+const { patchImpact, patchReport, prevBalancePatch } = await import('../js/engine/patch.js');
+const comp = { trait: 'DA_18_Elderwood', mainCarry: 'da_18_kennen', mainTank: 'da_sentinel18',
+  core: [{ id: 'da_18_kennen', rate: 1 }, { id: 'da_sentinel18', rate: 0.9 }, { id: 'da_18_kobuko', rate: 0.7 }, { id: 'da_nidalee18_ap', rate: 0.2 }, { id: 'da_nidalee18_ad', rate: 0.1 }],
+  byPatch: { '18.5': { games: 40, avgPlace: 4.0 }, '18.6': { games: 30, avgPlace: 3.6 } } };
+const changes = [
+  { kind: 'champion', match: 'Sentinel', dir: 'buff' }, { kind: 'champion', match: 'Kobuko', dir: 'buff' },
+  { kind: 'champion', match: 'Nidalee', dir: 'buff' }, { kind: 'trait', match: 'DA_18_Elderwood', dir: 'nerf', scale: 0.3 },
+  { kind: 'augment', name: 'Embiggen', dir: 'nerf' },
+];
+const imp = patchImpact(comp, changes);
+assert.deepEqual(imp.hits.map(h => h.where), ['tank', 'core', 'flex', 'trait'], '니달리 두 형태는 한 번만');
+assert.ok(imp.score > 0, '버프가 더 큼');
+const rep = patchReport([comp], { patch: '18.6', changes }, '18.5');
+assert.equal(rep.rows[0].verdict, 'hit', '예측(좋아짐)과 실제(4.0→3.6) 방향 일치');
+assert.ok(rep.rows[0].predAvg < 4.0);
+assert.equal(prevBalancePatch([{ patch: '18.5' }, { patch: '18.6' }, { patch: '18.7', balance: false }, { patch: '19.1' }], '19.1'), '18.6');
+console.log('영향 예측:', imp.score.toFixed(2), '점 → 예측', rep.rows[0].predAvg, '등 / 실제', comp.byPatch['18.6'].avgPlace, '등 →', rep.rows[0].verdict);
+console.log('패치 영향 예측 테스트 통과');

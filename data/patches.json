@@ -1,13 +1,36 @@
 {
-  "_설명": "TFT 패치 일정 (라이엇 공식 일정, 태평양 시간 날짜). Set 18 경기 데이터에는 패치 번호가 없어서(game_version 이 'TFT Unreal Version ?.?.?.?') 경기 시각으로 패치를 정함. 한국 서버 적용은 보통 다음 날 아침이라 경계 = 날짜 다음 날 06:00 KST(전날 21:00 UTC). 출처: https://support.riotgames.com/en-us/tft/events/patch-schedule-teamfight-tactics",
+  "_설명": "TFT 패치 일정 + 패치노트 요약. 날짜는 라이엇 공식 일정(태평양 시간). Set 18 경기 데이터에는 패치 번호가 없어서(game_version 이 'TFT Unreal Version ?.?.?.?') 경기 시각으로 패치를 정함. 경계 = 날짜 21:00 UTC(다음 날 06:00 KST). balance: false = 밸런스 변경 없는 패치 → 통계는 직전 패치와 합침. changes: kind(champion|trait|augment|wisp|item), match(데이터 id 일부, 대소문자 무시) 또는 name(데이터에 없는 증강·수호령은 영문 이름 그대로 — 한글 공식 명칭 확인 전), dir(buff|nerf|adjust), scale(영향 크기 0~1, 기본 1 — 예: 9단계만 바뀐 시너지는 작게), note(짧은 요약).",
+  "schedule_source": "https://support.riotgames.com/en-us/tft/events/patch-schedule-teamfight-tactics",
   "patches": [
     { "patch": "18.1", "date": "2026-08-26" },
     { "patch": "18.2", "date": "2026-09-10" },
     { "patch": "18.3", "date": "2026-09-23" },
     { "patch": "18.4", "date": "2026-10-07" },
     { "patch": "18.5", "date": "2026-10-21" },
-    { "patch": "18.6", "date": "2026-11-04" },
-    { "patch": "18.6B", "date": "2026-11-11" },
+    {
+      "patch": "18.6", "date": "2026-11-04", "balance": true,
+      "summary": "전략가의 왕관(대회) 패치라 변경은 작음. 4코스트 라인 위주 소폭 버프, 나무정령 9단계 너프, 일부 수호령 비용 증가. TFT 전용 클라이언트 출시.",
+      "source": "https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-6/",
+      "changes": [
+        { "kind": "champion", "match": "Kobuko", "dir": "buff", "note": "버프" },
+        { "kind": "champion", "match": "RekSai", "dir": "buff", "note": "버프" },
+        { "kind": "champion", "match": "Murkwolf", "dir": "buff", "note": "버프" },
+        { "kind": "champion", "match": "Malphite", "dir": "buff", "note": "버프" },
+        { "kind": "champion", "match": "Nidalee", "dir": "buff", "note": "버프" },
+        { "kind": "champion", "match": "Sentinel", "dir": "buff", "note": "버프" },
+        { "kind": "trait", "match": "DA_18_Blossom", "dir": "buff", "scale": 0.6, "note": "공격력/주문력 12/30/50/55% → 12/30/55/65% (상위 단계)" },
+        { "kind": "trait", "match": "DA_18_Sprykin", "dir": "buff", "scale": 0.6, "note": "원거리 단짝 공격력/주문력 15/28/33% → 15/30/38%" },
+        { "kind": "trait", "match": "DA_18_Elderwood", "dir": "nerf", "scale": 0.3, "note": "9단계 추가 체력 25% → 10% (9단계만)" },
+        { "kind": "augment", "name": "Unrivaled", "dir": "buff", "note": "렝가 회복 공유 25% → 50%, 카직스 마나 공유 50% → 70%" },
+        { "kind": "augment", "name": "Embiggen", "dir": "nerf", "note": "너프" },
+        { "kind": "wisp", "name": "Curio Cart", "dir": "nerf", "note": "상징 비용 15 → 17" },
+        { "kind": "wisp", "name": "Middle Path", "dir": "nerf", "note": "비용 4 → 5, 강화 비용 3 → 4" }
+      ]
+    },
+    {
+      "patch": "18.7", "date": "2026-11-11", "balance": null,
+      "summary": "라이엇 일정상 11/11 패치(예전 일정표엔 18.6B). 공식 패치노트를 아직 찾지 못해 변경 내용 미등록. 밸런스 변경이 없었다면 balance 를 false 로 바꾸면 통계가 18.6 과 합쳐짐."
+    },
     { "patch": "19.1", "date": "2026-12-01" },
     { "patch": "19.2", "date": "2026-12-15" }
   ]

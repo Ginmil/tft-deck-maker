@@ -63,6 +63,7 @@
 
     <nav class="tabs" role="tablist">
       <button class="tab" data-tab="meta" role="tab">메타 덱</button>
+      <button class="tab" data-tab="patch" role="tab">패치 노트</button>
       <button class="tab active" data-tab="emblem" role="tab">상징 팀 메이커 <span class="tag">핵심</span></button>
       <button class="tab" data-tab="traits" role="tab">시너지로 찾기</button>
       <button class="tab" data-tab="items" role="tab">아이템으로 찾기</button>
@@ -103,6 +104,13 @@
       <input class="filter" id="itemFilter" placeholder="아이템 검색">
       <div class="grid" id="itemGrid"></div>
       <button class="btn primary big" id="runItems">캐리 & 덱 찾기</button>
+    </section>
+
+    <!-- 0-1. 패치 노트 → 메타 덱 영향 예측 -->
+    <section class="panel" id="panel-patch" hidden>
+      <p class="help">패치에서 바뀐 챔피언·시너지가 각 메타 덱의 <b>어느 자리</b>(핵심 캐리·탱커·주력 시너지·구성원)에 있는지로 영향을 계산해 <b>티어 변화를 예측</b>하고, 이번 패치 랭커 경기가 쌓이면 <b>실제 결과와 비교</b>해요.</p>
+      <div class="settings"><label>패치 <select id="patchSel"></select></label></div>
+      <div id="patchView"></div>
     </section>
 
     <!-- 0. 메타 덱 (랭커 통계) -->

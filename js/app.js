@@ -5,6 +5,7 @@
 import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './adapters/cdragon.js';
 import { decksForTraits, decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
+import { patchReport, prevBalancePatch } from './engine/patch.js';
 import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits } from './builder.js';
 
 const $ = id => document.getElementById(id);
@@ -395,6 +396,7 @@ function bind() {
     openTab: name => document.querySelector(`.tab[data-tab="${name}"]`)?.click(),
   });
   $('bdRecommend').onclick = e => runBoard(e.currentTarget);
+  $('patchSel').onchange = () => renderPatch($('patchSel').value);
   $('metaSort').onchange = renderMeta;
   $('metaMin').onchange = renderMeta;
   $('btnSample').onclick = async () => {
@@ -407,8 +409,9 @@ function bind() {
     document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== `panel-${t.dataset.tab}`);
     if (t.dataset.tab === 'builds') renderBuilds();
     if (t.dataset.tab === 'meta') renderMeta();
+    if (t.dataset.tab === 'patch') renderPatch();
     if (t.dataset.tab === 'builder') bdRender();
-    $('results').hidden = ['meta', 'builds', 'builder'].includes(t.dataset.tab);
+    $('results').hidden = ['meta', 'patch', 'builds', 'builder'].includes(t.dataset.tab);
     $('results').innerHTML = '';
   });
 
@@ -569,6 +572,80 @@ function renderPatchInfo() {
   box.innerHTML = `<b>${esc(p.current)} 패치</b> 기준 · 이번 패치 ${cur.toLocaleString()}경기`
     + (p.prev ? ` · 이전 패치(${esc(p.prev)}) ${prev.toLocaleString()}경기는 ${p.prevWeight > 0 ? '이번 패치 표본이 적어 일부만' : '참고하지 않고'} 반영` : '')
     + ` · <span class="pdelta up">▲</span><span class="pdelta down">▼</span> = 이전 패치 대비 평균 등수 변화`;
+}
+
+// ---- 패치 노트 탭 ----
+// data/patches.json : 패치 일정 + 변경 목록 (수집기도 같은 파일로 경기의 패치를 정함)
+let patchDoc = null;
+const patchDocReady = fetch('data/patches.json', { cache: 'no-cache', signal: AbortSignal.timeout(8000) })
+  .then(r => (r.ok ? r.json() : null)).then(j => { patchDoc = j; }).catch(() => {});
+const DIR_KO = { buff: ['▲', '버프', 'up'], nerf: ['▼', '너프', 'down'], adjust: ['◆', '조정', 'same'] };
+const WHERE_KO = { carry: '핵심 캐리', tank: '메인 탱커', core: '구성원', flex: '가끔 쓰는', trait: '주력 시너지' };
+
+function renderPatch(selected) {
+  const box = $('patchView'), sel = $('patchSel');
+  if (!patchDoc?.patches) { box.innerHTML = '<div class="empty">패치 정보(data/patches.json)를 불러오지 못했어요.</div>'; return; }
+  const list = patchDoc.patches.filter(p => p.summary || p.changes);
+  if (!list.length) { box.innerHTML = '<div class="empty">등록된 패치 노트가 없어요.</div>'; return; }
+  const latest = [...list].reverse();
+  if (!sel.options.length) sel.innerHTML = latest.map(p => `<option value="${esc(p.patch)}">${esc(p.patch)} (${esc(p.date)})</option>`).join('');
+  // 기본: 변경 목록이 있는 가장 최근 패치 (사용자가 고른 게 있으면 그것)
+  if (selected) sel.dataset.chosen = selected;
+  const name = sel.dataset.chosen || (latest.find(x => x.changes?.length) || latest[0]).patch;
+  sel.value = name;
+  const p = list.find(x => x.patch === name);
+  const prev = prevBalancePatch(patchDoc.patches, name);
+  const d = state.data, byLower = new Map((d?.champions || []).map(c => [c.id.toLowerCase(), c]));
+  const champsOf = m => (d?.champions || []).filter(c => c.id.toLowerCase().includes(String(m).toLowerCase()));
+  const traitOf = m => Object.entries(d?.traits || {}).find(([k]) => k.toLowerCase() === String(m).toLowerCase());
+
+  // 1) 바뀐 것
+  const groups = { champion: '챔피언', trait: '시너지', item: '아이템', augment: '증강', wisp: '수호령' };
+  const changeHtml = Object.entries(groups).map(([kind, label]) => {
+    const items = (p.changes || []).filter(c => c.kind === kind);
+    if (!items.length) return '';
+    return `<div class="pnGroup"><h4>${label}</h4>${items.map(c => {
+      const [arrow, word, cls] = DIR_KO[c.dir] || DIR_KO.adjust;
+      let icon = '', nm = c.name || c.match;
+      if (kind === 'champion') { const ch = champsOf(c.match)[0]; if (ch) { icon = img(ch.icon); nm = ch.name; } }
+      if (kind === 'trait') { const t = traitOf(c.match); if (t) { icon = img(t[1].icon); nm = t[1].name; } }
+      return `<div class="pnChange"><span class="pnIcon">${icon}</span><b>${esc(nm)}</b> <span class="pdelta ${cls}">${arrow} ${word}</span> <span class="muted small">${esc(c.note || '')}</span></div>`;
+    }).join('')}</div>`;
+  }).join('');
+
+  // 2) 메타 덱 영향 예측 vs 실측
+  const comps = metaAvailable() ? state.weights.comps : [];
+  const rep = p.changes?.length && prev ? patchReport(comps, p, prev) : null;
+  const hasByPatch = comps.some(c => c.byPatch);
+  let predHtml = '';
+  if (!p.changes?.length) predHtml = '<div class="empty">이 패치는 변경 내용이 등록되지 않았어요.</div>';
+  else if (!comps.length) predHtml = '<div class="empty">메타 덱 통계가 없어서 영향 예측을 할 수 없어요.</div>';
+  else if (!hasByPatch) predHtml = '<div class="empty">통계 파일에 패치별 기록이 아직 없어요. 다음 수집 후 표시돼요.</div>';
+  else if (!rep.rows.length) predHtml = '<div class="empty">바뀐 챔피언·시너지를 쓰는 메타 덱이 없어요.</div>';
+  else {
+    const fmt = (s, avg) => s ? `<span class="tier t${metaTier(avg ?? s.avgPlace, s.games)}">${metaTier(avg ?? s.avgPlace, s.games)}</span> ${(avg ?? s.avgPlace).toFixed(2)}등` : '<span class="muted">—</span>';
+    const verdict = { hit: '<span class="pnVerdict hit">✓ 예측 적중</span>', miss: '<span class="pnVerdict miss">✗ 빗나감</span>', flat: '<span class="pnVerdict flat">– 변화 작음</span>' };
+    const rows = rep.rows.filter(r => r.base || r.now).slice(0, 15).map(r => {
+      const c = r.comp, carry = byLower.get(c.mainCarry || c.carry);
+      const why = r.hits.map(h => {
+        const nm = h.where === 'trait' ? traitName(c.trait) : byLower.get(h.id)?.name || h.id;
+        const [arrow, , cls] = DIR_KO[h.change.dir];
+        return `<span class="pnWhy">${WHERE_KO[h.where]} ${esc(nm)} <span class="pdelta ${cls}">${arrow}</span></span>`;
+      }).join('');
+      const dir = r.predDelta < -0.05 ? '<span class="pdelta up">▲ 오를 것</span>' : r.predDelta > 0.05 ? '<span class="pdelta down">▼ 내릴 것</span>' : '<span class="pdelta same">– 비슷</span>';
+      return `<tr><td><b>${esc(traitName(c.trait))}</b> · ${esc(carry?.name || '')}<div class="pnWhys">${why}</div></td>
+        <td>${fmt(r.base)}<div class="muted small">${r.base ? r.base.games + '판' : '이전 패치 표본 부족'}</div></td>
+        <td>${r.base ? fmt({ ...r.base }, r.predAvg) : '—'}<div>${dir}</div></td>
+        <td>${fmt(r.now)}<div class="muted small">${r.now ? r.now.games + '판' : '이번 패치 표본 부족'}</div></td>
+        <td>${r.verdict ? verdict[r.verdict] : '<span class="muted small">판 쌓이는 중</span>'}</td></tr>`;
+    }).join('');
+    predHtml = `<p class="muted small">이전 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 핵심 캐리면 크게·탱커면 중간·구성원이면 작게, 주력 시너지 변경도 반영해 평균 등수 변화를 예측해요.${rep.judged ? ` 지금까지 <b>${rep.hits}/${rep.judged}</b>개 덱에서 예측 방향이 맞았어요.` : ''}</p>
+      <div class="tableWrap"><table class="pnTable"><thead><tr><th>메타 덱 · 영향 원인</th><th>${esc(prev)} 실제</th><th>${esc(p.patch)} 예측</th><th>${esc(p.patch)} 실제</th><th>결과</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+  box.innerHTML = `<div class="pnHead"><h3>${esc(p.patch)} 패치</h3><span class="muted small">${esc(p.date)} (태평양 시간) · 한국 서버는 보통 다음 날 아침 적용${p.source ? ` · <a href="${esc(p.source)}" target="_blank" rel="noopener">공식 패치노트</a>` : ''}</span></div>
+    ${p.summary ? `<p class="pnSummary">${esc(p.summary)}</p>` : ''}
+    ${changeHtml ? `<div class="pnChanges">${changeHtml}</div>` : ''}
+    <h3 class="recSub">메타 덱 영향 예측</h3>${predHtml}`;
 }
 
 function renderMeta() {

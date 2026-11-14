@@ -297,3 +297,23 @@ footer { text-align: center; font-size: 12px; padding: 30px 16px; }
 .pdelta.up { color: #5fd08a; }
 .pdelta.down { color: var(--danger); }
 .pdelta.same { color: var(--muted); }
+
+/* ---------- 패치 노트 탭 ---------- */
+.pnHead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: 4px 0 6px; }
+.pnHead h3 { margin: 0; }
+.pnSummary { margin: 0 0 12px; font-size: 14px; }
+.pnChanges { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px 18px; margin-bottom: 16px; }
+.pnGroup h4 { margin: 0 0 6px; font-size: 13px; color: var(--muted); }
+.pnChange { display: flex; align-items: center; gap: 6px; padding: 3px 0; font-size: 13.5px; flex-wrap: wrap; }
+.pnIcon img { width: 26px; height: 26px; border-radius: 6px; vertical-align: middle; }
+.pnIcon:empty { display: none; }
+.tableWrap { overflow-x: auto; }
+.pnTable { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.pnTable th { text-align: left; font-weight: 600; color: var(--muted); font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.pnTable td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.pnWhys { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.pnWhy { font-size: 11.5px; background: var(--bg2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; }
+.pnVerdict { font-size: 12px; font-weight: 700; white-space: nowrap; }
+.pnVerdict.hit { color: #5fd08a; }
+.pnVerdict.miss { color: var(--danger); }
+.pnVerdict.flat { color: var(--muted); }

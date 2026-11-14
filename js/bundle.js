@@ -910,6 +910,86 @@ function emblemTeamMaker(data, { emblems, size, maxCost, desired = {}, ...filter
 }
 
 
+// ===== js/engine/patch.js =====
+// =============================================================
+// 패치 노트 → 메타 덱 영향 예측
+// 패치에서 바뀐 챔피언·시너지가 덱의 어느 자리에 있는지(핵심 캐리/탱커/주력 시너지/구성원)로
+// 영향 점수를 매기고, 이전 패치 평균 등수에서 얼마나 움직일지 예측.
+// 이번 패치 판이 쌓이면 실제 변화와 비교 (예측 vs 실측).
+// =============================================================
+
+const DIR = { buff: 1, nerf: -1, adjust: 0 };
+const PRED_PER_POINT = 0.35; // 영향 점수 1 = 평균 등수 0.35등 변화로 봄 (핵심 캐리 버프 1건 ≈ 0.35등 좋아짐)
+const PRED_MAX = 1.0;
+const MIN_BASE_GAMES = 8;    // 이전 패치 판수가 이보다 적으면 예측 안 함
+const MIN_ACTUAL_GAMES = 10; // 이번 패치 판수가 이보다 적으면 실측 비교 안 함
+const SMALL_MOVE = 0.15;     // 이보다 작은 변화는 "변화 거의 없음"
+
+const has = (id, match) => String(id).toLowerCase().includes(String(match).toLowerCase());
+
+/** 한 덱이 패치 변경 목록에서 받는 영향: [{ change, where, weight }] 과 합계 점수 */
+function patchImpact(comp, changes) {
+  const hits = [];
+  for (const ch of changes || []) {
+    const dir = DIR[ch.dir] ?? 0;
+    if (!dir || !ch.match) continue;
+    const scale = ch.scale ?? 1;
+    if (ch.kind === 'champion') {
+      // 같은 챔피언의 여러 형태(니달리 AP/AD 등)는 가장 큰 자리 하나만
+      let best = null;
+      for (const u of comp.core || []) {
+        if (!has(u.id, ch.match)) continue;
+        const where = u.id === comp.mainCarry ? 'carry' : u.id === comp.mainTank ? 'tank' : u.rate >= 0.6 ? 'core' : 'flex';
+        const weight = { carry: 1, tank: 0.6, core: 0.35, flex: 0.15 * Math.max(0.3, u.rate || 0) }[where];
+        if (!best || weight > best.weight) best = { change: ch, where, weight: weight * scale * dir, id: u.id };
+      }
+      if (best) hits.push(best);
+    } else if (ch.kind === 'trait' && has(comp.trait, ch.match) && String(comp.trait).length <= String(ch.match).length + 2) {
+      hits.push({ change: ch, where: 'trait', weight: 0.8 * scale * dir });
+    }
+  }
+  return { hits, score: hits.reduce((s, h) => s + h.weight, 0) };
+}
+
+/**
+ * 패치 하나에 대한 메타 덱 영향 보고서
+ * @param comps   weights.comps (byPatch 포함)
+ * @param patch   패치 일정 항목 { patch, changes }
+ * @param prevPatch 바로 이전 (밸런스) 패치 이름 — 예측의 기준 성적
+ */
+function patchReport(comps, patch, prevPatch) {
+  const rows = [];
+  for (const c of comps || []) {
+    const { hits, score } = patchImpact(c, patch.changes);
+    if (!hits.length) continue;
+    const base = c.byPatch?.[prevPatch];
+    const now = c.byPatch?.[patch.patch];
+    const predDelta = Math.max(-PRED_MAX, Math.min(PRED_MAX, -PRED_PER_POINT * score)); // 음수 = 등수가 좋아짐
+    const row = { comp: c, hits, score, base: base && base.games >= MIN_BASE_GAMES ? base : null, now: now && now.games >= MIN_ACTUAL_GAMES ? now : null, predDelta };
+    if (row.base) row.predAvg = pRound(row.base.avgPlace + predDelta, 2);
+    if (row.base && row.now) {
+      row.actualDelta = pRound(row.now.avgPlace - row.base.avgPlace, 2);
+      row.verdict = Math.abs(row.actualDelta) < SMALL_MOVE ? (Math.abs(predDelta) < SMALL_MOVE ? 'hit' : 'flat')
+        : Math.sign(row.actualDelta) === Math.sign(predDelta) ? 'hit' : 'miss';
+    }
+    rows.push(row);
+  }
+  // 영향이 큰 덱, 같으면 이전 패치 판수가 많은 덱부터
+  rows.sort((a, b) => Math.abs(b.score) - Math.abs(a.score) || (b.base?.games || 0) - (a.base?.games || 0));
+  const judged = rows.filter(r => r.verdict);
+  return { rows, hits: judged.filter(r => r.verdict === 'hit').length, judged: judged.length };
+}
+
+/** 일정표에서 이 패치 바로 전의 밸런스 패치 */
+function prevBalancePatch(schedule, name) {
+  const i = schedule.findIndex(p => p.patch === name);
+  for (let j = i - 1; j >= 0; j--) if (schedule[j].balance !== false) return schedule[j].patch;
+  return null;
+}
+
+function pRound(x, d) { return Math.round(x * 10 ** d) / 10 ** d; }
+
+
 // ===== js/builder.js =====
 // =============================================================
 // 배치툴: 4×7 육각형 보드에 챔피언·아이템·상징·별을 배치하고 시너지를 실시간 계산
@@ -1345,6 +1425,7 @@ function bdToast(msg) {
 
 
 
+
 const $ = id => document.getElementById(id);
 const CACHE_KEY = `tft-deck-maker:data:v${ADAPTER_VERSION}`; // 어댑터를 고치면 버전을 올려 옛 캐시를 무시
 const URL_KEY = 'tft-deck-maker:url';
@@ -1733,6 +1814,7 @@ function bind() {
     openTab: name => document.querySelector(`.tab[data-tab="${name}"]`)?.click(),
   });
   $('bdRecommend').onclick = e => runBoard(e.currentTarget);
+  $('patchSel').onchange = () => renderPatch($('patchSel').value);
   $('metaSort').onchange = renderMeta;
   $('metaMin').onchange = renderMeta;
   $('btnSample').onclick = async () => {
@@ -1745,8 +1827,9 @@ function bind() {
     document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== `panel-${t.dataset.tab}`);
     if (t.dataset.tab === 'builds') renderBuilds();
     if (t.dataset.tab === 'meta') renderMeta();
+    if (t.dataset.tab === 'patch') renderPatch();
     if (t.dataset.tab === 'builder') bdRender();
-    $('results').hidden = ['meta', 'builds', 'builder'].includes(t.dataset.tab);
+    $('results').hidden = ['meta', 'patch', 'builds', 'builder'].includes(t.dataset.tab);
     $('results').innerHTML = '';
   });
 
@@ -1907,6 +1990,80 @@ function renderPatchInfo() {
   box.innerHTML = `<b>${esc(p.current)} 패치</b> 기준 · 이번 패치 ${cur.toLocaleString()}경기`
     + (p.prev ? ` · 이전 패치(${esc(p.prev)}) ${prev.toLocaleString()}경기는 ${p.prevWeight > 0 ? '이번 패치 표본이 적어 일부만' : '참고하지 않고'} 반영` : '')
     + ` · <span class="pdelta up">▲</span><span class="pdelta down">▼</span> = 이전 패치 대비 평균 등수 변화`;
+}
+
+// ---- 패치 노트 탭 ----
+// data/patches.json : 패치 일정 + 변경 목록 (수집기도 같은 파일로 경기의 패치를 정함)
+let patchDoc = null;
+const patchDocReady = fetch('data/patches.json', { cache: 'no-cache', signal: AbortSignal.timeout(8000) })
+  .then(r => (r.ok ? r.json() : null)).then(j => { patchDoc = j; }).catch(() => {});
+const DIR_KO = { buff: ['▲', '버프', 'up'], nerf: ['▼', '너프', 'down'], adjust: ['◆', '조정', 'same'] };
+const WHERE_KO = { carry: '핵심 캐리', tank: '메인 탱커', core: '구성원', flex: '가끔 쓰는', trait: '주력 시너지' };
+
+function renderPatch(selected) {
+  const box = $('patchView'), sel = $('patchSel');
+  if (!patchDoc?.patches) { box.innerHTML = '<div class="empty">패치 정보(data/patches.json)를 불러오지 못했어요.</div>'; return; }
+  const list = patchDoc.patches.filter(p => p.summary || p.changes);
+  if (!list.length) { box.innerHTML = '<div class="empty">등록된 패치 노트가 없어요.</div>'; return; }
+  const latest = [...list].reverse();
+  if (!sel.options.length) sel.innerHTML = latest.map(p => `<option value="${esc(p.patch)}">${esc(p.patch)} (${esc(p.date)})</option>`).join('');
+  // 기본: 변경 목록이 있는 가장 최근 패치 (사용자가 고른 게 있으면 그것)
+  if (selected) sel.dataset.chosen = selected;
+  const name = sel.dataset.chosen || (latest.find(x => x.changes?.length) || latest[0]).patch;
+  sel.value = name;
+  const p = list.find(x => x.patch === name);
+  const prev = prevBalancePatch(patchDoc.patches, name);
+  const d = state.data, byLower = new Map((d?.champions || []).map(c => [c.id.toLowerCase(), c]));
+  const champsOf = m => (d?.champions || []).filter(c => c.id.toLowerCase().includes(String(m).toLowerCase()));
+  const traitOf = m => Object.entries(d?.traits || {}).find(([k]) => k.toLowerCase() === String(m).toLowerCase());
+
+  // 1) 바뀐 것
+  const groups = { champion: '챔피언', trait: '시너지', item: '아이템', augment: '증강', wisp: '수호령' };
+  const changeHtml = Object.entries(groups).map(([kind, label]) => {
+    const items = (p.changes || []).filter(c => c.kind === kind);
+    if (!items.length) return '';
+    return `<div class="pnGroup"><h4>${label}</h4>${items.map(c => {
+      const [arrow, word, cls] = DIR_KO[c.dir] || DIR_KO.adjust;
+      let icon = '', nm = c.name || c.match;
+      if (kind === 'champion') { const ch = champsOf(c.match)[0]; if (ch) { icon = img(ch.icon); nm = ch.name; } }
+      if (kind === 'trait') { const t = traitOf(c.match); if (t) { icon = img(t[1].icon); nm = t[1].name; } }
+      return `<div class="pnChange"><span class="pnIcon">${icon}</span><b>${esc(nm)}</b> <span class="pdelta ${cls}">${arrow} ${word}</span> <span class="muted small">${esc(c.note || '')}</span></div>`;
+    }).join('')}</div>`;
+  }).join('');
+
+  // 2) 메타 덱 영향 예측 vs 실측
+  const comps = metaAvailable() ? state.weights.comps : [];
+  const rep = p.changes?.length && prev ? patchReport(comps, p, prev) : null;
+  const hasByPatch = comps.some(c => c.byPatch);
+  let predHtml = '';
+  if (!p.changes?.length) predHtml = '<div class="empty">이 패치는 변경 내용이 등록되지 않았어요.</div>';
+  else if (!comps.length) predHtml = '<div class="empty">메타 덱 통계가 없어서 영향 예측을 할 수 없어요.</div>';
+  else if (!hasByPatch) predHtml = '<div class="empty">통계 파일에 패치별 기록이 아직 없어요. 다음 수집 후 표시돼요.</div>';
+  else if (!rep.rows.length) predHtml = '<div class="empty">바뀐 챔피언·시너지를 쓰는 메타 덱이 없어요.</div>';
+  else {
+    const fmt = (s, avg) => s ? `<span class="tier t${metaTier(avg ?? s.avgPlace, s.games)}">${metaTier(avg ?? s.avgPlace, s.games)}</span> ${(avg ?? s.avgPlace).toFixed(2)}등` : '<span class="muted">—</span>';
+    const verdict = { hit: '<span class="pnVerdict hit">✓ 예측 적중</span>', miss: '<span class="pnVerdict miss">✗ 빗나감</span>', flat: '<span class="pnVerdict flat">– 변화 작음</span>' };
+    const rows = rep.rows.filter(r => r.base || r.now).slice(0, 15).map(r => {
+      const c = r.comp, carry = byLower.get(c.mainCarry || c.carry);
+      const why = r.hits.map(h => {
+        const nm = h.where === 'trait' ? traitName(c.trait) : byLower.get(h.id)?.name || h.id;
+        const [arrow, , cls] = DIR_KO[h.change.dir];
+        return `<span class="pnWhy">${WHERE_KO[h.where]} ${esc(nm)} <span class="pdelta ${cls}">${arrow}</span></span>`;
+      }).join('');
+      const dir = r.predDelta < -0.05 ? '<span class="pdelta up">▲ 오를 것</span>' : r.predDelta > 0.05 ? '<span class="pdelta down">▼ 내릴 것</span>' : '<span class="pdelta same">– 비슷</span>';
+      return `<tr><td><b>${esc(traitName(c.trait))}</b> · ${esc(carry?.name || '')}<div class="pnWhys">${why}</div></td>
+        <td>${fmt(r.base)}<div class="muted small">${r.base ? r.base.games + '판' : '이전 패치 표본 부족'}</div></td>
+        <td>${r.base ? fmt({ ...r.base }, r.predAvg) : '—'}<div>${dir}</div></td>
+        <td>${fmt(r.now)}<div class="muted small">${r.now ? r.now.games + '판' : '이번 패치 표본 부족'}</div></td>
+        <td>${r.verdict ? verdict[r.verdict] : '<span class="muted small">판 쌓이는 중</span>'}</td></tr>`;
+    }).join('');
+    predHtml = `<p class="muted small">이전 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 핵심 캐리면 크게·탱커면 중간·구성원이면 작게, 주력 시너지 변경도 반영해 평균 등수 변화를 예측해요.${rep.judged ? ` 지금까지 <b>${rep.hits}/${rep.judged}</b>개 덱에서 예측 방향이 맞았어요.` : ''}</p>
+      <div class="tableWrap"><table class="pnTable"><thead><tr><th>메타 덱 · 영향 원인</th><th>${esc(prev)} 실제</th><th>${esc(p.patch)} 예측</th><th>${esc(p.patch)} 실제</th><th>결과</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+  box.innerHTML = `<div class="pnHead"><h3>${esc(p.patch)} 패치</h3><span class="muted small">${esc(p.date)} (태평양 시간) · 한국 서버는 보통 다음 날 아침 적용${p.source ? ` · <a href="${esc(p.source)}" target="_blank" rel="noopener">공식 패치노트</a>` : ''}</span></div>
+    ${p.summary ? `<p class="pnSummary">${esc(p.summary)}</p>` : ''}
+    ${changeHtml ? `<div class="pnChanges">${changeHtml}</div>` : ''}
+    <h3 class="recSub">메타 덱 영향 예측</h3>${predHtml}`;
 }
 
 function renderMeta() {
