@@ -140,7 +140,19 @@ function applyWeights() {
   }
 }
 
+// 아이콘을 Community Dragon 대신 저장소 사본(data/icons)에서 받도록 주소 바꾸기 (snapshot 워크플로가 만듦)
+let iconMap = {};
+const iconMapReady = fetch('data/icons/map.json', { signal: AbortSignal.timeout(5000) })
+  .then(r => (r.ok ? r.json() : {})).then(m => { iconMap = m || {}; }).catch(() => {});
+function localizeIcons(data) {
+  const fix = o => { if (o?.icon && iconMap[o.icon]) o.icon = iconMap[o.icon]; };
+  for (const list of [data.champions, Object.values(data.traits || {}), data.items, data.emblems, data.components, data.artifacts, data.radiants, Object.values(data.itemInfo || {})]) {
+    (list || []).forEach(fix);
+  }
+}
+
 function setData(data) {
+  localizeIcons(data);
   state.data = data;
   applyWeights();
   // 이벤트 핸들러가 같은 객체를 참조하므로 새로 만들지 않고 비운다
@@ -665,6 +677,8 @@ function removeOne(arr, v) { const i = arr.indexOf(v); if (i >= 0) arr.splice(i,
 bind();
 if (window.TFT_WEIGHTS) state.weights = window.TFT_WEIGHTS; // data/weights.js 가 있으면 자동 사용
 const cached = store.get(CACHE_KEY);
+iconMapReady.then(start);
+function start() {
 if (cached) {
   try {
     setData(JSON.parse(cached));
@@ -675,4 +689,5 @@ if (cached) {
   // 처음 방문: 큰 원본(수십 MB) 대신 저장소의 사본(수백 KB)으로 빠르게 시작, 사본이 없으면 원본
   setStatus('데이터를 받는 중이에요…');
   loadSnapshot().then(ok => { if (!ok) loadFromUrl($('srcUrl').value); });
+}
 }

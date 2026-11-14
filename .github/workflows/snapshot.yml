@@ -20,7 +20,7 @@ concurrency:
 jobs:
   snapshot:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,7 +32,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
-          git add data/set-snapshot.json
+          git add data/set-snapshot.json data/icons
           git diff --cached --quiet && echo "변경 없음" && exit 0
           git commit -m "세트 데이터 사본 갱신: $(date -u +'%Y-%m-%d')"
           git pull --rebase -q origin main

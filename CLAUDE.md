@@ -25,6 +25,7 @@
 - `js/app.js` 의 `runBoard`/`metaNearBoard` — 다음 수 추천 화면(`#bdRecs`): 내 보드와 절반 이상 겹치는 메타 덱(최대 3) + 이어서 완성하는 덱(최대 5). `metaDecks(minGames)` 는 메타 덱 탭과 공용.
 - `js/app.js` — 화면 로직, 탭: 메타 덱 / 상징 팀 메이커 / 시너지로 찾기 / 아이템으로 찾기 / 챔피언 3신기 / 배치툴. 아이템 조합식 툴팁(`data-item` 속성).
 - **세트 데이터 사본** `data/set-snapshot.json` — `tools/snapshot-set.mjs` 가 Community Dragon 을 받아 어댑터로 변환한 결과(`{ adapterVersion, fetchedAt, data }`). `.github/workflows/snapshot.yml` 이 매일 + `cdragon.js` 를 고쳐 푸시할 때마다 갱신(키 불필요). 사이트는 캐시 → 사본 → 원본 순으로 시작하고, "불러오기"가 실패하면 사본으로 대신함(11/14 Community Dragon 장애 대응, 원본 요청은 45초 시간 제한). 어댑터 버전이 다르면 사본을 무시하므로 `ADAPTER_VERSION` 을 올린 뒤에는 snapshot 워크플로가 끝났는지 확인.
+  - 아이콘도 같은 워크플로가 `data/icons/*.png` 로 복사하고 `data/icons/map.json`(원본 URL → 사본 경로)을 만듦. `app.js setData → localizeIcons` 가 캐시·사본·원본 어느 데이터든 이 표로 주소를 바꿈 (11/14 Community Dragon 이 아이콘 하나에 20초 걸린 일 대응).
 - `tools/collect-stats.mjs` + `tools/stats-lib.mjs` — 라이엇 API(TFT-LEAGUE-V1, TFT-MATCH-V1)로 랭커 경기 수집 → `data/weights.json`, `data/weights.js`. 키는 `tools/config.json`(gitignore) 또는 환경변수 `RIOT_API_KEY`.
   - 집계 규칙: 도적의 장갑 보유자는 아이템 통계에서 제외, 전략가 아이템은 3신기에서 제외. 메타 덱 = "주력 시너지 + 핵심 캐리(딜 아이템 최다 → 3성 → 코스트)", 레벨만큼 자리 채움, 3성 비율 표시.
 - `.github/workflows/collect.yml` — 매일 UTC 19시(KST 04시, 실제로는 지연됨) 수집 후 통계 파일 커밋. Secret `RIOT_API_KEY` 필요. Actions 캐시로 받은 경기 재사용.
