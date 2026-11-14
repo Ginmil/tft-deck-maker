@@ -7,11 +7,11 @@
   "prevWeight": 0,
   "mature": true,
   "matches": {
-   "18.5c": 381,
+   "18.5c": 379,
    "18.6": 2185
   }
  },
- "generatedAt": "2026-11-14T23:07:22.230Z",
+ "generatedAt": "2026-11-14T23:35:35.901Z",
  "method": {
   "prior": 30,
   "strength": 0.35,
@@ -9142,6 +9142,16 @@
      "avgPlace": 1.88,
      "top4": 1
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.5,
+    "DA_18_EmblemBrawler": 0.13,
+    "DA_18_EmblemDefender": 0.13,
+    "DA_18_EmblemBlackthorn": 0.13,
+    "DA_18_EmblemFloraFatalis": 0.13
    }
   },
   {
@@ -9297,6 +9307,20 @@
      "avgPlace": 2.2,
      "top4": 0.9
     }
+   },
+   "mainCount": {
+    "3": 0.9,
+    "4": 0.1
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.4,
+    "DA_18_EmblemExecutioner": 0.2,
+    "DA_18_EmblemDefender": 0.2,
+    "DA_18_EmblemRapidfire": 0.1,
+    "DA_18_EmblemFae": 0.1,
+    "DA_18_EmblemJuggernaut": 0.1,
+    "DA_18_EmblemBrawler": 0.1,
+    "DA_18_EmblemFloraFatalisAugment": 0.1
    }
   },
   {
@@ -9431,6 +9455,13 @@
      "avgPlace": 1.8,
      "top4": 1
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 1,
+    "DA_18_EmblemBlackthorn": 0.1
    }
   },
   {
@@ -9586,6 +9617,17 @@
      "avgPlace": 2.39,
      "top4": 0.909
     }
+   },
+   "mainCount": {
+    "3": 0.3,
+    "5": 0.12,
+    "7": 0.45,
+    "9": 0.12
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.55,
+    "DA_18_EmblemExecutioner": 0.15,
+    "DA_18_EmblemInferno": 0.09
    }
   },
   {
@@ -9732,6 +9774,13 @@
      "avgPlace": 2.64,
      "top4": 0.818
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemSpellweaver": 0.18,
+    "DA_18_EmblemSprykin": 0.09
    }
   },
   {
@@ -9887,6 +9936,15 @@
      "avgPlace": 2.88,
      "top4": 0.875
     }
+   },
+   "mainCount": {
+    "3": 0.25,
+    "4": 0.63,
+    "5": 0.13
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.25,
+    "DA_18_EmblemSpellweaver": 0.13
    }
   },
   {
@@ -10042,6 +10100,20 @@
      "avgPlace": 2.5,
      "top4": 0.8
     }
+   },
+   "mainCount": {
+    "4": 0.2,
+    "5": 0.1,
+    "6": 0.7
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.6,
+    "DA_18_EmblemInferno": 0.3,
+    "DA_18_EmblemPrimal": 0.1,
+    "DA_18_EmblemVanguard": 0.1,
+    "DA_18_EmblemCoven": 0.1,
+    "DA_18_EmblemFloraFatalis": 0.1,
+    "DA_18_EmblemHunter": 0.1
    }
   },
   {
@@ -10197,6 +10269,21 @@
      "avgPlace": 2.74,
      "top4": 0.846
     }
+   },
+   "mainCount": {
+    "5": 0.13,
+    "7": 0.28,
+    "8": 0.03,
+    "9": 0.47,
+    "11": 0.06
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.6,
+    "DA_18_EmblemExecutioner": 0.12,
+    "DA_18_EmblemRapidfire": 0.09,
+    "DA_18_EmblemFae": 0.09,
+    "DA_18_EmblemVanguard": 0.08,
+    "DA_18_EmblemDefender": 0.05
    }
   },
   {
@@ -10352,6 +10439,14 @@
      "avgPlace": 3.05,
      "top4": 0.75
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemHunter": 0.1,
+    "DA_18_EmblemRapidfire": 0.05,
+    "DA_18_EmblemExecutioner": 0.05
    }
   },
   {
@@ -10507,6 +10602,22 @@
      "avgPlace": 3,
      "top4": 0.789
     }
+   },
+   "mainCount": {
+    "3": 0.37,
+    "4": 0.58,
+    "5": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemSlayer": 0.11,
+    "DA_18_EmblemLunar": 0.11,
+    "DA_18_EmblemPrimal": 0.05,
+    "DA_18_EmblemVanguard": 0.05,
+    "DA_18_EmblemRapidfire": 0.05,
+    "DA_18_EmblemSpellweaver": 0.05,
+    "DA_18_EmblemBrawler": 0.05,
+    "DA_18_EmblemExecutioner": 0.05,
+    "DA_18_EmblemCoven": 0.05
    }
   },
   {
@@ -10641,6 +10752,15 @@
      "avgPlace": 2.44,
      "top4": 0.889
     }
+   },
+   "mainCount": {
+    "4": 1
+   },
+   "emblems": {
+    "DA_18_EmblemPrimal": 0.33,
+    "DA_18_EmblemInferno": 0.11,
+    "DA_18_EmblemBlossom": 0.11,
+    "DA_18_EmblemBrawler": 0.11
    }
   },
   {
@@ -10796,6 +10916,17 @@
      "avgPlace": 2.97,
      "top4": 0.684
     }
+   },
+   "mainCount": {
+    "4": 0.92,
+    "5": 0.05,
+    "6": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.08,
+    "DA_18_EmblemVanguard": 0.08,
+    "DA_18_EmblemSprykin": 0.05,
+    "DA_18_EmblemSlayer": 0.05
    }
   },
   {
@@ -10951,6 +11082,17 @@
      "avgPlace": 3.07,
      "top4": 0.735
     }
+   },
+   "mainCount": {
+    "3": 0.12,
+    "4": 0.71,
+    "5": 0.15
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.16,
+    "DA_18_EmblemVanguard": 0.1,
+    "DA_18_EmblemSpellweaver": 0.08,
+    "DA_18_EmblemInvoker": 0.07
    }
   },
   {
@@ -11106,6 +11248,18 @@
      "avgPlace": 3,
      "top4": 0.778
     }
+   },
+   "mainCount": {
+    "2": 0.11,
+    "3": 0.56,
+    "4": 0.22,
+    "5": 0.11
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.89,
+    "DA_18_EmblemCoven": 0.11,
+    "DA_18_EmblemDefender": 0.11,
+    "DA_18_EmblemFloraFatalis": 0.11
    }
   },
   {
@@ -11261,6 +11415,15 @@
      "avgPlace": 2.67,
      "top4": 0.889
     }
+   },
+   "mainCount": {
+    "3": 0.89,
+    "7": 0.11
+   },
+   "emblems": {
+    "DA_18_EmblemBlossom": 0.22,
+    "DA_18_EmblemSpellweaver": 0.11,
+    "DA_18_EmblemJuggernaut": 0.11
    }
   },
   {
@@ -11416,6 +11579,17 @@
      "avgPlace": 3.07,
      "top4": 0.759
     }
+   },
+   "mainCount": {
+    "3": 0.28,
+    "4": 0.52,
+    "5": 0.21
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.83,
+    "DA_18_EmblemLunar": 0.14,
+    "DA_18_EmblemBlossom": 0.14,
+    "DA_18_EmblemSpellweaver": 0.1
    }
   },
   {
@@ -11571,6 +11745,16 @@
      "avgPlace": 3.14,
      "top4": 0.724
     }
+   },
+   "mainCount": {
+    "3": 0.05,
+    "4": 0.71,
+    "5": 0.22
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.22,
+    "DA_18_EmblemFae": 0.09,
+    "DA_18_EmblemBlossom": 0.05
    }
   },
   {
@@ -11726,6 +11910,17 @@
      "avgPlace": 3.26,
      "top4": 0.806
     }
+   },
+   "mainCount": {
+    "3": 0.23,
+    "4": 0.74,
+    "5": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.71,
+    "DA_18_EmblemSpellweaver": 0.29,
+    "DA_18_EmblemInferno": 0.06,
+    "DA_18_EmblemBlackthorn": 0.06
    }
   },
   {
@@ -11881,6 +12076,23 @@
      "avgPlace": 3.24,
      "top4": 0.727
     }
+   },
+   "mainCount": {
+    "3": 0.42,
+    "4": 0.03,
+    "5": 0.24,
+    "7": 0.09,
+    "9": 0.15,
+    "10": 0.03,
+    "11": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemBlossom": 0.3,
+    "DA_18_EmblemFloraFatalis": 0.09,
+    "DA_18_EmblemInvoker": 0.09,
+    "DA_18_EmblemVanguard": 0.06,
+    "DA_18_EmblemHunter": 0.06,
+    "DA_18_EmblemSprykin": 0.06
    }
   },
   {
@@ -12036,6 +12248,17 @@
      "avgPlace": 3.34,
      "top4": 0.695
     }
+   },
+   "mainCount": {
+    "4": 0.8,
+    "5": 0.1,
+    "6": 0.1
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.39,
+    "DA_18_EmblemVanguard": 0.12,
+    "DA_18_EmblemSlayer": 0.08,
+    "DA_18_EmblemRapidfire": 0.07
    }
   },
   {
@@ -12191,6 +12414,20 @@
      "avgPlace": 2.85,
      "top4": 0.769
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.54,
+    "DA_18_EmblemBlossom": 0.15,
+    "DA_18_EmblemInvoker": 0.15,
+    "DA_18_EmblemFae": 0.08,
+    "DA_18_EmblemVanguard": 0.08,
+    "DA_18_EmblemInferno": 0.08,
+    "DA_18_EmblemDefender": 0.08,
+    "DA_18_EmblemSlayer": 0.08,
+    "DA_18_EmblemRapidfire": 0.08
    }
   },
   {
@@ -12346,6 +12583,17 @@
      "avgPlace": 3.4,
      "top4": 0.714
     }
+   },
+   "mainCount": {
+    "4": 0.97,
+    "5": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.31,
+    "DA_18_EmblemFloraFatalis": 0.14,
+    "DA_18_EmblemLunar": 0.09,
+    "DA_18_EmblemSlayer": 0.06,
+    "DA_18_EmblemSpellweaver": 0.06
    }
   },
   {
@@ -12501,6 +12749,19 @@
      "avgPlace": 3.24,
      "top4": 0.706
     }
+   },
+   "mainCount": {
+    "3": 0.65,
+    "5": 0.24,
+    "7": 0.12
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.12,
+    "DA_18_EmblemExecutioner": 0.12,
+    "DA_18_EmblemSpellweaver": 0.06,
+    "DA_18_EmblemRapidfire": 0.06,
+    "DA_18_EmblemDefender": 0.06,
+    "DA_18_EmblemInvoker": 0.06
    }
   },
   {
@@ -12656,6 +12917,24 @@
      "avgPlace": 3.27,
      "top4": 0.705
     }
+   },
+   "mainCount": {
+    "3": 0.2,
+    "4": 0.14,
+    "5": 0.39,
+    "7": 0.27
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.52,
+    "DA_18_EmblemVanguard": 0.09,
+    "DA_18_EmblemDefender": 0.09,
+    "DA_18_EmblemJuggernaut": 0.09,
+    "DA_18_EmblemBlackthorn": 0.07,
+    "DA_18_EmblemHunter": 0.07,
+    "DA_18_EmblemFloraFatalis": 0.07,
+    "DA_18_EmblemInvoker": 0.05,
+    "DA_18_EmblemRapidfire": 0.05,
+    "DA_18_EmblemExecutioner": 0.05
    }
   },
   {
@@ -12811,6 +13090,19 @@
      "avgPlace": 3.24,
      "top4": 0.738
     }
+   },
+   "mainCount": {
+    "4": 0.86,
+    "5": 0.09,
+    "6": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.93,
+    "DA_18_EmblemHunter": 0.14,
+    "DA_18_EmblemJuggernaut": 0.11,
+    "DA_18_EmblemDefender": 0.09,
+    "DA_18_EmblemInferno": 0.08,
+    "DA_18_EmblemVanguard": 0.06
    }
   },
   {
@@ -12966,6 +13258,19 @@
      "avgPlace": 3.56,
      "top4": 0.556
     }
+   },
+   "mainCount": {
+    "4": 0.89,
+    "6": 0.11
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.22,
+    "DA_18_EmblemFloraFatalis": 0.22,
+    "DA_18_EmblemVanguard": 0.22,
+    "DA_18_EmblemExecutioner": 0.11,
+    "DA_18_EmblemInvoker": 0.11,
+    "DA_18_EmblemInferno": 0.11,
+    "DA_18_EmblemHunter": 0.11
    }
   },
   {
@@ -13121,6 +13426,12 @@
      "avgPlace": 3.35,
      "top4": 0.727
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.34
    }
   },
   {
@@ -13276,161 +13587,21 @@
      "avgPlace": 3.08,
      "top4": 0.75
     }
-   }
-  },
-  {
-   "trait": "DA_Juggernaut18",
-   "carry": "da_18_ivern",
-   "mainCarry": "da_18_ivern",
-   "mainTank": "da_18_maokai",
-   "games": 27,
-   "avgPlace": 3.5,
-   "top4": 0.625,
-   "win": 0.313,
-   "patchGames": 27,
-   "playRate": 0.0015,
-   "level": 9,
-   "core": [
-    {
-     "id": "da_18_ivern",
-     "rate": 1,
-     "star3": 0,
-     "off": 79,
-     "tank": 1
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.96,
-     "star3": 0,
-     "off": 3,
-     "tank": 34
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.93,
-     "star3": 0,
-     "off": 9,
-     "tank": 14
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.89,
-     "star3": 0,
-     "off": 1,
-     "tank": 39
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.81,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.78,
-     "star3": 0,
-     "off": 55,
-     "tank": 3
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.7,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_scuttlecrab18",
-     "rate": 0.59,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.59,
-     "star3": 0,
-     "off": 16,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sejuani",
-     "rate": 0.48,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.26,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.19,
-     "star3": 0,
-     "off": 4,
-     "tank": 1
-    },
-    {
-     "id": "da_18_sivir",
-     "rate": 0.19,
-     "star3": 0,
-     "off": 7,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.11,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    }
-   ],
-   "builds": {
-    "da_18_ivern": {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_SpearOfShojin",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 1.5
-    },
-    "da_18_maokai": {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 1
-    }
    },
-   "now": {
-    "games": 27,
-    "avgPlace": 3.44,
-    "top4": 0.63
+   "mainCount": {
+    "2": 0.25,
+    "3": 0.08,
+    "4": 0.58,
+    "6": 0.08
    },
-   "before": {
-    "games": 5,
-    "avgPlace": 3.8,
-    "top4": 0.6
-   },
-   "byPatch": {
-    "18.5c": {
-     "games": 5,
-     "avgPlace": 3.8,
-     "top4": 0.6
-    },
-    "18.6": {
-     "games": 27,
-     "avgPlace": 3.44,
-     "top4": 0.63
-    }
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.5,
+    "DA_18_EmblemInvoker": 0.17,
+    "DA_18_EmblemSpellweaver": 0.17,
+    "DA_18_EmblemSprykin": 0.08,
+    "DA_18_EmblemFae": 0.08,
+    "DA_18_EmblemBlossom": 0.08,
+    "DA_18_EmblemFloraFatalisAugment": 0.08
    }
   },
   {
@@ -13586,6 +13757,184 @@
      "avgPlace": 3,
      "top4": 0.818
     }
+   },
+   "mainCount": {
+    "3": 0.18,
+    "4": 0.73,
+    "6": 0.09
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.55,
+    "DA_18_EmblemSprykin": 0.18,
+    "DA_18_EmblemSpellweaver": 0.18,
+    "DA_18_EmblemExecutioner": 0.18,
+    "DA_18_EmblemFloraFatalis": 0.09,
+    "DA_18_EmblemSlayer": 0.09,
+    "DA_18_EmblemBlackthorn": 0.09
+   }
+  },
+  {
+   "trait": "DA_Juggernaut18",
+   "carry": "da_18_ivern",
+   "mainCarry": "da_18_ivern",
+   "mainTank": "da_18_maokai",
+   "games": 27,
+   "avgPlace": 3.55,
+   "top4": 0.613,
+   "win": 0.323,
+   "patchGames": 27,
+   "playRate": 0.0015,
+   "level": 9,
+   "core": [
+    {
+     "id": "da_18_ivern",
+     "rate": 1,
+     "star3": 0,
+     "off": 79,
+     "tank": 1
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 3,
+     "tank": 34
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.93,
+     "star3": 0,
+     "off": 9,
+     "tank": 14
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.89,
+     "star3": 0,
+     "off": 1,
+     "tank": 39
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.81,
+     "star3": 0,
+     "off": 1,
+     "tank": 0
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 55,
+     "tank": 3
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.7,
+     "star3": 0,
+     "off": 1,
+     "tank": 0
+    },
+    {
+     "id": "da_scuttlecrab18",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 16,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.48,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0,
+     "tank": 2
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.19,
+     "star3": 0,
+     "off": 4,
+     "tank": 1
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.19,
+     "star3": 0,
+     "off": 7,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 2,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_18_ivern": {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_SpearOfShojin",
+      "DA_SpearOfShojin"
+     ],
+     "games": 2,
+     "avgPlace": 1.5
+    },
+    "da_18_maokai": {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 1,
+     "avgPlace": 1
+    }
+   },
+   "now": {
+    "games": 27,
+    "avgPlace": 3.44,
+    "top4": 0.63
+   },
+   "before": {
+    "games": 4,
+    "avgPlace": 4.25,
+    "top4": 0.5
+   },
+   "byPatch": {
+    "18.5c": {
+     "games": 4,
+     "avgPlace": 4.25,
+     "top4": 0.5
+    },
+    "18.6": {
+     "games": 27,
+     "avgPlace": 3.44,
+     "top4": 0.63
+    }
+   },
+   "mainCount": {
+    "4": 0.15,
+    "5": 0.04,
+    "6": 0.81
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.26,
+    "DA_18_EmblemPrimal": 0.07
    }
   },
   {
@@ -13741,6 +14090,16 @@
      "avgPlace": 3.68,
      "top4": 0.702
     }
+   },
+   "mainCount": {
+    "4": 0.89,
+    "5": 0.04,
+    "6": 0.06
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 1,
+    "DA_18_EmblemPrimal": 0.11,
+    "DA_18_EmblemInvoker": 0.09
    }
   },
   {
@@ -13896,6 +14255,13 @@
      "avgPlace": 3.44,
      "top4": 0.889
     }
+   },
+   "mainCount": {
+    "3": 0.67,
+    "4": 0.33
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.22
    }
   },
   {
@@ -14051,6 +14417,16 @@
      "avgPlace": 3.68,
      "top4": 0.635
     }
+   },
+   "mainCount": {
+    "7": 0.89,
+    "8": 0.04,
+    "10": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.17,
+    "DA_18_EmblemJuggernaut": 0.05,
+    "DA_18_EmblemInvoker": 0.05
    }
   },
   {
@@ -14197,6 +14573,16 @@
      "avgPlace": 3.63,
      "top4": 0.625
     }
+   },
+   "mainCount": {
+    "4": 1
+   },
+   "emblems": {
+    "DA_18_EmblemPrimal": 0.63,
+    "DA_18_EmblemInferno": 0.13,
+    "DA_18_EmblemExecutioner": 0.13,
+    "DA_18_EmblemInvoker": 0.13,
+    "DA_18_EmblemVanguard": 0.13
    }
   },
   {
@@ -14352,6 +14738,20 @@
      "avgPlace": 3.6,
      "top4": 0.6
     }
+   },
+   "mainCount": {
+    "3": 0.3,
+    "4": 0.3,
+    "5": 0.4
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.9,
+    "DA_18_EmblemVanguard": 0.3,
+    "DA_18_EmblemLunar": 0.3,
+    "DA_18_EmblemBrawler": 0.2,
+    "DA_18_EmblemCoven": 0.1,
+    "DA_18_EmblemDefender": 0.1,
+    "DA_18_EmblemJuggernaut": 0.1
    }
   },
   {
@@ -14507,6 +14907,25 @@
      "avgPlace": 3.71,
      "top4": 0.613
     }
+   },
+   "mainCount": {
+    "2": 0.03,
+    "3": 0.29,
+    "4": 0.06,
+    "5": 0.39,
+    "6": 0.03,
+    "7": 0.19
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.74,
+    "DA_18_EmblemExecutioner": 0.19,
+    "DA_18_EmblemJuggernaut": 0.16,
+    "DA_18_EmblemPrimal": 0.13,
+    "DA_18_EmblemVanguard": 0.13,
+    "DA_18_EmblemHunter": 0.1,
+    "DA_18_EmblemBlackthorn": 0.06,
+    "DA_18_EmblemDefender": 0.06,
+    "DA_18_EmblemFloraFatalis": 0.06
    }
   },
   {
@@ -14662,6 +15081,16 @@
      "avgPlace": 3.6,
      "top4": 0.667
     }
+   },
+   "mainCount": {
+    "3": 0.87,
+    "4": 0.13
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.13,
+    "DA_18_EmblemSpellweaver": 0.07,
+    "DA_18_EmblemFloraFatalisAugment": 0.07,
+    "DA_18_EmblemElderwood": 0.07
    }
   },
   {
@@ -14817,6 +15246,15 @@
      "avgPlace": 3.76,
      "top4": 0.62
     }
+   },
+   "mainCount": {
+    "4": 0.76,
+    "6": 0.16
+   },
+   "emblems": {
+    "DA_18_EmblemBlackthorn": 0.49,
+    "DA_18_EmblemFloraFatalis": 0.08,
+    "DA_18_EmblemSpellweaver": 0.07
    }
   },
   {
@@ -14972,6 +15410,19 @@
      "avgPlace": 3.78,
      "top4": 0.556
     }
+   },
+   "mainCount": {
+    "4": 1
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.67,
+    "DA_18_EmblemInvoker": 0.44,
+    "DA_18_EmblemDefender": 0.22,
+    "DA_18_EmblemFae": 0.11,
+    "DA_18_EmblemVanguard": 0.11,
+    "DA_18_EmblemInferno": 0.11,
+    "DA_18_EmblemJuggernaut": 0.11,
+    "DA_18_EmblemElderwood": 0.11
    }
   },
   {
@@ -15112,21 +15563,198 @@
     "top4": 0.643
    },
    "before": {
-    "games": 132,
-    "avgPlace": 3.82,
-    "top4": 0.629
+    "games": 131,
+    "avgPlace": 3.81,
+    "top4": 0.634
    },
    "byPatch": {
     "18.5c": {
-     "games": 132,
-     "avgPlace": 3.82,
-     "top4": 0.629
+     "games": 131,
+     "avgPlace": 3.81,
+     "top4": 0.634
     },
     "18.6": {
      "games": 939,
      "avgPlace": 3.73,
      "top4": 0.643
     }
+   },
+   "mainCount": {
+    "3": 0.58,
+    "7": 0.34,
+    "10": 0.05
+   },
+   "emblems": {}
+  },
+  {
+   "trait": "DA_18_Spellweaver",
+   "carry": "da_18_alune",
+   "mainCarry": "da_18_alune",
+   "mainTank": "da_18_sett",
+   "games": 65,
+   "avgPlace": 3.73,
+   "top4": 0.581,
+   "win": 0.216,
+   "patchGames": 65,
+   "playRate": 0.0037,
+   "level": 9,
+   "core": [
+    {
+     "id": "da_18_alune",
+     "rate": 1,
+     "star3": 0,
+     "off": 187,
+     "tank": 7
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.89,
+     "star3": 0.03,
+     "off": 8,
+     "tank": 29
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.75,
+     "star3": 0.02,
+     "off": 82,
+     "tank": 8
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.48,
+     "star3": 0,
+     "off": 8,
+     "tank": 58
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 2,
+     "tank": 38
+    },
+    {
+     "id": "da_karma18",
+     "rate": 0.45,
+     "star3": 0.07,
+     "off": 2,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.43,
+     "star3": 0,
+     "off": 1,
+     "tank": 38
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.38,
+     "star3": 0.2,
+     "off": 2,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.35,
+     "star3": 0,
+     "off": 31,
+     "tank": 2
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 3,
+     "tank": 22
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 32,
+     "tank": 1
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.29,
+     "star3": 0.58,
+     "off": 4,
+     "tank": 20
+    },
+    {
+     "id": "da_18_cassiopeia",
+     "rate": 0.28,
+     "star3": 0.06,
+     "off": 7,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_18_alune": {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 4,
+     "avgPlace": 3.5
+    },
+    "da_18_sett": {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 2
+    }
+   },
+   "now": {
+    "games": 65,
+    "avgPlace": 3.74,
+    "top4": 0.569
+   },
+   "before": {
+    "games": 9,
+    "avgPlace": 3.67,
+    "top4": 0.667
+   },
+   "byPatch": {
+    "18.5c": {
+     "games": 9,
+     "avgPlace": 3.67,
+     "top4": 0.667
+    },
+    "18.6": {
+     "games": 65,
+     "avgPlace": 3.74,
+     "top4": 0.569
+    }
+   },
+   "mainCount": {
+    "3": 0.05,
+    "4": 0.57,
+    "6": 0.35
+   },
+   "emblems": {
+    "DA_18_EmblemSpellweaver": 0.72,
+    "DA_18_EmblemBrawler": 0.09,
+    "DA_18_EmblemFloraFatalisAugment": 0.09,
+    "DA_18_EmblemLunar": 0.08,
+    "DA_18_EmblemJuggernaut": 0.06,
+    "DA_18_EmblemFloraFatalis": 0.06,
+    "DA_18_EmblemBlossom": 0.06,
+    "DA_18_EmblemVanguard": 0.06,
+    "DA_18_EmblemSprykin": 0.05
    }
   },
   {
@@ -15282,6 +15910,18 @@
      "avgPlace": 3.3,
      "top4": 0.8
     }
+   },
+   "mainCount": {
+    "2": 0.8,
+    "4": 0.2
+   },
+   "emblems": {
+    "DA_18_EmblemDefender": 0.2,
+    "DA_18_EmblemInvoker": 0.1,
+    "DA_18_EmblemSpellweaver": 0.1,
+    "DA_18_EmblemPrimal": 0.1,
+    "DA_18_EmblemRapidfire": 0.1,
+    "DA_18_EmblemSprykin": 0.1
    }
   },
   {
@@ -15437,161 +16077,14 @@
      "avgPlace": 3.39,
      "top4": 0.667
     }
-   }
-  },
-  {
-   "trait": "DA_18_Spellweaver",
-   "carry": "da_18_alune",
-   "mainCarry": "da_18_alune",
-   "mainTank": "da_18_sett",
-   "games": 65,
-   "avgPlace": 3.77,
-   "top4": 0.573,
-   "win": 0.213,
-   "patchGames": 65,
-   "playRate": 0.0037,
-   "level": 9,
-   "core": [
-    {
-     "id": "da_18_alune",
-     "rate": 1,
-     "star3": 0,
-     "off": 187,
-     "tank": 7
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.89,
-     "star3": 0.03,
-     "off": 8,
-     "tank": 29
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.75,
-     "star3": 0.02,
-     "off": 82,
-     "tank": 8
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.48,
-     "star3": 0,
-     "off": 8,
-     "tank": 58
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 2,
-     "tank": 38
-    },
-    {
-     "id": "da_karma18",
-     "rate": 0.45,
-     "star3": 0.07,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.43,
-     "star3": 0,
-     "off": 1,
-     "tank": 38
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 0.38,
-     "star3": 0.2,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.35,
-     "star3": 0,
-     "off": 31,
-     "tank": 2
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.34,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.32,
-     "star3": 0,
-     "off": 3,
-     "tank": 22
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.31,
-     "star3": 0,
-     "off": 32,
-     "tank": 1
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.29,
-     "star3": 0.58,
-     "off": 4,
-     "tank": 20
-    },
-    {
-     "id": "da_18_cassiopeia",
-     "rate": 0.28,
-     "star3": 0.06,
-     "off": 7,
-     "tank": 0
-    }
-   ],
-   "builds": {
-    "da_18_alune": {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 4,
-     "avgPlace": 3.5
-    },
-    "da_18_sett": {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 2
-    }
    },
-   "now": {
-    "games": 65,
-    "avgPlace": 3.74,
-    "top4": 0.569
+   "mainCount": {
+    "3": 0.83,
+    "7": 0.17
    },
-   "before": {
-    "games": 10,
-    "avgPlace": 4,
-    "top4": 0.6
-   },
-   "byPatch": {
-    "18.5c": {
-     "games": 10,
-     "avgPlace": 4,
-     "top4": 0.6
-    },
-    "18.6": {
-     "games": 65,
-     "avgPlace": 3.74,
-     "top4": 0.569
-    }
+   "emblems": {
+    "DA_18_EmblemHunter": 0.11,
+    "DA_18_EmblemInvoker": 0.06
    }
   },
   {
@@ -15747,6 +16240,23 @@
      "avgPlace": 3.68,
      "top4": 0.649
     }
+   },
+   "mainCount": {
+    "3": 0.03,
+    "4": 0.51,
+    "5": 0.05,
+    "6": 0.38,
+    "7": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemBlackthorn": 0.35,
+    "DA_18_EmblemFloraFatalisAugment": 0.11,
+    "DA_18_EmblemSpellweaver": 0.05,
+    "DA_18_EmblemExecutioner": 0.05,
+    "DA_18_EmblemJuggernaut": 0.05,
+    "DA_18_EmblemLunar": 0.05,
+    "DA_18_EmblemFloraFatalis": 0.05,
+    "DA_18_EmblemBlossom": 0.05
    }
   },
   {
@@ -15893,6 +16403,15 @@
      "avgPlace": 3.82,
      "top4": 0.545
     }
+   },
+   "mainCount": {
+    "3": 0.91,
+    "5": 0.09
+   },
+   "emblems": {
+    "DA_18_EmblemHunter": 0.27,
+    "DA_18_EmblemInferno": 0.09,
+    "DA_18_EmblemFae": 0.09
    }
   },
   {
@@ -15902,8 +16421,8 @@
    "mainTank": "da_18_sejuani",
    "games": 952,
    "avgPlace": 3.83,
-   "top4": 0.637,
-   "win": 0.159,
+   "top4": 0.636,
+   "win": 0.16,
    "patchGames": 952,
    "playRate": 0.0545,
    "level": 8,
@@ -16033,21 +16552,27 @@
     "top4": 0.636
    },
    "before": {
-    "games": 149,
-    "avgPlace": 3.55,
-    "top4": 0.685
+    "games": 148,
+    "avgPlace": 3.56,
+    "top4": 0.682
    },
    "byPatch": {
     "18.5c": {
-     "games": 149,
-     "avgPlace": 3.55,
-     "top4": 0.685
+     "games": 148,
+     "avgPlace": 3.56,
+     "top4": 0.682
     },
     "18.6": {
      "games": 952,
      "avgPlace": 3.83,
      "top4": 0.636
     }
+   },
+   "mainCount": {
+    "3": 0.98
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.34
    }
   },
   {
@@ -16203,6 +16728,18 @@
      "avgPlace": 3.84,
      "top4": 0.658
     }
+   },
+   "mainCount": {
+    "2": 0.03,
+    "4": 0.89,
+    "5": 0.03,
+    "6": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.97,
+    "DA_18_EmblemBlackthorn": 0.05,
+    "DA_18_EmblemBlossom": 0.05,
+    "DA_18_EmblemSprykin": 0.05
    }
   },
   {
@@ -16358,6 +16895,14 @@
      "avgPlace": 3.78,
      "top4": 0.632
     }
+   },
+   "mainCount": {
+    "3": 0.68,
+    "4": 0.3
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.43,
+    "DA_18_EmblemBlackthorn": 0.11
    }
   },
   {
@@ -16513,6 +17058,13 @@
      "avgPlace": 3.76,
      "top4": 0.684
     }
+   },
+   "mainCount": {
+    "3": 0.94,
+    "4": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.37
    }
   },
   {
@@ -16668,6 +17220,14 @@
      "avgPlace": 3.65,
      "top4": 0.703
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.32,
+    "DA_18_EmblemJuggernaut": 0.08,
+    "DA_18_EmblemExecutioner": 0.05
    }
   },
   {
@@ -16823,6 +17383,13 @@
      "avgPlace": 3.84,
      "top4": 0.628
     }
+   },
+   "mainCount": {
+    "3": 0.85,
+    "4": 0.14
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.13
    }
   },
   {
@@ -16978,6 +17545,19 @@
      "avgPlace": 3.94,
      "top4": 0.577
     }
+   },
+   "mainCount": {
+    "3": 0.04,
+    "4": 0.77,
+    "5": 0.08,
+    "6": 0.12
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.17,
+    "DA_18_EmblemInvoker": 0.15,
+    "DA_18_EmblemSlayer": 0.1,
+    "DA_18_EmblemDefender": 0.06,
+    "DA_18_EmblemInferno": 0.06
    }
   },
   {
@@ -17133,6 +17713,15 @@
      "avgPlace": 3.87,
      "top4": 0.677
     }
+   },
+   "mainCount": {
+    "2": 0.03,
+    "4": 0.87,
+    "5": 0.03,
+    "6": 0.06
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.97
    }
   },
   {
@@ -17288,6 +17877,22 @@
      "avgPlace": 4.04,
      "top4": 0.571
     }
+   },
+   "mainCount": {
+    "3": 0.18,
+    "5": 0.39,
+    "7": 0.29,
+    "8": 0.07,
+    "9": 0.07
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.46,
+    "DA_18_EmblemBrawler": 0.11,
+    "DA_18_EmblemInvoker": 0.07,
+    "DA_18_EmblemFloraFatalis": 0.07,
+    "DA_18_EmblemSpellweaver": 0.07,
+    "DA_18_EmblemLunar": 0.07,
+    "DA_18_EmblemExecutioner": 0.07
    }
   },
   {
@@ -17443,6 +18048,183 @@
      "avgPlace": 4.02,
      "top4": 0.604
     }
+   },
+   "mainCount": {
+    "3": 0.04,
+    "4": 0.58,
+    "6": 0.34
+   },
+   "emblems": {
+    "DA_18_EmblemBlackthorn": 0.72,
+    "DA_18_EmblemSlayer": 0.15,
+    "DA_18_EmblemBrawler": 0.06,
+    "DA_18_EmblemHunter": 0.06,
+    "DA_18_EmblemRapidfire": 0.06
+   }
+  },
+  {
+   "trait": "DA_18_Brawler",
+   "carry": "da_18_rengar",
+   "mainCarry": "da_18_rengar",
+   "mainTank": "da_vi18",
+   "games": 49,
+   "avgPlace": 4,
+   "top4": 0.603,
+   "win": 0.127,
+   "patchGames": 49,
+   "playRate": 0.0028,
+   "level": 8,
+   "core": [
+    {
+     "id": "da_18_rengar",
+     "rate": 1,
+     "star3": 0.82,
+     "off": 136,
+     "tank": 6
+    },
+    {
+     "id": "da_krug18",
+     "rate": 1,
+     "star3": 0.29,
+     "off": 10,
+     "tank": 49
+    },
+    {
+     "id": "da_18_masteryi_ad",
+     "rate": 1,
+     "star3": 0.78,
+     "off": 92,
+     "tank": 8
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.94,
+     "star3": 0,
+     "off": 6,
+     "tank": 41
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 1,
+     "tank": 1
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.82,
+     "star3": 0.57,
+     "off": 6,
+     "tank": 61
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.69,
+     "star3": 0.29,
+     "off": 52,
+     "tank": 2
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.49,
+     "star3": 0,
+     "off": 18,
+     "tank": 2
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.35,
+     "star3": 0,
+     "off": 0,
+     "tank": 1
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kobuko",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_cinderling18",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_scuttlecrab18",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_18_rengar": {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_Quicksilver"
+     ],
+     "games": 4,
+     "avgPlace": 3.75
+    },
+    "da_vi18": {
+     "items": [
+      "DA_SpiritVisage",
+      "DA_SunfireCape",
+      "DA_WarmogsArmor"
+     ],
+     "games": 1,
+     "avgPlace": 1
+    }
+   },
+   "now": {
+    "games": 49,
+    "avgPlace": 4.2,
+    "top4": 0.571
+   },
+   "before": {
+    "games": 14,
+    "avgPlace": 3.29,
+    "top4": 0.714
+   },
+   "byPatch": {
+    "18.5c": {
+     "games": 14,
+     "avgPlace": 3.29,
+     "top4": 0.714
+    },
+    "18.6": {
+     "games": 49,
+     "avgPlace": 4.2,
+     "top4": 0.571
+    }
+   },
+   "mainCount": {
+    "2": 0.04,
+    "4": 0.88,
+    "6": 0.06
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.96,
+    "DA_18_EmblemJuggernaut": 0.06,
+    "DA_18_EmblemBlossom": 0.06
    }
   },
   {
@@ -17590,6 +18372,18 @@
      "avgPlace": 3.78,
      "top4": 0.667
     }
+   },
+   "mainCount": {
+    "4": 0.33,
+    "6": 0.67
+   },
+   "emblems": {
+    "DA_18_EmblemSlayer": 0.78,
+    "DA_18_EmblemBrawler": 0.11,
+    "DA_18_EmblemBlackthorn": 0.11,
+    "DA_18_EmblemVanguard": 0.11,
+    "DA_18_EmblemInferno": 0.11,
+    "DA_18_EmblemLunar": 0.11
    }
   },
   {
@@ -17736,161 +18530,17 @@
      "avgPlace": 4,
      "top4": 0.667
     }
-   }
-  },
-  {
-   "trait": "DA_18_Brawler",
-   "carry": "da_18_rengar",
-   "mainCarry": "da_18_rengar",
-   "mainTank": "da_vi18",
-   "games": 49,
-   "avgPlace": 4.05,
-   "top4": 0.594,
-   "win": 0.125,
-   "patchGames": 49,
-   "playRate": 0.0028,
-   "level": 8,
-   "core": [
-    {
-     "id": "da_18_rengar",
-     "rate": 1,
-     "star3": 0.82,
-     "off": 136,
-     "tank": 6
-    },
-    {
-     "id": "da_krug18",
-     "rate": 1,
-     "star3": 0.29,
-     "off": 10,
-     "tank": 49
-    },
-    {
-     "id": "da_18_masteryi_ad",
-     "rate": 1,
-     "star3": 0.78,
-     "off": 92,
-     "tank": 8
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.94,
-     "star3": 0,
-     "off": 6,
-     "tank": 41
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.9,
-     "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.82,
-     "star3": 0.57,
-     "off": 6,
-     "tank": 61
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.69,
-     "star3": 0.29,
-     "off": 52,
-     "tank": 2
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.49,
-     "star3": 0,
-     "off": 18,
-     "tank": 2
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.35,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_reksai",
-     "rate": 0.18,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kobuko",
-     "rate": 0.1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_cinderling18",
-     "rate": 0.02,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_scuttlecrab18",
-     "rate": 0.02,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 0.02,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    }
-   ],
-   "builds": {
-    "da_18_rengar": {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_Quicksilver"
-     ],
-     "games": 4,
-     "avgPlace": 3.75
-    },
-    "da_vi18": {
-     "items": [
-      "DA_SpiritVisage",
-      "DA_SunfireCape",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 1
-    }
    },
-   "now": {
-    "games": 49,
-    "avgPlace": 4.2,
-    "top4": 0.571
+   "mainCount": {
+    "4": 0.67,
+    "5": 0.11,
+    "6": 0.22
    },
-   "before": {
-    "games": 15,
-    "avgPlace": 3.53,
-    "top4": 0.667
-   },
-   "byPatch": {
-    "18.5c": {
-     "games": 15,
-     "avgPlace": 3.53,
-     "top4": 0.667
-    },
-    "18.6": {
-     "games": 49,
-     "avgPlace": 4.2,
-     "top4": 0.571
-    }
+   "emblems": {
+    "DA_18_EmblemBlackthorn": 0.22,
+    "DA_18_EmblemBrawler": 0.11,
+    "DA_18_EmblemVanguard": 0.11,
+    "DA_18_EmblemSlayer": 0.11
    }
   },
   {
@@ -18046,6 +18696,21 @@
      "avgPlace": 4.13,
      "top4": 0.622
     }
+   },
+   "mainCount": {
+    "3": 0.58,
+    "4": 0.22,
+    "5": 0.2
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.33,
+    "DA_18_EmblemRapidfire": 0.2,
+    "DA_18_EmblemSlayer": 0.13,
+    "DA_18_EmblemPrimal": 0.09,
+    "DA_18_EmblemVanguard": 0.09,
+    "DA_18_EmblemInvoker": 0.07,
+    "DA_18_EmblemBrawler": 0.07,
+    "DA_18_EmblemSpellweaver": 0.07
    }
   },
   {
@@ -18201,6 +18866,17 @@
      "avgPlace": 4.27,
      "top4": 0.451
     }
+   },
+   "mainCount": {
+    "4": 0.53,
+    "5": 0.04,
+    "6": 0.41
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.25,
+    "DA_18_EmblemHunter": 0.18,
+    "DA_18_EmblemInferno": 0.06,
+    "DA_18_EmblemExecutioner": 0.06
    }
   },
   {
@@ -18356,6 +19032,14 @@
      "avgPlace": 4.06,
      "top4": 0.604
     }
+   },
+   "mainCount": {
+    "3": 0.65,
+    "4": 0.3,
+    "5": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.26
    }
   },
   {
@@ -18511,6 +19195,15 @@
      "avgPlace": 4.03,
      "top4": 0.621
     }
+   },
+   "mainCount": {
+    "4": 0.83,
+    "5": 0.09,
+    "6": 0.08
+   },
+   "emblems": {
+    "DA_18_EmblemFloraFatalisAugment": 0.13,
+    "DA_18_EmblemSpellweaver": 0.12
    }
   },
   {
@@ -18666,6 +19359,27 @@
      "avgPlace": 3.9,
      "top4": 0.6
     }
+   },
+   "mainCount": {
+    "3": 0.23,
+    "4": 0.05,
+    "5": 0.43,
+    "7": 0.2,
+    "8": 0.03,
+    "9": 0.08
+   },
+   "emblems": {
+    "DA_18_EmblemBlossom": 0.5,
+    "DA_18_EmblemBrawler": 0.2,
+    "DA_18_EmblemInvoker": 0.1,
+    "DA_18_EmblemSpellweaver": 0.08,
+    "DA_18_EmblemExecutioner": 0.08,
+    "DA_18_EmblemBlackthorn": 0.05,
+    "DA_18_EmblemHunter": 0.05,
+    "DA_18_EmblemPrimal": 0.05,
+    "DA_18_EmblemVanguard": 0.05,
+    "DA_18_EmblemInferno": 0.05,
+    "DA_18_EmblemJuggernaut": 0.05
    }
   },
   {
@@ -18821,6 +19535,16 @@
      "avgPlace": 4.1,
      "top4": 0.58
     }
+   },
+   "mainCount": {
+    "3": 0.52,
+    "4": 0.03,
+    "5": 0.21,
+    "7": 0.16,
+    "9": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.21
    }
   },
   {
@@ -18976,6 +19700,12 @@
      "avgPlace": 4.24,
      "top4": 0.574
     }
+   },
+   "mainCount": {
+    "3": 0.99
+   },
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.06
    }
   },
   {
@@ -19131,6 +19861,15 @@
      "avgPlace": 4.34,
      "top4": 0.543
     }
+   },
+   "mainCount": {
+    "3": 0.09,
+    "4": 0.91
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.37,
+    "DA_18_EmblemSprykin": 0.09,
+    "DA_18_EmblemDefender": 0.06
    }
   },
   {
@@ -19286,6 +20025,24 @@
      "avgPlace": 4.7,
      "top4": 0.4
     }
+   },
+   "mainCount": {
+    "3": 0.6,
+    "5": 0.3,
+    "7": 0.05,
+    "9": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemBlossom": 0.15,
+    "DA_18_EmblemDefender": 0.15,
+    "DA_18_EmblemVanguard": 0.1,
+    "DA_18_EmblemBrawler": 0.1,
+    "DA_18_EmblemLunar": 0.1,
+    "DA_18_EmblemCoven": 0.05,
+    "DA_18_EmblemInferno": 0.05,
+    "DA_18_EmblemBlackthorn": 0.05,
+    "DA_18_EmblemFloraFatalis": 0.05,
+    "DA_18_EmblemSpellweaver": 0.05
    }
   },
   {
@@ -19441,6 +20198,19 @@
      "avgPlace": 3.94,
      "top4": 0.688
     }
+   },
+   "mainCount": {
+    "3": 0.94,
+    "4": 0.06
+   },
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.13,
+    "DA_18_EmblemDefender": 0.06,
+    "DA_18_EmblemPrimal": 0.06,
+    "DA_18_EmblemBrawler": 0.06,
+    "DA_18_EmblemSlayer": 0.06,
+    "DA_18_EmblemExecutioner": 0.06,
+    "DA_18_EmblemInvoker": 0.06
    }
   },
   {
@@ -19596,7 +20366,11 @@
      "avgPlace": 4.13,
      "top4": 0.531
     }
-   }
+   },
+   "mainCount": {
+    "3": 0.98
+   },
+   "emblems": {}
   },
   {
    "trait": "DA_18_Fae",
@@ -19751,6 +20525,24 @@
      "avgPlace": 3.89,
      "top4": 0.611
     }
+   },
+   "mainCount": {
+    "2": 0.06,
+    "3": 0.06,
+    "4": 0.72,
+    "5": 0.11,
+    "6": 0.06
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.67,
+    "DA_18_EmblemRapidfire": 0.17,
+    "DA_18_EmblemHunter": 0.17,
+    "DA_18_EmblemInferno": 0.11,
+    "DA_18_EmblemJuggernaut": 0.06,
+    "DA_18_EmblemVanguard": 0.06,
+    "DA_18_EmblemPrimal": 0.06,
+    "DA_18_EmblemElderwood": 0.06,
+    "DA_18_EmblemBrawler": 0.06
    }
   },
   {
@@ -19906,7 +20698,11 @@
      "avgPlace": 4.08,
      "top4": 0.581
     }
-   }
+   },
+   "mainCount": {
+    "3": 0.99
+   },
+   "emblems": {}
   },
   {
    "trait": "DA_18_Vanguard",
@@ -20061,6 +20857,18 @@
      "avgPlace": 4.11,
      "top4": 0.593
     }
+   },
+   "mainCount": {
+    "4": 0.93,
+    "6": 0.07
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.44,
+    "DA_18_EmblemExecutioner": 0.19,
+    "DA_18_EmblemInvoker": 0.15,
+    "DA_18_EmblemInferno": 0.11,
+    "DA_18_EmblemSlayer": 0.11,
+    "DA_18_EmblemJuggernaut": 0.07
    }
   },
   {
@@ -20216,6 +21024,16 @@
      "avgPlace": 4.18,
      "top4": 0.618
     }
+   },
+   "mainCount": {
+    "5": 0.03,
+    "7": 0.94,
+    "10": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.15,
+    "DA_18_EmblemHunter": 0.09,
+    "DA_18_EmblemVanguard": 0.06
    }
   },
   {
@@ -20225,7 +21043,7 @@
    "mainTank": "da_18_ornn",
    "games": 123,
    "avgPlace": 4.18,
-   "top4": 0.567,
+   "top4": 0.566,
    "win": 0.086,
    "patchGames": 123,
    "playRate": 0.007,
@@ -20356,22 +21174,26 @@
     "top4": 0.553
    },
    "before": {
-    "games": 35,
-    "avgPlace": 3.86,
-    "top4": 0.657
+    "games": 34,
+    "avgPlace": 3.85,
+    "top4": 0.647
    },
    "byPatch": {
     "18.5c": {
-     "games": 35,
-     "avgPlace": 3.86,
-     "top4": 0.657
+     "games": 34,
+     "avgPlace": 3.85,
+     "top4": 0.647
     },
     "18.6": {
      "games": 123,
      "avgPlace": 4.23,
      "top4": 0.553
     }
-   }
+   },
+   "mainCount": {
+    "3": 0.98
+   },
+   "emblems": {}
   },
   {
    "trait": "DA_18_Solar",
@@ -20526,6 +21348,22 @@
      "avgPlace": 4.24,
      "top4": 0.57
     }
+   },
+   "mainCount": {
+    "3": 0.99
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.9,
+    "DA_18_EmblemRapidfire": 0.14,
+    "DA_18_EmblemDefender": 0.12,
+    "DA_18_EmblemInvoker": 0.1,
+    "DA_18_EmblemVanguard": 0.1,
+    "DA_18_EmblemFae": 0.07,
+    "DA_18_EmblemJuggernaut": 0.07,
+    "DA_18_EmblemFloraFatalis": 0.06,
+    "DA_18_EmblemInferno": 0.06,
+    "DA_18_EmblemCoven": 0.05,
+    "DA_18_EmblemBlackthorn": 0.05
    }
   },
   {
@@ -20681,6 +21519,14 @@
      "avgPlace": 4.15,
      "top4": 0.692
     }
+   },
+   "mainCount": {
+    "3": 0.85,
+    "4": 0.15
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.08,
+    "DA_18_EmblemExecutioner": 0.08
    }
   },
   {
@@ -20836,6 +21682,15 @@
      "avgPlace": 4.28,
      "top4": 0.575
     }
+   },
+   "mainCount": {
+    "4": 0.7,
+    "5": 0.13,
+    "6": 0.18
+   },
+   "emblems": {
+    "DA_18_EmblemSpellweaver": 0.2,
+    "DA_18_EmblemFloraFatalisAugment": 0.2
    }
   },
   {
@@ -20991,6 +21846,16 @@
      "avgPlace": 4.23,
      "top4": 0.409
     }
+   },
+   "mainCount": {
+    "3": 0.5,
+    "4": 0.5
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.32,
+    "DA_18_EmblemFloraFatalis": 0.09,
+    "DA_18_EmblemInferno": 0.05,
+    "DA_18_EmblemElderwood": 0.05
    }
   },
   {
@@ -21146,6 +22011,14 @@
      "avgPlace": 4.26,
      "top4": 0.546
     }
+   },
+   "mainCount": {
+    "4": 0.03,
+    "6": 0.95
+   },
+   "emblems": {
+    "DA_18_EmblemDefender": 0.9,
+    "DA_18_EmblemFloraFatalis": 0.05
    }
   },
   {
@@ -21301,6 +22174,16 @@
      "avgPlace": 4.14,
      "top4": 0.552
     }
+   },
+   "mainCount": {
+    "3": 0.03,
+    "4": 0.76,
+    "6": 0.21
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.24,
+    "DA_18_EmblemPrimal": 0.1,
+    "DA_18_EmblemSpellweaver": 0.07
    }
   },
   {
@@ -21456,6 +22339,16 @@
      "avgPlace": 4.92,
      "top4": 0.462
     }
+   },
+   "mainCount": {
+    "4": 1
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.69,
+    "DA_18_EmblemBrawler": 0.23,
+    "DA_18_EmblemPrimal": 0.08,
+    "DA_18_EmblemBlossom": 0.08,
+    "DA_18_EmblemFloraFatalis": 0.08
    }
   },
   {
@@ -21596,21 +22489,32 @@
     "top4": 0.507
    },
    "before": {
-    "games": 166,
-    "avgPlace": 4.86,
-    "top4": 0.44
+    "games": 165,
+    "avgPlace": 4.87,
+    "top4": 0.436
    },
    "byPatch": {
     "18.5c": {
-     "games": 166,
-     "avgPlace": 4.86,
-     "top4": 0.44
+     "games": 165,
+     "avgPlace": 4.87,
+     "top4": 0.436
     },
     "18.6": {
      "games": 995,
      "avgPlace": 4.4,
      "top4": 0.507
     }
+   },
+   "mainCount": {
+    "3": 0.04,
+    "5": 0.13,
+    "7": 0.6,
+    "8": 0.03,
+    "9": 0.14
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.75,
+    "DA_18_EmblemExecutioner": 0.15
    }
   },
   {
@@ -21766,6 +22670,17 @@
      "avgPlace": 4.41,
      "top4": 0.525
     }
+   },
+   "mainCount": {
+    "4": 0.83,
+    "5": 0.04,
+    "6": 0.1
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.14,
+    "DA_18_EmblemLunar": 0.07,
+    "DA_18_EmblemInvoker": 0.06,
+    "DA_18_EmblemSpellweaver": 0.06
    }
   },
   {
@@ -21921,6 +22836,28 @@
      "avgPlace": 4.43,
      "top4": 0.571
     }
+   },
+   "mainCount": {
+    "2": 0.06,
+    "3": 0.11,
+    "4": 0.06,
+    "5": 0.49,
+    "7": 0.29
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.83,
+    "DA_18_EmblemHunter": 0.17,
+    "DA_18_EmblemJuggernaut": 0.11,
+    "DA_18_EmblemDefender": 0.09,
+    "DA_18_EmblemVanguard": 0.09,
+    "DA_18_EmblemExecutioner": 0.09,
+    "DA_18_EmblemCoven": 0.09,
+    "DA_18_EmblemSlayer": 0.06,
+    "DA_18_EmblemLunar": 0.06,
+    "DA_18_EmblemRapidfire": 0.06,
+    "DA_18_EmblemBlackthorn": 0.06,
+    "DA_18_EmblemBrawler": 0.06,
+    "DA_18_EmblemInvoker": 0.06
    }
   },
   {
@@ -22076,6 +23013,15 @@
      "avgPlace": 4.5,
      "top4": 0.523
     }
+   },
+   "mainCount": {
+    "4": 0.52,
+    "5": 0.09,
+    "6": 0.39
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.07,
+    "DA_18_EmblemHunter": 0.07
    }
   },
   {
@@ -22231,6 +23177,25 @@
      "avgPlace": 4.45,
      "top4": 0.523
     }
+   },
+   "mainCount": {
+    "2": 0.03,
+    "3": 0.05,
+    "4": 0.71,
+    "5": 0.03,
+    "6": 0.18
+   },
+   "emblems": {
+    "DA_18_EmblemBlackthorn": 0.74,
+    "DA_18_EmblemExecutioner": 0.12,
+    "DA_18_EmblemBrawler": 0.08,
+    "DA_18_EmblemFloraFatalis": 0.06,
+    "DA_18_EmblemDefender": 0.06,
+    "DA_18_EmblemSpellweaver": 0.06,
+    "DA_18_EmblemFloraFatalisAugment": 0.05,
+    "DA_18_EmblemBlossom": 0.05,
+    "DA_18_EmblemVanguard": 0.05,
+    "DA_18_EmblemSprykin": 0.05
    }
   },
   {
@@ -22386,6 +23351,19 @@
      "avgPlace": 4.46,
      "top4": 0.54
     }
+   },
+   "mainCount": {
+    "3": 0.06,
+    "4": 0.84,
+    "5": 0.06,
+    "6": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.94,
+    "DA_18_EmblemPrimal": 0.3,
+    "DA_18_EmblemHunter": 0.2,
+    "DA_18_EmblemInferno": 0.06,
+    "DA_18_EmblemJuggernaut": 0.06
    }
   },
   {
@@ -22520,6 +23498,13 @@
      "avgPlace": 4.44,
      "top4": 0.556
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemSpellweaver": 0.22,
+    "DA_18_EmblemDefender": 0.11
    }
   },
   {
@@ -22675,6 +23660,16 @@
      "avgPlace": 4.33,
      "top4": 0.471
     }
+   },
+   "mainCount": {
+    "2": 0.26,
+    "3": 0.43,
+    "4": 0.19,
+    "5": 0.1,
+    "6": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.26
    }
   },
   {
@@ -22830,161 +23825,21 @@
      "avgPlace": 4.48,
      "top4": 0.552
     }
-   }
-  },
-  {
-   "trait": "DA_18_Executioner",
-   "carry": "da_18_soraka",
-   "mainCarry": "da_18_soraka",
-   "mainTank": "da_18_malphite",
-   "games": 230,
-   "avgPlace": 4.5,
-   "top4": 0.52,
-   "win": 0.085,
-   "patchGames": 230,
-   "playRate": 0.0132,
-   "level": 8,
-   "core": [
-    {
-     "id": "da_18_soraka",
-     "rate": 1,
-     "star3": 0,
-     "off": 641,
-     "tank": 28
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.9,
-     "star3": 0,
-     "off": 16,
-     "tank": 25
-    },
-    {
-     "id": "da_18_azir",
-     "rate": 0.83,
-     "star3": 0,
-     "off": 107,
-     "tank": 1
-    },
-    {
-     "id": "da_18_malphite",
-     "rate": 0.77,
-     "star3": 0.01,
-     "off": 17,
-     "tank": 485
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.73,
-     "star3": 0.01,
-     "off": 310,
-     "tank": 8
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 12,
-     "tank": 112
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.66,
-     "star3": 0,
-     "off": 94,
-     "tank": 34
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.57,
-     "star3": 0,
-     "off": 9,
-     "tank": 5
-    },
-    {
-     "id": "da_18_ezreal",
-     "rate": 0.38,
-     "star3": 0,
-     "off": 126,
-     "tank": 2
-    },
-    {
-     "id": "da_18_yunara",
-     "rate": 0.21,
-     "star3": 0,
-     "off": 10,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.2,
-     "star3": 0,
-     "off": 8,
-     "tank": 22
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.18,
-     "star3": 0,
-     "off": 9,
-     "tank": 89
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 65,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.16,
-     "star3": 0,
-     "off": 24,
-     "tank": 5
-    }
-   ],
-   "builds": {
-    "da_18_soraka": {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 6,
-     "avgPlace": 4.33
-    },
-    "da_18_malphite": {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 37,
-     "avgPlace": 4.08
-    }
    },
-   "now": {
-    "games": 230,
-    "avgPlace": 4.49,
-    "top4": 0.522
+   "mainCount": {
+    "2": 0.76,
+    "3": 0.03,
+    "4": 0.14,
+    "5": 0.03,
+    "6": 0.03
    },
-   "before": {
-    "games": 28,
-    "avgPlace": 4.61,
-    "top4": 0.5
-   },
-   "byPatch": {
-    "18.5c": {
-     "games": 28,
-     "avgPlace": 4.61,
-     "top4": 0.5
-    },
-    "18.6": {
-     "games": 230,
-     "avgPlace": 4.49,
-     "top4": 0.522
-    }
+   "emblems": {
+    "DA_18_EmblemHunter": 0.28,
+    "DA_18_EmblemBlackthorn": 0.21,
+    "DA_18_EmblemBrawler": 0.07,
+    "DA_18_EmblemVanguard": 0.07,
+    "DA_18_EmblemInferno": 0.07,
+    "DA_18_EmblemSlayer": 0.07
    }
   },
   {
@@ -23140,6 +23995,14 @@
      "avgPlace": 4.52,
      "top4": 0.5
     }
+   },
+   "mainCount": {
+    "3": 0.97
+   },
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.11,
+    "DA_18_EmblemFae": 0.08,
+    "DA_18_EmblemLunar": 0.08
    }
   },
   {
@@ -23295,6 +24158,23 @@
      "avgPlace": 4.43,
      "top4": 0.457
     }
+   },
+   "mainCount": {
+    "3": 0.09,
+    "4": 0.09,
+    "5": 0.66,
+    "6": 0.06,
+    "7": 0.11
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.8,
+    "DA_18_EmblemDefender": 0.2,
+    "DA_18_EmblemVanguard": 0.17,
+    "DA_18_EmblemHunter": 0.11,
+    "DA_18_EmblemPrimal": 0.11,
+    "DA_18_EmblemRapidfire": 0.09,
+    "DA_18_EmblemSlayer": 0.06,
+    "DA_18_EmblemJuggernaut": 0.06
    }
   },
   {
@@ -23450,6 +24330,188 @@
      "avgPlace": 3.91,
      "top4": 0.636
     }
+   },
+   "mainCount": {
+    "2": 0.09,
+    "3": 0.55,
+    "4": 0.09,
+    "5": 0.18,
+    "7": 0.09
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.73,
+    "DA_18_EmblemPrimal": 0.36,
+    "DA_18_EmblemBrawler": 0.27,
+    "DA_18_EmblemDefender": 0.18,
+    "DA_18_EmblemLunar": 0.09,
+    "DA_18_EmblemFloraFatalis": 0.09,
+    "DA_18_EmblemSlayer": 0.09
+   }
+  },
+  {
+   "trait": "DA_18_Executioner",
+   "carry": "da_18_soraka",
+   "mainCarry": "da_18_soraka",
+   "mainTank": "da_18_malphite",
+   "games": 230,
+   "avgPlace": 4.5,
+   "top4": 0.521,
+   "win": 0.085,
+   "patchGames": 230,
+   "playRate": 0.0132,
+   "level": 8,
+   "core": [
+    {
+     "id": "da_18_soraka",
+     "rate": 1,
+     "star3": 0,
+     "off": 641,
+     "tank": 28
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 16,
+     "tank": 25
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.83,
+     "star3": 0,
+     "off": 107,
+     "tank": 1
+    },
+    {
+     "id": "da_18_malphite",
+     "rate": 0.77,
+     "star3": 0.01,
+     "off": 17,
+     "tank": 485
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.73,
+     "star3": 0.01,
+     "off": 310,
+     "tank": 8
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.67,
+     "star3": 0,
+     "off": 12,
+     "tank": 112
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.66,
+     "star3": 0,
+     "off": 94,
+     "tank": 34
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.57,
+     "star3": 0,
+     "off": 9,
+     "tank": 5
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.38,
+     "star3": 0,
+     "off": 126,
+     "tank": 2
+    },
+    {
+     "id": "da_18_yunara",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 10,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 8,
+     "tank": 22
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 9,
+     "tank": 89
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 65,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 24,
+     "tank": 5
+    }
+   ],
+   "builds": {
+    "da_18_soraka": {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 6,
+     "avgPlace": 4.33
+    },
+    "da_18_malphite": {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 37,
+     "avgPlace": 4.08
+    }
+   },
+   "now": {
+    "games": 230,
+    "avgPlace": 4.49,
+    "top4": 0.522
+   },
+   "before": {
+    "games": 27,
+    "avgPlace": 4.59,
+    "top4": 0.519
+   },
+   "byPatch": {
+    "18.5c": {
+     "games": 27,
+     "avgPlace": 4.59,
+     "top4": 0.519
+    },
+    "18.6": {
+     "games": 230,
+     "avgPlace": 4.49,
+     "top4": 0.522
+    }
+   },
+   "mainCount": {
+    "3": 0.19,
+    "4": 0.8
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.68,
+    "DA_18_EmblemBlackthorn": 0.08,
+    "DA_18_EmblemFloraFatalis": 0.07,
+    "DA_18_EmblemSpellweaver": 0.07,
+    "DA_18_EmblemInferno": 0.06
    }
   },
   {
@@ -23605,6 +24667,19 @@
      "avgPlace": 4.58,
      "top4": 0.5
     }
+   },
+   "mainCount": {
+    "3": 0.83,
+    "4": 0.08,
+    "5": 0.08
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.33,
+    "DA_18_EmblemPrimal": 0.17,
+    "DA_18_EmblemBlossom": 0.17,
+    "DA_18_EmblemSpellweaver": 0.08,
+    "DA_18_EmblemFloraFatalis": 0.08,
+    "DA_18_EmblemJuggernaut": 0.08
    }
   },
   {
@@ -23760,6 +24835,14 @@
      "avgPlace": 4.66,
      "top4": 0.483
     }
+   },
+   "mainCount": {
+    "3": 0.69,
+    "4": 0.31
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.21,
+    "DA_18_EmblemSlayer": 0.07
    }
   },
   {
@@ -23915,7 +24998,11 @@
      "avgPlace": 4.44,
      "top4": 0.444
     }
-   }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {}
   },
   {
    "trait": "DA_18_Lunar",
@@ -24070,6 +25157,16 @@
      "avgPlace": 4.77,
      "top4": 0.423
     }
+   },
+   "mainCount": {
+    "3": 0.04,
+    "4": 0.81,
+    "5": 0.15
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.27,
+    "DA_18_EmblemLunar": 0.19,
+    "DA_18_EmblemVanguard": 0.08
    }
   },
   {
@@ -24225,6 +25322,15 @@
      "avgPlace": 4.18,
      "top4": 0.545
     }
+   },
+   "mainCount": {
+    "3": 0.45,
+    "4": 0.55
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.64,
+    "DA_18_EmblemInferno": 0.09,
+    "DA_18_EmblemRapidfire": 0.09
    }
   },
   {
@@ -24380,6 +25486,14 @@
      "avgPlace": 4.62,
      "top4": 0.423
     }
+   },
+   "mainCount": {
+    "3": 0.96,
+    "7": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemHunter": 0.12,
+    "DA_18_EmblemBrawler": 0.08
    }
   },
   {
@@ -24535,6 +25649,14 @@
      "avgPlace": 4.55,
      "top4": 0.489
     }
+   },
+   "mainCount": {
+    "4": 0.83,
+    "5": 0.05,
+    "6": 0.13
+   },
+   "emblems": {
+    "DA_18_EmblemSpellweaver": 0.11
    }
   },
   {
@@ -24690,6 +25812,13 @@
      "avgPlace": 4.67,
      "top4": 0.459
     }
+   },
+   "mainCount": {
+    "3": 0.82,
+    "4": 0.18
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.51
    }
   },
   {
@@ -24845,6 +25974,20 @@
      "avgPlace": 4.42,
      "top4": 0.538
     }
+   },
+   "mainCount": {
+    "3": 0.35,
+    "4": 0.04,
+    "5": 0.46,
+    "6": 0.04,
+    "7": 0.12
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.5,
+    "DA_18_EmblemBlossom": 0.27,
+    "DA_18_EmblemExecutioner": 0.08,
+    "DA_18_EmblemLunar": 0.08,
+    "DA_18_EmblemSpellweaver": 0.08
    }
   },
   {
@@ -25000,6 +26143,17 @@
      "avgPlace": 4.46,
      "top4": 0.522
     }
+   },
+   "mainCount": {
+    "2": 0.11,
+    "3": 0.11,
+    "4": 0.7,
+    "6": 0.09
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.35,
+    "DA_18_EmblemLunar": 0.07,
+    "DA_18_EmblemDefender": 0.07
    }
   },
   {
@@ -25155,6 +26309,24 @@
      "avgPlace": 4.51,
      "top4": 0.505
     }
+   },
+   "mainCount": {
+    "4": 0.03,
+    "5": 0.24,
+    "7": 0.54,
+    "8": 0.04,
+    "9": 0.12
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.6,
+    "DA_18_EmblemFloraFatalis": 0.14,
+    "DA_18_EmblemExecutioner": 0.1,
+    "DA_18_EmblemBrawler": 0.09,
+    "DA_18_EmblemSpellweaver": 0.08,
+    "DA_18_EmblemInferno": 0.07,
+    "DA_18_EmblemVanguard": 0.07,
+    "DA_18_EmblemFae": 0.05,
+    "DA_18_EmblemDefender": 0.05
    }
   },
   {
@@ -25310,7 +26482,12 @@
      "avgPlace": 4.61,
      "top4": 0.522
     }
-   }
+   },
+   "mainCount": {
+    "3": 0.91,
+    "5": 0.07
+   },
+   "emblems": {}
   },
   {
    "trait": "DA_18_Fae",
@@ -25456,6 +26633,16 @@
      "avgPlace": 4.56,
      "top4": 0.444
     }
+   },
+   "mainCount": {
+    "4": 1
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.44,
+    "DA_18_EmblemVanguard": 0.11,
+    "DA_18_EmblemSpellweaver": 0.11,
+    "DA_18_EmblemFloraFatalis": 0.11,
+    "DA_18_EmblemInferno": 0.11
    }
   },
   {
@@ -25611,6 +26798,13 @@
      "avgPlace": 4.58,
      "top4": 0.488
     }
+   },
+   "mainCount": {
+    "3": 0.96,
+    "5": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.08
    }
   },
   {
@@ -25766,6 +26960,15 @@
      "avgPlace": 4.67,
      "top4": 0.556
     }
+   },
+   "mainCount": {
+    "4": 0.52,
+    "5": 0.04,
+    "6": 0.44
+   },
+   "emblems": {
+    "DA_18_EmblemSlayer": 0.48,
+    "DA_18_EmblemBlackthorn": 0.11
    }
   },
   {
@@ -25921,6 +27124,21 @@
      "avgPlace": 4.41,
      "top4": 0.455
     }
+   },
+   "mainCount": {
+    "2": 0.07,
+    "3": 0.5,
+    "4": 0.3,
+    "5": 0.11
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.48,
+    "DA_18_EmblemInvoker": 0.11,
+    "DA_18_EmblemExecutioner": 0.09,
+    "DA_18_EmblemLunar": 0.05,
+    "DA_18_EmblemJuggernaut": 0.05,
+    "DA_18_EmblemFae": 0.05,
+    "DA_18_EmblemDefender": 0.05
    }
   },
   {
@@ -26076,6 +27294,15 @@
      "avgPlace": 4.51,
      "top4": 0.515
     }
+   },
+   "mainCount": {
+    "3": 0.75,
+    "4": 0.19,
+    "5": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemHunter": 0.78,
+    "DA_18_EmblemInvoker": 0.05
    }
   },
   {
@@ -26222,6 +27449,12 @@
      "avgPlace": 4.63,
      "top4": 0.5
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.63
    }
   },
   {
@@ -26377,6 +27610,28 @@
      "avgPlace": 4.45,
      "top4": 0.45
     }
+   },
+   "mainCount": {
+    "4": 0.7,
+    "5": 0.03,
+    "6": 0.28
+   },
+   "emblems": {
+    "DA_18_EmblemBlackthorn": 0.63,
+    "DA_18_EmblemSpellweaver": 0.23,
+    "DA_18_EmblemFloraFatalis": 0.13,
+    "DA_18_EmblemBrawler": 0.1,
+    "DA_18_EmblemExecutioner": 0.1,
+    "DA_18_EmblemLunar": 0.05,
+    "DA_18_EmblemRapidfire": 0.05,
+    "DA_18_EmblemSprykin": 0.05,
+    "DA_18_EmblemVanguard": 0.05,
+    "DA_18_EmblemJuggernaut": 0.05,
+    "DA_18_EmblemInferno": 0.05,
+    "DA_18_EmblemPrimal": 0.05,
+    "DA_18_EmblemBlossom": 0.05,
+    "DA_18_EmblemSlayer": 0.05,
+    "DA_18_EmblemFae": 0.05
    }
   },
   {
@@ -26532,6 +27787,19 @@
      "avgPlace": 4.64,
      "top4": 0.436
     }
+   },
+   "mainCount": {
+    "4": 0.85,
+    "6": 0.11
+   },
+   "emblems": {
+    "DA_18_EmblemBlackthorn": 0.65,
+    "DA_18_EmblemExecutioner": 0.31,
+    "DA_18_EmblemDefender": 0.15,
+    "DA_18_EmblemFloraFatalis": 0.11,
+    "DA_18_EmblemSpellweaver": 0.09,
+    "DA_18_EmblemInferno": 0.07,
+    "DA_18_EmblemSprykin": 0.05
    }
   },
   {
@@ -26687,6 +27955,21 @@
      "avgPlace": 4.69,
      "top4": 0.458
     }
+   },
+   "mainCount": {
+    "5": 0.23,
+    "6": 0.06,
+    "7": 0.59,
+    "8": 0.03,
+    "9": 0.07
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.63,
+    "DA_18_EmblemRapidfire": 0.15,
+    "DA_18_EmblemLunar": 0.08,
+    "DA_18_EmblemExecutioner": 0.07,
+    "DA_18_EmblemFae": 0.06,
+    "DA_18_EmblemVanguard": 0.05
    }
   },
   {
@@ -26842,6 +28125,20 @@
      "avgPlace": 4.23,
      "top4": 0.615
     }
+   },
+   "mainCount": {
+    "3": 0.62,
+    "5": 0.38
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.77,
+    "DA_18_EmblemSlayer": 0.38,
+    "DA_18_EmblemRapidfire": 0.23,
+    "DA_18_EmblemLunar": 0.15,
+    "DA_18_EmblemFae": 0.08,
+    "DA_18_EmblemInvoker": 0.08,
+    "DA_18_EmblemHunter": 0.08,
+    "DA_18_EmblemVanguard": 0.08
    }
   },
   {
@@ -26997,6 +28294,13 @@
      "avgPlace": 4.73,
      "top4": 0.531
     }
+   },
+   "mainCount": {
+    "7": 0.9,
+    "8": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.1
    }
   },
   {
@@ -27152,6 +28456,23 @@
      "avgPlace": 4.75,
      "top4": 0.429
     }
+   },
+   "mainCount": {
+    "3": 0.07,
+    "4": 0.84,
+    "5": 0.04,
+    "6": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemPrimal": 0.7,
+    "DA_18_EmblemHunter": 0.36,
+    "DA_18_EmblemInvoker": 0.1,
+    "DA_18_EmblemBrawler": 0.08,
+    "DA_18_EmblemDefender": 0.08,
+    "DA_18_EmblemSprykin": 0.08,
+    "DA_18_EmblemSlayer": 0.07,
+    "DA_18_EmblemVanguard": 0.06,
+    "DA_18_EmblemJuggernaut": 0.05
    }
   },
   {
@@ -27307,6 +28628,14 @@
      "avgPlace": 4.81,
      "top4": 0.455
     }
+   },
+   "mainCount": {
+    "3": 0.47,
+    "4": 0.52
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.47,
+    "DA_18_EmblemSpellweaver": 0.05
    }
   },
   {
@@ -27462,6 +28791,23 @@
      "avgPlace": 4.74,
      "top4": 0.368
     }
+   },
+   "mainCount": {
+    "3": 0.95,
+    "4": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.42,
+    "DA_18_EmblemBrawler": 0.21,
+    "DA_18_EmblemFloraFatalis": 0.11,
+    "DA_18_EmblemInvoker": 0.11,
+    "DA_18_EmblemDefender": 0.11,
+    "DA_18_EmblemVanguard": 0.05,
+    "DA_18_EmblemJuggernaut": 0.05,
+    "DA_18_EmblemSlayer": 0.05,
+    "DA_18_EmblemCoven": 0.05,
+    "DA_18_EmblemPrimal": 0.05,
+    "DA_18_EmblemElderwood": 0.05
    }
   },
   {
@@ -27617,6 +28963,18 @@
      "avgPlace": 4.63,
      "top4": 0.375
     }
+   },
+   "mainCount": {
+    "4": 0.88,
+    "6": 0.13
+   },
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.38,
+    "DA_18_EmblemLunar": 0.25,
+    "DA_18_EmblemVanguard": 0.25,
+    "DA_18_EmblemSprykin": 0.13,
+    "DA_18_EmblemDefender": 0.13,
+    "DA_18_EmblemCoven": 0.13
    }
   },
   {
@@ -27772,6 +29130,17 @@
      "avgPlace": 4.67,
      "top4": 0.444
     }
+   },
+   "mainCount": {
+    "3": 0.11,
+    "4": 0.89
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.33,
+    "DA_18_EmblemDefender": 0.11,
+    "DA_18_EmblemFae": 0.11,
+    "DA_18_EmblemExecutioner": 0.11,
+    "DA_18_EmblemFloraFatalis": 0.11
    }
   },
   {
@@ -27927,6 +29296,15 @@
      "avgPlace": 4.77,
      "top4": 0.467
     }
+   },
+   "mainCount": {
+    "2": 0.1,
+    "3": 0.8,
+    "4": 0.1
+   },
+   "emblems": {
+    "DA_18_EmblemHunter": 0.5,
+    "DA_18_EmblemVanguard": 0.07
    }
   },
   {
@@ -28082,6 +29460,18 @@
      "avgPlace": 4.79,
      "top4": 0.435
     }
+   },
+   "mainCount": {
+    "4": 0.92,
+    "5": 0.04,
+    "6": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.87,
+    "DA_18_EmblemHunter": 0.15,
+    "DA_18_EmblemSprykin": 0.11,
+    "DA_18_EmblemVanguard": 0.07,
+    "DA_18_EmblemPrimal": 0.05
    }
   },
   {
@@ -28237,6 +29627,14 @@
      "avgPlace": 4.8,
      "top4": 0.444
     }
+   },
+   "mainCount": {
+    "3": 0.31,
+    "4": 0.51,
+    "5": 0.18
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.67
    }
   },
   {
@@ -28392,6 +29790,16 @@
      "avgPlace": 4.76,
      "top4": 0.463
     }
+   },
+   "mainCount": {
+    "4": 0.04,
+    "5": 0.03,
+    "6": 0.9
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.31,
+    "DA_18_EmblemPrimal": 0.08,
+    "DA_18_EmblemExecutioner": 0.05
    }
   },
   {
@@ -28547,6 +29955,18 @@
      "avgPlace": 4.83,
      "top4": 0.437
     }
+   },
+   "mainCount": {
+    "4": 0.43,
+    "6": 0.52
+   },
+   "emblems": {
+    "DA_18_EmblemSpellweaver": 0.83,
+    "DA_18_EmblemLunar": 0.09,
+    "DA_18_EmblemBlossom": 0.09,
+    "DA_18_EmblemFloraFatalis": 0.08,
+    "DA_18_EmblemInvoker": 0.07,
+    "DA_18_EmblemJuggernaut": 0.06
    }
   },
   {
@@ -28702,6 +30122,24 @@
      "avgPlace": 4.93,
      "top4": 0.411
     }
+   },
+   "mainCount": {
+    "2": 0.04,
+    "3": 0.07,
+    "4": 0.82,
+    "5": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemPrimal": 0.86,
+    "DA_18_EmblemFloraFatalis": 0.09,
+    "DA_18_EmblemVanguard": 0.09,
+    "DA_18_EmblemBrawler": 0.07,
+    "DA_18_EmblemHunter": 0.07,
+    "DA_18_EmblemDefender": 0.07,
+    "DA_18_EmblemRapidfire": 0.05,
+    "DA_18_EmblemCoven": 0.05,
+    "DA_18_EmblemInferno": 0.05,
+    "DA_18_EmblemJuggernaut": 0.05
    }
   },
   {
@@ -28857,6 +30295,13 @@
      "avgPlace": 4.63,
      "top4": 0.5
     }
+   },
+   "mainCount": {
+    "3": 0.75,
+    "7": 0.25
+   },
+   "emblems": {
+    "DA_18_EmblemHunter": 0.13
    }
   },
   {
@@ -29012,6 +30457,13 @@
      "avgPlace": 4.66,
      "top4": 0.522
     }
+   },
+   "mainCount": {
+    "2": 0.96,
+    "4": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemHunter": 0.3
    }
   },
   {
@@ -29167,6 +30619,13 @@
      "avgPlace": 4.82,
      "top4": 0.459
     }
+   },
+   "mainCount": {
+    "2": 0.74,
+    "3": 0.25
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.11
    }
   },
   {
@@ -29322,6 +30781,19 @@
      "avgPlace": 4.8,
      "top4": 0.449
     }
+   },
+   "mainCount": {
+    "3": 0.8,
+    "4": 0.03,
+    "5": 0.11,
+    "7": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemBlossom": 0.13,
+    "DA_18_EmblemVanguard": 0.06,
+    "DA_18_EmblemSpellweaver": 0.06,
+    "DA_18_EmblemBrawler": 0.05,
+    "DA_18_EmblemFloraFatalis": 0.05
    }
   },
   {
@@ -29477,6 +30949,13 @@
      "avgPlace": 4.76,
      "top4": 0.457
     }
+   },
+   "mainCount": {
+    "4": 0.12,
+    "6": 0.86
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.42
    }
   },
   {
@@ -29632,6 +31111,26 @@
      "avgPlace": 4.82,
      "top4": 0.353
     }
+   },
+   "mainCount": {
+    "4": 0.82,
+    "5": 0.12,
+    "6": 0.06
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.94,
+    "DA_18_EmblemSpellweaver": 0.18,
+    "DA_18_EmblemInferno": 0.18,
+    "DA_18_EmblemRapidfire": 0.18,
+    "DA_18_EmblemSlayer": 0.12,
+    "DA_18_EmblemVanguard": 0.12,
+    "DA_18_EmblemLunar": 0.12,
+    "DA_18_EmblemHunter": 0.06,
+    "DA_18_EmblemElderwood": 0.06,
+    "DA_18_EmblemSprykin": 0.06,
+    "DA_18_EmblemExecutioner": 0.06,
+    "DA_18_EmblemBlossom": 0.06,
+    "DA_18_EmblemInvoker": 0.06
    }
   },
   {
@@ -29787,6 +31286,20 @@
      "avgPlace": 5.38,
      "top4": 0.375
     }
+   },
+   "mainCount": {
+    "3": 0.13,
+    "4": 0.88
+   },
+   "emblems": {
+    "DA_18_EmblemPrimal": 0.5,
+    "DA_18_EmblemLunar": 0.38,
+    "DA_18_EmblemSlayer": 0.38,
+    "DA_18_EmblemHunter": 0.13,
+    "DA_18_EmblemBrawler": 0.13,
+    "DA_18_EmblemCoven": 0.13,
+    "DA_18_EmblemJuggernaut": 0.13,
+    "DA_18_EmblemInvoker": 0.13
    }
   },
   {
@@ -29942,6 +31455,15 @@
      "avgPlace": 4.8,
      "top4": 0.382
     }
+   },
+   "mainCount": {
+    "3": 0.15,
+    "4": 0.71,
+    "6": 0.13
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.22,
+    "DA_18_EmblemPrimal": 0.07
    }
   },
   {
@@ -30082,21 +31604,31 @@
     "top4": 0.421
    },
    "before": {
-    "games": 126,
-    "avgPlace": 4.87,
-    "top4": 0.421
+    "games": 125,
+    "avgPlace": 4.86,
+    "top4": 0.424
    },
    "byPatch": {
     "18.5c": {
-     "games": 126,
-     "avgPlace": 4.87,
-     "top4": 0.421
+     "games": 125,
+     "avgPlace": 4.86,
+     "top4": 0.424
     },
     "18.6": {
      "games": 1102,
      "avgPlace": 4.84,
      "top4": 0.421
     }
+   },
+   "mainCount": {
+    "7": 0.92,
+    "10": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.1,
+    "DA_18_EmblemSlayer": 0.09,
+    "DA_18_EmblemVanguard": 0.05,
+    "DA_18_EmblemJuggernaut": 0.05
    }
   },
   {
@@ -30252,6 +31784,20 @@
      "avgPlace": 4.9,
      "top4": 0.524
     }
+   },
+   "mainCount": {
+    "3": 0.19,
+    "4": 0.76,
+    "6": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.43,
+    "DA_18_EmblemInvoker": 0.33,
+    "DA_18_EmblemHunter": 0.05,
+    "DA_18_EmblemVanguard": 0.05,
+    "DA_18_EmblemSpellweaver": 0.05,
+    "DA_18_EmblemSlayer": 0.05,
+    "DA_18_EmblemLunar": 0.05
    }
   },
   {
@@ -30407,6 +31953,14 @@
      "avgPlace": 4.98,
      "top4": 0.346
     }
+   },
+   "mainCount": {
+    "3": 0.69,
+    "4": 0.21,
+    "5": 0.1
+   },
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.9
    }
   },
   {
@@ -30562,6 +32116,17 @@
      "avgPlace": 5.13,
      "top4": 0.375
     }
+   },
+   "mainCount": {
+    "4": 0.88,
+    "5": 0.13
+   },
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.38,
+    "DA_18_EmblemVanguard": 0.25,
+    "DA_18_EmblemElderwood": 0.13,
+    "DA_18_EmblemSlayer": 0.13,
+    "DA_18_EmblemHunter": 0.13
    }
   },
   {
@@ -30717,6 +32282,16 @@
      "avgPlace": 4.65,
      "top4": 0.435
     }
+   },
+   "mainCount": {
+    "4": 0.35,
+    "5": 0.04,
+    "6": 0.61
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.3,
+    "DA_18_EmblemBlackthorn": 0.09,
+    "DA_18_EmblemVanguard": 0.09
    }
   },
   {
@@ -30872,6 +32447,19 @@
      "avgPlace": 5.11,
      "top4": 0.333
     }
+   },
+   "mainCount": {
+    "3": 0.67,
+    "4": 0.11,
+    "5": 0.22
+   },
+   "emblems": {
+    "DA_18_EmblemHunter": 0.56,
+    "DA_18_EmblemSprykin": 0.33,
+    "DA_18_EmblemFae": 0.33,
+    "DA_18_EmblemInferno": 0.11,
+    "DA_18_EmblemBrawler": 0.11,
+    "DA_18_EmblemDefender": 0.11
    }
   },
   {
@@ -31027,6 +32615,24 @@
      "avgPlace": 5,
      "top4": 0.4
     }
+   },
+   "mainCount": {
+    "4": 0.1,
+    "5": 0.5,
+    "6": 0.1,
+    "7": 0.3
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.6,
+    "DA_18_EmblemBlossom": 0.3,
+    "DA_18_EmblemInvoker": 0.2,
+    "DA_18_EmblemVanguard": 0.2,
+    "DA_18_EmblemExecutioner": 0.1,
+    "DA_18_EmblemDefender": 0.1,
+    "DA_18_EmblemBrawler": 0.1,
+    "DA_18_EmblemSpellweaver": 0.1,
+    "DA_18_EmblemInferno": 0.1,
+    "DA_18_EmblemFae": 0.1
    }
   },
   {
@@ -31182,6 +32788,15 @@
      "avgPlace": 4.83,
      "top4": 0.435
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.43,
+    "DA_18_EmblemSpellweaver": 0.13,
+    "DA_18_EmblemRapidfire": 0.09,
+    "DA_18_EmblemFloraFatalis": 0.09
    }
   },
   {
@@ -31337,6 +32952,20 @@
      "avgPlace": 4.94,
      "top4": 0.426
     }
+   },
+   "mainCount": {
+    "3": 0.59,
+    "4": 0.09,
+    "5": 0.13,
+    "6": 0.04,
+    "7": 0.07,
+    "9": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.3,
+    "DA_18_EmblemFloraFatalisAugment": 0.11,
+    "DA_18_EmblemVanguard": 0.07,
+    "DA_18_EmblemFloraFatalis": 0.06
    }
   },
   {
@@ -31492,6 +33121,16 @@
      "avgPlace": 4.8,
      "top4": 0.52
     }
+   },
+   "mainCount": {
+    "3": 0.04,
+    "4": 0.92,
+    "5": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.48,
+    "DA_18_EmblemRapidfire": 0.16,
+    "DA_18_EmblemHunter": 0.08
    }
   },
   {
@@ -31647,6 +33286,19 @@
      "avgPlace": 4.61,
      "top4": 0.452
     }
+   },
+   "mainCount": {
+    "3": 0.32,
+    "4": 0.03,
+    "7": 0.61,
+    "8": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.42,
+    "DA_18_EmblemSlayer": 0.13,
+    "DA_18_EmblemInvoker": 0.1,
+    "DA_18_EmblemVanguard": 0.06,
+    "DA_18_EmblemBrawler": 0.06
    }
   },
   {
@@ -31802,6 +33454,23 @@
      "avgPlace": 4.81,
      "top4": 0.5
     }
+   },
+   "mainCount": {
+    "2": 0.25,
+    "4": 0.75
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.5,
+    "DA_18_EmblemElderwood": 0.13,
+    "DA_18_EmblemInvoker": 0.13,
+    "DA_18_EmblemBlossom": 0.13,
+    "DA_18_EmblemCoven": 0.06,
+    "DA_18_EmblemFloraFatalis": 0.06,
+    "DA_18_EmblemJuggernaut": 0.06,
+    "DA_18_EmblemSpellweaver": 0.06,
+    "DA_18_EmblemExecutioner": 0.06,
+    "DA_18_EmblemDefender": 0.06,
+    "DA_18_EmblemFloraFatalisAugment": 0.06
    }
   },
   {
@@ -31957,6 +33626,14 @@
      "avgPlace": 4.99,
      "top4": 0.398
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemSpellweaver": 0.18,
+    "DA_18_EmblemExecutioner": 0.06,
+    "DA_18_EmblemDefender": 0.05
    }
   },
   {
@@ -32112,6 +33789,18 @@
      "avgPlace": 4.8,
      "top4": 0.457
     }
+   },
+   "mainCount": {
+    "3": 0.77,
+    "4": 0.11,
+    "5": 0.06,
+    "6": 0.06
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.14,
+    "DA_18_EmblemVanguard": 0.09,
+    "DA_18_EmblemBlackthorn": 0.06,
+    "DA_18_EmblemExecutioner": 0.06
    }
   },
   {
@@ -32267,6 +33956,13 @@
      "avgPlace": 5.02,
      "top4": 0.39
     }
+   },
+   "mainCount": {
+    "2": 0.95,
+    "6": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemDefender": 0.07
    }
   },
   {
@@ -32422,6 +34118,16 @@
      "avgPlace": 4.92,
      "top4": 0.4
     }
+   },
+   "mainCount": {
+    "2": 0.04,
+    "4": 0.32,
+    "5": 0.04,
+    "6": 0.6
+   },
+   "emblems": {
+    "DA_18_EmblemSlayer": 0.8,
+    "DA_18_EmblemLunar": 0.08
    }
   },
   {
@@ -32577,6 +34283,187 @@
      "avgPlace": 5.25,
      "top4": 0.5
     }
+   },
+   "mainCount": {
+    "4": 0.63,
+    "5": 0.25,
+    "6": 0.13
+   },
+   "emblems": {
+    "DA_18_EmblemBlackthorn": 0.88,
+    "DA_18_EmblemHunter": 0.13,
+    "DA_18_EmblemFloraFatalis": 0.13,
+    "DA_18_EmblemBlossom": 0.13,
+    "DA_18_EmblemBrawler": 0.13,
+    "DA_18_EmblemVanguard": 0.13,
+    "DA_18_EmblemExecutioner": 0.13,
+    "DA_18_EmblemSprykin": 0.13
+   }
+  },
+  {
+   "trait": "DA_18_Vanguard",
+   "carry": "da_18_aphelios",
+   "mainCarry": "da_18_aphelios",
+   "mainTank": "da_sentinel18",
+   "games": 57,
+   "avgPlace": 5.01,
+   "top4": 0.403,
+   "win": 0.042,
+   "patchGames": 57,
+   "playRate": 0.0033,
+   "level": 8,
+   "core": [
+    {
+     "id": "da_18_aphelios",
+     "rate": 1,
+     "star3": 0.02,
+     "off": 167,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.98,
+     "star3": 0,
+     "off": 4,
+     "tank": 3
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 1,
+     "tank": 116
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.65,
+     "star3": 0,
+     "off": 4,
+     "tank": 18
+    },
+    {
+     "id": "da_brambleback18",
+     "rate": 0.61,
+     "star3": 0,
+     "off": 58,
+     "tank": 2
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.61,
+     "star3": 0,
+     "off": 4,
+     "tank": 31
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 0.6,
+     "star3": 0,
+     "off": 17,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.42,
+     "star3": 0.08,
+     "off": 0,
+     "tank": 3
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 3,
+     "tank": 30
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 1,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.28,
+     "star3": 0,
+     "off": 2,
+     "tank": 6
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.28,
+     "star3": 0,
+     "off": 10,
+     "tank": 0
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.28,
+     "star3": 0,
+     "off": 39,
+     "tank": 0
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 16,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_18_aphelios": {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury",
+      "DA_LastWhisper"
+     ],
+     "games": 3,
+     "avgPlace": 5
+    },
+    "da_sentinel18": {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 2,
+     "avgPlace": 3
+    }
+   },
+   "now": {
+    "games": 57,
+    "avgPlace": 4.88,
+    "top4": 0.421
+   },
+   "before": {
+    "games": 15,
+    "avgPlace": 5.53,
+    "top4": 0.333
+   },
+   "byPatch": {
+    "18.5c": {
+     "games": 15,
+     "avgPlace": 5.53,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 57,
+     "avgPlace": 4.88,
+     "top4": 0.421
+    }
+   },
+   "mainCount": {
+    "3": 0.21,
+    "4": 0.63,
+    "6": 0.14
+   },
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.35,
+    "DA_18_EmblemVanguard": 0.26,
+    "DA_18_EmblemLunar": 0.09,
+    "DA_18_EmblemSlayer": 0.07
    }
   },
   {
@@ -32732,6 +34619,16 @@
      "avgPlace": 5.05,
      "top4": 0.392
     }
+   },
+   "mainCount": {
+    "3": 0.85,
+    "4": 0.03,
+    "5": 0.1
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.08,
+    "DA_18_EmblemBlossom": 0.08,
+    "DA_18_EmblemPrimal": 0.05
    }
   },
   {
@@ -32887,6 +34784,18 @@
      "avgPlace": 4.96,
      "top4": 0.478
     }
+   },
+   "mainCount": {
+    "3": 0.2,
+    "4": 0.76,
+    "5": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.78,
+    "DA_18_EmblemSpellweaver": 0.24,
+    "DA_18_EmblemDefender": 0.09,
+    "DA_18_EmblemJuggernaut": 0.09,
+    "DA_18_EmblemBlackthorn": 0.07
    }
   },
   {
@@ -33042,162 +34951,13 @@
      "avgPlace": 4.93,
      "top4": 0.408
     }
-   }
-  },
-  {
-   "trait": "DA_18_Vanguard",
-   "carry": "da_18_aphelios",
-   "mainCarry": "da_18_aphelios",
-   "mainTank": "da_sentinel18",
-   "games": 57,
-   "avgPlace": 5.03,
-   "top4": 0.397,
-   "win": 0.041,
-   "patchGames": 57,
-   "playRate": 0.0033,
-   "level": 8,
-   "core": [
-    {
-     "id": "da_18_aphelios",
-     "rate": 1,
-     "star3": 0.02,
-     "off": 167,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.98,
-     "star3": 0,
-     "off": 4,
-     "tank": 3
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.96,
-     "star3": 0,
-     "off": 1,
-     "tank": 116
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.65,
-     "star3": 0,
-     "off": 4,
-     "tank": 18
-    },
-    {
-     "id": "da_brambleback18",
-     "rate": 0.61,
-     "star3": 0,
-     "off": 58,
-     "tank": 2
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.61,
-     "star3": 0,
-     "off": 4,
-     "tank": 31
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 0.6,
-     "star3": 0,
-     "off": 17,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.42,
-     "star3": 0.08,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.39,
-     "star3": 0,
-     "off": 3,
-     "tank": 30
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 0.3,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.28,
-     "star3": 0,
-     "off": 2,
-     "tank": 6
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.28,
-     "star3": 0,
-     "off": 10,
-     "tank": 0
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.28,
-     "star3": 0,
-     "off": 39,
-     "tank": 0
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.23,
-     "star3": 0,
-     "off": 16,
-     "tank": 0
-    }
-   ],
-   "builds": {
-    "da_18_aphelios": {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury",
-      "DA_LastWhisper"
-     ],
-     "games": 3,
-     "avgPlace": 5
-    },
-    "da_sentinel18": {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 2,
-     "avgPlace": 3
-    }
    },
-   "now": {
-    "games": 57,
-    "avgPlace": 4.88,
-    "top4": 0.421
+   "mainCount": {
+    "3": 0.92,
+    "4": 0.03,
+    "5": 0.04
    },
-   "before": {
-    "games": 16,
-    "avgPlace": 5.56,
-    "top4": 0.313
-   },
-   "byPatch": {
-    "18.5c": {
-     "games": 16,
-     "avgPlace": 5.56,
-     "top4": 0.313
-    },
-    "18.6": {
-     "games": 57,
-     "avgPlace": 4.88,
-     "top4": 0.421
-    }
-   }
+   "emblems": {}
   },
   {
    "trait": "DA_18_Sprykin",
@@ -33352,6 +35112,19 @@
      "avgPlace": 4.7,
      "top4": 0.424
     }
+   },
+   "mainCount": {
+    "3": 0.21,
+    "4": 0.09,
+    "5": 0.58,
+    "6": 0.03,
+    "7": 0.09
+   },
+   "emblems": {
+    "DA_18_EmblemSprykin": 0.48,
+    "DA_18_EmblemInvoker": 0.09,
+    "DA_18_EmblemElderwood": 0.06,
+    "DA_18_EmblemFloraFatalis": 0.06
    }
   },
   {
@@ -33507,161 +35280,19 @@
      "avgPlace": 5.1,
      "top4": 0.381
     }
-   }
-  },
-  {
-   "trait": "DA_18_Elderwood",
-   "carry": "da_18_teemo",
-   "mainCarry": "da_18_teemo",
-   "mainTank": "da_18_alistar",
-   "games": 103,
-   "avgPlace": 5.07,
-   "top4": 0.392,
-   "win": 0.024,
-   "patchGames": 103,
-   "playRate": 0.0059,
-   "level": 7,
-   "core": [
-    {
-     "id": "da_18_alistar",
-     "rate": 1,
-     "star3": 0.78,
-     "off": 20,
-     "tank": 235
-    },
-    {
-     "id": "da_18_teemo",
-     "rate": 1,
-     "star3": 0.94,
-     "off": 305,
-     "tank": 3
-    },
-    {
-     "id": "da_18_veigar",
-     "rate": 0.99,
-     "star3": 0.25,
-     "off": 30,
-     "tank": 0
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 0.97,
-     "star3": 0.65,
-     "off": 180,
-     "tank": 11
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.97,
-     "star3": 0.09,
-     "off": 18,
-     "tank": 86
-    },
-    {
-     "id": "da_18_kobuko",
-     "rate": 0.83,
-     "star3": 0.49,
-     "off": 10,
-     "tank": 53
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.57,
-     "star3": 0,
-     "off": 7,
-     "tank": 34
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 45,
-     "tank": 7
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 9,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 10,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sentry",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_gnarsmall",
-     "rate": 0.06,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ezreal",
-     "rate": 0.03,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    }
-   ],
-   "builds": {
-    "da_18_teemo": {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 15,
-     "avgPlace": 5.4
-    },
-    "da_18_alistar": {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 5.43
-    }
    },
-   "now": {
-    "games": 103,
-    "avgPlace": 5.04,
-    "top4": 0.398
+   "mainCount": {
+    "3": 0.33,
+    "4": 0.27,
+    "5": 0.4
    },
-   "before": {
-    "games": 25,
-    "avgPlace": 5.24,
-    "top4": 0.36
-   },
-   "byPatch": {
-    "18.5c": {
-     "games": 25,
-     "avgPlace": 5.24,
-     "top4": 0.36
-    },
-    "18.6": {
-     "games": 103,
-     "avgPlace": 5.04,
-     "top4": 0.398
-    }
+   "emblems": {
+    "DA_18_EmblemRapidfire": 0.87,
+    "DA_18_EmblemSlayer": 0.1,
+    "DA_18_EmblemInferno": 0.1,
+    "DA_18_EmblemLunar": 0.06,
+    "DA_18_EmblemVanguard": 0.05,
+    "DA_18_EmblemBrawler": 0.05
    }
   },
   {
@@ -33817,6 +35448,14 @@
      "avgPlace": 5.09,
      "top4": 0.363
     }
+   },
+   "mainCount": {
+    "3": 0.93,
+    "5": 0.08
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.33,
+    "DA_18_EmblemBlossom": 0.06
    }
   },
   {
@@ -33972,6 +35611,20 @@
      "avgPlace": 5.31,
      "top4": 0.231
     }
+   },
+   "mainCount": {
+    "2": 0.08,
+    "4": 0.85,
+    "5": 0.08
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.38,
+    "DA_18_EmblemSprykin": 0.15,
+    "DA_18_EmblemFloraFatalis": 0.15,
+    "DA_18_EmblemVanguard": 0.08,
+    "DA_18_EmblemInvoker": 0.08,
+    "DA_18_EmblemLunar": 0.08,
+    "DA_18_EmblemSpellweaver": 0.08
    }
   },
   {
@@ -34127,6 +35780,175 @@
      "avgPlace": 5.23,
      "top4": 0.385
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemFloraFatalis": 0.08
+   }
+  },
+  {
+   "trait": "DA_18_Elderwood",
+   "carry": "da_18_teemo",
+   "mainCarry": "da_18_teemo",
+   "mainTank": "da_18_alistar",
+   "games": 103,
+   "avgPlace": 5.08,
+   "top4": 0.388,
+   "win": 0.024,
+   "patchGames": 103,
+   "playRate": 0.0059,
+   "level": 7,
+   "core": [
+    {
+     "id": "da_18_alistar",
+     "rate": 1,
+     "star3": 0.78,
+     "off": 20,
+     "tank": 235
+    },
+    {
+     "id": "da_18_teemo",
+     "rate": 1,
+     "star3": 0.94,
+     "off": 305,
+     "tank": 3
+    },
+    {
+     "id": "da_18_veigar",
+     "rate": 0.99,
+     "star3": 0.25,
+     "off": 30,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.97,
+     "star3": 0.65,
+     "off": 180,
+     "tank": 11
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.97,
+     "star3": 0.09,
+     "off": 18,
+     "tank": 86
+    },
+    {
+     "id": "da_18_kobuko",
+     "rate": 0.83,
+     "star3": 0.49,
+     "off": 10,
+     "tank": 53
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.57,
+     "star3": 0,
+     "off": 7,
+     "tank": 34
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 45,
+     "tank": 7
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 9,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.08,
+     "star3": 0,
+     "off": 10,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sentry",
+     "rate": 0.08,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_gnarsmall",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_18_teemo": {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 15,
+     "avgPlace": 5.4
+    },
+    "da_18_alistar": {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 7,
+     "avgPlace": 5.43
+    }
+   },
+   "now": {
+    "games": 103,
+    "avgPlace": 5.04,
+    "top4": 0.398
+   },
+   "before": {
+    "games": 24,
+    "avgPlace": 5.29,
+    "top4": 0.333
+   },
+   "byPatch": {
+    "18.5c": {
+     "games": 24,
+     "avgPlace": 5.29,
+     "top4": 0.333
+    },
+    "18.6": {
+     "games": 103,
+     "avgPlace": 5.04,
+     "top4": 0.398
+    }
+   },
+   "mainCount": {
+    "3": 0.79,
+    "4": 0.09,
+    "5": 0.12
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.06
    }
   },
   {
@@ -34282,6 +36104,18 @@
      "avgPlace": 5.6,
      "top4": 0.3
     }
+   },
+   "mainCount": {
+    "3": 0.5,
+    "5": 0.4,
+    "9": 0.1
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.5,
+    "DA_18_EmblemBlossom": 0.4,
+    "DA_18_EmblemSpellweaver": 0.1,
+    "DA_18_EmblemExecutioner": 0.1,
+    "DA_18_EmblemPrimal": 0.1
    }
   },
   {
@@ -34437,6 +36271,16 @@
      "avgPlace": 5.21,
      "top4": 0.35
     }
+   },
+   "mainCount": {
+    "3": 0.61,
+    "4": 0.28,
+    "5": 0.11
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.37,
+    "DA_18_EmblemSpellweaver": 0.08,
+    "DA_18_EmblemBlossom": 0.08
    }
   },
   {
@@ -34592,6 +36436,16 @@
      "avgPlace": 5.15,
      "top4": 0.4
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.25,
+    "DA_18_EmblemSpellweaver": 0.08,
+    "DA_18_EmblemFloraFatalis": 0.07,
+    "DA_18_EmblemDefender": 0.06,
+    "DA_18_EmblemInferno": 0.06
    }
   },
   {
@@ -34747,6 +36601,16 @@
      "avgPlace": 5.24,
      "top4": 0.34
     }
+   },
+   "mainCount": {
+    "3": 0.06,
+    "4": 0.36,
+    "6": 0.58
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.38,
+    "DA_18_EmblemHunter": 0.17,
+    "DA_18_EmblemInferno": 0.07
    }
   },
   {
@@ -34755,9 +36619,9 @@
    "mainCarry": "da_18_sivir",
    "mainTank": "da_18_lillia",
    "games": 157,
-   "avgPlace": 5.25,
-   "top4": 0.338,
-   "win": 0.088,
+   "avgPlace": 5.26,
+   "top4": 0.336,
+   "win": 0.086,
    "patchGames": 157,
    "playRate": 0.009,
    "level": 9,
@@ -34887,21 +36751,35 @@
     "top4": 0.338
    },
    "before": {
-    "games": 38,
-    "avgPlace": 4.95,
-    "top4": 0.342
+    "games": 37,
+    "avgPlace": 5.05,
+    "top4": 0.324
    },
    "byPatch": {
     "18.5c": {
-     "games": 38,
-     "avgPlace": 4.95,
-     "top4": 0.342
+     "games": 37,
+     "avgPlace": 5.05,
+     "top4": 0.324
     },
     "18.6": {
      "games": 157,
      "avgPlace": 5.29,
      "top4": 0.338
     }
+   },
+   "mainCount": {
+    "3": 0.03,
+    "4": 0.87,
+    "5": 0.06,
+    "6": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.82,
+    "DA_18_EmblemHunter": 0.24,
+    "DA_18_EmblemJuggernaut": 0.08,
+    "DA_18_EmblemInferno": 0.08,
+    "DA_18_EmblemPrimal": 0.08,
+    "DA_18_EmblemDefender": 0.06
    }
   },
   {
@@ -35057,6 +36935,14 @@
      "avgPlace": 5.23,
      "top4": 0.38
     }
+   },
+   "mainCount": {
+    "3": 0.97
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.36,
+    "DA_18_EmblemLunar": 0.11,
+    "DA_18_EmblemRapidfire": 0.06
    }
   },
   {
@@ -35065,8 +36951,8 @@
    "mainCarry": "da_18_aphelios",
    "mainTank": "da_amumu18",
    "games": 167,
-   "avgPlace": 5.28,
-   "top4": 0.348,
+   "avgPlace": 5.29,
+   "top4": 0.346,
    "win": 0.019,
    "patchGames": 167,
    "playRate": 0.0096,
@@ -35197,21 +37083,27 @@
     "top4": 0.341
    },
    "before": {
-    "games": 35,
-    "avgPlace": 5.06,
-    "top4": 0.4
+    "games": 34,
+    "avgPlace": 5.12,
+    "top4": 0.382
    },
    "byPatch": {
     "18.5c": {
-     "games": 35,
-     "avgPlace": 5.06,
-     "top4": 0.4
+     "games": 34,
+     "avgPlace": 5.12,
+     "top4": 0.382
     },
     "18.6": {
      "games": 167,
      "avgPlace": 5.31,
      "top4": 0.341
     }
+   },
+   "mainCount": {
+    "2": 0.99
+   },
+   "emblems": {
+    "DA_18_EmblemSlayer": 0.27
    }
   },
   {
@@ -35367,6 +37259,27 @@
      "avgPlace": 5.47,
      "top4": 0.294
     }
+   },
+   "mainCount": {
+    "3": 0.29,
+    "4": 0.12,
+    "5": 0.29,
+    "6": 0.06,
+    "7": 0.24
+   },
+   "emblems": {
+    "DA_18_EmblemSprykin": 0.88,
+    "DA_18_EmblemDefender": 0.18,
+    "DA_18_EmblemBrawler": 0.12,
+    "DA_18_EmblemFae": 0.12,
+    "DA_18_EmblemSlayer": 0.12,
+    "DA_18_EmblemExecutioner": 0.12,
+    "DA_18_EmblemHunter": 0.12,
+    "DA_18_EmblemRapidfire": 0.06,
+    "DA_18_EmblemBlackthorn": 0.06,
+    "DA_18_EmblemInvoker": 0.06,
+    "DA_18_EmblemPrimal": 0.06,
+    "DA_18_EmblemVanguard": 0.06
    }
   },
   {
@@ -35522,6 +37435,23 @@
      "avgPlace": 5.22,
      "top4": 0.5
     }
+   },
+   "mainCount": {
+    "2": 0.39,
+    "3": 0.06,
+    "4": 0.22,
+    "6": 0.33
+   },
+   "emblems": {
+    "DA_18_EmblemDefender": 0.5,
+    "DA_18_EmblemExecutioner": 0.11,
+    "DA_18_EmblemInferno": 0.06,
+    "DA_18_EmblemSprykin": 0.06,
+    "DA_18_EmblemFloraFatalis": 0.06,
+    "DA_18_EmblemInvoker": 0.06,
+    "DA_18_EmblemFae": 0.06,
+    "DA_18_EmblemPrimal": 0.06,
+    "DA_18_EmblemSpellweaver": 0.06
    }
   },
   {
@@ -35668,6 +37598,19 @@
      "avgPlace": 5.31,
      "top4": 0.231
     }
+   },
+   "mainCount": {
+    "3": 0.85,
+    "4": 0.15
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.46,
+    "DA_18_EmblemSprykin": 0.15,
+    "DA_18_EmblemFae": 0.08,
+    "DA_18_EmblemHunter": 0.08,
+    "DA_18_EmblemSpellweaver": 0.08,
+    "DA_18_EmblemSlayer": 0.08,
+    "DA_18_EmblemRapidfire": 0.08
    }
   },
   {
@@ -35823,6 +37766,12 @@
      "avgPlace": 5.25,
      "top4": 0.348
     }
+   },
+   "mainCount": {
+    "3": 0.99
+   },
+   "emblems": {
+    "DA_18_EmblemHunter": 0.1
    }
   },
   {
@@ -35978,6 +37927,21 @@
      "avgPlace": 5.38,
      "top4": 0.5
     }
+   },
+   "mainCount": {
+    "4": 0.88,
+    "5": 0.13
+   },
+   "emblems": {
+    "DA_18_EmblemFae": 0.38,
+    "DA_18_EmblemSlayer": 0.13,
+    "DA_18_EmblemSpellweaver": 0.13,
+    "DA_18_EmblemInvoker": 0.13,
+    "DA_18_EmblemInferno": 0.13,
+    "DA_18_EmblemBlossom": 0.13,
+    "DA_18_EmblemBlackthorn": 0.13,
+    "DA_18_EmblemCoven": 0.13,
+    "DA_18_EmblemVanguard": 0.13
    }
   },
   {
@@ -36133,6 +38097,19 @@
      "avgPlace": 5.18,
      "top4": 0.455
     }
+   },
+   "mainCount": {
+    "3": 0.18,
+    "5": 0.64,
+    "7": 0.18
+   },
+   "emblems": {
+    "DA_18_EmblemSprykin": 0.55,
+    "DA_18_EmblemLunar": 0.18,
+    "DA_18_EmblemBrawler": 0.09,
+    "DA_18_EmblemBlackthorn": 0.09,
+    "DA_18_EmblemInvoker": 0.09,
+    "DA_18_EmblemDefender": 0.09
    }
   },
   {
@@ -36288,6 +38265,16 @@
      "avgPlace": 5.35,
      "top4": 0.329
     }
+   },
+   "mainCount": {
+    "3": 0.03,
+    "4": 0.85,
+    "5": 0.05,
+    "6": 0.08
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.19,
+    "DA_18_EmblemVanguard": 0.11
    }
   },
   {
@@ -36443,6 +38430,18 @@
      "avgPlace": 5.55,
      "top4": 0.364
     }
+   },
+   "mainCount": {
+    "2": 0.82,
+    "3": 0.18
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.18,
+    "DA_18_EmblemFloraFatalisAugment": 0.18,
+    "DA_18_EmblemBlackthorn": 0.09,
+    "DA_18_EmblemSpellweaver": 0.09,
+    "DA_18_EmblemBlossom": 0.09,
+    "DA_18_EmblemFloraFatalis": 0.09
    }
   },
   {
@@ -36598,6 +38597,18 @@
      "avgPlace": 5.35,
      "top4": 0.261
     }
+   },
+   "mainCount": {
+    "3": 0.22,
+    "4": 0.22,
+    "5": 0.26,
+    "7": 0.26,
+    "8": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemCoven": 0.13,
+    "DA_18_EmblemInvoker": 0.13,
+    "DA_18_EmblemFloraFatalis": 0.09
    }
   },
   {
@@ -36753,6 +38764,16 @@
      "avgPlace": 5.68,
      "top4": 0.263
     }
+   },
+   "mainCount": {
+    "7": 0.95,
+    "10": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemLunar": 0.05,
+    "DA_18_EmblemHunter": 0.05,
+    "DA_18_EmblemBrawler": 0.05,
+    "DA_18_EmblemJuggernaut": 0.05
    }
   },
   {
@@ -36899,6 +38920,23 @@
      "avgPlace": 5.5,
      "top4": 0.417
     }
+   },
+   "mainCount": {
+    "3": 0.75,
+    "4": 0.08,
+    "5": 0.17
+   },
+   "emblems": {
+    "DA_18_EmblemInferno": 0.33,
+    "DA_18_EmblemExecutioner": 0.25,
+    "DA_18_EmblemPrimal": 0.08,
+    "DA_18_EmblemFloraFatalis": 0.08,
+    "DA_18_EmblemFloraFatalisAugment": 0.08,
+    "DA_18_EmblemSpellweaver": 0.08,
+    "DA_18_EmblemDefender": 0.08,
+    "DA_18_EmblemLunar": 0.08,
+    "DA_18_EmblemBlackthorn": 0.08,
+    "DA_18_EmblemBrawler": 0.08
    }
   },
   {
@@ -37054,6 +39092,25 @@
      "avgPlace": 5.26,
      "top4": 0.263
     }
+   },
+   "mainCount": {
+    "3": 0.16,
+    "4": 0.74,
+    "5": 0.05,
+    "6": 0.05
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.53,
+    "DA_18_EmblemHunter": 0.37,
+    "DA_18_EmblemJuggernaut": 0.11,
+    "DA_18_EmblemSlayer": 0.11,
+    "DA_18_EmblemFae": 0.11,
+    "DA_18_EmblemSpellweaver": 0.11,
+    "DA_18_EmblemRapidfire": 0.05,
+    "DA_18_EmblemSprykin": 0.05,
+    "DA_18_EmblemInferno": 0.05,
+    "DA_18_EmblemDefender": 0.05,
+    "DA_18_EmblemBlackthorn": 0.05
    }
   },
   {
@@ -37209,6 +39266,17 @@
      "avgPlace": 5.38,
      "top4": 0.375
     }
+   },
+   "mainCount": {
+    "3": 0.63,
+    "4": 0.38
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.38,
+    "DA_18_EmblemHunter": 0.25,
+    "DA_18_EmblemBrawler": 0.13,
+    "DA_18_EmblemBlossom": 0.13,
+    "DA_18_EmblemPrimal": 0.13
    }
   },
   {
@@ -37364,6 +39432,14 @@
      "avgPlace": 5.36,
      "top4": 0.364
     }
+   },
+   "mainCount": {
+    "2": 0.64,
+    "4": 0.36
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.36,
+    "DA_18_EmblemVanguard": 0.09
    }
   },
   {
@@ -37519,6 +39595,19 @@
      "avgPlace": 5.25,
      "top4": 0.375
     }
+   },
+   "mainCount": {
+    "2": 0.25,
+    "3": 0.13,
+    "4": 0.63
+   },
+   "emblems": {
+    "DA_18_EmblemDefender": 0.5,
+    "DA_18_EmblemFloraFatalis": 0.25,
+    "DA_18_EmblemInferno": 0.13,
+    "DA_18_EmblemBlossom": 0.13,
+    "DA_18_EmblemFloraFatalisAugment": 0.13,
+    "DA_18_EmblemLunar": 0.13
    }
   },
   {
@@ -37674,6 +39763,23 @@
      "avgPlace": 5.67,
      "top4": 0.267
     }
+   },
+   "mainCount": {
+    "3": 0.4,
+    "5": 0.13,
+    "6": 0.13,
+    "7": 0.27,
+    "9": 0.07
+   },
+   "emblems": {
+    "DA_18_EmblemBlossom": 0.53,
+    "DA_18_EmblemHunter": 0.2,
+    "DA_18_EmblemPrimal": 0.13,
+    "DA_18_EmblemSprykin": 0.07,
+    "DA_18_EmblemCoven": 0.07,
+    "DA_18_EmblemVanguard": 0.07,
+    "DA_18_EmblemBrawler": 0.07,
+    "DA_18_EmblemFloraFatalis": 0.07
    }
   },
   {
@@ -37820,6 +39926,20 @@
      "avgPlace": 5.7,
      "top4": 0.4
     }
+   },
+   "mainCount": {
+    "4": 0.6,
+    "6": 0.4
+   },
+   "emblems": {
+    "DA_18_EmblemJuggernaut": 0.7,
+    "DA_18_EmblemExecutioner": 0.5,
+    "DA_18_EmblemFloraFatalis": 0.2,
+    "DA_18_EmblemFloraFatalisAugment": 0.1,
+    "DA_18_EmblemCoven": 0.1,
+    "DA_18_EmblemInferno": 0.1,
+    "DA_18_EmblemVanguard": 0.1,
+    "DA_18_EmblemDefender": 0.1
    }
   },
   {
@@ -37960,21 +40080,27 @@
     "top4": 0.275
    },
    "before": {
-    "games": 31,
-    "avgPlace": 6.39,
-    "top4": 0.194
+    "games": 30,
+    "avgPlace": 6.33,
+    "top4": 0.2
    },
    "byPatch": {
     "18.5c": {
-     "games": 31,
-     "avgPlace": 6.39,
-     "top4": 0.194
+     "games": 30,
+     "avgPlace": 6.33,
+     "top4": 0.2
     },
     "18.6": {
      "games": 167,
      "avgPlace": 5.7,
      "top4": 0.275
     }
+   },
+   "mainCount": {
+    "3": 0.99
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.07
    }
   },
   {
@@ -38130,6 +40256,16 @@
      "avgPlace": 5.82,
      "top4": 0.273
     }
+   },
+   "mainCount": {
+    "2": 0.45,
+    "3": 0.18,
+    "4": 0.36
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.55,
+    "DA_18_EmblemSprykin": 0.09,
+    "DA_18_EmblemExecutioner": 0.09
    }
   },
   {
@@ -38285,7 +40421,11 @@
      "avgPlace": 5.84,
      "top4": 0.22
     }
-   }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {}
   },
   {
    "trait": "DA_18_Vanguard",
@@ -38440,6 +40580,16 @@
      "avgPlace": 6.09,
      "top4": 0
     }
+   },
+   "mainCount": {
+    "4": 1
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.55,
+    "DA_18_EmblemRapidfire": 0.36,
+    "DA_18_EmblemBlackthorn": 0.09,
+    "DA_18_EmblemCoven": 0.09,
+    "DA_18_EmblemElderwood": 0.09
    }
   },
   {
@@ -38595,6 +40745,20 @@
      "avgPlace": 5.85,
      "top4": 0.225
     }
+   },
+   "mainCount": {
+    "4": 0.78,
+    "5": 0.05,
+    "6": 0.18
+   },
+   "emblems": {
+    "DA_18_EmblemInvoker": 0.08,
+    "DA_18_EmblemVanguard": 0.08,
+    "DA_18_EmblemSlayer": 0.08,
+    "DA_18_EmblemFloraFatalis": 0.05,
+    "DA_18_EmblemSpellweaver": 0.05,
+    "DA_18_EmblemJuggernaut": 0.05,
+    "DA_18_EmblemLunar": 0.05
    }
   },
   {
@@ -38750,6 +40914,21 @@
      "avgPlace": 5.9,
      "top4": 0.258
     }
+   },
+   "mainCount": {
+    "4": 0.81,
+    "5": 0.03,
+    "6": 0.16
+   },
+   "emblems": {
+    "DA_18_EmblemVanguard": 0.45,
+    "DA_18_EmblemSlayer": 0.19,
+    "DA_18_EmblemBlossom": 0.1,
+    "DA_18_EmblemSpellweaver": 0.1,
+    "DA_18_EmblemLunar": 0.1,
+    "DA_18_EmblemFloraFatalis": 0.1,
+    "DA_18_EmblemInvoker": 0.06,
+    "DA_18_EmblemInferno": 0.06
    }
   },
   {
@@ -38905,6 +41084,19 @@
      "avgPlace": 6.08,
      "top4": 0.231
     }
+   },
+   "mainCount": {
+    "3": 0.38,
+    "5": 0.08,
+    "6": 0.15,
+    "7": 0.23,
+    "9": 0.15
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.38,
+    "DA_18_EmblemFae": 0.23,
+    "DA_18_EmblemRapidfire": 0.08,
+    "DA_18_EmblemJuggernaut": 0.08
    }
   },
   {
@@ -39060,6 +41252,22 @@
      "avgPlace": 5.92,
      "top4": 0.167
     }
+   },
+   "mainCount": {
+    "3": 0.08,
+    "4": 0.58,
+    "6": 0.33
+   },
+   "emblems": {
+    "DA_18_EmblemSpellweaver": 0.75,
+    "DA_18_EmblemInvoker": 0.42,
+    "DA_18_EmblemFloraFatalis": 0.17,
+    "DA_18_EmblemVanguard": 0.17,
+    "DA_18_EmblemLunar": 0.08,
+    "DA_18_EmblemPrimal": 0.08,
+    "DA_18_EmblemBlackthorn": 0.08,
+    "DA_18_EmblemBlossom": 0.08,
+    "DA_18_EmblemElderwood": 0.08
    }
   },
   {
@@ -39068,8 +41276,8 @@
    "mainCarry": "da_18_veigar",
    "mainTank": "da_18_ornn",
    "games": 55,
-   "avgPlace": 6.05,
-   "top4": 0.238,
+   "avgPlace": 6.02,
+   "top4": 0.242,
    "win": 0.048,
    "patchGames": 55,
    "playRate": 0.0031,
@@ -39200,21 +41408,31 @@
     "top4": 0.255
    },
    "before": {
-    "games": 8,
-    "avgPlace": 6.75,
-    "top4": 0.125
+    "games": 7,
+    "avgPlace": 6.57,
+    "top4": 0.143
    },
    "byPatch": {
     "18.5c": {
-     "games": 8,
-     "avgPlace": 6.75,
-     "top4": 0.125
+     "games": 7,
+     "avgPlace": 6.57,
+     "top4": 0.143
     },
     "18.6": {
      "games": 55,
      "avgPlace": 5.95,
      "top4": 0.255
     }
+   },
+   "mainCount": {
+    "3": 0.71,
+    "4": 0.04,
+    "5": 0.24
+   },
+   "emblems": {
+    "DA_18_EmblemElderwood": 0.11,
+    "DA_18_EmblemSprykin": 0.07,
+    "DA_18_EmblemFloraFatalisAugment": 0.05
    }
   },
   {
@@ -39370,6 +41588,20 @@
      "avgPlace": 5.93,
      "top4": 0.214
     }
+   },
+   "mainCount": {
+    "3": 0.71,
+    "4": 0.14,
+    "5": 0.14
+   },
+   "emblems": {
+    "DA_18_EmblemSpellweaver": 0.07,
+    "DA_18_EmblemPrimal": 0.07,
+    "DA_18_EmblemDefender": 0.07,
+    "DA_18_EmblemRapidfire": 0.07,
+    "DA_18_EmblemLunar": 0.07,
+    "DA_18_EmblemElderwood": 0.07,
+    "DA_18_EmblemVanguard": 0.07
    }
   },
   {
@@ -39516,6 +41748,19 @@
      "avgPlace": 6.13,
      "top4": 0.125
     }
+   },
+   "mainCount": {
+    "2": 0.75,
+    "4": 0.25
+   },
+   "emblems": {
+    "DA_18_EmblemDefender": 0.38,
+    "DA_18_EmblemSlayer": 0.25,
+    "DA_18_EmblemSpellweaver": 0.25,
+    "DA_18_EmblemExecutioner": 0.13,
+    "DA_18_EmblemFae": 0.13,
+    "DA_18_EmblemBlossom": 0.13,
+    "DA_18_EmblemLunar": 0.13
    }
   },
   {
@@ -39671,6 +41916,20 @@
      "avgPlace": 6.59,
      "top4": 0.185
     }
+   },
+   "mainCount": {
+    "3": 0.3,
+    "4": 0.52,
+    "5": 0.15,
+    "7": 0.04
+   },
+   "emblems": {
+    "DA_18_EmblemCoven": 0.19,
+    "DA_18_EmblemSpellweaver": 0.15,
+    "DA_18_EmblemInvoker": 0.11,
+    "DA_18_EmblemElderwood": 0.07,
+    "DA_18_EmblemDefender": 0.07,
+    "DA_18_EmblemLunar": 0.07
    }
   },
   {
@@ -39826,6 +42085,14 @@
      "avgPlace": 6.7,
      "top4": 0.148
     }
+   },
+   "mainCount": {
+    "3": 0.81,
+    "4": 0.19
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.74,
+    "DA_18_EmblemBrawler": 0.07
    }
   },
   {
@@ -39972,6 +42239,15 @@
      "avgPlace": 6.67,
      "top4": 0.111
     }
+   },
+   "mainCount": {
+    "3": 0.89,
+    "7": 0.11
+   },
+   "emblems": {
+    "DA_18_EmblemBrawler": 0.22,
+    "DA_18_EmblemSpellweaver": 0.22,
+    "DA_18_EmblemSlayer": 0.11
    }
   },
   {
@@ -40127,6 +42403,14 @@
      "avgPlace": 7.11,
      "top4": 0.028
     }
+   },
+   "mainCount": {
+    "3": 0.93,
+    "5": 0.03,
+    "7": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.25
    }
   },
   {
@@ -40282,6 +42566,21 @@
      "avgPlace": 7.14,
      "top4": 0
     }
+   },
+   "mainCount": {
+    "3": 0.07,
+    "4": 0.5,
+    "5": 0.36,
+    "7": 0.07
+   },
+   "emblems": {
+    "DA_18_EmblemCoven": 0.29,
+    "DA_18_EmblemSlayer": 0.14,
+    "DA_18_EmblemExecutioner": 0.07,
+    "DA_18_EmblemSpellweaver": 0.07,
+    "DA_18_EmblemRapidfire": 0.07,
+    "DA_18_EmblemInvoker": 0.07,
+    "DA_18_EmblemPrimal": 0.07
    }
   },
   {
@@ -40423,6 +42722,15 @@
      "avgPlace": 7.36,
      "top4": 0
     }
+   },
+   "mainCount": {
+    "3": 1
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.27,
+    "DA_18_EmblemSpellweaver": 0.09,
+    "DA_18_EmblemFloraFatalis": 0.09,
+    "DA_18_EmblemRapidfire": 0.09
    }
   },
   {
@@ -40578,6 +42886,16 @@
      "avgPlace": 7.41,
      "top4": 0
     }
+   },
+   "mainCount": {
+    "2": 0.91,
+    "3": 0.03,
+    "4": 0.06
+   },
+   "emblems": {
+    "DA_18_EmblemDefender": 0.09,
+    "DA_18_EmblemSlayer": 0.06,
+    "DA_18_EmblemRapidfire": 0.06
    }
   },
   {
@@ -40733,6 +43051,15 @@
      "avgPlace": 7.39,
      "top4": 0.043
     }
+   },
+   "mainCount": {
+    "3": 0.91,
+    "4": 0.03,
+    "7": 0.03
+   },
+   "emblems": {
+    "DA_18_EmblemExecutioner": 0.13,
+    "DA_18_EmblemBlossom": 0.07
    }
   },
   {
@@ -40867,7 +43194,11 @@
      "avgPlace": 7.64,
      "top4": 0
     }
-   }
+   },
+   "mainCount": {
+    "2": 1
+   },
+   "emblems": {}
   }
  ]
 }
