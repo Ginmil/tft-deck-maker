@@ -591,6 +591,41 @@ function formFor(c, mainTrait, team) {
   return [...forms].sort((a, b) => count(traitOf(b)) - count(traitOf(a)))[0];
 }
 
+/** 랭커들이 이 덱에서 주력 시너지 상징을 쓴 비율 (20% 이상일 때) */
+function emblemNote(m) {
+  const e = state.data.emblems.find(x => x.trait === m.trait);
+  const r = e && Object.entries(m.emblems || {}).find(([id]) => id === e.id || (e.ids || []).includes(id))?.[1];
+  return r >= 0.2 ? ` <span class="tag soft" title="랭커들이 이 덱을 쓴 판 중 ${Math.round(r * 100)}%에서 ${esc(e.name)}을 썼어요">${esc(e.name)} ${Math.round(r * 100)}%</span>` : '';
+}
+
+/**
+ * 자주 쓰인 순으로 자리를 채우면 주력 시너지가 단계 사이에 걸릴 수 있음(개화 럭스: 선택 39% 애쉬까지 넣어 6개화 = 1명 낭비).
+ * 랭커 기록(mainCount)엔 6개화가 0% → 선택 자리(50% 미만, 캐리·탱커 아님) 하나를 다음 후보로 바꿔 낭비를 줄임.
+ */
+function fixMainWaste(team, info, m, byLower, carry) {
+  const bps = state.data.traits[m.trait]?.breakpoints;
+  if (!bps?.length) return;
+  const countOf = list => list.reduce((s, c) => s + (c.traits.includes(m.trait) ? (c.weights?.[m.trait] ?? 1) : 0), 0);
+  const waste = list => { const n = countOf(list); const r = bps.filter(b => b <= n).at(-1) || 0; return n - r; };
+  if (!waste(team)) return;
+  const slotsOf = list => list.reduce((s, c) => s + (c.slots || 1), 0);
+  const used = new Set(team.map(c => c.base || c.id));
+  const cands = m.core.map(u => ({ u, c: byLower.get(u.id) })).filter(x => x.c && !used.has(x.c.base || x.c.id))
+    .map(x => ({ ...x, c: formFor(x.c, m.trait, team) || x.c }));
+  let best = null;
+  for (let i = 0; i < team.length; i++) {
+    const out = team[i];
+    if (out === carry || out.id === m.mainTank || (info[out.id]?.rate ?? 1) >= 0.5) continue;
+    for (const { u, c } of cands) {
+      const next = team.map((x, k) => (k === i ? c : x));
+      if (slotsOf(next) > m.level) continue;
+      const w = waste(next), share = m.mainCount?.[countOf(next)] || 0; // 랭커가 실제로 많이 간 인원 쪽을 우선
+      if (w < waste(team) && (!best || w < best.w || (w === best.w && (share > best.share || (share === best.share && u.rate > best.u.rate))))) best = { i, c, u, w, share };
+    }
+  }
+  if (best) { delete info[team[best.i].id]; team[best.i] = best.c; info[best.c.id] = best.u; }
+}
+
 function metaDecks(minGames) {
   const d = state.data;
   if (!metaAvailable()) return [];
@@ -618,6 +653,7 @@ function metaDecks(minGames) {
       if (f) { swap[team[i].id] = f; info[f.id] = info[team[i].id]; team[i] = f; }
     }
     if (swap[carry.id]) carry = swap[carry.id];
+    fixMainWaste(team, info, m, byLower, carry);
     const ev = evaluateTeam(team, d, { carryIds: [carry.id] });
     let tank = m.mainTank ? byLower.get(m.mainTank) : null;
     if (tank && swap[tank.id]) tank = swap[tank.id];
@@ -629,7 +665,7 @@ function metaDecks(minGames) {
     for (const [id, b] of Object.entries(m.builds || {})) { let c = byLower.get(id); if (c && swap[c.id]) c = swap[c.id]; if (c && b) builds[c.id] = b; }
     return {
       ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id,
-      title: `<span class="tier t${tier}">${tier}</span> ${esc(traitName(m.trait))} · ${esc(carry.name)}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
+      title: `<span class="tier t${tier}">${tier}</span> ${esc(traitName(m.trait))} · ${esc(carry.name)}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${emblemNote(m)}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
       metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}`,
     };
   }).filter(Boolean);
@@ -863,7 +899,7 @@ function renderTiers(byId) {
 }
 /** 티어표 덱 상세: 대표 버전 덱 카드 + 같은 덱의 다른 버전 성적 */
 function tierDetailHtml(x, byId) {
-  const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(traitName(x.m.trait))} · ${esc(carryOfDeck(x)?.name || '')} <span class="tag soft">${esc(deckType(x))}</span>`,
+  const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(traitName(x.m.trait))} · ${esc(carryOfDeck(x)?.name || '')} <span class="tag soft">${esc(deckType(x))}</span>${emblemNote(x.mainM || x.m)}`,
     metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.m.level}` };
   const card = deckCard(main, 0, byId).replace('<span class="rank">#1</span>', '');
   if (!x.variants?.length) return card;
