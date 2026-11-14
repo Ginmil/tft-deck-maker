@@ -507,11 +507,63 @@ const metaAvailable = () => {
 const metaShrunk = m => (m.avgPlace * m.games + 45) / (m.games + 10); // 판수가 적으면 평균(4.5등) 쪽으로
 
 /** 통계의 메타 덱(comps) → 덱 카드 객체 목록 */
-function metaDecks(minGames) {
+// 같은 덱인데 판마다 주력 시너지가 다르게 잡혀(예: 처형자/소환사) 둘로 나뉜 메타 덱 합치기.
+// 같은 핵심 캐리 + 레벨만큼 채운 구성이 완전히 같으면 → 한 덱. 서로 다른 판들이라 판수 가중 평균으로 합쳐도 정확함.
+// (한 명만 달라도 합치면 안 됨: 처형자 유나라 2.97등 vs 개화 유나라 4.54등처럼 성적이 크게 다름)
+function mergedComps() {
   const d = state.data, w = state.weights;
+  const byLower = new Map(d.champions.map(c => [c.id.toLowerCase(), c]));
+  const teamOf = m => {
+    const bases = new Set();
+    let slots = 0;
+    for (const u of m.core) {
+      const c = byLower.get(u.id);
+      if (!c || bases.has(c.base || c.id) || slots + (c.slots || 1) > m.level) continue;
+      bases.add(c.base || c.id); slots += c.slots || 1;
+      if (slots >= m.level) break;
+    }
+    return bases;
+  };
+  const groups = [];
+  for (const m of [...w.comps].sort((a, b) => b.games - a.games)) {
+    const carry = m.mainCarry || m.carry, team = teamOf(m);
+    const g = groups.find(x => x.carry === carry && x.team.size === team.size && [...team].every(b => x.team.has(b)));
+    if (g) g.list.push(m); else groups.push({ carry, team, list: [m] });
+  }
+  const avg = (list, f, wf = x => x.games) => {
+    const tw = list.reduce((s, x) => s + (f(x) != null ? wf(x) : 0), 0);
+    return tw ? list.reduce((s, x) => s + (f(x) != null ? f(x) * wf(x) : 0), 0) / tw : null;
+  };
+  const side = list => {
+    const xs = list.filter(Boolean);
+    if (!xs.length) return null;
+    const games = xs.reduce((s, x) => s + x.games, 0);
+    return { games, avgPlace: Math.round(avg(xs, x => x.avgPlace) * 100) / 100, top4: Math.round(avg(xs, x => x.top4) * 1000) / 1000 };
+  };
+  return groups.map(({ list }) => {
+    if (list.length === 1) return list[0];
+    const [main] = list;
+    const byPatch = {};
+    for (const p of new Set(list.flatMap(m => Object.keys(m.byPatch || {})))) byPatch[p] = side(list.map(m => m.byPatch?.[p]));
+    return {
+      ...main,
+      games: list.reduce((s, m) => s + m.games, 0),
+      avgPlace: Math.round(avg(list, m => m.avgPlace) * 100) / 100,
+      top4: Math.round(avg(list, m => m.top4) * 1000) / 1000,
+      win: Math.round(avg(list, m => m.win) * 1000) / 1000,
+      playRate: list.reduce((s, m) => s + (m.playRate || 0), 0),
+      patchGames: main.patchGames == null ? undefined : list.reduce((s, m) => s + (m.patchGames || 0), 0),
+      now: side(list.map(m => m.now)), before: side(list.map(m => m.before)), byPatch,
+      mergedTraits: [...new Set(list.slice(1).map(m => m.trait).filter(t => t !== main.trait))],
+    };
+  });
+}
+
+function metaDecks(minGames) {
+  const d = state.data;
   if (!metaAvailable()) return [];
   const byLower = new Map(d.champions.map(c => [c.id.toLowerCase(), c]));
-  return w.comps.filter(m => m.games >= minGames).map(m => {
+  return mergedComps().filter(m => m.games >= minGames).map(m => {
     const carry = byLower.get(m.mainCarry || m.carry);
     if (!carry) return null;
     // 레벨만큼 자리 채우기: 자주 쓰인 순, 같은 챔피언의 다른 형태(럭스 등)는 하나만, 2칸 챔피언 고려
@@ -536,7 +588,7 @@ function metaDecks(minGames) {
     for (const [id, b] of Object.entries(m.builds || {})) { const c = byLower.get(id); if (c && b) builds[c.id] = b; }
     return {
       ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds,
-      title: `<span class="tier t${tier}">${tier}</span> ${esc(traitName(m.trait))} · ${esc(carry.name)}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}`,
+      title: `<span class="tier t${tier}">${tier}</span> ${esc(traitName(m.trait))} · ${esc(carry.name)}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
       metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}`,
     };
   }).filter(Boolean);
@@ -719,7 +771,10 @@ function metaNearBoard(board, carryId) {
       board: { added: d.team.filter(c => !bases.has(c.base || c.id)).map(c => c.id), removed: mine.filter(c => !ids.has(c.id)).map(c => c.id) },
       metaInfo: `<b>내 보드와 ${overlap}명 겹침</b>${carryMatch ? ' · 같은 핵심 캐리' : ''} · ${d.metaInfo}`,
     };
-  }).filter(d => d.overlap >= need).sort((a, b) => b.rank - a.rank).slice(0, 3);
+  }).filter(d => d.overlap >= need).sort((a, b) => b.rank - a.rank)
+    // 보드에 적용했을 때 결과 구성이 같은 덱은 하나만 (예: 처형자·소라카 / 소환사·소라카 → 둘 다 같은 8명)
+    .filter((d, i, arr) => arr.findIndex(x => x.team.map(c => c.base || c.id).sort().join() === d.team.map(c => c.base || c.id).sort().join()) === i)
+    .slice(0, 3);
 }
 
 function runBoard(btn) {
