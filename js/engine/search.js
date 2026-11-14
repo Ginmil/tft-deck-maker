@@ -103,20 +103,20 @@ export function itemFit(champ, item) {
   return FIT[item.role]?.[champ.role] ?? 0;
 }
 
-export function decksForItems(data, { itemIds, size, maxCost, emblems = [], ...filters }) {
+export function decksForItems(data, { itemIds, size, maxCost, emblems = [], top = 3, carryId = null, ...filters }) {
   const { exclude = [], max5 = Infinity } = filters;
   const items = itemIds.map(id => data.items.find(i => i.id === id)).filter(Boolean);
   if (!items.length) return [];
   // 아이템을 가장 잘 쓰는 챔피언 순위 (고코스트 캐리 우대)
   const ranked = data.champions
-    .filter(c => c.cost <= maxCost && !exclude.includes(c.id) && !(c.cost === 5 && max5 < 1))
+    .filter(c => carryId ? c.id === carryId : c.cost <= maxCost && !exclude.includes(c.id) && !(c.cost === 5 && max5 < 1))
     .map(c => {
       const fit = items.reduce((s, it) => s + itemFit(c, it), 0);
       return { champ: c, fit, rank: fit * (1 + 0.15 * c.cost) };
     })
     .filter(r => r.fit > 0)
     .sort((a, b) => b.rank - a.rank)
-    .slice(0, 3);
+    .slice(0, top);
 
   return ranked.map(({ champ, fit }) => {
     // 캐리의 시너지 중 덱 중심 시너지를 목표로 (첫 단계)
@@ -140,11 +140,114 @@ function distributeItems(team, items, carryId) {
   for (const it of sorted) {
     const best = team
       .filter(c => slots[c.id].length < 3)
-      .map(c => ({ c, f: itemFit(c, it) + (c.id === carryId && it.role !== 'TANK' ? 0.5 : 0) + c.cost * 0.05 }))
+      .map(c => { const fit = itemFit(c, it); return { c, f: fit + (c.id === carryId && it.role !== 'TANK' && fit > 0 ? 0.5 : 0) + c.cost * 0.05 }; })
       .sort((a, b) => b.f - a.f)[0];
     if (best) slots[best.c.id].push(it);
   }
   return slots;
+}
+
+// -------------------------------------------------------------
+// 기능 5. 재료 아이템 → 조합 추천
+// 가진 재료를 짝짓는 모든 방법(최대 매칭)을 따져 보고, 캐리 1명 + 탱커 1명이 가장 잘 쓰는 조합을 고른 뒤
+// 그 완성 아이템으로 덱을 추천. 짝이 없는 재료는 남겨 둠(다음 라운드용).
+// -------------------------------------------------------------
+/** 재료 두 개 → 완성 아이템/상징 조합표 */
+export function recipeBook(data) {
+  const book = new Map();
+  const key = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
+  for (const e of data.emblems || []) if (e.recipe?.length === 2) book.set(key(...e.recipe), { kind: 'emblem', ...e });
+  for (const it of data.items || []) if (it.recipe?.length === 2) book.set(key(...it.recipe), { kind: 'item', ...it });
+  return { get: (a, b) => book.get(key(a, b)) };
+}
+
+/** 재료 목록 → 짝짓는 방법들 (더 만들 수 있는데 남겨 두는 경우는 제외) */
+function pairings(components, book, limit = 20000) {
+  const out = [];
+  const rec = (rest, made, left) => {
+    if (out.length >= limit) return;
+    if (!rest.length) { out.push({ made, left }); return; }
+    const [c, ...others] = rest;
+    const tried = new Set();
+    let paired = false;
+    others.forEach((p, i) => {
+      if (tried.has(p)) return;
+      tried.add(p);
+      const r = book.get(c, p);
+      if (!r) return;
+      paired = true;
+      rec(others.filter((_, j) => j !== i), [...made, { result: r, from: [c, p] }], left);
+    });
+    if (!paired) rec(others, made, [...left, c]);
+  };
+  rec([...components].sort(), [], []);
+  return out;
+}
+
+/** 아이템 묶음 점수: 캐리 1명(딜템 3칸) + 탱커 1명(탱템 3칸) + 나머지 */
+function planScore(items, emblems, champs) {
+  const best = (pool, filter, costW) => {
+    let top = { score: 0, champ: null, used: [] };
+    for (const c of champs) {
+      if (!filter(c)) continue;
+      const seen = {};
+      const fits = pool.map((it, k) => {
+        const dup = seen[it.id] = (seen[it.id] || 0) + 1;
+        return { k, f: itemFit(c, it) * (dup > 1 ? 0.6 : 1) }; // 같은 아이템 중복은 효율이 떨어짐
+      }).filter(x => x.f > 0).sort((a, b) => b.f - a.f).slice(0, 3);
+      const sc = fits.reduce((s, x) => s + x.f, 0) * (1 + costW * c.cost);
+      if (sc > top.score) top = { score: sc, champ: c, used: fits.map(x => x.k) };
+    }
+    return top;
+  };
+  const dmg = items.filter(it => it.role !== 'TANK');
+  const carry = best(dmg, c => c.role !== 'TANK', 0.15);
+  const restDmg = dmg.filter((_, k) => !carry.used.includes(k));
+  const tank = best(items.filter(it => it.role === 'TANK').concat(restDmg.filter(it => it.role === 'FLEX')), c => c.role === 'TANK' || c.role === 'FIGHTER', 0.05);
+  const others = items.length - carry.used.length - tank.used.length;
+  return { score: carry.score + tank.score * 0.8 + others * 0.3 + emblems.length * 0.8, carry: carry.champ, tank: tank.champ };
+}
+
+export function craftPlans(data, { components, plans = 3, size, maxCost, ...filters }) {
+  const { exclude = [], max5 = Infinity } = filters;
+  const book = recipeBook(data);
+  const champs = data.champions.filter(c => c.cost <= maxCost && !exclude.includes(c.id) && !(c.cost === 5 && max5 < 1));
+  const seen = new Set();
+  const scored = [];
+  for (const p of pairings(components, book)) {
+    const k = p.made.map(m => m.result.id).sort().join(',');
+    if (seen.has(k)) continue;
+    seen.add(k);
+    const items = p.made.filter(m => m.result.kind === 'item').map(m => m.result);
+    const emblems = p.made.filter(m => m.result.kind === 'emblem').map(m => m.result.trait);
+    if (!items.length) continue;
+    scored.push({ ...p, items, emblems, ...planScore(items, emblems, champs) });
+  }
+  scored.sort((a, b) => b.score - a.score);
+  // 비슷한 조합만 나오지 않게: 먼저 캐리 유형(물리/마법/전사형)별 최고 조합, 남는 자리는 아이템이 2개 이상 다른 조합
+  const picked = [];
+  const ids = p => p.made.map(m => m.result.id);
+  for (const p of scored) {
+    if (picked.length >= plans) break;
+    if (p.carry && !picked.some(q => q.carry?.role === p.carry.role)) picked.push(p);
+  }
+  for (const p of scored) {
+    if (picked.length >= plans) break;
+    if (!picked.includes(p) && picked.every(q => diffCount(ids(p), ids(q)) >= 2)) picked.push(p);
+  }
+  picked.sort((a, b) => b.score - a.score);
+  return picked.map(p => {
+    const [deck] = decksForItems(data, { ...filters, itemIds: p.items.map(i => i.id), emblems: p.emblems, size, maxCost, top: 1, carryId: p.carry?.id });
+    return deck ? { ...deck, craft: { made: p.made, left: p.left, score: p.score } } : null;
+  }).filter(Boolean);
+}
+
+/** 두 아이템 목록에서 서로 다른 개수 (중복 고려) */
+function diffCount(a, b) {
+  const rest = [...b];
+  let diff = 0;
+  for (const x of a) { const i = rest.indexOf(x); if (i < 0) diff++; else rest.splice(i, 1); }
+  return diff;
 }
 
 // -------------------------------------------------------------

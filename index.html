@@ -93,8 +93,13 @@
 
     <!-- 2. 아이템 -->
     <section class="panel" id="panel-items" hidden>
-      <p class="help">가지고 있는 완성 아이템을 고르세요. 아이템을 가장 잘 쓰는 캐리와 그 캐리 중심 덱을 찾아줍니다.</p>
+      <div class="bdItemTabs itemMode" id="itemMode" role="tablist">
+        <button class="bp on" data-mode="full">완성 아이템</button>
+        <button class="bp" data-mode="comp">재료 아이템</button>
+      </div>
+      <p class="help" id="itemHelp">가지고 있는 완성 아이템을 고르세요. 아이템을 가장 잘 쓰는 캐리와 그 캐리 중심 덱을 찾아줍니다.</p>
       <div class="picked" id="itemPicked"></div>
+      <div class="craftable" id="craftable" hidden></div>
       <input class="filter" id="itemFilter" placeholder="아이템 검색">
       <div class="grid" id="itemGrid"></div>
       <button class="btn primary big" id="runItems">캐리 & 덱 찾기</button>

@@ -34,19 +34,29 @@ const champions = [
   {apiName:'TFT99_Summon',name:'소환된 묘목',cost:8,traits:[],role:''},
 ];
 const setTraits = traits.map(([apiName,name,bps])=>({apiName,name,desc:`<b>${name}</b> 효과`,effects:bps.map(b=>({minUnits:b,maxUnits:25000}))}));
-const item = (id,name,effects)=>({apiName:`TFT_Item_${id}`,name,composition:['A','B'],effects,associatedTraits:[],incompatibleTraits:[]});
+// 재료 아이템 (실제 게임과 같은 apiName·조합식)
+const C = { BF:'TFT_Item_BFSword', Bow:'TFT_Item_RecurveBow', Rod:'TFT_Item_NeedlesslyLargeRod', Tear:'TFT_Item_TearOfTheGoddess',
+  Vest:'TFT_Item_ChainVest', Cloak:'TFT_Item_NegatronCloak', Belt:'TFT_Item_GiantsBelt', Glove:'TFT_Item_SparringGloves', Spat:'TFT_Item_Spatula' };
+const comp = (key,name,effects)=>({apiName:C[key],name,composition:[],effects});
+const item = (id,name,a,b,effects)=>({apiName:`TFT_Item_${id}`,name,composition:[C[a],C[b]],effects,associatedTraits:[],incompatibleTraits:[]});
 const items = [
-  item('IE','무한의 대검',{AD:0.35,CritChance:0.35}), item('LW','최후의 속삭임',{AD:0.15,AS:0.2,CritChance:0.2}),
-  item('GS','거인 학살자',{AD:0.25,AP:20,AS:0.1}), item('JG','보석 건틀릿',{AP:35,CritChance:0.35}),
-  item('Rab','라바돈의 죽음모자',{AP:50}), item('BG','푸른 파수꾼',{AP:20,Mana:10}),
-  item('WM','워모그의 갑옷',{Health:600}), item('DC','용의 발톱',{MagicResist:65}),
-  item('GA','가고일 돌갑옷',{Armor:25,MagicResist:25}), item('Bramble','가시 갑옷',{Armor:65}),
-  {apiName:'TFT_Item_BFSword',name:'B.F. 대검',composition:[],effects:{AD:0.1}},
+  comp('BF','B.F. 대검',{AD:0.1}), comp('Bow','곡궁',{AS:0.1}), comp('Rod','쓸데없이 큰 지팡이',{AP:10}),
+  comp('Tear','여신의 눈물',{Mana:15}), comp('Vest','쇠사슬 조끼',{Armor:20}), comp('Cloak','음전자 망토',{MagicResist:20}),
+  comp('Belt','거인의 허리띠',{Health:150}), comp('Glove','연습용 장갑',{CritChance:0.2}), comp('Spat','뒤집개',{}),
+  item('IE','무한의 대검','BF','Glove',{AD:0.35,CritChance:0.35}), item('LW','최후의 속삭임','Bow','Glove',{AD:0.15,AS:0.2,CritChance:0.2}),
+  item('GS','거인 학살자','BF','Bow',{AD:0.25,AP:20,AS:0.1}), item('Deathblade','죽음의 검','BF','BF',{AD:0.6}),
+  item('RedBuff','붉은 덩굴정령','Bow','Bow',{AS:0.45}), item('Bloodthirster','피바라기','BF','Cloak',{AD:0.2,AP:20,MagicResist:20}),
+  item('JG','보석 건틀릿','Rod','Glove',{AP:35,CritChance:0.35}), item('Rab','라바돈의 죽음모자','Rod','Rod',{AP:50}),
+  item('BG','푸른 파수꾼','Tear','Tear',{AP:20,Mana:10}), item('Archangel','대천사의 지팡이','Rod','Tear',{AP:20,Mana:15}),
+  item('Shojin','쇼진의 창','BF','Tear',{AD:0.15,AP:15,Mana:15}), item('Guinsoo','구인수의 격노검','Rod','Bow',{AP:10,AS:0.1}),
+  item('WM','워모그의 갑옷','Belt','Belt',{Health:600}), item('DC','용의 발톱','Cloak','Cloak',{MagicResist:65}),
+  item('GA','가고일 돌갑옷','Vest','Cloak',{Armor:25,MagicResist:25}), item('Bramble','가시 갑옷','Vest','Vest',{Armor:65}),
+  item('Sunfire','태양불꽃 망토','Vest','Belt',{Armor:20,Health:250}), item('Titans','거인의 결의','Bow','Vest',{Armor:20,AS:0.1}),
   {apiName:'TFT_Item_Artifact_Fishbones',name:'생선대가리(샘플 유물)',composition:[],effects:{}},
   {apiName:'TFT_Item_Artifact_Manazane',name:'마나자네(샘플 유물)',composition:[],effects:{}},
   {apiName:'TFT_Item_IERadiant',name:'찬란한 무한의 대검(샘플)',composition:[],effects:{}},
 ];
-const emb = (t,name)=>({apiName:`TFT99_Item_${t}EmblemItem`,name,composition:['X','Y'],effects:{},associatedTraits:[`TFT99_${t}`],incompatibleTraits:[`TFT99_${t}`]});
-items.push(emb('Duelist','결투가 상징'), emb('Sniper','저격수 상징'), emb('Fairy','요정 상징'), emb('Forest','숲 상징'), emb('Bruiser','난동꾼 상징'), emb('Sorc','마법사 상징'));
+const emb = (t,name,c)=>({apiName:`TFT99_Item_${t}EmblemItem`,name,composition:[C.Spat,C[c]],effects:{},associatedTraits:[`TFT99_${t}`],incompatibleTraits:[`TFT99_${t}`]});
+items.push(emb('Duelist','결투가 상징','Bow'), emb('Sniper','저격수 상징','Glove'), emb('Fairy','요정 상징','Tear'), emb('Forest','숲 상징','Belt'), emb('Bruiser','난동꾼 상징','Vest'), emb('Sorc','마법사 상징','Rod'));
 const raw = { items, setData:[{number:99,mutator:'TFTSet99',name:'샘플 세트(테스트용)',champions,traits:setTraits}] };
 console.log(JSON.stringify(raw));

@@ -16,7 +16,7 @@
 // =============================================================
 
 // 변환 규칙을 바꾸면 이 숫자를 올리세요. 브라우저에 저장된 예전 변환 결과를 자동으로 버리고 새로 받습니다.
-export const ADAPTER_VERSION = 9;
+export const ADAPTER_VERSION = 10;
 
 export const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -122,21 +122,28 @@ export function normalize(raw, setKey) {
         + ((it.composition || []).length === 2 ? 1 : 0);
       const prev = emblemByTrait[trait];
       const ids = [...(prev?.ids || []), it.apiName]; // 같은 시너지의 상징 아이템 전부 (통계 매칭용)
-      if (!prev || prev.pref < pref) emblemByTrait[trait] = { id: it.apiName, name: it.name, trait, icon: iconUrl(it.icon), pref, ids };
+      const recipe = (it.composition || []).length === 2 ? it.composition : prev?.recipe; // 뒤집개 + 재료
+      if (!prev || prev.pref < pref) emblemByTrait[trait] = { id: it.apiName, name: it.name, trait, icon: iconUrl(it.icon), pref, ids, recipe };
       else prev.ids = ids;
     } else if (it.apiName.startsWith(itemFamily) && (it.composition || []).length === 2 && !seenItem.has(it.name)) {
       seenItem.add(it.name);
       const known = Object.keys(ITEM_ROLES).find(k => it.apiName.endsWith(k));
       const eff = Object.values(it.effects || {}).some(v => Number(v) > 0) ? it.effects : effectsFromComponents(it.composition);
-      items.push({ id: it.apiName, name: it.name, role: known ? ITEM_ROLES[known] : itemRole(eff), icon: iconUrl(it.icon) });
+      items.push({ id: it.apiName, name: it.name, role: known ? ITEM_ROLES[known] : itemRole(eff), icon: iconUrl(it.icon), recipe: it.composition });
     }
   }
   const emblems = Object.values(emblemByTrait).map(({ pref, ...e }) => e);
+  // 재료 아이템: 완성 아이템·상징 조합식에 나오는 것 (대검, 활, 지팡이 … 뒤집개, 프라이팬)
+  const rawById = new Map((raw.items || []).map(it => [it.apiName, it]));
+  const componentIds = [...new Set([...items, ...emblems].flatMap(i => i.recipe || []))].filter(id => rawById.get(id)?.name);
+  const order = id => { const k = COMPONENT_ORDER.findIndex(n => id.includes(n)); return k < 0 ? 99 : k; };
+  const components = componentIds.sort((a, b) => order(a) - order(b) || a.localeCompare(b))
+    .map(id => ({ id, name: stripTags(rawById.get(id).name), icon: iconUrl(rawById.get(id).icon) }));
 
   return {
     source: 'communitydragon',
     set: { key: set.key, number: set.number, name: setName(set) },
-    traits, champions, itemInfo, recipes,
+    traits, champions, itemInfo, recipes, components,
     artifacts: artifacts.sort((a, b) => a.name.localeCompare(b.name, 'ko')),
     radiants: radiants.sort((a, b) => a.name.localeCompare(b.name, 'ko')),
     items: items.sort((a, b) => a.name.localeCompare(b.name, 'ko')),
@@ -211,6 +218,7 @@ const COMPONENT_STATS = {
   BFSword: { AD: 1 }, RecurveBow: { AS: 1 }, NeedlesslyLargeRod: { AP: 1 }, TearOfTheGoddess: { Mana: 1 },
   ChainVest: { Armor: 1 }, NegatronCloak: { MagicResist: 1 }, GiantsBelt: { Health: 1 }, SparringGloves: { CritChance: 1 },
 };
+const COMPONENT_ORDER = ['BFSword', 'RecurveBow', 'NeedlesslyLargeRod', 'TearOfTheGoddess', 'ChainVest', 'NegatronCloak', 'GiantsBelt', 'SparringGloves', 'Spatula', 'FryingPan'];
 function effectsFromComponents(comp) {
   const eff = {};
   for (const c of comp || []) {

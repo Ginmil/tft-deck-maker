@@ -3,7 +3,7 @@
 // 데이터 → 어댑터(normalize) → 엔진(search) → 화면
 // =============================================================
 import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './adapters/cdragon.js';
-import { decksForTraits, decksForItems, emblemTeamMaker, decksFromBoard } from './engine/search.js';
+import { decksForTraits, decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
 import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits } from './builder.js';
 
@@ -16,6 +16,8 @@ const state = {
   data: null,         // 공통 형식 데이터
   emblems: [],        // 고른 상징 (시너지 id, 중복 가능)
   items: [],          // 고른 아이템 id (중복 가능)
+  comps: [],          // 고른 재료 아이템 id (중복 가능)
+  itemMode: 'full',   // 아이템 탭: full = 완성 아이템, comp = 재료 아이템
   desired: {},        // 시너지 탭 목표 { traitId: bp }
   emblemDesired: {},  // 상징 탭 추가 목표
   weights: null,      // 통계 가중치 (tools/collect-stats.mjs 결과)
@@ -124,7 +126,7 @@ function setData(data) {
   state.data = data;
   applyWeights();
   // 이벤트 핸들러가 같은 객체를 참조하므로 새로 만들지 않고 비운다
-  state.emblems.length = 0; state.items.length = 0;
+  state.emblems.length = 0; state.items.length = 0; state.comps.length = 0;
   for (const k in state.desired) delete state.desired[k];
   for (const k in state.emblemDesired) delete state.emblemDesired[k];
   $('setLabel').textContent = `세트 ${data.set.number ?? ''} · ${data.set.name}`;
@@ -156,7 +158,16 @@ function renderEmblems() {
     `<span class="chip gold">${esc(traitName(t))} 상징 ×${n}<button data-trait="${esc(t)}" aria-label="빼기">✕</button></span>`).join('');
 }
 
+const ITEM_HELP = {
+  full: '가지고 있는 완성 아이템을 고르세요. 아이템을 가장 잘 쓰는 캐리와 그 캐리 중심 덱을 찾아줍니다.',
+  comp: '가지고 있는 <b>재료 아이템</b>을 모두 담으세요(같은 재료는 여러 번). 어떻게 짝지어 만들지 3가지 방법과 각 방법에 맞는 덱을 추천해요.',
+};
 function renderItems() {
+  for (const b of $('itemMode').querySelectorAll('button')) b.classList.toggle('on', b.dataset.mode === state.itemMode);
+  $('itemHelp').innerHTML = ITEM_HELP[state.itemMode];
+  $('runItems').textContent = state.itemMode === 'comp' ? '조합 & 덱 추천' : '캐리 & 덱 찾기';
+  $('craftable').hidden = state.itemMode !== 'comp';
+  if (state.itemMode === 'comp') return renderComps();
   const q = $('itemFilter').value.trim();
   const list = (state.data?.items || []).filter(i => !q || i.name.includes(q));
   $('itemGrid').innerHTML = list.map(i =>
@@ -165,6 +176,37 @@ function renderItems() {
   const counts = countBy(state.items);
   $('itemPicked').innerHTML = Object.entries(counts).map(([id, n]) =>
     `<span class="chip">${esc(byId[id]?.name)}${n > 1 ? ' ×' + n : ''}<button data-item="${esc(id)}" aria-label="빼기">✕</button></span>`).join('');
+}
+
+function renderComps() {
+  const comps = state.data?.components || [];
+  const q = $('itemFilter').value.trim();
+  $('itemGrid').innerHTML = comps.filter(c => !q || c.name.includes(q)).map(c =>
+    `<button class="pick" data-item="${esc(c.id)}">${img(c.icon)}<span>${esc(c.name)}</span></button>`).join('')
+    || '<p class="muted">이 세트 데이터에는 재료 아이템 정보가 없어요</p>';
+  const byId = Object.fromEntries(comps.map(c => [c.id, c]));
+  const counts = countBy(state.comps);
+  $('itemPicked').innerHTML = Object.entries(counts).map(([id, n]) =>
+    `<span class="chip">${esc(byId[id]?.name)}${n > 1 ? ' ×' + n : ''}<button data-item="${esc(id)}" aria-label="빼기">✕</button></span>`).join('');
+  // 지금 가진 재료로 바로 만들 수 있는 아이템 (재료 두 개씩)
+  const book = recipeBook(state.data || { items: [], emblems: [] });
+  const ids = Object.keys(counts), made = new Map();
+  ids.forEach((a, i) => ids.slice(i).forEach(b => {
+    if (a === b && counts[a] < 2) return;
+    const r = book.get(a, b);
+    if (r && !made.has(r.id)) made.set(r.id, r);
+  }));
+  $('craftable').innerHTML = state.comps.length < 2 ? ''
+    : made.size ? `<span class="muted small">지금 만들 수 있는 아이템</span>${[...made.values()].map(r => itemLabel(r.id)).join('')}`
+    : '<span class="muted small">이 재료들로는 만들 수 있는 아이템이 없어요</span>';
+}
+
+/** 재료 조합 추천 카드 위에 붙는 "무엇을 만들지" 줄 */
+function craftNote(c) {
+  const nm = id => state.data.components.find(x => x.id === id)?.name || id;
+  return `<div class="craftNote"><span class="muted small">만들 것</span>${c.made.map(m =>
+    `<span class="craftOne">${itemLabel(m.result.id)}<span class="muted small">${esc(m.from.map(nm).join(' + '))}</span></span>`).join('')}`
+    + (c.left.length ? `<span class="muted small">남겨 둘 재료: ${esc(c.left.map(nm).join(', '))}</span>` : '') + '</div>';
 }
 
 function renderTraitList(elId, target, q) {
@@ -200,7 +242,7 @@ function runSearch(fn) {
   const out = [], seen = new Set();
   for (let i = 0; i < Math.max(withS.length, withoutS.length); i++) {
     for (const d of [withS[i], withoutS[i]]) {
-      const k = d && d.team.map(c => c.id).sort().join('|');
+      const k = d && d.team.map(c => c.id).sort().join('|') + (d.craft ? '#' + d.craft.made.map(m => m.result.id).sort().join(',') : '');
       if (d && !seen.has(k)) { seen.add(k); out.push(d); }
     }
   }
@@ -280,6 +322,7 @@ function deckCard(d, i, byId) {
       ${carryId && !d.carry ? `<span class="core">핵심 <b>${esc(nameOf(carryId))}</b>${tankId ? ` · 탱커 <b>${esc(nameOf(tankId))}</b>` : ''}</span>` : ''}
       ${d.metaInfo ? `<span class="meta">${d.metaInfo}</span>` : `<span class="meta">점수 ${d.score.toFixed(1)} · 총 ${d.gold}골드${d.usedEmblems ? ` · 상징 ${d.usedEmblems}개 사용` : ''}${d.wastedEmblems ? ` · <span style="color:var(--danger)">상징 ${d.wastedEmblems}개는 단계를 못 올림</span>` : ''}${unused ? ` · <span style="color:var(--danger)">상징 ${unused}개 못 씀</span>` : ''}${d.desiredMet === false ? ' · 목표 미달성' : ''}</span>`}
     </div>
+    ${d.craft ? craftNote(d.craft) : ''}
     <div class="units">${units}</div>
     ${d.board?.removed.length ? `<div class="boardDiff">빼는 챔피언: ${d.board.removed.map(id => `<b>${esc(nameOf(id))}</b>`).join(', ')}</div>` : ''}
     ${[carryId, tankId].filter(Boolean).map(id => {
@@ -365,9 +408,19 @@ function bind() {
 
   // 아이템
   $('itemFilter').oninput = renderItems;
-  $('itemGrid').onclick = e => { const b = e.target.closest('[data-item]'); if (!b) return; state.items.push(b.dataset.item); renderItems(); };
-  $('itemPicked').onclick = e => { const b = e.target.closest('button[data-item]'); if (!b) return; removeOne(state.items, b.dataset.item); renderItems(); };
+  const itemList = () => state.itemMode === 'comp' ? state.comps : state.items;
+  $('itemMode').onclick = e => {
+    const b = e.target.closest('button[data-mode]'); if (!b) return;
+    state.itemMode = b.dataset.mode; $('itemFilter').value = ''; renderItems();
+  };
+  $('itemGrid').onclick = e => { const b = e.target.closest('[data-item]'); if (!b) return; itemList().push(b.dataset.item); renderItems(); };
+  $('itemPicked').onclick = e => { const b = e.target.closest('button[data-item]'); if (!b) return; removeOne(itemList(), b.dataset.item); renderItems(); };
   $('runItems').onclick = e => {
+    if (state.itemMode === 'comp') {
+      if (state.comps.length < 2) { $('results').innerHTML = '<div class="empty">재료 아이템을 두 개 이상 담아 주세요.</div>'; return; }
+      run(e.currentTarget, '재료로 만드는 조합 & 덱', o => craftPlans(state.data, { ...o, components: state.comps }));
+      return;
+    }
     if (!state.items.length) { $('results').innerHTML = '<div class="empty">아이템을 하나 이상 골라 주세요.</div>'; return; }
     run(e.currentTarget, '아이템에 맞는 캐리 & 덱', o => decksForItems(state.data, { ...o, itemIds: state.items }));
   };

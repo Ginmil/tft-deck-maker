@@ -20,7 +20,7 @@
 // =============================================================
 
 // 변환 규칙을 바꾸면 이 숫자를 올리세요. 브라우저에 저장된 예전 변환 결과를 자동으로 버리고 새로 받습니다.
-const ADAPTER_VERSION = 9;
+const ADAPTER_VERSION = 10;
 
 const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -126,21 +126,28 @@ function normalize(raw, setKey) {
         + ((it.composition || []).length === 2 ? 1 : 0);
       const prev = emblemByTrait[trait];
       const ids = [...(prev?.ids || []), it.apiName]; // 같은 시너지의 상징 아이템 전부 (통계 매칭용)
-      if (!prev || prev.pref < pref) emblemByTrait[trait] = { id: it.apiName, name: it.name, trait, icon: iconUrl(it.icon), pref, ids };
+      const recipe = (it.composition || []).length === 2 ? it.composition : prev?.recipe; // 뒤집개 + 재료
+      if (!prev || prev.pref < pref) emblemByTrait[trait] = { id: it.apiName, name: it.name, trait, icon: iconUrl(it.icon), pref, ids, recipe };
       else prev.ids = ids;
     } else if (it.apiName.startsWith(itemFamily) && (it.composition || []).length === 2 && !seenItem.has(it.name)) {
       seenItem.add(it.name);
       const known = Object.keys(ITEM_ROLES).find(k => it.apiName.endsWith(k));
       const eff = Object.values(it.effects || {}).some(v => Number(v) > 0) ? it.effects : effectsFromComponents(it.composition);
-      items.push({ id: it.apiName, name: it.name, role: known ? ITEM_ROLES[known] : itemRole(eff), icon: iconUrl(it.icon) });
+      items.push({ id: it.apiName, name: it.name, role: known ? ITEM_ROLES[known] : itemRole(eff), icon: iconUrl(it.icon), recipe: it.composition });
     }
   }
   const emblems = Object.values(emblemByTrait).map(({ pref, ...e }) => e);
+  // 재료 아이템: 완성 아이템·상징 조합식에 나오는 것 (대검, 활, 지팡이 … 뒤집개, 프라이팬)
+  const rawById = new Map((raw.items || []).map(it => [it.apiName, it]));
+  const componentIds = [...new Set([...items, ...emblems].flatMap(i => i.recipe || []))].filter(id => rawById.get(id)?.name);
+  const order = id => { const k = COMPONENT_ORDER.findIndex(n => id.includes(n)); return k < 0 ? 99 : k; };
+  const components = componentIds.sort((a, b) => order(a) - order(b) || a.localeCompare(b))
+    .map(id => ({ id, name: stripTags(rawById.get(id).name), icon: iconUrl(rawById.get(id).icon) }));
 
   return {
     source: 'communitydragon',
     set: { key: set.key, number: set.number, name: setName(set) },
-    traits, champions, itemInfo, recipes,
+    traits, champions, itemInfo, recipes, components,
     artifacts: artifacts.sort((a, b) => a.name.localeCompare(b.name, 'ko')),
     radiants: radiants.sort((a, b) => a.name.localeCompare(b.name, 'ko')),
     items: items.sort((a, b) => a.name.localeCompare(b.name, 'ko')),
@@ -215,6 +222,7 @@ const COMPONENT_STATS = {
   BFSword: { AD: 1 }, RecurveBow: { AS: 1 }, NeedlesslyLargeRod: { AP: 1 }, TearOfTheGoddess: { Mana: 1 },
   ChainVest: { Armor: 1 }, NegatronCloak: { MagicResist: 1 }, GiantsBelt: { Health: 1 }, SparringGloves: { CritChance: 1 },
 };
+const COMPONENT_ORDER = ['BFSword', 'RecurveBow', 'NeedlesslyLargeRod', 'TearOfTheGoddess', 'ChainVest', 'NegatronCloak', 'GiantsBelt', 'SparringGloves', 'Spatula', 'FryingPan'];
 function effectsFromComponents(comp) {
   const eff = {};
   for (const c of comp || []) {
@@ -639,20 +647,20 @@ function itemFit(champ, item) {
   return FIT[item.role]?.[champ.role] ?? 0;
 }
 
-function decksForItems(data, { itemIds, size, maxCost, emblems = [], ...filters }) {
+function decksForItems(data, { itemIds, size, maxCost, emblems = [], top = 3, carryId = null, ...filters }) {
   const { exclude = [], max5 = Infinity } = filters;
   const items = itemIds.map(id => data.items.find(i => i.id === id)).filter(Boolean);
   if (!items.length) return [];
   // 아이템을 가장 잘 쓰는 챔피언 순위 (고코스트 캐리 우대)
   const ranked = data.champions
-    .filter(c => c.cost <= maxCost && !exclude.includes(c.id) && !(c.cost === 5 && max5 < 1))
+    .filter(c => carryId ? c.id === carryId : c.cost <= maxCost && !exclude.includes(c.id) && !(c.cost === 5 && max5 < 1))
     .map(c => {
       const fit = items.reduce((s, it) => s + itemFit(c, it), 0);
       return { champ: c, fit, rank: fit * (1 + 0.15 * c.cost) };
     })
     .filter(r => r.fit > 0)
     .sort((a, b) => b.rank - a.rank)
-    .slice(0, 3);
+    .slice(0, top);
 
   return ranked.map(({ champ, fit }) => {
     // 캐리의 시너지 중 덱 중심 시너지를 목표로 (첫 단계)
@@ -676,11 +684,114 @@ function distributeItems(team, items, carryId) {
   for (const it of sorted) {
     const best = team
       .filter(c => slots[c.id].length < 3)
-      .map(c => ({ c, f: itemFit(c, it) + (c.id === carryId && it.role !== 'TANK' ? 0.5 : 0) + c.cost * 0.05 }))
+      .map(c => { const fit = itemFit(c, it); return { c, f: fit + (c.id === carryId && it.role !== 'TANK' && fit > 0 ? 0.5 : 0) + c.cost * 0.05 }; })
       .sort((a, b) => b.f - a.f)[0];
     if (best) slots[best.c.id].push(it);
   }
   return slots;
+}
+
+// -------------------------------------------------------------
+// 기능 5. 재료 아이템 → 조합 추천
+// 가진 재료를 짝짓는 모든 방법(최대 매칭)을 따져 보고, 캐리 1명 + 탱커 1명이 가장 잘 쓰는 조합을 고른 뒤
+// 그 완성 아이템으로 덱을 추천. 짝이 없는 재료는 남겨 둠(다음 라운드용).
+// -------------------------------------------------------------
+/** 재료 두 개 → 완성 아이템/상징 조합표 */
+function recipeBook(data) {
+  const book = new Map();
+  const key = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
+  for (const e of data.emblems || []) if (e.recipe?.length === 2) book.set(key(...e.recipe), { kind: 'emblem', ...e });
+  for (const it of data.items || []) if (it.recipe?.length === 2) book.set(key(...it.recipe), { kind: 'item', ...it });
+  return { get: (a, b) => book.get(key(a, b)) };
+}
+
+/** 재료 목록 → 짝짓는 방법들 (더 만들 수 있는데 남겨 두는 경우는 제외) */
+function pairings(components, book, limit = 20000) {
+  const out = [];
+  const rec = (rest, made, left) => {
+    if (out.length >= limit) return;
+    if (!rest.length) { out.push({ made, left }); return; }
+    const [c, ...others] = rest;
+    const tried = new Set();
+    let paired = false;
+    others.forEach((p, i) => {
+      if (tried.has(p)) return;
+      tried.add(p);
+      const r = book.get(c, p);
+      if (!r) return;
+      paired = true;
+      rec(others.filter((_, j) => j !== i), [...made, { result: r, from: [c, p] }], left);
+    });
+    if (!paired) rec(others, made, [...left, c]);
+  };
+  rec([...components].sort(), [], []);
+  return out;
+}
+
+/** 아이템 묶음 점수: 캐리 1명(딜템 3칸) + 탱커 1명(탱템 3칸) + 나머지 */
+function planScore(items, emblems, champs) {
+  const best = (pool, filter, costW) => {
+    let top = { score: 0, champ: null, used: [] };
+    for (const c of champs) {
+      if (!filter(c)) continue;
+      const seen = {};
+      const fits = pool.map((it, k) => {
+        const dup = seen[it.id] = (seen[it.id] || 0) + 1;
+        return { k, f: itemFit(c, it) * (dup > 1 ? 0.6 : 1) }; // 같은 아이템 중복은 효율이 떨어짐
+      }).filter(x => x.f > 0).sort((a, b) => b.f - a.f).slice(0, 3);
+      const sc = fits.reduce((s, x) => s + x.f, 0) * (1 + costW * c.cost);
+      if (sc > top.score) top = { score: sc, champ: c, used: fits.map(x => x.k) };
+    }
+    return top;
+  };
+  const dmg = items.filter(it => it.role !== 'TANK');
+  const carry = best(dmg, c => c.role !== 'TANK', 0.15);
+  const restDmg = dmg.filter((_, k) => !carry.used.includes(k));
+  const tank = best(items.filter(it => it.role === 'TANK').concat(restDmg.filter(it => it.role === 'FLEX')), c => c.role === 'TANK' || c.role === 'FIGHTER', 0.05);
+  const others = items.length - carry.used.length - tank.used.length;
+  return { score: carry.score + tank.score * 0.8 + others * 0.3 + emblems.length * 0.8, carry: carry.champ, tank: tank.champ };
+}
+
+function craftPlans(data, { components, plans = 3, size, maxCost, ...filters }) {
+  const { exclude = [], max5 = Infinity } = filters;
+  const book = recipeBook(data);
+  const champs = data.champions.filter(c => c.cost <= maxCost && !exclude.includes(c.id) && !(c.cost === 5 && max5 < 1));
+  const seen = new Set();
+  const scored = [];
+  for (const p of pairings(components, book)) {
+    const k = p.made.map(m => m.result.id).sort().join(',');
+    if (seen.has(k)) continue;
+    seen.add(k);
+    const items = p.made.filter(m => m.result.kind === 'item').map(m => m.result);
+    const emblems = p.made.filter(m => m.result.kind === 'emblem').map(m => m.result.trait);
+    if (!items.length) continue;
+    scored.push({ ...p, items, emblems, ...planScore(items, emblems, champs) });
+  }
+  scored.sort((a, b) => b.score - a.score);
+  // 비슷한 조합만 나오지 않게: 먼저 캐리 유형(물리/마법/전사형)별 최고 조합, 남는 자리는 아이템이 2개 이상 다른 조합
+  const picked = [];
+  const ids = p => p.made.map(m => m.result.id);
+  for (const p of scored) {
+    if (picked.length >= plans) break;
+    if (p.carry && !picked.some(q => q.carry?.role === p.carry.role)) picked.push(p);
+  }
+  for (const p of scored) {
+    if (picked.length >= plans) break;
+    if (!picked.includes(p) && picked.every(q => diffCount(ids(p), ids(q)) >= 2)) picked.push(p);
+  }
+  picked.sort((a, b) => b.score - a.score);
+  return picked.map(p => {
+    const [deck] = decksForItems(data, { ...filters, itemIds: p.items.map(i => i.id), emblems: p.emblems, size, maxCost, top: 1, carryId: p.carry?.id });
+    return deck ? { ...deck, craft: { made: p.made, left: p.left, score: p.score } } : null;
+  }).filter(Boolean);
+}
+
+/** 두 아이템 목록에서 서로 다른 개수 (중복 고려) */
+function diffCount(a, b) {
+  const rest = [...b];
+  let diff = 0;
+  for (const x of a) { const i = rest.indexOf(x); if (i < 0) diff++; else rest.splice(i, 1); }
+  return diff;
 }
 
 // -------------------------------------------------------------
@@ -1230,6 +1341,8 @@ const state = {
   data: null,         // 공통 형식 데이터
   emblems: [],        // 고른 상징 (시너지 id, 중복 가능)
   items: [],          // 고른 아이템 id (중복 가능)
+  comps: [],          // 고른 재료 아이템 id (중복 가능)
+  itemMode: 'full',   // 아이템 탭: full = 완성 아이템, comp = 재료 아이템
   desired: {},        // 시너지 탭 목표 { traitId: bp }
   emblemDesired: {},  // 상징 탭 추가 목표
   weights: null,      // 통계 가중치 (tools/collect-stats.mjs 결과)
@@ -1338,7 +1451,7 @@ function setData(data) {
   state.data = data;
   applyWeights();
   // 이벤트 핸들러가 같은 객체를 참조하므로 새로 만들지 않고 비운다
-  state.emblems.length = 0; state.items.length = 0;
+  state.emblems.length = 0; state.items.length = 0; state.comps.length = 0;
   for (const k in state.desired) delete state.desired[k];
   for (const k in state.emblemDesired) delete state.emblemDesired[k];
   $('setLabel').textContent = `세트 ${data.set.number ?? ''} · ${data.set.name}`;
@@ -1370,7 +1483,16 @@ function renderEmblems() {
     `<span class="chip gold">${esc(traitName(t))} 상징 ×${n}<button data-trait="${esc(t)}" aria-label="빼기">✕</button></span>`).join('');
 }
 
+const ITEM_HELP = {
+  full: '가지고 있는 완성 아이템을 고르세요. 아이템을 가장 잘 쓰는 캐리와 그 캐리 중심 덱을 찾아줍니다.',
+  comp: '가지고 있는 <b>재료 아이템</b>을 모두 담으세요(같은 재료는 여러 번). 어떻게 짝지어 만들지 3가지 방법과 각 방법에 맞는 덱을 추천해요.',
+};
 function renderItems() {
+  for (const b of $('itemMode').querySelectorAll('button')) b.classList.toggle('on', b.dataset.mode === state.itemMode);
+  $('itemHelp').innerHTML = ITEM_HELP[state.itemMode];
+  $('runItems').textContent = state.itemMode === 'comp' ? '조합 & 덱 추천' : '캐리 & 덱 찾기';
+  $('craftable').hidden = state.itemMode !== 'comp';
+  if (state.itemMode === 'comp') return renderComps();
   const q = $('itemFilter').value.trim();
   const list = (state.data?.items || []).filter(i => !q || i.name.includes(q));
   $('itemGrid').innerHTML = list.map(i =>
@@ -1379,6 +1501,37 @@ function renderItems() {
   const counts = countBy(state.items);
   $('itemPicked').innerHTML = Object.entries(counts).map(([id, n]) =>
     `<span class="chip">${esc(byId[id]?.name)}${n > 1 ? ' ×' + n : ''}<button data-item="${esc(id)}" aria-label="빼기">✕</button></span>`).join('');
+}
+
+function renderComps() {
+  const comps = state.data?.components || [];
+  const q = $('itemFilter').value.trim();
+  $('itemGrid').innerHTML = comps.filter(c => !q || c.name.includes(q)).map(c =>
+    `<button class="pick" data-item="${esc(c.id)}">${img(c.icon)}<span>${esc(c.name)}</span></button>`).join('')
+    || '<p class="muted">이 세트 데이터에는 재료 아이템 정보가 없어요</p>';
+  const byId = Object.fromEntries(comps.map(c => [c.id, c]));
+  const counts = countBy(state.comps);
+  $('itemPicked').innerHTML = Object.entries(counts).map(([id, n]) =>
+    `<span class="chip">${esc(byId[id]?.name)}${n > 1 ? ' ×' + n : ''}<button data-item="${esc(id)}" aria-label="빼기">✕</button></span>`).join('');
+  // 지금 가진 재료로 바로 만들 수 있는 아이템 (재료 두 개씩)
+  const book = recipeBook(state.data || { items: [], emblems: [] });
+  const ids = Object.keys(counts), made = new Map();
+  ids.forEach((a, i) => ids.slice(i).forEach(b => {
+    if (a === b && counts[a] < 2) return;
+    const r = book.get(a, b);
+    if (r && !made.has(r.id)) made.set(r.id, r);
+  }));
+  $('craftable').innerHTML = state.comps.length < 2 ? ''
+    : made.size ? `<span class="muted small">지금 만들 수 있는 아이템</span>${[...made.values()].map(r => itemLabel(r.id)).join('')}`
+    : '<span class="muted small">이 재료들로는 만들 수 있는 아이템이 없어요</span>';
+}
+
+/** 재료 조합 추천 카드 위에 붙는 "무엇을 만들지" 줄 */
+function craftNote(c) {
+  const nm = id => state.data.components.find(x => x.id === id)?.name || id;
+  return `<div class="craftNote"><span class="muted small">만들 것</span>${c.made.map(m =>
+    `<span class="craftOne">${itemLabel(m.result.id)}<span class="muted small">${esc(m.from.map(nm).join(' + '))}</span></span>`).join('')}`
+    + (c.left.length ? `<span class="muted small">남겨 둘 재료: ${esc(c.left.map(nm).join(', '))}</span>` : '') + '</div>';
 }
 
 function renderTraitList(elId, target, q) {
@@ -1414,7 +1567,7 @@ function runSearch(fn) {
   const out = [], seen = new Set();
   for (let i = 0; i < Math.max(withS.length, withoutS.length); i++) {
     for (const d of [withS[i], withoutS[i]]) {
-      const k = d && d.team.map(c => c.id).sort().join('|');
+      const k = d && d.team.map(c => c.id).sort().join('|') + (d.craft ? '#' + d.craft.made.map(m => m.result.id).sort().join(',') : '');
       if (d && !seen.has(k)) { seen.add(k); out.push(d); }
     }
   }
@@ -1494,6 +1647,7 @@ function deckCard(d, i, byId) {
       ${carryId && !d.carry ? `<span class="core">핵심 <b>${esc(nameOf(carryId))}</b>${tankId ? ` · 탱커 <b>${esc(nameOf(tankId))}</b>` : ''}</span>` : ''}
       ${d.metaInfo ? `<span class="meta">${d.metaInfo}</span>` : `<span class="meta">점수 ${d.score.toFixed(1)} · 총 ${d.gold}골드${d.usedEmblems ? ` · 상징 ${d.usedEmblems}개 사용` : ''}${d.wastedEmblems ? ` · <span style="color:var(--danger)">상징 ${d.wastedEmblems}개는 단계를 못 올림</span>` : ''}${unused ? ` · <span style="color:var(--danger)">상징 ${unused}개 못 씀</span>` : ''}${d.desiredMet === false ? ' · 목표 미달성' : ''}</span>`}
     </div>
+    ${d.craft ? craftNote(d.craft) : ''}
     <div class="units">${units}</div>
     ${d.board?.removed.length ? `<div class="boardDiff">빼는 챔피언: ${d.board.removed.map(id => `<b>${esc(nameOf(id))}</b>`).join(', ')}</div>` : ''}
     ${[carryId, tankId].filter(Boolean).map(id => {
@@ -1579,9 +1733,19 @@ function bind() {
 
   // 아이템
   $('itemFilter').oninput = renderItems;
-  $('itemGrid').onclick = e => { const b = e.target.closest('[data-item]'); if (!b) return; state.items.push(b.dataset.item); renderItems(); };
-  $('itemPicked').onclick = e => { const b = e.target.closest('button[data-item]'); if (!b) return; removeOne(state.items, b.dataset.item); renderItems(); };
+  const itemList = () => state.itemMode === 'comp' ? state.comps : state.items;
+  $('itemMode').onclick = e => {
+    const b = e.target.closest('button[data-mode]'); if (!b) return;
+    state.itemMode = b.dataset.mode; $('itemFilter').value = ''; renderItems();
+  };
+  $('itemGrid').onclick = e => { const b = e.target.closest('[data-item]'); if (!b) return; itemList().push(b.dataset.item); renderItems(); };
+  $('itemPicked').onclick = e => { const b = e.target.closest('button[data-item]'); if (!b) return; removeOne(itemList(), b.dataset.item); renderItems(); };
   $('runItems').onclick = e => {
+    if (state.itemMode === 'comp') {
+      if (state.comps.length < 2) { $('results').innerHTML = '<div class="empty">재료 아이템을 두 개 이상 담아 주세요.</div>'; return; }
+      run(e.currentTarget, '재료로 만드는 조합 & 덱', o => craftPlans(state.data, { ...o, components: state.comps }));
+      return;
+    }
     if (!state.items.length) { $('results').innerHTML = '<div class="empty">아이템을 하나 이상 골라 주세요.</div>'; return; }
     run(e.currentTarget, '아이템에 맞는 캐리 & 덱', o => decksForItems(state.data, { ...o, itemIds: state.items }));
   };
