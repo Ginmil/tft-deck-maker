@@ -81,3 +81,37 @@ export function prevBalancePatch(schedule, name) {
 }
 
 function pRound(x, d) { return Math.round(x * 10 ** d) / 10 ** d; }
+
+// ---------------- 자동 티어표 ----------------
+// 이번 패치 성적으로 메타 덱을 S/A/B/C 로 나눔.
+// 평균 등수는 판수가 적으면 운이 크게 작용하므로, 전체 평균(4.5등)짜리 가상의 10판을 섞어서 보정한 값으로 판단.
+// 판수 = 이번 패치 판수(patchGames). 이번 패치 기록이 아직 없으면(0) 티어에 넣지 않음.
+export const TIER_CUTS = { S: 3.7, A: 4.0, B: 4.3 };
+export const shrinkAvg = (avg, games) => (avg * games + 4.5 * 10) / (games + 10);
+export function tierOf(avg, games) {
+  const s = shrinkAvg(avg, games);
+  return s <= TIER_CUTS.S ? 'S' : s <= TIER_CUTS.A ? 'A' : s <= TIER_CUTS.B ? 'B' : 'C';
+}
+/** 덱의 티어 판단에 쓸 판수: 패치 정보가 있으면 이번 패치 판수, 없으면 전체 */
+export const tierGames = m => (m.patchGames != null ? m.patchGames : m.games);
+
+/**
+ * decks: [{ m: { avgPlace, games, patchGames?, playRate } , ... }]
+ * min: 티어에 넣을 이번 패치 최소 판수
+ * → { tiers: { S:[], A:[], B:[], C:[] }, watch: [] }
+ *   watch = 이번 패치 판수가 min 에 못 미치지만 지금까지 성적이 좋은(보정 4.0등 이하) 덱, 최대 6개 — "지켜볼 덱"
+ */
+export function tierList(decks, { min = 15, watchMin = 5 } = {}) {
+  const tiers = { S: [], A: [], B: [], C: [] }, watch = [];
+  for (const d of decks) {
+    const g = tierGames(d.m);
+    const score = shrinkAvg(d.m.avgPlace, g);
+    const row = { ...d, tierScore: score, tierGames: g };
+    if (g >= min) tiers[tierOf(d.m.avgPlace, g)].push(row);
+    else if (g >= watchMin && score <= TIER_CUTS.A) watch.push(row);
+  }
+  // 티어는 보정값으로 정하고, 같은 티어 안에서는 화면에 보이는 실제 평균 등수 순
+  for (const k in tiers) tiers[k].sort((a, b) => a.m.avgPlace - b.m.avgPlace);
+  watch.sort((a, b) => a.tierScore - b.tierScore);
+  return { tiers, watch: watch.slice(0, 6) };
+}

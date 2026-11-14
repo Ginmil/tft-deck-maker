@@ -3,7 +3,7 @@
 import fs from 'fs';
 import assert from 'assert';
 import { normalize, listSets } from '../js/adapters/cdragon.js';
-import { assignItems } from '../js/engine/search.js';
+import { assignItems, withForms } from '../js/engine/search.js';
 
 const raw = JSON.parse(fs.readFileSync(new URL('../data/sample-cdragon.json', import.meta.url)));
 const d = normalize(raw, listSets(raw)[0].key);
@@ -69,6 +69,18 @@ if (fs.existsSync(snapPath) && fs.existsSync(wPath)) {
         assert.deepEqual(got, ['무한의 대검', '밤의 끝자락', '스테락의 도전'].sort(), `니달리 캐리: ${got}`);
         assert.ok(Date.now() - t0 < 5000, '재료 15개도 몇 초 안에');
         console.log('실데이터 적응가 니달리 시나리오 통과 (무한·스테락·밤의 끝자락, AP 아이템 없음)');
+
+        // 적응가 형태 직접 지정 (11/15 할 일): AP 로 정하면 AP 아이템만, AD 로 정하면 AD 아이템만
+        const formRun = form => {
+          const b = nNames.map((n, i) => ({ idx: i, id: rc(n), star: 2, items: [], ...(n === '니달리' ? { form } : {}) }));
+          const res = assignItems(withForms(rd, b), { board: b, inventory: nInv, carryIdx: nNames.indexOf('니달리') });
+          return res.assignments.filter(a => a.champ.name === '니달리').map(a => a.item);
+        };
+        const ap = formRun('AP'), ad = formRun('AD');
+        assert.ok(ap.length >= 2 && ap.every(x => x.role !== 'AD'), `AP 니달리: ${ap.map(x => x.name)}`);
+        assert.ok(ap.some(x => x.role === 'AP'), `AP 니달리에게 AP 아이템이 하나도 없음: ${ap.map(x => x.name)}`);
+        assert.ok(ad.length >= 2 && ad.every(x => x.role !== 'AP'), `AD 니달리: ${ad.map(x => x.name)}`);
+        console.log(`적응가 형태 지정 통과 — AP 니달리: ${ap.map(x => x.name).join('·')} / AD 니달리: ${ad.map(x => x.name).join('·')}`);
       }
 
       // 아이템 줄 챔피언 여러 명 선택 (11/15): 랭커 기록상 홀더가 아닌 5코 나르도 고르면 아이템을 받고,

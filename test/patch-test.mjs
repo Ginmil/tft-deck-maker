@@ -107,3 +107,23 @@ assert.equal(rep.rows[0].verdict, 'flat', '덱이 하나뿐이면 상대 영향 
 assert.equal(prevBalancePatch([{ patch: '18.5' }, { patch: '18.6' }, { patch: '18.7', balance: false }, { patch: '19.1' }], '19.1'), '18.6');
 console.log('영향 예측:', imp.score.toFixed(2), '점 → 예측', rep.rows[0].predAvg, '등 / 실제', comp.byPatch['18.6'].avgPlace, '등 →', rep.rows[0].verdict);
 console.log('패치 영향 예측 테스트 통과');
+
+// ---- 자동 티어표 ----
+{
+  const { tierList, tierOf } = await import('../js/engine/patch.js');
+  // 2판 1등짜리 덱은 운일 수 있음 → 보정 후 S 아님
+  assert.notEqual(tierOf(1.0, 2), 'S');
+  assert.equal(tierOf(3.0, 200), 'S');
+  const deck = (avg, games, patchGames) => ({ m: { avgPlace: avg, games, patchGames, playRate: 0.01 } });
+  const { tiers, watch } = tierList([
+    deck(3.0, 500, 200),  // 이번 패치도 강함 → S
+    deck(3.0, 500, 0),    // 이전 패치에서만 강함 → 티어에 안 들어감
+    deck(2.5, 8, 8),      // 이번 패치 8판 → 지켜볼 덱
+    deck(5.2, 100, 100),  // 약함 → C
+  ], { min: 15 });
+  assert.equal(tiers.S.length, 1);
+  assert.equal(tiers.C.length, 1);
+  assert.equal(watch.length, 1);
+  assert.equal(tiers.S.length + tiers.A.length + tiers.B.length + tiers.C.length + watch.length, 3);
+  console.log('tier list OK');
+}

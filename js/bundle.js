@@ -674,9 +674,29 @@ const unitStatOf = (data, champ) => {
  * 통계 없음: 역할 기반 itemFit (통계 파일은 있는데 표본이 적은 챔피언은 낮춰서)
  */
 function itemAffinity(data, champ, item) {
+  // 적응가 형태를 사용자가 정했으면(배치툴) 반대 형태 아이템은 0 — 경기 데이터는 형태를 구분 못 해서 통계엔 둘 다 섞여 있음
+  if (champ.form) {
+    const role = item.role || data.items.find(i => i.id === item.id)?.role;
+    if (role === (champ.form === 'AD' ? 'AP' : 'AD')) return 0;
+  }
   const u = unitStatOf(data, champ);
   if (!u) return itemFit(champ, item) * (data.unitStats ? 0.3 : 1);
   return Math.min(1, ((u.items?.[item.id] || 0) / u.games) * 3);
+}
+
+// ---- 적응가(공격력·주문력 중 높은 쪽을 쓰는 챔피언: 니달리·심술두꺼비·아칼리·코그모·마스터 이) ----
+function adaptorChamp(data, c) {
+  return !!c && c.traits.some(t => /Adaptor/i.test(t) || /공격력과 주문력 중 어느 쪽이 높은지/.test(data.traits[t]?.desc || ''));
+}
+/**
+ * 배치툴에서 적응가 형태(AD/AP)를 정한 챔피언을 반영한 데이터.
+ * board: [{ id, form }] → 그 챔피언의 역할을 형태로 바꾸고 form 표시 (itemAffinity 가 반대 형태 아이템을 0으로)
+ */
+function withForms(data, board) {
+  const forms = {};
+  for (const b of board || []) if (b.form === 'AD' || b.form === 'AP') forms[b.id] = b.form;
+  if (!Object.keys(forms).length) return data;
+  return { ...data, champions: data.champions.map(c => (forms[c.id] && adaptorChamp(data, c) ? { ...c, role: forms[c.id], form: forms[c.id] } : c)) };
 }
 
 /**
@@ -1333,6 +1353,40 @@ function prevBalancePatch(schedule, name) {
 
 function pRound(x, d) { return Math.round(x * 10 ** d) / 10 ** d; }
 
+// ---------------- 자동 티어표 ----------------
+// 이번 패치 성적으로 메타 덱을 S/A/B/C 로 나눔.
+// 평균 등수는 판수가 적으면 운이 크게 작용하므로, 전체 평균(4.5등)짜리 가상의 10판을 섞어서 보정한 값으로 판단.
+// 판수 = 이번 패치 판수(patchGames). 이번 패치 기록이 아직 없으면(0) 티어에 넣지 않음.
+const TIER_CUTS = { S: 3.7, A: 4.0, B: 4.3 };
+const shrinkAvg = (avg, games) => (avg * games + 4.5 * 10) / (games + 10);
+function tierOf(avg, games) {
+  const s = shrinkAvg(avg, games);
+  return s <= TIER_CUTS.S ? 'S' : s <= TIER_CUTS.A ? 'A' : s <= TIER_CUTS.B ? 'B' : 'C';
+}
+/** 덱의 티어 판단에 쓸 판수: 패치 정보가 있으면 이번 패치 판수, 없으면 전체 */
+const tierGames = m => (m.patchGames != null ? m.patchGames : m.games);
+
+/**
+ * decks: [{ m: { avgPlace, games, patchGames?, playRate } , ... }]
+ * min: 티어에 넣을 이번 패치 최소 판수
+ * → { tiers: { S:[], A:[], B:[], C:[] }, watch: [] }
+ *   watch = 이번 패치 판수가 min 에 못 미치지만 지금까지 성적이 좋은(보정 4.0등 이하) 덱, 최대 6개 — "지켜볼 덱"
+ */
+function tierList(decks, { min = 15, watchMin = 5 } = {}) {
+  const tiers = { S: [], A: [], B: [], C: [] }, watch = [];
+  for (const d of decks) {
+    const g = tierGames(d.m);
+    const score = shrinkAvg(d.m.avgPlace, g);
+    const row = { ...d, tierScore: score, tierGames: g };
+    if (g >= min) tiers[tierOf(d.m.avgPlace, g)].push(row);
+    else if (g >= watchMin && score <= TIER_CUTS.A) watch.push(row);
+  }
+  // 티어는 보정값으로 정하고, 같은 티어 안에서는 화면에 보이는 실제 평균 등수 순
+  for (const k in tiers) tiers[k].sort((a, b) => a.m.avgPlace - b.m.avgPlace);
+  watch.sort((a, b) => a.tierScore - b.tierScore);
+  return { tiers, watch: watch.slice(0, 6) };
+}
+
 
 // ===== js/builder.js =====
 // =============================================================
@@ -1342,9 +1396,11 @@ function pRound(x, d) { return Math.round(x * 10 ** d) / 10 ** d; }
 // 앱(app.js)에서 initBuilder(ctx) 로 연결. ctx = { getData, esc, traitName, roleKo, buildsFor, openTab }
 // =============================================================
 
+
 const BD_ROWS = 4, BD_COLS = 7;            // 0행 = 맨 앞줄(적과 가까운 줄), 3행 = 맨 뒷줄
 const BD_SAVE_KEY = 'tft-deck-maker:boards';
 let bd = null;                              // ctx
+// cells[idx].form = 적응가 형태 'AD' | 'AP' (없으면 자동 = 든 아이템으로 추정)
 const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal', inv: [], invMode: false, carries: new Set() }; // cells[idx] = { id, star, items: [] }, inv = 남은 아이템
 
 const bdIdx = (r, c) => r * BD_COLS + c;
@@ -1456,6 +1512,7 @@ function initBuilder(ctx) {
     const u = bdState.cells[s.idx]; if (!u) return;
     const b = e.target.closest('[data-act]'); if (!b) return;
     if (b.dataset.act === 'star') u.star = Number(b.dataset.v);
+    if (b.dataset.act === 'form') { if (b.dataset.v) u.form = b.dataset.v; else delete u.form; }
     if (b.dataset.act === 'rmItem') u.items.splice(Number(b.dataset.i), 1);
     if (b.dataset.act === 'rmUnit') { delete bdState.cells[s.idx]; bdState.selected = null; }
     if (b.dataset.act === 'close') bdState.selected = null;
@@ -1465,6 +1522,12 @@ function initBuilder(ctx) {
   $('bdInvMode').onchange = e => { bdState.invMode = e.target.checked; if (bdState.invMode) bdState.selected = null; bdRender(); };
   $('bdInvClear').onclick = () => { bdState.inv = []; bdRenderInv(); };
   $('bdCarries').onclick = e => {
+    const f = e.target.closest('[data-form]');
+    if (f) { // 적응가 형태: 같은 걸 다시 누르면 자동으로
+      const u = bdState.cells[f.closest('[data-idx]').dataset.idx]; if (!u) return;
+      if (u.form === f.dataset.form) delete u.form; else u.form = f.dataset.form;
+      bdRender(); return;
+    }
     const b = e.target.closest('.bdCarry'); if (!b) return;
     const k = b.dataset.idx;
     if (bdState.carries.has(k)) bdState.carries.delete(k); else bdState.carries.add(k);
@@ -1557,7 +1620,7 @@ function bdAddItem(idx, itemId) {
 // 앞줄: 탱커(메인 탱커는 가운데) → 전사·근접 딜러, 뒷줄: 핵심 캐리는 구석, 나머지 원거리
 function bdAutoPlace(units, { carryId = null, tankId = null } = {}) {
   const cells = {};
-  const put = (u, r, c) => { cells[bdIdx(r, c)] = { id: u.champ.id, star: u.star || 2, items: u.items || [] }; };
+  const put = (u, r, c) => { cells[bdIdx(r, c)] = { id: u.champ.id, star: u.star || 2, items: u.items || [], ...(u.form ? { form: u.form } : {}) }; };
   const front = units.filter(u => bdIsFront(u.champ) && u.champ.id !== carryId);
   const back = units.filter(u => !front.includes(u));
   const tankOrder = u => (u.champ.id === tankId ? -10 : 0) + ({ TANK: 0, FIGHTER: 1 }[u.champ.role] ?? 2) - u.champ.cost * 0.1;
@@ -1619,7 +1682,8 @@ function bdRenderInv() {
     const units = Object.entries(bdState.cells).map(([idx, u]) => ({ idx, u, c: bdChamp(u.id) })).filter(x => x.c)
       .sort((a, b) => b.c.cost - a.c.cost || a.c.name.localeCompare(b.c.name, 'ko'));
     for (const k of [...bdState.carries]) if (!bdState.cells[k]) bdState.carries.delete(k);
-    pick.innerHTML = units.map(x => `<button class="bdCarry${bdState.carries.has(x.idx) ? ' on' : ''}" data-idx="${x.idx}" data-cost="${x.c.cost}" title="${bd.esc(x.c.name)}">${x.c.icon ? `<img src="${bd.esc(x.c.icon)}" alt="" onerror="this.remove()">` : ''}<span>${bd.esc(x.c.name)}</span>${x.u.items.length ? `<i>${x.u.items.length}</i>` : ''}</button>`).join('')
+    pick.innerHTML = units.map(x => `<button class="bdCarry${bdState.carries.has(x.idx) ? ' on' : ''}" data-idx="${x.idx}" data-cost="${x.c.cost}" title="${bd.esc(x.c.name)}">${x.c.icon ? `<img src="${bd.esc(x.c.icon)}" alt="" onerror="this.remove()">` : ''}<span>${bd.esc(x.c.name)}</span>${x.u.items.length ? `<i>${x.u.items.length}</i>` : ''}</button>`
+      + (adaptorChamp(bdData(), x.c) ? `<span class="bdFormSw" data-idx="${x.idx}" title="적응가: 물리(AD)로 키울지 마법(AP)으로 키울지 정하면 그 아이템만 줘요. 다시 누르면 자동(든 아이템으로 추정)">${['AD', 'AP'].map(f => `<button class="${x.u.form === f ? 'on' : ''}" data-form="${f}">${f}</button>`).join('')}</span>` : '')).join('')
       || '<span class="muted small">보드에 챔피언을 올리면 여기에 나와요</span>';
   }
   box.innerHTML = bdState.inv.map((id, i) => {
@@ -1647,7 +1711,7 @@ function bdApplyItems(list, keep) {
 
 /** 지금 보드의 챔피언 목록 (다음 수 추천용) */
 function bdBoardUnits() {
-  return Object.entries(bdState.cells).map(([idx, u]) => ({ idx: Number(idx), id: u.id, star: u.star, items: [...u.items] }));
+  return Object.entries(bdState.cells).map(([idx, u]) => ({ idx: Number(idx), id: u.id, star: u.star, items: [...u.items], ...(u.form ? { form: u.form } : {}) }));
 }
 
 // ---------------- 시너지 계산 (보드 기준) ----------------
@@ -1692,6 +1756,7 @@ function bdRender() {
         ? `<div class="hex has ${isSel ? 'sel' : ''}" data-idx="${idx}" data-has="1" data-cost="${ch.cost}" draggable="true" title="${esc(ch.name)} — 클릭: 선택(아이템/이동) · 우클릭: 빼기">
             <div class="hexIn">${ch.icon ? `<img src="${esc(ch.icon)}" alt="" draggable="false" onerror="this.style.visibility='hidden'">` : ''}</div>
             <span class="bdStar s${u.star}" title="클릭해서 별 바꾸기">${'★'.repeat(u.star)}</span>
+            ${u.form ? `<span class="bdFormTag ${u.form}" title="적응가 ${u.form === 'AD' ? '물리' : '마법'} 형태">${u.form}</span>` : ''}
             <span class="bdName">${esc(ch.name)}</span>
             <div class="bdItems">${u.items.map((it, i) => { const inf = bdItemInfo(it); return `<span class="bdItem" data-i="${i}" data-item="${esc(it)}" draggable="true">${inf.icon ? `<img src="${esc(inf.icon)}" alt="" draggable="false" onerror="this.remove()">` : esc(inf.name.slice(0, 2))}</span>`; }).join('')}</div>
           </div>`
@@ -1738,9 +1803,10 @@ function bdRenderDetail() {
   box.innerHTML = `
     <div class="bdDHead">
       ${c.icon ? `<img src="${esc(c.icon)}" alt="" onerror="this.style.visibility='hidden'">` : ''}
-      <div><b>${esc(c.name)}</b> <span class="muted small">${c.cost}코 · ${roleKo[c.role]}</span>
+      <div><b>${esc(c.name)}</b> <span class="muted small">${c.cost}코 · ${roleKo[u.form || c.role]}${u.form ? ' (직접 지정)' : ''}</span>
         <div class="muted small">${c.traits.map(traitName).map(esc).join(' · ')}</div></div>
       <div class="bdStars">${[1, 2, 3].map(n => `<button class="bp ${u.star === n ? 'on' : ''}" data-act="star" data-v="${n}">${'★'.repeat(n)}</button>`).join('')}</div>
+      ${adaptorChamp(bdData(), c) ? `<div class="bdForms" title="적응가: 공격력·주문력 중 높은 쪽을 써요. 형태를 정하면 자동 배분·다음 수 추천이 그 형태 아이템만 줘요">형태 ${[['', '자동'], ['AD', 'AD 물리'], ['AP', 'AP 마법']].map(([v, l]) => `<button class="bp ${(u.form || '') === v ? 'on' : ''}" data-act="form" data-v="${v}">${l}</button>`).join('')}</div>` : ''}
       <button class="btn ghost" data-act="rmUnit">챔피언 빼기</button>
       <button class="btn ghost" data-act="close">닫기</button>
     </div>
@@ -1802,14 +1868,14 @@ function bdLoadList() { try { return JSON.parse(localStorage.getItem(BD_SAVE_KEY
 
 // 코드 형식: [[칸번호, 챔피언id, 별, [아이템...]], ...] 을 JSON → base64 (한글 안전)
 function bdEncode() {
-  const arr = Object.entries(bdState.cells).map(([i, u]) => [Number(i), u.id, u.star, u.items]);
+  const arr = Object.entries(bdState.cells).map(([i, u]) => (u.form ? [Number(i), u.id, u.star, u.items, u.form] : [Number(i), u.id, u.star, u.items]));
   return btoa(unescape(encodeURIComponent(JSON.stringify(arr))));
 }
 function bdDecode(code) {
   try {
     const arr = JSON.parse(decodeURIComponent(escape(atob(code))));
     const cells = {};
-    for (const [i, id, star, items] of arr) if (bdChamp(id)) cells[i] = { id, star: star || 2, items: items || [] };
+    for (const [i, id, star, items, form] of arr) if (bdChamp(id)) cells[i] = { id, star: star || 2, items: items || [], ...(form === 'AD' || form === 'AP' ? { form } : {}) };
     bdState.cells = cells; bdState.selected = null;
     bd.openTab('builder'); bdRender();
     return true;
@@ -2230,6 +2296,16 @@ function bind() {
   };
   $('patchSel').onchange = () => renderPatch($('patchSel').value);
   $('metaSort').onchange = renderMeta;
+  $('metaView').onclick = e => { const b = e.target.closest('button[data-view]'); if (!b) return; metaView = b.dataset.view; renderMeta(); };
+  $('metaTiers').addEventListener('click', e => {
+    const b = e.target.closest('.tchip'); if (!b) return;
+    const x = tierDecks[Number(b.dataset.k)]; if (!x) return;
+    for (const c of $('metaTiers').querySelectorAll('.tchip.on')) c.classList.remove('on');
+    b.classList.add('on');
+    const byId = new Map(state.data.champions.map(c => [c.id, c]));
+    $('tierDetail').innerHTML = deckCard(x, 0, byId).replace('<span class="rank">#1</span>', '');
+    $('tierDetail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
   $('metaMin').onchange = renderMeta;
   $('btnSample').onclick = async () => {
     const raw = window.TFT_SAMPLE || await (await fetch('data/sample-cdragon.json')).json();
@@ -2329,15 +2405,14 @@ function renderBuilds() {
 
 // ---------------- 메타 덱 ----------------
 // 랭커들의 실제 최종 덱을 "주력 시너지 + 핵심 캐리"로 묶은 통계 (tools/stats-lib.mjs → comps)
-function metaTier(avg, games) {
-  const shrunk = (avg * games + 4.5 * 10) / (games + 10); // 판수가 적으면 평균 쪽으로 보정
-  return shrunk <= 3.7 ? 'S' : shrunk <= 4.0 ? 'A' : shrunk <= 4.3 ? 'B' : 'C';
-}
+// 티어: 이번 패치 판수로 보정한 평균 등수 (engine/patch.js tierOf). 이번 패치 기록이 없으면 전체 판수로.
+const metaTier = (avg, games) => tierOf(avg, games);
+const deckTier = m => tierOf(m.avgPlace, tierGames(m) || m.games);
 const metaAvailable = () => {
   const d = state.data, w = state.weights;
   return !!(d && w?.comps?.length && w.setNumber === d.set.number && $('useWeights').checked);
 };
-const metaShrunk = m => (m.avgPlace * m.games + 45) / (m.games + 10); // 판수가 적으면 평균(4.5등) 쪽으로
+const metaShrunk = m => shrinkAvg(m.avgPlace, tierGames(m) || m.games); // 판수가 적으면 평균(4.5등) 쪽으로
 
 /** 통계의 메타 덱(comps) → 덱 카드 객체 목록 */
 // 같은 덱인데 판마다 주력 시너지가 다르게 잡혀(예: 처형자/소환사) 둘로 나뉜 메타 덱 합치기.
@@ -2414,7 +2489,7 @@ function metaDecks(minGames) {
     const ev = evaluateTeam(team, d, { carryIds: [carry.id] });
     const tank = m.mainTank ? byLower.get(m.mainTank) : null;
     if (tank && team.includes(tank)) ev.core = { carry: carry.id, tank: tank.id };
-    const tier = metaTier(m.avgPlace, m.games);
+    const tier = deckTier(m);
     // 3성작: 3코스트 이하 챔피언이 그 덱에서 절반 이상 3성으로 완성됨
     const reroll = team.some(c => c.cost <= 3 && (info[c.id]?.star3 || 0) >= 0.5);
     const builds = {};
@@ -2565,16 +2640,21 @@ function renderPatch(selected) {
     <h3 class="recSub">메타 덱 영향 예측</h3>${predHtml}`;
 }
 
+let metaView = 'tier';
 function renderMeta() {
   renderPatchInfo();
   const d = state.data, w = state.weights;
-  const box = $('metaList');
-  if (!d) { box.innerHTML = ''; return; }
+  const box = $('metaList'), tbox = $('metaTiers');
+  for (const b of $('metaView').querySelectorAll('button')) b.classList.toggle('on', b.dataset.view === metaView);
+  $('metaSortWrap').hidden = metaView === 'tier';
+  tbox.innerHTML = ''; box.innerHTML = '';
+  if (!d) return;
   if (!metaAvailable()) {
     box.innerHTML = '<div class="empty">메타 덱 통계가 없어요. collect-stats.bat 으로 경기 데이터를 모은 뒤 새로고침하면 표시돼요.</div>';
     return;
   }
   const byId = new Map(d.champions.map(c => [c.id, c]));
+  if (metaView === 'tier') return renderTiers(byId);
   const sortKey = $('metaSort').value;
   const list = metaDecks(Number($('metaMin').value));
   const sorters = {
@@ -2586,6 +2666,35 @@ function renderMeta() {
   box.innerHTML = list.length
     ? `<p class="legend">${w.games.toLocaleString()}명 기록 기준 · 자주 쓰인 순으로 레벨만큼 채움 · "선택 %" = 판마다 바뀌는 자리 · ★★★ = 3성 완성 비율 높음 · 핵심/탱커 = 랭커들이 딜템/탱템을 가장 많이 준 챔피언</p>` + list.slice(0, 30).map((x, i) => deckCard(x, i, byId)).join('')
     : '<div class="empty">조건에 맞는 메타 덱이 없어요. 최소 판수를 낮춰 보세요.</div>';
+}
+
+// ---- 자동 티어표: 이번 패치 성적 기준 S/A/B/C ----
+const TIER_DESC = { S: '가장 강함', A: '강함', B: '할 만함', C: '비추천' };
+let tierDecks = [];
+function renderTiers(byId) {
+  const min = Number($('metaMin').value);
+  const { tiers, watch } = tierList(metaDecks(1), { min });
+  tierDecks = [];
+  const p = curPatch();
+  const chip = x => {
+    const k = tierDecks.push(x) - 1, m = x.m;
+    const cid = m.mainCarry || m.carry, carry = x.team.find(c => c.id.toLowerCase() === cid);
+    return `<button class="tchip" data-k="${k}" title="${esc(traitName(m.trait))} · ${esc(carry?.name || '')} — 눌러서 덱 보기">
+      <span class="tcIcon" data-cost="${carry?.cost || 1}">${carry ? img(carry.icon) : ''}</span>
+      <span class="tcText"><b>${esc(carry?.name || '')}</b><span class="muted small">${esc(traitName(m.trait))}</span></span>
+      <span class="tcStat"><b>${m.avgPlace.toFixed(2)}</b>${patchDelta(m)}<span class="muted small">${x.tierGames}판 · 픽 ${(m.playRate * 100).toFixed(1)}%</span></span>
+    </button>`;
+  };
+  const row = t => tiers[t].length ? `<div class="tierRow"><div class="tierHead"><span class="tier t${t}">${t}</span><span class="muted small">${TIER_DESC[t]}</span></div><div class="tierChips">${tiers[t].map(chip).join('')}</div></div>` : '';
+  const ranked = tiers.S.length + tiers.A.length + tiers.B.length + tiers.C.length;
+  const cut = (t, prev) => `${prev ? `${prev}~` : ''}${TIER_CUTS[t]}등`;
+  $('metaTiers').innerHTML = !ranked && !watch.length
+    ? `<div class="empty">${p ? esc(p) + ' 패치에서 ' : ''}${min}판 이상 나온 메타 덱이 아직 없어요. 최소 판수를 낮춰 보세요.</div>`
+    : `<p class="legend">${p ? `<b>${esc(p)} 패치</b> 경기만으로 매긴 티어 · ` : ''}이번 패치 ${min}판 이상인 덱 ${ranked}개 · 기준: 평균 등수를 판수로 보정한 값(판수가 적으면 4.5등 쪽으로) S ≤ ${cut('S')} · A ≤ ${cut('A')} · B ≤ ${cut('B')} · 나머지 C · 덱을 누르면 아래에 자세히</p>
+      <div class="tierTable">${['S', 'A', 'B'].map(row).join('')}
+      ${tiers.C.length ? `<details class="tierRow tierC"><summary class="tierHead"><span class="tier tC">C</span><span class="muted small">${TIER_DESC.C} · ${tiers.C.length}개 펼치기</span></summary><div class="tierChips">${tiers.C.map(chip).join('')}</div></details>` : ''}</div>
+      ${watch.length ? `<h3 class="recSub">지켜볼 덱 <span class="muted small">이번 패치 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱 · 표본이 적어 티어에 넣지 않았어요</span></h3><div class="tierChips">${watch.map(chip).join('')}</div>` : ''}
+      <div id="tierDetail"></div>`;
 }
 
 // ---------------- 내 보드 → 다음 수 추천 (배치툴) ----------------
@@ -2622,7 +2731,7 @@ function runBoard(btn) {
     try {
       const size = Number($('bdRecSize').value), keepAll = !$('bdRecFlex').checked;
       let res = null;
-      const decks = runSearch(o => { res = decksFromBoard(state.data, { ...o, board, size, keepAll }); return res.decks; });
+      const decks = runSearch(o => { res = decksFromBoard(withForms(state.data, board), { ...o, board, size, keepAll }); return res.decks; });
       const { info } = res;
       const byId = new Map(state.data.champions.map(c => [c.id, c]));
       const near = metaNearBoard(board, info.carry?.id);
@@ -2657,7 +2766,7 @@ function runAssign() {
   if (!board.length) { box.innerHTML = '<div class="empty">보드에 지금 덱을 먼저 올려 주세요.</div>'; return; }
   if (!inventory.length) { box.innerHTML = '<div class="empty">"오른쪽 아이템을 누르면 여기에 담기"를 체크하고 남은 아이템을 담아 주세요.</div>'; return; }
   const carries = bdCarries();
-  const r = assignItems(state.data, { board, inventory, carries });
+  const r = assignItems(withForms(state.data, board), { board, inventory, carries });
   lastAssign = r;
   const compName = id => state.data.components.find(c => c.id === id)?.name || id;
   // 챔피언별로 묶어서

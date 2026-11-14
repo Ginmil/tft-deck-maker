@@ -3,9 +3,9 @@
 // 데이터 → 어댑터(normalize) → 엔진(search) → 화면
 // =============================================================
 import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './adapters/cdragon.js';
-import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems, assignItems } from './engine/search.js';
+import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems, assignItems, withForms } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
-import { patchReport, prevBalancePatch } from './engine/patch.js';
+import { patchReport, prevBalancePatch, tierOf, tierGames, tierList, shrinkAvg, TIER_CUTS } from './engine/patch.js';
 import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits, bdInventory, bdApplyItems, bdCarries } from './builder.js';
 
 const $ = id => document.getElementById(id);
@@ -405,6 +405,16 @@ function bind() {
   };
   $('patchSel').onchange = () => renderPatch($('patchSel').value);
   $('metaSort').onchange = renderMeta;
+  $('metaView').onclick = e => { const b = e.target.closest('button[data-view]'); if (!b) return; metaView = b.dataset.view; renderMeta(); };
+  $('metaTiers').addEventListener('click', e => {
+    const b = e.target.closest('.tchip'); if (!b) return;
+    const x = tierDecks[Number(b.dataset.k)]; if (!x) return;
+    for (const c of $('metaTiers').querySelectorAll('.tchip.on')) c.classList.remove('on');
+    b.classList.add('on');
+    const byId = new Map(state.data.champions.map(c => [c.id, c]));
+    $('tierDetail').innerHTML = deckCard(x, 0, byId).replace('<span class="rank">#1</span>', '');
+    $('tierDetail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
   $('metaMin').onchange = renderMeta;
   $('btnSample').onclick = async () => {
     const raw = window.TFT_SAMPLE || await (await fetch('data/sample-cdragon.json')).json();
@@ -504,15 +514,14 @@ function renderBuilds() {
 
 // ---------------- 메타 덱 ----------------
 // 랭커들의 실제 최종 덱을 "주력 시너지 + 핵심 캐리"로 묶은 통계 (tools/stats-lib.mjs → comps)
-function metaTier(avg, games) {
-  const shrunk = (avg * games + 4.5 * 10) / (games + 10); // 판수가 적으면 평균 쪽으로 보정
-  return shrunk <= 3.7 ? 'S' : shrunk <= 4.0 ? 'A' : shrunk <= 4.3 ? 'B' : 'C';
-}
+// 티어: 이번 패치 판수로 보정한 평균 등수 (engine/patch.js tierOf). 이번 패치 기록이 없으면 전체 판수로.
+const metaTier = (avg, games) => tierOf(avg, games);
+const deckTier = m => tierOf(m.avgPlace, tierGames(m) || m.games);
 const metaAvailable = () => {
   const d = state.data, w = state.weights;
   return !!(d && w?.comps?.length && w.setNumber === d.set.number && $('useWeights').checked);
 };
-const metaShrunk = m => (m.avgPlace * m.games + 45) / (m.games + 10); // 판수가 적으면 평균(4.5등) 쪽으로
+const metaShrunk = m => shrinkAvg(m.avgPlace, tierGames(m) || m.games); // 판수가 적으면 평균(4.5등) 쪽으로
 
 /** 통계의 메타 덱(comps) → 덱 카드 객체 목록 */
 // 같은 덱인데 판마다 주력 시너지가 다르게 잡혀(예: 처형자/소환사) 둘로 나뉜 메타 덱 합치기.
@@ -589,7 +598,7 @@ function metaDecks(minGames) {
     const ev = evaluateTeam(team, d, { carryIds: [carry.id] });
     const tank = m.mainTank ? byLower.get(m.mainTank) : null;
     if (tank && team.includes(tank)) ev.core = { carry: carry.id, tank: tank.id };
-    const tier = metaTier(m.avgPlace, m.games);
+    const tier = deckTier(m);
     // 3성작: 3코스트 이하 챔피언이 그 덱에서 절반 이상 3성으로 완성됨
     const reroll = team.some(c => c.cost <= 3 && (info[c.id]?.star3 || 0) >= 0.5);
     const builds = {};
@@ -740,16 +749,21 @@ function renderPatch(selected) {
     <h3 class="recSub">메타 덱 영향 예측</h3>${predHtml}`;
 }
 
+let metaView = 'tier';
 function renderMeta() {
   renderPatchInfo();
   const d = state.data, w = state.weights;
-  const box = $('metaList');
-  if (!d) { box.innerHTML = ''; return; }
+  const box = $('metaList'), tbox = $('metaTiers');
+  for (const b of $('metaView').querySelectorAll('button')) b.classList.toggle('on', b.dataset.view === metaView);
+  $('metaSortWrap').hidden = metaView === 'tier';
+  tbox.innerHTML = ''; box.innerHTML = '';
+  if (!d) return;
   if (!metaAvailable()) {
     box.innerHTML = '<div class="empty">메타 덱 통계가 없어요. collect-stats.bat 으로 경기 데이터를 모은 뒤 새로고침하면 표시돼요.</div>';
     return;
   }
   const byId = new Map(d.champions.map(c => [c.id, c]));
+  if (metaView === 'tier') return renderTiers(byId);
   const sortKey = $('metaSort').value;
   const list = metaDecks(Number($('metaMin').value));
   const sorters = {
@@ -761,6 +775,35 @@ function renderMeta() {
   box.innerHTML = list.length
     ? `<p class="legend">${w.games.toLocaleString()}명 기록 기준 · 자주 쓰인 순으로 레벨만큼 채움 · "선택 %" = 판마다 바뀌는 자리 · ★★★ = 3성 완성 비율 높음 · 핵심/탱커 = 랭커들이 딜템/탱템을 가장 많이 준 챔피언</p>` + list.slice(0, 30).map((x, i) => deckCard(x, i, byId)).join('')
     : '<div class="empty">조건에 맞는 메타 덱이 없어요. 최소 판수를 낮춰 보세요.</div>';
+}
+
+// ---- 자동 티어표: 이번 패치 성적 기준 S/A/B/C ----
+const TIER_DESC = { S: '가장 강함', A: '강함', B: '할 만함', C: '비추천' };
+let tierDecks = [];
+function renderTiers(byId) {
+  const min = Number($('metaMin').value);
+  const { tiers, watch } = tierList(metaDecks(1), { min });
+  tierDecks = [];
+  const p = curPatch();
+  const chip = x => {
+    const k = tierDecks.push(x) - 1, m = x.m;
+    const cid = m.mainCarry || m.carry, carry = x.team.find(c => c.id.toLowerCase() === cid);
+    return `<button class="tchip" data-k="${k}" title="${esc(traitName(m.trait))} · ${esc(carry?.name || '')} — 눌러서 덱 보기">
+      <span class="tcIcon" data-cost="${carry?.cost || 1}">${carry ? img(carry.icon) : ''}</span>
+      <span class="tcText"><b>${esc(carry?.name || '')}</b><span class="muted small">${esc(traitName(m.trait))}</span></span>
+      <span class="tcStat"><b>${m.avgPlace.toFixed(2)}</b>${patchDelta(m)}<span class="muted small">${x.tierGames}판 · 픽 ${(m.playRate * 100).toFixed(1)}%</span></span>
+    </button>`;
+  };
+  const row = t => tiers[t].length ? `<div class="tierRow"><div class="tierHead"><span class="tier t${t}">${t}</span><span class="muted small">${TIER_DESC[t]}</span></div><div class="tierChips">${tiers[t].map(chip).join('')}</div></div>` : '';
+  const ranked = tiers.S.length + tiers.A.length + tiers.B.length + tiers.C.length;
+  const cut = (t, prev) => `${prev ? `${prev}~` : ''}${TIER_CUTS[t]}등`;
+  $('metaTiers').innerHTML = !ranked && !watch.length
+    ? `<div class="empty">${p ? esc(p) + ' 패치에서 ' : ''}${min}판 이상 나온 메타 덱이 아직 없어요. 최소 판수를 낮춰 보세요.</div>`
+    : `<p class="legend">${p ? `<b>${esc(p)} 패치</b> 경기만으로 매긴 티어 · ` : ''}이번 패치 ${min}판 이상인 덱 ${ranked}개 · 기준: 평균 등수를 판수로 보정한 값(판수가 적으면 4.5등 쪽으로) S ≤ ${cut('S')} · A ≤ ${cut('A')} · B ≤ ${cut('B')} · 나머지 C · 덱을 누르면 아래에 자세히</p>
+      <div class="tierTable">${['S', 'A', 'B'].map(row).join('')}
+      ${tiers.C.length ? `<details class="tierRow tierC"><summary class="tierHead"><span class="tier tC">C</span><span class="muted small">${TIER_DESC.C} · ${tiers.C.length}개 펼치기</span></summary><div class="tierChips">${tiers.C.map(chip).join('')}</div></details>` : ''}</div>
+      ${watch.length ? `<h3 class="recSub">지켜볼 덱 <span class="muted small">이번 패치 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱 · 표본이 적어 티어에 넣지 않았어요</span></h3><div class="tierChips">${watch.map(chip).join('')}</div>` : ''}
+      <div id="tierDetail"></div>`;
 }
 
 // ---------------- 내 보드 → 다음 수 추천 (배치툴) ----------------
@@ -797,7 +840,7 @@ function runBoard(btn) {
     try {
       const size = Number($('bdRecSize').value), keepAll = !$('bdRecFlex').checked;
       let res = null;
-      const decks = runSearch(o => { res = decksFromBoard(state.data, { ...o, board, size, keepAll }); return res.decks; });
+      const decks = runSearch(o => { res = decksFromBoard(withForms(state.data, board), { ...o, board, size, keepAll }); return res.decks; });
       const { info } = res;
       const byId = new Map(state.data.champions.map(c => [c.id, c]));
       const near = metaNearBoard(board, info.carry?.id);
@@ -832,7 +875,7 @@ function runAssign() {
   if (!board.length) { box.innerHTML = '<div class="empty">보드에 지금 덱을 먼저 올려 주세요.</div>'; return; }
   if (!inventory.length) { box.innerHTML = '<div class="empty">"오른쪽 아이템을 누르면 여기에 담기"를 체크하고 남은 아이템을 담아 주세요.</div>'; return; }
   const carries = bdCarries();
-  const r = assignItems(state.data, { board, inventory, carries });
+  const r = assignItems(withForms(state.data, board), { board, inventory, carries });
   lastAssign = r;
   const compName = id => state.data.components.find(c => c.id === id)?.name || id;
   // 챔피언별로 묶어서

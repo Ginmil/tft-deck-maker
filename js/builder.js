@@ -5,9 +5,12 @@
 // 앱(app.js)에서 initBuilder(ctx) 로 연결. ctx = { getData, esc, traitName, roleKo, buildsFor, openTab }
 // =============================================================
 
+import { adaptorChamp } from './engine/search.js';
+
 const BD_ROWS = 4, BD_COLS = 7;            // 0행 = 맨 앞줄(적과 가까운 줄), 3행 = 맨 뒷줄
 const BD_SAVE_KEY = 'tft-deck-maker:boards';
 let bd = null;                              // ctx
+// cells[idx].form = 적응가 형태 'AD' | 'AP' (없으면 자동 = 든 아이템으로 추정)
 const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal', inv: [], invMode: false, carries: new Set() }; // cells[idx] = { id, star, items: [] }, inv = 남은 아이템
 
 const bdIdx = (r, c) => r * BD_COLS + c;
@@ -119,6 +122,7 @@ export function initBuilder(ctx) {
     const u = bdState.cells[s.idx]; if (!u) return;
     const b = e.target.closest('[data-act]'); if (!b) return;
     if (b.dataset.act === 'star') u.star = Number(b.dataset.v);
+    if (b.dataset.act === 'form') { if (b.dataset.v) u.form = b.dataset.v; else delete u.form; }
     if (b.dataset.act === 'rmItem') u.items.splice(Number(b.dataset.i), 1);
     if (b.dataset.act === 'rmUnit') { delete bdState.cells[s.idx]; bdState.selected = null; }
     if (b.dataset.act === 'close') bdState.selected = null;
@@ -128,6 +132,12 @@ export function initBuilder(ctx) {
   $('bdInvMode').onchange = e => { bdState.invMode = e.target.checked; if (bdState.invMode) bdState.selected = null; bdRender(); };
   $('bdInvClear').onclick = () => { bdState.inv = []; bdRenderInv(); };
   $('bdCarries').onclick = e => {
+    const f = e.target.closest('[data-form]');
+    if (f) { // 적응가 형태: 같은 걸 다시 누르면 자동으로
+      const u = bdState.cells[f.closest('[data-idx]').dataset.idx]; if (!u) return;
+      if (u.form === f.dataset.form) delete u.form; else u.form = f.dataset.form;
+      bdRender(); return;
+    }
     const b = e.target.closest('.bdCarry'); if (!b) return;
     const k = b.dataset.idx;
     if (bdState.carries.has(k)) bdState.carries.delete(k); else bdState.carries.add(k);
@@ -220,7 +230,7 @@ function bdAddItem(idx, itemId) {
 // 앞줄: 탱커(메인 탱커는 가운데) → 전사·근접 딜러, 뒷줄: 핵심 캐리는 구석, 나머지 원거리
 export function bdAutoPlace(units, { carryId = null, tankId = null } = {}) {
   const cells = {};
-  const put = (u, r, c) => { cells[bdIdx(r, c)] = { id: u.champ.id, star: u.star || 2, items: u.items || [] }; };
+  const put = (u, r, c) => { cells[bdIdx(r, c)] = { id: u.champ.id, star: u.star || 2, items: u.items || [], ...(u.form ? { form: u.form } : {}) }; };
   const front = units.filter(u => bdIsFront(u.champ) && u.champ.id !== carryId);
   const back = units.filter(u => !front.includes(u));
   const tankOrder = u => (u.champ.id === tankId ? -10 : 0) + ({ TANK: 0, FIGHTER: 1 }[u.champ.role] ?? 2) - u.champ.cost * 0.1;
@@ -282,7 +292,8 @@ function bdRenderInv() {
     const units = Object.entries(bdState.cells).map(([idx, u]) => ({ idx, u, c: bdChamp(u.id) })).filter(x => x.c)
       .sort((a, b) => b.c.cost - a.c.cost || a.c.name.localeCompare(b.c.name, 'ko'));
     for (const k of [...bdState.carries]) if (!bdState.cells[k]) bdState.carries.delete(k);
-    pick.innerHTML = units.map(x => `<button class="bdCarry${bdState.carries.has(x.idx) ? ' on' : ''}" data-idx="${x.idx}" data-cost="${x.c.cost}" title="${bd.esc(x.c.name)}">${x.c.icon ? `<img src="${bd.esc(x.c.icon)}" alt="" onerror="this.remove()">` : ''}<span>${bd.esc(x.c.name)}</span>${x.u.items.length ? `<i>${x.u.items.length}</i>` : ''}</button>`).join('')
+    pick.innerHTML = units.map(x => `<button class="bdCarry${bdState.carries.has(x.idx) ? ' on' : ''}" data-idx="${x.idx}" data-cost="${x.c.cost}" title="${bd.esc(x.c.name)}">${x.c.icon ? `<img src="${bd.esc(x.c.icon)}" alt="" onerror="this.remove()">` : ''}<span>${bd.esc(x.c.name)}</span>${x.u.items.length ? `<i>${x.u.items.length}</i>` : ''}</button>`
+      + (adaptorChamp(bdData(), x.c) ? `<span class="bdFormSw" data-idx="${x.idx}" title="적응가: 물리(AD)로 키울지 마법(AP)으로 키울지 정하면 그 아이템만 줘요. 다시 누르면 자동(든 아이템으로 추정)">${['AD', 'AP'].map(f => `<button class="${x.u.form === f ? 'on' : ''}" data-form="${f}">${f}</button>`).join('')}</span>` : '')).join('')
       || '<span class="muted small">보드에 챔피언을 올리면 여기에 나와요</span>';
   }
   box.innerHTML = bdState.inv.map((id, i) => {
@@ -310,7 +321,7 @@ export function bdApplyItems(list, keep) {
 
 /** 지금 보드의 챔피언 목록 (다음 수 추천용) */
 export function bdBoardUnits() {
-  return Object.entries(bdState.cells).map(([idx, u]) => ({ idx: Number(idx), id: u.id, star: u.star, items: [...u.items] }));
+  return Object.entries(bdState.cells).map(([idx, u]) => ({ idx: Number(idx), id: u.id, star: u.star, items: [...u.items], ...(u.form ? { form: u.form } : {}) }));
 }
 
 // ---------------- 시너지 계산 (보드 기준) ----------------
@@ -355,6 +366,7 @@ export function bdRender() {
         ? `<div class="hex has ${isSel ? 'sel' : ''}" data-idx="${idx}" data-has="1" data-cost="${ch.cost}" draggable="true" title="${esc(ch.name)} — 클릭: 선택(아이템/이동) · 우클릭: 빼기">
             <div class="hexIn">${ch.icon ? `<img src="${esc(ch.icon)}" alt="" draggable="false" onerror="this.style.visibility='hidden'">` : ''}</div>
             <span class="bdStar s${u.star}" title="클릭해서 별 바꾸기">${'★'.repeat(u.star)}</span>
+            ${u.form ? `<span class="bdFormTag ${u.form}" title="적응가 ${u.form === 'AD' ? '물리' : '마법'} 형태">${u.form}</span>` : ''}
             <span class="bdName">${esc(ch.name)}</span>
             <div class="bdItems">${u.items.map((it, i) => { const inf = bdItemInfo(it); return `<span class="bdItem" data-i="${i}" data-item="${esc(it)}" draggable="true">${inf.icon ? `<img src="${esc(inf.icon)}" alt="" draggable="false" onerror="this.remove()">` : esc(inf.name.slice(0, 2))}</span>`; }).join('')}</div>
           </div>`
@@ -401,9 +413,10 @@ function bdRenderDetail() {
   box.innerHTML = `
     <div class="bdDHead">
       ${c.icon ? `<img src="${esc(c.icon)}" alt="" onerror="this.style.visibility='hidden'">` : ''}
-      <div><b>${esc(c.name)}</b> <span class="muted small">${c.cost}코 · ${roleKo[c.role]}</span>
+      <div><b>${esc(c.name)}</b> <span class="muted small">${c.cost}코 · ${roleKo[u.form || c.role]}${u.form ? ' (직접 지정)' : ''}</span>
         <div class="muted small">${c.traits.map(traitName).map(esc).join(' · ')}</div></div>
       <div class="bdStars">${[1, 2, 3].map(n => `<button class="bp ${u.star === n ? 'on' : ''}" data-act="star" data-v="${n}">${'★'.repeat(n)}</button>`).join('')}</div>
+      ${adaptorChamp(bdData(), c) ? `<div class="bdForms" title="적응가: 공격력·주문력 중 높은 쪽을 써요. 형태를 정하면 자동 배분·다음 수 추천이 그 형태 아이템만 줘요">형태 ${[['', '자동'], ['AD', 'AD 물리'], ['AP', 'AP 마법']].map(([v, l]) => `<button class="bp ${(u.form || '') === v ? 'on' : ''}" data-act="form" data-v="${v}">${l}</button>`).join('')}</div>` : ''}
       <button class="btn ghost" data-act="rmUnit">챔피언 빼기</button>
       <button class="btn ghost" data-act="close">닫기</button>
     </div>
@@ -465,14 +478,14 @@ function bdLoadList() { try { return JSON.parse(localStorage.getItem(BD_SAVE_KEY
 
 // 코드 형식: [[칸번호, 챔피언id, 별, [아이템...]], ...] 을 JSON → base64 (한글 안전)
 function bdEncode() {
-  const arr = Object.entries(bdState.cells).map(([i, u]) => [Number(i), u.id, u.star, u.items]);
+  const arr = Object.entries(bdState.cells).map(([i, u]) => (u.form ? [Number(i), u.id, u.star, u.items, u.form] : [Number(i), u.id, u.star, u.items]));
   return btoa(unescape(encodeURIComponent(JSON.stringify(arr))));
 }
 function bdDecode(code) {
   try {
     const arr = JSON.parse(decodeURIComponent(escape(atob(code))));
     const cells = {};
-    for (const [i, id, star, items] of arr) if (bdChamp(id)) cells[i] = { id, star: star || 2, items: items || [] };
+    for (const [i, id, star, items, form] of arr) if (bdChamp(id)) cells[i] = { id, star: star || 2, items: items || [], ...(form === 'AD' || form === 'AP' ? { form } : {}) };
     bdState.cells = cells; bdState.selected = null;
     bd.openTab('builder'); bdRender();
     return true;

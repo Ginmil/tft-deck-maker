@@ -117,9 +117,29 @@ const unitStatOf = (data, champ) => {
  * 통계 없음: 역할 기반 itemFit (통계 파일은 있는데 표본이 적은 챔피언은 낮춰서)
  */
 export function itemAffinity(data, champ, item) {
+  // 적응가 형태를 사용자가 정했으면(배치툴) 반대 형태 아이템은 0 — 경기 데이터는 형태를 구분 못 해서 통계엔 둘 다 섞여 있음
+  if (champ.form) {
+    const role = item.role || data.items.find(i => i.id === item.id)?.role;
+    if (role === (champ.form === 'AD' ? 'AP' : 'AD')) return 0;
+  }
   const u = unitStatOf(data, champ);
   if (!u) return itemFit(champ, item) * (data.unitStats ? 0.3 : 1);
   return Math.min(1, ((u.items?.[item.id] || 0) / u.games) * 3);
+}
+
+// ---- 적응가(공격력·주문력 중 높은 쪽을 쓰는 챔피언: 니달리·심술두꺼비·아칼리·코그모·마스터 이) ----
+export function adaptorChamp(data, c) {
+  return !!c && c.traits.some(t => /Adaptor/i.test(t) || /공격력과 주문력 중 어느 쪽이 높은지/.test(data.traits[t]?.desc || ''));
+}
+/**
+ * 배치툴에서 적응가 형태(AD/AP)를 정한 챔피언을 반영한 데이터.
+ * board: [{ id, form }] → 그 챔피언의 역할을 형태로 바꾸고 form 표시 (itemAffinity 가 반대 형태 아이템을 0으로)
+ */
+export function withForms(data, board) {
+  const forms = {};
+  for (const b of board || []) if (b.form === 'AD' || b.form === 'AP') forms[b.id] = b.form;
+  if (!Object.keys(forms).length) return data;
+  return { ...data, champions: data.champions.map(c => (forms[c.id] && adaptorChamp(data, c) ? { ...c, role: forms[c.id], form: forms[c.id] } : c)) };
 }
 
 /**

@@ -358,3 +358,36 @@ footer { text-align: center; font-size: 12px; padding: 30px 16px; }
 .bdCarry i { position: absolute; top: 2px; right: 4px; font-style: normal; font-size: 10px; color: var(--muted); }
 .bdCarry.on { opacity: 1; border-color: #f0b232; box-shadow: 0 0 0 1px #f0b232; }
 .bdCarry:hover { opacity: 1; }
+
+/* 자동 티어표 */
+.tierTable { display: grid; gap: 8px; margin-bottom: 14px; }
+.tierRow { display: grid; grid-template-columns: 92px 1fr; gap: 10px; align-items: start; background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; }
+.tierRow.tierC { display: block; }
+.tierRow.tierC[open] .tierChips { margin-top: 8px; }
+.tierHead { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding-top: 4px; }
+.tierRow.tierC .tierHead { flex-direction: row; align-items: center; gap: 8px; cursor: pointer; list-style: none; }
+.tierHead .tier { font-size: 22px; min-width: 40px; padding: 2px 8px; }
+.tierRow.tierC .tierHead .tier { font-size: 16px; min-width: 30px; }
+.tierChips { display: flex; flex-wrap: wrap; gap: 8px; }
+.tchip { display: flex; align-items: center; gap: 8px; padding: 6px 10px 6px 6px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; text-align: left; min-width: 220px; }
+.tchip:hover { border-color: var(--accent); }
+.tchip.on { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset; }
+.tcIcon img { width: 38px; height: 38px; border-radius: 6px; display: block; border: 2px solid var(--c1); }
+.tcIcon[data-cost="2"] img { border-color: var(--c2); } .tcIcon[data-cost="3"] img { border-color: var(--c3); }
+.tcIcon[data-cost="4"] img { border-color: var(--c4); } .tcIcon[data-cost="5"] img { border-color: var(--c5); }
+.tcText { display: flex; flex-direction: column; line-height: 1.25; flex: 1; }
+.tcStat { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; white-space: nowrap; }
+.tcStat > b { font-size: 15px; }
+#tierDetail:not(:empty) { margin-top: 12px; }
+@media (max-width: 600px) { .tierRow { grid-template-columns: 1fr; } .tierHead { flex-direction: row; align-items: center; gap: 8px; } .tchip { min-width: 0; width: 100%; } }
+
+/* 적응가 형태 (AD/AP) */
+.hex .bdFormTag { position: absolute; top: 24px; right: 4px; font-size: 9px; font-weight: 800; padding: 0 3px; border-radius: 3px; line-height: 13px; z-index: 2; }
+.hex .bdFormTag.AD { background: #e07b39; color: #1a0d03; }
+.hex .bdFormTag.AP { background: #5b8def; color: #04122e; }
+.bdForms { display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--muted); }
+.bdForms .bp { font-size: 12.5px; padding: 3px 8px; }
+.bdFormSw { display: inline-flex; align-self: center; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin-left: -4px; }
+.bdFormSw button { background: var(--bg2); border: 0; padding: 2px 6px; font-size: 11px; font-weight: 700; color: var(--muted); cursor: pointer; }
+.bdFormSw button.on[data-form="AD"] { background: #e07b39; color: #1a0d03; }
+.bdFormSw button.on[data-form="AP"] { background: #5b8def; color: #04122e; }
