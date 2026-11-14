@@ -576,12 +576,27 @@ function mergedComps() {
   });
 }
 
+/**
+ * 형태를 고르는 챔피언(기본형 = 시너지 가중치 없음, 같은 base 에 형태별 챔피언이 있음)의 덱에 맞는 형태.
+ * ① 덱의 주력 시너지 형태 ② 없으면 팀에서 가장 많이 겹치는 시너지 형태. 형태가 없는 챔피언이면 null.
+ */
+function formFor(c, mainTrait, team) {
+  if (c.weights || !c.base) return null;
+  const forms = state.data.champions.filter(x => x.base === c.base && x.weights);
+  if (!forms.length) return null;
+  const traitOf = f => Object.keys(f.weights)[0];
+  const byMain = forms.find(f => traitOf(f) === mainTrait);
+  if (byMain) return byMain;
+  const count = t => team.filter(x => x !== c && x.traits.includes(t)).length;
+  return [...forms].sort((a, b) => count(traitOf(b)) - count(traitOf(a)))[0];
+}
+
 function metaDecks(minGames) {
   const d = state.data;
   if (!metaAvailable()) return [];
   const byLower = new Map(d.champions.map(c => [c.id.toLowerCase(), c]));
   return mergedComps().filter(m => m.games >= minGames).map(m => {
-    const carry = byLower.get(m.mainCarry || m.carry);
+    let carry = byLower.get(m.mainCarry || m.carry);
     if (!carry) return null;
     // 레벨만큼 자리 채우기: 자주 쓰인 순, 같은 챔피언의 다른 형태(럭스 등)는 하나만, 2칸 챔피언 고려
     const info = {}, team = [], bases = new Set();
@@ -595,16 +610,25 @@ function metaDecks(minGames) {
     }
     if (!team.includes(carry)) team.push(carry);
     if (team.length < 4) return null;
+    // 형태가 있는 챔피언(화신 럭스): 경기 데이터엔 항상 기본 럭스(시너지 0명분)로만 남음 → 덱에 맞는 형태로 바꿈
+    // (개화 덱이면 개화 럭스 = 개화 2명분. 사용자 피드백 11/15: 럭스가 있는데 4개화로 표시됨)
+    const swap = {};
+    for (let i = 0; i < team.length; i++) {
+      const f = formFor(team[i], m.trait, team);
+      if (f) { swap[team[i].id] = f; info[f.id] = info[team[i].id]; team[i] = f; }
+    }
+    if (swap[carry.id]) carry = swap[carry.id];
     const ev = evaluateTeam(team, d, { carryIds: [carry.id] });
-    const tank = m.mainTank ? byLower.get(m.mainTank) : null;
+    let tank = m.mainTank ? byLower.get(m.mainTank) : null;
+    if (tank && swap[tank.id]) tank = swap[tank.id];
     if (tank && team.includes(tank)) ev.core = { carry: carry.id, tank: tank.id };
     const tier = deckTier(m);
     // 3성작: 3코스트 이하 챔피언이 그 덱에서 절반 이상 3성으로 완성됨
     const reroll = team.some(c => c.cost <= 3 && (info[c.id]?.star3 || 0) >= 0.5);
     const builds = {};
-    for (const [id, b] of Object.entries(m.builds || {})) { const c = byLower.get(id); if (c && b) builds[c.id] = b; }
+    for (const [id, b] of Object.entries(m.builds || {})) { let c = byLower.get(id); if (c && swap[c.id]) c = swap[c.id]; if (c && b) builds[c.id] = b; }
     return {
-      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds,
+      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id,
       title: `<span class="tier t${tier}">${tier}</span> ${esc(traitName(m.trait))} · ${esc(carry.name)}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
       metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}`,
     };
@@ -780,7 +804,7 @@ function renderMeta() {
 // ---- 자동 티어표: 이번 패치 성적 기준 S/A/B/C, 덱 단위 ----
 const TIER_DESC = { S: '가장 강함', A: '강함', B: '할 만함', C: '비추천' };
 let tierDecks = [];
-const carryOfDeck = d => { const cid = d.m.mainCarry || d.m.carry; return d.team.find(c => c.id.toLowerCase() === cid); };
+const carryOfDeck = d => { const cid = d.carryChampId?.toLowerCase() || d.m.mainCarry || d.m.carry; return d.team.find(c => c.id.toLowerCase() === cid); };
 /** 덱 종류: 3코 이하 챔피언이 절반 이상 3성이면 "N코 리롤", 아니면 "캐리 코스트 + 레벨" */
 function deckType(d) {
   const rr = d.team.filter(c => c.cost <= 3 && (d.unitInfo?.[c.id]?.star3 || 0) >= 0.5).map(c => c.cost);
