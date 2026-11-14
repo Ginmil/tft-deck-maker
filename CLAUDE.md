@@ -27,9 +27,11 @@
 - **세트 데이터 사본** `data/set-snapshot.json` — `tools/snapshot-set.mjs` 가 Community Dragon 을 받아 어댑터로 변환한 결과(`{ adapterVersion, fetchedAt, data }`). `.github/workflows/snapshot.yml` 이 매일 + `cdragon.js` 를 고쳐 푸시할 때마다 갱신(키 불필요). 사이트는 캐시 → 사본 → 원본 순으로 시작하고, "불러오기"가 실패하면 사본으로 대신함(11/14 Community Dragon 장애 대응, 원본 요청은 45초 시간 제한). 어댑터 버전이 다르면 사본을 무시하므로 `ADAPTER_VERSION` 을 올린 뒤에는 snapshot 워크플로가 끝났는지 확인.
   - 아이콘도 같은 워크플로가 `data/icons/*.png` 로 복사하고 `data/icons/map.json`(원본 URL → 사본 경로)을 만듦. `app.js setData → localizeIcons` 가 캐시·사본·원본 어느 데이터든 이 표로 주소를 바꿈 (11/14 Community Dragon 이 아이콘 하나에 20초 걸린 일 대응).
 - `tools/collect-stats.mjs` + `tools/stats-lib.mjs` — 라이엇 API(TFT-LEAGUE-V1, TFT-MATCH-V1)로 랭커 경기 수집 → `data/weights.json`, `data/weights.js`. 키는 `tools/config.json`(gitignore) 또는 환경변수 `RIOT_API_KEY`.
+  - **패치별 집계**(11/14): 경기의 `game_version` → 패치("16.22"). 오늘 목록 + 캐시에 쌓인 최근 `keepDays`(14)일 경기를 모아 집계. `patchWeights`: 최신 패치 1, 이전 패치는 최신 패치가 600판에 못 미친 만큼만 채움, 더 옛 패치 0 (시너지·챔피언·아이템 통계). 메타 덱은 `blend`: 이번 패치 성적 + 이전 패치 성적을 덱마다 최대 20판어치 사전 정보로만 → 너프된 옛 강덱이 판수로 새 메타를 덮지 않음(`test/patch-test.mjs`). weights.json 에 `patch: { current, prev, prevWeight, matches }`, 덱마다 `now`/`before`(패치별 실제 판수·평균 등수)·`patchGames`. 화면: 메타 탭 위 패치 안내, 덱 카드 ▲▼(이전 패치 대비 평균 등수 변화).
+  - 다음 단계(사용자 요청): 패치노트 칸(변경된 기물·시너지·아이템) + 변경 기반 티어 예측 → 자동 티어표.
   - 집계 규칙: 도적의 장갑 보유자는 아이템 통계에서 제외, 전략가 아이템은 3신기에서 제외. 메타 덱 = "주력 시너지 + 핵심 캐리(딜 아이템 최다 → 3성 → 코스트)", 레벨만큼 자리 채움, 3성 비율 표시.
 - `.github/workflows/collect.yml` — 매일 UTC 19시(KST 04시, 실제로는 지연됨) 수집 후 통계 파일 커밋. Secret `RIOT_API_KEY` 필요. Actions 캐시로 받은 경기 재사용.
-- `test/` — `node test/run.mjs`, `node test/fit-test.mjs` (샘플 세트 `data/sample-cdragon.json`, `node test/make-sample.mjs > data/sample-cdragon.json` 로 재생성 후 `node build.mjs`). 샘플은 가상 세트(사슴·곰 등)지만 재료 아이템은 실제와 같은 apiName·조합식.
+- `test/` — `node test/run.mjs`, `node test/fit-test.mjs`, `node test/patch-test.mjs` (샘플 세트 `data/sample-cdragon.json`, `node test/make-sample.mjs > data/sample-cdragon.json` 로 재생성 후 `node build.mjs`). 샘플은 가상 세트(사슴·곰 등)지만 재료 아이템은 실제와 같은 apiName·조합식.
 
 ## 상태 (2026-11-12 기준)
 - 완료: 위 탭 전부, 배포, 자동 수집(챌린저 200명 × 20판, 첫 수집 2,349판), 내 보드 기반 다음 수 추천(11/12), 재료 아이템 → 조합·덱 추천(11/14, 아이템 탭의 "재료 아이템").

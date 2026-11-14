@@ -131,7 +131,7 @@ function applyWeights() {
       }
       if (agg.total) d.emblemStats[e.trait] = agg;
     }
-    $('weightLabel').textContent = `통계 가중치 사용 중 · 세트 ${w.setNumber} · ${w.games.toLocaleString()}명 기록 · ${w.generatedAt.slice(0, 10)}`;
+    $('weightLabel').textContent = `통계 가중치 사용 중 · 세트 ${w.setNumber}${w.patch?.current ? ` · ${w.patch.current} 패치` : ''} · ${w.games.toLocaleString()}명 기록 · ${w.generatedAt.slice(0, 10)}`;
   } else {
     delete d.weights; delete d.unitStats; delete d.emblemStats;
     $('weightLabel').textContent = !w ? '통계 가중치 없음 (기본 점수)'
@@ -541,12 +541,38 @@ function metaDecks(minGames) {
     return {
       ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds,
       title: `<span class="tier t${tier}">${tier}</span> ${esc(traitName(m.trait))} · ${esc(carry.name)}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}`,
-      metaInfo: `평균 <b>${m.avgPlace}등</b> · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판 · 레벨 ${m.level}`,
+      metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}`,
     };
   }).filter(Boolean);
 }
 
+// ---- 패치별 메타 (통계에 patch 정보가 있을 때) ----
+const curPatch = () => state.weights?.patch?.current;
+/** 이전 패치 대비 평균 등수 변화: ▲ 좋아짐 / ▼ 나빠짐 (양쪽 다 8판 이상일 때만) */
+function patchDelta(m) {
+  if (!m.now || !m.before || m.now.games < 8 || m.before.games < 8) return '';
+  const d = m.before.avgPlace - m.now.avgPlace; // +면 등수가 좋아짐
+  if (Math.abs(d) < 0.1) return ' <span class="pdelta same" title="이전 패치와 비슷해요">–</span>';
+  return ` <span class="pdelta ${d > 0 ? 'up' : 'down'}" title="이전 패치 ${m.before.avgPlace}등 → 이번 패치 ${m.now.avgPlace}등">${d > 0 ? '▲' : '▼'}${Math.abs(d).toFixed(2)}</span>`;
+}
+function patchNote(m) {
+  if (!curPatch() || m.patchGames == null) return '';
+  if (m.patchGames === 0) return ' <span class="tag soft" title="이번 패치에서 아직 8판이 안 돼서 이전 패치 기록으로 보여줘요">이전 패치 기록</span>';
+  if (m.before?.games && m.patchGames < 30) return ` <span class="tag soft" title="이번 패치 판수가 적어서 이전 패치 성적을 조금(최대 20판어치) 참고했어요">이번 패치 ${m.patchGames}판</span>`;
+  return '';
+}
+function renderPatchInfo() {
+  const p = state.weights?.patch, box = $('metaPatch');
+  if (!p?.current || !metaAvailable()) { box.hidden = true; return; }
+  const cur = p.matches?.[p.current] || 0, prev = p.prev ? p.matches?.[p.prev] || 0 : 0;
+  box.hidden = false;
+  box.innerHTML = `<b>${esc(p.current)} 패치</b> 기준 · 이번 패치 ${cur.toLocaleString()}경기`
+    + (p.prev ? ` · 이전 패치(${esc(p.prev)}) ${prev.toLocaleString()}경기는 ${p.prevWeight > 0 ? '이번 패치 표본이 적어 일부만' : '참고하지 않고'} 반영` : '')
+    + ` · <span class="pdelta up">▲</span><span class="pdelta down">▼</span> = 이전 패치 대비 평균 등수 변화`;
+}
+
 function renderMeta() {
+  renderPatchInfo();
   const d = state.data, w = state.weights;
   const box = $('metaList');
   if (!d) { box.innerHTML = ''; return; }

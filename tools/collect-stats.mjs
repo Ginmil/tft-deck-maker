@@ -12,7 +12,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { aggregate, toWeights } from './stats-lib.mjs';
+import { aggregate, toWeights, patchWeights } from './stats-lib.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -34,6 +34,7 @@ const cfg = {
   maxPlayers: 200,       // 경기를 가져올 플레이어 수
   matchesPerPlayer: 20,  // 플레이어당 최근 경기 수
   queueId: 1100,         // 1100 = 랭크 게임
+  keepDays: 14,          // 캐시에 쌓인 경기 중 최근 며칠 치까지 집계에 쓸지 (이번 패치 경기는 날마다 쌓여서 표본이 커짐)
   requestIntervalMs: 1250, // 개발 키 제한(2분에 100회)을 넘지 않도록 요청 간격
   ...fileCfg,
 };
@@ -121,13 +122,36 @@ async function fetchMatches(ids) {
   return out;
 }
 
+// ---------------- 4. 캐시에 쌓인 지난 경기 ----------------
+// 오늘 목록에 없는 경기도 최근 keepDays 일 치는 집계에 씀 (패치별 가중치가 옛 패치는 걸러냄).
+// 오래된 캐시 파일은 지워서 Actions 캐시가 끝없이 커지지 않게 함.
+function cachedMatches(skipIds) {
+  const now = Date.now(), keepMs = cfg.keepDays * 864e5, out = [];
+  let removed = 0;
+  for (const f of fs.readdirSync(cacheDir)) {
+    if (!f.endsWith('.json')) continue;
+    const file = path.join(cacheDir, f);
+    let m;
+    try { m = JSON.parse(fs.readFileSync(file, 'utf8')); } catch { fs.unlinkSync(file); continue; }
+    const age = now - (m?.info?.game_datetime || 0);
+    if (age > keepMs * 1.5) { fs.unlinkSync(file); removed++; continue; }
+    if (age <= keepMs && !skipIds.has(m?.metadata?.match_id)) out.push(m);
+  }
+  if (removed) console.log(`오래된 캐시 경기 ${removed}개 정리`);
+  return out;
+}
+
 // ---------------- 실행 ----------------
 try {
   console.log(`서버 ${cfg.platform} / 지역 ${cfg.region} — 예상 소요: 약 ${Math.ceil((cfg.maxPlayers * (1 + 1 + cfg.matchesPerPlayer / 2)) * cfg.requestIntervalMs / 60000)}분 (캐시된 경기는 빠름)`);
   const players = await topPlayers();
   const ids = await matchIds(players);
-  const matches = await fetchMatches(ids);
-  const stats = aggregate(matches, { queueId: cfg.queueId });
+  const fresh = await fetchMatches(ids);
+  const matches = [...fresh, ...cachedMatches(new Set(fresh.map(m => m?.metadata?.match_id)))];
+  const pw = patchWeights(matches, { queueId: cfg.queueId });
+  const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, isCurrent: pw.isCurrent });
+  stats.patch = { current: pw.current, prev: pw.prev, prevWeight: pw.prevWeight, matches: pw.counts };
+  console.log(`패치별 경기: ${Object.entries(pw.counts).map(([p, n]) => `${p} ${n}판`).join(', ')} → 최신 ${pw.current}, 이전 ${pw.prev || '없음'} 가중치 ${pw.prevWeight}`);
   if (!stats.games) throw new Error('쓸 수 있는 랭크 경기가 없어요. queueId 나 서버 설정을 확인해주세요.');
   const weights = toWeights(stats);
 
@@ -135,7 +159,7 @@ try {
   fs.writeFileSync(path.join(root, 'data', 'weights.json'), json);
   fs.writeFileSync(path.join(root, 'data', 'weights.js'), `window.TFT_WEIGHTS = ${json};\n`);
 
-  console.log(`\n완료: 세트 ${weights.setNumber}, 경기 ${matches.length}개, 플레이어 기록 ${weights.games}개`);
+  console.log(`\n완료: 세트 ${weights.setNumber}, 경기 ${matches.length}개(오늘 목록 ${fresh.length}), 플레이어 기록 ${weights.games}개(패치 가중치 반영)`);
   const rows = Object.entries(weights.traits).flatMap(([t, tiers]) =>
     Object.entries(tiers).map(([tier, r]) => ({ t, tier, ...r }))).filter(r => r.games >= 30);
   rows.sort((a, b) => a.avgPlace - b.avgPlace);
