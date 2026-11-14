@@ -182,6 +182,11 @@ function addComp(comps, p, place, w = 1, cur = true, label = null) {
     if (!itemsOf(u).some(n => /ThiefsGloves/i.test(n))) { r.off += w * offensive(u); r.tank += w * tanky(u); }
   }
   for (const t of traits) c.traits[t.name] = (c.traits[t.name] || 0) + w;
+  // 주력 시너지가 실제로 몇 명이었는지(라이엇 num_units, 상징·럭스 2명분 포함) + 이 덱에서 상징을 쓴 판 (11/15: 6개화 낭비 문제 확인용)
+  const mc = (c.mainCount ||= {});
+  mc[main.num_units] = (mc[main.num_units] || 0) + w;
+  const embs = new Set(units.flatMap(u => (u.itemNames || []).filter(n => typeof n === 'string' && /emblem/i.test(n))));
+  for (const e of embs) (c.emblemGames ||= {})[e] = ((c.emblemGames ||= {})[e] || 0) + w;
   // 이 덱 안에서 각 챔피언의 3신기 (핵심 캐리·메인 탱커 표시에 사용)
   for (const u of units) {
     const items = itemsOf(u);
@@ -260,6 +265,9 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
       now: side(c.now), before: side(c.before),
       // 패치별 실제 성적 (패치 노트 화면의 "예측 vs 실측")
       byPatch: Object.fromEntries(Object.entries(c.byPatch || {}).map(([p, s]) => [p, side(s)])),
+      // 주력 시너지 인원 분포 { 5: 0.6, 7: 0.3, ... } (판 비율), 상징을 쓴 판 비율 { 상징 아이템: 0.4 } (5% 이상)
+      mainCount: Object.fromEntries(Object.entries(c.mainCount || {}).map(([n, g]) => [n, round(g / c.games, 2)]).filter(([, r]) => r >= 0.03)),
+      emblems: Object.fromEntries(Object.entries(c.emblemGames || {}).map(([e, g]) => [e, round(g / c.games, 2)]).filter(([, r]) => r >= 0.05).sort((a, b) => b[1] - a[1])),
     };
   }).sort((a, b) => a.avgPlace - b.avgPlace);
   return {
