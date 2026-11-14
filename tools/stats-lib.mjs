@@ -134,13 +134,20 @@ const itemsOf = u => (u.itemNames || []).filter(n => typeof n === 'string' && !/
 const offensive = u => itemsOf(u).filter(n => !TANK_ITEM.test(n) && !/Tacticians|ThiefsGloves/i.test(n)).length;
 const tanky = u => itemsOf(u).filter(n => TANK_ITEM.test(n)).length;
 
-// 주력 시너지: 발동된 시너지 중(1명짜리 고유 시너지 제외) 유닛 수가 가장 많은 것
+// 주력 시너지: 발동된 시너지 중(1명짜리 고유 시너지 제외) 유닛 수가 가장 많은 것.
+//   단, 단계가 하나뿐인데 3명 이상 필요한 시너지(햇빛 3)가 켜져 있으면 그게 주력 — 덱 전체를 그 시너지에 맞춰 짬 (사용자 피드백 11/15)
+//   (예전엔 tier_total > 1 로 고유 시너지를 걸러서 단계가 하나뿐인 햇빛이 아예 후보에서 빠졌음)
+export function mainTraitOf(p) {
+  const traits = (p.traits || []).filter(t => t.tier_current > 0 && (t.num_units || 0) >= 2);
+  const signature = t => ((t.tier_total || 2) === 1 && (t.num_units || 0) >= 3 ? 1 : 0);
+  return [...traits].sort((a, b) => (signature(b) - signature(a)) || (b.num_units - a.num_units) || ((b.style || 0) - (a.style || 0)))[0];
+}
 // 핵심 캐리: 딜 아이템(탱커 아이템 제외)을 가장 많이 든 챔피언 → 같으면 별(3성) → 같으면 코스트
 //   (도적의 장갑 보유자는 아이템이 랜덤이라 제외)
 function addComp(comps, p, place, w = 1, cur = true, label = null) {
-  const traits = (p.traits || []).filter(t => t.tier_current > 0 && (t.tier_total || 2) > 1);
-  const main = [...traits].sort((a, b) => (b.num_units - a.num_units) || ((b.style || 0) - (a.style || 0)))[0];
+  const main = mainTraitOf(p);
   if (!main) return;
+  const traits = (p.traits || []).filter(t => t.tier_current > 0 && (t.num_units || 0) >= 2);
   const units = p.units || [];
   const carry = units
     .filter(u => !itemsOf(u).some(n => /ThiefsGloves/i.test(n)))

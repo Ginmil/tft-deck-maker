@@ -127,3 +127,13 @@ console.log('패치 영향 예측 테스트 통과');
   assert.equal(tiers.S.length + tiers.A.length + tiers.B.length + tiers.C.length + watch.length, 3);
   console.log('tier list OK');
 }
+
+// ---- 주력 시너지: 햇빛 3(단계 하나뿐)이 켜져 있으면 햇빛이 주력 ----
+{
+  const { mainTraitOf } = await import('../tools/stats-lib.mjs');
+  const T = (name, num_units, tier_current, tier_total, style = 1) => ({ name, num_units, tier_current, tier_total, style });
+  assert.equal(mainTraitOf({ traits: [T('Lunar', 4, 2, 4), T('Solar', 3, 1, 1, 3), T('Rapid', 3, 1, 4)] }).name, 'Solar');
+  assert.equal(mainTraitOf({ traits: [T('Lunar', 4, 2, 4), T('Rapid', 3, 1, 4), T('Unique', 1, 1, 1, 3)] }).name, 'Lunar');
+  assert.equal(mainTraitOf({ traits: [T('Lunar', 3, 1, 4), T('Solar', 2, 0, 1)] }).name, 'Lunar'); // 햇빛 2명(미발동)은 아님
+  console.log('main trait OK (햇빛 우선)');
+}
