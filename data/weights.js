@@ -1,17 +1,18 @@
 window.TFT_WEIGHTS = {
  "setNumber": 18,
- "games": 5232,
+ "games": 11999,
  "patch": {
   "current": "18.6B",
   "prev": "18.6",
-  "prevWeight": 0,
+  "prevWeight": 0.5822,
+  "mature": false,
   "matches": {
    "18.5": 398,
    "18.6": 1453,
    "18.6B": 654
   }
  },
- "generatedAt": "2026-11-14T14:53:32.398Z",
+ "generatedAt": "2026-11-14T14:54:42.220Z",
  "method": {
   "prior": 30,
   "strength": 0.35,
@@ -19,1235 +20,857 @@ window.TFT_WEIGHTS = {
   "max": 1.6
  },
  "traits": {
-  "DA_18_Battlemage": {
+  "DA_18_Blossom": {
    "1": {
-    "games": 374,
-    "avgPlace": 4.57,
-    "top4": 0.495,
-    "win": 0.083,
-    "weight": 0.976
-   }
-  },
-  "DA_18_Blackthorn": {
-   "1": {
-    "games": 526,
+    "games": 2747,
     "avgPlace": 4.5,
-    "top4": 0.506,
-    "win": 0.097,
-    "weight": 1.001
-   },
-   "2": {
-    "games": 126,
-    "avgPlace": 4.23,
-    "top4": 0.548,
-    "win": 0.119,
-    "weight": 1.076
-   },
-   "3": {
-    "games": 31,
-    "avgPlace": 3.94,
-    "top4": 0.645,
-    "win": 0.097,
-    "weight": 1.1
-   }
-  },
-  "DA_18_Defender": {
-   "1": {
-    "games": 2035,
-    "avgPlace": 4.4,
-    "top4": 0.521,
-    "win": 0.127,
-    "weight": 1.035
-   },
-   "2": {
-    "games": 26,
-    "avgPlace": 4.58,
-    "top4": 0.538,
-    "win": 0.115,
-    "weight": 0.988
-   },
-   "3": {
-    "games": 55,
-    "avgPlace": 4.38,
-    "top4": 0.436,
-    "win": 0.091,
-    "weight": 1.027
-   }
-  },
-  "DA_18_Executioner": {
-   "1": {
-    "games": 664,
-    "avgPlace": 4.4,
-    "top4": 0.517,
-    "win": 0.133,
-    "weight": 1.033
-   },
-   "2": {
-    "games": 350,
-    "avgPlace": 4.13,
-    "top4": 0.569,
-    "win": 0.154,
-    "weight": 1.12
-   },
-   "3": {
-    "games": 155,
-    "avgPlace": 3.55,
-    "top4": 0.69,
-    "win": 0.206,
-    "weight": 1.279
-   }
-  },
-  "DA_18_Spellweaver": {
-   "1": {
-    "games": 1732,
-    "avgPlace": 4.5,
-    "top4": 0.502,
-    "win": 0.119,
-    "weight": 1
-   },
-   "2": {
-    "games": 207,
-    "avgPlace": 4.1,
-    "top4": 0.57,
-    "win": 0.121,
-    "weight": 1.122
-   },
-   "3": {
-    "games": 42,
-    "avgPlace": 4.26,
-    "top4": 0.5,
-    "win": 0.19,
-    "weight": 1.049
-   }
-  },
-  "DA_18_Sprykin": {
-   "1": {
-    "games": 261,
-    "avgPlace": 4.51,
-    "top4": 0.51,
-    "win": 0.069,
-    "weight": 0.996
-   },
-   "2": {
-    "games": 13,
-    "avgPlace": 4.15,
-    "top4": 0.615,
-    "win": 0.077,
-    "weight": 1.037
-   },
-   "3": {
-    "games": 4,
-    "avgPlace": 4.75,
-    "top4": 0.5,
-    "win": 0,
-    "weight": 0.99
-   }
-  },
-  "DA_18_Summoner": {
-   "1": {
-    "games": 767,
-    "avgPlace": 4.29,
-    "top4": 0.537,
-    "win": 0.102,
-    "weight": 1.069
-   },
-   "2": {
-    "games": 223,
-    "avgPlace": 4.59,
-    "top4": 0.502,
-    "win": 0.076,
-    "weight": 0.973
-   }
-  },
-  "DA_FloraFatalis18": {
-   "1": {
-    "games": 1037,
-    "avgPlace": 4.54,
-    "top4": 0.478,
-    "win": 0.134,
-    "weight": 0.986
-   },
-   "2": {
-    "games": 561,
-    "avgPlace": 4.42,
-    "top4": 0.52,
-    "win": 0.114,
-    "weight": 1.025
-   }
-  },
-  "DA_18_ZyraUniqueTrait": {
-   "1": {
-    "games": 793,
-    "avgPlace": 4.57,
-    "top4": 0.489,
-    "win": 0.087,
-    "weight": 0.975
-   }
-  },
-  "DA_18_Brawler": {
-   "1": {
-    "games": 2070,
-    "avgPlace": 4.17,
-    "top4": 0.564,
-    "win": 0.133,
-    "weight": 1.112
-   },
-   "2": {
-    "games": 99,
-    "avgPlace": 4.05,
-    "top4": 0.596,
-    "win": 0.091,
-    "weight": 1.121
-   },
-   "3": {
-    "games": 9,
-    "avgPlace": 2.56,
-    "top4": 0.889,
-    "win": 0.222,
-    "weight": 1.157
-   }
-  },
-  "DA_18_Elderwood": {
-   "1": {
-    "games": 642,
-    "avgPlace": 4.35,
-    "top4": 0.537,
-    "win": 0.115,
-    "weight": 1.049
-   },
-   "2": {
-    "games": 108,
-    "avgPlace": 4.76,
-    "top4": 0.481,
-    "win": 0.111,
-    "weight": 0.929
-   },
-   "3": {
-    "games": 280,
-    "avgPlace": 4.4,
-    "top4": 0.521,
-    "win": 0.114,
-    "weight": 1.033
-   },
-   "4": {
-    "games": 65,
-    "avgPlace": 2.75,
-    "top4": 0.815,
-    "win": 0.308,
-    "weight": 1.418
-   },
-   "5": {
-    "games": 9,
-    "avgPlace": 1.33,
-    "top4": 1,
-    "win": 0.778,
-    "weight": 1.256
-   }
-  },
-  "DA_18_Fae": {
-   "1": {
-    "games": 931,
-    "avgPlace": 4.61,
-    "top4": 0.478,
-    "win": 0.127,
-    "weight": 0.961
-   },
-   "2": {
-    "games": 264,
-    "avgPlace": 4.11,
-    "top4": 0.58,
-    "win": 0.159,
-    "weight": 1.123
-   }
-  },
-  "DA_18_LuxUniqueTrait": {
-   "1": {
-    "games": 778,
-    "avgPlace": 3.6,
-    "top4": 0.665,
-    "win": 0.262,
-    "weight": 1.303
-   }
-  },
-  "DA_18_Rapidfire": {
-   "1": {
-    "games": 708,
-    "avgPlace": 4.57,
-    "top4": 0.506,
-    "win": 0.079,
-    "weight": 0.977
+    "top4": 0.508,
+    "win": 0.101,
+    "weight": 0.999
    },
    "2": {
     "games": 134,
     "avgPlace": 4.13,
-    "top4": 0.56,
-    "win": 0.127,
+    "top4": 0.543,
+    "win": 0.2,
     "weight": 1.105
    },
    "3": {
-    "games": 17,
-    "avgPlace": 3.47,
-    "top4": 0.765,
-    "win": 0.294,
-    "weight": 1.13
+    "games": 40,
+    "avgPlace": 4.13,
+    "top4": 0.614,
+    "win": 0.164,
+    "weight": 1.073
    },
    "4": {
-    "games": 7,
-    "avgPlace": 4.43,
-    "top4": 0.429,
-    "win": 0,
-    "weight": 1.005
-   }
-  },
-  "DA_18_Blossom": {
-   "1": {
-    "games": 1193,
-    "avgPlace": 4.55,
-    "top4": 0.492,
-    "win": 0.087,
-    "weight": 0.982
-   },
-   "2": {
-    "games": 55,
-    "avgPlace": 4.44,
-    "top4": 0.473,
-    "win": 0.2,
-    "weight": 1.014
-   },
-   "3": {
-    "games": 17,
-    "avgPlace": 4,
-    "top4": 0.647,
-    "win": 0.176,
-    "weight": 1.063
-   },
-   "4": {
-    "games": 7,
-    "avgPlace": 3.86,
-    "top4": 0.714,
-    "win": 0.143,
-    "weight": 1.043
+    "games": 14,
+    "avgPlace": 3.68,
+    "top4": 0.69,
+    "win": 0.196,
+    "weight": 1.091
    },
    "5": {
-    "games": 2,
+    "games": 3,
     "avgPlace": 1,
     "top4": 1,
     "win": 1,
-    "weight": 1.077
+    "weight": 1.097
    }
   },
-  "DA_18_Adaptor": {
+  "DA_18_Executioner": {
    "1": {
-    "games": 424,
-    "avgPlace": 4.63,
-    "top4": 0.495,
-    "win": 0.057,
-    "weight": 0.957
+    "games": 1539,
+    "avgPlace": 4.41,
+    "top4": 0.518,
+    "win": 0.132,
+    "weight": 1.031
    },
    "2": {
-    "games": 150,
-    "avgPlace": 4.09,
-    "top4": 0.573,
-    "win": 0.107,
-    "weight": 1.121
+    "games": 825,
+    "avgPlace": 4.04,
+    "top4": 0.591,
+    "win": 0.166,
+    "weight": 1.154
    },
    "3": {
-    "games": 16,
-    "avgPlace": 3.19,
-    "top4": 0.75,
-    "win": 0.188,
-    "weight": 1.16
-   }
-  },
-  "DA_Primal18": {
-   "1": {
-    "games": 875,
-    "avgPlace": 4.47,
-    "top4": 0.512,
-    "win": 0.103,
-    "weight": 1.01
-   },
-   "2": {
-    "games": 95,
-    "avgPlace": 4.48,
-    "top4": 0.495,
-    "win": 0.137,
-    "weight": 1.004
-   }
-  },
-  "DA_18_Caustic": {
-   "1": {
-    "games": 588,
-    "avgPlace": 4.48,
-    "top4": 0.52,
-    "win": 0.077,
-    "weight": 1.007
-   }
-  },
-  "DA_Juggernaut18": {
-   "1": {
-    "games": 2526,
-    "avgPlace": 4.48,
-    "top4": 0.505,
-    "win": 0.129,
-    "weight": 1.008
-   },
-   "2": {
-    "games": 168,
-    "avgPlace": 4.71,
-    "top4": 0.458,
-    "win": 0.131,
-    "weight": 0.938
-   },
-   "3": {
-    "games": 124,
-    "avgPlace": 4.74,
-    "top4": 0.419,
-    "win": 0.121,
-    "weight": 0.932
+    "games": 336,
+    "avgPlace": 3.68,
+    "top4": 0.665,
+    "win": 0.194,
+    "weight": 1.263
    }
   },
   "DA_18_Solar": {
    "1": {
-    "games": 695,
-    "avgPlace": 4.31,
-    "top4": 0.545,
-    "win": 0.108,
-    "weight": 1.063
+    "games": 1562,
+    "avgPlace": 4.21,
+    "top4": 0.563,
+    "win": 0.127,
+    "weight": 1.1
    }
   },
-  "DA_18_Rival": {
+  "DA_18_Spellweaver": {
    "1": {
-    "games": 261,
-    "avgPlace": 4.39,
-    "top4": 0.502,
-    "win": 0.107,
-    "weight": 1.033
+    "games": 3939,
+    "avgPlace": 4.49,
+    "top4": 0.505,
+    "win": 0.123,
+    "weight": 1.003
+   },
+   "2": {
+    "games": 503,
+    "avgPlace": 4.14,
+    "top4": 0.568,
+    "win": 0.131,
+    "weight": 1.118
    },
    "3": {
-    "games": 12,
-    "avgPlace": 5.58,
-    "top4": 0.333,
-    "win": 0,
-    "weight": 0.892
+    "games": 97,
+    "avgPlace": 3.79,
+    "top4": 0.62,
+    "win": 0.203,
+    "weight": 1.188
+   }
+  },
+  "DA_18_Summoner": {
+   "1": {
+    "games": 1754,
+    "avgPlace": 4.29,
+    "top4": 0.547,
+    "win": 0.114,
+    "weight": 1.071
+   },
+   "2": {
+    "games": 504,
+    "avgPlace": 4.57,
+    "top4": 0.5,
+    "win": 0.083,
+    "weight": 0.976
+   }
+  },
+  "DA_Juggernaut18": {
+   "1": {
+    "games": 5786,
+    "avgPlace": 4.47,
+    "top4": 0.51,
+    "win": 0.131,
+    "weight": 1.012
+   },
+   "2": {
+    "games": 379,
+    "avgPlace": 4.64,
+    "top4": 0.454,
+    "win": 0.135,
+    "weight": 0.954
+   },
+   "3": {
+    "games": 286,
+    "avgPlace": 4.46,
+    "top4": 0.491,
+    "win": 0.134,
+    "weight": 1.013
+   }
+  },
+  "DA_18_Brawler": {
+   "1": {
+    "games": 4777,
+    "avgPlace": 4.22,
+    "top4": 0.554,
+    "win": 0.132,
+    "weight": 1.097
+   },
+   "2": {
+    "games": 247,
+    "avgPlace": 3.84,
+    "top4": 0.643,
+    "win": 0.123,
+    "weight": 1.206
+   },
+   "3": {
+    "games": 13,
+    "avgPlace": 2.87,
+    "top4": 0.879,
+    "win": 0.197,
+    "weight": 1.173
+   }
+  },
+  "DA_18_Elderwood": {
+   "1": {
+    "games": 1499,
+    "avgPlace": 4.37,
+    "top4": 0.527,
+    "win": 0.114,
+    "weight": 1.044
+   },
+   "2": {
+    "games": 284,
+    "avgPlace": 4.8,
+    "top4": 0.453,
+    "win": 0.114,
+    "weight": 0.906
+   },
+   "3": {
+    "games": 661,
+    "avgPlace": 4.39,
+    "top4": 0.515,
+    "win": 0.108,
+    "weight": 1.038
+   },
+   "4": {
+    "games": 163,
+    "avgPlace": 2.75,
+    "top4": 0.83,
+    "win": 0.322,
+    "weight": 1.518
+   },
+   "5": {
+    "games": 18,
+    "avgPlace": 1.16,
+    "top4": 1,
+    "win": 0.891,
+    "weight": 1.443
    }
   },
   "DA_18_Invoker": {
    "1": {
-    "games": 1201,
-    "avgPlace": 4.37,
-    "top4": 0.522,
-    "win": 0.135,
-    "weight": 1.044
+    "games": 2574,
+    "avgPlace": 4.44,
+    "top4": 0.508,
+    "win": 0.128,
+    "weight": 1.02
    },
    "2": {
-    "games": 188,
-    "avgPlace": 4.63,
-    "top4": 0.457,
-    "win": 0.101,
-    "weight": 0.96
+    "games": 462,
+    "avgPlace": 4.56,
+    "top4": 0.484,
+    "win": 0.1,
+    "weight": 0.981
    },
    "3": {
-    "games": 89,
-    "avgPlace": 4.3,
-    "top4": 0.573,
-    "win": 0.124,
-    "weight": 1.051
+    "games": 221,
+    "avgPlace": 4.34,
+    "top4": 0.535,
+    "win": 0.137,
+    "weight": 1.05
    },
    "4": {
-    "games": 31,
-    "avgPlace": 4.61,
-    "top4": 0.516,
-    "win": 0.161,
-    "weight": 0.98
+    "games": 68,
+    "avgPlace": 4.17,
+    "top4": 0.572,
+    "win": 0.186,
+    "weight": 1.08
+   }
+  },
+  "DA_18_Rapidfire": {
+   "1": {
+    "games": 1653,
+    "avgPlace": 4.6,
+    "top4": 0.489,
+    "win": 0.084,
+    "weight": 0.965
+   },
+   "2": {
+    "games": 297,
+    "avgPlace": 4.19,
+    "top4": 0.548,
+    "win": 0.132,
+    "weight": 1.097
+   },
+   "3": {
+    "games": 44,
+    "avgPlace": 3.67,
+    "top4": 0.722,
+    "win": 0.194,
+    "weight": 1.171
+   },
+   "4": {
+    "games": 24,
+    "avgPlace": 4.66,
+    "top4": 0.418,
+    "win": 0.024,
+    "weight": 0.975
    }
   },
   "DA_Riftbeast18": {
    "1": {
-    "games": 805,
-    "avgPlace": 4.29,
-    "top4": 0.53,
-    "win": 0.176,
-    "weight": 1.071
+    "games": 1946,
+    "avgPlace": 4.31,
+    "top4": 0.524,
+    "win": 0.169,
+    "weight": 1.064
    },
    "2": {
-    "games": 8,
-    "avgPlace": 6.13,
-    "top4": 0.25,
-    "win": 0,
-    "weight": 0.88
+    "games": 17,
+    "avgPlace": 5.5,
+    "top4": 0.328,
+    "win": 0.07,
+    "weight": 0.874
    },
    "3": {
-    "games": 546,
-    "avgPlace": 4.28,
-    "top4": 0.529,
-    "win": 0.126,
-    "weight": 1.074
+    "games": 1105,
+    "avgPlace": 4.4,
+    "top4": 0.51,
+    "win": 0.114,
+    "weight": 1.036
    },
    "4": {
-    "games": 35,
-    "avgPlace": 2.54,
-    "top4": 0.886,
-    "win": 0.371,
-    "weight": 1.369
-   }
-  },
-  "DA_18_Slayer": {
-   "1": {
-    "games": 843,
-    "avgPlace": 4.4,
-    "top4": 0.522,
-    "win": 0.11,
-    "weight": 1.034
-   },
-   "2": {
-    "games": 51,
-    "avgPlace": 4.04,
-    "top4": 0.647,
-    "win": 0.098,
-    "weight": 1.102
-   },
-   "3": {
-    "games": 13,
-    "avgPlace": 4.85,
-    "top4": 0.538,
-    "win": 0,
-    "weight": 0.963
+    "games": 69,
+    "avgPlace": 2.45,
+    "top4": 0.883,
+    "win": 0.401,
+    "weight": 1.501
    }
   },
   "DA_18_Vanguard": {
    "1": {
-    "games": 2077,
-    "avgPlace": 4.29,
-    "top4": 0.543,
-    "win": 0.157,
-    "weight": 1.073
-   },
-   "2": {
-    "games": 430,
-    "avgPlace": 4.4,
-    "top4": 0.516,
-    "win": 0.198,
-    "weight": 1.033
-   },
-   "3": {
-    "games": 27,
-    "avgPlace": 3.3,
-    "top4": 0.63,
-    "win": 0.296,
-    "weight": 1.2
-   }
-  },
-  "DA_Emerald18": {
-   "1": {
-    "games": 1501,
-    "avgPlace": 3.88,
-    "top4": 0.609,
-    "win": 0.236,
-    "weight": 1.213
-   }
-  },
-  "DA_18_ApexPredator": {
-   "1": {
-    "games": 903,
-    "avgPlace": 3.9,
-    "top4": 0.604,
-    "win": 0.223,
-    "weight": 1.202
-   }
-  },
-  "DA_AluneUniqueTrait18": {
-   "1": {
-    "games": 703,
-    "avgPlace": 3.86,
-    "top4": 0.615,
-    "win": 0.229,
-    "weight": 1.216
-   }
-  },
-  "DA_18_Lunar": {
-   "1": {
-    "games": 541,
-    "avgPlace": 4.36,
-    "top4": 0.536,
-    "win": 0.153,
-    "weight": 1.045
-   },
-   "2": {
-    "games": 135,
-    "avgPlace": 4.12,
-    "top4": 0.585,
-    "win": 0.163,
-    "weight": 1.109
-   },
-   "3": {
-    "games": 87,
-    "avgPlace": 3.53,
-    "top4": 0.667,
-    "win": 0.276,
-    "weight": 1.253
-   },
-   "4": {
-    "games": 18,
-    "avgPlace": 3.11,
-    "top4": 0.667,
-    "win": 0.444,
-    "weight": 1.182
-   }
-  },
-  "DA_18_Greenfather": {
-   "1": {
-    "games": 946,
-    "avgPlace": 3.91,
-    "top4": 0.595,
-    "win": 0.256,
-    "weight": 1.199
-   }
-  },
-  "DA_18_Inferno": {
-   "1": {
-    "games": 1120,
-    "avgPlace": 4.38,
-    "top4": 0.523,
-    "win": 0.154,
-    "weight": 1.042
-   },
-   "2": {
-    "games": 109,
-    "avgPlace": 3.98,
-    "top4": 0.633,
-    "win": 0.156,
-    "weight": 1.142
-   },
-   "3": {
-    "games": 36,
+    "games": 4699,
     "avgPlace": 4.31,
-    "top4": 0.5,
-    "win": 0.306,
-    "weight": 1.037
-   },
-   "4": {
-    "games": 12,
-    "avgPlace": 3.58,
-    "top4": 0.667,
-    "win": 0.333,
-    "weight": 1.092
-   }
-  },
-  "DA_18_Hunter": {
-   "1": {
-    "games": 326,
-    "avgPlace": 4.66,
-    "top4": 0.472,
-    "win": 0.126,
-    "weight": 0.948
-   },
-   "2": {
-    "games": 131,
-    "avgPlace": 4.47,
-    "top4": 0.481,
-    "win": 0.153,
-    "weight": 1.008
-   },
-   "3": {
-    "games": 29,
-    "avgPlace": 3.69,
-    "top4": 0.655,
-    "win": 0.207,
-    "weight": 1.139
-   },
-   "4": {
-    "games": 7,
-    "avgPlace": 4.57,
-    "top4": 0.429,
-    "win": 0,
-    "weight": 0.995
-   }
-  },
-  "DA_DravenUniqueTrait18": {
-   "1": {
-    "games": 580,
-    "avgPlace": 4.17,
-    "top4": 0.545,
-    "win": 0.24,
-    "weight": 1.108
-   }
-  },
-  "DA_18_Maokai_UniqueTrait": {
-   "1": {
-    "games": 823,
-    "avgPlace": 4.23,
     "top4": 0.536,
-    "win": 0.214,
-    "weight": 1.092
-   }
-  },
-  "DA_18_Coven": {
-   "1": {
-    "games": 85,
-    "avgPlace": 5.6,
-    "top4": 0.294,
-    "win": 0.118,
-    "weight": 0.715
+    "win": 0.149,
+    "weight": 1.066
    },
    "2": {
-    "games": 9,
-    "avgPlace": 7,
-    "top4": 0,
-    "win": 0,
-    "weight": 0.798
+    "games": 921,
+    "avgPlace": 4.43,
+    "top4": 0.504,
+    "win": 0.187,
+    "weight": 1.025
    },
    "3": {
-    "games": 7,
-    "avgPlace": 6.43,
-    "top4": 0.286,
-    "win": 0,
-    "weight": 0.872
+    "games": 65,
+    "avgPlace": 3.52,
+    "top4": 0.607,
+    "win": 0.256,
+    "weight": 1.235
+   }
+  },
+  "DA_18_Caustic": {
+   "1": {
+    "games": 1407,
+    "avgPlace": 4.5,
+    "top4": 0.515,
+    "win": 0.084,
+    "weight": 1
+   }
+  },
+  "DA_18_ZyraUniqueTrait": {
+   "1": {
+    "games": 1807,
+    "avgPlace": 4.56,
+    "top4": 0.495,
+    "win": 0.094,
+    "weight": 0.98
+   }
+  },
+  "DA_18_Defender": {
+   "1": {
+    "games": 4683,
+    "avgPlace": 4.43,
+    "top4": 0.514,
+    "win": 0.126,
+    "weight": 1.025
    },
-   "4": {
-    "games": 4,
-    "avgPlace": 6.75,
-    "top4": 0,
-    "win": 0,
-    "weight": 0.907
+   "2": {
+    "games": 67,
+    "avgPlace": 4.66,
+    "top4": 0.493,
+    "win": 0.096,
+    "weight": 0.96
+   },
+   "3": {
+    "games": 146,
+    "avgPlace": 4.34,
+    "top4": 0.526,
+    "win": 0.114,
+    "weight": 1.046
    }
   },
   "DA_18_Eclipse": {
    "1": {
-    "games": 78,
+    "games": 171,
+    "avgPlace": 3.81,
+    "top4": 0.64,
+    "win": 0.175,
+    "weight": 1.205
+   }
+  },
+  "DA_18_Lunar": {
+   "1": {
+    "games": 1261,
+    "avgPlace": 4.49,
+    "top4": 0.503,
+    "win": 0.132,
+    "weight": 1.002
+   },
+   "2": {
+    "games": 306,
+    "avgPlace": 4.04,
+    "top4": 0.588,
+    "win": 0.169,
+    "weight": 1.148
+   },
+   "3": {
+    "games": 188,
+    "avgPlace": 3.43,
+    "top4": 0.687,
+    "win": 0.28,
+    "weight": 1.323
+   },
+   "4": {
+    "games": 44,
+    "avgPlace": 3.03,
+    "top4": 0.733,
+    "win": 0.352,
+    "weight": 1.306
+   }
+  },
+  "DA_AluneUniqueTrait18": {
+   "1": {
+    "games": 1614,
+    "avgPlace": 3.82,
+    "top4": 0.62,
+    "win": 0.223,
+    "weight": 1.233
+   }
+  },
+  "DA_18_Battlemage": {
+   "1": {
+    "games": 876,
+    "avgPlace": 4.58,
+    "top4": 0.494,
+    "win": 0.089,
+    "weight": 0.972
+   }
+  },
+  "DA_18_Blackthorn": {
+   "1": {
+    "games": 1306,
+    "avgPlace": 4.56,
+    "top4": 0.499,
+    "win": 0.096,
+    "weight": 0.98
+   },
+   "2": {
+    "games": 265,
+    "avgPlace": 4.06,
+    "top4": 0.592,
+    "win": 0.136,
+    "weight": 1.138
+   },
+   "3": {
+    "games": 67,
+    "avgPlace": 3.85,
+    "top4": 0.572,
+    "win": 0.194,
+    "weight": 1.157
+   }
+  },
+  "DA_18_Hunter": {
+   "1": {
+    "games": 757,
+    "avgPlace": 4.71,
+    "top4": 0.463,
+    "win": 0.1,
+    "weight": 0.93
+   },
+   "2": {
+    "games": 339,
+    "avgPlace": 4.3,
+    "top4": 0.524,
+    "win": 0.138,
+    "weight": 1.064
+   },
+   "3": {
+    "games": 66,
+    "avgPlace": 3.93,
+    "top4": 0.617,
+    "win": 0.171,
+    "weight": 1.136
+   },
+   "4": {
+    "games": 11,
+    "avgPlace": 4.26,
+    "top4": 0.534,
+    "win": 0,
+    "weight": 1.023
+   }
+  },
+  "DA_18_Slayer": {
+   "1": {
+    "games": 1816,
+    "avgPlace": 4.48,
+    "top4": 0.502,
+    "win": 0.109,
+    "weight": 1.008
+   },
+   "2": {
+    "games": 119,
+    "avgPlace": 4.07,
+    "top4": 0.632,
+    "win": 0.131,
+    "weight": 1.121
+   },
+   "3": {
+    "games": 31,
+    "avgPlace": 4.35,
+    "top4": 0.563,
+    "win": 0.038,
+    "weight": 1.026
+   }
+  },
+  "DA_FloraFatalis18": {
+   "1": {
+    "games": 2373,
+    "avgPlace": 4.54,
+    "top4": 0.487,
+    "win": 0.131,
+    "weight": 0.986
+   },
+   "2": {
+    "games": 1307,
+    "avgPlace": 4.41,
+    "top4": 0.523,
+    "win": 0.116,
+    "weight": 1.031
+   }
+  },
+  "DA_Emerald18": {
+   "1": {
+    "games": 3388,
+    "avgPlace": 3.9,
+    "top4": 0.602,
+    "win": 0.222,
+    "weight": 1.208
+   }
+  },
+  "DA_18_Greenfather": {
+   "1": {
+    "games": 2212,
+    "avgPlace": 3.9,
+    "top4": 0.596,
+    "win": 0.249,
+    "weight": 1.207
+   }
+  },
+  "DA_18_Inferno": {
+   "1": {
+    "games": 2596,
+    "avgPlace": 4.38,
+    "top4": 0.521,
+    "win": 0.151,
+    "weight": 1.041
+   },
+   "2": {
+    "games": 270,
+    "avgPlace": 4.06,
+    "top4": 0.603,
+    "win": 0.162,
+    "weight": 1.139
+   },
+   "3": {
+    "games": 77,
+    "avgPlace": 3.98,
+    "top4": 0.553,
+    "win": 0.272,
+    "weight": 1.132
+   },
+   "4": {
+    "games": 24,
+    "avgPlace": 3,
+    "top4": 0.811,
+    "win": 0.285,
+    "weight": 1.234
+   }
+  },
+  "DA_18_Maokai_UniqueTrait": {
+   "1": {
+    "games": 1914,
+    "avgPlace": 4.24,
+    "top4": 0.531,
+    "win": 0.211,
+    "weight": 1.089
+   }
+  },
+  "DA_18_LuxUniqueTrait": {
+   "1": {
+    "games": 1784,
+    "avgPlace": 3.53,
+    "top4": 0.67,
+    "win": 0.263,
+    "weight": 1.333
+   }
+  },
+  "DA_18_ApexPredator": {
+   "1": {
+    "games": 1946,
+    "avgPlace": 3.97,
+    "top4": 0.586,
+    "win": 0.216,
+    "weight": 1.182
+   }
+  },
+  "DA_18_Fae": {
+   "1": {
+    "games": 2042,
+    "avgPlace": 4.62,
+    "top4": 0.479,
+    "win": 0.117,
+    "weight": 0.959
+   },
+   "2": {
+    "games": 630,
+    "avgPlace": 4.28,
+    "top4": 0.534,
+    "win": 0.161,
+    "weight": 1.073
+   }
+  },
+  "DA_DravenUniqueTrait18": {
+   "1": {
+    "games": 1347,
+    "avgPlace": 4.15,
+    "top4": 0.547,
+    "win": 0.24,
+    "weight": 1.12
+   }
+  },
+  "DA_18_Sprykin": {
+   "1": {
+    "games": 588,
+    "avgPlace": 4.55,
+    "top4": 0.497,
+    "win": 0.084,
+    "weight": 0.982
+   },
+   "2": {
+    "games": 33,
+    "avgPlace": 4.36,
+    "top4": 0.554,
+    "win": 0.082,
+    "weight": 1.026
+   },
+   "3": {
+    "games": 9,
+    "avgPlace": 4.68,
+    "top4": 0.433,
+    "win": 0,
+    "weight": 0.986
+   }
+  },
+  "DA_Primal18": {
+   "1": {
+    "games": 2070,
+    "avgPlace": 4.44,
+    "top4": 0.515,
+    "win": 0.108,
+    "weight": 1.021
+   },
+   "2": {
+    "games": 220,
+    "avgPlace": 4.35,
+    "top4": 0.522,
+    "win": 0.131,
+    "weight": 1.045
+   }
+  },
+  "DA_18_Adaptor": {
+   "1": {
+    "games": 1009,
+    "avgPlace": 4.69,
+    "top4": 0.485,
+    "win": 0.06,
+    "weight": 0.937
+   },
+   "2": {
+    "games": 343,
     "avgPlace": 3.94,
-    "top4": 0.615,
-    "win": 0.167,
-    "weight": 1.143
+    "top4": 0.62,
+    "win": 0.128,
+    "weight": 1.18
+   },
+   "3": {
+    "games": 35,
+    "avgPlace": 3.15,
+    "top4": 0.771,
+    "win": 0.201,
+    "weight": 1.255
+   }
+  },
+  "DA_18_Rival": {
+   "1": {
+    "games": 648,
+    "avgPlace": 4.29,
+    "top4": 0.538,
+    "win": 0.127,
+    "weight": 1.069
+   },
+   "3": {
+    "games": 34,
+    "avgPlace": 4.93,
+    "top4": 0.432,
+    "win": 0.035,
+    "weight": 0.92
+   }
+  },
+  "DA_18_Coven": {
+   "1": {
+    "games": 169,
+    "avgPlace": 5.56,
+    "top4": 0.296,
+    "win": 0.104,
+    "weight": 0.684
+   },
+   "2": {
+    "games": 24,
+    "avgPlace": 6.54,
+    "top4": 0.121,
+    "win": 0.024,
+    "weight": 0.681
+   },
+   "3": {
+    "games": 17,
+    "avgPlace": 6.2,
+    "top4": 0.214,
+    "win": 0.067,
+    "weight": 0.78
+   },
+   "4": {
+    "games": 8,
+    "avgPlace": 6.66,
+    "top4": 0.072,
+    "win": 0.072,
+    "weight": 0.84
    }
   }
  },
  "units": {
-  "da_18_veigar": {
-   "games": 426,
-   "avgPlace": 4.43,
+  "da_karma18": {
+   "games": 1470,
+   "avgPlace": 4.61,
    "carryRate": 0.434,
    "items": {
-    "DA_JeweledGauntlet": 180,
-    "DA_BlueBuff": 142,
-    "DA_HextechGunblade": 52,
-    "DA_Artifact_Dawncore": 37,
-    "DA_Artifact_LudensTempest": 33,
-    "DA_Artifact_Manazane": 20,
-    "DA_GiantSlayer": 17,
-    "DA_Artifact_EternalPact": 17,
-    "DA_StrikersFlail": 15,
-    "DA_RabadonsDeathcap": 15,
-    "DA_SpearOfShojin": 14,
-    "DA_AdaptiveHelm": 11
+    "DA_BlueBuff": 607.0184000000002,
+    "DA_RabadonsDeathcap": 556.8948,
+    "DA_JeweledGauntlet": 550.4152000000001,
+    "DA_SpearOfShojin": 141.76140000000004,
+    "DA_VoidStaff": 116.11740000000002,
+    "DA_StrikersFlail": 115.37080000000002,
+    "DA_ArchangelsStaff": 97.63780000000003,
+    "DA_GiantSlayer": 86.41160000000002,
+    "DA_NashorsTooth": 59.02100000000001,
+    "DA_AdaptiveHelm": 47.110000000000014,
+    "DA_Morellonomicon": 41.45240000000001,
+    "DA_HextechGunblade": 40.45240000000001
    },
    "builds": [
     {
      "items": [
       "DA_BlueBuff",
-      "DA_HextechGunblade",
-      "DA_JeweledGauntlet"
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap"
      ],
-     "games": 25,
-     "avgPlace": 4.92
+     "games": 143,
+     "avgPlace": 4.02
     },
     {
      "items": [
-      "DA_Artifact_LudensTempest",
       "DA_BlueBuff",
-      "DA_JeweledGauntlet"
+      "DA_JeweledGauntlet",
+      "DA_StrikersFlail"
      ],
-     "games": 15,
-     "avgPlace": 3.73
+     "games": 49,
+     "avgPlace": 4.07
     },
     {
      "items": [
-      "DA_Artifact_Dawncore",
+      "DA_BlueBuff",
+      "DA_GiantSlayer",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 28,
+     "avgPlace": 4.93
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_VoidStaff"
+     ],
+     "games": 24,
+     "avgPlace": 5.03
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_RabadonsDeathcap",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 22,
+     "avgPlace": 4.06
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 20,
+     "avgPlace": 3.42
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 14,
+     "avgPlace": 3.69
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
       "DA_BlueBuff",
       "DA_JeweledGauntlet"
      ],
      "games": 14,
-     "avgPlace": 2.93
+     "avgPlace": 3.92
     },
     {
      "items": [
-      "DA_Artifact_EternalPact",
       "DA_BlueBuff",
-      "DA_JeweledGauntlet"
+      "DA_RabadonsDeathcap",
+      "DA_VoidStaff"
+     ],
+     "games": 11,
+     "avgPlace": 5.55
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_NashorsTooth",
+      "DA_RabadonsDeathcap"
      ],
      "games": 10,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_Artifact_Manazane",
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 9,
-     "avgPlace": 4.67
-    },
-    {
-     "items": [
-      "DA_Artifact_LichBane",
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 7,
-     "avgPlace": 3.71
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_GiantSlayer",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 6,
-     "avgPlace": 4.17
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail"
-     ],
-     "games": 4,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_Artifact_Fishbones",
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 4,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_Artifact_Dawncore",
-      "DA_HextechGunblade",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 4,
-     "avgPlace": 3.25
+     "avgPlace": 4.23
     }
    ]
   },
-  "da_18_azir": {
-   "games": 588,
-   "avgPlace": 4.25,
-   "carryRate": 0.179,
+  "da_18_leblanc": {
+   "games": 2070,
+   "avgPlace": 4.42,
+   "carryRate": 0.218,
    "items": {
-    "DA_GuinsoosRageblade": 104,
-    "DA_HextechGunblade": 67,
-    "DA_RabadonsDeathcap": 40,
-    "DA_StrikersFlail": 36,
-    "DA_GiantSlayer": 34,
-    "DA_VoidStaff": 25,
-    "DA_RedBuff": 21,
-    "DA_JeweledGauntlet": 19,
-    "DA_Quicksilver": 15,
-    "DA_Component_SparringGloves": 12,
-    "DA_Morellonomicon": 12,
-    "DA_ArchangelsStaff": 12
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 16,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade"
-     ],
-     "games": 5,
-     "avgPlace": 6.2
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_RabadonsDeathcap",
-      "DA_StrikersFlail"
-     ],
-     "games": 4,
-     "avgPlace": 3.25
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_StrikersFlail"
-     ],
-     "games": 4,
-     "avgPlace": 4.25
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_RedBuff",
-      "DA_VoidStaff"
-     ],
-     "games": 3,
-     "avgPlace": 7.33
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade"
-     ],
-     "games": 3,
-     "avgPlace": 3.33
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_VoidStaff"
-     ],
-     "games": 3,
-     "avgPlace": 4.33
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_Quicksilver",
-      "DA_StrikersFlail"
-     ],
-     "games": 2,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_StrikersFlail",
-      "DA_VoidStaff"
-     ],
-     "games": 2,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    }
-   ]
-  },
-  "da_18_teemo": {
-   "games": 188,
-   "avgPlace": 4.49,
-   "carryRate": 0.58,
-   "items": {
-    "DA_JeweledGauntlet": 88,
-    "DA_SpearOfShojin": 49,
-    "DA_RabadonsDeathcap": 45,
-    "DA_BlueBuff": 32,
-    "DA_StrikersFlail": 30,
-    "DA_ArchangelsStaff": 30,
-    "DA_HextechGunblade": 15,
-    "DA_NashorsTooth": 10,
-    "DA_VoidStaff": 10,
-    "DA_Morellonomicon": 8,
-    "DA_GiantSlayer": 8,
-    "DA_RedBuff": 4
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 15,
-     "avgPlace": 4.33
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 9,
-     "avgPlace": 3.78
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
-     ],
-     "games": 7,
-     "avgPlace": 4.14
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail"
-     ],
-     "games": 6,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_ArchangelsStaff",
-      "DA_ArchangelsStaff"
-     ],
-     "games": 5,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_HextechGunblade",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 3,
-     "avgPlace": 5.67
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 3,
-     "avgPlace": 5.33
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin"
-     ],
-     "games": 3,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_RabadonsDeathcap",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
-     ],
-     "games": 3,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin"
-     ],
-     "games": 3,
-     "avgPlace": 4
-    }
-   ]
-  },
-  "da_fiddlesticks18": {
-   "games": 1416,
-   "avgPlace": 4.53,
-   "carryRate": 0.043,
-   "items": {
-    "DA_IonicSpark": 51,
-    "DA_SunfireCape": 40,
-    "DA_WarmogsArmor": 32,
-    "DA_GargoyleStoneplate": 32,
-    "DA_SpiritVisage": 28,
-    "DA_AdaptiveHelm": 23,
-    "DA_Component_GiantsBelt": 23,
-    "DA_Crownguard": 23,
-    "DA_ProtectorsVow": 21,
-    "DA_Component_NegatronCloak": 18,
-    "DA_DragonsClaw": 17,
-    "DA_SteadfastHeart": 17
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_Component_GiantsBelt",
-      "DA_GargoyleStoneplate",
-      "DA_IonicSpark"
-     ],
-     "games": 1,
-     "avgPlace": 8
-    },
-    {
-     "items": [
-      "DA_BrambleVest",
-      "DA_HextechGunblade",
-      "DA_IonicSpark"
-     ],
-     "games": 1,
-     "avgPlace": 1
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_IonicSpark",
-      "DA_SteadfastHeart"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_Artifact_AegisOfDusk",
-      "DA_Component_NeedlesslyLargeRod"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_SpiritVisage",
-      "DA_SunfireCape",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_Crownguard",
-      "DA_SpiritVisage"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_SunfireCape"
-     ],
-     "games": 1,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_DragonsClaw",
-      "DA_IonicSpark",
-      "DA_Quicksilver"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    }
-   ]
-  },
-  "da_18_zyra": {
-   "games": 795,
-   "avgPlace": 4.57,
-   "carryRate": 0.518,
-   "items": {
-    "DA_VoidStaff": 419,
-    "DA_SpearOfShojin": 222,
-    "DA_Morellonomicon": 219,
-    "DA_ArchangelsStaff": 172,
-    "DA_RedBuff": 170,
-    "DA_HextechGunblade": 117,
-    "DA_JeweledGauntlet": 83,
-    "DA_AdaptiveHelm": 62,
-    "DA_RabadonsDeathcap": 59,
-    "DA_BlueBuff": 50,
-    "DA_GiantSlayer": 33,
-    "DA_StrikersFlail": 24
+    "DA_VoidStaff": 505.9492000000001,
+    "DA_Morellonomicon": 256.22120000000007,
+    "DA_RedBuff": 240.39920000000004,
+    "DA_SpearOfShojin": 206.88500000000005,
+    "DA_JeweledGauntlet": 165.89860000000004,
+    "DA_RabadonsDeathcap": 109.22000000000003,
+    "DA_HextechGunblade": 98.14460000000003,
+    "DA_GiantSlayer": 96.48700000000002,
+    "DA_BlueBuff": 87.98020000000002,
+    "DA_AdaptiveHelm": 81.90480000000002,
+    "DA_ArchangelsStaff": 68.17180000000002,
+    "DA_NashorsTooth": 44.54140000000001
    },
    "builds": [
     {
      "items": [
       "DA_Morellonomicon",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
-     ],
-     "games": 51,
-     "avgPlace": 4.37
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_ArchangelsStaff",
-      "DA_HextechGunblade"
-     ],
-     "games": 33,
-     "avgPlace": 4.27
-    },
-    {
-     "items": [
-      "DA_RedBuff",
       "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
      "games": 30,
-     "avgPlace": 4.6
+     "avgPlace": 3.61
     },
     {
      "items": [
-      "DA_ArchangelsStaff",
-      "DA_Morellonomicon",
+      "DA_RedBuff",
+      "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
-     "games": 10,
-     "avgPlace": 5.1
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 10,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 8,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 8,
-     "avgPlace": 4.38
+     "games": 24,
+     "avgPlace": 3.82
     },
     {
      "items": [
@@ -1255,17 +878,17 @@ window.TFT_WEIGHTS = {
       "DA_Morellonomicon",
       "DA_VoidStaff"
      ],
-     "games": 8,
-     "avgPlace": 6.13
+     "games": 12,
+     "avgPlace": 3.61
     },
     {
      "items": [
-      "DA_ArchangelsStaff",
-      "DA_RedBuff",
+      "DA_AdaptiveHelm",
+      "DA_Morellonomicon",
       "DA_VoidStaff"
      ],
-     "games": 7,
-     "avgPlace": 4.43
+     "games": 12,
+     "avgPlace": 3.77
     },
     {
      "items": [
@@ -1273,500 +896,92 @@ window.TFT_WEIGHTS = {
       "DA_RedBuff",
       "DA_VoidStaff"
      ],
-     "games": 7,
-     "avgPlace": 4
-    }
-   ]
-  },
-  "da_18_rammus": {
-   "games": 221,
-   "avgPlace": 4.58,
-   "carryRate": 0.489,
-   "items": {
-    "DA_GargoyleStoneplate": 111,
-    "DA_SpiritVisage": 47,
-    "DA_WarmogsArmor": 42,
-    "DA_Crownguard": 36,
-    "DA_SteadfastHeart": 26,
-    "DA_SunfireCape": 23,
-    "DA_DragonsClaw": 21,
-    "DA_BrambleVest": 13,
-    "DA_IonicSpark": 9,
-    "DA_AdaptiveHelm": 9,
-    "DA_Evenshroud": 9,
-    "DA_ProtectorsVow": 8
-   },
-   "builds": [
+     "games": 12,
+     "avgPlace": 3.71
+    },
     {
      "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate"
+      "DA_JeweledGauntlet",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 10,
+     "avgPlace": 4.1
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
      ],
      "games": 9,
-     "avgPlace": 4.56
+     "avgPlace": 3.71
     },
     {
      "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 7,
-     "avgPlace": 4.86
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 5.43
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 5,
-     "avgPlace": 4.2
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_BrambleVest",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 5.33
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
-     ],
-     "games": 3,
-     "avgPlace": 6.67
-    },
-    {
-     "items": [
-      "DA_BrambleVest",
-      "DA_DragonsClaw",
-      "DA_GargoyleStoneplate"
-     ],
-     "games": 3,
-     "avgPlace": 4.33
-    },
-    {
-     "items": [
-      "DA_DragonsClaw",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 6.5
-    }
-   ]
-  },
-  "da_18_soraka": {
-   "games": 588,
-   "avgPlace": 4.43,
-   "carryRate": 0.427,
-   "items": {
-    "DA_RabadonsDeathcap": 156,
-    "DA_SpearOfShojin": 141,
-    "DA_ArchangelsStaff": 99,
-    "DA_StrikersFlail": 94,
-    "DA_AdaptiveHelm": 90,
-    "DA_JeweledGauntlet": 79,
-    "DA_NashorsTooth": 75,
-    "DA_HextechGunblade": 74,
-    "DA_BlueBuff": 72,
-    "DA_VoidStaff": 54,
-    "DA_GiantSlayer": 50,
-    "DA_Morellonomicon": 22
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
+      "DA_JeweledGauntlet",
+      "DA_RedBuff",
+      "DA_VoidStaff"
      ],
      "games": 8,
-     "avgPlace": 4.25
+     "avgPlace": 3.07
     },
     {
      "items": [
-      "DA_ArchangelsStaff",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 6,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 6,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_NashorsTooth",
+      "DA_Morellonomicon",
       "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
+      "DA_VoidStaff"
      ],
-     "games": 6,
-     "avgPlace": 4.67
-    },
-    {
-     "items": [
-      "DA_NashorsTooth",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 4,
-     "avgPlace": 6.5
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_ArchangelsStaff",
-      "DA_StrikersFlail"
-     ],
-     "games": 4,
-     "avgPlace": 3.25
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_HextechGunblade",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 3,
-     "avgPlace": 6.67
+     "games": 8,
+     "avgPlace": 3.61
     },
     {
      "items": [
       "DA_ArchangelsStaff",
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet"
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
      ],
-     "games": 3,
-     "avgPlace": 4.33
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
-     ],
-     "games": 3,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 3,
-     "avgPlace": 3.33
+     "games": 7,
+     "avgPlace": 3.88
     }
    ]
   },
-  "da_18_malphite": {
-   "games": 379,
-   "avgPlace": 4.55,
-   "carryRate": 0.794,
+  "da_18_yorick": {
+   "games": 3129,
+   "avgPlace": 4.54,
+   "carryRate": 0.074,
    "items": {
-    "DA_GargoyleStoneplate": 349,
-    "DA_WarmogsArmor": 166,
-    "DA_Crownguard": 156,
-    "DA_SpiritVisage": 103,
-    "DA_SteadfastHeart": 51,
-    "DA_BrambleVest": 24,
-    "DA_DragonsClaw": 24,
-    "DA_ProtectorsVow": 21,
-    "DA_AdaptiveHelm": 11,
-    "DA_SteraksGage": 10,
-    "DA_SunfireCape": 10,
-    "DA_Evenshroud": 9
+    "DA_GargoyleStoneplate": 218.17300000000006,
+    "DA_WarmogsArmor": 155.58340000000004,
+    "DA_SunfireCape": 132.61060000000003,
+    "DA_IonicSpark": 107.54880000000003,
+    "DA_Evenshroud": 104.96660000000003,
+    "DA_SpiritVisage": 83.99380000000002,
+    "DA_Crownguard": 75.82940000000002,
+    "DA_SteadfastHeart": 61.18540000000001,
+    "DA_BrambleVest": 51.110000000000014,
+    "DA_ProtectorsVow": 47.110000000000014,
+    "DA_Component_GiantsBelt": 46.692200000000014,
+    "DA_DragonsClaw": 45.274400000000014
    },
    "builds": [
     {
      "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 49,
-     "avgPlace": 4.37
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 26,
-     "avgPlace": 4.19
-    },
-    {
-     "items": [
       "DA_GargoyleStoneplate",
       "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 20,
-     "avgPlace": 4.85
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 19,
-     "avgPlace": 4.84
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
      "games": 12,
-     "avgPlace": 5.25
+     "avgPlace": 6.35
     },
     {
      "items": [
       "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
-     ],
-     "games": 10,
-     "avgPlace": 4.2
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate"
-     ],
-     "games": 7,
-     "avgPlace": 4.71
-    },
-    {
-     "items": [
-      "DA_BrambleVest",
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate"
-     ],
-     "games": 7,
-     "avgPlace": 4.14
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 7,
-     "avgPlace": 4.14
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate"
-     ],
-     "games": 6,
-     "avgPlace": 3.83
-    }
-   ]
-  },
-  "da_18_xayah": {
-   "games": 605,
-   "avgPlace": 4.44,
-   "carryRate": 0.197,
-   "items": {
-    "DA_InfinityEdge": 82,
-    "DA_GuinsoosRageblade": 68,
-    "DA_KrakensFury": 65,
-    "DA_LastWhisper": 50,
-    "DA_Deathblade": 49,
-    "DA_GiantSlayer": 28,
-    "DA_HextechGunblade": 19,
-    "DA_Component_BFSword": 18,
-    "DA_RedBuff": 15,
-    "DA_Component_RecurveBow": 13,
-    "DA_StrikersFlail": 13,
-    "DA_TacticiansCape": 5
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_KrakensFury"
-     ],
-     "games": 10,
-     "avgPlace": 5.3
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_LastWhisper"
-     ],
-     "games": 9,
-     "avgPlace": 4.22
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury"
-     ],
-     "games": 6,
-     "avgPlace": 5.83
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_LastWhisper"
-     ],
-     "games": 5,
-     "avgPlace": 2.6
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_StrikersFlail"
-     ],
-     "games": 4,
-     "avgPlace": 3.75
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_KrakensFury"
-     ],
-     "games": 4,
-     "avgPlace": 3.75
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge"
-     ],
-     "games": 4,
-     "avgPlace": 5.25
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury",
-      "DA_LastWhisper"
-     ],
-     "games": 4,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge"
-     ],
-     "games": 4,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury",
-      "DA_KrakensFury"
-     ],
-     "games": 3,
-     "avgPlace": 4.33
-    }
-   ]
-  },
-  "da_18_ornn": {
-   "games": 881,
-   "avgPlace": 4.39,
-   "carryRate": 0.219,
-   "items": {
-    "DA_GargoyleStoneplate": 190,
-    "DA_WarmogsArmor": 91,
-    "DA_SpiritVisage": 86,
-    "DA_Crownguard": 82,
-    "DA_Evenshroud": 36,
-    "DA_SteadfastHeart": 36,
-    "DA_ProtectorsVow": 29,
-    "DA_SunfireCape": 19,
-    "DA_AdaptiveHelm": 19,
-    "DA_DragonsClaw": 16,
-    "DA_IonicSpark": 15,
-    "DA_SteraksGage": 13
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 10,
-     "avgPlace": 5.7
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 10,
-     "avgPlace": 3.9
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 8,
-     "avgPlace": 3.25
+     "games": 11,
+     "avgPlace": 5.58
     },
     {
      "items": [
@@ -1775,118 +990,7 @@ window.TFT_WEIGHTS = {
       "DA_WarmogsArmor"
      ],
      "games": 8,
-     "avgPlace": 4.88
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 5.14
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate"
-     ],
-     "games": 6,
-     "avgPlace": 4.83
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 3.8
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 5,
-     "avgPlace": 6.4
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow"
-     ],
-     "games": 4,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SteadfastHeart"
-     ],
-     "games": 4,
-     "avgPlace": 4.75
-    }
-   ]
-  },
-  "da_18_alistar": {
-   "games": 965,
-   "avgPlace": 4.33,
-   "carryRate": 0.235,
-   "items": {
-    "DA_GargoyleStoneplate": 240,
-    "DA_WarmogsArmor": 126,
-    "DA_SpiritVisage": 69,
-    "DA_Crownguard": 68,
-    "DA_SteadfastHeart": 53,
-    "DA_SunfireCape": 37,
-    "DA_ProtectorsVow": 33,
-    "DA_DragonsClaw": 32,
-    "DA_SteraksGage": 24,
-    "DA_BrambleVest": 23,
-    "DA_IonicSpark": 21,
-    "DA_Evenshroud": 21
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 15,
-     "avgPlace": 4.4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 13,
-     "avgPlace": 4.31
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 9,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 3.71
+     "avgPlace": 4.08
     },
     {
      "items": [
@@ -1894,26 +998,17 @@ window.TFT_WEIGHTS = {
       "DA_WarmogsArmor",
       "DA_WarmogsArmor"
      ],
-     "games": 6,
-     "avgPlace": 4.17
+     "games": 4,
+     "avgPlace": 5.33
     },
     {
      "items": [
-      "DA_BrambleVest",
       "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 3.2
-    },
-    {
-     "items": [
-      "DA_Crownguard",
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage"
      ],
-     "games": 5,
-     "avgPlace": 2.8
+     "games": 4,
+     "avgPlace": 6.39
     },
     {
      "items": [
@@ -1921,17 +1016,17 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 5,
-     "avgPlace": 4.6
+     "games": 4,
+     "avgPlace": 5.41
     },
     {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
      ],
-     "games": 5,
-     "avgPlace": 4.4
+     "games": 4,
+     "avgPlace": 6.23
     },
     {
      "items": [
@@ -1939,252 +1034,57 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_GargoyleStoneplate"
      ],
-     "games": 5,
-     "avgPlace": 4.8
-    }
-   ]
-  },
-  "da_18_lillia": {
-   "games": 1400,
-   "avgPlace": 4.46,
-   "carryRate": 0.311,
-   "items": {
-    "DA_ProtectorsVow": 497,
-    "DA_AdaptiveHelm": 289,
-    "DA_GargoyleStoneplate": 229,
-    "DA_WarmogsArmor": 197,
-    "DA_SpiritVisage": 168,
-    "DA_Crownguard": 166,
-    "DA_Evenshroud": 94,
-    "DA_SunfireCape": 88,
-    "DA_SteadfastHeart": 61,
-    "DA_DragonsClaw": 59,
-    "DA_BrambleVest": 38,
-    "DA_SteraksGage": 30
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
-     ],
-     "games": 18,
-     "avgPlace": 3.33
+     "games": 4,
+     "avgPlace": 6.11
     },
     {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 16,
-     "avgPlace": 4.31
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow"
-     ],
-     "games": 13,
-     "avgPlace": 3.23
-    },
-    {
-     "items": [
+      "DA_Evenshroud",
       "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
       "DA_WarmogsArmor"
      ],
-     "games": 13,
-     "avgPlace": 3.85
+     "games": 3,
+     "avgPlace": 6.45
     },
     {
      "items": [
       "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow"
-     ],
-     "games": 9,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 9,
-     "avgPlace": 4.22
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_ProtectorsVow",
       "DA_SpiritVisage"
      ],
-     "games": 8,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
-     ],
-     "games": 8,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
-     ],
-     "games": 8,
-     "avgPlace": 4.25
-    },
-    {
-     "items": [
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 8,
-     "avgPlace": 3.25
+     "games": 3,
+     "avgPlace": 5.5
     }
    ]
   },
-  "da_18_aphelios": {
-   "games": 566,
-   "avgPlace": 4.36,
-   "carryRate": 0.571,
+  "da_18_yunara": {
+   "games": 1253,
+   "avgPlace": 4.55,
+   "carryRate": 0.637,
    "items": {
-    "DA_GuinsoosRageblade": 392,
-    "DA_KrakensFury": 248,
-    "DA_InfinityEdge": 181,
-    "DA_Deathblade": 115,
-    "DA_GiantSlayer": 81,
-    "DA_LastWhisper": 72,
-    "DA_RedBuff": 63,
-    "DA_HextechGunblade": 44,
-    "DA_StrikersFlail": 32,
-    "DA_Artifact_NavoriFlickerblade": 11,
-    "DA_Artifact_Fishbones": 9,
-    "DA_Artifact_RapidFireCannon": 6
+    "DA_SpearOfShojin": 525.0110000000001,
+    "DA_LastWhisper": 462.16800000000006,
+    "DA_Deathblade": 400.2360000000001,
+    "DA_InfinityEdge": 316.2558,
+    "DA_RedBuff": 213.67980000000006,
+    "DA_StrikersFlail": 154.65880000000004,
+    "DA_GiantSlayer": 142.74780000000004,
+    "DA_BlueBuff": 78.23360000000002,
+    "DA_HextechGunblade": 51.94560000000001,
+    "DA_Morellonomicon": 42.12360000000001,
+    "DA_NashorsTooth": 33.70580000000001,
+    "DA_VoidStaff": 33.226200000000006
    },
    "builds": [
     {
      "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_KrakensFury"
-     ],
-     "games": 33,
-     "avgPlace": 4.76
-    },
-    {
-     "items": [
       "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury"
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
      ],
-     "games": 20,
-     "avgPlace": 4.8
+     "games": 70,
+     "avgPlace": 3.66
     },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury"
-     ],
-     "games": 14,
-     "avgPlace": 3.86
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge"
-     ],
-     "games": 13,
-     "avgPlace": 3.38
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury",
-      "DA_KrakensFury"
-     ],
-     "games": 13,
-     "avgPlace": 3.62
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_StrikersFlail"
-     ],
-     "games": 12,
-     "avgPlace": 4.58
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_KrakensFury"
-     ],
-     "games": 12,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_LastWhisper"
-     ],
-     "games": 11,
-     "avgPlace": 3.82
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_LastWhisper"
-     ],
-     "games": 8,
-     "avgPlace": 4.25
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury",
-      "DA_LastWhisper"
-     ],
-     "games": 8,
-     "avgPlace": 5
-    }
-   ]
-  },
-  "da_18_ezreal": {
-   "games": 728,
-   "avgPlace": 4.37,
-   "carryRate": 0.65,
-   "items": {
-    "DA_SpearOfShojin": 326,
-    "DA_InfinityEdge": 271,
-    "DA_LastWhisper": 267,
-    "DA_Deathblade": 190,
-    "DA_StrikersFlail": 126,
-    "DA_RedBuff": 112,
-    "DA_BlueBuff": 80,
-    "DA_GiantSlayer": 59,
-    "DA_HandOfJustice": 45,
-    "DA_AdaptiveHelm": 19,
-    "DA_GuinsoosRageblade": 18,
-    "DA_HextechGunblade": 17
-   },
-   "builds": [
     {
      "items": [
       "DA_InfinityEdge",
@@ -2192,25 +1092,16 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin"
      ],
      "games": 52,
-     "avgPlace": 4.13
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 24,
-     "avgPlace": 3.46
+     "avgPlace": 3.6
     },
     {
      "items": [
       "DA_Deathblade",
-      "DA_LastWhisper",
+      "DA_InfinityEdge",
       "DA_SpearOfShojin"
      ],
-     "games": 23,
-     "avgPlace": 4.74
+     "games": 29,
+     "avgPlace": 3.88
     },
     {
      "items": [
@@ -2218,323 +1109,221 @@ window.TFT_WEIGHTS = {
       "DA_RedBuff",
       "DA_SpearOfShojin"
      ],
-     "games": 19,
-     "avgPlace": 3.95
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin"
-     ],
-     "games": 18,
-     "avgPlace": 4.06
+     "games": 22,
+     "avgPlace": 4.62
     },
     {
      "items": [
       "DA_LastWhisper",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 21,
+     "avgPlace": 3.4
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
+     ],
+     "games": 19,
+     "avgPlace": 4.07
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GiantSlayer",
+      "DA_SpearOfShojin"
+     ],
+     "games": 18,
+     "avgPlace": 2.81
+    },
+    {
+     "items": [
+      "DA_LastWhisper",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 17,
+     "avgPlace": 3.66
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
      "games": 16,
-     "avgPlace": 3.31
+     "avgPlace": 3.41
     },
     {
      "items": [
-      "DA_LastWhisper",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 14,
-     "avgPlace": 4.79
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
       "DA_InfinityEdge",
-      "DA_SpearOfShojin"
+      "DA_LastWhisper",
+      "DA_RedBuff"
      ],
-     "games": 12,
-     "avgPlace": 4.33
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 11,
-     "avgPlace": 4.73
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_Deathblade",
-      "DA_LastWhisper"
-     ],
-     "games": 10,
-     "avgPlace": 3
+     "games": 15,
+     "avgPlace": 4.22
     }
    ]
   },
-  "da_lux18_base": {
-   "games": 788,
-   "avgPlace": 3.61,
-   "carryRate": 0.293,
+  "da_18_leona": {
+   "games": 1717,
+   "avgPlace": 4.45,
+   "carryRate": 0.077,
    "items": {
-    "DA_SpearOfShojin": 214,
-    "DA_JeweledGauntlet": 139,
-    "DA_VoidStaff": 94,
-    "DA_AdaptiveHelm": 84,
-    "DA_RabadonsDeathcap": 83,
-    "DA_BlueBuff": 82,
-    "DA_RedBuff": 79,
-    "DA_Morellonomicon": 76,
-    "DA_GiantSlayer": 54,
-    "DA_HextechGunblade": 49,
-    "DA_ArchangelsStaff": 42,
-    "DA_NashorsTooth": 37
+    "DA_GargoyleStoneplate": 123.59700000000002,
+    "DA_SpiritVisage": 80.15820000000002,
+    "DA_Evenshroud": 78.08280000000002,
+    "DA_WarmogsArmor": 75.66500000000002,
+    "DA_Crownguard": 53.51420000000001,
+    "DA_SunfireCape": 50.02100000000001,
+    "DA_ProtectorsVow": 41.19900000000001,
+    "DA_Component_GiantsBelt": 40.95920000000001,
+    "DA_IonicSpark": 33.63040000000001,
+    "DA_SteadfastHeart": 28.808400000000006,
+    "DA_AdaptiveHelm": 26.644000000000005,
+    "DA_BrambleVest": 26.555000000000007
    },
    "builds": [
     {
      "items": [
-      "DA_Morellonomicon",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
-     ],
-     "games": 7,
-     "avgPlace": 4.57
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
-     ],
-     "games": 7,
-     "avgPlace": 3.57
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
      "games": 6,
-     "avgPlace": 3.67
+     "avgPlace": 5.13
     },
     {
      "items": [
-      "DA_JeweledGauntlet",
-      "DA_Morellonomicon",
-      "DA_SpearOfShojin"
-     ],
-     "games": 6,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
      ],
      "games": 4,
-     "avgPlace": 3.5
+     "avgPlace": 2.74
     },
     {
      "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
      ],
      "games": 4,
+     "avgPlace": 6.05
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 3,
+     "avgPlace": 4.9
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 3,
+     "avgPlace": 4.84
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SpiritVisage"
+     ],
+     "games": 3,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 3,
+     "avgPlace": 4.4
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 3,
+     "avgPlace": 4.48
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 3,
+     "avgPlace": 5.26
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 3,
+     "avgPlace": 2.74
+    }
+   ]
+  },
+  "da_18_sejuani": {
+   "games": 1891,
+   "avgPlace": 4.55,
+   "carryRate": 0.486,
+   "items": {
+    "DA_GargoyleStoneplate": 1060.2617999999923,
+    "DA_WarmogsArmor": 526.8602000000001,
+    "DA_SpiritVisage": 324.3312000000001,
+    "DA_Crownguard": 281.9406,
+    "DA_SteadfastHeart": 118.62420000000002,
+    "DA_SunfireCape": 112.38440000000003,
+    "DA_BrambleVest": 100.48700000000002,
+    "DA_Evenshroud": 91.90480000000002,
+    "DA_ProtectorsVow": 88.57600000000002,
+    "DA_DragonsClaw": 71.33620000000002,
+    "DA_IonicSpark": 52.94560000000001,
+    "DA_AdaptiveHelm": 48.19900000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 92,
+     "avgPlace": 4.22
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 74,
      "avgPlace": 3.75
     },
     {
      "items": [
-      "DA_BlueBuff",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 4,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 4,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_RabadonsDeathcap",
-      "DA_RedBuff",
-      "DA_VoidStaff"
-     ],
-     "games": 4,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_NashorsTooth",
-      "DA_SpearOfShojin"
-     ],
-     "games": 4,
-     "avgPlace": 3.5
-    }
-   ]
-  },
-  "da_18_masteryi_ad": {
-   "games": 280,
-   "avgPlace": 4.42,
-   "carryRate": 0.575,
-   "items": {
-    "DA_EdgeOfNight": 151,
-    "DA_GuinsoosRageblade": 142,
-    "DA_Quicksilver": 108,
-    "DA_HandOfJustice": 28,
-    "DA_TitansResolve": 28,
-    "DA_Bloodthirster": 25,
-    "DA_Artifact_NavoriFlickerblade": 25,
-    "DA_Artifact_WitsEnd": 21,
-    "DA_KrakensFury": 18,
-    "DA_Artifact_HellfireHatchet": 17,
-    "DA_Artifact_RapidFireCannon": 17,
-    "DA_Artifact_TitanicHydra": 13
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_Quicksilver"
-     ],
-     "games": 17,
-     "avgPlace": 4.47
-    },
-    {
-     "items": [
-      "DA_Artifact_WitsEnd",
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade"
-     ],
-     "games": 9,
-     "avgPlace": 3.22
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_HandOfJustice"
-     ],
-     "games": 7,
-     "avgPlace": 4.71
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_TitansResolve"
-     ],
-     "games": 6,
-     "avgPlace": 4.67
-    },
-    {
-     "items": [
-      "DA_Artifact_TitanicHydra",
-      "DA_EdgeOfNight",
-      "DA_Quicksilver"
-     ],
-     "games": 5,
-     "avgPlace": 5.8
-    },
-    {
-     "items": [
-      "DA_Artifact_HellfireHatchet",
-      "DA_EdgeOfNight",
-      "DA_Quicksilver"
-     ],
-     "games": 5,
-     "avgPlace": 4.2
-    },
-    {
-     "items": [
-      "DA_Bloodthirster",
-      "DA_EdgeOfNight",
-      "DA_Quicksilver"
-     ],
-     "games": 5,
-     "avgPlace": 4.8
-    },
-    {
-     "items": [
-      "DA_Bloodthirster",
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade"
-     ],
-     "games": 4,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_Quicksilver"
-     ],
-     "games": 4,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRagebladeRadiant",
-      "DA_TitansResolve"
-     ],
-     "games": 3,
-     "avgPlace": 5.33
-    }
-   ]
-  },
-  "da_vi18": {
-   "games": 800,
-   "avgPlace": 4.7,
-   "carryRate": 0.278,
-   "items": {
-    "DA_GargoyleStoneplate": 200,
-    "DA_SpiritVisage": 135,
-    "DA_WarmogsArmor": 102,
-    "DA_SunfireCape": 71,
-    "DA_Evenshroud": 63,
-    "DA_Crownguard": 62,
-    "DA_ProtectorsVow": 52,
-    "DA_BrambleVest": 35,
-    "DA_SteadfastHeart": 33,
-    "DA_SteraksGage": 32,
-    "DA_AdaptiveHelm": 29,
-    "DA_DragonsClaw": 21
-   },
-   "builds": [
-    {
-     "items": [
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 8,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SteadfastHeart"
-     ],
-     "games": 6,
-     "avgPlace": 5
+     "games": 65,
+     "avgPlace": 3.49
     },
     {
      "items": [
@@ -2542,8 +1331,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage"
      ],
-     "games": 6,
-     "avgPlace": 4.17
+     "games": 45,
+     "avgPlace": 3.78
     },
     {
      "items": [
@@ -2551,1016 +1340,17 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage"
      ],
-     "games": 5,
-     "avgPlace": 4.6
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 6.4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 5,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SunfireCape"
-     ],
-     "games": 4,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 4,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage",
-      "DA_SunfireCape"
-     ],
-     "games": 4,
-     "avgPlace": 4.75
-    }
-   ]
-  },
-  "da_18_yorick": {
-   "games": 1369,
-   "avgPlace": 4.6,
-   "carryRate": 0.07,
-   "items": {
-    "DA_GargoyleStoneplate": 93,
-    "DA_WarmogsArmor": 70,
-    "DA_SunfireCape": 61,
-    "DA_IonicSpark": 47,
-    "DA_Evenshroud": 45,
-    "DA_SpiritVisage": 38,
-    "DA_Crownguard": 31,
-    "DA_SteadfastHeart": 28,
-    "DA_BrambleVest": 22,
-    "DA_Component_ChainVest": 21,
-    "DA_ProtectorsVow": 18,
-    "DA_Component_GiantsBelt": 17
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 6,
-     "avgPlace": 5.33
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 6.67
-    },
-    {
-     "items": [
-      "DA_IonicSpark",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 3,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_IonicSpark",
-      "DA_SunfireCape",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_DragonsClaw",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SpiritVisage"
-     ],
-     "games": 2,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_SunfireCape",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 2,
-     "avgPlace": 5.5
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 2
-    }
-   ]
-  },
-  "da_kogmaw18_ad": {
-   "games": 589,
-   "avgPlace": 4.48,
-   "carryRate": 0.163,
-   "items": {
-    "DA_RedBuff": 84,
-    "DA_SpearOfShojin": 52,
-    "DA_InfinityEdge": 49,
-    "DA_Morellonomicon": 47,
-    "DA_BlueBuff": 36,
-    "DA_GuinsoosRageblade": 32,
-    "DA_JeweledGauntlet": 29,
-    "DA_GiantSlayer": 26,
-    "DA_Deathblade": 24,
-    "DA_HextechGunblade": 22,
-    "DA_Component_RecurveBow": 17,
-    "DA_RabadonsDeathcap": 16
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 5,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_RedBuff"
-     ],
-     "games": 4,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_Deathblade",
-      "DA_RedBuff"
-     ],
-     "games": 3,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 3,
-     "avgPlace": 2.33
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin"
-     ],
-     "games": 3,
-     "avgPlace": 4.67
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_HextechGunblade",
-      "DA_Morellonomicon"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 2,
-     "avgPlace": 1.5
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_GiantSlayer",
-      "DA_RedBuff"
-     ],
-     "games": 2,
-     "avgPlace": 1.5
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_InfinityEdge",
-      "DA_RedBuff"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 3.5
-    }
-   ]
-  },
-  "da_krug18": {
-   "games": 1206,
-   "avgPlace": 4.39,
-   "carryRate": 0.239,
-   "items": {
-    "DA_GargoyleStoneplate": 220,
-    "DA_WarmogsArmor": 176,
-    "DA_SpiritVisage": 152,
-    "DA_Evenshroud": 112,
-    "DA_SunfireCape": 89,
-    "DA_Crownguard": 77,
-    "DA_ProtectorsVow": 66,
-    "DA_DragonsClaw": 44,
-    "DA_AdaptiveHelm": 40,
-    "DA_BrambleVest": 39,
-    "DA_SteadfastHeart": 38,
-    "DA_SteraksGage": 33
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 15,
+     "games": 44,
      "avgPlace": 3.73
     },
     {
      "items": [
       "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 10,
-     "avgPlace": 3.9
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 9,
-     "avgPlace": 2.89
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 8,
-     "avgPlace": 3.75
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 4.57
-    },
-    {
-     "items": [
-      "DA_DragonsClaw",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 3.57
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 4.86
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SunfireCape",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 4.57
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SpiritVisage"
-     ],
-     "games": 6,
-     "avgPlace": 4.67
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 2.4
-    }
-   ]
-  },
-  "da_18_sett": {
-   "games": 984,
-   "avgPlace": 4.57,
-   "carryRate": 0.471,
-   "items": {
-    "DA_GargoyleStoneplate": 481,
-    "DA_WarmogsArmor": 242,
-    "DA_SteraksGage": 208,
-    "DA_SpiritVisage": 155,
-    "DA_Crownguard": 94,
-    "DA_SteadfastHeart": 94,
-    "DA_DragonsClaw": 63,
-    "DA_ProtectorsVow": 58,
-    "DA_SunfireCape": 57,
-    "DA_BrambleVest": 56,
-    "DA_Evenshroud": 43,
-    "DA_AdaptiveHelm": 34
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteraksGage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 31,
-     "avgPlace": 5.29
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 23,
-     "avgPlace": 4.48
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SteraksGage"
-     ],
-     "games": 18,
-     "avgPlace": 4.56
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 18,
-     "avgPlace": 4.17
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SteraksGage"
-     ],
-     "games": 16,
-     "avgPlace": 4.63
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 14,
-     "avgPlace": 4.21
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 11,
-     "avgPlace": 4.36
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 10,
-     "avgPlace": 4.4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_SteraksGage"
-     ],
-     "games": 9,
-     "avgPlace": 5.33
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor",
-      "DA_WarmogsArmor"
-     ],
-     "games": 9,
-     "avgPlace": 3.56
-    }
-   ]
-  },
-  "da_nidalee18_ap": {
-   "games": 650,
-   "avgPlace": 4.46,
-   "carryRate": 0.443,
-   "items": {
-    "DA_InfinityEdge": 210,
-    "DA_SteraksGage": 204,
-    "DA_EdgeOfNight": 126,
-    "DA_HandOfJustice": 90,
-    "DA_SpearOfShojin": 82,
-    "DA_Bloodthirster": 75,
-    "DA_GuinsoosRageblade": 59,
-    "DA_Quicksilver": 40,
-    "DA_GiantSlayer": 37,
-    "DA_ArchangelsStaff": 36,
-    "DA_HextechGunblade": 35,
-    "DA_Deathblade": 34
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin",
-      "DA_SteraksGage"
-     ],
-     "games": 13,
-     "avgPlace": 4.85
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_InfinityEdge"
-     ],
-     "games": 10,
-     "avgPlace": 3.8
-    },
-    {
-     "items": [
-      "DA_HandOfJustice",
-      "DA_InfinityEdge",
-      "DA_SteraksGage"
-     ],
-     "games": 10,
-     "avgPlace": 5.1
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge",
-      "DA_SteraksGage"
-     ],
-     "games": 9,
-     "avgPlace": 2.78
-    },
-    {
-     "items": [
-      "DA_Bloodthirster",
-      "DA_EdgeOfNight",
-      "DA_SteraksGage"
-     ],
-     "games": 7,
-     "avgPlace": 2.86
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin"
-     ],
-     "games": 6,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 5,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade"
-     ],
-     "games": 5,
-     "avgPlace": 5.2
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge",
-      "DA_Quicksilver"
-     ],
-     "games": 5,
-     "avgPlace": 4.6
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_SteraksGage"
-     ],
-     "games": 4,
-     "avgPlace": 4.75
-    }
-   ]
-  },
-  "da_18_yunara": {
-   "games": 553,
-   "avgPlace": 4.63,
-   "carryRate": 0.647,
-   "items": {
-    "DA_SpearOfShojin": 231,
-    "DA_LastWhisper": 206,
-    "DA_Deathblade": 179,
-    "DA_InfinityEdge": 148,
-    "DA_RedBuff": 92,
-    "DA_StrikersFlail": 65,
-    "DA_GiantSlayer": 56,
-    "DA_BlueBuff": 27,
-    "DA_HextechGunblade": 24,
-    "DA_VoidStaff": 21,
-    "DA_Morellonomicon": 20,
-    "DA_Quicksilver": 12
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_LastWhisper",
-      "DA_SpearOfShojin"
-     ],
-     "games": 33,
-     "avgPlace": 4.03
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_SpearOfShojin"
-     ],
-     "games": 27,
-     "avgPlace": 3.52
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 13,
-     "avgPlace": 4.62
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin"
-     ],
-     "games": 13,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_LastWhisper",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 11,
-     "avgPlace": 3.55
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 10,
-     "avgPlace": 3.7
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GiantSlayer",
-      "DA_SpearOfShojin"
-     ],
-     "games": 10,
-     "avgPlace": 1.8
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_RedBuff"
-     ],
-     "games": 9,
-     "avgPlace": 3.78
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_LastWhisper",
-      "DA_RedBuff"
-     ],
-     "games": 6,
-     "avgPlace": 4.83
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 5,
-     "avgPlace": 6
-    }
-   ]
-  },
-  "da_karma18": {
-   "games": 649,
-   "avgPlace": 4.68,
-   "carryRate": 0.439,
-   "items": {
-    "DA_BlueBuff": 274,
-    "DA_JeweledGauntlet": 250,
-    "DA_RabadonsDeathcap": 246,
-    "DA_SpearOfShojin": 62,
-    "DA_StrikersFlail": 49,
-    "DA_VoidStaff": 48,
-    "DA_GiantSlayer": 41,
-    "DA_ArchangelsStaff": 40,
-    "DA_NashorsTooth": 27,
-    "DA_AdaptiveHelm": 18,
-    "DA_Morellonomicon": 17,
-    "DA_HextechGunblade": 16
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 67,
-     "avgPlace": 4.28
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail"
-     ],
-     "games": 18,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_GiantSlayer",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 17,
-     "avgPlace": 5.06
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_VoidStaff"
-     ],
-     "games": 12,
-     "avgPlace": 4.58
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_RabadonsDeathcap",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 10,
-     "avgPlace": 4.6
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
-     ],
-     "games": 9,
-     "avgPlace": 3.22
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_RabadonsDeathcap",
-      "DA_VoidStaff"
-     ],
-     "games": 6,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 6,
-     "avgPlace": 3.33
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_NashorsTooth",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 5,
-     "avgPlace": 4.8
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_ArchangelsStaff",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 5,
-     "avgPlace": 5.8
-    }
-   ]
-  },
-  "da_18_leona": {
-   "games": 745,
-   "avgPlace": 4.54,
-   "carryRate": 0.067,
-   "items": {
-    "DA_GargoyleStoneplate": 45,
-    "DA_Evenshroud": 35,
-    "DA_SpiritVisage": 33,
-    "DA_WarmogsArmor": 32,
-    "DA_Component_GiantsBelt": 20,
-    "DA_SunfireCape": 18,
-    "DA_Crownguard": 18,
-    "DA_SteadfastHeart": 16,
-    "DA_IonicSpark": 15,
-    "DA_ProtectorsVow": 15,
-    "DA_AdaptiveHelm": 15,
-    "DA_BrambleVest": 12
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 5.67
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 5.67
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate",
       "DA_GargoyleStoneplate"
      ],
-     "games": 2,
-     "avgPlace": 6.5
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 2,
-     "avgPlace": 1.5
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_Bloodthirster",
-      "DA_SpiritVisage",
-      "DA_SteadfastHeart"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_IonicSpark",
-      "DA_SpiritVisage",
-      "DA_SpiritVisage"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_IonicSpark",
-      "DA_ProtectorsVow"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    }
-   ]
-  },
-  "da_18_sejuani": {
-   "games": 847,
-   "avgPlace": 4.68,
-   "carryRate": 0.495,
-   "items": {
-    "DA_GargoyleStoneplate": 467,
-    "DA_WarmogsArmor": 241,
-    "DA_SpiritVisage": 152,
-    "DA_Crownguard": 123,
-    "DA_SteadfastHeart": 54,
-    "DA_SunfireCape": 53,
-    "DA_BrambleVest": 51,
-    "DA_Evenshroud": 43,
-    "DA_ProtectorsVow": 42,
-    "DA_DragonsClaw": 30,
-    "DA_IonicSpark": 25,
-    "DA_AdaptiveHelm": 22
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 44,
-     "avgPlace": 4.45
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 30,
-     "avgPlace": 3.87
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 27,
-     "avgPlace": 3.26
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 21,
-     "avgPlace": 4.29
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 21,
-     "avgPlace": 3.57
+     "games": 25,
+     "avgPlace": 3.67
     },
     {
      "items": [
@@ -3568,8 +1358,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 13,
-     "avgPlace": 4
+     "games": 24,
+     "avgPlace": 3.25
     },
     {
      "items": [
@@ -3577,8 +1367,8 @@ window.TFT_WEIGHTS = {
       "DA_SteadfastHeart",
       "DA_WarmogsArmor"
      ],
-     "games": 11,
-     "avgPlace": 3.64
+     "games": 23,
+     "avgPlace": 3.53
     },
     {
      "items": [
@@ -3586,17 +1376,8 @@ window.TFT_WEIGHTS = {
       "DA_WarmogsArmor",
       "DA_WarmogsArmor"
      ],
-     "games": 11,
-     "avgPlace": 4.45
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate"
-     ],
-     "games": 10,
-     "avgPlace": 3.7
+     "games": 18,
+     "avgPlace": 3.99
     },
     {
      "items": [
@@ -3604,28 +1385,28 @@ window.TFT_WEIGHTS = {
       "DA_ProtectorsVow",
       "DA_WarmogsArmor"
      ],
-     "games": 9,
-     "avgPlace": 4.11
+     "games": 17,
+     "avgPlace": 4.43
     }
    ]
   },
   "da_18_kayle": {
-   "games": 692,
-   "avgPlace": 4.47,
-   "carryRate": 0.121,
+   "games": 1558,
+   "avgPlace": 4.36,
+   "carryRate": 0.122,
    "items": {
-    "DA_GuinsoosRageblade": 85,
-    "DA_RedBuff": 64,
-    "DA_JeweledGauntlet": 40,
-    "DA_GiantSlayer": 32,
-    "DA_HextechGunblade": 32,
-    "DA_RabadonsDeathcap": 27,
-    "DA_Morellonomicon": 16,
-    "DA_Artifact_NavoriFlickerblade": 15,
-    "DA_Component_RecurveBow": 14,
-    "DA_Component_NeedlesslyLargeRod": 13,
-    "DA_LastWhisper": 12,
-    "DA_Artifact_WitsEnd": 10
+    "DA_GuinsoosRageblade": 192.70700000000005,
+    "DA_RedBuff": 133.86400000000003,
+    "DA_JeweledGauntlet": 88.32260000000002,
+    "DA_GiantSlayer": 72.75400000000002,
+    "DA_HextechGunblade": 69.26080000000002,
+    "DA_RabadonsDeathcap": 68.91840000000002,
+    "DA_Component_RecurveBow": 40.78120000000001,
+    "DA_Morellonomicon": 40.45240000000001,
+    "DA_Component_NeedlesslyLargeRod": 27.555000000000007,
+    "DA_LastWhisper": 27.137200000000007,
+    "DA_Artifact_NavoriFlickerblade": 26.061800000000005,
+    "DA_VoidStaff": 23.883800000000004
    },
    "builds": [
     {
@@ -3634,1996 +1415,220 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_JeweledGauntlet"
      ],
-     "games": 4,
-     "avgPlace": 5.75
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_GuinsoosRageblade",
-      "DA_RedBuff"
-     ],
-     "games": 4,
-     "avgPlace": 3.75
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_RabadonsDeathcap",
-      "DA_RedBuff"
-     ],
-     "games": 3,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_RedBuff"
-     ],
-     "games": 3,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_JeweledGauntlet",
-      "DA_RedBuff"
-     ],
-     "games": 3,
-     "avgPlace": 4.33
+     "games": 9,
+     "avgPlace": 4.94
     },
     {
      "items": [
       "DA_GuinsoosRageblade",
       "DA_JeweledGauntlet",
       "DA_RabadonsDeathcap"
-     ],
-     "games": 2,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_RedBuff",
-      "DA_StrikersFlail"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_GiantSlayer",
-      "DA_RedBuff"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade"
-     ],
-     "games": 2,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_Artifact_NavoriFlickerblade",
-      "DA_GuinsoosRageblade",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 2,
-     "avgPlace": 1.5
-    }
-   ]
-  },
-  "da_18_rengar": {
-   "games": 246,
-   "avgPlace": 4.39,
-   "carryRate": 0.549,
-   "items": {
-    "DA_GuinsoosRageblade": 143,
-    "DA_EdgeOfNight": 118,
-    "DA_TitansResolve": 59,
-    "DA_Quicksilver": 57,
-    "DA_SteraksGage": 53,
-    "DA_HandOfJustice": 42,
-    "DA_Bloodthirster": 21,
-    "DA_InfinityEdge": 13,
-    "DA_Deathblade": 12,
-    "DA_GiantSlayer": 10,
-    "DA_KrakensFury": 9,
-    "DA_Artifact_Mittens": 7
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_SteraksGage"
-     ],
-     "games": 11,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_Quicksilver"
-     ],
-     "games": 11,
-     "avgPlace": 3.91
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_TitansResolve"
-     ],
-     "games": 10,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_HandOfJustice"
-     ],
-     "games": 9,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_Quicksilver"
-     ],
-     "games": 5,
-     "avgPlace": 4.2
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury"
-     ],
-     "games": 4,
-     "avgPlace": 3.75
-    },
-    {
-     "items": [
-      "DA_Artifact_Mittens",
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade"
-     ],
-     "games": 3,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_Bloodthirster",
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade"
-     ],
-     "games": 3,
-     "avgPlace": 5.67
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_Quicksilver",
-      "DA_SteraksGage"
-     ],
-     "games": 3,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_TitansResolve"
-     ],
-     "games": 3,
-     "avgPlace": 3.33
-    }
-   ]
-  },
-  "da_brambleback18": {
-   "games": 692,
-   "avgPlace": 4.24,
-   "carryRate": 0.831,
-   "items": {
-    "DA_GuinsoosRageblade": 544,
-    "DA_EdgeOfNight": 538,
-    "DA_Quicksilver": 433,
-    "DA_HandOfJustice": 68,
-    "DA_SteraksGage": 60,
-    "DA_TitansResolve": 36,
-    "DA_Bloodthirster": 26,
-    "DA_GiantSlayer": 19,
-    "DA_InfinityEdge": 14,
-    "DA_Deathblade": 14,
-    "DA_HextechGunblade": 13,
-    "DA_Artifact_Mittens": 9
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_Quicksilver"
-     ],
-     "games": 356,
-     "avgPlace": 4.15
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_HandOfJustice"
-     ],
-     "games": 33,
-     "avgPlace": 4.45
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_TitansResolve"
-     ],
-     "games": 21,
-     "avgPlace": 3.52
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_SteraksGage"
-     ],
-     "games": 19,
-     "avgPlace": 4.84
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_Quicksilver",
-      "DA_SteraksGage"
-     ],
-     "games": 9,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_Bloodthirster",
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade"
      ],
      "games": 8,
-     "avgPlace": 3.88
+     "avgPlace": 4.55
     },
     {
      "items": [
-      "DA_EdgeOfNight",
       "DA_GiantSlayer",
-      "DA_GuinsoosRageblade"
+      "DA_GuinsoosRageblade",
+      "DA_RedBuff"
+     ],
+     "games": 7,
+     "avgPlace": 4.53
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_JeweledGauntlet",
+      "DA_RedBuff"
      ],
      "games": 6,
-     "avgPlace": 3.83
+     "avgPlace": 5.15
     },
     {
      "items": [
       "DA_GuinsoosRageblade",
-      "DA_HandOfJustice",
-      "DA_Quicksilver"
-     ],
-     "games": 5,
-     "avgPlace": 4.6
-    },
-    {
-     "items": [
-      "DA_Artifact_Mittens",
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade"
-     ],
-     "games": 5,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_Quicksilver"
-     ],
-     "games": 4,
-     "avgPlace": 4.25
-    }
-   ]
-  },
-  "da_18_sentry": {
-   "games": 723,
-   "avgPlace": 4.44,
-   "carryRate": 0.065,
-   "items": {
-    "DA_ArchangelsStaff": 35,
-    "DA_JeweledGauntlet": 34,
-    "DA_BlueBuff": 27,
-    "DA_RabadonsDeathcap": 26,
-    "DA_VoidStaff": 19,
-    "DA_Component_NeedlesslyLargeRod": 18,
-    "DA_HextechGunblade": 13,
-    "DA_Morellonomicon": 13,
-    "DA_GiantSlayer": 11,
-    "DA_RedBuff": 7,
-    "DA_SpearOfShojin": 7,
-    "DA_Component_TearOfTheGoddess": 7
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_GiantSlayer",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 4,
-     "avgPlace": 3.75
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 4,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_JeweledGauntlet",
-      "DA_VoidStaff"
-     ],
-     "games": 3,
-     "avgPlace": 2.67
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_GiantSlayer",
-      "DA_JeweledGauntlet"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_RabadonsDeathcap",
-      "DA_VoidStaff"
-     ],
-     "games": 2,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
       "DA_RabadonsDeathcap",
       "DA_RedBuff"
      ],
-     "games": 1,
-     "avgPlace": 1
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_Component_TearOfTheGoddess",
-      "DA_HextechGunblade",
-      "DA_SpearOfShojin"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_GiantSlayer",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 1,
-     "avgPlace": 4
-    }
-   ]
-  },
-  "da_scuttlecrab18": {
-   "games": 477,
-   "avgPlace": 4.77,
-   "carryRate": 0.088,
-   "items": {
-    "DA_SpiritVisage": 30,
-    "DA_Evenshroud": 26,
-    "DA_WarmogsArmor": 23,
-    "DA_GargoyleStoneplate": 22,
-    "DA_SunfireCape": 19,
-    "DA_Crownguard": 10,
-    "DA_ProtectorsVow": 8,
-    "DA_SteadfastHeart": 7,
-    "DA_SteraksGage": 6,
-    "DA_DragonsClaw": 5,
-    "DA_BrambleVest": 5,
-    "DA_Component_GiantsBelt": 5
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_SpiritVisage",
-      "DA_SunfireCape"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 2,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_Evenshroud",
-      "DA_SunfireCape"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_BrambleVest",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_ProtectorsVow",
-      "DA_SunfireCape"
-     ],
-     "games": 1,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    }
-   ]
-  },
-  "da_murkwolf18": {
-   "games": 629,
-   "avgPlace": 4.26,
-   "carryRate": 0.068,
-   "items": {
-    "DA_InfinityEdge": 29,
-    "DA_EdgeOfNight": 29,
-    "DA_HandOfJustice": 24,
-    "DA_Deathblade": 22,
-    "DA_GuinsoosRageblade": 19,
-    "DA_SteraksGage": 18,
-    "DA_LastWhisper": 15,
-    "DA_Component_BFSword": 14,
-    "DA_Bloodthirster": 13,
-    "DA_Component_RecurveBow": 13,
-    "DA_RedBuff": 12,
-    "DA_Quicksilver": 12
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge"
-     ],
-     "games": 2,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_SteraksGage"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_Component_SparringGloves",
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade"
-     ],
-     "games": 2,
-     "avgPlace": 7.5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge"
-     ],
-     "games": 2,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HandOfJustice",
-      "DA_HandOfJustice"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_Bloodthirster",
-      "DA_Deathblade",
-      "DA_RedBuff"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_HandOfJustice",
-      "DA_RedBuff",
-      "DA_TitansResolve"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge",
-      "DA_Quicksilver"
-     ],
-     "games": 1,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_GiantSlayer",
-      "DA_HandOfJustice"
-     ],
-     "games": 1,
-     "avgPlace": 1
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_HandOfJustice",
-      "DA_TitansResolve"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    }
-   ]
-  },
-  "da_sentinel18": {
-   "games": 2181,
-   "avgPlace": 4.37,
-   "carryRate": 0.332,
-   "items": {
-    "DA_ProtectorsVow": 768,
-    "DA_GargoyleStoneplate": 439,
-    "DA_AdaptiveHelm": 337,
-    "DA_SpiritVisage": 291,
-    "DA_WarmogsArmor": 280,
-    "DA_Crownguard": 203,
-    "DA_SteadfastHeart": 111,
-    "DA_Evenshroud": 108,
-    "DA_SunfireCape": 99,
-    "DA_DragonsClaw": 73,
-    "DA_BrambleVest": 50,
-    "DA_SteraksGage": 39
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
-     ],
-     "games": 31,
-     "avgPlace": 4.42
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 28,
-     "avgPlace": 4.57
-    },
-    {
-     "items": [
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
-     ],
-     "games": 23,
-     "avgPlace": 3.78
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 22,
-     "avgPlace": 4.45
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
-     ],
-     "games": 20,
-     "avgPlace": 4.45
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 17,
-     "avgPlace": 4.18
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_Crownguard",
-      "DA_ProtectorsVow"
-     ],
-     "games": 16,
-     "avgPlace": 4.31
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 16,
-     "avgPlace": 4.19
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 15,
-     "avgPlace": 4.93
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow"
-     ],
-     "games": 15,
-     "avgPlace": 4.33
-    }
-   ]
-  },
-  "da_crimsonraptor18": {
-   "games": 223,
-   "avgPlace": 4.39,
-   "carryRate": 0.43,
-   "items": {
-    "DA_GuinsoosRageblade": 76,
-    "DA_HextechGunblade": 71,
-    "DA_TitansResolve": 49,
-    "DA_GuinsoosRagebladeRadiant": 25,
-    "DA_KrakensFury": 24,
-    "DA_LastWhisper": 23,
-    "DA_Deathblade": 16,
-    "DA_InfinityEdge": 11,
-    "DA_TacticiansCrown": 5,
-    "DA_RedBuff": 5,
-    "DA_GiantSlayer": 5,
-    "DA_Quicksilver": 5
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_TitansResolve"
-     ],
-     "games": 26,
+     "games": 5,
      "avgPlace": 4.69
     },
     {
      "items": [
-      "DA_GuinsoosRagebladeRadiant",
-      "DA_HextechGunblade",
-      "DA_TitansResolve"
-     ],
-     "games": 17,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_GuinsoosRagebladeRadiant",
-      "DA_HextechGunblade",
-      "DA_KrakensFury"
-     ],
-     "games": 4,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_KrakensFury"
-     ],
-     "games": 4,
-     "avgPlace": 3.25
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury"
-     ],
-     "games": 3,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_LastWhisper"
-     ],
-     "games": 2,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_Artifact_GamblersBlade",
+      "DA_GiantSlayer",
       "DA_GuinsoosRageblade",
       "DA_HextechGunblade"
      ],
-     "games": 2,
-     "avgPlace": 5.5
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_InfinityEdge"
-     ],
-     "games": 2,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_LastWhisper"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_Artifact_NavoriFlickerblade",
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade"
-     ],
-     "games": 2,
-     "avgPlace": 4
-    }
-   ]
-  },
-  "da_taric18": {
-   "games": 1512,
-   "avgPlace": 3.88,
-   "carryRate": 0.259,
-   "items": {
-    "DA_GargoyleStoneplate": 313,
-    "DA_WarmogsArmor": 226,
-    "DA_SpiritVisage": 170,
-    "DA_Crownguard": 164,
-    "DA_ProtectorsVow": 129,
-    "DA_Evenshroud": 95,
-    "DA_SteadfastHeart": 84,
-    "DA_AdaptiveHelm": 78,
-    "DA_DragonsClaw": 67,
-    "DA_SunfireCape": 63,
-    "DA_BrambleVest": 48,
-    "DA_SteraksGage": 45
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 27,
-     "avgPlace": 3.11
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 17,
-     "avgPlace": 3.65
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 9,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 9,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 8,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 4.57
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
-     ],
-     "games": 7,
-     "avgPlace": 3.71
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SteadfastHeart"
-     ],
-     "games": 7,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor",
-      "DA_WarmogsArmor"
-     ],
-     "games": 6,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 6,
+     "games": 5,
      "avgPlace": 4.17
-    }
-   ]
-  },
-  "da_18_elderdragon": {
-   "games": 916,
-   "avgPlace": 3.89,
-   "carryRate": 0.695,
-   "items": {
-    "DA_InfinityEdge": 607,
-    "DA_LastWhisper": 380,
-    "DA_Deathblade": 225,
-    "DA_StrikersFlail": 198,
-    "DA_SteraksGage": 184,
-    "DA_GiantSlayer": 112,
-    "DA_HandOfJustice": 108,
-    "DA_RedBuff": 104,
-    "DA_BlueBuff": 45,
-    "DA_HextechGunblade": 44,
-    "DA_Quicksilver": 34,
-    "DA_SpearOfShojin": 28
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_StrikersFlail"
-     ],
-     "games": 57,
-     "avgPlace": 3.72
     },
     {
      "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_LastWhisper"
-     ],
-     "games": 39,
-     "avgPlace": 2.92
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_SteraksGage"
-     ],
-     "games": 33,
-     "avgPlace": 3.55
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_StrikersFlail"
-     ],
-     "games": 22,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_SteraksGage",
-      "DA_StrikersFlail"
-     ],
-     "games": 21,
-     "avgPlace": 3.57
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_SteraksGage"
-     ],
-     "games": 21,
-     "avgPlace": 3.52
-    },
-    {
-     "items": [
-      "DA_HandOfJustice",
-      "DA_InfinityEdge",
-      "DA_LastWhisper"
-     ],
-     "games": 20,
-     "avgPlace": 2.25
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
       "DA_RedBuff"
      ],
-     "games": 14,
-     "avgPlace": 4
+     "games": 5,
+     "avgPlace": 4.88
     },
     {
      "items": [
-      "DA_GiantSlayer",
-      "DA_InfinityEdge",
-      "DA_LastWhisper"
-     ],
-     "games": 12,
-     "avgPlace": 3.25
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_RedBuff"
-     ],
-     "games": 12,
-     "avgPlace": 4.08
-    }
-   ]
-  },
-  "da_18_ahri": {
-   "games": 644,
-   "avgPlace": 4.65,
-   "carryRate": 0.644,
-   "items": {
-    "DA_JeweledGauntlet": 452,
-    "DA_SpearOfShojin": 244,
-    "DA_StrikersFlail": 201,
-    "DA_RabadonsDeathcap": 143,
-    "DA_BlueBuff": 120,
-    "DA_NashorsTooth": 90,
-    "DA_VoidStaff": 44,
-    "DA_ArchangelsStaff": 38,
-    "DA_AdaptiveHelm": 38,
-    "DA_GiantSlayer": 33,
-    "DA_HextechGunblade": 20,
-    "DA_JeweledGauntletRadiant": 16
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 85,
-     "avgPlace": 4.44
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
-     ],
-     "games": 35,
-     "avgPlace": 5.06
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail"
-     ],
-     "games": 32,
-     "avgPlace": 4.16
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 23,
-     "avgPlace": 4.26
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_NashorsTooth",
-      "DA_StrikersFlail"
-     ],
-     "games": 18,
-     "avgPlace": 3.94
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_NashorsTooth",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 11,
-     "avgPlace": 4.82
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail"
-     ],
-     "games": 8,
-     "avgPlace": 6.63
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_NashorsTooth",
-      "DA_SpearOfShojin"
-     ],
-     "games": 8,
-     "avgPlace": 2.63
-    },
-    {
-     "items": [
+      "DA_GuinsoosRageblade",
       "DA_HextechGunblade",
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin"
-     ],
-     "games": 7,
-     "avgPlace": 4.57
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin"
-     ],
-     "games": 7,
-     "avgPlace": 5
-    }
-   ]
-  },
-  "da_amumu18": {
-   "games": 1509,
-   "avgPlace": 4.53,
-   "carryRate": 0.302,
-   "items": {
-    "DA_GargoyleStoneplate": 397,
-    "DA_WarmogsArmor": 304,
-    "DA_SpiritVisage": 196,
-    "DA_Crownguard": 171,
-    "DA_ProtectorsVow": 127,
-    "DA_DragonsClaw": 94,
-    "DA_SteadfastHeart": 90,
-    "DA_Evenshroud": 89,
-    "DA_AdaptiveHelm": 71,
-    "DA_BrambleVest": 67,
-    "DA_SunfireCape": 67,
-    "DA_IonicSpark": 31
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 30,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 23,
-     "avgPlace": 4.96
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 18,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 12,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor",
-      "DA_WarmogsArmor"
-     ],
-     "games": 12,
-     "avgPlace": 5.25
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 10,
-     "avgPlace": 5.4
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 10,
-     "avgPlace": 3.6
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 9,
-     "avgPlace": 3.78
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SpiritVisage"
-     ],
-     "games": 8,
-     "avgPlace": 5.25
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 6.57
-    }
-   ]
-  },
-  "da_18_morgana": {
-   "games": 661,
-   "avgPlace": 4.62,
-   "carryRate": 0.523,
-   "items": {
-    "DA_VoidStaff": 382,
-    "DA_Morellonomicon": 275,
-    "DA_RedBuff": 167,
-    "DA_HextechGunblade": 96,
-    "DA_RabadonsDeathcap": 80,
-    "DA_JeweledGauntlet": 69,
-    "DA_AdaptiveHelm": 61,
-    "DA_SpearOfShojin": 49,
-    "DA_GiantSlayer": 43,
-    "DA_BlueBuff": 24,
-    "DA_ArchangelsStaff": 19,
-    "DA_EdgeOfNight": 16
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 36,
-     "avgPlace": 4.08
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_RedBuff",
-      "DA_VoidStaff"
-     ],
-     "games": 21,
-     "avgPlace": 4.48
-    },
-    {
-     "items": [
-      "DA_Morellonomicon",
-      "DA_RabadonsDeathcap",
-      "DA_VoidStaff"
-     ],
-     "games": 19,
-     "avgPlace": 3.79
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 18,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_RedBuff",
-      "DA_VoidStaff"
-     ],
-     "games": 13,
-     "avgPlace": 4.31
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 13,
-     "avgPlace": 3.46
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 13,
-     "avgPlace": 3.92
-    },
-    {
-     "items": [
-      "DA_Morellonomicon",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
-     ],
-     "games": 13,
-     "avgPlace": 5.08
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_RedBuff",
-      "DA_VoidStaff"
-     ],
-     "games": 11,
-     "avgPlace": 3.64
-    },
-    {
-     "items": [
-      "DA_RabadonsDeathcap",
-      "DA_RedBuff",
-      "DA_VoidStaff"
-     ],
-     "games": 10,
-     "avgPlace": 5
-    }
-   ]
-  },
-  "da_18_alune": {
-   "games": 710,
-   "avgPlace": 3.86,
-   "carryRate": 0.562,
-   "items": {
-    "DA_JeweledGauntlet": 280,
-    "DA_SpearOfShojin": 246,
-    "DA_VoidStaff": 130,
-    "DA_BlueBuff": 127,
-    "DA_AdaptiveHelm": 106,
-    "DA_RabadonsDeathcap": 102,
-    "DA_ArchangelsStaff": 101,
-    "DA_StrikersFlail": 79,
-    "DA_Morellonomicon": 66,
-    "DA_NashorsTooth": 54,
-    "DA_RedBuff": 44,
-    "DA_GiantSlayer": 41
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 34,
-     "avgPlace": 3.44
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
-     ],
-     "games": 19,
-     "avgPlace": 3.84
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin"
-     ],
-     "games": 15,
-     "avgPlace": 3.07
-    },
-    {
-     "items": [
-      "DA_Morellonomicon",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
-     ],
-     "games": 12,
-     "avgPlace": 3.17
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 11,
-     "avgPlace": 4.82
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_NashorsTooth",
-      "DA_SpearOfShojin"
-     ],
-     "games": 11,
-     "avgPlace": 3.55
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
-     ],
-     "games": 10,
-     "avgPlace": 5.2
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail"
-     ],
-     "games": 9,
-     "avgPlace": 4.33
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_BlueBuff",
       "DA_JeweledGauntlet"
      ],
-     "games": 9,
-     "avgPlace": 4.78
+     "games": 4,
+     "avgPlace": 2.52
     },
     {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail"
-     ],
-     "games": 7,
-     "avgPlace": 3.14
-    }
-   ]
-  },
-  "da_18_ashe": {
-   "games": 337,
-   "avgPlace": 4.03,
-   "carryRate": 0.264,
-   "items": {
-    "DA_SpearOfShojin": 99,
-    "DA_RedBuff": 93,
-    "DA_LastWhisper": 57,
-    "DA_InfinityEdge": 46,
-    "DA_GuinsoosRageblade": 37,
-    "DA_Deathblade": 35,
-    "DA_BlueBuff": 23,
-    "DA_GiantSlayer": 17,
-    "DA_HextechGunblade": 17,
-    "DA_Morellonomicon": 14,
-    "DA_KrakensFury": 13,
-    "DA_StrikersFlail": 11
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_LastWhisper",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 5,
-     "avgPlace": 1.2
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 5,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_Deathblade",
       "DA_GuinsoosRageblade",
-      "DA_KrakensFury"
-     ],
-     "games": 3,
-     "avgPlace": 4.33
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_SpearOfShojin"
-     ],
-     "games": 3,
-     "avgPlace": 6.33
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 3,
-     "avgPlace": 6
-    },
-    {
-     "items": [
       "DA_HextechGunblade",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 3,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_RedBuff"
-     ],
-     "games": 2,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_InfinityEdge",
-      "DA_RedBuff"
-     ],
-     "games": 2,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_Component_TearOfTheGoddess",
-      "DA_LastWhisper",
-      "DA_RedBuff"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_KrakensFury",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 6.5
-    }
-   ]
-  },
-  "da_18_leblanc": {
-   "games": 889,
-   "avgPlace": 4.46,
-   "carryRate": 0.219,
-   "items": {
-    "DA_VoidStaff": 223,
-    "DA_Morellonomicon": 113,
-    "DA_SpearOfShojin": 105,
-    "DA_RedBuff": 103,
-    "DA_JeweledGauntlet": 71,
-    "DA_RabadonsDeathcap": 51,
-    "DA_GiantSlayer": 47,
-    "DA_HextechGunblade": 44,
-    "DA_BlueBuff": 35,
-    "DA_AdaptiveHelm": 33,
-    "DA_ArchangelsStaff": 28,
-    "DA_NashorsTooth": 23
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_RedBuff",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
-     ],
-     "games": 15,
-     "avgPlace": 3.4
-    },
-    {
-     "items": [
-      "DA_Morellonomicon",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
-     ],
-     "games": 13,
-     "avgPlace": 3.46
-    },
-    {
-     "items": [
-      "DA_Morellonomicon",
-      "DA_RabadonsDeathcap",
-      "DA_VoidStaff"
-     ],
-     "games": 5,
-     "avgPlace": 4.2
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 5,
-     "avgPlace": 4.4
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 4,
-     "avgPlace": 3.75
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_RabadonsDeathcap",
-      "DA_VoidStaff"
-     ],
-     "games": 4,
-     "avgPlace": 4.25
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_RedBuff",
-      "DA_VoidStaff"
-     ],
-     "games": 4,
-     "avgPlace": 4.75
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
-     ],
-     "games": 4,
-     "avgPlace": 4.25
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_RedBuff",
-      "DA_VoidStaff"
-     ],
-     "games": 4,
-     "avgPlace": 2.75
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 3,
-     "avgPlace": 3.67
-    }
-   ]
-  },
-  "da_18_hecarim": {
-   "games": 934,
-   "avgPlace": 4.52,
-   "carryRate": 0.241,
-   "items": {
-    "DA_GargoyleStoneplate": 142,
-    "DA_ProtectorsVow": 125,
-    "DA_WarmogsArmor": 117,
-    "DA_SpiritVisage": 85,
-    "DA_Evenshroud": 77,
-    "DA_Crownguard": 65,
-    "DA_SunfireCape": 65,
-    "DA_AdaptiveHelm": 53,
-    "DA_SteadfastHeart": 41,
-    "DA_DragonsClaw": 31,
-    "DA_BrambleVest": 30,
-    "DA_IonicSpark": 24
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 11,
-     "avgPlace": 5.18
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 6,
-     "avgPlace": 5.67
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 5,
-     "avgPlace": 4.6
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 3.8
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SunfireCape"
-     ],
-     "games": 4,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_ProtectorsVow",
-      "DA_SunfireCape"
-     ],
-     "games": 4,
-     "avgPlace": 3.25
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor",
-      "DA_WarmogsArmor"
-     ],
-     "games": 4,
-     "avgPlace": 3.75
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_ProtectorsVow",
-      "DA_SunfireCape"
-     ],
-     "games": 4,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_BrambleVest",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 2.67
-    }
-   ]
-  },
-  "da_18_ivern": {
-   "games": 954,
-   "avgPlace": 3.9,
-   "carryRate": 0.129,
-   "items": {
-    "DA_SpearOfShojin": 130,
-    "DA_GuinsoosRageblade": 92,
-    "DA_AdaptiveHelm": 79,
-    "DA_ArchangelsStaff": 61,
-    "DA_VoidStaff": 53,
-    "DA_BlueBuff": 51,
-    "DA_RedBuff": 41,
-    "DA_JeweledGauntlet": 36,
-    "DA_Morellonomicon": 35,
-    "DA_NashorsTooth": 31,
-    "DA_RabadonsDeathcap": 27,
-    "DA_Component_NeedlesslyLargeRod": 18
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_SpearOfShojin",
-      "DA_SpearOfShojin"
-     ],
-     "games": 5,
-     "avgPlace": 1.4
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
-     ],
-     "games": 3,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_Component_NeedlesslyLargeRod",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_Artifact_NavoriFlickerblade",
-      "DA_GuinsoosRageblade",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_NashorsTooth",
-      "DA_NashorsTooth"
-     ],
-     "games": 2,
-     "avgPlace": 1.5
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_GuinsoosRageblade",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_ArchangelsStaff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_ArchangelsStaff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 1.5
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_BlueBuff",
       "DA_RabadonsDeathcap"
      ],
-     "games": 2,
+     "games": 4,
+     "avgPlace": 5.65
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap",
+      "DA_RedBuff"
+     ],
+     "games": 4,
+     "avgPlace": 3.7
+    }
+   ]
+  },
+  "da_18_azir": {
+   "games": 1338,
+   "avgPlace": 4.22,
+   "carryRate": 0.158,
+   "items": {
+    "DA_GuinsoosRageblade": 204.72060000000005,
+    "DA_HextechGunblade": 147.34360000000004,
+    "DA_RabadonsDeathcap": 102.87760000000003,
+    "DA_StrikersFlail": 61.61680000000001,
+    "DA_GiantSlayer": 60.78120000000001,
+    "DA_RedBuff": 47.19900000000001,
+    "DA_VoidStaff": 47.12360000000001,
+    "DA_JeweledGauntlet": 43.45240000000001,
+    "DA_Quicksilver": 29.555000000000007,
+    "DA_ArchangelsStaff": 28.883800000000004,
+    "DA_Component_SparringGloves": 24.808400000000006,
+    "DA_Morellonomicon": 20.150800000000004
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 48,
+     "avgPlace": 4.25
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade"
+     ],
+     "games": 9,
+     "avgPlace": 4.17
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_StrikersFlail"
+     ],
+     "games": 6,
+     "avgPlace": 5.17
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade"
+     ],
+     "games": 6,
+     "avgPlace": 6.07
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 5,
      "avgPlace": 4.5
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_RabadonsDeathcap",
+      "DA_StrikersFlail"
+     ],
+     "games": 5,
+     "avgPlace": 3.42
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 4,
+     "avgPlace": 6.95
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_VoidStaff"
+     ],
+     "games": 4,
+     "avgPlace": 4.28
+    },
+    {
+     "items": [
+      "DA_GuinsoosRagebladeRadiant",
+      "DA_HextechGunblade",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 3,
+     "avgPlace": 4.1
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_RabadonsDeathcap",
+      "DA_StrikersFlail"
+     ],
+     "games": 3,
+     "avgPlace": 3.48
     }
    ]
   },
   "da_18_kennen": {
-   "games": 941,
-   "avgPlace": 4,
-   "carryRate": 0.155,
+   "games": 2164,
+   "avgPlace": 3.95,
+   "carryRate": 0.145,
    "items": {
-    "DA_EdgeOfNight": 143,
-    "DA_Morellonomicon": 60,
-    "DA_RabadonsDeathcap": 58,
-    "DA_HandOfJustice": 58,
-    "DA_JeweledGauntlet": 52,
-    "DA_VoidStaff": 48,
-    "DA_ProtectorsVow": 44,
-    "DA_HextechGunblade": 43,
-    "DA_AdaptiveHelm": 41,
-    "DA_IonicSpark": 39,
-    "DA_StrikersFlail": 36,
-    "DA_Bloodthirster": 36
+    "DA_EdgeOfNight": 294.37200000000007,
+    "DA_Morellonomicon": 137.43260000000004,
+    "DA_HandOfJustice": 136.01480000000004,
+    "DA_RabadonsDeathcap": 110.39800000000002,
+    "DA_VoidStaff": 107.96660000000003,
+    "DA_ProtectorsVow": 105.71320000000003,
+    "DA_JeweledGauntlet": 99.74040000000002,
+    "DA_AdaptiveHelm": 96.89120000000003,
+    "DA_StrikersFlail": 87.23360000000002,
+    "DA_HextechGunblade": 86.66500000000002,
+    "DA_IonicSpark": 86.15820000000002,
+    "DA_Bloodthirster": 81.99380000000002
    },
    "builds": [
     {
@@ -5632,8 +1637,35 @@ window.TFT_WEIGHTS = {
       "DA_HandOfJustice",
       "DA_JeweledGauntlet"
      ],
+     "games": 5,
+     "avgPlace": 2.87
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_RedBuff"
+     ],
      "games": 4,
-     "avgPlace": 3
+     "avgPlace": 1.38
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_JeweledGauntlet",
+      "DA_VoidStaff"
+     ],
+     "games": 4,
+     "avgPlace": 2.87
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 3,
+     "avgPlace": 1.55
     },
     {
      "items": [
@@ -5647,38 +1679,29 @@ window.TFT_WEIGHTS = {
     {
      "items": [
       "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_RedBuff"
-     ],
-     "games": 3,
-     "avgPlace": 1.33
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_JeweledGauntlet",
+      "DA_Morellonomicon",
       "DA_VoidStaff"
      ],
-     "games": 2,
-     "avgPlace": 4.5
+     "games": 3,
+     "avgPlace": 3.64
     },
     {
      "items": [
       "DA_AdaptiveHelm",
-      "DA_HandOfJustice",
+      "DA_EdgeOfNight",
       "DA_ProtectorsVow"
      ],
-     "games": 2,
-     "avgPlace": 4
+     "games": 3,
+     "avgPlace": 5.15
     },
     {
      "items": [
       "DA_AdaptiveHelm",
-      "DA_BlueBuff",
-      "DA_RedBuff"
+      "DA_EdgeOfNight",
+      "DA_RabadonsDeathcap"
      ],
-     "games": 2,
-     "avgPlace": 3
+     "games": 3,
+     "avgPlace": 2.39
     },
     {
      "items": [
@@ -5686,26 +1709,8 @@ window.TFT_WEIGHTS = {
       "DA_RabadonsDeathcap",
       "DA_VoidStaff"
      ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_JeweledGauntlet",
-      "DA_TitansResolve"
-     ],
-     "games": 2,
-     "avgPlace": 3
+     "games": 3,
+     "avgPlace": 3.71
     },
     {
      "items": [
@@ -5713,28 +1718,28 @@ window.TFT_WEIGHTS = {
       "DA_HandOfJustice",
       "DA_HandOfJustice"
      ],
-     "games": 2,
-     "avgPlace": 6.5
+     "games": 3,
+     "avgPlace": 5.49
     }
    ]
   },
-  "da_18_kobuko": {
-   "games": 159,
-   "avgPlace": 4.58,
-   "carryRate": 0.101,
+  "da_18_hecarim": {
+   "games": 2223,
+   "avgPlace": 4.54,
+   "carryRate": 0.23,
    "items": {
-    "DA_WarmogsArmor": 12,
-    "DA_GargoyleStoneplate": 11,
-    "DA_SpiritVisage": 9,
-    "DA_IonicSpark": 7,
-    "DA_SteadfastHeart": 7,
-    "DA_SteraksGage": 7,
-    "DA_SunfireCape": 6,
-    "DA_BrambleVest": 4,
-    "DA_Crownguard": 3,
-    "DA_AdaptiveHelm": 3,
-    "DA_Component_GiantsBelt": 3,
-    "DA_DragonsClaw": 3
+    "DA_GargoyleStoneplate": 330.6328000000001,
+    "DA_ProtectorsVow": 279.283,
+    "DA_WarmogsArmor": 252.65260000000004,
+    "DA_SpiritVisage": 197.36460000000005,
+    "DA_Evenshroud": 191.11120000000005,
+    "DA_SunfireCape": 170.96040000000005,
+    "DA_Crownguard": 144.76140000000004,
+    "DA_AdaptiveHelm": 134.50800000000004,
+    "DA_SteadfastHeart": 97.47340000000003,
+    "DA_DragonsClaw": 81.65140000000002,
+    "DA_BrambleVest": 71.33620000000002,
+    "DA_SteraksGage": 61.17180000000001
    },
    "builds": [
     {
@@ -5743,31 +1748,1234 @@ window.TFT_WEIGHTS = {
       "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 3,
+     "games": 20,
+     "avgPlace": 4.66
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 11,
+     "avgPlace": 5.51
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 10,
+     "avgPlace": 5.55
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 10,
+     "avgPlace": 5.23
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_ProtectorsVow",
+      "DA_SunfireCape"
+     ],
+     "games": 9,
+     "avgPlace": 3.31
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 9,
      "avgPlace": 4.33
     },
     {
      "items": [
-      "DA_Artifact_TheIndomitable",
-      "DA_IonicSpark",
-      "DA_SunfireCape"
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
      ],
-     "games": 1,
-     "avgPlace": 6
+     "games": 9,
+     "avgPlace": 4.97
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 7,
+     "avgPlace": 3.59
     },
     {
      "items": [
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage",
+      "DA_SunfireCape"
+     ],
+     "games": 6,
+     "avgPlace": 4.99
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_SpiritVisage",
+      "DA_SunfireCape"
+     ],
+     "games": 6,
+     "avgPlace": 2.78
+    }
+   ]
+  },
+  "da_crimsonraptor18": {
+   "games": 507,
+   "avgPlace": 4.56,
+   "carryRate": 0.426,
+   "items": {
+    "DA_GuinsoosRageblade": 180.21380000000005,
+    "DA_HextechGunblade": 164.15200000000004,
+    "DA_TitansResolve": 101.39800000000002,
+    "DA_KrakensFury": 57.18540000000001,
+    "DA_LastWhisper": 50.94560000000001,
+    "DA_GuinsoosRagebladeRadiant": 42.46600000000001,
+    "DA_Deathblade": 37.54140000000001,
+    "DA_InfinityEdge": 29.630400000000005,
+    "DA_GiantSlayer": 23.630400000000005,
+    "DA_RedBuff": 20.137200000000007,
+    "DA_Quicksilver": 8.493200000000002,
+    "DA_Component_BFSword": 6.9110000000000005
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_TitansResolve"
+     ],
+     "games": 57,
+     "avgPlace": 4.62
+    },
+    {
+     "items": [
+      "DA_GuinsoosRagebladeRadiant",
+      "DA_HextechGunblade",
+      "DA_TitansResolve"
+     ],
+     "games": 23,
+     "avgPlace": 3.1
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_KrakensFury"
+     ],
+     "games": 14,
+     "avgPlace": 4.64
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade"
+     ],
+     "games": 8,
+     "avgPlace": 4.24
+    },
+    {
+     "items": [
+      "DA_GuinsoosRagebladeRadiant",
+      "DA_HextechGunblade",
+      "DA_KrakensFury"
+     ],
+     "games": 7,
+     "avgPlace": 3.66
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury"
+     ],
+     "games": 5,
+     "avgPlace": 4.77
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 4,
+     "avgPlace": 5.06
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_LastWhisper"
+     ],
+     "games": 4,
+     "avgPlace": 4.48
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade"
+     ],
+     "games": 3,
+     "avgPlace": 3.67
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRagebladeRadiant",
+      "DA_HextechGunblade"
+     ],
+     "games": 3,
+     "avgPlace": 3.4
+    }
+   ]
+  },
+  "da_18_xayah": {
+   "games": 1404,
+   "avgPlace": 4.5,
+   "carryRate": 0.185,
+   "items": {
+    "DA_InfinityEdge": 164.09020000000004,
+    "DA_GuinsoosRageblade": 149.50800000000004,
+    "DA_KrakensFury": 126.71320000000003,
+    "DA_Deathblade": 114.20640000000002,
+    "DA_LastWhisper": 110.54880000000003,
+    "DA_GiantSlayer": 64.67860000000002,
+    "DA_HextechGunblade": 38.79480000000001,
+    "DA_Component_BFSword": 34.88380000000001,
+    "DA_RedBuff": 31.883800000000004,
+    "DA_StrikersFlail": 28.137200000000007,
+    "DA_Component_RecurveBow": 22.315200000000004,
+    "DA_Artifact_Fishbones": 15.644000000000004
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_KrakensFury"
+     ],
+     "games": 16,
+     "avgPlace": 5.32
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 14,
+     "avgPlace": 4.1
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 10,
+     "avgPlace": 4.11
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 10,
+     "avgPlace": 5.16
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury"
+     ],
+     "games": 9,
+     "avgPlace": 5.71
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_KrakensFury",
+      "DA_LastWhisper"
+     ],
+     "games": 6,
+     "avgPlace": 4.89
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 6,
+     "avgPlace": 3.9
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury",
+      "DA_LastWhisper"
+     ],
+     "games": 6,
+     "avgPlace": 4.19
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_KrakensFury",
+      "DA_LastWhisper"
+     ],
+     "games": 5,
+     "avgPlace": 5.64
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade"
+     ],
+     "games": 5,
+     "avgPlace": 4.73
+    }
+   ]
+  },
+  "da_18_alistar": {
+   "games": 2298,
+   "avgPlace": 4.37,
+   "carryRate": 0.225,
+   "items": {
+    "DA_GargoyleStoneplate": 535.7576000000001,
+    "DA_WarmogsArmor": 275.6254,
+    "DA_SpiritVisage": 169.72060000000005,
+    "DA_Crownguard": 161.15200000000004,
+    "DA_SteadfastHeart": 107.14460000000003,
+    "DA_SunfireCape": 87.65140000000002,
+    "DA_DragonsClaw": 73.33620000000002,
+    "DA_ProtectorsVow": 69.09640000000002,
+    "DA_BrambleVest": 59.09640000000001,
+    "DA_Evenshroud": 54.18540000000001,
+    "DA_SteraksGage": 51.36340000000001,
+    "DA_IonicSpark": 45.45240000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 31,
+     "avgPlace": 4.17
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 29,
+     "avgPlace": 4.06
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 26,
+     "avgPlace": 3.98
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 19,
+     "avgPlace": 3.78
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
+     ],
+     "games": 16,
+     "avgPlace": 4.02
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 13,
+     "avgPlace": 3.84
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
+     ],
+     "games": 11,
+     "avgPlace": 4.09
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 11,
+     "avgPlace": 4.42
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
       "DA_SteadfastHeart"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 10,
+     "avgPlace": 4.12
+    },
+    {
+     "items": [
+      "DA_BrambleVest",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 9,
+     "avgPlace": 3.17
+    }
+   ]
+  },
+  "da_sentinel18": {
+   "games": 4893,
+   "avgPlace": 4.43,
+   "carryRate": 0.327,
+   "items": {
+    "DA_ProtectorsVow": 1690.7869999999602,
+    "DA_GargoyleStoneplate": 961.2333999999992,
+    "DA_AdaptiveHelm": 732.8960000000002,
+    "DA_WarmogsArmor": 635.7242000000001,
+    "DA_SpiritVisage": 615.8676,
+    "DA_Crownguard": 437.62660000000005,
+    "DA_Evenshroud": 252.38560000000004,
+    "DA_SteadfastHeart": 222.78240000000005,
+    "DA_SunfireCape": 202.63160000000005,
+    "DA_DragonsClaw": 154.50800000000004,
+    "DA_BrambleVest": 123.35720000000002,
+    "DA_SteraksGage": 103.04200000000002
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
+     ],
+     "games": 63,
+     "avgPlace": 4.47
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 58,
+     "avgPlace": 4.27
+    },
+    {
+     "items": [
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
+     ],
+     "games": 53,
+     "avgPlace": 3.94
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 47,
+     "avgPlace": 4.37
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
+     ],
+     "games": 46,
+     "avgPlace": 4.35
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 40,
+     "avgPlace": 4.32
     },
     {
      "items": [
       "DA_AdaptiveHelm",
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow"
+     ],
+     "games": 37,
+     "avgPlace": 4.26
+    },
+    {
+     "items": [
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 34,
+     "avgPlace": 4.63
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 33,
+     "avgPlace": 4.18
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 28,
+     "avgPlace": 3.96
+    }
+   ]
+  },
+  "da_18_zyra": {
+   "games": 1817,
+   "avgPlace": 4.56,
+   "carryRate": 0.519,
+   "items": {
+    "DA_VoidStaff": 933.6647999999999,
+    "DA_SpearOfShojin": 488.64760000000007,
+    "DA_Morellonomicon": 483.90100000000007,
+    "DA_ArchangelsStaff": 413.0308000000001,
+    "DA_RedBuff": 376.68100000000004,
+    "DA_HextechGunblade": 284.6736000000001,
+    "DA_JeweledGauntlet": 195.36460000000005,
+    "DA_AdaptiveHelm": 134.19280000000003,
+    "DA_RabadonsDeathcap": 132.35720000000003,
+    "DA_BlueBuff": 128.59700000000004,
+    "DA_GiantSlayer": 95.29540000000003,
+    "DA_StrikersFlail": 48.45240000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 95,
+     "avgPlace": 4.44
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_ArchangelsStaff",
+      "DA_HextechGunblade"
+     ],
+     "games": 76,
+     "avgPlace": 3.93
+    },
+    {
+     "items": [
+      "DA_RedBuff",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 59,
+     "avgPlace": 4.22
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 25,
+     "avgPlace": 4.57
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 24,
+     "avgPlace": 4.1
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 19,
+     "avgPlace": 4.37
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 18,
+     "avgPlace": 5.27
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 18,
+     "avgPlace": 4.16
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 18,
+     "avgPlace": 4.53
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 16,
+     "avgPlace": 4.34
+    }
+   ]
+  },
+  "da_krug18": {
+   "games": 2668,
+   "avgPlace": 4.46,
+   "carryRate": 0.23,
+   "items": {
+    "DA_GargoyleStoneplate": 500.0382000000001,
+    "DA_SpiritVisage": 352.85900000000004,
+    "DA_WarmogsArmor": 351.2422,
+    "DA_Evenshroud": 242.41280000000003,
+    "DA_SunfireCape": 206.02220000000005,
+    "DA_Crownguard": 170.15200000000004,
+    "DA_ProtectorsVow": 120.14460000000003,
+    "DA_AdaptiveHelm": 92.98020000000002,
+    "DA_SteadfastHeart": 90.39800000000002,
+    "DA_DragonsClaw": 89.99380000000002,
+    "DA_BrambleVest": 70.43880000000001,
+    "DA_SteraksGage": 68.51420000000002
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
       "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 40,
+     "avgPlace": 3.75
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 20,
+     "avgPlace": 3.8
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 17,
+     "avgPlace": 3.71
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
+     ],
+     "games": 14,
+     "avgPlace": 3.68
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 13,
+     "avgPlace": 4.04
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SunfireCape",
+      "DA_WarmogsArmor"
+     ],
+     "games": 12,
+     "avgPlace": 4.33
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 12,
+     "avgPlace": 3.77
+    },
+    {
+     "items": [
+      "DA_DragonsClaw",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 11,
+     "avgPlace": 3.73
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 11,
+     "avgPlace": 2.91
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SpiritVisage"
+     ],
+     "games": 10,
+     "avgPlace": 4.69
+    }
+   ]
+  },
+  "da_kogmaw18_ad": {
+   "games": 1409,
+   "avgPlace": 4.5,
+   "carryRate": 0.159,
+   "items": {
+    "DA_RedBuff": 196.94680000000005,
+    "DA_SpearOfShojin": 142.82320000000004,
+    "DA_Morellonomicon": 113.95300000000002,
+    "DA_InfinityEdge": 105.47340000000003,
+    "DA_GuinsoosRageblade": 76.24720000000002,
+    "DA_BlueBuff": 73.26080000000002,
+    "DA_JeweledGauntlet": 62.18540000000001,
+    "DA_GiantSlayer": 61.51420000000001,
+    "DA_HextechGunblade": 44.70580000000001,
+    "DA_Deathblade": 43.79480000000001,
+    "DA_Component_RecurveBow": 35.04820000000001,
+    "DA_AdaptiveHelm": 34.63040000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 11,
+     "avgPlace": 4.11
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_RedBuff"
+     ],
+     "games": 6,
+     "avgPlace": 2.54
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 5,
+     "avgPlace": 2.7
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin"
+     ],
+     "games": 4,
+     "avgPlace": 4.83
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 4,
+     "avgPlace": 3.42
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin"
+     ],
+     "games": 4,
+     "avgPlace": 4.07
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_Deathblade",
+      "DA_RedBuff"
+     ],
+     "games": 4,
+     "avgPlace": 3.23
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_InfinityEdge",
+      "DA_RedBuff"
+     ],
+     "games": 3,
+     "avgPlace": 2.87
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin"
+     ],
+     "games": 3,
+     "avgPlace": 2.6
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 3,
+     "avgPlace": 3.48
+    }
+   ]
+  },
+  "da_18_ivern": {
+   "games": 2245,
+   "avgPlace": 3.89,
+   "carryRate": 0.112,
+   "items": {
+    "DA_SpearOfShojin": 311.6464000000001,
+    "DA_GuinsoosRageblade": 189.80960000000005,
+    "DA_AdaptiveHelm": 172.73420000000004,
+    "DA_ArchangelsStaff": 120.96660000000003,
+    "DA_VoidStaff": 117.04200000000002,
+    "DA_BlueBuff": 114.45980000000003,
+    "DA_RedBuff": 93.98020000000002,
+    "DA_Morellonomicon": 91.47340000000003,
+    "DA_JeweledGauntlet": 77.33620000000002,
+    "DA_RabadonsDeathcap": 64.26080000000002,
+    "DA_NashorsTooth": 60.692200000000014,
+    "DA_Component_NeedlesslyLargeRod": 44.78120000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_SpearOfShojin",
+      "DA_SpearOfShojin"
+     ],
+     "games": 7,
+     "avgPlace": 1.35
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_GuinsoosRageblade",
+      "DA_SpearOfShojin"
+     ],
+     "games": 5,
+     "avgPlace": 2.53
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 5,
+     "avgPlace": 4.88
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_ArchangelsStaff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 4,
+     "avgPlace": 1.42
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 3,
+     "avgPlace": 2.27
+    },
+    {
+     "items": [
+      "DA_Morellonomicon",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 3,
+     "avgPlace": 2.27
+    },
+    {
+     "items": [
+      "DA_RedBuff",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 3,
+     "avgPlace": 2.48
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_NashorsTooth",
+      "DA_NashorsTooth"
+     ],
+     "games": 3,
+     "avgPlace": 2.29
+    },
+    {
+     "items": [
+      "DA_Artifact_NavoriFlickerblade",
+      "DA_GuinsoosRageblade",
+      "DA_SpearOfShojin"
+     ],
+     "games": 3,
+     "avgPlace": 2.16
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_BlueBuff",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 3,
+     "avgPlace": 3.71
+    }
+   ]
+  },
+  "da_brambleback18": {
+   "games": 1454,
+   "avgPlace": 4.35,
+   "carryRate": 0.802,
+   "items": {
+    "DA_GuinsoosRageblade": 1101.1653999999958,
+    "DA_EdgeOfNight": 1094.0009999999959,
+    "DA_Quicksilver": 831.8070000000001,
+    "DA_HandOfJustice": 192.59080000000006,
+    "DA_SteraksGage": 132.19280000000003,
+    "DA_TitansResolve": 69.76760000000002,
+    "DA_Bloodthirster": 56.274400000000014,
+    "DA_GiantSlayer": 43.45240000000001,
+    "DA_InfinityEdge": 30.883800000000004,
+    "DA_Deathblade": 29.137200000000007,
+    "DA_HextechGunblade": 23.479600000000005,
+    "DA_LastWhisper": 17.897400000000005
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_Quicksilver"
+     ],
+     "games": 640,
+     "avgPlace": 4.21
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_HandOfJustice"
+     ],
+     "games": 105,
+     "avgPlace": 4.37
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_TitansResolve"
+     ],
+     "games": 36,
+     "avgPlace": 3.79
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_SteraksGage"
+     ],
+     "games": 36,
+     "avgPlace": 4.69
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_Quicksilver",
+      "DA_SteraksGage"
+     ],
+     "games": 18,
+     "avgPlace": 4.48
+    },
+    {
+     "items": [
+      "DA_Bloodthirster",
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade"
+     ],
+     "games": 17,
+     "avgPlace": 4.31
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HandOfJustice",
+      "DA_Quicksilver"
+     ],
+     "games": 15,
+     "avgPlace": 3.97
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_Quicksilver"
+     ],
+     "games": 12,
+     "avgPlace": 4.08
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade"
+     ],
+     "games": 11,
+     "avgPlace": 3.81
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_QuicksilverRadiant"
+     ],
+     "games": 8,
+     "avgPlace": 4.31
+    }
+   ]
+  },
+  "da_gromp18_ap": {
+   "games": 306,
+   "avgPlace": 4.75,
+   "carryRate": 0.197,
+   "items": {
+    "DA_LastWhisper": 39.95920000000001,
+    "DA_InfinityEdge": 34.97280000000001,
+    "DA_RedBuff": 32.808400000000006,
+    "DA_SpearOfShojin": 20.404200000000003,
+    "DA_Morellonomicon": 19.733000000000004,
+    "DA_GiantSlayer": 13.568600000000004,
+    "DA_Deathblade": 13.404200000000003,
+    "DA_JeweledGauntlet": 11.657600000000002,
+    "DA_GuinsoosRageblade": 10.404200000000003,
+    "DA_BlueBuff": 9.075400000000002,
+    "DA_HextechGunblade": 8.239800000000002,
+    "DA_VoidStaff": 7.7466
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_RedBuff"
+     ],
+     "games": 3,
+     "avgPlace": 5.55
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 2,
+     "avgPlace": 4.73
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 2,
+     "avgPlace": 3.5
+    },
+    {
+     "items": [
+      "DA_LastWhisper",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 2,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_Deathblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 2,
+     "avgPlace": 5.5
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 2,
+     "avgPlace": 5.67
+    },
+    {
+     "items": [
+      "DA_LastWhisper",
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin"
+     ],
+     "games": 2,
+     "avgPlace": 5.79
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_Morellonomicon"
+     ],
+     "games": 2,
+     "avgPlace": 2.37
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 2,
+     "avgPlace": 5.1
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_InfinityEdge",
+      "DA_RedBuff"
+     ],
+     "games": 2,
+     "avgPlace": 2.47
+    }
+   ]
+  },
+  "da_18_diana": {
+   "games": 1969,
+   "avgPlace": 4.58,
+   "carryRate": 0.019,
+   "items": {
+    "DA_IonicSpark": 26.301600000000004,
+    "DA_Morellonomicon": 21.150800000000004,
+    "DA_JeweledGauntlet": 20.897400000000005,
+    "DA_EdgeOfNight": 19.226200000000006,
+    "DA_Bloodthirster": 18.808400000000006,
+    "DA_SunfireCape": 17.479600000000005,
+    "DA_RedBuff": 16.226200000000006,
+    "DA_Component_NeedlesslyLargeRod": 16.150800000000004,
+    "DA_Component_GiantsBelt": 15.404200000000003,
+    "DA_Evenshroud": 15.315200000000003,
+    "DA_GiantSlayer": 12.568600000000004,
+    "DA_HandOfJustice": 11.897400000000003
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_JeweledGauntlet",
+      "DA_Morellonomicon"
+     ],
+     "games": 2,
+     "avgPlace": 3.5
+    },
+    {
+     "items": [
+      "DA_SteadfastHeart",
+      "DA_SunfireCape",
       "DA_WarmogsArmor"
      ],
      "games": 1,
@@ -5775,36 +2983,18 @@ window.TFT_WEIGHTS = {
     },
     {
      "items": [
-      "DA_BrambleVest",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 1,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_IonicSpark",
-      "DA_SteadfastHeart",
-      "DA_SteraksGage"
+      "DA_GiantSlayer",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
      ],
      "games": 1,
      "avgPlace": 2
     },
     {
      "items": [
-      "DA_AdaptiveHelm",
       "DA_GargoyleStoneplate",
-      "DA_SunfireCape"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_Component_GiantsBelt",
-      "DA_SpiritVisage",
-      "DA_SunfireCape"
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart"
      ],
      "games": 1,
      "avgPlace": 8
@@ -5812,59 +3002,908 @@ window.TFT_WEIGHTS = {
     {
      "items": [
       "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SteraksGage"
+      "DA_SunfireCape",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 3
+     "avgPlace": 4
     },
     {
      "items": [
-      "DA_IonicSpark",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
+      "DA_Evenshroud",
+      "DA_SunfireCape",
+      "DA_WarmogsArmor"
+     ],
+     "games": 1,
+     "avgPlace": 2
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_EdgeOfNight",
+      "DA_IonicSpark"
+     ],
+     "games": 1,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GiantSlayer",
+      "DA_HextechGunblade"
+     ],
+     "games": 1,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_GuinsoosRageblade",
+      "DA_RedBuff"
+     ],
+     "games": 1,
+     "avgPlace": 5
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_BlueBuff",
+      "DA_HextechGunblade"
      ],
      "games": 1,
      "avgPlace": 6
     }
    ]
   },
-  "da_cinderling18": {
-   "games": 228,
-   "avgPlace": 4.89,
-   "carryRate": 0.066,
+  "da_amumu18": {
+   "games": 3491,
+   "avgPlace": 4.47,
+   "carryRate": 0.303,
    "items": {
-    "DA_LastWhisper": 18,
-    "DA_InfinityEdge": 15,
-    "DA_Deathblade": 9,
-    "DA_SpearOfShojin": 7,
-    "DA_GiantSlayer": 5,
-    "DA_RedBuff": 4,
-    "DA_HextechGunblade": 4,
-    "DA_AdaptiveHelm": 3,
-    "DA_Component_BFSword": 3,
-    "DA_BlueBuff": 3,
-    "DA_Component_TearOfTheGoddess": 2,
-    "DA_TacticiansCrown": 2
+    "DA_GargoyleStoneplate": 953.5831999999958,
+    "DA_WarmogsArmor": 642.8404,
+    "DA_SpiritVisage": 474.2916000000001,
+    "DA_Crownguard": 421.92820000000006,
+    "DA_ProtectorsVow": 283.0296000000001,
+    "DA_Evenshroud": 224.65260000000004,
+    "DA_SteadfastHeart": 207.60440000000006,
+    "DA_DragonsClaw": 192.39180000000005,
+    "DA_AdaptiveHelm": 157.74780000000004,
+    "DA_SunfireCape": 155.49440000000004,
+    "DA_BrambleVest": 149.09020000000004,
+    "DA_SteraksGage": 84.14460000000003
    },
    "builds": [
     {
      "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 58,
+     "avgPlace": 4.33
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 55,
+     "avgPlace": 4.9
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 42,
+     "avgPlace": 4.59
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 36,
+     "avgPlace": 4.84
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 27,
+     "avgPlace": 4.49
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 25,
+     "avgPlace": 3.93
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
+     ],
+     "games": 24,
+     "avgPlace": 5
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
+     ],
+     "games": 23,
+     "avgPlace": 4.14
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 19,
+     "avgPlace": 5.03
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 16,
+     "avgPlace": 4.67
+    }
+   ]
+  },
+  "da_18_aphelios": {
+   "games": 1348,
+   "avgPlace": 4.41,
+   "carryRate": 0.553,
+   "items": {
+    "DA_GuinsoosRageblade": 939.2679999999967,
+    "DA_KrakensFury": 588.5870000000001,
+    "DA_InfinityEdge": 441.24340000000007,
+    "DA_Deathblade": 292.571,
+    "DA_GiantSlayer": 175.31640000000004,
+    "DA_LastWhisper": 161.07660000000004,
+    "DA_RedBuff": 137.52160000000003,
+    "DA_HextechGunblade": 99.30900000000003,
+    "DA_StrikersFlail": 71.58960000000002,
+    "DA_Artifact_NavoriFlickerblade": 27.883800000000004,
+    "DA_Artifact_Fishbones": 16.568600000000004,
+    "DA_Quicksilver": 15.315200000000003
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_KrakensFury"
+     ],
+     "games": 73,
+     "avgPlace": 4.61
+    },
+    {
+     "items": [
       "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury"
+     ],
+     "games": 51,
+     "avgPlace": 4.42
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury",
+      "DA_KrakensFury"
+     ],
+     "games": 36,
+     "avgPlace": 4.52
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 35,
+     "avgPlace": 3.82
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury"
+     ],
+     "games": 35,
+     "avgPlace": 4.88
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
       "DA_InfinityEdge",
       "DA_LastWhisper"
+     ],
+     "games": 30,
+     "avgPlace": 3.95
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_KrakensFury"
+     ],
+     "games": 24,
+     "avgPlace": 4.09
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_StrikersFlail"
+     ],
+     "games": 24,
+     "avgPlace": 4.44
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury",
+      "DA_LastWhisper"
+     ],
+     "games": 19,
+     "avgPlace": 4.91
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 15,
+     "avgPlace": 3.84
+    }
+   ]
+  },
+  "da_18_lillia": {
+   "games": 3140,
+   "avgPlace": 4.48,
+   "carryRate": 0.333,
+   "items": {
+    "DA_ProtectorsVow": 1157.7969999999857,
+    "DA_AdaptiveHelm": 645.3064000000002,
+    "DA_GargoyleStoneplate": 558.5252,
+    "DA_WarmogsArmor": 463.06540000000007,
+    "DA_Crownguard": 390.14700000000005,
+    "DA_SpiritVisage": 381.0852000000001,
+    "DA_Evenshroud": 229.65260000000004,
+    "DA_SunfireCape": 199.78240000000005,
+    "DA_SteadfastHeart": 153.56980000000004,
+    "DA_DragonsClaw": 122.45980000000003,
+    "DA_BrambleVest": 101.45980000000003,
+    "DA_IonicSpark": 87.05560000000003
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
+     ],
+     "games": 34,
+     "avgPlace": 3.41
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 32,
+     "avgPlace": 4.59
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 30,
+     "avgPlace": 4.32
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow"
+     ],
+     "games": 23,
+     "avgPlace": 3.51
+    },
+    {
+     "items": [
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
+     ],
+     "games": 21,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
+     ],
+     "games": 19,
+     "avgPlace": 4.14
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow"
+     ],
+     "games": 19,
+     "avgPlace": 4.15
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow"
+     ],
+     "games": 18,
+     "avgPlace": 4.67
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_Crownguard",
+      "DA_ProtectorsVow"
+     ],
+     "games": 18,
+     "avgPlace": 4.16
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 17,
+     "avgPlace": 4.51
+    }
+   ]
+  },
+  "da_18_alune": {
+   "games": 1635,
+   "avgPlace": 3.82,
+   "carryRate": 0.539,
+   "items": {
+    "DA_JeweledGauntlet": 600.21,
+    "DA_SpearOfShojin": 521.3806000000001,
+    "DA_VoidStaff": 311.6464000000001,
+    "DA_BlueBuff": 264.9814,
+    "DA_ArchangelsStaff": 252.95420000000004,
+    "DA_AdaptiveHelm": 252.71440000000004,
+    "DA_RabadonsDeathcap": 207.96040000000005,
+    "DA_StrikersFlail": 152.93940000000003,
+    "DA_Morellonomicon": 146.92580000000004,
+    "DA_RedBuff": 127.83680000000003,
+    "DA_NashorsTooth": 126.77500000000002,
+    "DA_GiantSlayer": 94.56240000000003
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 56,
+     "avgPlace": 3.45
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 36,
+     "avgPlace": 3.97
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 30,
+     "avgPlace": 3.67
+    },
+    {
+     "items": [
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 23,
+     "avgPlace": 3.47
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_StrikersFlail"
+     ],
+     "games": 22,
+     "avgPlace": 4.08
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 21,
+     "avgPlace": 4.74
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_NashorsTooth",
+      "DA_SpearOfShojin"
+     ],
+     "games": 20,
+     "avgPlace": 4.07
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 17,
+     "avgPlace": 4.45
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 17,
+     "avgPlace": 5.19
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 17,
+     "avgPlace": 4.46
+    }
+   ]
+  },
+  "da_18_reksai": {
+   "games": 879,
+   "avgPlace": 4.4,
+   "carryRate": 0.23,
+   "items": {
+    "DA_GargoyleStoneplate": 124.26820000000002,
+    "DA_WarmogsArmor": 90.96660000000003,
+    "DA_SunfireCape": 88.15820000000002,
+    "DA_SpiritVisage": 69.17180000000002,
+    "DA_IonicSpark": 58.93200000000001,
+    "DA_ProtectorsVow": 56.51420000000001,
+    "DA_SteadfastHeart": 53.856600000000014,
+    "DA_SteraksGage": 51.856600000000014,
+    "DA_AdaptiveHelm": 50.692200000000014,
+    "DA_Crownguard": 45.28800000000001,
+    "DA_DragonsClaw": 36.95920000000001,
+    "DA_BrambleVest": 31.719400000000007
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 5,
+     "avgPlace": 4.93
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
+     ],
+     "games": 4,
+     "avgPlace": 3.19
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 3,
+     "avgPlace": 3.4
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SteadfastHeart"
+     ],
+     "games": 3,
+     "avgPlace": 1.92
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 3,
+     "avgPlace": 5.2
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_SunfireCape"
+     ],
+     "games": 3,
+     "avgPlace": 1.45
+    },
+    {
+     "items": [
+      "DA_IonicSpark",
+      "DA_ProtectorsVow",
+      "DA_SteraksGage"
+     ],
+     "games": 2,
+     "avgPlace": 5.08
+    },
+    {
+     "items": [
+      "DA_BrambleVest",
+      "DA_SteadfastHeart",
+      "DA_SunfireCape"
+     ],
+     "games": 2,
+     "avgPlace": 3
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
      ],
      "games": 2,
      "avgPlace": 4
     },
     {
      "items": [
+      "DA_AdaptiveHelm",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 6.66
+    }
+   ]
+  },
+  "da_18_warwick": {
+   "games": 143,
+   "avgPlace": 4.31,
+   "carryRate": 0.652,
+   "items": {
+    "DA_SpearOfShojin": 52.856600000000014,
+    "DA_TitansResolve": 44.19900000000001,
+    "DA_SteraksGage": 39.54140000000001,
+    "DA_InfinityEdge": 30.137200000000007,
+    "DA_Quicksilver": 28.301600000000004,
+    "DA_EdgeOfNight": 18.061800000000005,
+    "DA_HandOfJustice": 13.150800000000002,
+    "DA_GiantSlayer": 11.986400000000003,
+    "DA_Bloodthirster": 8.493200000000002,
+    "DA_Artifact_RapidFireCannon": 7.3288,
+    "DA_Artifact_HellfireHatchet": 6.657600000000001,
+    "DA_Deathblade": 5.1644000000000005
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_SpearOfShojin",
+      "DA_SteraksGage",
+      "DA_TitansResolve"
+     ],
+     "games": 14,
+     "avgPlace": 4.19
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_InfinityEdge",
+      "DA_Quicksilver"
+     ],
+     "games": 3,
+     "avgPlace": 4.82
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_Quicksilver",
+      "DA_SpearOfShojin"
+     ],
+     "games": 3,
+     "avgPlace": 2.95
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge",
+      "DA_TitansResolve"
+     ],
+     "games": 3,
+     "avgPlace": 4.4
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_SpearOfShojin",
+      "DA_TitansResolve"
+     ],
+     "games": 3,
+     "avgPlace": 5.77
+    },
+    {
+     "items": [
+      "DA_HandOfJustice",
+      "DA_SpearOfShojin",
+      "DA_SteraksGage"
+     ],
+     "games": 2,
+     "avgPlace": 3.19
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge",
+      "DA_Quicksilver"
+     ],
+     "games": 2,
+     "avgPlace": 2
+    },
+    {
+     "items": [
+      "DA_Quicksilver",
+      "DA_SpearOfShojin",
+      "DA_SteraksGage"
+     ],
+     "games": 2,
+     "avgPlace": 5.92
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_SteraksGage",
+      "DA_TitansResolve"
+     ],
+     "games": 2,
+     "avgPlace": 3
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_SteraksGage"
+     ],
+     "games": 2,
+     "avgPlace": 4
+    }
+   ]
+  },
+  "da_18_caitlyn": {
+   "games": 108,
+   "avgPlace": 5.67,
+   "carryRate": 0.494,
+   "items": {
+    "DA_HextechGunblade": 35.55500000000001,
+    "DA_GuinsoosRageblade": 33.390600000000006,
+    "DA_KrakensFury": 31.719400000000007,
+    "DA_GuinsoosRagebladeRadiant": 22.644000000000005,
+    "DA_Deathblade": 15.150800000000002,
+    "DA_InfinityEdge": 6.7466,
+    "DA_GiantSlayer": 6.075400000000001,
+    "DA_LastWhisper": 4.7466,
+    "DA_Artifact_NavoriFlickerblade": 3,
+    "DA_Component_BFSword": 2,
+    "DA_TacticiansCrown": 1.5822,
+    "DA_TitansResolve": 1.5822
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GuinsoosRagebladeRadiant",
+      "DA_HextechGunblade",
+      "DA_KrakensFury"
+     ],
+     "games": 11,
+     "avgPlace": 3.38
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_KrakensFury"
+     ],
+     "games": 7,
+     "avgPlace": 5.12
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade"
+     ],
+     "games": 4,
+     "avgPlace": 3.62
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRagebladeRadiant",
+      "DA_KrakensFury"
+     ],
+     "games": 3,
+     "avgPlace": 3.26
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRagebladeRadiant",
+      "DA_HextechGunblade"
+     ],
+     "games": 2,
+     "avgPlace": 5.66
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 2,
+     "avgPlace": 6
+    },
+    {
+     "items": [
+      "DA_GuinsoosRagebladeRadiant",
+      "DA_HextechGunblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 2,
+     "avgPlace": 7.63
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury"
+     ],
+     "games": 2,
+     "avgPlace": 5.53
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury"
+     ],
+     "games": 1,
+     "avgPlace": 5.5
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_GiantSlayer",
+      "DA_KrakensFury"
+     ],
+     "games": 1,
+     "avgPlace": 7
+    }
+   ]
+  },
+  "da_cinderling18": {
+   "games": 527,
+   "avgPlace": 4.93,
+   "carryRate": 0.063,
+   "items": {
+    "DA_LastWhisper": 37.21260000000001,
+    "DA_InfinityEdge": 33.63040000000001,
+    "DA_SpearOfShojin": 14.568600000000004,
+    "DA_Deathblade": 13.075400000000002,
+    "DA_RedBuff": 12.733000000000002,
+    "DA_GiantSlayer": 10.239800000000002,
+    "DA_Component_BFSword": 7.657600000000001,
+    "DA_BlueBuff": 7.075400000000001,
+    "DA_GuinsoosRageblade": 6.239800000000002,
+    "DA_TacticiansCape": 6.075400000000001,
+    "DA_HextechGunblade": 5.1644000000000005,
+    "DA_Component_RecurveBow": 4.9110000000000005
+   },
+   "builds": [
+    {
+     "items": [
       "DA_InfinityEdge",
       "DA_LastWhisper",
       "DA_SpearOfShojin"
      ],
+     "games": 3,
+     "avgPlace": 4.63
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 3,
+     "avgPlace": 3.77
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_StrikersFlail"
+     ],
      "games": 2,
-     "avgPlace": 5
+     "avgPlace": 4.61
+    },
+    {
+     "items": [
+      "DA_HandOfJustice",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 1,
+     "avgPlace": 5.5
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 1,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 1,
+     "avgPlace": 7.5
     },
     {
      "items": [
@@ -5901,464 +3940,77 @@ window.TFT_WEIGHTS = {
      ],
      "games": 1,
      "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_Deathblade",
-      "DA_LastWhisper"
-     ],
-     "games": 1,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_InfinityEdge",
-      "DA_RedBuff"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_Component_RecurveBow",
-      "DA_HextechGunblade",
-      "DA_LastWhisper"
-     ],
-     "games": 1,
-     "avgPlace": 6
     }
    ]
   },
-  "da_18_rakan": {
-   "games": 1166,
-   "avgPlace": 4.72,
-   "carryRate": 0.098,
+  "da_murkwolf18": {
+   "games": 1301,
+   "avgPlace": 4.33,
+   "carryRate": 0.075,
    "items": {
-    "DA_ProtectorsVow": 81,
-    "DA_GargoyleStoneplate": 76,
-    "DA_AdaptiveHelm": 56,
-    "DA_SpiritVisage": 46,
-    "DA_WarmogsArmor": 39,
-    "DA_Crownguard": 34,
-    "DA_Evenshroud": 12,
-    "DA_Component_TearOfTheGoddess": 8,
-    "DA_BrambleVest": 8,
-    "DA_Component_GiantsBelt": 7,
-    "DA_Component_ChainVest": 7,
-    "DA_SteadfastHeart": 5
+    "DA_InfinityEdge": 61.60320000000001,
+    "DA_HandOfJustice": 55.438800000000015,
+    "DA_EdgeOfNight": 55.19900000000001,
+    "DA_Deathblade": 40.04820000000001,
+    "DA_SteraksGage": 38.95920000000001,
+    "DA_GuinsoosRageblade": 35.30160000000001,
+    "DA_LastWhisper": 33.04820000000001,
+    "DA_Quicksilver": 27.137200000000007,
+    "DA_Component_BFSword": 26.808400000000006,
+    "DA_Bloodthirster": 24.061800000000005,
+    "DA_RedBuff": 22.479600000000005,
+    "DA_Component_RecurveBow": 19.404200000000003
    },
    "builds": [
     {
      "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 7,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 6,
-     "avgPlace": 5.17
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 4.6
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
-     ],
-     "games": 5,
-     "avgPlace": 4.8
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow"
-     ],
-     "games": 4,
-     "avgPlace": 2.25
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow"
-     ],
-     "games": 4,
-     "avgPlace": 7.25
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 4,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_Crownguard",
-      "DA_ProtectorsVow"
-     ],
-     "games": 3,
-     "avgPlace": 3.33
-    },
-    {
-     "items": [
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 3.67
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 3,
-     "avgPlace": 4.67
-    }
-   ]
-  },
-  "da_18_caitlyn": {
-   "games": 52,
-   "avgPlace": 5.87,
-   "carryRate": 0.615,
-   "items": {
-    "DA_HextechGunblade": 21,
-    "DA_GuinsoosRageblade": 20,
-    "DA_KrakensFury": 16,
-    "DA_GuinsoosRagebladeRadiant": 11,
-    "DA_Deathblade": 7,
-    "DA_InfinityEdge": 5,
-    "DA_LastWhisper": 3,
-    "DA_Artifact_NavoriFlickerblade": 3,
-    "DA_GiantSlayer": 2,
-    "DA_Component_BFSword": 2,
-    "DA_BlueBuff": 1,
-    "DA_Artifact_Fishbones": 1
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GuinsoosRagebladeRadiant",
-      "DA_HextechGunblade",
-      "DA_KrakensFury"
-     ],
-     "games": 5,
-     "avgPlace": 3.6
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_KrakensFury"
-     ],
-     "games": 4,
-     "avgPlace": 6.25
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_InfinityEdge"
-     ],
-     "games": 2,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRagebladeRadiant",
-      "DA_KrakensFury"
-     ],
-     "games": 2,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade"
-     ],
-     "games": 2,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_GiantSlayer",
-      "DA_KrakensFury"
-     ],
-     "games": 1,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_Artifact_Fishbones",
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge"
-     ],
-     "games": 1,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_Component_BFSword",
-      "DA_Deathblade",
-      "DA_LastWhisper"
-     ],
-     "games": 1,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_GiantSlayer_Radiant",
-      "DA_GuinsoosRageblade",
-      "DA_GuinsoosRageblade"
-     ],
-     "games": 1,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_Artifact_StatikkShiv",
-      "DA_GuinsoosRagebladeRadiant",
-      "DA_HextechGunblade"
-     ],
-     "games": 1,
-     "avgPlace": 8
-    }
-   ]
-  },
-  "da_18_tristana": {
-   "games": 234,
-   "avgPlace": 4.59,
-   "carryRate": 0.265,
-   "items": {
-    "DA_GuinsoosRageblade": 78,
-    "DA_LastWhisper": 45,
-    "DA_HextechGunblade": 34,
-    "DA_RedBuff": 22,
-    "DA_KrakensFury": 20,
-    "DA_GiantSlayer": 19,
-    "DA_InfinityEdge": 19,
-    "DA_Deathblade": 18,
-    "DA_Component_RecurveBow": 6,
-    "DA_Component_SparringGloves": 4,
-    "DA_TacticiansCape": 4,
-    "DA_Quicksilver": 4
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_LastWhisper"
-     ],
-     "games": 4,
-     "avgPlace": 5.25
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade"
-     ],
-     "games": 4,
-     "avgPlace": 3.75
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_InfinityEdge"
-     ],
-     "games": 3,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_GuinsoosRageblade",
-      "DA_LastWhisper"
-     ],
-     "games": 3,
-     "avgPlace": 6.33
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_RedBuff"
-     ],
-     "games": 2,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_LastWhisper"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_HextechGunblade",
-      "DA_LastWhisper"
-     ],
-     "games": 2,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_KrakensFury"
-     ],
-     "games": 2,
-     "avgPlace": 6.5
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
       "DA_InfinityEdge",
-      "DA_LastWhisper"
-     ],
-     "games": 2,
-     "avgPlace": 1.5
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_EdgeOfNight",
-      "DA_RedBuff"
-     ],
-     "games": 1,
-     "avgPlace": 4
-    }
-   ]
-  },
-  "da_18_akali_ad": {
-   "games": 182,
-   "avgPlace": 4.87,
-   "carryRate": 0.577,
-   "items": {
-    "DA_EdgeOfNight": 64,
-    "DA_InfinityEdge": 59,
-    "DA_HandOfJustice": 51,
-    "DA_JeweledGauntlet": 27,
-    "DA_RabadonsDeathcap": 11,
-    "DA_GiantSlayer": 10,
-    "DA_SteraksGage": 10,
-    "DA_Quicksilver": 10,
-    "DA_Artifact_RapidFireCannon": 10,
-    "DA_Deathblade": 9,
-    "DA_Artifact_LichBane": 7,
-    "DA_Bloodthirster": 6
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_InfinityEdge"
-     ],
-     "games": 17,
-     "avgPlace": 5.29
-    },
-    {
-     "items": [
-      "DA_HandOfJustice",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 4,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_Bloodthirster",
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge"
-     ],
-     "games": 3,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_InfinityEdge",
+      "DA_LastWhisper",
       "DA_SteraksGage"
+     ],
+     "games": 3,
+     "avgPlace": 2.32
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_Quicksilver"
+     ],
+     "games": 3,
+     "avgPlace": 3.21
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 3,
+     "avgPlace": 3.61
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge"
      ],
      "games": 2,
      "avgPlace": 3.5
     },
     {
      "items": [
-      "DA_Artifact_RapidFireCannon",
+      "DA_Component_SparringGloves",
       "DA_EdgeOfNight",
-      "DA_InfinityEdge"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_JeweledGauntlet"
+      "DA_GuinsoosRageblade"
      ],
      "games": 2,
      "avgPlace": 7.5
     },
     {
      "items": [
-      "DA_Artifact_Dawncore",
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge"
-     ],
-     "games": 2,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_Artifact_LichBane",
-      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_HandOfJustice",
       "DA_HandOfJustice"
      ],
      "games": 2,
@@ -6366,1106 +4018,281 @@ window.TFT_WEIGHTS = {
     },
     {
      "items": [
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge",
-      "DA_Quicksilver"
-     ],
-     "games": 2,
-     "avgPlace": 6.5
-    },
-    {
-     "items": [
-      "DA_Artifact_Mittens",
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge"
-     ],
-     "games": 2,
-     "avgPlace": 3.5
-    }
-   ]
-  },
-  "da_draven18": {
-   "games": 595,
-   "avgPlace": 4.17,
-   "carryRate": 0.716,
-   "items": {
-    "DA_GuinsoosRageblade": 527,
-    "DA_KrakensFury": 334,
-    "DA_InfinityEdge": 145,
-    "DA_Deathblade": 139,
-    "DA_LastWhisper": 76,
-    "DA_RedBuff": 70,
-    "DA_GiantSlayer": 66,
-    "DA_HextechGunblade": 58,
-    "DA_StrikersFlail": 23,
-    "DA_Quicksilver": 13,
-    "DA_Artifact_NavoriFlickerblade": 13,
-    "DA_GuinsoosRagebladeRadiant": 13
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_KrakensFury"
-     ],
-     "games": 49,
-     "avgPlace": 4.16
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury"
-     ],
-     "games": 46,
-     "avgPlace": 3.93
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury",
-      "DA_KrakensFury"
-     ],
-     "games": 29,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_KrakensFury"
-     ],
-     "games": 20,
-     "avgPlace": 4.8
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
+      "DA_HandOfJustice",
       "DA_InfinityEdge",
       "DA_LastWhisper"
      ],
-     "games": 19,
-     "avgPlace": 4.47
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury",
-      "DA_RedBuff"
-     ],
-     "games": 16,
-     "avgPlace": 2.81
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury",
-      "DA_LastWhisper"
-     ],
-     "games": 15,
-     "avgPlace": 3.87
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_GuinsoosRageblade",
-      "DA_KrakensFury"
-     ],
-     "games": 14,
-     "avgPlace": 2.93
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GiantSlayer",
-      "DA_GuinsoosRageblade"
-     ],
-     "games": 14,
-     "avgPlace": 2.86
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_StrikersFlail"
-     ],
-     "games": 10,
-     "avgPlace": 4.2
-    }
-   ]
-  },
-  "da_18_diana": {
-   "games": 862,
-   "avgPlace": 4.51,
-   "carryRate": 0.015,
-   "items": {
-    "DA_Morellonomicon": 13,
-    "DA_JeweledGauntlet": 11,
-    "DA_IonicSpark": 10,
-    "DA_Component_GiantsBelt": 9,
-    "DA_Component_NeedlesslyLargeRod": 8,
-    "DA_SunfireCape": 7,
-    "DA_WarmogsArmor": 7,
-    "DA_EdgeOfNight": 7,
-    "DA_Evenshroud": 6,
-    "DA_Crownguard": 6,
-    "DA_Bloodthirster": 6,
-    "DA_GiantSlayer": 5
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_JeweledGauntlet",
-      "DA_Morellonomicon"
-     ],
      "games": 2,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_SteadfastHeart",
-      "DA_SunfireCape",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
-     ],
-     "games": 1,
-     "avgPlace": 8
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_SunfireCape",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_SunfireCape",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_EdgeOfNight",
-      "DA_IonicSpark"
-     ],
-     "games": 1,
-     "avgPlace": 4
+     "avgPlace": 4.67
     },
     {
      "items": [
       "DA_EdgeOfNight",
-      "DA_GiantSlayer",
-      "DA_HextechGunblade"
-     ],
-     "games": 1,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_GuinsoosRageblade",
-      "DA_RedBuff"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_BlueBuff",
-      "DA_HextechGunblade"
-     ],
-     "games": 1,
-     "avgPlace": 6
-    }
-   ]
-  },
-  "da_18_varus": {
-   "games": 270,
-   "avgPlace": 4.76,
-   "carryRate": 0.23,
-   "items": {
-    "DA_LastWhisper": 44,
-    "DA_SpearOfShojin": 39,
-    "DA_InfinityEdge": 34,
-    "DA_Deathblade": 31,
-    "DA_GuinsoosRageblade": 23,
-    "DA_BlueBuff": 16,
-    "DA_GiantSlayer": 13,
-    "DA_RedBuff": 11,
-    "DA_StrikersFlail": 11,
-    "DA_HextechGunblade": 9,
-    "DA_Artifact_LudensTempest": 7,
-    "DA_Component_BFSword": 5
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_LastWhisper",
-      "DA_SpearOfShojin"
-     ],
-     "games": 5,
-     "avgPlace": 3.6
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
       "DA_InfinityEdge",
       "DA_LastWhisper"
      ],
-     "games": 4,
-     "avgPlace": 4.25
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 3,
-     "avgPlace": 2.33
-    },
-    {
-     "items": [
-      "DA_Artifact_LudensTempest",
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin"
-     ],
      "games": 2,
-     "avgPlace": 1.5
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GiantSlayer",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_LastWhisper"
-     ],
-     "games": 2,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_LastWhisper",
-      "DA_SpearOfShojin"
-     ],
-     "games": 1,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_GuinsoosRageblade",
-      "DA_RedBuff"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_Artifact_LudensTempest",
-      "DA_BlueBuff",
-      "DA_InfinityEdge"
-     ],
-     "games": 1,
-     "avgPlace": 7
-    }
-   ]
-  },
-  "da_18_sivir": {
-   "games": 542,
-   "avgPlace": 4.67,
-   "carryRate": 0.539,
-   "items": {
-    "DA_InfinityEdge": 321,
-    "DA_SpearOfShojin": 131,
-    "DA_LastWhisper": 116,
-    "DA_RedBuff": 113,
-    "DA_StrikersFlail": 112,
-    "DA_Deathblade": 88,
-    "DA_GuinsoosRageblade": 83,
-    "DA_GiantSlayer": 58,
-    "DA_BlueBuff": 57,
-    "DA_HextechGunblade": 35,
-    "DA_KrakensFury": 26,
-    "DA_NashorsTooth": 10
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 18,
-     "avgPlace": 4.33
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 14,
-     "avgPlace": 3.93
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_InfinityEdge",
-      "DA_StrikersFlail"
-     ],
-     "games": 12,
-     "avgPlace": 3.83
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_RedBuff",
-      "DA_StrikersFlail"
-     ],
-     "games": 11,
-     "avgPlace": 4.27
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_StrikersFlail"
-     ],
-     "games": 8,
-     "avgPlace": 4.25
-    },
-    {
-     "items": [
-      "DA_Deathblade",
-      "DA_InfinityEdge",
-      "DA_StrikersFlail"
-     ],
-     "games": 7,
-     "avgPlace": 5.86
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_SpearOfShojin"
-     ],
-     "games": 7,
-     "avgPlace": 3.86
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_StrikersFlail"
-     ],
-     "games": 7,
-     "avgPlace": 5.14
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_InfinityEdge",
-      "DA_LastWhisper"
-     ],
-     "games": 7,
-     "avgPlace": 5.14
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_RedBuff"
-     ],
-     "games": 6,
-     "avgPlace": 4.83
-    }
-   ]
-  },
-  "da_18_maokai": {
-   "games": 839,
-   "avgPlace": 4.21,
-   "carryRate": 0.384,
-   "items": {
-    "DA_GargoyleStoneplate": 237,
-    "DA_WarmogsArmor": 203,
-    "DA_SpiritVisage": 198,
-    "DA_Crownguard": 97,
-    "DA_ProtectorsVow": 89,
-    "DA_Evenshroud": 76,
-    "DA_AdaptiveHelm": 53,
-    "DA_SteadfastHeart": 46,
-    "DA_BrambleVest": 45,
-    "DA_DragonsClaw": 44,
-    "DA_SunfireCape": 41,
-    "DA_SteraksGage": 28
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 30,
      "avgPlace": 3.33
     },
     {
      "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 14,
-     "avgPlace": 2.64
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor",
-      "DA_WarmogsArmor"
-     ],
-     "games": 8,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 8,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 7,
-     "avgPlace": 4.43
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
-     ],
-     "games": 6,
-     "avgPlace": 1
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SpiritVisage"
-     ],
-     "games": 5,
-     "avgPlace": 4.6
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 5,
-     "avgPlace": 2.8
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 5,
-     "avgPlace": 3.8
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow"
-     ],
-     "games": 5,
-     "avgPlace": 2.6
-    }
-   ]
-  },
-  "da_gromp18_ap": {
-   "games": 148,
-   "avgPlace": 4.74,
-   "carryRate": 0.209,
-   "items": {
-    "DA_InfinityEdge": 21,
-    "DA_RedBuff": 20,
-    "DA_LastWhisper": 19,
-    "DA_SpearOfShojin": 14,
-    "DA_Morellonomicon": 11,
-    "DA_JeweledGauntlet": 7,
-    "DA_Deathblade": 7,
-    "DA_VoidStaff": 6,
-    "DA_GiantSlayer": 6,
-    "DA_BlueBuff": 5,
-    "DA_AdaptiveHelm": 4,
-    "DA_GuinsoosRageblade": 4
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_RedBuff"
-     ],
-     "games": 2,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_LastWhisper",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_Deathblade",
-      "DA_InfinityEdge"
-     ],
-     "games": 2,
-     "avgPlace": 5.5
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_JeweledGauntlet",
-      "DA_RedBuff"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_StrikersFlail",
-      "DA_VoidStaff"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
-      "DA_Morellonomicon"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_InfinityEdge",
-      "DA_RedBuff"
-     ],
-     "games": 1,
-     "avgPlace": 1
-    },
-    {
-     "items": [
-      "DA_Artifact_GoldCollector",
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin"
-     ],
-     "games": 1,
-     "avgPlace": 8
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    }
-   ]
-  },
-  "da_18_gnarsmall": {
-   "games": 117,
-   "avgPlace": 3.32,
-   "carryRate": 0.043,
-   "items": {
-    "DA_SteraksGage": 9,
-    "DA_HandOfJustice": 6,
-    "DA_EdgeOfNight": 6,
-    "DA_GuinsoosRageblade": 5,
-    "DA_LastWhisper": 4,
-    "DA_Morellonomicon": 4,
-    "DA_Quicksilver": 3,
-    "DA_Bloodthirster": 3,
-    "DA_SunfireCape": 3,
-    "DA_TitansResolve": 2,
-    "DA_InfinityEdge": 2,
-    "DA_RedBuff": 2
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_Bloodthirster",
-      "DA_HandOfJustice",
-      "DA_SteraksGage"
-     ],
-     "games": 1,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_GuinsoosRageblade",
-      "DA_LastWhisper",
-      "DA_Quicksilver"
-     ],
-     "games": 1,
-     "avgPlace": 4
-    },
-    {
-     "items": [
       "DA_EdgeOfNight",
       "DA_GuinsoosRageblade",
-      "DA_Morellonomicon"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_SteraksGage"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_GuinsoosRageblade",
-      "DA_Morellonomicon"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    }
-   ]
-  },
-  "da_18_reksai": {
-   "games": 349,
-   "avgPlace": 4.37,
-   "carryRate": 0.241,
-   "items": {
-    "DA_GargoyleStoneplate": 48,
-    "DA_SunfireCape": 41,
-    "DA_WarmogsArmor": 31,
-    "DA_SpiritVisage": 29,
-    "DA_IonicSpark": 24,
-    "DA_SteadfastHeart": 23,
-    "DA_Crownguard": 22,
-    "DA_AdaptiveHelm": 21,
-    "DA_SteraksGage": 21,
-    "DA_ProtectorsVow": 21,
-    "DA_DragonsClaw": 16,
-    "DA_BrambleVest": 16
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_IonicSpark",
-      "DA_SteadfastHeart",
-      "DA_SunfireCape"
+      "DA_HandOfJustice"
      ],
      "games": 2,
-     "avgPlace": 1.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_DragonsClaw",
-      "DA_GargoyleStoneplate",
-      "DA_SteraksGage"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SteadfastHeart"
-     ],
-     "games": 2,
-     "avgPlace": 1
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_SunfireCape"
-     ],
-     "games": 2,
-     "avgPlace": 1
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
-     ],
-     "games": 1,
-     "avgPlace": 1
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
-     ],
-     "games": 1,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_Artifact_TheIndomitable",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 1,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_DragonsClaw",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 2
-    },
-    {
-     "items": [
-      "DA_SteadfastHeart",
-      "DA_SteraksGage",
-      "DA_SunfireCape"
-     ],
-     "games": 1,
-     "avgPlace": 1
-    }
-   ]
-  },
-  "da_18_cassiopeia": {
-   "games": 265,
-   "avgPlace": 4.96,
-   "carryRate": 0.453,
-   "items": {
-    "DA_VoidStaff": 59,
-    "DA_HextechGunblade": 58,
-    "DA_ArchangelsStaff": 50,
-    "DA_SpearOfShojin": 42,
-    "DA_BlueBuff": 41,
-    "DA_Morellonomicon": 32,
-    "DA_JeweledGauntlet": 30,
-    "DA_RabadonsDeathcap": 22,
-    "DA_RedBuff": 20,
-    "DA_NashorsTooth": 12,
-    "DA_AdaptiveHelm": 11,
-    "DA_Artifact_BlightingJewel": 9
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_BlueBuff",
-      "DA_HextechGunblade"
-     ],
-     "games": 10,
-     "avgPlace": 2.7
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_HextechGunblade",
-      "DA_SpearOfShojin"
-     ],
-     "games": 8,
-     "avgPlace": 4.25
-    },
-    {
-     "items": [
-      "DA_HextechGunblade",
-      "DA_JeweledGauntlet",
-      "DA_SpearOfShojin"
-     ],
-     "games": 4,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_Artifact_BlightingJewel",
-      "DA_SpearOfShojin",
-      "DA_VoidStaff"
-     ],
-     "games": 3,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_RabadonsDeathcap",
-      "DA_VoidStaff"
-     ],
-     "games": 3,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_BlueBuff",
-      "DA_HextechGunblade",
-      "DA_RedBuff"
-     ],
-     "games": 2,
-     "avgPlace": 5.5
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_BlueBuff",
-      "DA_Morellonomicon"
-     ],
-     "games": 2,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_HextechGunblade",
-      "DA_VoidStaff"
-     ],
-     "games": 2,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 8
-    },
-    {
-     "items": [
-      "DA_ArchangelsStaff",
-      "DA_HextechGunblade",
-      "DA_RabadonsDeathcap"
-     ],
-     "games": 2,
-     "avgPlace": 6.5
-    }
-   ]
-  },
-  "da_18_elise": {
-   "games": 180,
-   "avgPlace": 5.94,
-   "carryRate": 0.161,
-   "items": {
-    "DA_GargoyleStoneplate": 25,
-    "DA_GuinsoosRageblade": 15,
-    "DA_TitansResolve": 14,
-    "DA_WarmogsArmor": 13,
-    "DA_SpiritVisage": 7,
-    "DA_ProtectorsVow": 6,
-    "DA_SteraksGage": 6,
-    "DA_SunfireCape": 4,
-    "DA_Evenshroud": 4,
-    "DA_SteadfastHeart": 3,
-    "DA_DragonsClaw": 3,
-    "DA_Crownguard": 3
-   },
-   "builds": [
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GuinsoosRageblade",
-      "DA_TitansResolve"
-     ],
-     "games": 5,
-     "avgPlace": 6.2
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GuinsoosRageblade",
-      "DA_WarmogsArmor"
-     ],
-     "games": 2,
-     "avgPlace": 7.5
-    },
-    {
-     "items": [
-      "DA_Evenshroud",
-      "DA_ProtectorsVow",
-      "DA_SteraksGage"
-     ],
-     "games": 2,
-     "avgPlace": 7.5
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 1
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_SpiritVisage",
-      "DA_SteadfastHeart"
-     ],
-     "games": 1,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
-     ],
-     "games": 1,
-     "avgPlace": 8
-    },
-    {
-     "items": [
-      "DA_SpiritVisage",
-      "DA_TitansResolve",
-      "DA_WarmogsArmor"
-     ],
-     "games": 1,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_Component_GiantsBelt",
-      "DA_DragonsClaw",
-      "DA_SunfireCape"
-     ],
-     "games": 1,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_DragonsClaw",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 1,
-     "avgPlace": 8
+     "avgPlace": 3.26
     },
     {
      "items": [
       "DA_Bloodthirster",
-      "DA_GuinsoosRageblade",
-      "DA_TitansResolve"
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 2,
+     "avgPlace": 6
+    }
+   ]
+  },
+  "da_18_malphite": {
+   "games": 887,
+   "avgPlace": 4.58,
+   "carryRate": 0.794,
+   "items": {
+    "DA_GargoyleStoneplate": 818.2532000000001,
+    "DA_Crownguard": 416.82560000000007,
+    "DA_WarmogsArmor": 368.02340000000004,
+    "DA_SpiritVisage": 213.61800000000005,
+    "DA_SteadfastHeart": 106.89120000000003,
+    "DA_DragonsClaw": 67.08280000000002,
+    "DA_BrambleVest": 56.02100000000001,
+    "DA_ProtectorsVow": 45.45240000000001,
+    "DA_SteraksGage": 29.794800000000006,
+    "DA_AdaptiveHelm": 28.466000000000005,
+    "DA_SunfireCape": 27.466000000000005,
+    "DA_Evenshroud": 19.479600000000005
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 117,
+     "avgPlace": 4.17
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 59,
+     "avgPlace": 4.14
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 46,
+     "avgPlace": 4.79
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 31,
+     "avgPlace": 4.36
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
+     ],
+     "games": 28,
+     "avgPlace": 4.93
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 27,
+     "avgPlace": 4.62
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart"
+     ],
+     "games": 21,
+     "avgPlace": 4.59
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 20,
+     "avgPlace": 4.16
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 17,
+     "avgPlace": 4.81
+    },
+    {
+     "items": [
+      "DA_DragonsClaw",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 13,
+     "avgPlace": 4.7
+    }
+   ]
+  },
+  "da_18_tristana": {
+   "games": 565,
+   "avgPlace": 4.73,
+   "carryRate": 0.275,
+   "items": {
+    "DA_GuinsoosRageblade": 185.12480000000005,
+    "DA_HextechGunblade": 96.87760000000003,
+    "DA_LastWhisper": 90.41160000000002,
+    "DA_KrakensFury": 53.18540000000001,
+    "DA_RedBuff": 49.36340000000001,
+    "DA_GiantSlayer": 48.692200000000014,
+    "DA_InfinityEdge": 44.03460000000001,
+    "DA_Deathblade": 40.70580000000001,
+    "DA_Component_RecurveBow": 11.822000000000003,
+    "DA_StrikersFlail": 10.568600000000004,
+    "DA_TacticiansCape": 8.075400000000002,
+    "DA_Morellonomicon": 7.822000000000002
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_KrakensFury"
+     ],
+     "games": 12,
+     "avgPlace": 4.77
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_LastWhisper"
+     ],
+     "games": 11,
+     "avgPlace": 4.72
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 7,
+     "avgPlace": 4.99
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade"
+     ],
+     "games": 6,
+     "avgPlace": 3.75
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade"
+     ],
+     "games": 6,
+     "avgPlace": 4.26
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_RedBuff"
+     ],
+     "games": 5,
+     "avgPlace": 5.88
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 4,
+     "avgPlace": 3.6
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_LastWhisper"
+     ],
+     "games": 4,
+     "avgPlace": 5.2
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_LastWhisper"
+     ],
+     "games": 4,
+     "avgPlace": 5.95
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 3,
+     "avgPlace": 6.08
     }
    ]
   },
   "da_18_shen": {
-   "games": 429,
-   "avgPlace": 4.51,
-   "carryRate": 0.028,
+   "games": 977,
+   "avgPlace": 4.55,
+   "carryRate": 0.026,
    "items": {
-    "DA_GargoyleStoneplate": 13,
-    "DA_SpiritVisage": 9,
-    "DA_Evenshroud": 8,
-    "DA_ProtectorsVow": 7,
-    "DA_WarmogsArmor": 6,
-    "DA_Component_GiantsBelt": 4,
-    "DA_Bloodthirster": 3,
-    "DA_Component_ChainVest": 3,
-    "DA_AdaptiveHelm": 3,
-    "DA_IonicSpark": 3,
-    "DA_SunfireCape": 3,
-    "DA_BrambleVest": 3
+    "DA_GargoyleStoneplate": 25.226200000000006,
+    "DA_SpiritVisage": 15.986400000000003,
+    "DA_Evenshroud": 14.404200000000003,
+    "DA_ProtectorsVow": 12.822000000000003,
+    "DA_WarmogsArmor": 11.239800000000002,
+    "DA_Component_GiantsBelt": 8.075400000000002,
+    "DA_Crownguard": 6.822000000000002,
+    "DA_Component_ChainVest": 6.493200000000001,
+    "DA_SunfireCape": 6.493200000000001,
+    "DA_IonicSpark": 5.3288,
+    "DA_AdaptiveHelm": 5.3288,
+    "DA_Component_NegatronCloak": 5.075400000000001
    },
    "builds": [
     {
@@ -7476,6 +4303,33 @@ window.TFT_WEIGHTS = {
      ],
      "games": 2,
      "avgPlace": 6.5
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 2.33
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 2,
+     "avgPlace": 6.63
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 1,
+     "avgPlace": 6
     },
     {
      "items": [
@@ -7530,15 +4384,1533 @@ window.TFT_WEIGHTS = {
      ],
      "games": 1,
      "avgPlace": 4
+    }
+   ]
+  },
+  "da_18_sett": {
+   "games": 2288,
+   "avgPlace": 4.53,
+   "carryRate": 0.444,
+   "items": {
+    "DA_GargoyleStoneplate": 1068.4397999999928,
+    "DA_WarmogsArmor": 562.7922000000001,
+    "DA_SteraksGage": 469.40780000000007,
+    "DA_SpiritVisage": 326.1668000000001,
+    "DA_SteadfastHeart": 226.15940000000003,
+    "DA_Crownguard": 200.54260000000005,
+    "DA_DragonsClaw": 143.92580000000004,
+    "DA_SunfireCape": 128.61060000000003,
+    "DA_BrambleVest": 127.61060000000002,
+    "DA_ProtectorsVow": 126.11740000000002,
+    "DA_AdaptiveHelm": 89.30900000000003,
+    "DA_Evenshroud": 85.50060000000002
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteraksGage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 63,
+     "avgPlace": 4.87
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 48,
+     "avgPlace": 4.59
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 44,
+     "avgPlace": 3.92
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SteraksGage"
+     ],
+     "games": 39,
+     "avgPlace": 4.66
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SteraksGage"
+     ],
+     "games": 35,
+     "avgPlace": 4.18
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
+     ],
+     "games": 35,
+     "avgPlace": 4.55
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 28,
+     "avgPlace": 4.85
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_SteraksGage"
+     ],
+     "games": 26,
+     "avgPlace": 4.61
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
+     ],
+     "games": 20,
+     "avgPlace": 3.51
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 17,
+     "avgPlace": 4.45
+    }
+   ]
+  },
+  "da_18_ahri": {
+   "games": 1520,
+   "avgPlace": 4.61,
+   "carryRate": 0.637,
+   "items": {
+    "DA_JeweledGauntlet": 1064.4743999999905,
+    "DA_SpearOfShojin": 575.2718000000001,
+    "DA_StrikersFlail": 449.59940000000006,
+    "DA_RabadonsDeathcap": 352.00980000000004,
+    "DA_BlueBuff": 280.6872000000001,
+    "DA_NashorsTooth": 206.44000000000005,
+    "DA_VoidStaff": 99.30900000000003,
+    "DA_ArchangelsStaff": 92.72680000000003,
+    "DA_AdaptiveHelm": 89.23360000000002,
+    "DA_GiantSlayer": 80.15820000000002,
+    "DA_Morellonomicon": 45.34980000000001,
+    "DA_HextechGunblade": 41.54140000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 191,
+     "avgPlace": 4.5
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 89,
+     "avgPlace": 4.77
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_StrikersFlail"
+     ],
+     "games": 74,
+     "avgPlace": 4.21
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 53,
+     "avgPlace": 4.31
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_NashorsTooth",
+      "DA_StrikersFlail"
+     ],
+     "games": 41,
+     "avgPlace": 4.05
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_NashorsTooth",
+      "DA_SpearOfShojin"
+     ],
+     "games": 29,
+     "avgPlace": 4.3
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_NashorsTooth",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 26,
+     "avgPlace": 4.65
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 16,
+     "avgPlace": 5.04
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_JeweledGauntlet",
+      "DA_StrikersFlail"
+     ],
+     "games": 15,
+     "avgPlace": 5.32
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_NashorsTooth"
+     ],
+     "games": 13,
+     "avgPlace": 4.17
+    }
+   ]
+  },
+  "da_fiddlesticks18": {
+   "games": 3270,
+   "avgPlace": 4.54,
+   "carryRate": 0.054,
+   "items": {
+    "DA_IonicSpark": 117.37080000000002,
+    "DA_GargoyleStoneplate": 98.95300000000002,
+    "DA_SunfireCape": 93.56240000000003,
+    "DA_WarmogsArmor": 91.96660000000003,
+    "DA_SpiritVisage": 66.42520000000002,
+    "DA_Crownguard": 63.75400000000001,
+    "DA_AdaptiveHelm": 63.75400000000001,
+    "DA_SteadfastHeart": 51.93200000000001,
+    "DA_ProtectorsVow": 51.274400000000014,
+    "DA_TitansResolve": 45.692200000000014,
+    "DA_Component_GiantsBelt": 44.54140000000001,
+    "DA_Component_NegatronCloak": 39.54140000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 4,
+     "avgPlace": 4.18
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 4,
+     "avgPlace": 6.96
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_IonicSpark",
+      "DA_TitansResolve"
+     ],
+     "games": 3,
+     "avgPlace": 2.64
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SunfireCape",
+      "DA_WarmogsArmor"
+     ],
+     "games": 3,
+     "avgPlace": 4.94
+    },
+    {
+     "items": [
+      "DA_IonicSpark",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 2.34
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart"
+     ],
+     "games": 2,
+     "avgPlace": 4.15
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 6
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 7
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 2,
+     "avgPlace": 1.67
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SunfireCape"
+     ],
+     "games": 2,
+     "avgPlace": 3.67
+    }
+   ]
+  },
+  "da_taric18": {
+   "games": 3424,
+   "avgPlace": 3.91,
+   "carryRate": 0.239,
+   "items": {
+    "DA_GargoyleStoneplate": 685.6080000000002,
+    "DA_WarmogsArmor": 485.07900000000006,
+    "DA_SpiritVisage": 353.9752000000001,
+    "DA_Crownguard": 329.927,
+    "DA_ProtectorsVow": 302.4956000000001,
+    "DA_Evenshroud": 192.80960000000005,
+    "DA_SteadfastHeart": 173.07660000000004,
+    "DA_AdaptiveHelm": 172.89860000000004,
+    "DA_DragonsClaw": 138.02840000000003,
+    "DA_SunfireCape": 128.78860000000003,
+    "DA_BrambleVest": 111.45980000000003,
+    "DA_SteraksGage": 90.99380000000002
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 49,
+     "avgPlace": 3.55
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 33,
+     "avgPlace": 3.61
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
+     ],
+     "games": 19,
+     "avgPlace": 3.21
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 18,
+     "avgPlace": 4.1
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 16,
+     "avgPlace": 3.57
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 15,
+     "avgPlace": 4.24
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 14,
+     "avgPlace": 4.36
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
+     ],
+     "games": 14,
+     "avgPlace": 3.04
     },
     {
      "items": [
       "DA_BrambleVest",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 13,
+     "avgPlace": 2.89
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
       "DA_ProtectorsVow",
       "DA_SpiritVisage"
      ],
+     "games": 13,
+     "avgPlace": 4.36
+    }
+   ]
+  },
+  "da_18_maokai": {
+   "games": 1949,
+   "avgPlace": 4.24,
+   "carryRate": 0.402,
+   "items": {
+    "DA_GargoyleStoneplate": 604.9504000000002,
+    "DA_WarmogsArmor": 485.3670000000001,
+    "DA_SpiritVisage": 437.8664000000001,
+    "DA_ProtectorsVow": 223.48820000000003,
+    "DA_Crownguard": 220.42640000000006,
+    "DA_Evenshroud": 183.70700000000005,
+    "DA_SteadfastHeart": 115.86400000000002,
+    "DA_BrambleVest": 115.44620000000002,
+    "DA_AdaptiveHelm": 110.63780000000003,
+    "DA_SunfireCape": 105.04200000000002,
+    "DA_DragonsClaw": 102.80220000000003,
+    "DA_SteraksGage": 54.19900000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 66,
+     "avgPlace": 2.95
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 29,
+     "avgPlace": 2.62
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 22,
+     "avgPlace": 2.47
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 21,
+     "avgPlace": 3.14
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
+     ],
+     "games": 19,
+     "avgPlace": 2.4
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 16,
+     "avgPlace": 4.01
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 16,
+     "avgPlace": 4.46
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 15,
+     "avgPlace": 2.85
+    },
+    {
+     "items": [
+      "DA_BrambleVest",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 13,
+     "avgPlace": 2.95
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 13,
+     "avgPlace": 3.44
+    }
+   ]
+  },
+  "da_18_ezreal": {
+   "games": 1750,
+   "avgPlace": 4.36,
+   "carryRate": 0.631,
+   "items": {
+    "DA_SpearOfShojin": 760.3212000000001,
+    "DA_LastWhisper": 634.3682000000001,
+    "DA_InfinityEdge": 627.3064000000002,
+    "DA_Deathblade": 464.7984000000001,
+    "DA_StrikersFlail": 297.749,
+    "DA_RedBuff": 265.1186,
+    "DA_BlueBuff": 183.04940000000005,
+    "DA_GiantSlayer": 140.50800000000004,
+    "DA_HandOfJustice": 96.81580000000002,
+    "DA_HextechGunblade": 56.58960000000001,
+    "DA_Morellonomicon": 55.42520000000001,
+    "DA_GuinsoosRageblade": 48.274400000000014
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
+     ],
+     "games": 101,
+     "avgPlace": 4.23
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
+     ],
+     "games": 68,
+     "avgPlace": 4.56
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 54,
+     "avgPlace": 3.66
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin"
+     ],
+     "games": 46,
+     "avgPlace": 3.91
+    },
+    {
+     "items": [
+      "DA_LastWhisper",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 38,
+     "avgPlace": 3.37
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 37,
+     "avgPlace": 4.13
+    },
+    {
+     "items": [
+      "DA_LastWhisper",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 30,
+     "avgPlace": 4.86
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin"
+     ],
+     "games": 22,
+     "avgPlace": 3.92
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 21,
+     "avgPlace": 3.88
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 21,
+     "avgPlace": 3.75
+    }
+   ]
+  },
+  "da_18_ashe": {
+   "games": 826,
+   "avgPlace": 4.03,
+   "carryRate": 0.276,
+   "items": {
+    "DA_SpearOfShojin": 238.72800000000004,
+    "DA_RedBuff": 233.31020000000004,
+    "DA_LastWhisper": 158.30280000000005,
+    "DA_InfinityEdge": 114.11740000000002,
+    "DA_GuinsoosRageblade": 89.98020000000002,
+    "DA_Deathblade": 79.24720000000002,
+    "DA_BlueBuff": 57.34980000000001,
+    "DA_Morellonomicon": 46.02100000000001,
+    "DA_HextechGunblade": 39.70580000000001,
+    "DA_GiantSlayer": 39.12360000000001,
+    "DA_KrakensFury": 31.630400000000005,
+    "DA_StrikersFlail": 30.794800000000006
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_LastWhisper",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 20,
+     "avgPlace": 2.69
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 9,
+     "avgPlace": 4.17
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 7,
+     "avgPlace": 4.77
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
+     ],
+     "games": 5,
+     "avgPlace": 5.97
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 5,
+     "avgPlace": 2.63
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_RedBuff"
+     ],
+     "games": 5,
+     "avgPlace": 3.83
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury"
+     ],
+     "games": 5,
+     "avgPlace": 3.72
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 5,
+     "avgPlace": 3.37
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_LastWhisper",
+      "DA_RedBuff"
+     ],
+     "games": 4,
+     "avgPlace": 3
+    },
+    {
+     "items": [
+      "DA_LastWhisper",
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin"
+     ],
+     "games": 4,
+     "avgPlace": 2.74
+    }
+   ]
+  },
+  "da_18_sentry": {
+   "games": 1529,
+   "avgPlace": 4.45,
+   "carryRate": 0.07,
+   "items": {
+    "DA_ArchangelsStaff": 83.90480000000002,
+    "DA_JeweledGauntlet": 69.51420000000002,
+    "DA_RabadonsDeathcap": 60.93200000000001,
+    "DA_BlueBuff": 57.274400000000014,
+    "DA_VoidStaff": 42.87020000000001,
+    "DA_Component_NeedlesslyLargeRod": 35.46600000000001,
+    "DA_HextechGunblade": 30.466000000000005,
+    "DA_Morellonomicon": 28.137200000000007,
+    "DA_GiantSlayer": 26.137200000000007,
+    "DA_AdaptiveHelm": 16.479600000000005,
+    "DA_RedBuff": 13.986400000000003,
+    "DA_Component_TearOfTheGoddess": 13.404200000000003
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 7,
+     "avgPlace": 2.88
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_GiantSlayer",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 6,
+     "avgPlace": 3.83
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_ArchangelsStaff",
+      "DA_HextechGunblade"
+     ],
+     "games": 3,
+     "avgPlace": 3.63
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_BlueBuff",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 3,
+     "avgPlace": 2.87
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_RabadonsDeathcap",
+      "DA_VoidStaff"
+     ],
+     "games": 3,
+     "avgPlace": 4.55
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_JeweledGauntlet",
+      "DA_VoidStaff"
+     ],
+     "games": 3,
+     "avgPlace": 2.67
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_JeweledGauntlet",
+      "DA_StrikersFlail"
+     ],
+     "games": 3,
+     "avgPlace": 3.42
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_StrikersFlail"
+     ],
+     "games": 3,
+     "avgPlace": 4.64
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_ArchangelsStaff",
+      "DA_ArchangelsStaff"
+     ],
+     "games": 3,
+     "avgPlace": 4.61
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_GiantSlayer",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 3,
+     "avgPlace": 2.84
+    }
+   ]
+  },
+  "da_18_morgana": {
+   "games": 1478,
+   "avgPlace": 4.59,
+   "carryRate": 0.537,
+   "items": {
+    "DA_VoidStaff": 890.2606000000002,
+    "DA_Morellonomicon": 660.9986000000001,
+    "DA_RedBuff": 367.85900000000004,
+    "DA_HextechGunblade": 218.26200000000006,
+    "DA_RabadonsDeathcap": 174.31640000000004,
+    "DA_JeweledGauntlet": 144.10380000000004,
+    "DA_AdaptiveHelm": 132.02840000000003,
+    "DA_GiantSlayer": 105.87760000000003,
+    "DA_SpearOfShojin": 98.48700000000002,
+    "DA_BlueBuff": 50.19900000000001,
+    "DA_ArchangelsStaff": 46.36340000000001,
+    "DA_EdgeOfNight": 37.54140000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 78,
+     "avgPlace": 4.13
+    },
+    {
+     "items": [
+      "DA_Morellonomicon",
+      "DA_RabadonsDeathcap",
+      "DA_VoidStaff"
+     ],
+     "games": 46,
+     "avgPlace": 3.91
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 40,
+     "avgPlace": 4.15
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 37,
+     "avgPlace": 4.6
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 35,
+     "avgPlace": 3.57
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 31,
+     "avgPlace": 4.23
+    },
+    {
+     "items": [
+      "DA_RabadonsDeathcap",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 29,
+     "avgPlace": 4.51
+    },
+    {
+     "items": [
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 28,
+     "avgPlace": 5.12
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 23,
+     "avgPlace": 4.48
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 22,
+     "avgPlace": 3.9
+    }
+   ]
+  },
+  "da_18_gnarsmall": {
+   "games": 267,
+   "avgPlace": 3.46,
+   "carryRate": 0.041,
+   "items": {
+    "DA_SteraksGage": 16.568600000000004,
+    "DA_EdgeOfNight": 10.075400000000002,
+    "DA_HandOfJustice": 9.493200000000002,
+    "DA_LastWhisper": 8.657600000000002,
+    "DA_TitansResolve": 6.657600000000001,
+    "DA_Bloodthirster": 6.493200000000001,
+    "DA_GuinsoosRageblade": 6.1644000000000005,
+    "DA_Quicksilver": 5.9110000000000005,
+    "DA_Component_RecurveBow": 5.075400000000001,
+    "DA_Morellonomicon": 4.5822,
+    "DA_GiantSlayer": 4.493200000000001,
+    "DA_RedBuff": 4.3288
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_Bloodthirster",
+      "DA_SteraksGage",
+      "DA_TitansResolve"
+     ],
+     "games": 1,
+     "avgPlace": 1.5
+    },
+    {
+     "items": [
+      "DA_Bloodthirster",
+      "DA_HandOfJustice",
+      "DA_SteraksGage"
+     ],
+     "games": 1,
+     "avgPlace": 5
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_LastWhisper",
+      "DA_Quicksilver"
+     ],
+     "games": 1,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_Morellonomicon"
+     ],
+     "games": 1,
+     "avgPlace": 2
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_SteraksGage"
+     ],
      "games": 1,
      "avgPlace": 3
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_GuinsoosRageblade",
+      "DA_Morellonomicon"
+     ],
+     "games": 1,
+     "avgPlace": 2
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_Quicksilver",
+      "DA_SteraksGage"
+     ],
+     "games": 1,
+     "avgPlace": 6
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_RedBuff",
+      "DA_SteraksGage"
+     ],
+     "games": 1,
+     "avgPlace": 1
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_LastWhisper",
+      "DA_SteraksGage"
+     ],
+     "games": 1,
+     "avgPlace": 3
+    },
+    {
+     "items": [
+      "DA_HandOfJustice",
+      "DA_LastWhisper",
+      "DA_RedBuff"
+     ],
+     "games": 1,
+     "avgPlace": 1
+    }
+   ]
+  },
+  "da_lux18_base": {
+   "games": 1802,
+   "avgPlace": 3.54,
+   "carryRate": 0.297,
+   "items": {
+    "DA_SpearOfShojin": 522.566,
+    "DA_JeweledGauntlet": 329.9616000000001,
+    "DA_VoidStaff": 231.98140000000004,
+    "DA_BlueBuff": 182.72060000000005,
+    "DA_RabadonsDeathcap": 181.97400000000005,
+    "DA_AdaptiveHelm": 181.80960000000005,
+    "DA_RedBuff": 168.65880000000004,
+    "DA_Morellonomicon": 165.07660000000004,
+    "DA_ArchangelsStaff": 115.93940000000002,
+    "DA_HextechGunblade": 115.37080000000002,
+    "DA_GiantSlayer": 112.80220000000003,
+    "DA_NashorsTooth": 92.30900000000003
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 22,
+     "avgPlace": 3.03
+    },
+    {
+     "items": [
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 18,
+     "avgPlace": 4.48
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 15,
+     "avgPlace": 3.3
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 9,
+     "avgPlace": 2.74
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 9,
+     "avgPlace": 4.63
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_NashorsTooth",
+      "DA_SpearOfShojin"
+     ],
+     "games": 9,
+     "avgPlace": 3.5
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 8,
+     "avgPlace": 3.69
+    },
+    {
+     "items": [
+      "DA_RedBuff",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
+     ],
+     "games": 8,
+     "avgPlace": 3.67
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 7,
+     "avgPlace": 2.88
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 7,
+     "avgPlace": 2.61
+    }
+   ]
+  },
+  "da_18_rakan": {
+   "games": 2593,
+   "avgPlace": 4.75,
+   "carryRate": 0.089,
+   "items": {
+    "DA_ProtectorsVow": 164.83680000000004,
+    "DA_GargoyleStoneplate": 156.92580000000004,
+    "DA_SpiritVisage": 103.05560000000003,
+    "DA_AdaptiveHelm": 93.26080000000002,
+    "DA_WarmogsArmor": 85.57600000000002,
+    "DA_Crownguard": 61.94560000000001,
+    "DA_Evenshroud": 27.719400000000007,
+    "DA_SunfireCape": 25.377000000000006,
+    "DA_SteadfastHeart": 16.061800000000005,
+    "DA_BrambleVest": 14.404200000000003,
+    "DA_Component_TearOfTheGoddess": 13.239800000000002,
+    "DA_Component_GiantsBelt": 12.822000000000003
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 18,
+     "avgPlace": 4.9
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 14,
+     "avgPlace": 5.16
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 11,
+     "avgPlace": 4.22
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow"
+     ],
+     "games": 10,
+     "avgPlace": 5.5
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
+     ],
+     "games": 7,
+     "avgPlace": 5.1
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow"
+     ],
+     "games": 6,
+     "avgPlace": 5.03
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 6,
+     "avgPlace": 4.35
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow"
+     ],
+     "games": 6,
+     "avgPlace": 2.78
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 5,
+     "avgPlace": 3.67
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 5,
+     "avgPlace": 3.75
+    }
+   ]
+  },
+  "da_18_elderdragon": {
+   "games": 1966,
+   "avgPlace": 3.96,
+   "carryRate": 0.698,
+   "items": {
+    "DA_InfinityEdge": 1308.5509999999817,
+    "DA_LastWhisper": 799.7662000000001,
+    "DA_Deathblade": 508.5314000000001,
+    "DA_SteraksGage": 425.61300000000006,
+    "DA_StrikersFlail": 391.87260000000003,
+    "DA_HandOfJustice": 244.23480000000004,
+    "DA_GiantSlayer": 229.02220000000005,
+    "DA_RedBuff": 212.87140000000005,
+    "DA_BlueBuff": 106.13100000000003,
+    "DA_HextechGunblade": 86.50060000000002,
+    "DA_Quicksilver": 64.27440000000001,
+    "DA_EdgeOfNight": 62.67860000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_StrikersFlail"
+     ],
+     "games": 99,
+     "avgPlace": 3.62
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 91,
+     "avgPlace": 3.37
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_SteraksGage"
+     ],
+     "games": 80,
+     "avgPlace": 3.61
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_StrikersFlail"
+     ],
+     "games": 48,
+     "avgPlace": 3.4
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_SteraksGage",
+      "DA_StrikersFlail"
+     ],
+     "games": 47,
+     "avgPlace": 3.42
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_SteraksGage"
+     ],
+     "games": 37,
+     "avgPlace": 3.63
+    },
+    {
+     "items": [
+      "DA_HandOfJustice",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 36,
+     "avgPlace": 2.81
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 31,
+     "avgPlace": 3.53
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_RedBuff"
+     ],
+     "games": 30,
+     "avgPlace": 3.83
+    },
+    {
+     "items": [
+      "DA_HandOfJustice",
+      "DA_InfinityEdge",
+      "DA_SteraksGage"
+     ],
+     "games": 23,
+     "avgPlace": 3.69
+    }
+   ]
+  },
+  "da_18_ornn": {
+   "games": 2140,
+   "avgPlace": 4.41,
+   "carryRate": 0.223,
+   "items": {
+    "DA_GargoyleStoneplate": 456.64760000000007,
+    "DA_WarmogsArmor": 224.90600000000003,
+    "DA_SpiritVisage": 201.27560000000005,
+    "DA_Crownguard": 200.18660000000006,
+    "DA_Evenshroud": 89.56240000000003,
+    "DA_SteadfastHeart": 83.15820000000002,
+    "DA_ProtectorsVow": 71.50060000000002,
+    "DA_SunfireCape": 66.74040000000002,
+    "DA_AdaptiveHelm": 48.110000000000014,
+    "DA_IonicSpark": 47.02100000000001,
+    "DA_DragonsClaw": 46.856600000000014,
+    "DA_SteraksGage": 38.03460000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 25,
+     "avgPlace": 4.28
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 23,
+     "avgPlace": 4.56
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 21,
+     "avgPlace": 4.67
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 16,
+     "avgPlace": 5.25
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 16,
+     "avgPlace": 5
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 11,
+     "avgPlace": 3.18
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 11,
+     "avgPlace": 4.41
     },
     {
      "items": [
@@ -7546,47 +5918,1619 @@ window.TFT_WEIGHTS = {
       "DA_Evenshroud",
       "DA_GargoyleStoneplate"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 11,
+     "avgPlace": 4.51
     },
     {
      "items": [
-      "DA_BrambleVest",
-      "DA_DragonsClaw",
-      "DA_Evenshroud"
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 8,
+     "avgPlace": 4.09
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SteadfastHeart"
+     ],
+     "games": 8,
+     "avgPlace": 4.8
     }
    ]
   },
-  "da_18_camille": {
-   "games": 144,
-   "avgPlace": 5.13,
-   "carryRate": 0.66,
+  "da_draven18": {
+   "games": 1375,
+   "avgPlace": 4.15,
+   "carryRate": 0.717,
    "items": {
-    "DA_SteraksGage": 45,
-    "DA_InfinityEdge": 41,
-    "DA_EdgeOfNight": 40,
-    "DA_HandOfJustice": 29,
-    "DA_TitansResolve": 22,
-    "DA_Bloodthirster": 20,
-    "DA_GiantSlayer": 18,
-    "DA_Quicksilver": 12,
-    "DA_Artifact_Mittens": 12,
-    "DA_Artifact_SilvermereDawn": 10,
-    "DA_Deathblade": 8,
-    "DA_BlueBuff": 6
+    "DA_GuinsoosRageblade": 1235.537399999981,
+    "DA_KrakensFury": 717.6698000000001,
+    "DA_Deathblade": 347.4276000000001,
+    "DA_InfinityEdge": 339.4548000000001,
+    "DA_LastWhisper": 197.09760000000006,
+    "DA_GiantSlayer": 176.03580000000005,
+    "DA_RedBuff": 147.43260000000004,
+    "DA_HextechGunblade": 120.29540000000003,
+    "DA_StrikersFlail": 47.45240000000001,
+    "DA_GuinsoosRagebladeRadiant": 32.79480000000001,
+    "DA_Quicksilver": 31.630400000000005,
+    "DA_Artifact_NavoriFlickerblade": 25.808400000000006
    },
    "builds": [
     {
      "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury"
+     ],
+     "games": 101,
+     "avgPlace": 3.84
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_KrakensFury"
+     ],
+     "games": 95,
+     "avgPlace": 3.91
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury",
+      "DA_KrakensFury"
+     ],
+     "games": 55,
+     "avgPlace": 3.12
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury"
+     ],
+     "games": 47,
+     "avgPlace": 3.48
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury",
+      "DA_LastWhisper"
+     ],
+     "games": 40,
+     "avgPlace": 3.86
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 39,
+     "avgPlace": 4.32
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_KrakensFury",
+      "DA_RedBuff"
+     ],
+     "games": 39,
+     "avgPlace": 3.23
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_KrakensFury"
+     ],
+     "games": 39,
+     "avgPlace": 4.33
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 32,
+     "avgPlace": 3.87
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade"
+     ],
+     "games": 27,
+     "avgPlace": 2.97
+    }
+   ]
+  },
+  "da_scuttlecrab18": {
+   "games": 1068,
+   "avgPlace": 4.8,
+   "carryRate": 0.086,
+   "items": {
+    "DA_GargoyleStoneplate": 67.99380000000002,
+    "DA_SpiritVisage": 62.02100000000001,
+    "DA_Evenshroud": 53.94560000000001,
+    "DA_WarmogsArmor": 46.87020000000001,
+    "DA_SunfireCape": 34.71940000000001,
+    "DA_Crownguard": 25.137200000000007,
+    "DA_ProtectorsVow": 17.315200000000004,
+    "DA_DragonsClaw": 13.150800000000002,
+    "DA_SteadfastHeart": 12.822000000000003,
+    "DA_AdaptiveHelm": 12.150800000000002,
+    "DA_Component_GiantsBelt": 10.239800000000002,
+    "DA_BrambleVest": 10.239800000000002
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 5,
+     "avgPlace": 6.29
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 5,
+     "avgPlace": 5.41
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 3,
+     "avgPlace": 4.08
+    },
+    {
+     "items": [
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 3,
+     "avgPlace": 4.39
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_SpiritVisage",
+      "DA_SunfireCape"
+     ],
+     "games": 3,
+     "avgPlace": 3.29
+    },
+    {
+     "items": [
+      "DA_DragonsClaw",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 2,
+     "avgPlace": 2.81
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 2,
+     "avgPlace": 4.19
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 2,
+     "avgPlace": 5.66
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_BrambleVest",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 2,
+     "avgPlace": 3.67
+    }
+   ]
+  },
+  "da_18_veigar": {
+   "games": 995,
+   "avgPlace": 4.47,
+   "carryRate": 0.468,
+   "items": {
+    "DA_JeweledGauntlet": 450.14080000000007,
+    "DA_BlueBuff": 364.4004000000001,
+    "DA_HextechGunblade": 139.91220000000004,
+    "DA_Artifact_Dawncore": 85.90480000000002,
+    "DA_Artifact_LudensTempest": 84.81580000000002,
+    "DA_Artifact_EternalPact": 51.93200000000001,
+    "DA_Artifact_Manazane": 50.274400000000014,
+    "DA_GiantSlayer": 38.54140000000001,
+    "DA_StrikersFlail": 35.37700000000001,
+    "DA_SpearOfShojin": 33.21260000000001,
+    "DA_RabadonsDeathcap": 33.04820000000001,
+    "DA_AdaptiveHelm": 19.733000000000004
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_HextechGunblade",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 66,
+     "avgPlace": 4.86
+    },
+    {
+     "items": [
+      "DA_Artifact_LudensTempest",
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 42,
+     "avgPlace": 3.58
+    },
+    {
+     "items": [
+      "DA_Artifact_Dawncore",
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 32,
+     "avgPlace": 3.22
+    },
+    {
+     "items": [
+      "DA_Artifact_EternalPact",
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 25,
+     "avgPlace": 4.43
+    },
+    {
+     "items": [
+      "DA_Artifact_Manazane",
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 22,
+     "avgPlace": 4.17
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_StrikersFlail"
+     ],
+     "games": 15,
+     "avgPlace": 5.19
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_GiantSlayer",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 15,
+     "avgPlace": 5.33
+    },
+    {
+     "items": [
+      "DA_Artifact_LichBane",
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 13,
+     "avgPlace": 3.63
+    },
+    {
+     "items": [
+      "DA_Artifact_Fishbones",
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 9,
+     "avgPlace": 4.37
+    },
+    {
+     "items": [
+      "DA_Artifact_Dawncore",
+      "DA_HextechGunblade",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 9,
+     "avgPlace": 3.05
+    }
+   ]
+  },
+  "da_18_teemo": {
+   "games": 419,
+   "avgPlace": 4.55,
+   "carryRate": 0.586,
+   "items": {
+    "DA_JeweledGauntlet": 193.96040000000005,
+    "DA_SpearOfShojin": 114.78860000000002,
+    "DA_RabadonsDeathcap": 87.50060000000002,
+    "DA_StrikersFlail": 71.91840000000002,
+    "DA_BlueBuff": 59.94560000000001,
+    "DA_ArchangelsStaff": 56.19900000000001,
+    "DA_HextechGunblade": 34.21260000000001,
+    "DA_VoidStaff": 30.377000000000006,
+    "DA_NashorsTooth": 23.390600000000006,
+    "DA_GiantSlayer": 17.315200000000004,
+    "DA_RedBuff": 13.897400000000003,
+    "DA_Morellonomicon": 13.822000000000003
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 36,
+     "avgPlace": 4.33
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 17,
+     "avgPlace": 4.02
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_StrikersFlail"
+     ],
+     "games": 12,
+     "avgPlace": 3.83
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 11,
+     "avgPlace": 4.23
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_HextechGunblade",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 8,
+     "avgPlace": 5.26
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 6,
+     "avgPlace": 3.28
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_ArchangelsStaff",
+      "DA_ArchangelsStaff"
+     ],
+     "games": 6,
+     "avgPlace": 5
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_NashorsTooth",
+      "DA_StrikersFlail"
+     ],
+     "games": 6,
+     "avgPlace": 3.74
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 6,
+     "avgPlace": 4.39
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 5,
+     "avgPlace": 4.95
+    }
+   ]
+  },
+  "da_18_rammus": {
+   "games": 544,
+   "avgPlace": 4.66,
+   "carryRate": 0.492,
+   "items": {
+    "DA_GargoyleStoneplate": 275.7626,
+    "DA_WarmogsArmor": 103.71320000000003,
+    "DA_SpiritVisage": 103.47340000000003,
+    "DA_Crownguard": 90.72680000000003,
+    "DA_SteadfastHeart": 66.75400000000002,
+    "DA_SunfireCape": 60.84300000000001,
+    "DA_DragonsClaw": 39.04820000000001,
+    "DA_ProtectorsVow": 30.705800000000007,
+    "DA_Evenshroud": 28.212600000000005,
+    "DA_BrambleVest": 26.390600000000006,
+    "DA_AdaptiveHelm": 23.555000000000007,
+    "DA_IonicSpark": 22.972800000000007
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 25,
+     "avgPlace": 4.38
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 12,
+     "avgPlace": 4.13
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 11,
+     "avgPlace": 5.06
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 11,
+     "avgPlace": 4.7
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 10,
+     "avgPlace": 5.13
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
+     ],
+     "games": 10,
+     "avgPlace": 5.01
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 9,
+     "avgPlace": 3.91
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SteadfastHeart"
+     ],
+     "games": 6,
+     "avgPlace": 4.54
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart"
+     ],
+     "games": 4,
+     "avgPlace": 6.62
+    },
+    {
+     "items": [
+      "DA_BrambleVest",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 4,
+     "avgPlace": 4.95
+    }
+   ]
+  },
+  "da_18_cassiopeia": {
+   "games": 623,
+   "avgPlace": 4.83,
+   "carryRate": 0.453,
+   "items": {
+    "DA_HextechGunblade": 145.33000000000004,
+    "DA_VoidStaff": 137.01480000000004,
+    "DA_ArchangelsStaff": 136.74780000000004,
+    "DA_SpearOfShojin": 111.28180000000002,
+    "DA_BlueBuff": 84.08280000000002,
+    "DA_JeweledGauntlet": 76.57600000000002,
+    "DA_Morellonomicon": 67.51420000000002,
+    "DA_RedBuff": 64.24720000000002,
+    "DA_RabadonsDeathcap": 38.30160000000001,
+    "DA_GiantSlayer": 28.794800000000006,
+    "DA_NashorsTooth": 24.808400000000006,
+    "DA_Artifact_BlightingJewel": 23.555000000000007
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_BlueBuff",
+      "DA_HextechGunblade"
+     ],
+     "games": 21,
+     "avgPlace": 3.24
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_HextechGunblade",
+      "DA_SpearOfShojin"
+     ],
+     "games": 18,
+     "avgPlace": 4.39
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 7,
+     "avgPlace": 4.98
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin"
+     ],
+     "games": 6,
+     "avgPlace": 4.96
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_RedBuff",
+      "DA_VoidStaff"
+     ],
+     "games": 5,
+     "avgPlace": 2.42
+    },
+    {
+     "items": [
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 5,
+     "avgPlace": 5.67
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_ArchangelsStaff",
+      "DA_HextechGunblade"
+     ],
+     "games": 5,
+     "avgPlace": 4.56
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_HextechGunblade",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 5,
+     "avgPlace": 4.76
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_HextechGunblade",
+      "DA_VoidStaff"
+     ],
+     "games": 5,
+     "avgPlace": 4.27
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
+     ],
+     "games": 4,
+     "avgPlace": 4.41
+    }
+   ]
+  },
+  "da_18_sivir": {
+   "games": 1269,
+   "avgPlace": 4.67,
+   "carryRate": 0.539,
+   "items": {
+    "DA_InfinityEdge": 773.9516000000001,
+    "DA_SpearOfShojin": 298.0914,
+    "DA_StrikersFlail": 273.2694,
+    "DA_RedBuff": 255.63900000000004,
+    "DA_LastWhisper": 251.65260000000004,
+    "DA_GuinsoosRageblade": 207.59080000000006,
+    "DA_Deathblade": 203.85780000000005,
+    "DA_GiantSlayer": 127.28180000000002,
+    "DA_BlueBuff": 123.95300000000002,
+    "DA_HextechGunblade": 78.08280000000002,
+    "DA_KrakensFury": 68.50060000000002,
+    "DA_NashorsTooth": 28.630400000000005
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 43,
+     "avgPlace": 4.14
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_RedBuff",
+      "DA_StrikersFlail"
+     ],
+     "games": 34,
+     "avgPlace": 4.78
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
+     ],
+     "games": 28,
+     "avgPlace": 4.32
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_InfinityEdge",
+      "DA_StrikersFlail"
+     ],
+     "games": 25,
+     "avgPlace": 4.22
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
+     ],
+     "games": 24,
+     "avgPlace": 4.44
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_StrikersFlail"
+     ],
+     "games": 22,
+     "avgPlace": 4.33
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin"
+     ],
+     "games": 16,
+     "avgPlace": 2.96
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_StrikersFlail"
+     ],
+     "games": 14,
+     "avgPlace": 4.82
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_StrikersFlail"
+     ],
+     "games": 14,
+     "avgPlace": 5.51
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_RedBuff"
+     ],
+     "games": 14,
+     "avgPlace": 4.95
+    }
+   ]
+  },
+  "da_vi18": {
+   "games": 1920,
+   "avgPlace": 4.64,
+   "carryRate": 0.261,
+   "items": {
+    "DA_GargoyleStoneplate": 435.79100000000005,
+    "DA_SpiritVisage": 295.105,
+    "DA_WarmogsArmor": 242.89240000000004,
+    "DA_SunfireCape": 158.33000000000004,
+    "DA_Evenshroud": 145.09020000000004,
+    "DA_Crownguard": 141.76140000000004,
+    "DA_ProtectorsVow": 102.65140000000002,
+    "DA_SteadfastHeart": 90.05560000000003,
+    "DA_SteraksGage": 67.51420000000002,
+    "DA_AdaptiveHelm": 65.67860000000002,
+    "DA_BrambleVest": 62.94560000000001,
+    "DA_DragonsClaw": 57.67860000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 30,
+     "avgPlace": 4.94
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 15,
+     "avgPlace": 4.57
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 12,
+     "avgPlace": 4.36
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 11,
+     "avgPlace": 5.87
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SteadfastHeart"
+     ],
+     "games": 10,
+     "avgPlace": 4.25
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 9,
+     "avgPlace": 5.72
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 8,
+     "avgPlace": 5.66
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SpiritVisage"
+     ],
+     "games": 8,
+     "avgPlace": 3.74
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
+     ],
+     "games": 8,
+     "avgPlace": 4.54
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
+     ],
+     "games": 8,
+     "avgPlace": 4.62
+    }
+   ]
+  },
+  "da_18_varus": {
+   "games": 675,
+   "avgPlace": 4.78,
+   "carryRate": 0.248,
+   "items": {
+    "DA_LastWhisper": 108.62420000000002,
+    "DA_SpearOfShojin": 103.62420000000002,
+    "DA_InfinityEdge": 98.62420000000002,
+    "DA_GuinsoosRageblade": 63.17180000000001,
+    "DA_Deathblade": 62.438800000000015,
+    "DA_GiantSlayer": 36.87020000000001,
+    "DA_BlueBuff": 31.719400000000007,
+    "DA_StrikersFlail": 24.390600000000006,
+    "DA_RedBuff": 23.226200000000006,
+    "DA_HextechGunblade": 14.239800000000002,
+    "DA_Artifact_LudensTempest": 11.657600000000002,
+    "DA_HandOfJustice": 10.733000000000002
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
+     ],
+     "games": 11,
+     "avgPlace": 5.28
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
+     ],
+     "games": 8,
+     "avgPlace": 4.04
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 6,
+     "avgPlace": 4.25
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 5,
+     "avgPlace": 4.02
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 5,
+     "avgPlace": 2.7
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin"
+     ],
+     "games": 4,
+     "avgPlace": 3.73
+    },
+    {
+     "items": [
+      "DA_Artifact_LudensTempest",
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin"
+     ],
+     "games": 4,
+     "avgPlace": 2.44
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 3,
+     "avgPlace": 1.7
+    },
+    {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 3,
+     "avgPlace": 3.85
+    },
+    {
+     "items": [
+      "DA_GiantSlayer",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
+     ],
+     "games": 3,
+     "avgPlace": 4.43
+    }
+   ]
+  },
+  "da_18_soraka": {
+   "games": 1357,
+   "avgPlace": 4.39,
+   "carryRate": 0.45,
+   "items": {
+    "DA_RabadonsDeathcap": 345.7972000000001,
+    "DA_SpearOfShojin": 319.7354,
+    "DA_ArchangelsStaff": 273.6600000000001,
+    "DA_StrikersFlail": 216.26200000000006,
+    "DA_AdaptiveHelm": 193.04940000000005,
+    "DA_HextechGunblade": 182.87140000000005,
+    "DA_NashorsTooth": 182.70700000000005,
+    "DA_JeweledGauntlet": 169.24100000000004,
+    "DA_BlueBuff": 157.00120000000004,
+    "DA_GiantSlayer": 122.19280000000002,
+    "DA_VoidStaff": 115.13100000000003,
+    "DA_Artifact_Dawncore": 45.52780000000001
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 15,
+     "avgPlace": 4.21
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
+     ],
+     "games": 14,
+     "avgPlace": 3.96
+    },
+    {
+     "items": [
+      "DA_HextechGunblade",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 12,
+     "avgPlace": 3.27
+    },
+    {
+     "items": [
+      "DA_NashorsTooth",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 10,
+     "avgPlace": 4.8
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_RabadonsDeathcap",
+      "DA_StrikersFlail"
+     ],
+     "games": 10,
+     "avgPlace": 2.9
+    },
+    {
+     "items": [
+      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 9,
+     "avgPlace": 4.61
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_ArchangelsStaff",
+      "DA_HextechGunblade"
+     ],
+     "games": 7,
+     "avgPlace": 4.27
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 7,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_HextechGunblade",
+      "DA_SpearOfShojin"
+     ],
+     "games": 7,
+     "avgPlace": 4.47
+    },
+    {
+     "items": [
+      "DA_Artifact_Dawncore",
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
+     ],
+     "games": 7,
+     "avgPlace": 3.16
+    }
+   ]
+  },
+  "da_18_masteryi_ad": {
+   "games": 642,
+   "avgPlace": 4.33,
+   "carryRate": 0.566,
+   "items": {
+    "DA_EdgeOfNight": 346.6192000000001,
+    "DA_GuinsoosRageblade": 316.0778,
+    "DA_Quicksilver": 255.87880000000004,
+    "DA_TitansResolve": 70.50060000000002,
+    "DA_HandOfJustice": 65.26080000000002,
+    "DA_Artifact_WitsEnd": 52.438800000000015,
+    "DA_Bloodthirster": 51.78120000000001,
+    "DA_KrakensFury": 48.856600000000014,
+    "DA_Artifact_RapidFireCannon": 45.52780000000001,
+    "DA_Artifact_HellfireHatchet": 42.03460000000001,
+    "DA_Artifact_NavoriFlickerblade": 41.88380000000001,
+    "DA_GiantSlayer": 30.794800000000006
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_Quicksilver"
+     ],
+     "games": 37,
+     "avgPlace": 4.67
+    },
+    {
+     "items": [
+      "DA_Artifact_WitsEnd",
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade"
+     ],
+     "games": 21,
+     "avgPlace": 3.42
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_TitansResolve"
+     ],
+     "games": 16,
+     "avgPlace": 4.36
+    },
+    {
+     "items": [
+      "DA_Artifact_HellfireHatchet",
+      "DA_EdgeOfNight",
+      "DA_Quicksilver"
+     ],
+     "games": 12,
+     "avgPlace": 3.6
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_HandOfJustice"
+     ],
+     "games": 12,
+     "avgPlace": 4.88
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_Quicksilver"
+     ],
+     "games": 9,
+     "avgPlace": 3.84
+    },
+    {
+     "items": [
       "DA_Bloodthirster",
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade"
+     ],
+     "games": 7,
+     "avgPlace": 4.41
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_Quicksilver",
+      "DA_SteraksGage"
+     ],
+     "games": 7,
+     "avgPlace": 4.61
+    },
+    {
+     "items": [
+      "DA_Bloodthirster",
+      "DA_EdgeOfNight",
+      "DA_Quicksilver"
+     ],
+     "games": 6,
+     "avgPlace": 4.55
+    },
+    {
+     "items": [
+      "DA_Artifact_TitanicHydra",
+      "DA_EdgeOfNight",
+      "DA_Quicksilver"
+     ],
+     "games": 6,
+     "avgPlace": 5.27
+    }
+   ]
+  },
+  "da_18_rengar": {
+   "games": 619,
+   "avgPlace": 4.29,
+   "carryRate": 0.534,
+   "items": {
+    "DA_GuinsoosRageblade": 358.4140000000001,
+    "DA_EdgeOfNight": 271.7008000000001,
+    "DA_TitansResolve": 160.88500000000005,
+    "DA_Quicksilver": 146.65880000000004,
+    "DA_SteraksGage": 133.92580000000004,
+    "DA_HandOfJustice": 87.41160000000002,
+    "DA_Bloodthirster": 60.58960000000001,
+    "DA_Deathblade": 30.048200000000005,
+    "DA_GiantSlayer": 28.048200000000005,
+    "DA_InfinityEdge": 26.390600000000006,
+    "DA_KrakensFury": 25.883800000000004,
+    "DA_LastWhisper": 16.972800000000007
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_TitansResolve"
+     ],
+     "games": 37,
+     "avgPlace": 3.86
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_Quicksilver"
+     ],
+     "games": 24,
+     "avgPlace": 3.89
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_SteraksGage"
+     ],
+     "games": 21,
+     "avgPlace": 3.95
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_HandOfJustice"
+     ],
+     "games": 18,
+     "avgPlace": 4.15
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_Quicksilver"
+     ],
+     "games": 10,
+     "avgPlace": 3.62
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
       "DA_SteraksGage",
       "DA_TitansResolve"
      ],
-     "games": 3,
+     "games": 8,
+     "avgPlace": 3.32
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_GiantSlayer",
+      "DA_GuinsoosRageblade"
+     ],
+     "games": 8,
+     "avgPlace": 2.74
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_Quicksilver",
+      "DA_SteraksGage"
+     ],
+     "games": 7,
+     "avgPlace": 3.63
+    },
+    {
+     "items": [
+      "DA_Bloodthirster",
+      "DA_GuinsoosRageblade",
+      "DA_SteraksGage"
+     ],
+     "games": 7,
+     "avgPlace": 4.34
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_Quicksilver",
+      "DA_SteraksGage"
+     ],
+     "games": 6,
+     "avgPlace": 3.17
+    }
+   ]
+  },
+  "da_nidalee18_ap": {
+   "games": 1513,
+   "avgPlace": 4.42,
+   "carryRate": 0.47,
+   "items": {
+    "DA_SteraksGage": 502.0864000000001,
+    "DA_InfinityEdge": 477.81200000000007,
+    "DA_EdgeOfNight": 279.1186,
+    "DA_HandOfJustice": 208.18660000000006,
+    "DA_SpearOfShojin": 190.28920000000005,
+    "DA_Bloodthirster": 183.28920000000005,
+    "DA_GuinsoosRageblade": 162.63160000000005,
+    "DA_Deathblade": 91.63780000000003,
+    "DA_GiantSlayer": 88.81580000000002,
+    "DA_JeweledGauntlet": 86.56240000000003,
+    "DA_Quicksilver": 77.84300000000002,
+    "DA_HextechGunblade": 76.33620000000002
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_SteraksGage"
+     ],
+     "games": 29,
+     "avgPlace": 4.83
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge",
+      "DA_SteraksGage"
+     ],
+     "games": 28,
+     "avgPlace": 3.75
+    },
+    {
+     "items": [
+      "DA_HandOfJustice",
+      "DA_InfinityEdge",
+      "DA_SteraksGage"
+     ],
+     "games": 25,
+     "avgPlace": 4.85
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_InfinityEdge"
+     ],
+     "games": 19,
+     "avgPlace": 3.87
+    },
+    {
+     "items": [
+      "DA_Bloodthirster",
+      "DA_EdgeOfNight",
+      "DA_SteraksGage"
+     ],
+     "games": 16,
+     "avgPlace": 3.76
+    },
+    {
+     "items": [
+      "DA_Bloodthirster",
+      "DA_InfinityEdge",
+      "DA_SteraksGage"
+     ],
+     "games": 15,
+     "avgPlace": 3.59
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin"
+     ],
+     "games": 14,
+     "avgPlace": 5.03
+    },
+    {
+     "items": [
+      "DA_ArchangelsStaff",
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade"
+     ],
+     "games": 12,
+     "avgPlace": 4.55
+    },
+    {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_JeweledGauntlet",
+      "DA_StrikersFlail"
+     ],
+     "games": 10,
+     "avgPlace": 4.05
+    },
+    {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_Quicksilver",
+      "DA_SteraksGage"
+     ],
+     "games": 9,
+     "avgPlace": 4.24
+    }
+   ]
+  },
+  "da_18_akali_ad": {
+   "games": 417,
+   "avgPlace": 4.71,
+   "carryRate": 0.613,
+   "items": {
+    "DA_EdgeOfNight": 144.34360000000004,
+    "DA_InfinityEdge": 132.35720000000003,
+    "DA_HandOfJustice": 122.61060000000002,
+    "DA_JeweledGauntlet": 64.84300000000002,
+    "DA_Artifact_RapidFireCannon": 31.541400000000007,
+    "DA_GiantSlayer": 28.048200000000005,
+    "DA_SteraksGage": 25.719400000000007,
+    "DA_Quicksilver": 24.555000000000007,
+    "DA_RabadonsDeathcap": 23.808400000000006,
+    "DA_Deathblade": 22.390600000000006,
+    "DA_Artifact_Dawncore": 20.301600000000004,
+    "DA_Bloodthirster": 17.061800000000005
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_InfinityEdge"
+     ],
+     "games": 34,
+     "avgPlace": 4.67
+    },
+    {
+     "items": [
+      "DA_Artifact_Dawncore",
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge"
+     ],
+     "games": 5,
+     "avgPlace": 3.38
+    },
+    {
+     "items": [
+      "DA_HandOfJustice",
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 5,
+     "avgPlace": 4.66
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 4,
+     "avgPlace": 5.75
+    },
+    {
+     "items": [
+      "DA_Artifact_RapidFireCannon",
+      "DA_HandOfJustice",
+      "DA_InfinityEdge"
+     ],
+     "games": 4,
      "avgPlace": 3
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge",
+      "DA_Quicksilver"
+     ],
+     "games": 4,
+     "avgPlace": 6.58
+    },
+    {
+     "items": [
+      "DA_Bloodthirster",
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge"
+     ],
+     "games": 4,
+     "avgPlace": 4.35
+    },
+    {
+     "items": [
+      "DA_Artifact_LichBane",
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice"
+     ],
+     "games": 3,
+     "avgPlace": 4.5
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_SteraksGage"
+     ],
+     "games": 3,
+     "avgPlace": 5
+    },
+    {
+     "items": [
+      "DA_Artifact_Dawncore",
+      "DA_EdgeOfNight",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 3,
+     "avgPlace": 3.6
+    }
+   ]
+  },
+  "da_18_camille": {
+   "games": 347,
+   "avgPlace": 5.01,
+   "carryRate": 0.652,
+   "items": {
+    "DA_SteraksGage": 124.17920000000002,
+    "DA_InfinityEdge": 109.11740000000002,
+    "DA_EdgeOfNight": 91.23360000000002,
+    "DA_HandOfJustice": 72.08280000000002,
+    "DA_Bloodthirster": 46.78120000000001,
+    "DA_TitansResolve": 41.79480000000001,
+    "DA_GiantSlayer": 37.79480000000001,
+    "DA_Artifact_SilvermereDawn": 28.630400000000005,
+    "DA_Quicksilver": 27.137200000000007,
+    "DA_Deathblade": 24.301600000000004,
+    "DA_Artifact_Mittens": 17.822000000000003,
+    "DA_BlueBuff": 15.897400000000003
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_InfinityEdge"
+     ],
+     "games": 8,
+     "avgPlace": 4.72
+    },
+    {
+     "items": [
+      "DA_HandOfJustice",
+      "DA_InfinityEdge",
+      "DA_SteraksGage"
+     ],
+     "games": 7,
+     "avgPlace": 4.8
     },
     {
      "items": [
@@ -7594,7 +7538,7 @@ window.TFT_WEIGHTS = {
       "DA_BlueBuff",
       "DA_InfinityEdge"
      ],
-     "games": 2,
+     "games": 7,
      "avgPlace": 2.5
     },
     {
@@ -7603,26 +7547,44 @@ window.TFT_WEIGHTS = {
       "DA_EdgeOfNight",
       "DA_SteraksGage"
      ],
-     "games": 2,
-     "avgPlace": 6.5
+     "games": 7,
+     "avgPlace": 5.36
+    },
+    {
+     "items": [
+      "DA_Bloodthirster",
+      "DA_SteraksGage",
+      "DA_TitansResolve"
+     ],
+     "games": 5,
+     "avgPlace": 3.98
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge",
+      "DA_SteraksGage"
+     ],
+     "games": 5,
+     "avgPlace": 5.38
     },
     {
      "items": [
       "DA_EdgeOfNight",
       "DA_HandOfJustice",
-      "DA_InfinityEdge"
+      "DA_SteraksGage"
      ],
-     "games": 2,
-     "avgPlace": 4.5
+     "games": 5,
+     "avgPlace": 3.12
     },
     {
      "items": [
-      "DA_Bloodthirster",
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice"
+      "DA_InfinityEdge",
+      "DA_Quicksilver",
+      "DA_SteraksGage"
      ],
-     "games": 2,
-     "avgPlace": 4.5
+     "games": 4,
+     "avgPlace": 5.13
     },
     {
      "items": [
@@ -7630,175 +7592,148 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_SteraksGage"
      ],
-     "games": 2,
-     "avgPlace": 7
+     "games": 4,
+     "avgPlace": 5.6
     },
     {
      "items": [
-      "DA_Artifact_Mittens",
-      "DA_Bloodthirster",
-      "DA_SteraksGage"
-     ],
-     "games": 2,
-     "avgPlace": 2.5
-    },
-    {
-     "items": [
+      "DA_EdgeOfNight",
       "DA_GiantSlayer",
-      "DA_HandOfJustice",
-      "DA_InfinityEdge"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_TitansResolve"
-     ],
-     "games": 2,
-     "avgPlace": 4.5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
       "DA_SteraksGage"
      ],
-     "games": 2,
-     "avgPlace": 3
+     "games": 3,
+     "avgPlace": 4
     }
    ]
   },
-  "da_18_warwick": {
-   "games": 62,
-   "avgPlace": 4.48,
-   "carryRate": 0.677,
+  "da_18_elise": {
+   "games": 391,
+   "avgPlace": 5.77,
+   "carryRate": 0.196,
    "items": {
-    "DA_SpearOfShojin": 22,
-    "DA_SteraksGage": 18,
-    "DA_TitansResolve": 18,
-    "DA_InfinityEdge": 15,
-    "DA_Quicksilver": 12,
-    "DA_EdgeOfNight": 7,
-    "DA_GiantSlayer": 5,
-    "DA_Artifact_RapidFireCannon": 5,
-    "DA_HandOfJustice": 5,
-    "DA_Bloodthirster": 5,
-    "DA_Deathblade": 4,
-    "DA_KrakensFury": 3
+    "DA_GargoyleStoneplate": 72.74040000000002,
+    "DA_GuinsoosRageblade": 40.03460000000001,
+    "DA_TitansResolve": 37.28800000000001,
+    "DA_WarmogsArmor": 27.555000000000007,
+    "DA_SpiritVisage": 22.137200000000007,
+    "DA_ProtectorsVow": 11.822000000000003,
+    "DA_Crownguard": 10.568600000000004,
+    "DA_Evenshroud": 10.404200000000003,
+    "DA_AdaptiveHelm": 8.986400000000003,
+    "DA_SteraksGage": 8.911000000000001,
+    "DA_DragonsClaw": 7.075400000000001,
+    "DA_SunfireCape": 6.9110000000000005
    },
    "builds": [
     {
      "items": [
-      "DA_SpearOfShojin",
-      "DA_SteraksGage",
+      "DA_GargoyleStoneplate",
+      "DA_GuinsoosRageblade",
       "DA_TitansResolve"
      ],
-     "games": 4,
-     "avgPlace": 4.5
+     "games": 17,
+     "avgPlace": 5.43
     },
     {
      "items": [
-      "DA_GiantSlayer",
-      "DA_InfinityEdge",
-      "DA_Quicksilver"
-     ],
-     "games": 2,
-     "avgPlace": 5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_InfinityEdge",
-      "DA_TitansResolve"
-     ],
-     "games": 2,
-     "avgPlace": 5.5
-    },
-    {
-     "items": [
-      "DA_GiantSlayer",
-      "DA_SteraksGage",
-      "DA_TitansResolve"
-     ],
-     "games": 2,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_Quicksilver",
-      "DA_SpearOfShojin"
-     ],
-     "games": 2,
-     "avgPlace": 3.5
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_SpearOfShojin",
-      "DA_TitansResolve"
-     ],
-     "games": 2,
-     "avgPlace": 6
-    },
-    {
-     "items": [
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin",
-      "DA_SteraksGage"
-     ],
-     "games": 2,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_HandOfJustice",
-      "DA_SpearOfShojin",
-      "DA_SteraksGage"
-     ],
-     "games": 1,
-     "avgPlace": 4
-    },
-    {
-     "items": [
-      "DA_AdaptiveHelm",
-      "DA_SunfireCape",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 2,
+     "avgPlace": 7.25
     },
     {
      "items": [
-      "DA_Artifact_RapidFireCannon",
-      "DA_HandOfJustice",
-      "DA_Quicksilver"
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 5.73
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GuinsoosRageblade",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 7.5
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_ProtectorsVow",
+      "DA_SteraksGage"
+     ],
+     "games": 2,
+     "avgPlace": 7.5
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 2,
+     "avgPlace": 5.67
+    },
+    {
+     "items": [
+      "DA_Artifact_AegisOfDusk",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 7.63
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteraksGage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 8
+    },
+    {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 2,
+     "avgPlace": 5.1
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 3.21
     }
    ]
   },
   "da_18_khazix": {
-   "games": 41,
-   "avgPlace": 5.32,
-   "carryRate": 0.488,
+   "games": 100,
+   "avgPlace": 4.86,
+   "carryRate": 0.515,
    "items": {
-    "DA_HandOfJustice": 19,
-    "DA_RabadonsDeathcap": 12,
-    "DA_EdgeOfNight": 8,
-    "DA_NashorsTooth": 8,
-    "DA_JeweledGauntlet": 5,
-    "DA_StrikersFlail": 3,
-    "DA_GuinsoosRageblade": 1,
-    "DA_NashorsToothRadiant": 1,
-    "DA_VoidStaff": 1,
-    "DA_Component_NeedlesslyLargeRod": 1,
-    "DA_Morellonomicon": 1,
-    "DA_SunfireCape": 1
+    "DA_HandOfJustice": 56.84300000000001,
+    "DA_RabadonsDeathcap": 32.37700000000001,
+    "DA_NashorsTooth": 23.719400000000007,
+    "DA_EdgeOfNight": 17.315200000000004,
+    "DA_JeweledGauntlet": 10.239800000000002,
+    "DA_StrikersFlail": 6.493200000000001,
+    "DA_IonicSpark": 2.7466,
+    "DA_SunfireCape": 2.1644,
+    "DA_Component_TearOfTheGoddess": 2.1644,
+    "DA_Artifact_Dawncore": 2.1644,
+    "DA_Component_NeedlesslyLargeRod": 2.1644,
+    "DA_VoidStaff": 2.1644
    },
    "builds": [
     {
@@ -7807,17 +7742,8 @@ window.TFT_WEIGHTS = {
       "DA_HandOfJustice",
       "DA_RabadonsDeathcap"
      ],
-     "games": 4,
-     "avgPlace": 3
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_NashorsTooth",
-      "DA_StrikersFlail"
-     ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 5,
+     "avgPlace": 3.23
     },
     {
      "items": [
@@ -7825,17 +7751,17 @@ window.TFT_WEIGHTS = {
       "DA_NashorsTooth",
       "DA_RabadonsDeathcap"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 5,
+     "avgPlace": 4.15
     },
     {
      "items": [
       "DA_HandOfJustice",
-      "DA_NashorsToothRadiant",
-      "DA_RabadonsDeathcap"
+      "DA_HandOfJustice",
+      "DA_NashorsTooth"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 4.5
     },
     {
      "items": [
@@ -7843,874 +7769,1223 @@ window.TFT_WEIGHTS = {
       "DA_JeweledGauntlet",
       "DA_RabadonsDeathcap"
      ],
-     "games": 1,
-     "avgPlace": 6
+     "games": 2,
+     "avgPlace": 4.66
     },
     {
      "items": [
-      "DA_HandOfJustice",
-      "DA_NashorsTooth",
-      "DA_VoidStaff"
-     ],
-     "games": 1,
-     "avgPlace": 7
-    },
-    {
-     "items": [
-      "DA_Component_NeedlesslyLargeRod",
       "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_RabadonsDeathcap"
+     ],
+     "games": 2,
+     "avgPlace": 5
+    },
+    {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
       "DA_HandOfJustice"
      ],
-     "games": 1,
+     "games": 2,
+     "avgPlace": 5.67
+    },
+    {
+     "items": [
+      "DA_NashorsTooth",
+      "DA_NashorsTooth",
+      "DA_StrikersFlail"
+     ],
+     "games": 2,
      "avgPlace": 8
     },
     {
      "items": [
+      "DA_HandOfJustice",
+      "DA_RabadonsDeathcap",
+      "DA_StrikersFlail"
+     ],
+     "games": 1,
+     "avgPlace": 4.5
+    },
+    {
+     "items": [
       "DA_EdgeOfNight",
-      "DA_Morellonomicon",
-      "DA_SunfireCape"
+      "DA_HandOfJustice",
+      "DA_NashorsTooth"
      ],
      "games": 1,
      "avgPlace": 4
     },
     {
      "items": [
-      "DA_NashorsTooth",
-      "DA_NashorsTooth",
-      "DA_StrikersFlail"
-     ],
-     "games": 1,
-     "avgPlace": 8
-    },
-    {
-     "items": [
-      "DA_EdgeOfNight",
-      "DA_JeweledGauntlet",
+      "DA_HandOfJustice",
+      "DA_IonicSpark",
       "DA_NashorsTooth"
      ],
      "games": 1,
-     "avgPlace": 8
+     "avgPlace": 7.5
+    }
+   ]
+  },
+  "da_18_kobuko": {
+   "games": 358,
+   "avgPlace": 4.7,
+   "carryRate": 0.1,
+   "items": {
+    "DA_GargoyleStoneplate": 27.883800000000004,
+    "DA_WarmogsArmor": 22.479600000000005,
+    "DA_SpiritVisage": 18.315200000000004,
+    "DA_Crownguard": 14.061800000000003,
+    "DA_SteadfastHeart": 13.404200000000003,
+    "DA_IonicSpark": 13.404200000000003,
+    "DA_SunfireCape": 12.404200000000003,
+    "DA_BrambleVest": 12.150800000000002,
+    "DA_SteraksGage": 10.493200000000002,
+    "DA_DragonsClaw": 8.239800000000002,
+    "DA_AdaptiveHelm": 6.493200000000001,
+    "DA_Component_GiantsBelt": 5.3288
+   },
+   "builds": [
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 3,
+     "avgPlace": 4.33
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SteadfastHeart"
+     ],
+     "games": 2,
+     "avgPlace": 3
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
+     ],
+     "games": 2,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SteraksGage"
+     ],
+     "games": 2,
+     "avgPlace": 4.1
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
+     ],
+     "games": 2,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_DragonsClaw",
+      "DA_SpiritVisage",
+      "DA_SunfireCape"
+     ],
+     "games": 1,
+     "avgPlace": 4.5
+    },
+    {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 1,
+     "avgPlace": 5.5
+    },
+    {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 1,
+     "avgPlace": 4
+    },
+    {
+     "items": [
+      "DA_Artifact_TheIndomitable",
+      "DA_IonicSpark",
+      "DA_SunfireCape"
+     ],
+     "games": 1,
+     "avgPlace": 6
+    },
+    {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 1,
+     "avgPlace": 3
     }
    ]
   }
  },
  "emblems": {
-  "DA_18_EmblemBlackthorn": {
-   "total": 176,
+  "DA_18_EmblemRapidfire": {
+   "total": 395.7156000000001,
    "holders": {
-    "da_18_zyra": 22,
-    "da_18_yunara": 10,
-    "da_18_yorick": 3,
-    "da_18_ivern": 1,
-    "da_18_lillia": 6,
-    "da_brambleback18": 7,
-    "da_18_soraka": 16,
-    "da_18_sejuani": 1,
-    "da_18_ezreal": 4,
-    "da_18_sett": 6,
-    "da_18_kennen": 9,
-    "da_18_diana": 9,
-    "da_18_leblanc": 13,
-    "da_fiddlesticks18": 7,
-    "da_amumu18": 18,
-    "da_sentinel18": 3,
-    "da_18_cassiopeia": 2,
-    "da_18_alune": 3,
-    "da_18_ahri": 1,
-    "da_vi18": 1,
-    "da_18_alistar": 6,
-    "da_18_morgana": 4,
-    "da_murkwolf18": 4,
-    "da_taric18": 3,
-    "da_kogmaw18_ad": 1,
-    "da_lux18_base": 1,
-    "da_18_teemo": 1,
-    "da_18_maokai": 3,
-    "da_18_shen": 2,
-    "da_18_elderdragon": 2,
-    "da_18_rammus": 2,
+    "da_18_zyra": 32,
+    "da_brambleback18": 67,
+    "da_18_rengar": 16,
+    "da_18_sivir": 8,
+    "da_sentinel18": 8,
+    "da_18_ezreal": 43,
+    "da_18_ivern": 13,
+    "da_18_yunara": 11,
+    "da_kogmaw18_ad": 13,
+    "da_18_diana": 17,
+    "da_lux18_base": 20,
+    "da_18_elderdragon": 7,
+    "da_18_masteryi_ad": 2,
+    "da_18_tristana": 11,
+    "da_nidalee18_ap": 7,
+    "da_18_hecarim": 2,
+    "da_18_rakan": 6,
+    "da_cinderling18": 1,
+    "da_18_camille": 7,
+    "da_18_soraka": 1,
+    "da_18_azir": 15,
+    "da_fiddlesticks18": 4,
+    "da_18_morgana": 2,
+    "da_draven18": 20,
+    "da_18_alune": 8,
+    "da_18_ashe": 4,
     "da_18_caitlyn": 1,
-    "da_18_ornn": 1,
-    "da_18_kayle": 1,
-    "da_18_rakan": 1,
-    "da_18_rengar": 1
+    "da_18_sejuani": 4,
+    "da_karma18": 1,
+    "da_18_leblanc": 10,
+    "da_krug18": 3,
+    "da_taric18": 4,
+    "da_18_gnarsmall": 2,
+    "da_18_akali_ad": 2,
+    "da_vi18": 1,
+    "da_amumu18": 2,
+    "da_18_alistar": 2,
+    "da_18_leona": 5,
+    "da_18_warwick": 1,
+    "da_18_yorick": 2,
+    "da_18_cassiopeia": 1,
+    "da_18_kennen": 3,
+    "da_gromp18_ap": 1,
+    "da_18_sentry": 1,
+    "da_18_maokai": 1,
+    "da_murkwolf18": 6
    }
   },
   "DA_18_EmblemBrawler": {
-   "total": 310,
+   "total": 710.5535999999997,
    "holders": {
-    "da_18_masteryi_ad": 86,
-    "da_18_rengar": 10,
-    "da_18_lillia": 17,
-    "da_18_hecarim": 9,
-    "da_fiddlesticks18": 12,
-    "da_taric18": 16,
-    "da_brambleback18": 7,
+    "da_sentinel18": 110,
+    "da_18_kennen": 8,
+    "da_vi18": 44,
+    "da_taric18": 28,
+    "da_18_masteryi_ad": 211,
+    "da_18_ezreal": 2,
+    "da_18_malphite": 13,
+    "da_18_hecarim": 32,
+    "da_18_rammus": 6,
+    "da_18_lillia": 40,
+    "da_18_tristana": 1,
+    "da_amumu18": 33,
+    "da_18_elderdragon": 12,
+    "da_fiddlesticks18": 21,
+    "da_18_maokai": 33,
+    "da_18_rengar": 20,
+    "da_murkwolf18": 6,
+    "da_18_yorick": 6,
+    "da_18_akali_ad": 1,
+    "da_18_ornn": 20,
+    "da_18_diana": 5,
+    "da_scuttlecrab18": 11,
+    "da_18_elise": 2,
+    "da_brambleback18": 16,
+    "da_18_ashe": 2,
+    "da_nidalee18_ap": 4,
+    "da_18_warwick": 1,
+    "da_draven18": 1,
+    "da_crimsonraptor18": 1,
+    "da_18_ivern": 1,
+    "da_kogmaw18_ad": 1,
+    "da_18_zyra": 1,
+    "da_18_sejuani": 2,
+    "da_18_leblanc": 1,
+    "da_18_rakan": 2,
+    "da_18_cassiopeia": 1,
+    "da_18_morgana": 1,
     "da_lux18_base": 3,
-    "da_sentinel18": 54,
-    "da_scuttlecrab18": 4,
-    "da_18_rammus": 2,
-    "da_18_elderdragon": 6,
     "da_18_aphelios": 2,
-    "da_murkwolf18": 3,
-    "da_vi18": 18,
-    "da_18_ornn": 9,
-    "da_amumu18": 12,
-    "da_18_maokai": 17,
     "da_18_leona": 3,
-    "da_18_malphite": 4,
     "da_18_azir": 1,
-    "da_18_diana": 1,
-    "da_18_yorick": 3,
-    "da_18_kennen": 3,
-    "da_nidalee18_ap": 1,
-    "da_18_elise": 1,
-    "da_18_rakan": 1,
-    "da_18_sejuani": 1,
     "da_18_ahri": 1,
-    "da_18_ashe": 1,
-    "da_18_ezreal": 1,
     "da_18_kayle": 1
    }
   },
-  "DA_18_EmblemExecutioner": {
-   "total": 445,
+  "DA_18_EmblemLunar": {
+   "total": 410.0580000000001,
    "holders": {
-    "da_crimsonraptor18": 2,
-    "da_karma18": 130,
-    "da_18_zyra": 115,
-    "da_18_morgana": 3,
-    "da_18_alune": 8,
-    "da_18_xayah": 3,
-    "da_18_ivern": 7,
-    "da_draven18": 37,
-    "da_18_leblanc": 19,
+    "da_18_lillia": 31,
+    "da_18_sentry": 2,
+    "da_18_ezreal": 11,
+    "da_18_khazix": 1,
+    "da_nidalee18_ap": 7,
+    "da_18_xayah": 8,
+    "da_kogmaw18_ad": 8,
+    "da_18_ashe": 6,
+    "da_18_varus": 6,
+    "da_18_alistar": 3,
+    "da_lux18_base": 47,
+    "da_18_elderdragon": 4,
+    "da_18_kennen": 13,
+    "da_crimsonraptor18": 6,
+    "da_18_maokai": 5,
+    "da_18_morgana": 34,
+    "da_amumu18": 12,
+    "da_18_sett": 4,
+    "da_18_kayle": 35,
+    "da_fiddlesticks18": 8,
+    "da_18_tristana": 2,
+    "da_taric18": 13,
+    "da_18_ahri": 17,
+    "da_18_ivern": 26,
+    "da_18_zyra": 4,
+    "da_sentinel18": 18,
+    "da_vi18": 2,
+    "da_18_rakan": 4,
+    "da_18_sejuani": 8,
+    "da_18_hecarim": 7,
+    "da_brambleback18": 6,
+    "da_draven18": 1,
+    "da_18_leona": 5,
     "da_18_camille": 1,
-    "da_lux18_base": 16,
-    "da_18_warwick": 1,
-    "da_18_aphelios": 41,
-    "da_18_ahri": 23,
-    "da_18_kayle": 3,
-    "da_18_rengar": 2,
-    "da_18_diana": 4,
-    "da_18_gnarsmall": 1,
-    "da_18_cassiopeia": 1,
-    "da_18_elderdragon": 6,
-    "da_18_veigar": 2,
-    "da_fiddlesticks18": 2,
+    "da_murkwolf18": 5,
+    "da_18_leblanc": 7,
+    "da_18_cassiopeia": 4,
+    "da_18_reksai": 2,
+    "da_18_azir": 2,
+    "da_18_soraka": 8,
+    "da_18_akali_ad": 2,
+    "da_18_yorick": 2,
+    "da_18_yunara": 2,
+    "da_karma18": 1,
+    "da_18_shen": 1,
+    "da_18_sivir": 3,
+    "da_18_rammus": 1,
+    "da_18_veigar": 1,
+    "da_krug18": 1,
+    "da_18_elise": 1,
+    "da_18_rengar": 1
+   }
+  },
+  "DA_18_EmblemInvoker": {
+   "total": 642.9639999999995,
+   "holders": {
+    "da_18_alune": 127,
+    "da_18_ahri": 201,
+    "da_lux18_base": 61,
+    "da_18_kennen": 11,
+    "da_18_ivern": 38,
+    "da_18_zyra": 13,
+    "da_18_leblanc": 28,
+    "da_18_sivir": 6,
+    "da_18_elderdragon": 15,
+    "da_18_sett": 1,
+    "da_nidalee18_ap": 11,
+    "da_18_ashe": 9,
+    "da_18_cassiopeia": 13,
+    "da_18_azir": 2,
+    "da_18_soraka": 14,
+    "da_taric18": 15,
+    "da_18_diana": 7,
+    "da_18_veigar": 5,
+    "da_amumu18": 3,
+    "da_18_alistar": 2,
+    "da_krug18": 3,
+    "da_vi18": 2,
+    "da_brambleback18": 2,
+    "da_18_ezreal": 3,
+    "da_18_lillia": 12,
+    "da_gromp18_ap": 4,
+    "da_cinderling18": 5,
+    "da_18_hecarim": 8,
+    "da_crimsonraptor18": 2,
+    "da_18_reksai": 1,
+    "da_18_ornn": 2,
+    "da_fiddlesticks18": 3,
+    "da_murkwolf18": 3,
+    "da_18_rammus": 1,
+    "da_18_rakan": 3,
+    "da_18_maokai": 1,
+    "da_karma18": 2,
+    "da_18_xayah": 1,
+    "da_18_aphelios": 1,
+    "da_18_kobuko": 1,
+    "da_18_varus": 1,
+    "da_18_sejuani": 1,
+    "da_18_rengar": 1,
+    "da_18_masteryi_ad": 1
+   }
+  },
+  "DA_18_EmblemBlackthorn": {
+   "total": 364.0506000000001,
+   "holders": {
+    "da_18_caitlyn": 2,
+    "da_lux18_base": 6,
+    "da_18_ahri": 4,
+    "da_18_zyra": 45,
+    "da_18_maokai": 5,
+    "da_18_leblanc": 26,
+    "da_18_kennen": 21,
+    "da_18_yunara": 22,
+    "da_draven18": 1,
+    "da_amumu18": 31,
+    "da_18_diana": 11,
+    "da_brambleback18": 13,
+    "da_18_ashe": 1,
+    "da_fiddlesticks18": 13,
+    "da_18_soraka": 30,
+    "da_nidalee18_ap": 2,
+    "da_sentinel18": 12,
+    "da_18_ezreal": 9,
+    "da_18_alune": 7,
+    "da_18_rengar": 3,
+    "da_18_teemo": 2,
+    "da_18_sivir": 2,
+    "da_18_alistar": 9,
+    "da_18_cassiopeia": 6,
+    "da_18_shen": 3,
     "da_kogmaw18_ad": 2,
+    "da_18_ornn": 2,
+    "da_crimsonraptor18": 2,
+    "da_18_morgana": 6,
+    "da_18_lillia": 12,
+    "da_vi18": 5,
+    "da_karma18": 2,
+    "da_18_rammus": 3,
+    "da_18_hecarim": 1,
+    "da_18_ivern": 3,
+    "da_18_sett": 11,
+    "da_murkwolf18": 7,
+    "da_18_xayah": 1,
+    "da_taric18": 5,
+    "da_18_leona": 2,
+    "da_18_khazix": 1,
+    "da_krug18": 1,
+    "da_18_gnarsmall": 1,
+    "da_18_yorick": 4,
+    "da_18_elderdragon": 4,
+    "da_18_masteryi_ad": 1,
+    "da_18_kobuko": 1,
+    "da_cinderling18": 1,
+    "da_18_tristana": 1,
+    "da_18_sejuani": 1,
+    "da_18_kayle": 1,
+    "da_18_rakan": 1
+   }
+  },
+  "DA_18_EmblemExecutioner": {
+   "total": 1003.3297999999995,
+   "holders": {
+    "da_18_ahri": 52,
+    "da_lux18_base": 51,
+    "da_18_aphelios": 92,
+    "da_karma18": 299,
+    "da_18_leblanc": 35,
+    "da_18_sett": 1,
+    "da_18_veigar": 6,
+    "da_18_zyra": 238,
+    "da_kogmaw18_ad": 4,
+    "da_18_sivir": 15,
+    "da_draven18": 80,
+    "da_scuttlecrab18": 1,
+    "da_18_elderdragon": 15,
+    "da_18_ivern": 13,
+    "da_18_alune": 25,
+    "da_18_maokai": 2,
+    "da_nidalee18_ap": 5,
+    "da_18_ashe": 9,
+    "da_18_kayle": 7,
+    "da_18_morgana": 9,
+    "da_18_cassiopeia": 3,
+    "da_18_reksai": 1,
+    "da_amumu18": 2,
+    "da_18_lillia": 2,
+    "da_18_yorick": 1,
+    "da_18_diana": 6,
+    "da_crimsonraptor18": 5,
+    "da_fiddlesticks18": 4,
+    "da_18_tristana": 2,
+    "da_18_varus": 1,
+    "da_18_hecarim": 1,
+    "da_18_rengar": 3,
+    "da_18_xayah": 4,
+    "da_18_warwick": 2,
+    "da_sentinel18": 2,
+    "da_18_gnarsmall": 2,
+    "da_18_camille": 1,
     "da_18_masteryi_ad": 1,
     "da_murkwolf18": 1,
-    "da_18_ashe": 1,
-    "da_nidalee18_ap": 2,
-    "da_18_sivir": 6,
-    "da_sentinel18": 1,
-    "da_18_lillia": 1,
-    "da_18_tristana": 1,
     "da_taric18": 1,
     "da_18_teemo": 1
    }
   },
-  "DA_18_EmblemInvoker": {
-   "total": 282,
+  "DA_18_EmblemDefender": {
+   "total": 451.5722000000001,
    "holders": {
-    "da_18_ahri": 86,
-    "da_18_alune": 53,
-    "da_18_soraka": 9,
-    "da_18_zyra": 5,
-    "da_18_cassiopeia": 5,
-    "da_18_rakan": 2,
-    "da_18_hecarim": 3,
-    "da_murkwolf18": 1,
-    "da_lux18_base": 32,
-    "da_18_elderdragon": 10,
-    "da_18_leblanc": 14,
-    "da_karma18": 1,
-    "da_cinderling18": 2,
-    "da_18_kennen": 5,
-    "da_18_ivern": 9,
-    "da_gromp18_ap": 3,
-    "da_18_veigar": 1,
-    "da_18_ashe": 3,
-    "da_18_diana": 1,
-    "da_18_lillia": 7,
+    "da_18_sett": 22,
+    "da_18_gnarsmall": 3,
+    "da_18_rengar": 120,
     "da_nidalee18_ap": 5,
-    "da_18_sivir": 5,
-    "da_18_azir": 1,
-    "da_18_sejuani": 1,
+    "da_18_kennen": 26,
+    "da_krug18": 6,
+    "da_18_tristana": 1,
+    "da_amumu18": 53,
+    "da_18_ivern": 10,
+    "da_18_hecarim": 26,
+    "da_18_sivir": 2,
+    "da_sentinel18": 30,
+    "da_18_camille": 2,
+    "da_18_elise": 2,
+    "da_18_reksai": 5,
+    "da_18_azir": 2,
+    "da_18_cassiopeia": 1,
+    "da_18_sejuani": 17,
+    "da_18_kobuko": 1,
+    "da_18_malphite": 9,
+    "da_18_diana": 7,
+    "da_18_alistar": 8,
+    "da_taric18": 17,
+    "da_vi18": 9,
+    "da_18_elderdragon": 1,
     "da_brambleback18": 1,
-    "da_taric18": 5,
-    "da_fiddlesticks18": 1,
-    "da_18_rengar": 1,
-    "da_amumu18": 2,
-    "da_18_masteryi_ad": 1,
+    "da_18_teemo": 1,
+    "da_18_veigar": 2,
+    "da_18_maokai": 12,
+    "da_lux18_base": 2,
+    "da_18_yorick": 18,
+    "da_18_alune": 1,
+    "da_18_khazix": 1,
+    "da_18_rakan": 6,
+    "da_18_soraka": 4,
+    "da_draven18": 3,
+    "da_18_aphelios": 1,
+    "da_18_kayle": 2,
+    "da_18_morgana": 4,
+    "da_18_varus": 1,
+    "da_18_ezreal": 2,
+    "da_18_ashe": 2,
+    "da_murkwolf18": 1,
+    "da_scuttlecrab18": 2,
+    "da_18_yunara": 1,
+    "da_18_xayah": 1,
+    "da_18_leblanc": 1
+   }
+  },
+  "DA_18_EmblemBlossom": {
+   "total": 299.3448000000001,
+   "holders": {
+    "da_18_ezreal": 6,
+    "da_vi18": 10,
+    "da_18_lillia": 16,
+    "da_18_kennen": 16,
+    "da_18_morgana": 16,
+    "da_18_kayle": 3,
+    "da_18_alune": 15,
+    "da_18_zyra": 24,
+    "da_sentinel18": 12,
+    "da_taric18": 7,
+    "da_18_sivir": 14,
+    "da_18_alistar": 6,
+    "da_18_ivern": 10,
     "da_crimsonraptor18": 1,
+    "da_18_soraka": 12,
+    "da_lux18_base": 16,
+    "da_fiddlesticks18": 5,
+    "da_18_rengar": 3,
+    "da_18_maokai": 5,
+    "da_kogmaw18_ad": 7,
+    "da_18_diana": 6,
+    "da_18_leblanc": 8,
+    "da_amumu18": 6,
+    "da_18_sentry": 2,
+    "da_18_azir": 9,
+    "da_18_leona": 6,
+    "da_nidalee18_ap": 18,
+    "da_18_hecarim": 1,
+    "da_18_tristana": 2,
+    "da_brambleback18": 1,
+    "da_18_gnarsmall": 2,
+    "da_18_xayah": 2,
+    "da_krug18": 8,
+    "da_18_aphelios": 2,
+    "da_18_rakan": 3,
+    "da_18_elderdragon": 3,
+    "da_18_reksai": 3,
     "da_18_ornn": 1,
-    "da_vi18": 1,
-    "da_18_ezreal": 1,
-    "da_krug18": 2,
-    "da_18_alistar": 1
+    "da_18_malphite": 2,
+    "da_18_sejuani": 3,
+    "da_18_warwick": 1,
+    "da_18_cassiopeia": 1,
+    "da_scuttlecrab18": 1,
+    "da_18_rammus": 1,
+    "da_18_shen": 1,
+    "da_draven18": 2
    }
   },
   "DA_18_EmblemElderwood": {
-   "total": 437,
+   "total": 1008.1381999999996,
    "holders": {
-    "da_18_aphelios": 93,
-    "da_taric18": 21,
-    "da_18_lillia": 134,
-    "da_18_soraka": 42,
-    "da_fiddlesticks18": 15,
-    "da_amumu18": 4,
-    "da_sentinel18": 14,
+    "da_18_morgana": 1,
+    "da_lux18_base": 15,
+    "da_18_lillia": 280,
+    "da_18_aphelios": 239,
+    "da_18_kennen": 66,
+    "da_taric18": 59,
+    "da_18_elise": 1,
+    "da_18_rakan": 10,
+    "da_18_soraka": 93,
+    "da_draven18": 49,
+    "da_18_alune": 14,
+    "da_18_reksai": 8,
+    "da_fiddlesticks18": 42,
+    "da_18_maokai": 7,
+    "da_18_ivern": 9,
+    "da_18_sett": 20,
+    "da_sentinel18": 22,
+    "da_18_diana": 16,
+    "da_18_yorick": 5,
+    "da_krug18": 4,
+    "da_18_rammus": 3,
+    "da_vi18": 3,
+    "da_18_malphite": 2,
+    "da_amumu18": 6,
+    "da_brambleback18": 1,
+    "da_18_sivir": 3,
+    "da_18_khazix": 2,
+    "da_18_zyra": 2,
+    "da_18_ashe": 1,
+    "da_18_kobuko": 3,
+    "da_18_veigar": 1,
+    "da_18_shen": 1,
+    "da_18_ahri": 3,
+    "da_18_tristana": 2,
+    "da_18_sejuani": 2,
+    "da_18_leona": 4,
+    "da_18_varus": 3,
+    "da_crimsonraptor18": 2,
+    "da_18_kayle": 1,
+    "da_scuttlecrab18": 2,
+    "da_18_azir": 3,
     "da_nidalee18_ap": 1,
-    "da_18_kennen": 30,
-    "da_18_diana": 7,
-    "da_18_maokai": 4,
-    "da_18_sett": 7,
-    "da_draven18": 18,
-    "da_18_alune": 8,
-    "da_krug18": 2,
-    "da_18_ivern": 3,
-    "da_18_tristana": 1,
-    "da_lux18_base": 6,
-    "da_18_kobuko": 2,
-    "da_18_azir": 2,
-    "da_18_yorick": 4,
-    "da_18_khazix": 1,
-    "da_18_reksai": 2,
     "da_18_elderdragon": 1,
-    "da_18_rakan": 3,
-    "da_crimsonraptor18": 1,
-    "da_vi18": 2,
-    "da_18_malphite": 1,
-    "da_18_rammus": 1,
-    "da_karma18": 1,
-    "da_18_leona": 3,
+    "da_karma18": 1
+   }
+  },
+  "DA_18_EmblemJuggernaut": {
+   "total": 442.1470000000001,
+   "holders": {
+    "da_18_lillia": 57,
+    "da_sentinel18": 67,
+    "da_18_malphite": 14,
+    "da_18_diana": 7,
+    "da_18_kennen": 58,
+    "da_fiddlesticks18": 9,
+    "da_taric18": 45,
+    "da_18_ezreal": 1,
+    "da_18_sett": 25,
+    "da_18_azir": 3,
+    "da_18_morgana": 2,
+    "da_18_masteryi_ad": 2,
+    "da_18_ivern": 17,
+    "da_18_rammus": 5,
+    "da_18_ornn": 3,
+    "da_krug18": 27,
+    "da_18_ashe": 5,
+    "da_18_rengar": 3,
+    "da_18_elderdragon": 7,
+    "da_nidalee18_ap": 15,
+    "da_18_alune": 4,
+    "da_18_hecarim": 16,
+    "da_18_leona": 9,
+    "da_18_reksai": 3,
+    "da_18_zyra": 5,
+    "da_18_sivir": 6,
+    "da_18_leblanc": 1,
+    "da_murkwolf18": 3,
+    "da_18_soraka": 1,
+    "da_18_shen": 2,
+    "da_18_ahri": 1,
+    "da_lux18_base": 5,
+    "da_18_alistar": 3,
+    "da_18_yunara": 1,
+    "da_cinderling18": 1,
+    "da_18_tristana": 3,
+    "da_18_elise": 1,
+    "da_18_camille": 1,
+    "da_kogmaw18_ad": 1,
+    "da_18_xayah": 1,
+    "da_18_akali_ad": 1,
+    "da_draven18": 1
+   }
+  },
+  "DA_18_EmblemFae": {
+   "total": 628.2927999999995,
+   "holders": {
+    "da_18_sivir": 253,
+    "da_18_ivern": 7,
+    "da_fiddlesticks18": 2,
+    "da_18_leblanc": 2,
+    "da_18_kayle": 53,
+    "da_18_ornn": 3,
+    "da_18_morgana": 5,
+    "da_taric18": 6,
+    "da_18_rengar": 30,
+    "da_18_shen": 1,
+    "da_18_aphelios": 43,
+    "da_18_azir": 4,
+    "da_18_soraka": 5,
+    "da_18_ezreal": 31,
+    "da_lux18_base": 11,
+    "da_18_elderdragon": 16,
+    "da_nidalee18_ap": 14,
+    "da_sentinel18": 6,
+    "da_18_alune": 13,
+    "da_18_zyra": 6,
+    "da_amumu18": 7,
+    "da_draven18": 15,
+    "da_18_ashe": 22,
+    "da_18_kennen": 5,
+    "da_18_sett": 4,
+    "da_murkwolf18": 3,
+    "da_18_cassiopeia": 3,
+    "da_18_ahri": 2,
     "da_18_varus": 2,
-    "da_scuttlecrab18": 1
+    "da_18_hecarim": 7,
+    "da_18_diana": 5,
+    "da_18_alistar": 1,
+    "da_vi18": 4,
+    "da_18_rammus": 3,
+    "da_18_yunara": 2,
+    "da_18_maokai": 3,
+    "da_krug18": 1,
+    "da_crimsonraptor18": 6,
+    "da_18_reksai": 2,
+    "da_18_leona": 3,
+    "da_18_warwick": 1,
+    "da_kogmaw18_ad": 2,
+    "da_scuttlecrab18": 1,
+    "da_18_sejuani": 7,
+    "da_karma18": 2,
+    "da_18_gnarsmall": 1,
+    "da_18_malphite": 1,
+    "da_18_teemo": 1,
+    "da_18_elise": 1,
+    "da_brambleback18": 1,
+    "da_18_akali_ad": 1,
+    "da_cinderling18": 1
+   }
+  },
+  "DA_18_EmblemInferno": {
+   "total": 347.9208000000001,
+   "holders": {
+    "da_18_ivern": 21,
+    "da_18_alune": 10,
+    "da_kogmaw18_ad": 10,
+    "da_18_ezreal": 16,
+    "da_18_ashe": 81,
+    "da_18_soraka": 6,
+    "da_18_morgana": 13,
+    "da_lux18_base": 23,
+    "da_18_sivir": 33,
+    "da_draven18": 15,
+    "da_18_elderdragon": 9,
+    "da_18_aphelios": 7,
+    "da_18_zyra": 24,
+    "da_nidalee18_ap": 8,
+    "da_18_lillia": 4,
+    "da_18_khazix": 1,
+    "da_18_kayle": 6,
+    "da_18_xayah": 5,
+    "da_scuttlecrab18": 1,
+    "da_18_camille": 1,
+    "da_vi18": 2,
+    "da_18_azir": 11,
+    "da_18_rengar": 2,
+    "da_18_tristana": 5,
+    "da_18_diana": 3,
+    "da_taric18": 2,
+    "da_18_cassiopeia": 2,
+    "da_18_ahri": 2,
+    "da_fiddlesticks18": 2,
+    "da_18_sentry": 2,
+    "da_18_rakan": 1,
+    "da_brambleback18": 3,
+    "da_18_ornn": 1,
+    "da_crimsonraptor18": 6,
+    "da_18_sett": 1,
+    "da_18_leblanc": 2,
+    "da_sentinel18": 2,
+    "da_murkwolf18": 3,
+    "da_18_maokai": 2,
+    "da_karma18": 1,
+    "da_18_rammus": 1,
+    "da_18_hecarim": 1,
+    "da_18_yorick": 1,
+    "da_gromp18_ap": 1
    }
   },
   "DA_18_EmblemSlayer": {
-   "total": 170,
+   "total": 373.7700000000001,
    "holders": {
-    "da_18_elderdragon": 32,
-    "da_nidalee18_ap": 41,
-    "da_cinderling18": 2,
-    "da_18_kennen": 6,
-    "da_18_morgana": 22,
-    "da_18_elise": 5,
-    "da_amumu18": 3,
-    "da_lux18_base": 4,
-    "da_18_yunara": 1,
+    "da_nidalee18_ap": 84,
+    "da_18_leona": 2,
+    "da_18_elise": 17,
+    "da_draven18": 4,
+    "da_18_aphelios": 10,
+    "da_18_kayle": 1,
+    "da_18_rengar": 4,
+    "da_18_reksai": 4,
+    "da_18_sentry": 4,
+    "da_18_elderdragon": 61,
+    "da_crimsonraptor18": 3,
+    "da_sentinel18": 8,
+    "da_18_morgana": 45,
+    "da_amumu18": 6,
+    "da_18_ashe": 2,
+    "da_fiddlesticks18": 6,
+    "da_18_masteryi_ad": 3,
+    "da_cinderling18": 5,
+    "da_18_kennen": 16,
+    "da_taric18": 4,
+    "da_18_ahri": 1,
+    "da_scuttlecrab18": 3,
+    "da_18_khazix": 2,
+    "da_vi18": 6,
+    "da_gromp18_ap": 5,
+    "da_18_tristana": 4,
+    "da_18_zyra": 1,
+    "da_18_lillia": 3,
+    "da_18_maokai": 2,
+    "da_18_gnarsmall": 2,
+    "da_18_leblanc": 4,
+    "da_18_ezreal": 7,
+    "da_krug18": 6,
+    "da_18_malphite": 3,
+    "da_18_varus": 3,
+    "da_18_ornn": 1,
+    "da_18_sett": 3,
+    "da_18_hecarim": 2,
+    "da_18_yorick": 2,
+    "da_18_soraka": 1,
+    "da_18_alistar": 1,
+    "da_18_ivern": 2,
+    "da_18_azir": 2,
+    "da_lux18_base": 6,
+    "da_kogmaw18_ad": 5,
+    "da_karma18": 1,
+    "da_18_cassiopeia": 1,
+    "da_18_yunara": 2,
+    "da_18_shen": 1,
+    "da_18_caitlyn": 2,
     "da_18_xayah": 1,
-    "da_kogmaw18_ad": 3,
     "da_18_veigar": 2,
-    "da_vi18": 1,
-    "da_18_aphelios": 4,
-    "da_18_tristana": 2,
-    "da_18_gnarsmall": 1,
-    "da_18_azir": 1,
-    "da_fiddlesticks18": 5,
-    "da_18_leblanc": 2,
-    "da_sentinel18": 4,
-    "da_18_yorick": 1,
-    "da_18_khazix": 1,
-    "da_18_rengar": 2,
-    "da_18_masteryi_ad": 1,
-    "da_18_sivir": 1,
-    "da_18_ezreal": 4,
-    "da_gromp18_ap": 3,
-    "da_krug18": 4,
-    "da_18_varus": 1,
-    "da_18_malphite": 2,
-    "da_18_sentry": 2,
-    "da_scuttlecrab18": 1,
-    "da_18_caitlyn": 1,
-    "da_18_ashe": 1,
-    "da_18_reksai": 1,
-    "da_18_lillia": 1,
-    "da_taric18": 1
+    "da_18_sivir": 1
    }
   },
   "DA_18_EmblemVanguard": {
-   "total": 251,
+   "total": 531.6204,
    "holders": {
-    "da_18_lillia": 57,
-    "da_18_sett": 31,
-    "da_scuttlecrab18": 5,
-    "da_18_kennen": 9,
-    "da_18_morgana": 10,
-    "da_amumu18": 23,
-    "da_18_maokai": 14,
+    "da_18_lillia": 120,
+    "da_scuttlecrab18": 8,
+    "da_amumu18": 43,
+    "da_lux18_base": 5,
+    "da_krug18": 44,
+    "da_18_sett": 66,
+    "da_18_morgana": 15,
+    "da_18_ornn": 5,
+    "da_18_kennen": 19,
+    "da_fiddlesticks18": 25,
+    "da_18_maokai": 45,
+    "da_18_alistar": 19,
+    "da_kogmaw18_ad": 4,
+    "da_18_gnarsmall": 2,
+    "da_brambleback18": 9,
+    "da_18_rengar": 1,
+    "da_18_alune": 2,
+    "da_18_leona": 3,
+    "da_vi18": 16,
+    "da_18_sejuani": 13,
+    "da_18_malphite": 14,
+    "da_18_tristana": 1,
+    "da_18_reksai": 3,
+    "da_nidalee18_ap": 4,
+    "da_18_ivern": 7,
+    "da_18_sivir": 2,
+    "da_18_yorick": 6,
+    "da_18_elderdragon": 3,
+    "da_18_shen": 1,
+    "da_18_ashe": 3,
+    "da_18_kayle": 1,
+    "da_18_azir": 1,
+    "da_18_ezreal": 1,
+    "da_18_soraka": 1,
+    "da_18_camille": 2,
+    "da_18_zyra": 1,
+    "da_18_rammus": 5,
+    "da_18_xayah": 2,
+    "da_18_masteryi_ad": 1,
+    "da_18_ahri": 3,
     "da_18_leblanc": 2,
-    "da_krug18": 24,
-    "da_fiddlesticks18": 12,
-    "da_18_alistar": 9,
-    "da_18_yorick": 3,
     "da_crimsonraptor18": 1,
     "da_18_kobuko": 3,
-    "da_18_sejuani": 9,
-    "da_18_malphite": 6,
-    "da_nidalee18_ap": 2,
-    "da_18_sivir": 1,
-    "da_vi18": 7,
     "da_18_teemo": 1,
-    "da_brambleback18": 1,
-    "da_kogmaw18_ad": 2,
-    "da_18_ornn": 1,
-    "da_18_elderdragon": 1,
-    "da_lux18_base": 1,
-    "da_18_ahri": 2,
-    "da_18_rammus": 3,
-    "da_18_xayah": 1,
-    "da_18_ashe": 1,
-    "da_18_ivern": 4,
-    "da_18_leona": 2,
-    "da_18_camille": 1,
     "da_18_cassiopeia": 1,
     "da_draven18": 1
    }
   },
-  "DA_18_EmblemPrimal": {
-   "total": 132,
-   "holders": {
-    "da_18_lillia": 5,
-    "da_18_elderdragon": 3,
-    "da_18_ashe": 15,
-    "da_kogmaw18_ad": 12,
-    "da_18_hecarim": 3,
-    "da_18_rengar": 3,
-    "da_18_zyra": 4,
-    "da_18_tristana": 14,
-    "da_18_yorick": 4,
-    "da_18_ezreal": 3,
-    "da_lux18_base": 2,
-    "da_18_soraka": 3,
-    "da_18_reksai": 2,
-    "da_18_kennen": 5,
-    "da_sentinel18": 4,
-    "da_18_leona": 2,
-    "da_18_diana": 2,
-    "da_brambleback18": 2,
-    "da_18_morgana": 3,
-    "da_amumu18": 3,
-    "da_18_shen": 1,
-    "da_18_alistar": 3,
-    "da_18_xayah": 2,
-    "da_18_ahri": 4,
-    "da_murkwolf18": 3,
-    "da_18_varus": 1,
-    "da_18_leblanc": 2,
-    "da_scuttlecrab18": 1,
-    "da_18_aphelios": 5,
-    "da_krug18": 1,
-    "da_18_sett": 2,
-    "da_fiddlesticks18": 1,
-    "da_18_azir": 1,
-    "da_taric18": 1,
-    "da_18_rakan": 1,
-    "da_18_maokai": 2,
-    "da_18_sentry": 1,
-    "da_crimsonraptor18": 1,
-    "da_18_akali_ad": 1,
-    "da_18_masteryi_ad": 2,
-    "da_draven18": 1,
-    "da_18_khazix": 1
-   }
-  },
-  "DA_18_EmblemDefender": {
-   "total": 189,
-   "holders": {
-    "da_sentinel18": 11,
-    "da_amumu18": 26,
-    "da_18_hecarim": 11,
-    "da_18_soraka": 3,
-    "da_18_sett": 6,
-    "da_18_veigar": 1,
-    "da_18_yorick": 12,
-    "da_18_rengar": 46,
-    "da_18_kennen": 11,
-    "da_18_sejuani": 9,
-    "da_18_maokai": 6,
-    "da_18_sivir": 1,
-    "da_taric18": 6,
-    "da_18_yunara": 1,
-    "da_18_xayah": 1,
-    "da_18_ivern": 4,
-    "da_draven18": 2,
-    "da_18_gnarsmall": 2,
-    "da_nidalee18_ap": 2,
-    "da_18_reksai": 2,
-    "da_18_malphite": 4,
-    "da_krug18": 3,
-    "da_18_diana": 4,
-    "da_18_morgana": 1,
-    "da_vi18": 4,
-    "da_18_rakan": 1,
-    "da_18_alistar": 3,
-    "da_18_azir": 1,
-    "da_scuttlecrab18": 1,
-    "da_18_leblanc": 1,
-    "da_18_camille": 1,
-    "da_18_elise": 1,
-    "da_18_ashe": 1
-   }
-  },
-  "DA_18_EmblemSpellweaver": {
-   "total": 202,
-   "holders": {
-    "da_18_zyra": 16,
-    "da_lux18_base": 36,
-    "da_kogmaw18_ad": 1,
-    "da_18_soraka": 47,
-    "da_18_alistar": 6,
-    "da_18_ornn": 6,
-    "da_18_morgana": 27,
-    "da_18_leona": 2,
-    "da_sentinel18": 5,
-    "da_18_kennen": 6,
-    "da_amumu18": 1,
-    "da_18_lillia": 9,
-    "da_18_ivern": 11,
-    "da_18_warwick": 1,
-    "da_18_ashe": 1,
-    "da_18_diana": 4,
-    "da_18_azir": 3,
-    "da_18_kobuko": 1,
-    "da_18_sejuani": 2,
-    "da_18_teemo": 3,
-    "da_18_reksai": 3,
-    "da_18_malphite": 1,
-    "da_scuttlecrab18": 1,
-    "da_18_sentry": 1,
-    "da_vi18": 2,
-    "da_18_sett": 2,
-    "da_taric18": 1,
-    "da_18_ezreal": 1,
-    "da_18_hecarim": 1,
-    "da_18_rakan": 1
-   }
-  },
-  "DA_18_EmblemBlossom": {
-   "total": 134,
-   "holders": {
-    "da_18_lillia": 8,
-    "da_18_soraka": 5,
-    "da_18_leona": 4,
-    "da_fiddlesticks18": 2,
-    "da_18_morgana": 5,
-    "da_18_malphite": 1,
-    "da_18_ezreal": 3,
-    "da_krug18": 4,
-    "da_lux18_base": 6,
-    "da_nidalee18_ap": 11,
-    "da_18_zyra": 13,
-    "da_18_rakan": 2,
-    "da_18_sivir": 6,
-    "da_vi18": 6,
-    "da_sentinel18": 6,
-    "da_18_maokai": 3,
-    "da_18_xayah": 1,
-    "da_18_alune": 4,
-    "da_18_warwick": 1,
-    "da_18_kennen": 7,
-    "da_18_reksai": 2,
-    "da_18_ivern": 4,
-    "da_18_azir": 4,
-    "da_18_alistar": 3,
-    "da_18_sejuani": 2,
-    "da_18_cassiopeia": 1,
-    "da_18_kayle": 1,
-    "da_18_leblanc": 3,
-    "da_18_aphelios": 1,
-    "da_kogmaw18_ad": 2,
-    "da_scuttlecrab18": 1,
-    "da_18_rammus": 1,
-    "da_18_diana": 1,
-    "da_18_gnarsmall": 1,
-    "da_18_shen": 1,
-    "da_18_elderdragon": 2,
-    "da_draven18": 2,
-    "da_taric18": 1,
-    "da_amumu18": 3
-   }
-  },
-  "DA_18_EmblemLunar": {
-   "total": 183,
-   "holders": {
-    "da_kogmaw18_ad": 2,
-    "da_18_lillia": 14,
-    "da_18_kayle": 12,
-    "da_18_azir": 1,
-    "da_lux18_base": 22,
-    "da_nidalee18_ap": 4,
-    "da_18_akali_ad": 1,
-    "da_18_morgana": 17,
-    "da_18_maokai": 3,
-    "da_18_kennen": 6,
-    "da_18_rakan": 2,
-    "da_18_sejuani": 3,
-    "da_crimsonraptor18": 2,
-    "da_18_varus": 3,
-    "da_18_ezreal": 2,
-    "da_18_ivern": 11,
-    "da_18_ahri": 9,
-    "da_18_hecarim": 4,
-    "da_18_zyra": 1,
-    "da_18_soraka": 6,
-    "da_18_rammus": 1,
-    "da_18_alistar": 1,
-    "da_18_ashe": 4,
-    "da_brambleback18": 2,
-    "da_18_veigar": 1,
-    "da_18_leblanc": 4,
-    "da_amumu18": 9,
-    "da_18_xayah": 2,
-    "da_murkwolf18": 2,
-    "da_krug18": 1,
-    "da_sentinel18": 10,
-    "da_18_elderdragon": 2,
-    "da_taric18": 5,
-    "da_18_sett": 1,
-    "da_18_yorick": 1,
-    "da_18_elise": 1,
-    "da_18_cassiopeia": 1,
-    "da_18_tristana": 1,
-    "da_18_leona": 3,
-    "da_18_rengar": 1,
-    "da_18_sivir": 2,
-    "da_vi18": 1,
-    "da_18_reksai": 1,
-    "da_fiddlesticks18": 1
-   }
-  },
-  "DA_18_EmblemJuggernaut": {
-   "total": 218,
-   "holders": {
-    "da_sentinel18": 41,
-    "da_18_sett": 13,
-    "da_18_lillia": 28,
-    "da_taric18": 23,
-    "da_18_zyra": 2,
-    "da_18_kennen": 28,
-    "da_18_hecarim": 6,
-    "da_18_rammus": 3,
-    "da_18_elderdragon": 4,
-    "da_18_ivern": 8,
-    "da_18_camille": 1,
-    "da_18_rengar": 2,
-    "da_18_reksai": 1,
-    "da_nidalee18_ap": 7,
-    "da_fiddlesticks18": 3,
-    "da_krug18": 16,
-    "da_18_shen": 1,
-    "da_kogmaw18_ad": 1,
-    "da_18_malphite": 4,
-    "da_18_xayah": 1,
-    "da_18_leona": 6,
-    "da_18_sivir": 2,
-    "da_murkwolf18": 1,
-    "da_18_diana": 3,
-    "da_18_tristana": 2,
-    "da_18_akali_ad": 1,
-    "da_18_azir": 1,
-    "da_18_ashe": 1,
-    "da_18_ornn": 1,
-    "da_18_alistar": 1,
-    "da_draven18": 1,
-    "da_lux18_base": 2,
-    "da_18_alune": 1,
-    "da_18_morgana": 1,
-    "da_18_masteryi_ad": 1
-   }
-  },
   "DA_18_EmblemFloraFatalis": {
-   "total": 140,
+   "total": 319.8998000000001,
    "holders": {
-    "da_18_ahri": 4,
-    "da_18_ezreal": 12,
-    "da_18_alune": 13,
-    "da_18_lillia": 4,
-    "da_lux18_base": 15,
+    "da_18_kennen": 20,
+    "da_18_cassiopeia": 7,
+    "da_18_diana": 5,
+    "da_18_lillia": 12,
+    "da_krug18": 2,
+    "da_18_zyra": 43,
+    "da_18_alune": 25,
+    "da_brambleback18": 1,
+    "da_18_ashe": 6,
+    "da_lux18_base": 33,
+    "da_kogmaw18_ad": 6,
+    "da_18_ezreal": 24,
+    "da_karma18": 11,
+    "da_18_ivern": 17,
+    "da_18_leblanc": 10,
+    "da_taric18": 2,
+    "da_18_morgana": 18,
+    "da_nidalee18_ap": 2,
+    "da_18_alistar": 1,
+    "da_18_sivir": 9,
+    "da_18_veigar": 16,
+    "da_18_ahri": 12,
+    "da_18_hecarim": 3,
+    "da_18_yunara": 4,
+    "da_18_elderdragon": 3,
+    "da_18_khazix": 1,
+    "da_18_azir": 6,
+    "da_18_rakan": 1,
+    "da_18_rammus": 1,
+    "da_vi18": 1,
+    "da_sentinel18": 1,
+    "da_18_teemo": 3,
+    "da_amumu18": 3,
+    "da_18_tristana": 1,
+    "da_18_sejuani": 1,
+    "da_18_varus": 1,
+    "da_18_kayle": 1,
+    "da_crimsonraptor18": 1,
+    "da_gromp18_ap": 2,
+    "da_18_maokai": 2,
     "da_18_sentry": 2,
-    "da_18_ivern": 8,
-    "da_18_azir": 4,
-    "da_karma18": 5,
-    "da_18_veigar": 7,
-    "da_18_ashe": 4,
-    "da_18_kennen": 7,
-    "da_18_zyra": 19,
-    "da_18_hecarim": 1,
-    "da_18_cassiopeia": 1,
-    "da_18_teemo": 2,
-    "da_amumu18": 2,
-    "da_18_sivir": 4,
-    "da_18_diana": 2,
     "da_18_masteryi_ad": 1,
-    "da_kogmaw18_ad": 2,
-    "da_gromp18_ap": 1,
-    "da_18_morgana": 7,
     "da_18_shen": 1,
-    "da_taric18": 1,
     "da_scuttlecrab18": 2,
-    "da_18_maokai": 1,
-    "da_18_leblanc": 5,
-    "da_18_yunara": 1,
-    "da_krug18": 1,
     "da_18_sett": 1
    }
   },
-  "DA_18_EmblemInferno": {
-   "total": 136,
+  "DA_18_EmblemPrimal": {
+   "total": 307.2422000000001,
    "holders": {
-    "da_murkwolf18": 2,
-    "da_18_ivern": 11,
-    "da_draven18": 6,
-    "da_18_zyra": 8,
-    "da_18_sivir": 11,
-    "da_18_aphelios": 3,
-    "da_18_diana": 2,
-    "da_18_ashe": 34,
+    "da_18_sett": 5,
+    "da_18_soraka": 5,
+    "da_18_kennen": 10,
+    "da_18_aphelios": 13,
+    "da_18_lillia": 8,
+    "da_lux18_base": 7,
+    "da_18_tristana": 28,
+    "da_18_maokai": 4,
+    "da_18_alistar": 5,
+    "da_draven18": 5,
+    "da_18_ashe": 39,
+    "da_18_hecarim": 5,
     "da_18_xayah": 3,
-    "da_18_alune": 3,
-    "da_18_morgana": 3,
-    "da_18_rengar": 1,
-    "da_crimsonraptor18": 5,
-    "da_18_azir": 5,
-    "da_18_yorick": 1,
-    "da_taric18": 1,
-    "da_18_elderdragon": 4,
-    "da_18_tristana": 2,
-    "da_18_maokai": 1,
-    "da_18_leblanc": 1,
-    "da_lux18_base": 8,
-    "da_kogmaw18_ad": 4,
-    "da_18_soraka": 3,
+    "da_18_elderdragon": 6,
+    "da_amumu18": 9,
+    "da_sentinel18": 9,
+    "da_18_ivern": 6,
+    "da_kogmaw18_ad": 29,
+    "da_18_ahri": 7,
+    "da_18_alune": 2,
+    "da_18_diana": 6,
+    "da_18_ezreal": 5,
+    "da_fiddlesticks18": 7,
+    "da_18_zyra": 9,
+    "da_krug18": 4,
+    "da_18_yorick": 6,
+    "da_18_rakan": 3,
+    "da_scuttlecrab18": 4,
+    "da_taric18": 3,
+    "da_murkwolf18": 4,
+    "da_18_varus": 3,
+    "da_18_rengar": 8,
+    "da_18_camille": 1,
+    "da_cinderling18": 2,
+    "da_18_masteryi_ad": 4,
+    "da_18_azir": 3,
+    "da_18_reksai": 3,
+    "da_brambleback18": 6,
+    "da_18_sejuani": 1,
+    "da_crimsonraptor18": 2,
+    "da_18_ornn": 1,
+    "da_18_morgana": 4,
+    "da_18_yunara": 1,
+    "da_18_rammus": 1,
+    "da_18_malphite": 1,
+    "da_18_leblanc": 3,
+    "da_18_leona": 2,
+    "da_18_shen": 1,
+    "da_18_sentry": 1,
+    "da_18_akali_ad": 1,
+    "da_18_khazix": 1
+   }
+  },
+  "DA_18_EmblemSpellweaver": {
+   "total": 472.7230000000001,
+   "holders": {
+    "da_18_morgana": 61,
+    "da_18_soraka": 96,
+    "da_18_ezreal": 2,
+    "da_lux18_base": 91,
+    "da_18_zyra": 32,
+    "da_18_alistar": 11,
+    "da_18_diana": 6,
+    "da_sentinel18": 8,
+    "da_amumu18": 4,
+    "da_18_yorick": 3,
+    "da_18_lillia": 19,
+    "da_18_azir": 10,
+    "da_18_sett": 3,
+    "da_18_hecarim": 4,
+    "da_18_reksai": 12,
+    "da_18_ivern": 28,
+    "da_18_kennen": 17,
+    "da_18_aphelios": 1,
+    "da_18_rakan": 2,
+    "da_18_elderdragon": 1,
     "da_18_kayle": 2,
-    "da_nidalee18_ap": 3,
-    "da_18_ahri": 1,
-    "da_fiddlesticks18": 1,
-    "da_sentinel18": 1,
-    "da_brambleback18": 1,
-    "da_18_ezreal": 3,
-    "da_18_cassiopeia": 1,
-    "da_gromp18_ap": 1
+    "da_18_teemo": 5,
+    "da_18_ornn": 11,
+    "da_taric18": 6,
+    "da_kogmaw18_ad": 6,
+    "da_krug18": 1,
+    "da_18_sentry": 2,
+    "da_18_tristana": 1,
+    "da_18_elise": 1,
+    "da_18_rammus": 2,
+    "da_18_leona": 4,
+    "da_18_malphite": 3,
+    "da_vi18": 3,
+    "da_18_sejuani": 3,
+    "da_18_kobuko": 2,
+    "da_18_akali_ad": 1,
+    "da_nidalee18_ap": 1,
+    "da_18_sivir": 1,
+    "da_18_xayah": 1,
+    "da_18_khazix": 1,
+    "da_18_yunara": 1,
+    "da_scuttlecrab18": 2,
+    "da_18_ashe": 2,
+    "da_18_warwick": 1
    }
   },
   "DA_18_EmblemHunter": {
-   "total": 195,
+   "total": 428.4622000000001,
    "holders": {
-    "da_18_xayah": 2,
-    "da_18_ezreal": 3,
-    "da_18_masteryi_ad": 2,
-    "da_nidalee18_ap": 87,
-    "da_18_elderdragon": 33,
+    "da_nidalee18_ap": 180,
+    "da_kogmaw18_ad": 13,
+    "da_18_leblanc": 2,
+    "da_18_ezreal": 10,
+    "da_18_elderdragon": 71,
+    "da_draven18": 12,
+    "da_18_warwick": 1,
+    "da_18_rengar": 9,
+    "da_18_yunara": 5,
+    "da_brambleback18": 13,
+    "da_18_xayah": 8,
+    "da_lux18_base": 6,
+    "da_18_shen": 2,
+    "da_18_yorick": 1,
+    "da_18_morgana": 1,
+    "da_murkwolf18": 3,
+    "da_18_hecarim": 1,
+    "da_18_kennen": 1,
+    "da_18_akali_ad": 1,
+    "da_18_aphelios": 10,
+    "da_18_azir": 3,
+    "da_vi18": 25,
+    "da_scuttlecrab18": 2,
+    "da_18_ivern": 2,
+    "da_18_kayle": 2,
+    "da_18_camille": 1,
+    "da_krug18": 1,
+    "da_18_masteryi_ad": 3,
+    "da_18_sett": 3,
+    "da_fiddlesticks18": 2,
+    "da_18_maokai": 4,
+    "da_amumu18": 3,
+    "da_18_lillia": 3,
+    "da_18_sejuani": 1,
+    "da_18_teemo": 1,
+    "da_18_veigar": 2,
+    "da_18_diana": 4,
+    "da_18_gnarsmall": 2,
+    "da_18_varus": 1,
+    "da_crimsonraptor18": 3,
     "da_sentinel18": 1,
-    "da_vi18": 13,
-    "da_18_gnarsmall": 1,
     "da_taric18": 4,
-    "da_draven18": 3,
-    "da_crimsonraptor18": 2,
-    "da_18_sett": 2,
-    "da_lux18_base": 3,
-    "da_18_shen": 1,
     "da_karma18": 2,
     "da_18_zyra": 2,
-    "da_18_veigar": 1,
     "da_gromp18_ap": 3,
-    "da_kogmaw18_ad": 7,
-    "da_brambleback18": 5,
-    "da_18_rengar": 1,
-    "da_18_aphelios": 3,
-    "da_18_yunara": 1,
-    "da_18_lillia": 2,
-    "da_scuttlecrab18": 1,
-    "da_fiddlesticks18": 1,
-    "da_18_kayle": 1,
-    "da_18_maokai": 1,
-    "da_amumu18": 1,
-    "da_18_rakan": 1,
-    "da_murkwolf18": 2,
-    "da_18_diana": 3
-   }
-  },
-  "DA_18_EmblemFae": {
-   "total": 265,
-   "holders": {
-    "da_18_sivir": 106,
-    "da_lux18_base": 3,
-    "da_18_leblanc": 1,
-    "da_18_aphelios": 21,
-    "da_18_kayle": 26,
-    "da_18_ezreal": 9,
-    "da_18_soraka": 2,
-    "da_sentinel18": 2,
-    "da_18_elderdragon": 9,
-    "da_18_rengar": 8,
-    "da_18_alune": 7,
-    "da_crimsonraptor18": 2,
-    "da_18_diana": 2,
-    "da_18_ivern": 4,
-    "da_18_malphite": 1,
-    "da_draven18": 7,
-    "da_18_teemo": 1,
-    "da_18_sejuani": 6,
-    "da_18_zyra": 3,
-    "da_nidalee18_ap": 8,
-    "da_kogmaw18_ad": 1,
-    "da_18_ornn": 1,
-    "da_18_sett": 2,
-    "da_18_morgana": 2,
-    "da_18_azir": 3,
-    "da_18_ashe": 7,
-    "da_murkwolf18": 2,
-    "da_vi18": 2,
-    "da_taric18": 2,
-    "da_18_cassiopeia": 2,
-    "da_18_maokai": 2,
-    "da_18_hecarim": 3,
-    "da_18_reksai": 1,
-    "da_18_elise": 1,
-    "da_brambleback18": 1,
-    "da_18_akali_ad": 1,
-    "da_amumu18": 1,
-    "da_cinderling18": 1,
-    "da_karma18": 1,
-    "da_18_yunara": 1
-   }
-  },
-  "DA_18_EmblemRapidfire": {
-   "total": 164,
-   "holders": {
-    "da_18_yunara": 4,
-    "da_18_ezreal": 14,
-    "da_18_leblanc": 6,
-    "da_draven18": 13,
-    "da_18_tristana": 5,
-    "da_brambleback18": 25,
-    "da_18_zyra": 9,
-    "da_taric18": 2,
-    "da_18_sentry": 1,
-    "da_18_azir": 7,
-    "da_fiddlesticks18": 3,
-    "da_krug18": 2,
-    "da_18_diana": 6,
-    "da_18_leona": 2,
-    "da_18_camille": 2,
-    "da_lux18_base": 9,
-    "da_18_rengar": 7,
-    "da_18_sejuani": 3,
-    "da_18_sivir": 2,
-    "da_18_kennen": 2,
-    "da_kogmaw18_ad": 5,
-    "da_18_alune": 5,
-    "da_18_maokai": 1,
-    "da_18_morgana": 1,
-    "da_18_ivern": 5,
-    "da_murkwolf18": 6,
-    "da_18_elderdragon": 5,
-    "da_sentinel18": 4,
-    "da_18_rakan": 3,
-    "da_18_gnarsmall": 1,
-    "da_18_akali_ad": 1,
-    "da_nidalee18_ap": 1,
-    "da_18_yorick": 1,
-    "da_18_alistar": 1
-   }
-  },
-  "DA_18_EmblemCoven": {
-   "total": 62,
-   "holders": {
-    "da_fiddlesticks18": 5,
-    "da_nidalee18_ap": 1,
-    "da_sentinel18": 6,
-    "da_18_hecarim": 3,
-    "da_18_ivern": 1,
-    "da_amumu18": 3,
-    "da_taric18": 5,
-    "da_krug18": 2,
-    "da_18_yorick": 3,
-    "da_18_alistar": 3,
-    "da_vi18": 2,
-    "da_18_leona": 1,
-    "da_18_lillia": 3,
-    "da_18_diana": 8,
-    "da_18_soraka": 1,
-    "da_murkwolf18": 2,
-    "da_draven18": 1,
-    "da_18_maokai": 1,
-    "da_18_shen": 1,
-    "da_18_sejuani": 1,
-    "da_18_ahri": 1,
-    "da_18_rakan": 3,
-    "da_lux18_base": 1,
-    "da_18_alune": 1,
-    "da_18_xayah": 1,
-    "da_18_azir": 1,
-    "da_18_ornn": 1
-   }
-  },
-  "DA_18_EmblemSprykin": {
-   "total": 102,
-   "holders": {
-    "da_18_morgana": 2,
-    "da_18_sejuani": 1,
-    "da_nidalee18_ap": 10,
-    "da_18_hecarim": 5,
-    "da_kogmaw18_ad": 3,
-    "da_18_ezreal": 2,
-    "da_18_elise": 2,
-    "da_18_leblanc": 2,
-    "da_18_alistar": 10,
-    "da_18_reksai": 3,
-    "da_18_malphite": 2,
-    "da_18_cassiopeia": 1,
-    "da_18_lillia": 4,
-    "da_18_warwick": 1,
-    "da_18_maokai": 3,
-    "da_18_elderdragon": 2,
-    "da_fiddlesticks18": 2,
-    "da_amumu18": 3,
-    "da_sentinel18": 5,
-    "da_18_zyra": 1,
-    "da_18_sivir": 5,
-    "da_18_khazix": 1,
-    "da_18_diana": 2,
-    "da_18_ivern": 3,
-    "da_18_rengar": 7,
-    "da_18_azir": 2,
-    "da_cinderling18": 1,
-    "da_18_sentry": 1,
-    "da_vi18": 1,
-    "da_18_ornn": 2,
-    "da_crimsonraptor18": 1,
-    "da_18_shen": 1,
-    "da_18_ahri": 2,
-    "da_scuttlecrab18": 1,
-    "da_18_yorick": 1,
-    "da_18_kennen": 1,
-    "da_18_sett": 2,
-    "da_krug18": 1,
-    "da_18_leona": 1,
-    "da_taric18": 1,
-    "da_lux18_base": 1
+    "da_18_rakan": 1
    }
   },
   "DA_18_EmblemFloraFatalisAugment": {
-   "total": 46,
+   "total": 108.87760000000003,
    "holders": {
-    "da_karma18": 3,
-    "da_18_alune": 4,
-    "da_18_ezreal": 2,
+    "da_18_cassiopeia": 7,
+    "da_18_teemo": 3,
+    "da_18_veigar": 44,
+    "da_18_zyra": 18,
+    "da_karma18": 13,
+    "da_18_lillia": 1,
+    "da_18_ahri": 5,
+    "da_18_morgana": 2,
+    "da_18_ezreal": 4,
+    "da_18_alune": 5,
+    "da_18_kennen": 2,
+    "da_18_sivir": 1,
+    "da_18_sentry": 1,
     "da_18_yunara": 1,
-    "da_18_veigar": 18,
-    "da_18_zyra": 8,
-    "da_18_morgana": 1,
-    "da_18_ahri": 2,
     "da_lux18_base": 1,
-    "da_18_cassiopeia": 3,
-    "da_18_teemo": 2,
     "da_18_leblanc": 1
+   }
+  },
+  "DA_18_EmblemCoven": {
+   "total": 128.37080000000003,
+   "holders": {
+    "da_sentinel18": 13,
+    "da_18_azir": 2,
+    "da_18_yorick": 6,
+    "da_krug18": 5,
+    "da_18_sivir": 1,
+    "da_amumu18": 6,
+    "da_18_diana": 14,
+    "da_vi18": 5,
+    "da_18_alistar": 5,
+    "da_18_leona": 3,
+    "da_fiddlesticks18": 9,
+    "da_18_hecarim": 6,
+    "da_18_sejuani": 2,
+    "da_taric18": 8,
+    "da_18_ezreal": 1,
+    "da_18_lillia": 7,
+    "da_cinderling18": 1,
+    "da_18_ornn": 2,
+    "da_18_rakan": 6,
+    "da_18_ivern": 2,
+    "da_18_khazix": 1,
+    "da_18_sentry": 1,
+    "da_18_sett": 2,
+    "da_18_ahri": 2,
+    "da_18_soraka": 2,
+    "da_18_gnarsmall": 1,
+    "da_kogmaw18_ad": 1,
+    "da_18_akali_ad": 1,
+    "da_18_veigar": 1,
+    "da_18_shen": 2,
+    "da_draven18": 2,
+    "da_nidalee18_ap": 2,
+    "da_18_aphelios": 1,
+    "da_18_xayah": 2,
+    "da_18_maokai": 2,
+    "da_18_kennen": 1,
+    "da_murkwolf18": 2,
+    "da_lux18_base": 1,
+    "da_18_alune": 1
+   }
+  },
+  "DA_18_EmblemSprykin": {
+   "total": 223.67980000000006,
+   "holders": {
+    "da_18_alistar": 19,
+    "da_18_yorick": 2,
+    "da_18_lillia": 16,
+    "da_vi18": 2,
+    "da_18_reksai": 6,
+    "da_amumu18": 6,
+    "da_18_hecarim": 7,
+    "da_18_ornn": 6,
+    "da_sentinel18": 10,
+    "da_18_rengar": 20,
+    "da_crimsonraptor18": 2,
+    "da_18_elise": 3,
+    "da_18_ezreal": 5,
+    "da_18_sivir": 8,
+    "da_fiddlesticks18": 8,
+    "da_18_morgana": 5,
+    "da_18_azir": 3,
+    "da_18_aphelios": 1,
+    "da_18_alune": 2,
+    "da_18_ashe": 2,
+    "da_18_akali_ad": 1,
+    "da_nidalee18_ap": 18,
+    "da_lux18_base": 5,
+    "da_18_ivern": 5,
+    "da_taric18": 4,
+    "da_18_leblanc": 7,
+    "da_krug18": 4,
+    "da_18_malphite": 3,
+    "da_18_sett": 7,
+    "da_18_diana": 4,
+    "da_18_maokai": 5,
+    "da_18_warwick": 2,
+    "da_18_zyra": 2,
+    "da_18_elderdragon": 4,
+    "da_18_kennen": 3,
+    "da_18_xayah": 1,
+    "da_18_yunara": 1,
+    "da_murkwolf18": 1,
+    "da_18_masteryi_ad": 1,
+    "da_draven18": 1,
+    "da_18_leona": 2,
+    "da_18_sejuani": 1,
+    "da_kogmaw18_ad": 3,
+    "da_18_cassiopeia": 1,
+    "da_18_khazix": 1,
+    "da_cinderling18": 1,
+    "da_18_sentry": 1,
+    "da_18_shen": 1,
+    "da_18_ahri": 2,
+    "da_scuttlecrab18": 1
    }
   }
  },
@@ -8729,13 +9004,6 @@ window.TFT_WEIGHTS = {
    "level": 10,
    "core": [
     {
-     "id": "da_amumu18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_sentinel18",
      "rate": 1,
      "star3": 0,
@@ -8743,57 +9011,71 @@ window.TFT_WEIGHTS = {
      "tank": 3
     },
     {
-     "id": "da_18_maokai",
+     "id": "da_amumu18",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_taric18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 6
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 1,
-     "star3": 0,
-     "off": 3,
-     "tank": 1
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 1,
-     "star3": 0,
-     "off": 4,
-     "tank": 2
-    },
-    {
-     "id": "da_18_elderdragon",
-     "rate": 1,
-     "star3": 0,
-     "off": 9,
-     "tank": 0
+     "off": 0.6,
+     "tank": 1.2
     },
     {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 8,
+     "off": 16.2,
      "tank": 0
     },
     {
+     "id": "da_18_kennen",
+     "rate": 1,
+     "star3": 0,
+     "off": 8.7,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 1,
+     "star3": 0,
+     "off": 20.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.92,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 11.7
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.92,
+     "star3": 0,
+     "off": 0,
+     "tank": 13
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.84,
+     "star3": 0,
+     "off": 4.2,
+     "tank": 1
+    },
+    {
      "id": "da_18_ezreal",
-     "rate": 0.67,
+     "rate": 0.69,
+     "star3": 0,
+     "off": 2.9,
+     "tank": 0
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 0.22,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_soraka",
-     "rate": 0.33,
+     "id": "da_lux18_base",
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -8834,7 +9116,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Elderwood",
    "carry": "da_18_kennen",
    "mainCarry": "da_18_kennen",
-   "mainTank": "da_18_maokai",
+   "mainTank": "da_18_lillia",
    "games": 12,
    "avgPlace": 2.44,
    "top4": 0.894,
@@ -8847,98 +9129,98 @@ window.TFT_WEIGHTS = {
      "id": "da_18_kennen",
      "rate": 1,
      "star3": 0,
-     "off": 34,
-     "tank": 0
+     "off": 68.3,
+     "tank": 0.6
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.92,
+     "rate": 0.93,
      "star3": 0,
-     "off": 26,
-     "tank": 2
+     "off": 49.3,
+     "tank": 2.6
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.83,
+     "rate": 0.92,
      "star3": 0,
-     "off": 1,
+     "off": 2.7,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.61,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.67,
+     "rate": 0.59,
      "star3": 0,
      "off": 1,
-     "tank": 7
+     "tank": 14.6
     },
     {
-     "id": "da_18_ornn",
-     "rate": 0.5,
+     "id": "da_18_hecarim",
+     "rate": 0.56,
+     "star3": 0,
+     "off": 2.6,
+     "tank": 5.9
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 24.3
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 0.37,
+     "star3": 0,
+     "off": 14.3,
+     "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.37,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 10.3
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 0,
+     "tank": 19
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.32,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_hecarim",
-     "rate": 0.5,
+     "id": "da_18_ivern",
+     "rate": 0.31,
      "star3": 0,
-     "off": 2,
-     "tank": 3
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 12
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 1,
-     "tank": 8
-    },
-    {
-     "id": "da_18_soraka",
-     "rate": 0.42,
-     "star3": 0,
-     "off": 5,
+     "off": 2.2,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.42,
+     "rate": 0.3,
      "star3": 0,
-     "off": 4,
+     "off": 8.1,
      "tank": 0
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.33,
+     "id": "da_18_leblanc",
+     "rate": 0.27,
      "star3": 0,
      "off": 0,
-     "tank": 8
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_draven18",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 7,
      "tank": 0
     }
    ],
@@ -8946,20 +9228,20 @@ window.TFT_WEIGHTS = {
     "da_18_kennen": {
      "items": [
       "DA_EdgeOfNight",
-      "DA_HextechGunblade",
-      "DA_VoidStaff"
+      "DA_HandOfJustice",
+      "DA_RedBuff"
+     ],
+     "games": 2,
+     "avgPlace": 1.37
+    },
+    "da_18_lillia": {
+     "items": [
+      "DA_DragonsClaw",
+      "DA_GargoyleStoneplate",
+      "DA_SunfireCape"
      ],
      "games": 1,
      "avgPlace": 2
-    },
-    "da_18_maokai": {
-     "items": [
-      "DA_Crownguard",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
-     ],
-     "games": 1,
-     "avgPlace": 4
     }
    },
    "now": {
@@ -8987,66 +9269,101 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_azir",
+     "id": "da_18_soraka",
      "rate": 1,
+     "star3": 0,
+     "off": 7.8,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 1,
+     "star3": 0,
+     "off": 10.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.85,
+     "star3": 0,
+     "off": 3.9,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.55,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.55,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_malphite",
-     "rate": 1,
+     "rate": 0.55,
      "star3": 0,
      "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_soraka",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
+     "tank": 6.5
     },
     {
      "id": "da_amumu18",
-     "rate": 1,
+     "rate": 0.55,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 1,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
+     "tank": 1.7
     },
     {
      "id": "da_18_maokai",
-     "rate": 1,
+     "rate": 0.4,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_kennen",
-     "rate": 1,
+     "id": "da_18_lillia",
+     "rate": 0.3,
      "star3": 0,
-     "off": 1,
+     "off": 0.6,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_khazix",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 1,
+     "rate": 0.26,
      "star3": 0,
      "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_yunara",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 1.2,
      "tank": 0
     }
    ],
@@ -9057,8 +9374,8 @@ window.TFT_WEIGHTS = {
       "DA_RedBuff",
       "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 4.37
     },
     "da_18_malphite": {
      "items": [
@@ -9085,7 +9402,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_Juggernaut18",
    "carry": "da_lux18_base",
    "mainCarry": "da_lux18_base",
-   "mainTank": "da_vi18",
+   "mainTank": "da_18_maokai",
    "games": 3,
    "avgPlace": 2.67,
    "top4": 0.75,
@@ -9095,31 +9412,10 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 4
-    },
-    {
      "id": "da_lux18_base",
      "rate": 1,
      "star3": 0,
-     "off": 7,
-     "tank": 2
-    },
-    {
-     "id": "da_18_sivir",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
+     "off": 20.4,
      "tank": 2
     },
     {
@@ -9127,70 +9423,91 @@ window.TFT_WEIGHTS = {
      "rate": 1,
      "star3": 0,
      "off": 1,
-     "tank": 2
+     "tank": 6.7
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.67,
+     "id": "da_18_maokai",
+     "rate": 1,
      "star3": 0,
      "off": 0,
+     "tank": 9.6
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.85,
+     "star3": 0,
+     "off": 1,
+     "tank": 5.2
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.62,
+     "star3": 0,
+     "off": 5.2,
      "tank": 0
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.67,
+     "rate": 0.57,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 1.2
     },
     {
-     "id": "da_18_kennen",
-     "rate": 0.67,
+     "id": "da_18_ivern",
+     "rate": 0.51,
      "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 2.9,
+     "tank": 1.2
     },
     {
-     "id": "da_18_ashe",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.33,
+     "id": "da_18_rakan",
+     "rate": 0.49,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_sejuani",
-     "rate": 0.33,
-     "star3": 1,
-     "off": 0,
+     "rate": 0.43,
+     "star3": 0.3,
+     "off": 0.6,
      "tank": 3
     },
     {
+     "id": "da_18_kennen",
+     "rate": 0.41,
+     "star3": 0,
+     "off": 4.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ashe",
+     "rate": 0.36,
+     "star3": 0,
+     "off": 6.1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.36,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
      "id": "da_18_zyra",
-     "rate": 0.33,
+     "rate": 0.36,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 3.5,
+     "tank": 0.6
     },
     {
-     "id": "da_18_soraka",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.33,
+     "id": "da_taric18",
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -9203,14 +9520,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 6
     },
-    "da_vi18": {
+    "da_18_maokai": {
      "items": [
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
+      "DA_DragonsClaw",
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate"
      ],
      "games": 1,
-     "avgPlace": 6
+     "avgPlace": 2
     }
    },
    "now": {
@@ -9228,7 +9545,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Lunar",
    "carry": "da_18_elderdragon",
    "mainCarry": "da_18_elderdragon",
-   "mainTank": "da_taric18",
+   "mainTank": "da_sentinel18",
    "games": 6,
    "avgPlace": 2.75,
    "top4": 0.85,
@@ -9238,99 +9555,99 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_alune",
-     "rate": 1,
-     "star3": 0,
-     "off": 8,
-     "tank": 1
-    },
-    {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 17,
+     "off": 37.4,
      "tank": 0
     },
     {
-     "id": "da_taric18",
-     "rate": 1,
+     "id": "da_18_alune",
+     "rate": 0.91,
      "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 22.6,
+     "tank": 2.7
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.83,
+     "id": "da_taric18",
+     "rate": 0.87,
      "star3": 0,
-     "off": 2,
-     "tank": 1
+     "off": 1.6,
+     "tank": 10.8
     },
     {
      "id": "da_lux18_base",
      "rate": 0.83,
      "star3": 0,
-     "off": 8,
+     "off": 18.5,
      "tank": 2
     },
     {
      "id": "da_18_diana",
-     "rate": 0.67,
+     "rate": 0.8,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.5,
+     "rate": 0.72,
      "star3": 0,
      "off": 1,
-     "tank": 1
+     "tank": 13.2
     },
     {
-     "id": "da_18_elise",
-     "rate": 0.33,
+     "id": "da_18_ivern",
+     "rate": 0.65,
      "star3": 0,
-     "off": 1,
-     "tank": 2
+     "off": 2.6,
+     "tank": 1.6
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 0,
+     "tank": 8.2
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 0,
+     "tank": 6.4
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 3.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 4.9,
+     "tank": 0
     },
     {
      "id": "da_krug18",
-     "rate": 0.33,
-     "star3": 0.5,
+     "rate": 0.2,
+     "star3": 0.39,
      "off": 0,
      "tank": 3
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_cassiopeia",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_akali_ad",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.17,
+     "rate": 0.2,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -9346,14 +9663,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 2
     },
-    "da_taric18": {
+    "da_sentinel18": {
      "items": [
-      "DA_BrambleVest",
-      "DA_SpiritVisage",
-      "DA_SteadfastHeart"
+      "DA_AdaptiveHelm",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
      ],
      "games": 1,
-     "avgPlace": 7
+     "avgPlace": 2
     }
    },
    "now": {
@@ -9378,88 +9695,102 @@ window.TFT_WEIGHTS = {
    "win": 0.409,
    "patchGames": 8,
    "playRate": 0.0015,
-   "level": 10,
+   "level": 9,
    "core": [
-    {
-     "id": "da_18_maokai",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 19
-    },
     {
      "id": "da_amumu18",
      "rate": 1,
      "star3": 0,
-     "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.6,
+     "tank": 5.5
     },
     {
      "id": "da_18_kennen",
      "rate": 1,
      "star3": 0,
-     "off": 24,
+     "off": 39.7,
      "tank": 0
     },
     {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 23,
+     "off": 33.5,
      "tank": 0
     },
     {
-     "id": "da_taric18",
-     "rate": 1,
+     "id": "da_sentinel18",
+     "rate": 0.96,
      "star3": 0,
      "off": 0,
-     "tank": 7
+     "tank": 3.5
     },
     {
      "id": "da_draven18",
-     "rate": 1,
+     "rate": 0.96,
      "star3": 0,
-     "off": 22,
+     "off": 32.5,
      "tank": 0
     },
     {
+     "id": "da_18_maokai",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 2,
+     "tank": 27.7
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.91,
+     "star3": 0,
+     "off": 0,
+     "tank": 9.3
+    },
+    {
      "id": "da_18_ivern",
-     "rate": 1,
+     "rate": 0.87,
      "star3": 0,
      "off": 5,
      "tank": 0
     },
     {
+     "id": "da_18_ezreal",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ashe",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
      "id": "da_18_gnarsmall",
-     "rate": 0.13,
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_azir",
-     "rate": 0.13,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ezreal",
-     "rate": 0.13,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.13,
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -9512,97 +9843,97 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_yorick",
      "rate": 1,
-     "star3": 1,
-     "off": 2,
-     "tank": 22
-    },
-    {
-     "id": "da_18_yunara",
-     "rate": 1,
-     "star3": 0.82,
-     "off": 26,
-     "tank": 0
+     "star3": 0.98,
+     "off": 3.7,
+     "tank": 37.7
     },
     {
      "id": "da_karma18",
      "rate": 1,
      "star3": 1,
-     "off": 36,
+     "off": 66.3,
      "tank": 1
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 1,
+     "star3": 0.91,
+     "off": 0.6,
+     "tank": 83.7
     },
     {
      "id": "da_18_leblanc",
      "rate": 1,
      "star3": 1,
-     "off": 47,
+     "off": 88.3,
      "tank": 0
     },
     {
-     "id": "da_18_sejuani",
+     "id": "da_18_yunara",
      "rate": 1,
-     "star3": 0.94,
-     "off": 0,
-     "tank": 47
-    },
-    {
-     "id": "da_18_leona",
-     "rate": 0.88,
-     "star3": 0.33,
-     "off": 2,
-     "tank": 2
+     "star3": 0.87,
+     "off": 60.3,
+     "tank": 0
     },
     {
      "id": "da_18_kayle",
      "rate": 0.88,
-     "star3": 0,
-     "off": 2,
+     "star3": 0.04,
+     "off": 3.7,
      "tank": 0
     },
     {
-     "id": "da_18_azir",
-     "rate": 0.76,
-     "star3": 0.08,
+     "id": "da_18_leona",
+     "rate": 0.88,
+     "star3": 0.44,
      "off": 2,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.81,
+     "star3": 0.04,
+     "off": 4.3,
      "tank": 0
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.29,
+     "rate": 0.33,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 0.6
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.12,
+     "id": "da_18_ezreal",
+     "rate": 0.08,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_18_ezreal",
-     "rate": 0.12,
+     "id": "da_18_ivern",
+     "rate": 0.06,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.12,
+     "rate": 0.06,
      "star3": 0,
      "off": 2,
      "tank": 0
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.06,
+     "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.06,
+     "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -9615,17 +9946,17 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
-     "games": 2,
+     "games": 3,
      "avgPlace": 3
     },
     "da_18_sejuani": {
      "items": [
-      "DA_GargoyleStoneplate",
+      "DA_Crownguard",
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 3,
-     "avgPlace": 3.67
+     "games": 4,
+     "avgPlace": 2.19
     }
    },
    "now": {
@@ -9656,99 +9987,99 @@ window.TFT_WEIGHTS = {
      "id": "da_lux18_base",
      "rate": 1,
      "star3": 0,
-     "off": 47,
-     "tank": 0
+     "off": 145.4,
+     "tank": 1.7
     },
     {
      "id": "da_18_ezreal",
-     "rate": 1,
+     "rate": 0.98,
      "star3": 0,
-     "off": 32,
-     "tank": 0
+     "off": 102.4,
+     "tank": 1.2
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.94,
-     "star3": 0,
-     "off": 1,
-     "tank": 9
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.88,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "rate": 0.96,
+     "star3": 0.01,
+     "off": 2.2,
+     "tank": 14.2
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.88,
-     "star3": 0,
-     "off": 1,
-     "tank": 11
+     "rate": 0.9,
+     "star3": 0.01,
+     "off": 4.5,
+     "tank": 46.5
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.8,
+     "star3": 0.01,
+     "off": 1.6,
+     "tank": 2.9
     },
     {
      "id": "da_18_xayah",
-     "rate": 0.75,
+     "rate": 0.61,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.69,
+     "rate": 0.6,
      "star3": 0,
-     "off": 0,
-     "tank": 20
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.38,
-     "star3": 0,
-     "off": 16,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.31,
-     "star3": 0,
-     "off": 2,
-     "tank": 2
+     "off": 2.3,
+     "tank": 59
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.31,
+     "rate": 0.38,
      "star3": 0,
-     "off": 1,
+     "off": 3.9,
      "tank": 0
     },
     {
-     "id": "da_18_soraka",
-     "rate": 0.31,
-     "star3": 0,
-     "off": 4,
-     "tank": 1
-    },
-    {
-     "id": "da_draven18",
-     "rate": 0.19,
-     "star3": 0,
-     "off": 7,
+     "id": "da_18_aphelios",
+     "rate": 0.37,
+     "star3": 0.03,
+     "off": 44.5,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.19,
+     "rate": 0.29,
      "star3": 0,
-     "off": 0,
-     "tank": 7
+     "off": 1.2,
+     "tank": 21.6
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.28,
+     "star3": 0,
+     "off": 5.5,
+     "tank": 5.5
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 15.6,
+     "tank": 1.6
+    },
+    {
+     "id": "da_draven18",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 22.7,
+     "tank": 0
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.13,
+     "rate": 0.15,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -9758,17 +10089,17 @@ window.TFT_WEIGHTS = {
       "DA_RabadonsDeathcap",
       "DA_SpearOfShojin"
      ],
-     "games": 2,
-     "avgPlace": 3.5
+     "games": 3,
+     "avgPlace": 3.39
     },
     "da_18_lillia": {
      "items": [
-      "DA_Crownguard",
-      "DA_DragonsClaw",
-      "DA_GargoyleStoneplate"
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 1
     }
    },
    "now": {
@@ -9799,99 +10130,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ivern",
      "rate": 1,
      "star3": 0,
-     "off": 50,
-     "tank": 0
+     "off": 83.2,
+     "tank": 0.6
     },
     {
      "id": "da_taric18",
      "rate": 1,
      "star3": 0,
-     "off": 5,
-     "tank": 20
+     "off": 6.7,
+     "tank": 38
     },
     {
      "id": "da_sentinel18",
      "rate": 0.94,
      "star3": 0,
-     "off": 2,
-     "tank": 30
+     "off": 4.9,
+     "tank": 42.8
     },
     {
      "id": "da_18_alune",
-     "rate": 0.94,
+     "rate": 0.88,
      "star3": 0,
-     "off": 39,
-     "tank": 5
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.94,
-     "star3": 0,
-     "off": 1,
-     "tank": 13
+     "off": 58.8,
+     "tank": 8.5
     },
     {
      "id": "da_18_diana",
-     "rate": 0.88,
+     "rate": 0.87,
      "star3": 0,
-     "off": 3,
+     "off": 3.6,
      "tank": 1
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.88,
+     "rate": 0.83,
      "star3": 0,
-     "off": 22,
-     "tank": 3
+     "off": 34.2,
+     "tank": 4.7
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 17.7
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.82,
+     "rate": 0.71,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 0
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.59,
+     "rate": 0.61,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.41,
+     "rate": 0.43,
      "star3": 0,
-     "off": 1,
-     "tank": 1
+     "off": 2.2,
+     "tank": 1.6
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.24,
+     "rate": 0.2,
      "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.12,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.06,
-     "star3": 0,
-     "off": 0,
+     "off": 4.2,
      "tank": 0
     },
     {
      "id": "da_18_elise",
-     "rate": 0.06,
-     "star3": 0,
+     "rate": 0.12,
+     "star3": 0.17,
      "off": 1,
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 3.6,
      "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.08,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.2
     }
    ],
    "builds": {
@@ -9907,11 +10238,11 @@ window.TFT_WEIGHTS = {
     "da_sentinel18": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
+      "DA_ProtectorsVow",
+      "DA_SteadfastHeart"
      ],
      "games": 1,
-     "avgPlace": 2
+     "avgPlace": 3.5
     }
    },
    "now": {
@@ -9939,59 +10270,80 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_yorick",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_masteryi_ad",
      "rate": 1,
      "star3": 1,
-     "off": 5,
+     "off": 16.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 1,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_vi18",
      "rate": 1,
-     "star3": 0.5,
+     "star3": 0.45,
      "off": 0,
-     "tank": 6
-    },
-    {
-     "id": "da_18_rengar",
-     "rate": 1,
-     "star3": 1,
-     "off": 5,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 13
     },
     {
      "id": "da_18_sett",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.7,
+     "tank": 5.8
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 1,
+     "rate": 0.9,
+     "star3": 0,
+     "off": 7.8,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.81,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.67,
+     "star3": 0.57,
+     "off": 8.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rengar",
+     "rate": 0.62,
+     "star3": 1,
+     "off": 9.1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.57,
+     "star3": 0.17,
+     "off": 0,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.16,
      "star3": 0,
      "off": 2,
      "tank": 0
     },
     {
-     "id": "da_18_zyra",
-     "rate": 0.5,
+     "id": "da_18_sivir",
+     "rate": 0.1,
      "star3": 0,
-     "off": 2,
+     "off": 0.6,
      "tank": 0
     }
    ],
@@ -10042,99 +10394,99 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_yunara",
      "rate": 1,
-     "star3": 0.96,
-     "off": 226,
-     "tank": 0
+     "star3": 0.97,
+     "off": 497.3,
+     "tank": 0.6
     },
     {
      "id": "da_karma18",
      "rate": 0.97,
      "star3": 0.99,
-     "off": 158,
-     "tank": 2
+     "off": 349,
+     "tank": 6.7
     },
     {
      "id": "da_18_yorick",
      "rate": 0.97,
      "star3": 0.97,
-     "off": 16,
-     "tank": 71
+     "off": 31.7,
+     "tank": 182.2
     },
     {
      "id": "da_18_sejuani",
      "rate": 0.97,
-     "star3": 0.95,
-     "off": 7,
-     "tank": 199
+     "star3": 0.93,
+     "off": 18.1,
+     "tank": 433.6
     },
     {
      "id": "da_18_leona",
-     "rate": 0.87,
-     "star3": 0.52,
-     "off": 3,
-     "tank": 7
+     "rate": 0.86,
+     "star3": 0.56,
+     "off": 12.3,
+     "tank": 20.4
     },
     {
      "id": "da_18_kayle",
-     "rate": 0.82,
-     "star3": 0.08,
-     "off": 9,
+     "rate": 0.81,
+     "star3": 0.11,
+     "off": 24.1,
      "tank": 0
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 0.7,
-     "star3": 0.93,
-     "off": 68,
-     "tank": 3
     },
     {
      "id": "da_18_azir",
-     "rate": 0.65,
-     "star3": 0,
-     "off": 8,
-     "tank": 0
+     "rate": 0.72,
+     "star3": 0.01,
+     "off": 19.1,
+     "tank": 0.6
     },
     {
-     "id": "da_18_kennen",
-     "rate": 0.27,
-     "star3": 0,
-     "off": 6,
-     "tank": 3
+     "id": "da_18_leblanc",
+     "rate": 0.68,
+     "star3": 0.89,
+     "off": 157.1,
+     "tank": 7.1
     },
     {
      "id": "da_fiddlesticks18",
      "rate": 0.23,
      "star3": 0,
-     "off": 2,
-     "tank": 3
+     "off": 2.6,
+     "tank": 4.2
     },
     {
      "id": "da_18_soraka",
      "rate": 0.23,
      "star3": 0,
-     "off": 13,
-     "tank": 2
+     "off": 31,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 19.4,
+     "tank": 5.3
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.19,
+     "rate": 0.15,
      "star3": 0,
-     "off": 8,
-     "tank": 0
+     "off": 20.2,
+     "tank": 0.6
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.09,
+     "rate": 0.08,
      "star3": 0,
-     "off": 8,
-     "tank": 0
+     "off": 20.2,
+     "tank": 0.6
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.04,
+     "rate": 0.03,
      "star3": 0,
-     "off": 3,
+     "off": 4.2,
      "tank": 0
     }
    ],
@@ -10145,8 +10497,8 @@ window.TFT_WEIGHTS = {
       "DA_LastWhisper",
       "DA_SpearOfShojin"
      ],
-     "games": 10,
-     "avgPlace": 3
+     "games": 18,
+     "avgPlace": 2.5
     },
     "da_18_sejuani": {
      "items": [
@@ -10154,8 +10506,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 8,
-     "avgPlace": 2.63
+     "games": 20,
+     "avgPlace": 2.55
     }
    },
    "now": {
@@ -10173,7 +10525,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Lunar",
    "carry": "da_lux18_base",
    "mainCarry": "da_lux18_base",
-   "mainTank": "da_sentinel18",
+   "mainTank": "da_taric18",
    "games": 18,
    "avgPlace": 3.09,
    "top4": 0.746,
@@ -10186,119 +10538,119 @@ window.TFT_WEIGHTS = {
      "id": "da_lux18_base",
      "rate": 1,
      "star3": 0,
-     "off": 51,
-     "tank": 0
+     "off": 121.4,
+     "tank": 1.2
     },
     {
      "id": "da_18_diana",
-     "rate": 0.94,
+     "rate": 0.92,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_alune",
-     "rate": 0.83,
+     "rate": 0.89,
      "star3": 0,
-     "off": 32,
-     "tank": 8
+     "off": 78.6,
+     "tank": 19.6
     },
     {
      "id": "da_taric18",
-     "rate": 0.78,
+     "rate": 0.77,
      "star3": 0,
-     "off": 3,
-     "tank": 16
+     "off": 4.2,
+     "tank": 45.7
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.72,
+     "rate": 0.71,
      "star3": 0,
-     "off": 1,
-     "tank": 25
+     "off": 2.7,
+     "tank": 43.6
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.61,
+     "rate": 0.65,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.56,
+     "star3": 0,
+     "off": 4.3,
+     "tank": 21.7
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.56,
+     "rate": 0.53,
      "star3": 0,
-     "off": 15,
-     "tank": 0
+     "off": 24.3,
+     "tank": 2.3
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.56,
+     "rate": 0.48,
      "star3": 0,
      "off": 0,
      "tank": 1
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 2,
-     "tank": 6
-    },
-    {
      "id": "da_18_ivern",
-     "rate": 0.44,
+     "rate": 0.38,
      "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 4.3,
+     "tank": 1.7
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.22,
+     "rate": 0.28,
      "star3": 0,
-     "off": 0,
-     "tank": 10
+     "off": 1.7,
+     "tank": 23.4
     },
     {
-     "id": "da_18_aphelios",
-     "rate": 0.17,
+     "id": "da_amumu18",
+     "rate": 0.24,
      "star3": 0,
-     "off": 7,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 2.3,
+     "tank": 11.2
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.11,
+     "rate": 0.2,
      "star3": 0,
      "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.19,
+     "star3": 0,
+     "off": 15.2,
      "tank": 0
     }
    ],
    "builds": {
     "da_lux18_base": {
      "items": [
-      "DA_GiantSlayer",
-      "DA_RedBuff",
-      "DA_SpearOfShojin"
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 4,
+     "avgPlace": 2.3
     },
-    "da_sentinel18": {
+    "da_taric18": {
      "items": [
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 3
     }
    },
    "now": {
@@ -10326,122 +10678,122 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_soraka",
-     "rate": 1,
-     "star3": 0,
-     "off": 21,
-     "tank": 1
-    },
-    {
      "id": "da_18_kennen",
      "rate": 1,
      "star3": 0,
-     "off": 26,
-     "tank": 1
+     "off": 59.2,
+     "tank": 3.3
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 0.92,
+     "star3": 0,
+     "off": 40.8,
+     "tank": 4.5
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.89,
+     "rate": 0.84,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 1.2,
+     "tank": 3.9
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.83,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 10.4
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.78,
+     "rate": 0.77,
      "star3": 0,
-     "off": 8,
-     "tank": 0
+     "off": 23.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_azir",
-     "rate": 0.67,
+     "rate": 0.72,
      "star3": 0,
-     "off": 2,
+     "off": 6.1,
      "tank": 0
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.67,
-     "star3": 0.17,
-     "off": 3,
-     "tank": 15
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
-     "tank": 4
+     "rate": 0.72,
+     "star3": 0.07,
+     "off": 4.7,
+     "tank": 40
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.56,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 7
-    },
-    {
-     "id": "da_18_yunara",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.22,
+     "rate": 0.65,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.22,
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 2.3
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.22,
+     "rate": 0.2,
      "star3": 0,
-     "off": 3,
+     "off": 6.5,
      "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 2,
+     "tank": 7
+    },
+    {
+     "id": "da_18_yunara",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.3
     }
    ],
    "builds": {
     "da_18_kennen": {
      "items": [
       "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_JeweledGauntlet"
+      "DA_RedBuff",
+      "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 1.37
     },
     "da_18_malphite": {
      "items": [
-      "DA_Artifact_TheIndomitable",
+      "DA_Crownguard",
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 3,
+     "avgPlace": 5.24
     }
    },
    "now": {
@@ -10458,8 +10810,8 @@ window.TFT_WEIGHTS = {
   {
    "trait": "DA_18_Blossom",
    "carry": "da_18_kayle",
-   "mainCarry": "da_karma18",
-   "mainTank": "da_18_yorick",
+   "mainCarry": "da_18_kayle",
+   "mainTank": "da_18_sejuani",
    "games": 1,
    "avgPlace": 3.09,
    "top4": 0.727,
@@ -10469,79 +10821,114 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_yorick",
-     "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_yunara",
      "rate": 1,
-     "star3": 1,
+     "star3": 0.81,
+     "off": 5.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 1,
+     "star3": 0.91,
      "off": 0,
-     "tank": 0
+     "tank": 5.9
     },
     {
      "id": "da_karma18",
      "rate": 1,
      "star3": 1,
-     "off": 3,
-     "tank": 0
+     "off": 16.4,
+     "tank": 0.6
     },
     {
      "id": "da_18_sejuani",
      "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_leona",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "star3": 0.91,
+     "off": 1.2,
+     "tank": 15.8
     },
     {
      "id": "da_18_kayle",
      "rate": 1,
      "star3": 1,
-     "off": 3,
+     "off": 18.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leona",
+     "rate": 1,
+     "star3": 0.65,
+     "off": 0,
+     "tank": 2.9
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.81,
+     "star3": 0.8,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_azir",
-     "rate": 1,
+     "rate": 0.44,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.09,
+     "star3": 1,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.09,
+     "star3": 1,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.09,
      "star3": 0,
      "off": 0,
      "tank": 0
     }
    ],
    "builds": {
-    "da_karma18": {
+    "da_18_kayle": {
      "items": [
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
+      "DA_ArchangelsStaff",
+      "DA_GiantSlayer",
+      "DA_RedBuff"
      ],
      "games": 1,
      "avgPlace": 1
     },
-    "da_18_yorick": {
+    "da_18_sejuani": {
      "items": [
-      "DA_IonicSpark",
-      "DA_ProtectorsVow",
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
       "DA_SpiritVisage"
      ],
-     "games": 1,
+     "games": 2,
      "avgPlace": 1
     }
    },
@@ -10573,99 +10960,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_alune",
      "rate": 1,
      "star3": 0,
-     "off": 105,
-     "tank": 5
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.95,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 220.9,
+     "tank": 6.2
     },
     {
      "id": "da_lux18_base",
      "rate": 0.92,
      "star3": 0,
-     "off": 54,
-     "tank": 4
+     "off": 107.6,
+     "tank": 11
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.91,
+     "star3": 0,
+     "off": 3,
+     "tank": 0.6
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.89,
-     "star3": 0.03,
-     "off": 8,
-     "tank": 51
+     "rate": 0.86,
+     "star3": 0.02,
+     "off": 13.2,
+     "tank": 98.2
     },
     {
      "id": "da_taric18",
-     "rate": 0.84,
+     "rate": 0.83,
      "star3": 0,
-     "off": 6,
-     "tank": 42
+     "off": 8.9,
+     "tank": 92.7
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.78,
+     "rate": 0.74,
      "star3": 0,
-     "off": 3,
-     "tank": 21
+     "off": 5.9,
+     "tank": 47.2
     },
     {
      "id": "da_fiddlesticks18",
      "rate": 0.73,
      "star3": 0,
-     "off": 1,
-     "tank": 9
+     "off": 2.2,
+     "tank": 11.3
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.51,
+     "rate": 0.57,
      "star3": 0,
-     "off": 32,
-     "tank": 3
+     "off": 76.8,
+     "tank": 8.2
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.46,
+     "rate": 0.48,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.38,
+     "rate": 0.4,
      "star3": 0,
-     "off": 7,
-     "tank": 1
+     "off": 19.8,
+     "tank": 1.6
     },
     {
      "id": "da_18_hecarim",
+     "rate": 0.19,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 4.2
+    },
+    {
+     "id": "da_18_maokai",
      "rate": 0.16,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 0.6,
+     "tank": 23.7
     },
     {
      "id": "da_18_aphelios",
      "rate": 0.16,
      "star3": 0,
-     "off": 6,
+     "off": 22.3,
      "tank": 0
     },
     {
-     "id": "da_18_maokai",
-     "rate": 0.14,
+     "id": "da_amumu18",
+     "rate": 0.15,
      "star3": 0,
-     "off": 0,
-     "tank": 8
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 8,
-     "tank": 0
+     "off": 1.7,
+     "tank": 4.7
     }
    ],
    "builds": {
@@ -10675,17 +11062,17 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 4,
-     "avgPlace": 2.75
+     "games": 5,
+     "avgPlace": 2.36
     },
     "da_sentinel18": {
      "items": [
-      "DA_Artifact_VoidGauntlet",
-      "DA_BrambleVest",
-      "DA_DragonsClaw"
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 1.27
     }
    },
    "now": {
@@ -10713,122 +11100,122 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_sett",
-     "rate": 1,
-     "star3": 0,
-     "off": 4,
-     "tank": 9
-    },
-    {
      "id": "da_lux18_base",
      "rate": 1,
      "star3": 0,
-     "off": 18,
-     "tank": 0
+     "off": 64.6,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 8.7,
+     "tank": 28.8
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.83,
+     "rate": 0.85,
      "star3": 0,
-     "off": 13,
-     "tank": 1
+     "off": 43.3,
+     "tank": 2.7
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.67,
-     "star3": 0,
+     "rate": 0.7,
+     "star3": 0.07,
      "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.58,
+     "star3": 0,
+     "off": 3.3,
+     "tank": 7.4
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.54,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.67,
+     "rate": 0.44,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.5,
+     "rate": 0.37,
      "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 2.2,
+     "tank": 14.9
     },
     {
-     "id": "da_18_alune",
-     "rate": 0.5,
+     "id": "da_18_ashe",
+     "rate": 0.36,
      "star3": 0,
-     "off": 5,
-     "tank": 1
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
+     "off": 7.6,
      "tank": 0
     },
     {
      "id": "da_karma18",
-     "rate": 0.17,
+     "rate": 0.33,
+     "star3": 0.08,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 6.7,
+     "tank": 0
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.27,
      "star3": 0,
      "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.25,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 8.2
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.25,
+     "star3": 0,
+     "off": 1.7,
      "tank": 0
     }
    ],
    "builds": {
     "da_lux18_base": {
      "items": [
-      "DA_BlueBuff",
-      "DA_RabadonsDeathcap",
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
-     "games": 1,
+     "games": 2,
      "avgPlace": 3
     },
     "da_18_sett": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_SteraksGage",
-      "DA_WarmogsArmorRadiant"
+      "DA_SteadfastHeart",
+      "DA_SteraksGage"
      ],
      "games": 1,
-     "avgPlace": 4
+     "avgPlace": 5
     }
    },
    "now": {
@@ -10843,10 +11230,149 @@ window.TFT_WEIGHTS = {
    }
   },
   {
+   "trait": "DA_18_Invoker",
+   "carry": "da_draven18",
+   "mainCarry": "da_draven18",
+   "mainTank": "da_18_maokai",
+   "games": 11,
+   "avgPlace": 3.18,
+   "top4": 0.818,
+   "win": 0.455,
+   "patchGames": 0,
+   "playRate": 0.0004,
+   "level": 10,
+   "core": [
+    {
+     "id": "da_draven18",
+     "rate": 1,
+     "star3": 0,
+     "off": 15.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.89,
+     "star3": 0,
+     "off": 5.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.89,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 4.7
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.89,
+     "star3": 0,
+     "off": 0,
+     "tank": 3.5
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 2.9
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 5.8,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.67,
+     "star3": 0,
+     "off": 0,
+     "tank": 6.4
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.44,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.44,
+     "star3": 0,
+     "off": 3.5,
+     "tank": 0
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 4.7,
+     "tank": 0
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 2.3
+    }
+   ],
+   "builds": {
+    "da_draven18": {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
+      "DA_LastWhisper"
+     ],
+     "games": 2,
+     "avgPlace": 3
+    },
+    "da_18_maokai": {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_DragonsClaw",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 1,
+     "avgPlace": 7
+    }
+   },
+   "now": null,
+   "before": {
+    "games": 11,
+    "avgPlace": 3.18,
+    "top4": 0.818
+   }
+  },
+  {
    "trait": "DA_18_Fae",
    "carry": "da_lux18_base",
    "mainCarry": "da_lux18_base",
-   "mainTank": "da_taric18",
+   "mainTank": "da_18_lillia",
    "games": 19,
    "avgPlace": 3.22,
    "top4": 0.724,
@@ -10858,120 +11384,120 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_lux18_base",
      "rate": 1,
-     "star3": 0.05,
-     "off": 53,
-     "tank": 1
+     "star3": 0.02,
+     "off": 118.8,
+     "tank": 1.6
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.89,
+     "rate": 0.88,
      "star3": 0,
-     "off": 3,
-     "tank": 21
+     "off": 4.7,
+     "tank": 51.9
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.79,
+     "rate": 0.84,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 1.6,
+     "tank": 1.2
     },
     {
      "id": "da_taric18",
-     "rate": 0.68,
+     "rate": 0.64,
      "star3": 0,
-     "off": 2,
-     "tank": 26
+     "off": 3.2,
+     "tank": 38.2
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.63,
+     "rate": 0.55,
      "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.58,
-     "star3": 0,
-     "off": 22,
-     "tank": 2
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.53,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 3.6,
+     "tank": 2.3
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.53,
+     "rate": 0.51,
      "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 0.6,
+     "tank": 21.7
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.49,
+     "star3": 0,
+     "off": 42.4,
+     "tank": 5.5
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.48,
+     "star3": 0,
+     "off": 1,
+     "tank": 1.2
     },
     {
      "id": "da_amumu18",
-     "rate": 0.42,
+     "rate": 0.38,
      "star3": 0,
-     "off": 0,
-     "tank": 6
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.37,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.37,
-     "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 0.6,
+     "tank": 18.2
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.37,
+     "rate": 0.36,
      "star3": 0,
-     "off": 16,
+     "off": 32.9,
      "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 7.1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.29,
+     "star3": 0,
+     "off": 2.7,
+     "tank": 14.9
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.32,
+     "rate": 0.28,
      "star3": 0,
-     "off": 8,
-     "tank": 0
+     "off": 16.2,
+     "tank": 0.6
     },
     {
-     "id": "da_18_shen",
-     "rate": 0.26,
+     "id": "da_vi18",
+     "rate": 0.25,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 3
     }
    ],
    "builds": {
     "da_lux18_base": {
      "items": [
-      "DA_BlueBuff",
       "DA_JeweledGauntlet",
-      "DA_VoidStaff"
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin"
      ],
      "games": 2,
-     "avgPlace": 6.5
+     "avgPlace": 1
     },
-    "da_taric18": {
+    "da_18_lillia": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
      ],
      "games": 1,
-     "avgPlace": 6
+     "avgPlace": 1
     }
    },
    "now": {
@@ -10989,7 +11515,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Inferno",
    "carry": "da_18_akali_ad",
    "mainCarry": "da_18_akali_ad",
-   "mainTank": "da_18_leona",
+   "mainTank": "da_18_ornn",
    "games": 9,
    "avgPlace": 3.33,
    "top4": 0.816,
@@ -10999,99 +11525,99 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_camille",
-     "rate": 1,
-     "star3": 1,
-     "off": 20,
-     "tank": 1
-    },
-    {
      "id": "da_18_akali_ad",
      "rate": 1,
      "star3": 1,
-     "off": 27,
-     "tank": 0
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 1,
-     "star3": 1,
-     "off": 14,
+     "off": 82.9,
      "tank": 0
     },
     {
      "id": "da_18_leona",
      "rate": 1,
      "star3": 1,
-     "off": 0,
-     "tank": 11
+     "off": 1.7,
+     "tank": 26.7
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 1,
+     "star3": 1,
+     "off": 58.8,
+     "tank": 0
+    },
+    {
+     "id": "da_18_camille",
+     "rate": 1,
+     "star3": 1,
+     "off": 64.8,
+     "tank": 5.7
     },
     {
      "id": "da_18_sejuani",
-     "rate": 1,
-     "star3": 0.11,
+     "rate": 0.96,
+     "star3": 0.08,
      "off": 1,
-     "tank": 3
+     "tank": 5.9
     },
     {
      "id": "da_18_kayle",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.96,
+     "star3": 0.02,
+     "off": 5.8,
      "tank": 0
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.56,
+     "rate": 0.79,
      "star3": 1,
-     "off": 2,
-     "tank": 10
+     "off": 6.1,
+     "tank": 44.3
     },
     {
      "id": "da_amumu18",
-     "rate": 0.44,
+     "rate": 0.71,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 1.6,
+     "tank": 10.5
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.33,
+     "rate": 0.19,
      "star3": 0,
-     "off": 2,
+     "off": 6.7,
      "tank": 0
     },
     {
      "id": "da_18_shen",
-     "rate": 0.22,
-     "star3": 1,
+     "rate": 0.14,
+     "star3": 0.84,
      "off": 0,
-     "tank": 6
+     "tank": 7.7
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.11,
+     "rate": 0.06,
      "star3": 0,
-     "off": 3,
+     "off": 3.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.11,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.11,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_elderdragon",
-     "rate": 0.11,
+     "rate": 0.04,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -11100,21 +11626,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_akali_ad": {
      "items": [
-      "DA_Bloodthirster",
-      "DA_GiantSlayer",
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
       "DA_InfinityEdge"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 4,
+     "avgPlace": 2.83
     },
-    "da_18_leona": {
+    "da_18_ornn": {
      "items": [
+      "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 3.46
     }
    },
    "now": {
@@ -11145,99 +11671,99 @@ window.TFT_WEIGHTS = {
      "id": "da_lux18_base",
      "rate": 1,
      "star3": 0,
-     "off": 47,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.94,
-     "star3": 0,
-     "off": 14,
-     "tank": 3
+     "off": 86,
+     "tank": 2.3
     },
     {
      "id": "da_amumu18",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 3.7,
+     "tank": 30.5
+    },
+    {
+     "id": "da_18_kennen",
      "rate": 0.88,
      "star3": 0,
-     "off": 2,
-     "tank": 13
+     "off": 21.6,
+     "tank": 7.7
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.82,
+     "rate": 0.65,
      "star3": 0,
      "off": 1,
-     "tank": 25
+     "tank": 34.9
     },
     {
      "id": "da_taric18",
-     "rate": 0.59,
+     "rate": 0.54,
      "star3": 0,
      "off": 2,
-     "tank": 9
+     "tank": 13.7
     },
     {
      "id": "da_18_shen",
      "rate": 0.53,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 0
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.53,
+     "rate": 0.41,
      "star3": 0,
-     "off": 6,
+     "off": 7.2,
      "tank": 3
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.41,
+     "rate": 0.39,
      "star3": 0,
      "off": 0,
-     "tank": 2
+     "tank": 10.7
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.35,
+     "rate": 0.37,
      "star3": 0,
-     "off": 1,
-     "tank": 10
+     "off": 1.6,
+     "tank": 17.6
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.29,
+     "rate": 0.36,
      "star3": 0,
-     "off": 10,
+     "off": 17.6,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.9
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 14.7,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.29,
+     "rate": 0.25,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_alune",
-     "rate": 0.29,
+     "rate": 0.23,
      "star3": 0,
-     "off": 8,
-     "tank": 1
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.29,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_18_sivir",
-     "rate": 0.24,
-     "star3": 0,
-     "off": 6,
-     "tank": 0
+     "off": 10.3,
+     "tank": 1.6
     }
    ],
    "builds": {
@@ -11252,12 +11778,12 @@ window.TFT_WEIGHTS = {
     },
     "da_18_maokai": {
      "items": [
-      "DA_Evenshroud",
-      "DA_ProtectorsVow",
-      "DA_SteadfastHeart"
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 1.74
     }
    },
    "now": {
@@ -11275,7 +11801,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_Juggernaut18",
    "carry": "da_18_ivern",
    "mainCarry": "da_18_ivern",
-   "mainTank": "da_amumu18",
+   "mainTank": "da_18_maokai",
    "games": 7,
    "avgPlace": 3.34,
    "top4": 0.644,
@@ -11288,99 +11814,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ivern",
      "rate": 1,
      "star3": 0,
-     "off": 21,
+     "off": 55.3,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 1,
+     "rate": 0.94,
      "star3": 0,
-     "off": 2,
-     "tank": 9
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.86,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 2.6,
+     "tank": 23.6
     },
     {
      "id": "da_vi18",
-     "rate": 0.86,
+     "rate": 0.92,
      "star3": 0,
-     "off": 4,
-     "tank": 5
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.86,
-     "star3": 0,
-     "off": 16,
-     "tank": 0
+     "off": 6.9,
+     "tank": 10.2
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.86,
+     "rate": 0.88,
      "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 0.6,
+     "tank": 25.2
     },
     {
-     "id": "da_nidalee18_ap",
-     "rate": 0.71,
+     "id": "da_18_yorick",
+     "rate": 0.82,
      "star3": 0,
-     "off": 5,
+     "off": 0.6,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.57,
+     "id": "da_18_zyra",
+     "rate": 0.79,
      "star3": 0,
-     "off": 0,
+     "off": 38.7,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.68,
+     "star3": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.57,
+     "rate": 0.59,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
+     "id": "da_nidalee18_ap",
+     "rate": 0.58,
+     "star3": 0,
+     "off": 11.4,
+     "tank": 0
+    },
+    {
      "id": "da_18_sejuani",
-     "rate": 0.29,
+     "rate": 0.48,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.29,
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 2
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 4.5,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 2.7,
+     "tank": 1
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.14,
+     "rate": 0.15,
      "star3": 0,
-     "off": 1,
+     "off": 2.7,
      "tank": 0
-    },
-    {
-     "id": "da_18_azir",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_malphite",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
     }
    ],
    "builds": {
@@ -11393,14 +11919,14 @@ window.TFT_WEIGHTS = {
      "games": 2,
      "avgPlace": 3
     },
-    "da_amumu18": {
+    "da_18_maokai": {
      "items": [
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage",
-      "DA_SteadfastHeart"
+      "DA_Crownguard",
+      "DA_SteadfastHeart",
+      "DA_SunfireCape"
      ],
      "games": 1,
-     "avgPlace": 7
+     "avgPlace": 1
     }
    },
    "now": {
@@ -11431,99 +11957,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ivern",
      "rate": 1,
      "star3": 0,
-     "off": 12,
-     "tank": 0
+     "off": 33.5,
+     "tank": 0.6
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.75,
+     "rate": 0.86,
      "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 6
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
+     "off": 11.2,
      "tank": 0
     },
     {
      "id": "da_draven18",
-     "rate": 0.75,
+     "rate": 0.81,
      "star3": 0,
-     "off": 8,
+     "off": 24.3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.76,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.75,
+     "rate": 0.76,
      "star3": 0,
      "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 8.2
     },
     {
      "id": "da_taric18",
-     "rate": 0.5,
+     "rate": 0.68,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 9.9
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.66,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 11.2
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.66,
+     "star3": 0,
+     "off": 4.1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.37,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.9
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.5,
+     "rate": 0.32,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
+     "id": "da_sentinel18",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.7
+    },
+    {
      "id": "da_18_ornn",
-     "rate": 0.25,
-     "star3": 1,
+     "rate": 0.19,
+     "star3": 0.46,
      "off": 0,
      "tank": 3
     },
     {
-     "id": "da_18_alune",
-     "rate": 0.25,
+     "id": "da_18_leblanc",
+     "rate": 0.15,
      "star3": 0,
-     "off": 2,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.25,
+     "rate": 0.14,
      "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 3.6,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -11568,105 +12094,105 @@ window.TFT_WEIGHTS = {
    "win": 0.245,
    "patchGames": 12,
    "playRate": 0.0023,
-   "level": 10,
+   "level": 9,
    "core": [
+    {
+     "id": "da_18_lillia",
+     "rate": 1,
+     "star3": 0.02,
+     "off": 2.3,
+     "tank": 29.5
+    },
     {
      "id": "da_18_alune",
      "rate": 1,
      "star3": 0,
-     "off": 34,
+     "off": 70.7,
      "tank": 0
     },
     {
-     "id": "da_18_lillia",
-     "rate": 1,
+     "id": "da_18_rakan",
+     "rate": 0.94,
      "star3": 0,
-     "off": 0,
-     "tank": 12
+     "off": 1,
+     "tank": 0.6
     },
     {
      "id": "da_18_diana",
-     "rate": 1,
+     "rate": 0.88,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.92,
+     "rate": 0.87,
      "star3": 0,
-     "off": 1,
-     "tank": 11
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.92,
-     "star3": 0,
-     "off": 1,
-     "tank": 20
+     "off": 2.2,
+     "tank": 25.6
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.92,
+     "rate": 0.87,
      "star3": 0,
-     "off": 19,
-     "tank": 3
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.92,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 37,
+     "tank": 4.2
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.83,
+     "rate": 0.85,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 2.9
     },
     {
-     "id": "da_18_morgana",
-     "rate": 0.58,
+     "id": "da_taric18",
+     "rate": 0.77,
      "star3": 0,
-     "off": 14,
-     "tank": 1
+     "off": 2.2,
+     "tank": 34.6
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.5,
+     "rate": 0.57,
      "star3": 0,
-     "off": 5,
+     "off": 7.3,
      "tank": 1
     },
     {
+     "id": "da_18_morgana",
+     "rate": 0.47,
+     "star3": 0,
+     "off": 20.4,
+     "tank": 1.6
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.7
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 5.5,
+     "tank": 0
+    },
+    {
      "id": "da_18_kennen",
-     "rate": 0.17,
+     "rate": 0.1,
      "star3": 0,
      "off": 3,
      "tank": 0
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.17,
+     "id": "da_18_elderdragon",
+     "rate": 0.09,
      "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_soraka",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 4.3,
+     "tank": 1
     }
    ],
    "builds": {
@@ -11676,17 +12202,17 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 3,
-     "avgPlace": 3
+     "games": 4,
+     "avgPlace": 3.16
     },
     "da_taric18": {
      "items": [
-      "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate"
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 2,
+     "avgPlace": 2.37
     }
    },
    "now": {
@@ -11714,101 +12240,101 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_morgana",
-     "rate": 1,
-     "star3": 0,
-     "off": 17,
-     "tank": 1
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 12
-    },
-    {
      "id": "da_18_alune",
      "rate": 1,
      "star3": 0,
-     "off": 19,
-     "tank": 0
+     "off": 43.5,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.97,
+     "star3": 0,
+     "off": 34.5,
+     "tank": 2.2
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.97,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 23.6
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.75,
+     "star3": 0,
+     "off": 4.1,
+     "tank": 21
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.72,
+     "star3": 0,
+     "off": 22.6,
+     "tank": 1.7
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.57,
+     "rate": 0.68,
      "star3": 0,
-     "off": 2,
+     "off": 2.6,
      "tank": 0
     },
     {
      "id": "da_krug18",
-     "rate": 0.57,
+     "rate": 0.65,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.57,
-     "star3": 0,
-     "off": 8,
-     "tank": 0
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.57,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.57,
-     "star3": 0,
-     "off": 0,
-     "tank": 7
+     "tank": 1.7
     },
     {
      "id": "da_taric18",
-     "rate": 0.57,
+     "rate": 0.58,
      "star3": 0,
      "off": 0,
+     "tank": 5.2
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.37,
+     "star3": 0,
+     "off": 1.6,
      "tank": 0
     },
     {
      "id": "da_18_diana",
-     "rate": 0.43,
+     "rate": 0.32,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.43,
+     "rate": 0.32,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.43,
+     "rate": 0.28,
      "star3": 0,
      "off": 1,
-     "tank": 5
+     "tank": 7.3
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.29,
+     "rate": 0.26,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 0.6
     },
     {
-     "id": "da_18_teemo",
-     "rate": 0.29,
-     "star3": 0.5,
-     "off": 2,
+     "id": "da_18_ashe",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 1.2,
      "tank": 0
     }
    ],
@@ -11824,12 +12350,12 @@ window.TFT_WEIGHTS = {
     },
     "da_sentinel18": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_SteadfastHeart",
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 2
     }
    },
    "now": {
@@ -11857,74 +12383,102 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_vi18",
+     "id": "da_sentinel18",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 1,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 4.2,
+     "tank": 11.8
     },
     {
      "id": "da_nidalee18_ap",
      "rate": 1,
      "star3": 0,
-     "off": 15,
-     "tank": 0
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
+     "off": 23.2,
      "tank": 0
     },
     {
      "id": "da_18_aphelios",
      "rate": 1,
      "star3": 0,
-     "off": 15,
+     "off": 23.2,
      "tank": 0
     },
     {
-     "id": "da_amumu18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 15
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
+     "id": "da_18_diana",
+     "rate": 0.93,
      "star3": 0,
      "off": 3,
-     "tank": 6
+     "tank": 0.6
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 1,
+     "rate": 0.93,
      "star3": 0,
-     "off": 2,
+     "off": 2.6,
      "tank": 1
     },
     {
+     "id": "da_vi18",
+     "rate": 0.85,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.6
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.85,
+     "star3": 0,
+     "off": 0,
+     "tank": 17.3
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
      "id": "da_18_alune",
-     "rate": 0.6,
+     "rate": 0.53,
      "star3": 0,
      "off": 2,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.4,
+     "rate": 0.33,
      "star3": 0,
      "off": 3,
      "tank": 0
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leona",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
     }
    ],
    "builds": {
@@ -11972,122 +12526,122 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_rakan",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_ashe",
      "rate": 1,
      "star3": 0,
-     "off": 48,
+     "off": 141.7,
      "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 2.7,
+     "tank": 103.9
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.96,
+     "star3": 0.02,
+     "off": 2.3,
+     "tank": 2.9
     },
     {
      "id": "da_18_sivir",
      "rate": 0.94,
      "star3": 0,
-     "off": 35,
+     "off": 98.5,
      "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.88,
-     "star3": 0,
-     "off": 1,
-     "tank": 27
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.76,
+     "rate": 0.81,
      "star3": 0,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.65,
-     "star3": 0,
-     "off": 2,
-     "tank": 18
+     "off": 22.6,
+     "tank": 0.6
     },
     {
      "id": "da_vi18",
-     "rate": 0.65,
+     "rate": 0.71,
      "star3": 0,
-     "off": 2,
-     "tank": 4
+     "off": 4.9,
+     "tank": 13.9
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.66,
+     "star3": 0,
+     "off": 2.6,
+     "tank": 54.7
     },
     {
      "id": "da_18_shen",
-     "rate": 0.53,
+     "rate": 0.5,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 1.2,
+     "tank": 2.2
     },
     {
      "id": "da_taric18",
-     "rate": 0.53,
+     "rate": 0.48,
      "star3": 0,
-     "off": 1,
-     "tank": 8
+     "off": 2.2,
+     "tank": 16.7
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.47,
+     "rate": 0.34,
      "star3": 0,
-     "off": 0,
-     "tank": 11
+     "off": 0.6,
+     "tank": 25
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.41,
+     "rate": 0.29,
      "star3": 0,
-     "off": 10,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.24,
-     "star3": 0,
-     "off": 0,
-     "tank": 5
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 0.18,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 15.2,
+     "tank": 1.2
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.18,
+     "rate": 0.24,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 5.1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 0,
+     "tank": 12
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.17,
+     "star3": 0.07,
+     "off": 0.6,
+     "tank": 3.5
     }
    ],
    "builds": {
     "da_18_ashe": {
      "items": [
-      "DA_InfinityEdge",
+      "DA_LastWhisper",
       "DA_RedBuff",
       "DA_SpearOfShojin"
      ],
-     "games": 2,
-     "avgPlace": 5.5
+     "games": 3,
+     "avgPlace": 2.57
     },
     "da_18_lillia": {
      "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
       "DA_ProtectorsVow"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 2,
+     "avgPlace": 2.46
     }
    },
    "now": {
@@ -12105,7 +12659,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Brawler",
    "carry": "da_18_alune",
    "mainCarry": "da_18_alune",
-   "mainTank": "da_18_alistar",
+   "mainTank": "da_18_sett",
    "games": 1,
    "avgPlace": 3.46,
    "top4": 0.692,
@@ -12115,60 +12669,102 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_veigar",
+     "id": "da_18_alune",
      "rate": 1,
-     "star3": 1,
+     "star3": 0,
+     "off": 20.5,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.71,
+     "star3": 0.11,
+     "off": 3.5,
+     "tank": 11.1
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.69,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.61,
+     "star3": 0.22,
+     "off": 1,
+     "tank": 2
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.47,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 5.8
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.47,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 2.9
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 3.5,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.39,
+     "star3": 0.2,
+     "off": 4.1,
+     "tank": 1.7
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.29,
+     "star3": 0,
      "off": 2,
      "tank": 0
     },
     {
      "id": "da_18_leblanc",
-     "rate": 1,
-     "star3": 1,
+     "rate": 0.29,
+     "star3": 0.46,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_sentry",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_veigar",
+     "rate": 0.21,
+     "star3": 1,
+     "off": 3.2,
+     "tank": 0.6
     },
     {
      "id": "da_18_reksai",
-     "rate": 1,
+     "rate": 0.21,
      "star3": 1,
      "off": 0,
      "tank": 1
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 1,
-     "star3": 1,
-     "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_krug18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 1,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
     }
    ],
    "builds": {
@@ -12181,11 +12777,11 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 2
     },
-    "da_18_alistar": {
+    "da_18_sett": {
      "items": [
-      "DA_Artifact_TheIndomitable",
       "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
+      "DA_GargoyleStoneplate",
+      "DA_SteraksGage"
      ],
      "games": 1,
      "avgPlace": 2
@@ -12219,96 +12815,96 @@ window.TFT_WEIGHTS = {
      "id": "da_18_xayah",
      "rate": 1,
      "star3": 1,
-     "off": 18,
+     "off": 33.7,
      "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 1,
-     "star3": 1,
-     "off": 2,
-     "tank": 12
     },
     {
      "id": "da_18_leona",
      "rate": 1,
-     "star3": 0.67,
+     "star3": 0.72,
      "off": 1,
-     "tank": 1
+     "tank": 2.7
     },
     {
      "id": "da_18_sejuani",
      "rate": 1,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 6
+     "star3": 0.58,
+     "off": 0.6,
+     "tank": 15.3
     },
     {
-     "id": "da_18_kayle",
-     "rate": 1,
-     "star3": 0.5,
-     "off": 7,
-     "tank": 0
+     "id": "da_18_rakan",
+     "rate": 0.95,
+     "star3": 1,
+     "off": 2,
+     "tank": 21.3
     },
     {
      "id": "da_18_diana",
-     "rate": 1,
+     "rate": 0.95,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_aphelios",
-     "rate": 1,
+     "rate": 0.95,
      "star3": 0,
-     "off": 9,
+     "off": 15.4,
      "tank": 0
     },
     {
+     "id": "da_18_kayle",
+     "rate": 0.95,
+     "star3": 0.55,
+     "off": 12.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.24,
+     "star3": 1,
+     "off": 0.6,
+     "tank": 6.5
+    },
+    {
      "id": "da_fiddlesticks18",
-     "rate": 0.17,
+     "rate": 0.14,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
+     "id": "da_lux18_base",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
      "id": "da_kogmaw18_ad",
-     "rate": 0.17,
+     "rate": 0.09,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.17,
+     "rate": 0.09,
      "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.17,
-     "star3": 1,
      "off": 0,
      "tank": 3
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 0.17,
+     "rate": 0.09,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -12349,7 +12945,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_Riftbeast18",
    "carry": "da_18_sentry",
    "mainCarry": "da_18_sentry",
-   "mainTank": "da_sentinel18",
+   "mainTank": "da_krug18",
    "games": 36,
    "avgPlace": 3.52,
    "top4": 0.711,
@@ -12361,99 +12957,99 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_sentry",
      "rate": 1,
-     "star3": 0.94,
-     "off": 105,
-     "tank": 1
+     "star3": 0.97,
+     "off": 234.2,
+     "tank": 2.7
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.94,
+     "rate": 0.97,
      "star3": 0,
-     "off": 2,
-     "tank": 51
+     "off": 9,
+     "tank": 106.9
     },
     {
      "id": "da_krug18",
-     "rate": 0.92,
-     "star3": 0.52,
-     "off": 4,
-     "tank": 50
-    },
-    {
-     "id": "da_murkwolf18",
-     "rate": 0.89,
-     "star3": 0.03,
-     "off": 9,
-     "tank": 0
+     "rate": 0.94,
+     "star3": 0.5,
+     "off": 7.5,
+     "tank": 115.2
     },
     {
      "id": "da_brambleback18",
-     "rate": 0.89,
+     "rate": 0.92,
      "star3": 0,
-     "off": 73,
-     "tank": 3
+     "off": 179,
+     "tank": 8.2
+    },
+    {
+     "id": "da_murkwolf18",
+     "rate": 0.91,
+     "star3": 0.05,
+     "off": 14.8,
+     "tank": 0.6
     },
     {
      "id": "da_18_elderdragon",
-     "rate": 0.69,
+     "rate": 0.65,
      "star3": 0,
-     "off": 51,
-     "tank": 2
+     "off": 103.4,
+     "tank": 3.2
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.58,
-     "star3": 0.38,
-     "off": 1,
-     "tank": 18
+     "rate": 0.59,
+     "star3": 0.33,
+     "off": 1.6,
+     "tank": 34.9
     },
     {
      "id": "da_taric18",
-     "rate": 0.5,
+     "rate": 0.42,
      "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 2.2,
+     "tank": 9.1
     },
     {
      "id": "da_cinderling18",
-     "rate": 0.42,
-     "star3": 0.33,
-     "off": 6,
+     "rate": 0.4,
+     "star3": 0.37,
+     "off": 11.2,
      "tank": 1
     },
     {
      "id": "da_18_rakan",
      "rate": 0.22,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_gromp18_ap",
-     "rate": 0.19,
-     "star3": 0.14,
-     "off": 4,
+     "rate": 0.16,
+     "star3": 0.08,
+     "off": 5.7,
      "tank": 1
     },
     {
-     "id": "da_crimsonraptor18",
-     "rate": 0.14,
+     "id": "da_18_sett",
+     "rate": 0.16,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.7,
+     "tank": 2.9
     },
     {
-     "id": "da_18_sett",
-     "rate": 0.14,
+     "id": "da_crimsonraptor18",
+     "rate": 0.09,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_gnarsmall",
-     "rate": 0.11,
+     "rate": 0.09,
      "star3": 0,
-     "off": 3,
+     "off": 3.6,
      "tank": 0
     }
    ],
@@ -12464,17 +13060,17 @@ window.TFT_WEIGHTS = {
       "DA_JeweledGauntlet",
       "DA_RabadonsDeathcap"
      ],
-     "games": 4,
-     "avgPlace": 2.5
+     "games": 6,
+     "avgPlace": 2.75
     },
-    "da_sentinel18": {
+    "da_krug18": {
      "items": [
-      "DA_Evenshroud",
       "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 2
+     "games": 4,
+     "avgPlace": 3.4
     }
    },
    "now": {
@@ -12505,119 +13101,119 @@ window.TFT_WEIGHTS = {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 868,
-     "tank": 2
+     "off": 1895.6,
+     "tank": 2.6
     },
     {
      "id": "da_sentinel18",
      "rate": 0.98,
      "star3": 0,
-     "off": 29,
-     "tank": 350
+     "off": 59.9,
+     "tank": 678.9
     },
     {
      "id": "da_taric18",
-     "rate": 0.86,
+     "rate": 0.84,
      "star3": 0,
-     "off": 23,
-     "tank": 233
+     "off": 40.5,
+     "tank": 510.7
     },
     {
      "id": "da_amumu18",
-     "rate": 0.51,
+     "rate": 0.57,
      "star3": 0,
-     "off": 9,
-     "tank": 85
+     "off": 21.8,
+     "tank": 213.7
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.49,
+     "rate": 0.56,
      "star3": 0,
-     "off": 12,
-     "tank": 213
-    },
-    {
-     "id": "da_brambleback18",
-     "rate": 0.49,
-     "star3": 0,
-     "off": 386,
-     "tank": 24
+     "off": 27.1,
+     "tank": 548.9
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.48,
+     "rate": 0.54,
      "star3": 0,
-     "off": 78,
-     "tank": 9
-    },
-    {
-     "id": "da_murkwolf18",
-     "rate": 0.47,
-     "star3": 0.01,
-     "off": 31,
-     "tank": 0
+     "off": 187.5,
+     "tank": 23.6
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.47,
+     "rate": 0.52,
      "star3": 0,
-     "off": 81,
-     "tank": 21
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.47,
-     "star3": 0.24,
-     "off": 15,
-     "tank": 160
+     "off": 164.3,
+     "tank": 52.4
     },
     {
      "id": "da_draven18",
-     "rate": 0.47,
+     "rate": 0.52,
      "star3": 0,
-     "off": 338,
-     "tank": 5
+     "off": 827,
+     "tank": 7.9
+    },
+    {
+     "id": "da_brambleback18",
+     "rate": 0.41,
+     "star3": 0,
+     "off": 696.3,
+     "tank": 34.5
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.4,
+     "star3": 0.26,
+     "off": 25.5,
+     "tank": 316
+    },
+    {
+     "id": "da_murkwolf18",
+     "rate": 0.39,
+     "star3": 0.02,
+     "off": 46.1,
+     "tank": 1.2
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.42,
-     "star3": 0.07,
-     "off": 15,
-     "tank": 0
+     "rate": 0.36,
+     "star3": 0.09,
+     "off": 42.9,
+     "tank": 1.2
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.18,
-     "star3": 0.11,
-     "off": 4,
-     "tank": 9
+     "rate": 0.15,
+     "star3": 0.13,
+     "off": 6.3,
+     "tank": 25.9
     },
     {
-     "id": "da_18_sett",
-     "rate": 0.08,
+     "id": "da_lux18_base",
+     "rate": 0.07,
      "star3": 0,
-     "off": 4,
-     "tank": 29
+     "off": 21.8,
+     "tank": 2.9
     }
    ],
    "builds": {
     "da_18_elderdragon": {
      "items": [
+      "DA_Deathblade",
       "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_StrikersFlail"
+      "DA_LastWhisper"
      ],
-     "games": 25,
-     "avgPlace": 3.96
+     "games": 45,
+     "avgPlace": 3.45
     },
     "da_sentinel18": {
      "items": [
       "DA_GargoyleStoneplate",
       "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
+      "DA_SpiritVisage"
      ],
-     "games": 4,
-     "avgPlace": 4
+     "games": 7,
+     "avgPlace": 3.75
     }
    },
    "now": {
@@ -12635,7 +13231,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Brawler",
    "carry": "da_kogmaw18_ad",
    "mainCarry": "da_kogmaw18_ad",
-   "mainTank": "da_vi18",
+   "mainTank": "da_krug18",
    "games": 11,
    "avgPlace": 3.55,
    "top4": 0.698,
@@ -12645,92 +13241,99 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_kogmaw18_ad",
-     "rate": 1,
-     "star3": 0.64,
-     "off": 33,
-     "tank": 0
-    },
-    {
      "id": "da_18_masteryi_ad",
      "rate": 1,
-     "star3": 1,
-     "off": 20,
-     "tank": 2
+     "star3": 0.89,
+     "off": 60.2,
+     "tank": 3.7
     },
     {
-     "id": "da_18_sett",
+     "id": "da_kogmaw18_ad",
      "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 8
+     "star3": 0.62,
+     "off": 94.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.91,
+     "rate": 0.95,
      "star3": 0,
      "off": 2,
      "tank": 0
     },
     {
-     "id": "da_krug18",
-     "rate": 0.91,
-     "star3": 0.2,
-     "off": 0,
-     "tank": 11
+     "id": "da_18_sett",
+     "rate": 0.95,
+     "star3": 0,
+     "off": 6.2,
+     "tank": 22.6
     },
     {
-     "id": "da_nidalee18_ap",
-     "rate": 0.82,
-     "star3": 0,
-     "off": 13,
-     "tank": 0
+     "id": "da_krug18",
+     "rate": 0.93,
+     "star3": 0.34,
+     "off": 2.3,
+     "tank": 42.4
     },
     {
      "id": "da_vi18",
-     "rate": 0.82,
-     "star3": 0.44,
-     "off": 1,
-     "tank": 19
+     "rate": 0.9,
+     "star3": 0.42,
+     "off": 5.1,
+     "tank": 41.7
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.65,
+     "star3": 0,
+     "off": 28.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.45,
-     "star3": 0.8,
-     "off": 10,
+     "rate": 0.27,
+     "star3": 0.75,
+     "off": 14.1,
      "tank": 2
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.27,
+     "rate": 0.24,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 0.6
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.18,
+     "rate": 0.19,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 0
     },
     {
      "id": "da_18_kobuko",
-     "rate": 0.18,
+     "rate": 0.17,
+     "star3": 0.11,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_gnarsmall",
+     "rate": 0.05,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.09,
+     "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -12739,21 +13342,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_kogmaw18_ad": {
      "items": [
-      "DA_BlueBuff",
       "DA_Deathblade",
-      "DA_RedBuff"
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
      ],
      "games": 2,
-     "avgPlace": 4.5
+     "avgPlace": 2.66
     },
-    "da_vi18": {
+    "da_krug18": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 4.33
     }
    },
    "now": {
@@ -12771,7 +13374,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Lunar",
    "carry": "da_18_kayle",
    "mainCarry": "da_18_kayle",
-   "mainTank": "da_18_leona",
+   "mainTank": "da_18_rakan",
    "games": 8,
    "avgPlace": 3.58,
    "top4": 0.615,
@@ -12783,99 +13386,120 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_leona",
      "rate": 1,
-     "star3": 1,
-     "off": 2,
-     "tank": 12
+     "star3": 0.9,
+     "off": 2.6,
+     "tank": 23.6
     },
     {
      "id": "da_18_kayle",
      "rate": 1,
-     "star3": 0.88,
-     "off": 23,
+     "star3": 0.94,
+     "off": 49.2,
      "tank": 0
     },
     {
-     "id": "da_18_aphelios",
-     "rate": 1,
+     "id": "da_18_diana",
+     "rate": 0.97,
      "star3": 0,
-     "off": 5,
+     "off": 2.3,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.97,
+     "star3": 0,
+     "off": 18.4,
      "tank": 0
     },
     {
      "id": "da_18_sejuani",
-     "rate": 1,
-     "star3": 0.38,
-     "off": 1,
-     "tank": 4
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_xayah",
-     "rate": 0.75,
-     "star3": 1,
-     "off": 16,
-     "tank": 0
+     "rate": 0.97,
+     "star3": 0.35,
+     "off": 2.2,
+     "tank": 9.2
     },
     {
      "id": "da_18_rakan",
      "rate": 0.75,
-     "star3": 0.83,
+     "star3": 0.79,
      "off": 1,
-     "tank": 12
+     "tank": 23.6
     },
     {
-     "id": "da_18_ornn",
-     "rate": 0.5,
-     "star3": 0.75,
-     "off": 0,
-     "tank": 6
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 0.25,
-     "star3": 0.5,
-     "off": 3,
+     "id": "da_18_xayah",
+     "rate": 0.68,
+     "star3": 0.9,
+     "off": 25.9,
      "tank": 0
     },
     {
+     "id": "da_18_alune",
+     "rate": 0.58,
+     "star3": 0,
+     "off": 4.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.33,
+     "star3": 0.83,
+     "off": 0,
+     "tank": 9.5
+    },
+    {
      "id": "da_18_shen",
-     "rate": 0.25,
-     "star3": 0.5,
+     "rate": 0.22,
+     "star3": 0.73,
      "off": 1,
-     "tank": 4
+     "tank": 9.2
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.18,
+     "star3": 0.68,
+     "off": 5.9,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.7
     }
    ],
    "builds": {
     "da_18_kayle": {
      "items": [
-      "DA_Artifact_NavoriFlickerblade",
+      "DA_GiantSlayer",
       "DA_GuinsoosRageblade",
-      "DA_JeweledGauntlet"
+      "DA_HextechGunblade"
      ],
      "games": 2,
-     "avgPlace": 1.5
+     "avgPlace": 3.54
     },
-    "da_18_leona": {
+    "da_18_rakan": {
      "items": [
       "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SunfireCape"
+      "DA_ProtectorsVow"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 5.79
     }
    },
    "now": {
@@ -12906,85 +13530,85 @@ window.TFT_WEIGHTS = {
      "id": "da_18_kennen",
      "rate": 1,
      "star3": 0,
-     "off": 29,
-     "tank": 2
+     "off": 59.9,
+     "tank": 2.6
     },
     {
      "id": "da_amumu18",
-     "rate": 0.91,
+     "rate": 0.95,
      "star3": 0,
-     "off": 0,
-     "tank": 15
+     "off": 0.6,
+     "tank": 27.2
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.63,
+     "star3": 0,
+     "off": 2,
+     "tank": 10.1
     },
     {
      "id": "da_18_shen",
-     "rate": 0.73,
+     "rate": 0.63,
      "star3": 0,
      "off": 0,
      "tank": 2
     },
     {
-     "id": "da_taric18",
-     "rate": 0.64,
+     "id": "da_18_maokai",
+     "rate": 0.6,
      "star3": 0,
-     "off": 2,
-     "tank": 6
+     "off": 2.2,
+     "tank": 18.8
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.55,
+     "rate": 0.51,
      "star3": 0,
-     "off": 6,
-     "tank": 1
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.55,
-     "star3": 0,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_18_akali_ad",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 12.4,
+     "tank": 2.2
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.45,
+     "rate": 0.49,
      "star3": 0,
-     "off": 10,
+     "off": 19.9,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.46,
+     "star3": 0,
+     "off": 5.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 7.4,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.36,
+     "rate": 0.31,
      "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 1.2,
+     "tank": 10.1
     },
     {
-     "id": "da_18_sivir",
-     "rate": 0.36,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.36,
+     "id": "da_18_akali_ad",
+     "rate": 0.31,
      "star3": 0,
      "off": 0,
      "tank": 0
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.36,
-     "star3": 0,
-     "off": 1,
-     "tank": 6
     },
     {
      "id": "da_vi18",
@@ -12995,9 +13619,9 @@ window.TFT_WEIGHTS = {
     },
     {
      "id": "da_draven18",
-     "rate": 0.27,
+     "rate": 0.22,
      "star3": 0,
-     "off": 6,
+     "off": 10.1,
      "tank": 0
     }
    ],
@@ -13013,12 +13637,12 @@ window.TFT_WEIGHTS = {
     },
     "da_amumu18": {
      "items": [
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 3.26
     }
    },
    "now": {
@@ -13046,94 +13670,101 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
+     "id": "da_18_leblanc",
+     "rate": 1,
+     "star3": 0.92,
+     "off": 20.2,
+     "tank": 0
+    },
+    {
      "id": "da_18_veigar",
      "rate": 1,
-     "star3": 0.67,
-     "off": 5,
+     "star3": 0.86,
+     "off": 16.6,
      "tank": 0
     },
     {
      "id": "da_18_alistar",
      "rate": 1,
-     "star3": 0.67,
+     "star3": 0.69,
      "off": 1,
-     "tank": 5
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 1,
-     "star3": 1,
-     "off": 8,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kobuko",
-     "rate": 1,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_reksai",
-     "rate": 0.67,
-     "star3": 1,
-     "off": 0,
-     "tank": 2
+     "tank": 12
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.67,
+     "rate": 0.86,
      "star3": 1,
-     "off": 0,
-     "tank": 2
+     "off": 0.6,
+     "tank": 10.2
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.86,
+     "star3": 1,
+     "off": 1.2,
+     "tank": 5.5
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.33,
+     "rate": 0.72,
      "star3": 0,
+     "off": 0.6,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_kobuko",
+     "rate": 0.67,
+     "star3": 0.42,
      "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_cassiopeia",
+     "rate": 0.25,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 1,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_karma18",
-     "rate": 0.33,
+     "rate": 0.14,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_teemo",
-     "rate": 0.33,
+     "rate": 0.14,
      "star3": 1,
      "off": 3,
      "tank": 0
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.33,
+     "rate": 0.14,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_azir",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 1,
      "tank": 0
     }
    ],
@@ -13182,85 +13813,99 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_varus",
-     "rate": 1,
-     "star3": 1,
-     "off": 14,
-     "tank": 0
-    },
-    {
      "id": "da_18_leona",
      "rate": 1,
-     "star3": 1,
-     "off": 2,
-     "tank": 7
+     "star3": 0.97,
+     "off": 4.9,
+     "tank": 16.9
     },
     {
      "id": "da_18_camille",
      "rate": 1,
      "star3": 1,
-     "off": 20,
+     "off": 49.7,
      "tank": 0
     },
     {
      "id": "da_18_akali_ad",
      "rate": 1,
      "star3": 1,
-     "off": 19,
+     "off": 45.8,
      "tank": 0
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 1,
+     "star3": 0.97,
+     "off": 37.9,
+     "tank": 1.2
     },
     {
      "id": "da_18_kayle",
      "rate": 1,
      "star3": 0,
-     "off": 0,
+     "off": 3.5,
      "tank": 0
     },
     {
      "id": "da_18_sejuani",
      "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "star3": 0.03,
+     "off": 1.2,
+     "tank": 1.7
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.86,
+     "rate": 0.91,
      "star3": 1,
-     "off": 1,
-     "tank": 10
+     "off": 2.2,
+     "tank": 32.1
     },
     {
      "id": "da_amumu18",
-     "rate": 0.71,
+     "rate": 0.81,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 4.7
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.14,
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_shen",
-     "rate": 0.14,
+     "rate": 0.06,
      "star3": 1,
      "off": 0,
      "tank": 3
     },
     {
      "id": "da_crimsonraptor18",
-     "rate": 0.14,
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.14,
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -13269,18 +13914,18 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_camille": {
      "items": [
-      "DA_Bloodthirster",
       "DA_EdgeOfNight",
-      "DA_HandOfJustice"
+      "DA_HandOfJustice",
+      "DA_InfinityEdge"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 4.39
     },
     "da_18_ornn": {
      "items": [
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
      ],
      "games": 1,
      "avgPlace": 3
@@ -13298,6 +13943,145 @@ window.TFT_WEIGHTS = {
    }
   },
   {
+   "trait": "DA_18_Elderwood",
+   "carry": "da_18_gnarsmall",
+   "mainCarry": "da_18_gnarsmall",
+   "mainTank": "da_18_lillia",
+   "games": 15,
+   "avgPlace": 3.67,
+   "top4": 0.6,
+   "win": 0.333,
+   "patchGames": 0,
+   "playRate": 0.0003,
+   "level": 9,
+   "core": [
+    {
+     "id": "da_18_gnarsmall",
+     "rate": 1,
+     "star3": 0,
+     "off": 10.5,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 1,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 1,
+     "star3": 0,
+     "off": 7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.67,
+     "star3": 0,
+     "off": 4.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.67,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.67,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 5.8
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.5,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.5,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.5,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.5,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_18_gnarsmall": {
+     "items": [
+      "DA_EdgeOfNight",
+      "DA_Quicksilver",
+      "DA_SteraksGage"
+     ],
+     "games": 1,
+     "avgPlace": 6
+    },
+    "da_18_lillia": {
+     "items": [
+      "DA_Crownguard",
+      "DA_ProtectorsVow",
+      "DA_SpearOfShojin"
+     ],
+     "games": 1,
+     "avgPlace": 3
+    }
+   },
+   "now": null,
+   "before": {
+    "games": 15,
+    "avgPlace": 3.67,
+    "top4": 0.6
+   }
+  },
+  {
    "trait": "DA_18_Invoker",
    "carry": "da_18_leblanc",
    "mainCarry": "da_18_leblanc",
@@ -13311,93 +14095,100 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_kobuko",
-     "rate": 1,
-     "star3": 0.6,
-     "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_18_teemo",
-     "rate": 1,
-     "star3": 1,
-     "off": 13,
-     "tank": 0
-    },
-    {
      "id": "da_18_leblanc",
      "rate": 1,
      "star3": 1,
-     "off": 14,
+     "off": 30.9,
      "tank": 0
     },
     {
      "id": "da_18_alistar",
      "rate": 1,
-     "star3": 1,
+     "star3": 0.84,
+     "off": 1.2,
+     "tank": 27.2
+    },
+    {
+     "id": "da_18_kobuko",
+     "rate": 0.95,
+     "star3": 0.63,
      "off": 0,
-     "tank": 15
+     "tank": 5.7
+    },
+    {
+     "id": "da_18_teemo",
+     "rate": 0.95,
+     "star3": 1,
+     "off": 26.4,
+     "tank": 1.7
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.8,
-     "star3": 0.25,
-     "off": 2,
+     "rate": 0.91,
+     "star3": 0.4,
+     "off": 4.3,
      "tank": 0
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.8,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "rate": 0.85,
+     "star3": 0.19,
+     "off": 2.7,
+     "tank": 7
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.8,
+     "rate": 0.85,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 1.2,
+     "tank": 2.7
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.6,
+     "rate": 0.76,
      "star3": 0,
-     "off": 3,
+     "off": 5.9,
      "tank": 1
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.4,
+     "id": "da_kogmaw18_ad",
+     "rate": 0.29,
      "star3": 0,
-     "off": 3,
+     "off": 0,
      "tank": 0
     },
     {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.4,
+     "id": "da_18_ivern",
+     "rate": 0.24,
      "star3": 0,
-     "off": 0,
+     "off": 3,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.2,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 0.2,
+     "rate": 0.15,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_alune",
-     "rate": 0.2,
+     "rate": 0.15,
      "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.05,
+     "star3": 1,
      "off": 0,
      "tank": 0
     }
@@ -13405,12 +14196,12 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_leblanc": {
      "items": [
-      "DA_BlueBuff",
-      "DA_GiantSlayer",
-      "DA_SpearOfShojin"
+      "DA_RedBuff",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 7
     },
     "da_18_alistar": {
      "items": [
@@ -13444,56 +14235,105 @@ window.TFT_WEIGHTS = {
    "win": 0.1,
    "patchGames": 1,
    "playRate": 0.0002,
-   "level": 8,
+   "level": 9,
    "core": [
-    {
-     "id": "da_krug18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
     {
      "id": "da_18_morgana",
      "rate": 1,
      "star3": 0,
-     "off": 3,
+     "off": 16.4,
      "tank": 0
     },
     {
      "id": "da_18_sett",
-     "rate": 1,
+     "rate": 0.9,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 0.6,
+     "tank": 10.6
     },
     {
-     "id": "da_karma18",
-     "rate": 1,
+     "id": "da_krug18",
+     "rate": 0.9,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 2.3
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.82,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 4.7
     },
     {
      "id": "da_18_sentry",
-     "rate": 1,
+     "rate": 0.79,
+     "star3": 0.13,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_karma18",
+     "rate": 0.69,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_ahri",
-     "rate": 1,
+     "rate": 0.69,
      "star3": 0,
-     "off": 3,
+     "off": 9.4,
      "tank": 0
     },
     {
      "id": "da_18_alistar",
-     "rate": 1,
+     "rate": 0.38,
+     "star3": 0.27,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.31,
      "star3": 0,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_18_kobuko",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -13543,65 +14383,72 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_masteryi_ad",
      "rate": 1,
-     "star3": 1,
-     "off": 23,
+     "star3": 0.98,
+     "off": 57.9,
      "tank": 0
     },
     {
      "id": "da_vi18",
      "rate": 1,
-     "star3": 0.78,
-     "off": 0,
-     "tank": 19
+     "star3": 0.59,
+     "off": 1.2,
+     "tank": 42.3
     },
     {
      "id": "da_18_sett",
-     "rate": 1,
+     "rate": 0.98,
      "star3": 0,
-     "off": 5,
-     "tank": 6
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.89,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 8.5,
+     "tank": 17.6
     },
     {
      "id": "da_krug18",
-     "rate": 0.89,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 9
+     "rate": 0.94,
+     "star3": 0.35,
+     "off": 1.7,
+     "tank": 26.5
     },
     {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.78,
-     "star3": 0.29,
-     "off": 9,
+     "id": "da_18_yorick",
+     "rate": 0.84,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_nidalee18_ap",
      "rate": 0.78,
      "star3": 0,
-     "off": 11,
-     "tank": 1
+     "off": 21.5,
+     "tank": 2.7
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.66,
+     "star3": 0.44,
+     "off": 23.6,
+     "tank": 1.7
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.44,
-     "star3": 1,
-     "off": 9,
-     "tank": 1
+     "rate": 0.49,
+     "star3": 0.66,
+     "off": 23,
+     "tank": 5.7
     },
     {
-     "id": "da_18_gnarsmall",
-     "rate": 0.11,
+     "id": "da_18_alistar",
+     "rate": 0.25,
      "star3": 0,
      "off": 1,
      "tank": 0
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
     },
     {
      "id": "da_18_kobuko",
@@ -13611,18 +14458,25 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_alistar",
-     "rate": 0.11,
+     "id": "da_lux18_base",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_gnarsmall",
+     "rate": 0.04,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_18_reksai",
-     "rate": 0.11,
+     "id": "da_18_morgana",
+     "rate": 0.02,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -13632,8 +14486,8 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_Quicksilver"
      ],
-     "games": 2,
-     "avgPlace": 3.5
+     "games": 3,
+     "avgPlace": 3.61
     },
     "da_vi18": {
      "items": [
@@ -13660,7 +14514,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_Riftbeast18",
    "carry": "da_18_ivern",
    "mainCarry": "da_18_ivern",
-   "mainTank": "da_taric18",
+   "mainTank": "da_18_maokai",
    "games": 4,
    "avgPlace": 3.75,
    "top4": 0.583,
@@ -13673,112 +14527,119 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ivern",
      "rate": 1,
      "star3": 0,
-     "off": 12,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 35.3,
+     "tank": 0.6
     },
     {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 7,
-     "tank": 0
+     "off": 25,
+     "tank": 0.6
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 0,
+     "tank": 3.3
     },
     {
      "id": "da_amumu18",
-     "rate": 0.75,
+     "rate": 0.82,
      "star3": 0,
      "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_draven18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 9,
-     "tank": 0
+     "tank": 2.2
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.75,
+     "rate": 0.82,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 1.7,
+     "tank": 17.6
     },
     {
-     "id": "da_taric18",
-     "rate": 0.75,
+     "id": "da_draven18",
+     "rate": 0.77,
      "star3": 0,
-     "off": 0,
-     "tank": 6
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
+     "off": 25.3,
      "tank": 0
     },
     {
+     "id": "da_18_kennen",
+     "rate": 0.74,
+     "star3": 0,
+     "off": 2.9,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.73,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 10.1
+    },
+    {
      "id": "da_krug18",
-     "rate": 0.25,
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 3
     },
     {
-     "id": "da_brambleback18",
-     "rate": 0.25,
+     "id": "da_murkwolf18",
+     "rate": 0.18,
      "star3": 0,
-     "off": 3,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_brambleback18",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 6.5,
      "tank": 0
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.25,
+     "rate": 0.13,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_murkwolf18",
-     "rate": 0.25,
+     "id": "da_18_soraka",
+     "rate": 0.1,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_yorick",
-     "rate": 0.25,
+     "id": "da_18_ashe",
+     "rate": 0.1,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_ivern": {
      "items": [
-      "DA_RedBuff",
-      "DA_SpearOfShojin",
+      "DA_Morellonomicon",
+      "DA_RabadonsDeathcap",
       "DA_SpearOfShojin"
      ],
      "games": 1,
-     "avgPlace": 3
+     "avgPlace": 4
     },
-    "da_taric18": {
+    "da_18_maokai": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_Evenshroud",
-      "DA_ProtectorsVow"
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 3
+     "avgPlace": 5
     }
    },
    "now": {
@@ -13809,98 +14670,98 @@ window.TFT_WEIGHTS = {
      "id": "da_lux18_base",
      "rate": 1,
      "star3": 0,
-     "off": 36,
-     "tank": 1
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 1,
-     "star3": 0,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.92,
-     "star3": 0,
-     "off": 4,
-     "tank": 18
+     "off": 97.7,
+     "tank": 2.2
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.92,
+     "rate": 0.97,
      "star3": 0,
-     "off": 1,
-     "tank": 17
+     "off": 2.7,
+     "tank": 39.7
     },
     {
-     "id": "da_18_morgana",
-     "rate": 0.85,
+     "id": "da_taric18",
+     "rate": 0.94,
      "star3": 0,
-     "off": 18,
-     "tank": 1
+     "off": 5.2,
+     "tank": 44.8
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.93,
+     "star3": 0,
+     "off": 4.6,
+     "tank": 0
     },
     {
      "id": "da_18_alune",
-     "rate": 0.85,
+     "rate": 0.81,
      "star3": 0,
-     "off": 22,
-     "tank": 3
+     "off": 55.8,
+     "tank": 10
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.77,
+     "rate": 0.78,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.69,
+     "id": "da_18_morgana",
+     "rate": 0.74,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 45.4,
+     "tank": 3.9
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.62,
+     "rate": 0.6,
      "star3": 0,
      "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.54,
-     "star3": 0,
-     "off": 7,
-     "tank": 0
+     "tank": 17.4
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.38,
+     "rate": 0.57,
      "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 2.2,
+     "tank": 16.6
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.55,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.47,
+     "star3": 0,
+     "off": 12.2,
+     "tank": 4.1
     },
     {
      "id": "da_18_elise",
-     "rate": 0.23,
+     "rate": 0.17,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_yorick",
+     "id": "da_18_maokai",
      "rate": 0.08,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 5.2
     },
     {
      "id": "da_18_cassiopeia",
      "rate": 0.08,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 1
     }
    ],
@@ -13911,17 +14772,17 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 2,
-     "avgPlace": 2.5
+     "games": 4,
+     "avgPlace": 4.13
     },
     "da_taric18": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SteraksGage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 3.69
     }
    },
    "now": {
@@ -13933,6 +14794,145 @@ window.TFT_WEIGHTS = {
     "games": 44,
     "avgPlace": 4.11,
     "top4": 0.545
+   }
+  },
+  {
+   "trait": "DA_18_Slayer",
+   "carry": "da_murkwolf18",
+   "mainCarry": "da_murkwolf18",
+   "mainTank": "da_18_elise",
+   "games": 9,
+   "avgPlace": 3.78,
+   "top4": 0.667,
+   "win": 0.111,
+   "patchGames": 0,
+   "playRate": 0.0003,
+   "level": 8,
+   "core": [
+    {
+     "id": "da_murkwolf18",
+     "rate": 1,
+     "star3": 1,
+     "off": 11.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 1,
+     "star3": 0.14,
+     "off": 1.2,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_warwick",
+     "rate": 1,
+     "star3": 0.57,
+     "off": 7,
+     "tank": 1.2
+    },
+    {
+     "id": "da_brambleback18",
+     "rate": 0.86,
+     "star3": 0,
+     "off": 5.8,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_elise",
+     "rate": 0.86,
+     "star3": 0.83,
+     "off": 2.3,
+     "tank": 4.1
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.57,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.43,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.1
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.43,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_camille",
+     "rate": 0.43,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.29,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rengar",
+     "rate": 0.14,
+     "star3": 1,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.14,
+     "star3": 1,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_malphite",
+     "rate": 0.14,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.14,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_murkwolf18": {
+     "items": [
+      "DA_InfinityEdge",
+      "DA_Quicksilver",
+      "DA_RedBuff"
+     ],
+     "games": 1,
+     "avgPlace": 2
+    },
+    "da_18_elise": {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate"
+     ],
+     "games": 1,
+     "avgPlace": 2
+    }
+   },
+   "now": null,
+   "before": {
+    "games": 9,
+    "avgPlace": 3.78,
+    "top4": 0.667
    }
   },
   {
@@ -13951,111 +14951,111 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_crimsonraptor18",
      "rate": 1,
-     "star3": 1,
-     "off": 41,
-     "tank": 4
+     "star3": 0.96,
+     "off": 72.4,
+     "tank": 9.2
     },
     {
      "id": "da_18_hecarim",
-     "rate": 1,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 42
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.93,
-     "star3": 0,
-     "off": 27,
-     "tank": 3
+     "rate": 0.96,
+     "star3": 0.59,
+     "off": 2.9,
+     "tank": 64.7
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.87,
+     "rate": 0.91,
      "star3": 0,
-     "off": 0,
-     "tank": 19
+     "off": 1.2,
+     "tank": 33
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 45.6,
+     "tank": 4.2
     },
     {
      "id": "da_krug18",
-     "rate": 0.8,
-     "star3": 0.33,
-     "off": 1,
-     "tank": 15
+     "rate": 0.83,
+     "star3": 0.43,
+     "off": 3.3,
+     "tank": 31.9
     },
     {
      "id": "da_18_xayah",
-     "rate": 0.8,
+     "rate": 0.79,
      "star3": 0,
-     "off": 4,
+     "off": 5.7,
      "tank": 0
     },
     {
      "id": "da_18_azir",
-     "rate": 0.67,
-     "star3": 0.1,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.4,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.65,
+     "star3": 0.09,
+     "off": 6.7,
      "tank": 0
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.4,
+     "rate": 0.47,
+     "star3": 0.04,
+     "off": 0,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.45,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.27,
+     "rate": 0.19,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.13,
-     "star3": 0.5,
-     "off": 3,
+     "rate": 0.11,
+     "star3": 0.68,
+     "off": 5.3,
      "tank": 0
     },
     {
-     "id": "da_18_diana",
-     "rate": 0.07,
+     "id": "da_lux18_base",
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 3,
      "tank": 0
     },
     {
      "id": "da_18_gnarsmall",
-     "rate": 0.07,
+     "rate": 0.06,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 3.6,
      "tank": 0
     }
    ],
    "builds": {
     "da_crimsonraptor18": {
      "items": [
-      "DA_GuinsoosRagebladeRadiant",
+      "DA_GuinsoosRageblade",
       "DA_HextechGunblade",
       "DA_TitansResolve"
      ],
-     "games": 2,
-     "avgPlace": 2
+     "games": 4,
+     "avgPlace": 4.1
     },
     "da_18_hecarim": {
      "items": [
@@ -14082,7 +15082,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Blackthorn",
    "carry": "da_18_veigar",
    "mainCarry": "da_18_veigar",
-   "mainTank": "da_18_reksai",
+   "mainTank": "da_18_alistar",
    "games": 28,
    "avgPlace": 3.79,
    "top4": 0.621,
@@ -14094,100 +15094,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_veigar",
      "rate": 1,
-     "star3": 0.96,
-     "off": 80,
-     "tank": 2
+     "star3": 0.97,
+     "off": 176.6,
+     "tank": 2.6
     },
     {
      "id": "da_18_reksai",
      "rate": 1,
-     "star3": 0.71,
-     "off": 8,
-     "tank": 34
+     "star3": 0.8,
+     "off": 20.8,
+     "tank": 70.7
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.89,
-     "star3": 0.88,
-     "off": 4,
-     "tank": 23
+     "rate": 0.9,
+     "star3": 0.94,
+     "off": 11.6,
+     "tank": 72.5
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.82,
-     "star3": 0.65,
-     "off": 15,
+     "rate": 0.87,
+     "star3": 0.67,
+     "off": 33,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.82,
-     "star3": 0,
-     "off": 8,
-     "tank": 1
+     "rate": 0.84,
+     "star3": 0.02,
+     "off": 13.8,
+     "tank": 9.7
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.68,
+     "rate": 0.74,
      "star3": 0.68,
-     "off": 6,
-     "tank": 34
+     "off": 12.4,
+     "tank": 77.1
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.57,
+     "rate": 0.56,
      "star3": 0,
-     "off": 36,
-     "tank": 2
+     "off": 83.2,
+     "tank": 2.6
     },
     {
      "id": "da_18_azir",
-     "rate": 0.39,
+     "rate": 0.38,
      "star3": 0,
-     "off": 9,
+     "off": 14.2,
      "tank": 0
     },
     {
      "id": "da_18_alune",
-     "rate": 0.32,
+     "rate": 0.33,
      "star3": 0,
-     "off": 15,
-     "tank": 1
+     "off": 38.3,
+     "tank": 2.7
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.25,
+     "rate": 0.27,
      "star3": 0,
-     "off": 0,
-     "tank": 15
+     "off": 0.6,
+     "tank": 22
     },
     {
      "id": "da_18_cassiopeia",
-     "rate": 0.21,
+     "rate": 0.25,
+     "star3": 0.04,
+     "off": 15.3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.1,
      "star3": 0,
-     "off": 6,
+     "off": 4.1,
      "tank": 0
     },
     {
      "id": "da_18_kobuko",
-     "rate": 0.11,
+     "rate": 0.08,
      "star3": 0.33,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_gnarsmall",
+     "id": "da_18_ivern",
      "rate": 0.07,
      "star3": 0,
-     "off": 3,
+     "off": 2.9,
      "tank": 0
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
     }
    ],
    "builds": {
@@ -14197,17 +15197,17 @@ window.TFT_WEIGHTS = {
       "DA_HextechGunblade",
       "DA_JeweledGauntlet"
      ],
-     "games": 6,
-     "avgPlace": 4.83
+     "games": 11,
+     "avgPlace": 4.34
     },
-    "da_18_reksai": {
+    "da_18_alistar": {
      "items": [
-      "DA_IonicSpark",
-      "DA_SteadfastHeart",
-      "DA_SunfireCape"
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 4,
+     "avgPlace": 2.82
     }
    },
    "now": {
@@ -14225,60 +15225,46 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Slayer",
    "carry": "da_18_diana",
    "mainCarry": "da_18_diana",
-   "mainTank": "da_18_reksai",
+   "mainTank": "da_18_hecarim",
    "games": 2,
    "avgPlace": 3.82,
    "top4": 0.636,
    "win": 0.091,
    "patchGames": 2,
    "playRate": 0.0004,
-   "level": 7,
+   "level": 8,
    "core": [
-    {
-     "id": "da_murkwolf18",
-     "rate": 1,
-     "star3": 0.5,
-     "off": 2,
-     "tank": 0
-    },
     {
      "id": "da_18_diana",
      "rate": 1,
      "star3": 0.5,
-     "off": 5,
+     "off": 14.9,
+     "tank": 0.6
+    },
+    {
+     "id": "da_murkwolf18",
+     "rate": 1,
+     "star3": 0.61,
+     "off": 4.9,
      "tank": 0
     },
     {
      "id": "da_brambleback18",
-     "rate": 1,
+     "rate": 0.89,
      "star3": 0,
-     "off": 1,
+     "off": 3.3,
      "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_reksai",
-     "rate": 0.5,
-     "star3": 1,
-     "off": 0,
-     "tank": 3
     },
     {
      "id": "da_18_warwick",
-     "rate": 0.5,
-     "star3": 1,
-     "off": 2,
-     "tank": 1
+     "rate": 0.71,
+     "star3": 0.85,
+     "off": 7.8,
+     "tank": 2.2
     },
     {
-     "id": "da_krug18",
-     "rate": 0.5,
+     "id": "da_sentinel18",
+     "rate": 0.58,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -14291,18 +15277,60 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
+     "id": "da_18_reksai",
+     "rate": 0.5,
+     "star3": 0.36,
+     "off": 0,
+     "tank": 3
+    },
+    {
      "id": "da_18_elise",
      "rate": 0.5,
      "star3": 1,
-     "off": 1,
-     "tank": 1
+     "off": 2.2,
+     "tank": 3.3
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.39,
+     "star3": 0.27,
+     "off": 0.6,
+     "tank": 1.2
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.5,
+     "rate": 0.29,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 3.6
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_malphite",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_khazix",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
     }
    ],
    "builds": {
@@ -14315,14 +15343,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 4
     },
-    "da_18_reksai": {
+    "da_18_hecarim": {
      "items": [
-      "DA_Evenshroud",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 4
+     "avgPlace": 8
     }
    },
    "now": {
@@ -14352,100 +15380,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_rengar",
      "rate": 1,
-     "star3": 0.91,
-     "off": 101,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0.62,
-     "off": 7,
-     "tank": 73
+     "star3": 0.95,
+     "off": 200,
+     "tank": 3.5
     },
     {
      "id": "da_18_masteryi_ad",
      "rate": 1,
-     "star3": 0.85,
-     "off": 85,
-     "tank": 8
+     "star3": 0.82,
+     "off": 161.9,
+     "tank": 16.7
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.99,
+     "star3": 0.61,
+     "off": 11.7,
+     "tank": 142.9
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 1,
+     "rate": 0.99,
      "star3": 0,
-     "off": 31,
-     "tank": 0
+     "off": 68.8,
+     "tank": 2.3
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.94,
+     "rate": 0.96,
      "star3": 0,
      "off": 2,
-     "tank": 1
+     "tank": 1.6
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.94,
-     "star3": 0.25,
-     "off": 34,
-     "tank": 1
+     "rate": 0.96,
+     "star3": 0.28,
+     "off": 69.5,
+     "tank": 2.7
     },
     {
      "id": "da_18_sett",
      "rate": 0.85,
      "star3": 0,
-     "off": 3,
-     "tank": 17
+     "off": 7.1,
+     "tank": 40.3
     },
     {
      "id": "da_krug18",
-     "rate": 0.59,
-     "star3": 0.35,
-     "off": 1,
-     "tank": 14
+     "rate": 0.55,
+     "star3": 0.31,
+     "off": 1.6,
+     "tank": 23.3
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
     },
     {
      "id": "da_gromp18_ap",
-     "rate": 0.09,
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_karma18",
-     "rate": 0.06,
+     "rate": 0.04,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_zyra",
-     "rate": 0.06,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_scuttlecrab18",
+     "id": "da_18_akali_ad",
      "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
+     "id": "da_18_yunara",
      "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_fiddlesticks18",
+     "id": "da_18_ivern",
      "rate": 0.03,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 1.2,
+     "tank": 0
     }
    ],
    "builds": {
@@ -14453,10 +15481,10 @@ window.TFT_WEIGHTS = {
      "items": [
       "DA_EdgeOfNight",
       "DA_GuinsoosRageblade",
-      "DA_SteraksGage"
+      "DA_Quicksilver"
      ],
-     "games": 4,
-     "avgPlace": 4.25
+     "games": 8,
+     "avgPlace": 3.5
     },
     "da_vi18": {
      "items": [
@@ -14464,8 +15492,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage"
      ],
-     "games": 3,
-     "avgPlace": 4
+     "games": 4,
+     "avgPlace": 4.33
     }
    },
    "now": {
@@ -14495,96 +15523,96 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_masteryi_ad",
      "rate": 1,
-     "star3": 0.97,
-     "off": 172,
-     "tank": 2
-    },
-    {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0.66,
-     "off": 12,
-     "tank": 130
+     "star3": 0.93,
+     "off": 420.6,
+     "tank": 6.1
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 1,
-     "star3": 0.36,
-     "off": 106,
-     "tank": 3
+     "rate": 0.99,
+     "star3": 0.38,
+     "off": 246.9,
+     "tank": 11.2
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.98,
+     "star3": 0.63,
+     "off": 28.9,
+     "tank": 304.1
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.98,
+     "rate": 0.97,
      "star3": 0,
-     "off": 79,
-     "tank": 4
+     "off": 178,
+     "tank": 11
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.93,
+     "rate": 0.94,
      "star3": 0,
-     "off": 1,
-     "tank": 1
+     "off": 2.7,
+     "tank": 1.6
     },
     {
      "id": "da_18_sett",
-     "rate": 0.93,
+     "rate": 0.92,
      "star3": 0,
-     "off": 9,
-     "tank": 33
+     "off": 23.6,
+     "tank": 96.5
     },
     {
      "id": "da_krug18",
-     "rate": 0.76,
-     "star3": 0.27,
-     "off": 6,
-     "tank": 24
+     "rate": 0.73,
+     "star3": 0.2,
+     "off": 12.4,
+     "tank": 60.1
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.49,
-     "star3": 0.79,
-     "off": 63,
-     "tank": 10
+     "rate": 0.52,
+     "star3": 0.8,
+     "off": 157.3,
+     "tank": 28
     },
     {
      "id": "da_gromp18_ap",
-     "rate": 0.1,
+     "rate": 0.12,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_akali_ad",
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.08,
+     "rate": 0.05,
      "star3": 0,
-     "off": 1,
+     "off": 2.7,
      "tank": 0
     },
     {
-     "id": "da_18_akali_ad",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yunara",
+     "id": "da_taric18",
      "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_murkwolf18",
+     "id": "da_18_ivern",
      "rate": 0.02,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 2.9,
+     "tank": 1
     },
     {
-     "id": "da_cinderling18",
+     "id": "da_scuttlecrab18",
      "rate": 0.02,
      "star3": 0,
      "off": 0,
@@ -14598,17 +15626,17 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_Quicksilver"
      ],
-     "games": 7,
-     "avgPlace": 3.57
+     "games": 18,
+     "avgPlace": 3.96
     },
     "da_vi18": {
      "items": [
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage",
-      "DA_SteadfastHeart"
+      "DA_WarmogsArmor"
      ],
-     "games": 3,
-     "avgPlace": 5
+     "games": 7,
+     "avgPlace": 3.96
     }
    },
    "now": {
@@ -14639,119 +15667,119 @@ window.TFT_WEIGHTS = {
      "id": "da_18_alune",
      "rate": 1,
      "star3": 0,
-     "off": 43,
-     "tank": 2
+     "off": 121,
+     "tank": 4.3
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.87,
-     "star3": 0,
-     "off": 1,
-     "tank": 7
+     "rate": 0.88,
+     "star3": 0.03,
+     "off": 5.1,
+     "tank": 19.8
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.87,
-     "star3": 0,
-     "off": 28,
-     "tank": 3
-    },
-    {
-     "id": "da_karma18",
-     "rate": 0.6,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "rate": 0.77,
+     "star3": 0.02,
+     "off": 57.7,
+     "tank": 5.3
     },
     {
      "id": "da_18_sett",
-     "rate": 0.53,
+     "rate": 0.48,
      "star3": 0,
+     "off": 4.9,
+     "tank": 35.9
+    },
+    {
+     "id": "da_karma18",
+     "rate": 0.45,
+     "star3": 0.03,
      "off": 2,
-     "tank": 12
+     "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.53,
+     "rate": 0.44,
      "star3": 0,
-     "off": 0,
-     "tank": 11
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.47,
-     "star3": 0,
-     "off": 11,
-     "tank": 1
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.47,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.4,
-     "star3": 0,
-     "off": 0,
-     "tank": 5
+     "off": 0.6,
+     "tank": 26.1
     },
     {
      "id": "da_taric18",
-     "rate": 0.4,
+     "rate": 0.42,
      "star3": 0,
-     "off": 0,
-     "tank": 11
+     "off": 1.2,
+     "tank": 23.2
     },
     {
-     "id": "da_18_cassiopeia",
-     "rate": 0.27,
+     "id": "da_18_diana",
+     "rate": 0.36,
      "star3": 0,
-     "off": 1,
+     "off": 2.6,
      "tank": 0
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.2,
-     "star3": 0.33,
-     "off": 1,
-     "tank": 3
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.2,
-     "star3": 0,
-     "off": 1,
+     "rate": 0.35,
+     "star3": 0.2,
+     "off": 1.6,
      "tank": 0
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.2,
+     "id": "da_18_morgana",
+     "rate": 0.33,
      "star3": 0,
-     "off": 0,
+     "off": 22.6,
+     "tank": 1
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 14.9
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 16.6,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.29,
+     "star3": 0.55,
+     "off": 2.7,
+     "tank": 12.9
+    },
+    {
+     "id": "da_18_cassiopeia",
+     "rate": 0.28,
+     "star3": 0.05,
+     "off": 3.3,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_alune": {
      "items": [
-      "DA_Artifact_SeekersArmguard",
-      "DA_GiantSlayer",
-      "DA_RedBuff"
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 3,
+     "avgPlace": 4.27
     },
     "da_18_sett": {
      "items": [
-      "DA_AdaptiveHelm",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 1
+     "avgPlace": 2
     }
    },
    "now": {
@@ -14769,7 +15797,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Elderwood",
    "carry": "da_18_alune",
    "mainCarry": "da_18_alune",
-   "mainTank": "da_18_lillia",
+   "mainTank": "da_18_hecarim",
    "games": 12,
    "avgPlace": 3.89,
    "top4": 0.599,
@@ -14782,99 +15810,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_alune",
      "rate": 1,
      "star3": 0,
-     "off": 33,
-     "tank": 2
+     "off": 56.3,
+     "tank": 2.6
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.83,
-     "star3": 0.1,
-     "off": 3,
-     "tank": 2
+     "rate": 0.82,
+     "star3": 0.13,
+     "off": 3.6,
+     "tank": 4.9
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.83,
+     "rate": 0.74,
      "star3": 0,
-     "off": 13,
-     "tank": 0
+     "off": 21.2,
+     "tank": 0.6
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.75,
-     "star3": 0.11,
+     "rate": 0.71,
+     "star3": 0.15,
      "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "tank": 4.2
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.67,
+     "rate": 0.69,
      "star3": 0,
-     "off": 1,
-     "tank": 6
+     "off": 1.6,
+     "tank": 18.2
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.42,
-     "star3": 0,
-     "off": 0,
-     "tank": 8
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
+     "id": "da_18_leblanc",
+     "rate": 0.69,
+     "star3": 0.04,
+     "off": 2.2,
      "tank": 0
     },
     {
-     "id": "da_18_aphelios",
-     "rate": 0.33,
+     "id": "da_18_lillia",
+     "rate": 0.38,
      "star3": 0,
-     "off": 8,
+     "off": 0.6,
+     "tank": 12.1
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.36,
+     "star3": 0,
+     "off": 5.5,
      "tank": 0
     },
     {
      "id": "da_18_xayah",
-     "rate": 0.25,
+     "rate": 0.31,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 13.8,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.29,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 3.5
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.25,
-     "star3": 0,
+     "rate": 0.23,
+     "star3": 0.12,
      "off": 0,
-     "tank": 2
+     "tank": 2.6
     },
     {
-     "id": "da_18_sett",
-     "rate": 0.25,
+     "id": "da_18_kennen",
+     "rate": 0.21,
      "star3": 0,
-     "off": 1,
-     "tank": 8
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_draven18",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 5,
+     "off": 1.6,
      "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 0,
+     "tank": 1
     }
    ],
    "builds": {
@@ -14887,7 +15915,15 @@ window.TFT_WEIGHTS = {
      "games": 2,
      "avgPlace": 7
     },
-    "da_18_lillia": null
+    "da_18_hecarim": {
+     "items": [
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
+     ],
+     "games": 1,
+     "avgPlace": 5
+    }
    },
    "now": {
     "games": 12,
@@ -14917,50 +15953,57 @@ window.TFT_WEIGHTS = {
      "id": "da_lux18_base",
      "rate": 1,
      "star3": 0,
-     "off": 40,
-     "tank": 2
+     "off": 74.3,
+     "tank": 2.6
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.93,
-     "star3": 0.08,
-     "off": 2,
-     "tank": 32
+     "rate": 0.92,
+     "star3": 0.04,
+     "off": 3.2,
+     "tank": 56.5
     },
     {
      "id": "da_18_azir",
-     "rate": 0.79,
+     "rate": 0.8,
      "star3": 0,
-     "off": 10,
+     "off": 15.2,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.64,
-     "star3": 0,
+     "rate": 0.68,
+     "star3": 0.03,
      "off": 0,
-     "tank": 3
+     "tank": 4.2
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.57,
+     "rate": 0.62,
      "star3": 0,
-     "off": 9,
-     "tank": 2
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.57,
-     "star3": 0.13,
-     "off": 1,
-     "tank": 6
+     "off": 16.6,
+     "tank": 3.7
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.57,
+     "rate": 0.48,
      "star3": 0,
-     "off": 11,
-     "tank": 0
+     "off": 16.2,
+     "tank": 1.2
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.48,
+     "star3": 0.08,
+     "off": 1.6,
+     "tank": 7.2
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.47,
+     "star3": 0,
+     "off": 6.9,
+     "tank": 1.7
     },
     {
      "id": "da_18_yorick",
@@ -14970,45 +16013,38 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_kennen",
-     "rate": 0.43,
-     "star3": 0,
-     "off": 4,
-     "tank": 0
+     "id": "da_18_reksai",
+     "rate": 0.39,
+     "star3": 0.27,
+     "off": 0.6,
+     "tank": 9.5
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.36,
-     "star3": 0.4,
-     "off": 4,
-     "tank": 1
-    },
-    {
-     "id": "da_18_reksai",
-     "rate": 0.36,
-     "star3": 0.2,
-     "off": 0,
-     "tank": 6
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.14,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 0
+     "rate": 0.35,
+     "star3": 0.41,
+     "off": 7.5,
+     "tank": 1.6
     },
     {
      "id": "da_18_alune",
-     "rate": 0.14,
+     "rate": 0.21,
      "star3": 0,
-     "off": 3,
+     "off": 5.3,
      "tank": 0
     },
     {
      "id": "da_18_leblanc",
      "rate": 0.14,
-     "star3": 0.5,
+     "star3": 0.58,
      "off": 2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.14,
+     "star3": 0.73,
+     "off": 0,
      "tank": 0
     }
    ],
@@ -15019,8 +16055,8 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
-     "games": 2,
-     "avgPlace": 5
+     "games": 3,
+     "avgPlace": 5.23
     },
     "da_18_malphite": {
      "items": [
@@ -15059,100 +16095,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_azir",
      "rate": 1,
-     "star3": 0.76,
-     "off": 62,
+     "star3": 0.78,
+     "off": 161.6,
      "tank": 0
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.95,
+     "rate": 0.93,
      "star3": 0,
-     "off": 18,
-     "tank": 2
+     "off": 53.5,
+     "tank": 3.2
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.9,
-     "star3": 0.42,
-     "off": 5,
-     "tank": 15
+     "rate": 0.89,
+     "star3": 0.36,
+     "off": 12.6,
+     "tank": 38.9
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.86,
+     "rate": 0.85,
      "star3": 0,
-     "off": 29,
-     "tank": 2
+     "off": 83.7,
+     "tank": 5.5
     },
     {
      "id": "da_18_veigar",
      "rate": 0.81,
-     "star3": 0,
+     "star3": 0.01,
      "off": 0,
-     "tank": 0
+     "tank": 0.6
     },
     {
      "id": "da_18_rammus",
-     "rate": 0.76,
-     "star3": 0.75,
-     "off": 1,
-     "tank": 47
+     "rate": 0.78,
+     "star3": 0.8,
+     "off": 2.7,
+     "tank": 124.4
     },
     {
      "id": "da_18_teemo",
-     "rate": 0.71,
-     "star3": 0.27,
-     "off": 0,
+     "rate": 0.74,
+     "star3": 0.33,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.33,
+     "rate": 0.4,
      "star3": 0,
-     "off": 10,
-     "tank": 3
+     "off": 17.6,
+     "tank": 4.2
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 4.1,
+     "tank": 1
     },
     {
      "id": "da_18_yorick",
      "rate": 0.19,
-     "star3": 0,
+     "star3": 0.17,
      "off": 0,
-     "tank": 0
+     "tank": 5.2
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.19,
+     "rate": 0.16,
      "star3": 0,
-     "off": 1,
-     "tank": 7
+     "off": 2.2,
+     "tank": 15.2
     },
     {
      "id": "da_18_yunara",
-     "rate": 0.14,
+     "rate": 0.15,
      "star3": 0.33,
-     "off": 3,
-     "tank": 1
-    },
-    {
-     "id": "da_18_ezreal",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 0,
+     "off": 7.7,
      "tank": 1
     },
     {
      "id": "da_amumu18",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_lillia",
      "rate": 0.1,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 3.9
+    },
+    {
+     "id": "da_18_khazix",
+     "rate": 0.05,
+     "star3": 0.8,
+     "off": 2.3,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -15162,17 +16198,17 @@ window.TFT_WEIGHTS = {
       "DA_HextechGunblade",
       "DA_RabadonsDeathcap"
      ],
-     "games": 5,
-     "avgPlace": 4
+     "games": 16,
+     "avgPlace": 3.09
     },
     "da_18_rammus": {
      "items": [
       "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
+      "DA_GargoyleStoneplate"
      ],
-     "games": 3,
-     "avgPlace": 2.67
+     "games": 8,
+     "avgPlace": 2.65
     }
    },
    "now": {
@@ -15200,113 +16236,113 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_sett",
-     "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 18
-    },
-    {
      "id": "da_nidalee18_ap",
      "rate": 1,
      "star3": 0,
-     "off": 38,
+     "off": 69.4,
      "tank": 0
     },
     {
+     "id": "da_18_sett",
+     "rate": 0.95,
+     "star3": 0,
+     "off": 3.3,
+     "tank": 29.6
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.91,
+     "star3": 0.13,
+     "off": 1.7,
+     "tank": 23.1
+    },
+    {
      "id": "da_18_masteryi_ad",
-     "rate": 0.92,
-     "star3": 0.5,
-     "off": 22,
-     "tank": 2
+     "rate": 0.91,
+     "star3": 0.69,
+     "off": 39.5,
+     "tank": 3.7
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.85,
+     "rate": 0.84,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_vi18",
-     "rate": 0.85,
-     "star3": 0.27,
-     "off": 0,
-     "tank": 16
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.85,
-     "star3": 0.09,
-     "off": 0,
-     "tank": 12
+     "rate": 0.84,
+     "star3": 0.36,
+     "off": 0.6,
+     "tank": 27.6
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.85,
-     "star3": 0.18,
-     "off": 12,
-     "tank": 2
+     "rate": 0.82,
+     "star3": 0.13,
+     "off": 21.9,
+     "tank": 2.6
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.38,
+     "rate": 0.34,
      "star3": 0,
      "off": 1,
-     "tank": 0
+     "tank": 0.6
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.31,
-     "star3": 0.75,
-     "off": 5,
-     "tank": 2
+     "rate": 0.27,
+     "star3": 0.66,
+     "off": 10.2,
+     "tank": 3.2
     },
     {
      "id": "da_18_kobuko",
-     "rate": 0.23,
+     "rate": 0.2,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.15,
+     "rate": 0.09,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_gnarsmall",
-     "rate": 0.08,
+     "id": "da_18_reksai",
+     "rate": 0.07,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.08,
+     "rate": 0.07,
      "star3": 0,
      "off": 3,
      "tank": 0
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.08,
+     "id": "da_18_gnarsmall",
+     "rate": 0.07,
      "star3": 0,
      "off": 0,
-     "tank": 2
+     "tank": 0
     }
    ],
    "builds": {
     "da_nidalee18_ap": {
      "items": [
-      "DA_GuinsoosRageblade",
-      "DA_JeweledGauntlet",
-      "DA_RedBuff"
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
      ],
      "games": 1,
-     "avgPlace": 7
+     "avgPlace": 3
     },
     "da_18_sett": {
      "items": [
@@ -15333,7 +16369,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Brawler",
    "carry": "da_18_rengar",
    "mainCarry": "da_18_rengar",
-   "mainTank": "da_krug18",
+   "mainTank": "da_vi18",
    "games": 12,
    "avgPlace": 3.96,
    "top4": 0.635,
@@ -15346,64 +16382,64 @@ window.TFT_WEIGHTS = {
      "id": "da_18_rengar",
      "rate": 1,
      "star3": 0.83,
-     "off": 35,
-     "tank": 1
-    },
-    {
-     "id": "da_18_masteryi_ad",
-     "rate": 1,
-     "star3": 0.75,
-     "off": 25,
-     "tank": 0
+     "off": 92.6,
+     "tank": 3.3
     },
     {
      "id": "da_krug18",
      "rate": 1,
-     "star3": 0.42,
-     "off": 0,
-     "tank": 15
+     "star3": 0.31,
+     "off": 5.8,
+     "tank": 34.8
+    },
+    {
+     "id": "da_18_masteryi_ad",
+     "rate": 1,
+     "star3": 0.79,
+     "off": 62.8,
+     "tank": 4.7
     },
     {
      "id": "da_18_sett",
-     "rate": 1,
+     "rate": 0.95,
      "star3": 0,
-     "off": 1,
-     "tank": 15
+     "off": 3.3,
+     "tank": 29
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.75,
+     "rate": 0.87,
      "star3": 0,
      "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.75,
-     "star3": 0.33,
-     "off": 17,
      "tank": 1
     },
     {
      "id": "da_vi18",
-     "rate": 0.58,
-     "star3": 0.71,
-     "off": 1,
-     "tank": 10
+     "rate": 0.78,
+     "star3": 0.6,
+     "off": 2.7,
+     "tank": 39.7
     },
     {
-     "id": "da_18_alistar",
-     "rate": 0.58,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "id": "da_kogmaw18_ad",
+     "rate": 0.71,
+     "star3": 0.3,
+     "off": 37.4,
+     "tank": 1.6
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.33,
+     "rate": 0.47,
      "star3": 0,
-     "off": 4,
-     "tank": 1
+     "off": 12.2,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
     },
     {
      "id": "da_18_reksai",
@@ -15413,29 +16449,29 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
+     "id": "da_18_kobuko",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
      "id": "da_18_gnarsmall",
-     "rate": 0.08,
+     "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.08,
+     "rate": 0.03,
      "star3": 0,
      "off": 1,
      "tank": 1
     },
     {
-     "id": "da_18_kobuko",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_ashe",
-     "rate": 0.08,
+     "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -15448,17 +16484,17 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_HandOfJustice"
      ],
-     "games": 2,
-     "avgPlace": 3.5
+     "games": 3,
+     "avgPlace": 2.58
     },
-    "da_krug18": {
+    "da_vi18": {
      "items": [
-      "DA_DragonsClaw",
+      "DA_EdgeOfNight",
       "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
+      "DA_SpiritVisage"
      ],
      "games": 1,
-     "avgPlace": 3
+     "avgPlace": 2
     }
    },
    "now": {
@@ -15486,102 +16522,102 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_amumu18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 13
-    },
-    {
      "id": "da_18_ashe",
      "rate": 1,
      "star3": 0,
-     "off": 36,
-     "tank": 0
+     "off": 97.1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.97,
+     "star3": 0,
+     "off": 3.5,
+     "tank": 46.8
     },
     {
      "id": "da_vi18",
-     "rate": 0.92,
+     "rate": 0.94,
      "star3": 0,
-     "off": 0,
-     "tank": 9
+     "off": 1.2,
+     "tank": 17.2
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.92,
+     "rate": 0.94,
      "star3": 0,
-     "off": 24,
+     "off": 61.8,
      "tank": 1
     },
     {
      "id": "da_18_maokai",
      "rate": 0.92,
      "star3": 0,
-     "off": 1,
-     "tank": 19
+     "off": 3.9,
+     "tank": 51.6
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.67,
+     "rate": 0.59,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 6
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.67,
+     "rate": 0.57,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_elderdragon",
-     "rate": 0.42,
-     "star3": 0,
-     "off": 13,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 0.6,
+     "tank": 2.3
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.25,
+     "rate": 0.38,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.17,
+     "id": "da_18_elderdragon",
+     "rate": 0.34,
      "star3": 0,
-     "off": 0,
+     "off": 23.5,
      "tank": 0
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.17,
+     "id": "da_18_kennen",
+     "rate": 0.28,
      "star3": 0,
-     "off": 5,
-     "tank": 1
+     "off": 7.2,
+     "tank": 1.2
     },
     {
      "id": "da_taric18",
-     "rate": 0.17,
+     "rate": 0.23,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 5.8
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.19,
      "star3": 0,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 0,
+     "tank": 1
     }
    ],
    "builds": {
@@ -15591,8 +16627,8 @@ window.TFT_WEIGHTS = {
       "DA_RedBuff",
       "DA_SpearOfShojin"
      ],
-     "games": 2,
-     "avgPlace": 1.5
+     "games": 5,
+     "avgPlace": 1.68
     },
     "da_18_maokai": {
      "items": [
@@ -15600,8 +16636,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 1.5
+     "games": 3,
+     "avgPlace": 3.34
     }
    },
    "now": {
@@ -15631,50 +16667,50 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_leona",
      "rate": 1,
-     "star3": 0.95,
-     "off": 3,
-     "tank": 12
-    },
-    {
-     "id": "da_18_xayah",
-     "rate": 1,
-     "star3": 0.95,
-     "off": 42,
-     "tank": 0
+     "star3": 0.92,
+     "off": 4.7,
+     "tank": 24.8
     },
     {
      "id": "da_18_kayle",
      "rate": 1,
      "star3": 1,
-     "off": 57,
+     "off": 119.3,
      "tank": 0
     },
     {
      "id": "da_18_sejuani",
      "rate": 1,
-     "star3": 0.63,
-     "off": 0,
-     "tank": 24
+     "star3": 0.62,
+     "off": 4.7,
+     "tank": 46.7
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.96,
+     "star3": 0.91,
+     "off": 87.4,
+     "tank": 0.6
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.84,
-     "star3": 0.94,
-     "off": 3,
-     "tank": 32
+     "rate": 0.88,
+     "star3": 0.89,
+     "off": 6.5,
+     "tank": 70.4
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.58,
-     "star3": 1,
-     "off": 1,
-     "tank": 18
+     "rate": 0.57,
+     "star3": 0.97,
+     "off": 2.7,
+     "tank": 29.1
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.42,
+     "rate": 0.52,
      "star3": 0,
-     "off": 12,
+     "off": 23.1,
      "tank": 1
     },
     {
@@ -15686,45 +16722,45 @@ window.TFT_WEIGHTS = {
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.32,
+     "rate": 0.31,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 0
     },
     {
      "id": "da_18_varus",
-     "rate": 0.26,
-     "star3": 0.6,
-     "off": 4,
+     "rate": 0.27,
+     "star3": 0.65,
+     "off": 13.3,
      "tank": 0
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.11,
+     "id": "da_crimsonraptor18",
+     "rate": 0.15,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_leblanc",
      "rate": 0.11,
      "star3": 0.5,
-     "off": 0,
+     "off": 2.3,
      "tank": 0
     },
     {
-     "id": "da_crimsonraptor18",
-     "rate": 0.11,
+     "id": "da_18_lillia",
+     "rate": 0.09,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_fiddlesticks18",
-     "rate": 0.05,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "id": "da_18_shen",
+     "rate": 0.04,
+     "star3": 1,
+     "off": 0.6,
+     "tank": 4.7
     }
    ],
    "builds": {
@@ -15732,10 +16768,10 @@ window.TFT_WEIGHTS = {
      "items": [
       "DA_GuinsoosRageblade",
       "DA_HextechGunblade",
-      "DA_RabadonsDeathcap"
+      "DA_JeweledGauntlet"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 1.73
     },
     "da_18_rakan": {
      "items": [
@@ -15743,8 +16779,8 @@ window.TFT_WEIGHTS = {
       "DA_ProtectorsVow",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 6
+     "games": 5,
+     "avgPlace": 5.17
     }
    },
    "now": {
@@ -15774,85 +16810,78 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_leblanc",
      "rate": 1,
-     "star3": 1,
-     "off": 80,
-     "tank": 1
-    },
-    {
-     "id": "da_18_veigar",
-     "rate": 0.96,
-     "star3": 0.96,
-     "off": 70,
-     "tank": 1
+     "star3": 0.95,
+     "off": 207.5,
+     "tank": 1.6
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.96,
-     "star3": 0.65,
-     "off": 4,
-     "tank": 47
+     "rate": 0.97,
+     "star3": 0.75,
+     "off": 13.9,
+     "tank": 135.5
     },
     {
-     "id": "da_18_reksai",
-     "rate": 0.93,
-     "star3": 0.96,
-     "off": 4,
-     "tank": 32
+     "id": "da_18_veigar",
+     "rate": 0.97,
+     "star3": 0.98,
+     "off": 183.5,
+     "tank": 2.2
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.93,
-     "star3": 0.96,
-     "off": 6,
-     "tank": 35
+     "rate": 0.95,
+     "star3": 0.98,
+     "off": 14.7,
+     "tank": 89.7
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.93,
-     "star3": 0.08,
-     "off": 2,
-     "tank": 9
+     "rate": 0.95,
+     "star3": 0.06,
+     "off": 13.6,
+     "tank": 20.6
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.95,
+     "star3": 0.93,
+     "off": 11.6,
+     "tank": 80.9
     },
     {
      "id": "da_18_cassiopeia",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 6,
-     "tank": 0
+     "rate": 0.71,
+     "star3": 0.02,
+     "off": 17.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_alune",
-     "rate": 0.22,
+     "rate": 0.21,
      "star3": 0,
-     "off": 10,
-     "tank": 0
+     "off": 18.7,
+     "tank": 1.2
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.19,
+     "rate": 0.2,
      "star3": 0,
-     "off": 1,
+     "off": 2.7,
      "tank": 0
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.11,
+     "rate": 0.08,
      "star3": 0,
-     "off": 0,
+     "off": 1.7,
      "tank": 0
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.07,
+     "id": "da_18_zyra",
+     "rate": 0.04,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_teemo",
-     "rate": 0.07,
-     "star3": 0.5,
-     "off": 2,
+     "off": 2.9,
      "tank": 0
     },
     {
@@ -15860,13 +16889,20 @@ window.TFT_WEIGHTS = {
      "rate": 0.04,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 4.2
     },
     {
-     "id": "da_18_sett",
+     "id": "da_karma18",
      "rate": 0.04,
-     "star3": 0,
-     "off": 0,
+     "star3": 0.58,
+     "off": 3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_teemo",
+     "rate": 0.04,
+     "star3": 0.39,
+     "off": 3.2,
      "tank": 0
     }
    ],
@@ -15877,17 +16913,17 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
-     "games": 3,
-     "avgPlace": 2
+     "games": 4,
+     "avgPlace": 3.26
     },
     "da_18_alistar": {
      "items": [
-      "DA_BrambleVest",
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate"
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor",
+      "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 4.5
+     "games": 3,
+     "avgPlace": 2.7
     }
    },
    "now": {
@@ -15917,100 +16953,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_teemo",
      "rate": 1,
-     "star3": 1,
-     "off": 136,
+     "star3": 0.98,
+     "off": 296.7,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_veigar",
+     "rate": 0.9,
+     "star3": 0.26,
+     "off": 19.7,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.91,
+     "rate": 0.88,
      "star3": 0,
-     "off": 3,
-     "tank": 38
+     "off": 7.1,
+     "tank": 72.9
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.87,
+     "rate": 0.84,
      "star3": 0.83,
-     "off": 3,
-     "tank": 103
+     "off": 6.5,
+     "tank": 210.7
     },
     {
      "id": "da_18_kobuko",
-     "rate": 0.87,
+     "rate": 0.84,
      "star3": 0.48,
-     "off": 4,
-     "tank": 26
-    },
-    {
-     "id": "da_18_veigar",
-     "rate": 0.85,
-     "star3": 0.21,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.85,
-     "star3": 0.03,
-     "off": 4,
-     "tank": 25
+     "off": 8.1,
+     "tank": 51.6
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.83,
-     "star3": 0.71,
-     "off": 61,
-     "tank": 6
+     "rate": 0.8,
+     "star3": 0.69,
+     "off": 123.3,
+     "tank": 10.1
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.8,
+     "star3": 0.03,
+     "off": 9.2,
+     "tank": 52.4
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.8,
+     "rate": 0.78,
      "star3": 0,
-     "off": 62,
-     "tank": 3
+     "off": 142.9,
+     "tank": 8.2
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.24,
+     "rate": 0.28,
      "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 6.7,
+     "tank": 0.6
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.22,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 1,
-     "tank": 6
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.19,
+     "star3": 0.03,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_rammus",
-     "rate": 0.07,
-     "star3": 0.67,
+     "rate": 0.11,
+     "star3": 0.69,
      "off": 0,
-     "tank": 9
+     "tank": 27.6
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.11,
+     "star3": 0.06,
+     "off": 5.7,
+     "tank": 6.5
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.08,
+     "star3": 0.08,
+     "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 6
     }
    ],
    "builds": {
@@ -16020,8 +17056,8 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 7,
-     "avgPlace": 3.43
+     "games": 17,
+     "avgPlace": 3.77
     },
     "da_18_alistar": {
      "items": [
@@ -16029,8 +17065,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 7,
-     "avgPlace": 3.86
+     "games": 10,
+     "avgPlace": 3.68
     }
    },
    "now": {
@@ -16058,102 +17094,102 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_ezreal",
-     "rate": 1,
-     "star3": 0,
-     "off": 164,
-     "tank": 5
-    },
-    {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 251,
+     "off": 642.2,
      "tank": 0
     },
     {
+     "id": "da_18_ezreal",
+     "rate": 0.98,
+     "star3": 0,
+     "off": 390.5,
+     "tank": 9.1
+    },
+    {
      "id": "da_18_alistar",
-     "rate": 0.93,
+     "rate": 0.9,
      "star3": 0.01,
-     "off": 2,
-     "tank": 3
+     "off": 6.1,
+     "tank": 11.7
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.75,
+     "rate": 0.73,
      "star3": 0,
-     "off": 38,
-     "tank": 15
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.69,
-     "star3": 0,
-     "off": 2,
-     "tank": 88
+     "off": 103.2,
+     "tank": 36.5
     },
     {
      "id": "da_taric18",
-     "rate": 0.69,
+     "rate": 0.72,
      "star3": 0,
-     "off": 6,
-     "tank": 70
+     "off": 17.1,
+     "tank": 167.8
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.68,
+     "star3": 0,
+     "off": 10.7,
+     "tank": 237
     },
     {
      "id": "da_amumu18",
      "rate": 0.68,
      "star3": 0,
-     "off": 3,
-     "tank": 54
+     "off": 8.8,
+     "tank": 139.6
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.59,
+     "rate": 0.61,
      "star3": 0,
-     "off": 17,
-     "tank": 1
+     "off": 51.9,
+     "tank": 6.2
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.39,
-     "star3": 0,
-     "off": 2,
-     "tank": 21
+     "rate": 0.4,
+     "star3": 0.01,
+     "off": 6.7,
+     "tank": 58.3
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.27,
+     "rate": 0.28,
      "star3": 0.04,
      "off": 0,
-     "tank": 1
+     "tank": 1.6
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 44.4,
+     "tank": 8.5
     },
     {
      "id": "da_18_xayah",
-     "rate": 0.26,
-     "star3": 0,
+     "rate": 0.23,
+     "star3": 0.01,
      "off": 2,
      "tank": 0
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.24,
-     "star3": 0,
-     "off": 13,
-     "tank": 5
-    },
-    {
      "id": "da_18_lillia",
-     "rate": 0.24,
+     "rate": 0.23,
      "star3": 0,
-     "off": 1,
-     "tank": 41
+     "off": 3.3,
+     "tank": 99.2
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.21,
+     "rate": 0.17,
      "star3": 0,
      "off": 0,
-     "tank": 10
+     "tank": 26.9
     }
    ],
    "builds": {
@@ -16163,17 +17199,17 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_KrakensFury"
      ],
-     "games": 14,
-     "avgPlace": 4.57
+     "games": 30,
+     "avgPlace": 4.3
     },
     "da_18_maokai": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 1
+     "games": 5,
+     "avgPlace": 3.75
     }
    },
    "now": {
@@ -16204,36 +17240,36 @@ window.TFT_WEIGHTS = {
      "id": "da_18_camille",
      "rate": 1,
      "star3": 1,
-     "off": 6,
-     "tank": 0
+     "off": 15.9,
+     "tank": 0.6
     },
     {
      "id": "da_18_leona",
      "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_akali_ad",
-     "rate": 1,
-     "star3": 1,
-     "off": 5,
-     "tank": 0
+     "star3": 0.89,
+     "off": 0.6,
+     "tank": 4.1
     },
     {
      "id": "da_18_ornn",
      "rate": 1,
      "star3": 1,
-     "off": 0,
-     "tank": 6
+     "off": 0.6,
+     "tank": 11.8
+    },
+    {
+     "id": "da_18_akali_ad",
+     "rate": 1,
+     "star3": 1,
+     "off": 13.7,
+     "tank": 0
     },
     {
      "id": "da_18_varus",
      "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 0
+     "star3": 0.89,
+     "off": 6.4,
+     "tank": 0.6
     },
     {
      "id": "da_18_kayle",
@@ -16244,15 +17280,8 @@ window.TFT_WEIGHTS = {
     },
     {
      "id": "da_18_sejuani",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.5,
-     "star3": 0,
+     "rate": 0.89,
+     "star3": 0.12,
      "off": 0,
      "tank": 0
     },
@@ -16260,12 +17289,26 @@ window.TFT_WEIGHTS = {
      "id": "da_18_aphelios",
      "rate": 0.5,
      "star3": 0,
-     "off": 3,
+     "off": 4.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_diana",
-     "rate": 0.5,
+     "rate": 0.18,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.11,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -16318,111 +17361,111 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_warwick",
      "rate": 1,
-     "star3": 0.89,
-     "off": 50,
-     "tank": 7
-    },
-    {
-     "id": "da_murkwolf18",
-     "rate": 0.89,
-     "star3": 0.59,
-     "off": 11,
-     "tank": 1
+     "star3": 0.9,
+     "off": 96.6,
+     "tank": 16.9
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.89,
-     "star3": 0.24,
-     "off": 1,
-     "tank": 11
+     "rate": 0.9,
+     "star3": 0.17,
+     "off": 1.6,
+     "tank": 21.5
     },
     {
-     "id": "da_18_azir",
-     "rate": 0.63,
-     "star3": 0,
-     "off": 6,
-     "tank": 0
+     "id": "da_murkwolf18",
+     "rate": 0.9,
+     "star3": 0.7,
+     "off": 21.5,
+     "tank": 1
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.58,
+     "rate": 0.68,
+     "star3": 0.02,
+     "off": 3.6,
+     "tank": 52.5
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.66,
      "star3": 0,
-     "off": 3,
-     "tank": 24
+     "off": 15.3,
+     "tank": 0.6
     },
     {
      "id": "da_brambleback18",
-     "rate": 0.58,
+     "rate": 0.56,
      "star3": 0,
-     "off": 16,
-     "tank": 2
+     "off": 30.6,
+     "tank": 2.6
     },
     {
      "id": "da_krug18",
-     "rate": 0.42,
-     "star3": 0.13,
-     "off": 0,
-     "tank": 0
+     "rate": 0.41,
+     "star3": 0.1,
+     "off": 1.2,
+     "tank": 7.6
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.37,
-     "star3": 0.57,
-     "off": 0,
-     "tank": 16
-    },
-    {
-     "id": "da_18_yunara",
-     "rate": 0.26,
-     "star3": 0.2,
-     "off": 8,
-     "tank": 0
+     "rate": 0.32,
+     "star3": 0.71,
+     "off": 0.6,
+     "tank": 30
     },
     {
      "id": "da_18_diana",
-     "rate": 0.26,
-     "star3": 0,
-     "off": 1,
+     "rate": 0.3,
+     "star3": 0.05,
+     "off": 2.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_yunara",
+     "rate": 0.28,
+     "star3": 0.58,
+     "off": 19.6,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.21,
+     "rate": 0.2,
      "star3": 0,
-     "off": 7,
-     "tank": 1
+     "off": 13.4,
+     "tank": 1.6
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.16,
-     "star3": 0.33,
+     "rate": 0.19,
+     "star3": 0.14,
      "off": 1,
      "tank": 0
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.11,
+     "rate": 0.1,
      "star3": 0,
-     "off": 3,
+     "off": 6.5,
      "tank": 0
     },
     {
-     "id": "da_18_akali_ad",
-     "rate": 0.11,
+     "id": "da_18_sett",
+     "rate": 0.09,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 2.7,
+     "tank": 2.6
     }
    ],
    "builds": {
     "da_18_warwick": {
      "items": [
-      "DA_GiantSlayer",
-      "DA_InfinityEdge",
-      "DA_Quicksilver"
+      "DA_SpearOfShojin",
+      "DA_SteraksGage",
+      "DA_TitansResolve"
      ],
-     "games": 2,
-     "avgPlace": 5
+     "games": 4,
+     "avgPlace": 4.35
     },
     "da_18_malphite": {
      "items": [
@@ -16430,8 +17473,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage"
      ],
-     "games": 2,
-     "avgPlace": 4.5
+     "games": 3,
+     "avgPlace": 3.71
     }
    },
    "now": {
@@ -16449,7 +17492,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_Riftbeast18",
    "carry": "da_18_aphelios",
    "mainCarry": "da_18_aphelios",
-   "mainTank": "da_amumu18",
+   "mainTank": "da_sentinel18",
    "games": 4,
    "avgPlace": 4.12,
    "top4": 0.647,
@@ -16459,99 +17502,99 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 6
-    },
-    {
      "id": "da_18_aphelios",
      "rate": 1,
      "star3": 0,
-     "off": 11,
+     "off": 32,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.95,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 15.3
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.8,
+     "star3": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 1,
+     "rate": 0.58,
      "star3": 0,
      "off": 0,
-     "tank": 8
+     "tank": 14.4
     },
     {
-     "id": "da_18_elderdragon",
-     "rate": 1,
+     "id": "da_kogmaw18_ad",
+     "rate": 0.55,
      "star3": 0,
-     "off": 6,
+     "off": 1.2,
      "tank": 0
     },
     {
-     "id": "da_18_diana",
-     "rate": 0.75,
+     "id": "da_crimsonraptor18",
+     "rate": 0.46,
+     "star3": 0.11,
+     "off": 3.5,
+     "tank": 1.2
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_brambleback18",
+     "rate": 0.42,
+     "star3": 0,
+     "off": 9.3,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 0.42,
+     "star3": 0,
+     "off": 7.7,
+     "tank": 0
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 7.9,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.34,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.5,
+     "rate": 0.24,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_varus",
-     "rate": 0.5,
+     "id": "da_18_zyra",
+     "rate": 0.21,
      "star3": 0,
-     "off": 0,
+     "off": 3.5,
      "tank": 0
     },
     {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 5,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 0.25,
+     "id": "da_scuttlecrab18",
+     "rate": 0.16,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -16560,18 +17603,18 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_aphelios": {
      "items": [
-      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
       "DA_InfinityEdge",
-      "DA_RedBuff"
+      "DA_KrakensFury"
      ],
      "games": 1,
-     "avgPlace": 7
+     "avgPlace": 2.5
     },
-    "da_amumu18": {
+    "da_sentinel18": {
      "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_SunfireCape"
      ],
      "games": 1,
      "avgPlace": 1
@@ -16602,85 +17645,99 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
+     "id": "da_18_yunara",
+     "rate": 1,
+     "star3": 0.77,
+     "off": 117,
+     "tank": 1.2
+    },
+    {
      "id": "da_18_yorick",
      "rate": 1,
-     "star3": 0.93,
-     "off": 5,
-     "tank": 28
+     "star3": 0.91,
+     "off": 10.2,
+     "tank": 65.3
     },
     {
      "id": "da_karma18",
      "rate": 1,
-     "star3": 0.93,
-     "off": 70,
-     "tank": 2
+     "star3": 0.95,
+     "off": 166.1,
+     "tank": 4.9
     },
     {
      "id": "da_18_leblanc",
      "rate": 1,
-     "star3": 0.93,
-     "off": 80,
-     "tank": 1
+     "star3": 0.96,
+     "off": 190,
+     "tank": 1.6
     },
     {
      "id": "da_18_sejuani",
-     "rate": 1,
+     "rate": 0.99,
      "star3": 0.89,
-     "off": 3,
-     "tank": 72
-    },
-    {
-     "id": "da_18_yunara",
-     "rate": 1,
-     "star3": 0.78,
-     "off": 50,
-     "tank": 0
+     "off": 8.2,
+     "tank": 166.3
     },
     {
      "id": "da_18_leona",
-     "rate": 0.85,
-     "star3": 0.48,
-     "off": 4,
-     "tank": 4
+     "rate": 0.9,
+     "star3": 0.5,
+     "off": 9.2,
+     "tank": 6.9
     },
     {
      "id": "da_18_kayle",
-     "rate": 0.85,
-     "star3": 0.22,
-     "off": 2,
+     "rate": 0.88,
+     "star3": 0.2,
+     "off": 6.1,
      "tank": 0
     },
     {
      "id": "da_18_azir",
-     "rate": 0.56,
-     "star3": 0.07,
-     "off": 1,
+     "rate": 0.44,
+     "star3": 0.04,
+     "off": 2.2,
      "tank": 1
     },
     {
-     "id": "da_18_warwick",
-     "rate": 0.04,
+     "id": "da_lux18_base",
+     "rate": 0.05,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.7,
+     "tank": 0.6
     },
     {
      "id": "da_18_lillia",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_fiddlesticks18",
      "rate": 0.04,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.02,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_ornn",
-     "rate": 0.04,
+     "id": "da_18_ivern",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.02,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -16689,12 +17746,12 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_leblanc": {
      "items": [
-      "DA_JeweledGauntlet",
+      "DA_Morellonomicon",
       "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
-     "games": 3,
-     "avgPlace": 3.67
+     "games": 5,
+     "avgPlace": 4.42
     },
     "da_18_sejuani": {
      "items": [
@@ -16702,8 +17759,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 4,
-     "avgPlace": 3.5
+     "games": 9,
+     "avgPlace": 3.37
     }
    },
    "now": {
@@ -16721,7 +17778,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Inferno",
    "carry": "da_18_varus",
    "mainCarry": "da_18_varus",
-   "mainTank": "da_18_sejuani",
+   "mainTank": "da_18_leona",
    "games": 4,
    "avgPlace": 4.14,
    "top4": 0.727,
@@ -16733,77 +17790,98 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_varus",
      "rate": 1,
-     "star3": 1,
-     "off": 11,
+     "star3": 0.95,
+     "off": 35.5,
      "tank": 0
     },
     {
      "id": "da_18_leona",
-     "rate": 1,
-     "star3": 0.75,
+     "rate": 0.95,
+     "star3": 0.81,
      "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_kayle",
-     "rate": 1,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
+     "tank": 13.5
     },
     {
      "id": "da_18_sejuani",
-     "rate": 1,
-     "star3": 0.75,
+     "rate": 0.95,
+     "star3": 0.31,
      "off": 0,
-     "tank": 6
+     "tank": 8.3
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.95,
+     "star3": 0.05,
+     "off": 5.3,
+     "tank": 0
     },
     {
      "id": "da_18_akali_ad",
-     "rate": 0.75,
-     "star3": 1,
-     "off": 5,
+     "rate": 0.82,
+     "star3": 0.94,
+     "off": 22.5,
      "tank": 0
     },
     {
      "id": "da_18_camille",
-     "rate": 0.75,
+     "rate": 0.77,
      "star3": 1,
-     "off": 7,
-     "tank": 1
+     "off": 21.6,
+     "tank": 2.7
     },
     {
      "id": "da_amumu18",
-     "rate": 0.75,
+     "rate": 0.58,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 3.5
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.5,
-     "star3": 1,
+     "rate": 0.55,
+     "star3": 0.91,
      "off": 1,
-     "tank": 0
+     "tank": 7
     },
     {
      "id": "da_18_shen",
-     "rate": 0.5,
-     "star3": 1,
-     "off": 1,
+     "rate": 0.31,
+     "star3": 0.69,
+     "off": 1.6,
      "tank": 4
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.25,
+     "id": "da_18_rakan",
+     "rate": 0.18,
+     "star3": 1,
+     "off": 0,
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.1,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.25,
-     "star3": 1,
+     "id": "da_18_diana",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 2.9,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.08,
+     "star3": 0,
      "off": 0,
      "tank": 0
     }
@@ -16811,21 +17889,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_varus": {
      "items": [
-      "DA_GuinsoosRageblade",
+      "DA_BlueBuff",
       "DA_InfinityEdge",
-      "DA_StrikersFlail"
+      "DA_LastWhisper"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 2,
+     "avgPlace": 4.85
     },
-    "da_18_sejuani": {
+    "da_18_leona": {
      "items": [
-      "DA_Evenshroud",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 2
+     "avgPlace": 3
     }
    },
    "now": {
@@ -16843,7 +17921,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Fae",
    "carry": "da_draven18",
    "mainCarry": "da_draven18",
-   "mainTank": "da_amumu18",
+   "mainTank": "da_18_lillia",
    "games": 4,
    "avgPlace": 4.14,
    "top4": 0.571,
@@ -16853,102 +17931,102 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_rakan",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 10,
-     "tank": 0
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 1,
-     "tank": 3
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_tristana",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 6,
-     "tank": 0
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
+     "off": 30.4,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.75,
+     "rate": 0.77,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 0.6,
+     "tank": 14.1
     },
     {
-     "id": "da_18_sivir",
-     "rate": 0.5,
+     "id": "da_18_rakan",
+     "rate": 0.76,
      "star3": 0,
-     "off": 2,
+     "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.73,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.2
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.68,
+     "star3": 0,
+     "off": 10.1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.68,
+     "star3": 0,
+     "off": 1,
+     "tank": 12.3
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.5,
+     "rate": 0.6,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 11.7
     },
     {
-     "id": "da_18_kennen",
-     "rate": 0.25,
+     "id": "da_vi18",
+     "rate": 0.49,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 2.2
     },
     {
-     "id": "da_18_ezreal",
-     "rate": 0.25,
+     "id": "da_18_shen",
+     "rate": 0.44,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.25,
+     "rate": 0.42,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
+    },
+    {
+     "id": "da_18_tristana",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 2.2,
+     "tank": 1
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 5.5,
+     "tank": 0
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 4.9,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -16958,17 +18036,17 @@ window.TFT_WEIGHTS = {
       "DA_KrakensFury",
       "DA_Quicksilver"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 1.74
     },
-    "da_amumu18": {
+    "da_18_lillia": {
      "items": [
-      "DA_Crownguard",
-      "DA_SteadfastHeart",
+      "DA_ProtectorsVow",
+      "DA_SunfireCape",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 1.74
     }
    },
    "now": {
@@ -16999,75 +18077,82 @@ window.TFT_WEIGHTS = {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 414,
+     "off": 905.4,
      "tank": 1
     },
     {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 353,
-     "tank": 8
+     "off": 758.2,
+     "tank": 13.8
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.98,
+     "rate": 0.97,
      "star3": 0,
-     "off": 5,
-     "tank": 50
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.98,
-     "star3": 0,
-     "off": 11,
-     "tank": 182
+     "off": 17.2,
+     "tank": 117.5
     },
     {
      "id": "da_amumu18",
      "rate": 0.97,
      "star3": 0,
-     "off": 9,
-     "tank": 81
+     "off": 18.9,
+     "tank": 170.7
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 27.9,
+     "tank": 357.8
     },
     {
      "id": "da_18_maokai",
      "rate": 0.95,
      "star3": 0,
-     "off": 15,
-     "tank": 225
+     "off": 24.3,
+     "tank": 500.4
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.93,
+     "rate": 0.91,
      "star3": 0,
-     "off": 78,
-     "tank": 9
+     "off": 148.4,
+     "tank": 36.9
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.9,
+     "rate": 0.91,
      "star3": 0,
-     "off": 65,
-     "tank": 15
+     "off": 154.7,
+     "tank": 26.6
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.07,
+     "rate": 0.09,
      "star3": 0,
-     "off": 5,
-     "tank": 1
+     "off": 13.2,
+     "tank": 1.6
     },
     {
      "id": "da_18_alune",
-     "rate": 0.04,
+     "rate": 0.05,
      "star3": 0,
-     "off": 5,
-     "tank": 0
+     "off": 10.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 4.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.03,
+     "rate": 0.02,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -17076,33 +18161,26 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ashe",
      "rate": 0.02,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
-     "id": "da_18_ezreal",
+     "id": "da_scuttlecrab18",
      "rate": 0.02,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.02,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 1.2
     }
    ],
    "builds": {
     "da_draven18": {
      "items": [
+      "DA_Deathblade",
       "DA_GuinsoosRageblade",
-      "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 14,
-     "avgPlace": 4
+     "games": 29,
+     "avgPlace": 4.25
     },
     "da_18_maokai": {
      "items": [
@@ -17110,8 +18188,8 @@ window.TFT_WEIGHTS = {
       "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 12,
-     "avgPlace": 3.33
+     "games": 22,
+     "avgPlace": 2.79
     }
    },
    "now": {
@@ -17129,7 +18207,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Brawler",
    "carry": "da_18_veigar",
    "mainCarry": "da_18_veigar",
-   "mainTank": "da_18_alistar",
+   "mainTank": "da_18_ornn",
    "games": 9,
    "avgPlace": 4.16,
    "top4": 0.532,
@@ -17142,119 +18220,119 @@ window.TFT_WEIGHTS = {
      "id": "da_18_veigar",
      "rate": 1,
      "star3": 1,
-     "off": 27,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 1,
-     "star3": 0.22,
-     "off": 1,
-     "tank": 14
+     "off": 70.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.89,
-     "star3": 0.88,
-     "off": 1,
-     "tank": 14
+     "rate": 0.96,
+     "star3": 0.9,
+     "off": 5.7,
+     "tank": 35
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.93,
+     "star3": 0.44,
+     "off": 2.7,
+     "tank": 33.8
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.85,
+     "star3": 1,
+     "off": 3.9,
+     "tank": 36.9
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.89,
-     "star3": 0.38,
-     "off": 8,
+     "rate": 0.83,
+     "star3": 0.51,
+     "off": 15,
      "tank": 0
     },
     {
      "id": "da_18_kobuko",
-     "rate": 0.78,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.74,
+     "star3": 0.03,
+     "off": 0.6,
      "tank": 0
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.67,
-     "star3": 1,
-     "off": 1,
-     "tank": 9
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.67,
+     "rate": 0.6,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 1.7,
+     "tank": 1.6
     },
     {
      "id": "da_18_alune",
-     "rate": 0.44,
+     "rate": 0.34,
      "star3": 0,
-     "off": 12,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.22,
-     "star3": 0,
-     "off": 1,
-     "tank": 2
+     "off": 21.3,
+     "tank": 0.6
     },
     {
      "id": "da_18_cassiopeia",
-     "rate": 0.22,
+     "rate": 0.26,
      "star3": 0,
-     "off": 2,
+     "off": 11.3,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 5.5
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 5.7,
      "tank": 0
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
     },
     {
      "id": "da_krug18",
-     "rate": 0.11,
+     "rate": 0.12,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_gnarsmall",
-     "rate": 0.11,
+     "id": "da_18_ivern",
+     "rate": 0.07,
      "star3": 0,
-     "off": 0,
+     "off": 1.7,
      "tank": 0
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.11,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
     }
    ],
    "builds": {
     "da_18_veigar": {
      "items": [
-      "DA_Artifact_EternalPact",
       "DA_BlueBuff",
+      "DA_HextechGunblade",
       "DA_JeweledGauntlet"
+     ],
+     "games": 4,
+     "avgPlace": 5.87
+    },
+    "da_18_ornn": {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
      "avgPlace": 8
-    },
-    "da_18_alistar": {
-     "items": [
-      "DA_Artifact_TheIndomitable",
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate"
-     ],
-     "games": 1,
-     "avgPlace": 5
     }
    },
    "now": {
@@ -17285,99 +18363,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 32,
+     "off": 58.8,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 1,
+     "rate": 0.97,
      "star3": 0,
-     "off": 0,
-     "tank": 14
+     "off": 1.7,
+     "tank": 23.9
     },
     {
      "id": "da_taric18",
-     "rate": 0.91,
+     "rate": 0.92,
      "star3": 0,
-     "off": 0,
-     "tank": 16
-    },
-    {
-     "id": "da_18_elise",
-     "rate": 0.64,
-     "star3": 0.14,
-     "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.55,
-     "star3": 0,
-     "off": 8,
-     "tank": 1
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.55,
-     "star3": 0,
-     "off": 6,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.55,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.45,
-     "star3": 0.2,
-     "off": 1,
-     "tank": 0
+     "off": 1.7,
+     "tank": 26.5
     },
     {
      "id": "da_draven18",
-     "rate": 0.36,
+     "rate": 0.48,
      "star3": 0,
-     "off": 8,
+     "off": 22,
      "tank": 1
     },
     {
-     "id": "da_18_alune",
-     "rate": 0.36,
+     "id": "da_18_rakan",
+     "rate": 0.48,
+     "star3": 0.1,
+     "off": 1.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_elise",
+     "rate": 0.46,
+     "star3": 0.11,
+     "off": 2.2,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.44,
      "star3": 0,
-     "off": 6,
-     "tank": 3
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.44,
+     "star3": 0,
+     "off": 9.7,
+     "tank": 2.2
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.41,
+     "star3": 0,
+     "off": 11.2,
+     "tank": 0
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.27,
+     "rate": 0.41,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 1.7
     },
     {
      "id": "da_amumu18",
-     "rate": 0.27,
+     "rate": 0.38,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
+     "tank": 3.3
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 11.2,
+     "tank": 3.6
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 5.3,
      "tank": 1
     },
     {
-     "id": "da_18_cassiopeia",
-     "rate": 0.27,
+     "id": "da_18_maokai",
+     "rate": 0.3,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.18,
-     "star3": 0,
-     "off": 4,
-     "tank": 0
+     "tank": 8.4
     }
    ],
    "builds": {
@@ -17387,17 +18465,17 @@ window.TFT_WEIGHTS = {
       "DA_LastWhisper",
       "DA_StrikersFlail"
      ],
-     "games": 2,
-     "avgPlace": 4
+     "games": 3,
+     "avgPlace": 4.23
     },
     "da_taric18": {
      "items": [
       "DA_BrambleVest",
-      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 7
+     "avgPlace": 2.5
     }
    },
    "now": {
@@ -17422,74 +18500,67 @@ window.TFT_WEIGHTS = {
    "win": 0.122,
    "patchGames": 13,
    "playRate": 0.0025,
-   "level": 7,
+   "level": 8,
    "core": [
     {
      "id": "da_18_cassiopeia",
      "rate": 1,
-     "star3": 0.38,
-     "off": 39,
+     "star3": 0.48,
+     "off": 86.2,
      "tank": 0
-    },
-    {
-     "id": "da_18_veigar",
-     "rate": 0.92,
-     "star3": 1,
-     "off": 28,
-     "tank": 4
-    },
-    {
-     "id": "da_18_reksai",
-     "rate": 0.92,
-     "star3": 1,
-     "off": 1,
-     "tank": 17
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.92,
-     "star3": 0.92,
-     "off": 2,
-     "tank": 13
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 0.92,
-     "star3": 0.58,
-     "off": 4,
-     "tank": 1
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.92,
-     "star3": 0.17,
-     "off": 7,
+     "rate": 0.97,
+     "star3": 0.14,
+     "off": 9.3,
+     "tank": 5.1
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.9,
+     "star3": 0.58,
+     "off": 8.1,
      "tank": 1
     },
     {
+     "id": "da_18_ornn",
+     "rate": 0.82,
+     "star3": 0.86,
+     "off": 6.7,
+     "tank": 26.4
+    },
+    {
+     "id": "da_18_veigar",
+     "rate": 0.78,
+     "star3": 1,
+     "off": 54.8,
+     "tank": 5.2
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.78,
+     "star3": 0.92,
+     "off": 6.2,
+     "tank": 31.6
+    },
+    {
      "id": "da_18_alistar",
-     "rate": 0.85,
-     "star3": 0.82,
-     "off": 4,
-     "tank": 24
+     "rate": 0.71,
+     "star3": 0.76,
+     "off": 6.3,
+     "tank": 40.9
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.23,
+     "rate": 0.25,
      "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_soraka",
-     "rate": 0.15,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 9.6,
+     "tank": 0.6
     },
     {
      "id": "da_karma18",
-     "rate": 0.15,
+     "rate": 0.17,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -17498,29 +18569,36 @@ window.TFT_WEIGHTS = {
      "id": "da_18_sett",
      "rate": 0.15,
      "star3": 0,
-     "off": 2,
-     "tank": 3
+     "off": 2.6,
+     "tank": 7.7
     },
     {
-     "id": "da_18_gnarsmall",
-     "rate": 0.08,
+     "id": "da_18_alune",
+     "rate": 0.14,
      "star3": 0,
-     "off": 3,
+     "off": 8.2,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 2.2,
      "tank": 0
     },
     {
-     "id": "da_18_kobuko",
-     "rate": 0.08,
+     "id": "da_18_diana",
+     "rate": 0.1,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
-     "id": "da_18_rammus",
-     "rate": 0.08,
+     "id": "da_lux18_base",
+     "rate": 0.1,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 0.6,
+     "tank": 0
     }
    ],
    "builds": {
@@ -17530,17 +18608,17 @@ window.TFT_WEIGHTS = {
       "DA_RedBuff",
       "DA_SpearOfShojin"
      ],
-     "games": 2,
+     "games": 3,
      "avgPlace": 2
     },
     "da_18_alistar": {
      "items": [
       "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 3
     }
    },
    "now": {
@@ -17568,85 +18646,92 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_krug18",
-     "rate": 1,
-     "star3": 0.36,
-     "off": 0,
-     "tank": 14
-    },
-    {
      "id": "da_gromp18_ap",
      "rate": 1,
      "star3": 0.91,
-     "off": 33,
+     "off": 69.7,
      "tank": 0
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.92,
+     "star3": 0.54,
+     "off": 1.7,
+     "tank": 31.5
     },
     {
      "id": "da_sentinel18",
      "rate": 0.91,
      "star3": 0,
-     "off": 1,
-     "tank": 11
-    },
-    {
-     "id": "da_18_sentry",
-     "rate": 0.73,
-     "star3": 0.38,
-     "off": 8,
-     "tank": 1
+     "off": 2.2,
+     "tank": 21.5
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.73,
-     "star3": 0.25,
+     "rate": 0.82,
+     "star3": 0.38,
      "off": 1,
-     "tank": 5
+     "tank": 14.3
+    },
+    {
+     "id": "da_18_sentry",
+     "rate": 0.72,
+     "star3": 0.49,
+     "off": 20.8,
+     "tank": 1
     },
     {
      "id": "da_brambleback18",
-     "rate": 0.73,
+     "rate": 0.65,
      "star3": 0,
-     "off": 18,
-     "tank": 2
-    },
-    {
-     "id": "da_18_elderdragon",
-     "rate": 0.64,
-     "star3": 0,
-     "off": 11,
-     "tank": 0
+     "off": 30.8,
+     "tank": 2.6
     },
     {
      "id": "da_murkwolf18",
-     "rate": 0.64,
+     "rate": 0.6,
+     "star3": 0.08,
+     "off": 0.6,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 0.58,
      "star3": 0,
-     "off": 0,
+     "off": 26.7,
      "tank": 0
     },
     {
      "id": "da_18_sett",
-     "rate": 0.45,
+     "rate": 0.32,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 4
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.27,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_kogmaw18_ad",
-     "rate": 0.18,
+     "rate": 0.24,
      "star3": 0,
      "off": 3,
      "tank": 0
     },
     {
+     "id": "da_18_rakan",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.14,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
      "id": "da_cinderling18",
-     "rate": 0.18,
+     "rate": 0.14,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -17657,33 +18742,26 @@ window.TFT_WEIGHTS = {
      "star3": 0,
      "off": 0,
      "tank": 0
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
     }
    ],
    "builds": {
     "da_gromp18_ap": {
      "items": [
       "DA_JeweledGauntlet",
-      "DA_StrikersFlail",
-      "DA_VoidStaff"
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 4.73
     },
     "da_krug18": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 3,
+     "avgPlace": 4.46
     }
    },
    "now": {
@@ -17714,110 +18792,110 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ashe",
      "rate": 1,
      "star3": 0,
-     "off": 27,
+     "off": 76.5,
      "tank": 0
     },
     {
      "id": "da_18_sett",
-     "rate": 1,
+     "rate": 0.91,
      "star3": 0,
-     "off": 2,
-     "tank": 18
+     "off": 6.7,
+     "tank": 47.1
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.89,
+     "rate": 0.74,
      "star3": 0,
-     "off": 15,
-     "tank": 1
-    },
-    {
-     "id": "da_18_sivir",
-     "rate": 0.78,
-     "star3": 0,
-     "off": 3,
-     "tank": 1
+     "off": 38.9,
+     "tank": 2.7
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.78,
+     "rate": 0.73,
+     "star3": 0.06,
+     "off": 1.2,
+     "tank": 2.9
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.59,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 12.3,
+     "tank": 1
     },
     {
      "id": "da_vi18",
-     "rate": 0.56,
-     "star3": 0,
+     "rate": 0.43,
+     "star3": 0.05,
      "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.44,
-     "star3": 0,
-     "off": 0,
-     "tank": 8
+     "tank": 7.8
     },
     {
      "id": "da_karma18",
-     "rate": 0.44,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_gnarsmall",
-     "rate": 0.33,
+     "rate": 0.42,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.22,
+     "rate": 0.3,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 7.7
     },
     {
-     "id": "da_18_masteryi_ad",
-     "rate": 0.22,
+     "id": "da_18_maokai",
+     "rate": 0.28,
      "star3": 0,
      "off": 0,
+     "tank": 12.1
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 9.4,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_yunara",
+     "rate": 0.25,
+     "star3": 0.09,
+     "off": 0.6,
      "tank": 0
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.22,
+     "id": "da_18_ivern",
+     "rate": 0.21,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 1.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 6.2,
+     "tank": 0
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.22,
+     "rate": 0.21,
      "star3": 0,
-     "off": 5,
+     "off": 6.2,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_ashe": {
      "items": [
-      "DA_BlueBuff",
-      "DA_GuinsoosRageblade",
-      "DA_Morellonomicon"
+      "DA_LastWhisper",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 4.5
     },
     "da_18_sett": {
      "items": [
@@ -17825,8 +18903,8 @@ window.TFT_WEIGHTS = {
       "DA_SteraksGage",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 6
+     "games": 2,
+     "avgPlace": 4.66
     }
    },
    "now": {
@@ -17856,92 +18934,120 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_rengar",
      "rate": 1,
-     "star3": 1,
-     "off": 6,
-     "tank": 0
+     "star3": 0.86,
+     "off": 24,
+     "tank": 1.2
     },
     {
      "id": "da_18_khazix",
      "rate": 1,
-     "star3": 1,
-     "off": 6,
-     "tank": 0
+     "star3": 0.72,
+     "off": 23.5,
+     "tank": 1.2
     },
     {
      "id": "da_18_diana",
      "rate": 1,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 0
+     "star3": 0.33,
+     "off": 2.3,
+     "tank": 1.7
     },
     {
      "id": "da_18_hecarim",
-     "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 6
+     "rate": 0.93,
+     "star3": 0.7,
+     "off": 0.6,
+     "tank": 21.1
     },
     {
      "id": "da_18_ezreal",
-     "rate": 1,
+     "rate": 0.86,
      "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
+     "off": 7.7,
      "tank": 0
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.5,
+     "rate": 0.74,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.58,
+     "star3": 0.12,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.4,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.5,
+     "id": "da_fiddlesticks18",
+     "rate": 0.28,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.5,
+     "rate": 0.26,
      "star3": 0,
-     "off": 2,
+     "off": 3.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.14,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_rengar": {
      "items": [
-      "DA_Quicksilver",
-      "DA_SteraksGage",
-      "DA_SteraksGage"
+      "DA_EdgeOfNight",
+      "DA_GuinsoosRageblade",
+      "DA_LastWhisper"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 2,
+     "avgPlace": 4.67
     },
     "da_18_hecarim": {
      "items": [
-      "DA_Evenshroud",
-      "DA_WarmogsArmor",
+      "DA_AdaptiveHelm",
+      "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 2
+     "avgPlace": 2.5
     }
    },
    "now": {
@@ -17971,90 +19077,111 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_khazix",
      "rate": 1,
-     "star3": 0.83,
-     "off": 17,
-     "tank": 0
+     "star3": 0.85,
+     "off": 42.6,
+     "tank": 0.6
     },
     {
-     "id": "da_18_ornn",
+     "id": "da_18_diana",
      "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "star3": 0.71,
+     "off": 18.3,
+     "tank": 7.2
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 1,
+     "star3": 0.6,
+     "off": 2.7,
+     "tank": 36.3
     },
     {
      "id": "da_18_ezreal",
      "rate": 1,
      "star3": 0,
-     "off": 1,
+     "off": 11.5,
      "tank": 0
     },
     {
-     "id": "da_18_diana",
-     "rate": 1,
-     "star3": 0.67,
-     "off": 9,
-     "tank": 2
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 1,
-     "star3": 0.5,
-     "off": 1,
-     "tank": 13
-    },
-    {
      "id": "da_fiddlesticks18",
-     "rate": 1,
-     "star3": 0.33,
+     "rate": 0.76,
+     "star3": 0.28,
+     "off": 0.6,
+     "tank": 4.6
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.72,
+     "star3": 0,
      "off": 0,
-     "tank": 4
+     "tank": 0
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.67,
+     "rate": 0.63,
      "star3": 0,
-     "off": 7,
+     "off": 10.5,
      "tank": 2
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "rate": 0.37,
+     "star3": 0.53,
+     "off": 6.8,
+     "tank": 2.3
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.33,
+     "rate": 0.29,
      "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.24,
+     "star3": 0.17,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_azir",
-     "rate": 0.17,
+     "rate": 0.23,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_yunara",
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_kennen",
-     "rate": 0.17,
+     "id": "da_18_alune",
+     "rate": 0.04,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 0.6
     }
    ],
    "builds": {
     "da_18_khazix": {
      "items": [
       "DA_HandOfJustice",
-      "DA_NashorsTooth",
+      "DA_HandOfJustice",
       "DA_RabadonsDeathcap"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 2.61
     },
     "da_18_hecarim": {
      "items": [
@@ -18091,101 +19218,101 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_fiddlesticks18",
-     "rate": 1,
-     "star3": 0.49,
-     "off": 20,
-     "tank": 62
-    },
-    {
      "id": "da_18_cassiopeia",
      "rate": 1,
-     "star3": 0.73,
-     "off": 143,
-     "tank": 2
+     "star3": 0.72,
+     "off": 382.3,
+     "tank": 5.5
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 1,
+     "star3": 0.46,
+     "off": 54.3,
+     "tank": 184.8
     },
     {
      "id": "da_18_rammus",
-     "rate": 0.98,
+     "rate": 0.99,
      "star3": 0.67,
-     "off": 7,
-     "tank": 107
+     "off": 21,
+     "tank": 284.6
     },
     {
      "id": "da_18_shen",
-     "rate": 0.96,
-     "star3": 0.02,
-     "off": 4,
-     "tank": 4
+     "rate": 0.95,
+     "star3": 0.04,
+     "off": 9.8,
+     "tank": 10.4
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.86,
+     "rate": 0.87,
      "star3": 0,
-     "off": 6,
-     "tank": 23
+     "off": 20,
+     "tank": 67.2
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.82,
-     "star3": 0.78,
-     "off": 54,
-     "tank": 25
+     "rate": 0.81,
+     "star3": 0.75,
+     "off": 149.5,
+     "tank": 57.6
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.69,
-     "star3": 0.03,
-     "off": 3,
-     "tank": 0
+     "rate": 0.6,
+     "star3": 0.08,
+     "off": 4.7,
+     "tank": 8.2
     },
     {
      "id": "da_18_leona",
-     "rate": 0.47,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "rate": 0.58,
+     "star3": 0.02,
+     "off": 3.9,
+     "tank": 3.5
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.22,
+     "rate": 0.18,
      "star3": 0,
-     "off": 12,
+     "off": 20.7,
      "tank": 1
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.16,
+     "rate": 0.13,
      "star3": 0,
-     "off": 8,
-     "tank": 1
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.06,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_draven18",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 17.9,
+     "tank": 1.6
     },
     {
      "id": "da_18_alune",
-     "rate": 0.02,
+     "rate": 0.06,
      "star3": 0,
-     "off": 1,
+     "off": 7.4,
      "tank": 0
     },
     {
-     "id": "da_18_maokai",
-     "rate": 0.02,
+     "id": "da_18_kennen",
+     "rate": 0.06,
      "star3": 0,
-     "off": 0,
+     "off": 4.7,
+     "tank": 2.3
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 4.1,
      "tank": 0
     }
    ],
@@ -18196,8 +19323,8 @@ window.TFT_WEIGHTS = {
       "DA_BlueBuff",
       "DA_HextechGunblade"
      ],
-     "games": 10,
-     "avgPlace": 2.7
+     "games": 21,
+     "avgPlace": 3.24
     },
     "da_18_rammus": {
      "items": [
@@ -18205,8 +19332,8 @@ window.TFT_WEIGHTS = {
       "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 4.5
+     "games": 3,
+     "avgPlace": 3.95
     }
    },
    "now": {
@@ -18237,99 +19364,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_alune",
      "rate": 1,
      "star3": 0,
-     "off": 364,
-     "tank": 6
+     "off": 766.3,
+     "tank": 17.1
     },
     {
      "id": "da_18_diana",
-     "rate": 0.98,
+     "rate": 0.99,
      "star3": 0,
-     "off": 6,
-     "tank": 5
+     "off": 15.9,
+     "tank": 7.9
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.98,
+     "rate": 0.95,
      "star3": 0,
-     "off": 12,
-     "tank": 174
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.9,
-     "star3": 0,
-     "off": 228,
-     "tank": 19
+     "off": 30.6,
+     "tank": 363.8
     },
     {
      "id": "da_taric18",
      "rate": 0.88,
      "star3": 0,
-     "off": 16,
-     "tank": 165
+     "off": 32.3,
+     "tank": 324.5
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.87,
+     "star3": 0,
+     "off": 481.3,
+     "tank": 30.1
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.83,
+     "rate": 0.82,
      "star3": 0,
-     "off": 6,
-     "tank": 4
+     "off": 11.2,
+     "tank": 15.1
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.76,
+     "rate": 0.74,
      "star3": 0,
-     "off": 10,
-     "tank": 73
+     "off": 22.8,
+     "tank": 159.2
     },
     {
      "id": "da_18_ivern",
      "rate": 0.63,
      "star3": 0,
-     "off": 51,
-     "tank": 2
+     "off": 127.9,
+     "tank": 7.8
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.5,
-     "star3": 0.02,
-     "off": 1,
-     "tank": 2
+     "rate": 0.52,
+     "star3": 0.01,
+     "off": 2.7,
+     "tank": 3.2
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.45,
+     "rate": 0.51,
      "star3": 0,
-     "off": 6,
-     "tank": 23
+     "off": 14.2,
+     "tank": 59.1
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.25,
+     "rate": 0.23,
      "star3": 0,
-     "off": 49,
-     "tank": 5
+     "off": 85.1,
+     "tank": 9.1
     },
     {
      "id": "da_18_elise",
-     "rate": 0.21,
+     "rate": 0.2,
      "star3": 0.04,
-     "off": 1,
-     "tank": 9
+     "off": 5.7,
+     "tank": 18.9
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.11,
+     "rate": 0.13,
      "star3": 0,
-     "off": 0,
-     "tank": 23
+     "off": 2.3,
+     "tank": 49.8
     },
     {
      "id": "da_amumu18",
-     "rate": 0.08,
+     "rate": 0.06,
      "star3": 0,
-     "off": 1,
-     "tank": 14
+     "off": 2.2,
+     "tank": 23.3
     }
    ],
    "builds": {
@@ -18339,8 +19466,8 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 15,
-     "avgPlace": 3.6
+     "games": 29,
+     "avgPlace": 3.65
     },
     "da_sentinel18": {
      "items": [
@@ -18348,8 +19475,8 @@ window.TFT_WEIGHTS = {
       "DA_ProtectorsVow",
       "DA_WarmogsArmor"
      ],
-     "games": 5,
-     "avgPlace": 4.8
+     "games": 8,
+     "avgPlace": 4.75
     }
    },
    "now": {
@@ -18380,98 +19507,98 @@ window.TFT_WEIGHTS = {
      "id": "da_18_soraka",
      "rate": 1,
      "star3": 0,
-     "off": 185,
-     "tank": 8
-    },
-    {
-     "id": "da_18_azir",
-     "rate": 0.88,
-     "star3": 0,
-     "off": 42,
-     "tank": 1
+     "off": 437.1,
+     "tank": 19.6
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.88,
+     "rate": 0.9,
      "star3": 0,
-     "off": 6,
-     "tank": 8
+     "off": 11.8,
+     "tank": 16.7
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.84,
+     "star3": 0,
+     "off": 78.1,
+     "tank": 1
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.81,
+     "rate": 0.78,
      "star3": 0,
-     "off": 3,
-     "tank": 157
+     "off": 11.2,
+     "tank": 341
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.75,
-     "star3": 0.02,
-     "off": 93,
-     "tank": 5
+     "rate": 0.73,
+     "star3": 0.01,
+     "off": 214.7,
+     "tank": 6.7
     },
     {
      "id": "da_amumu18",
-     "rate": 0.72,
+     "rate": 0.68,
      "star3": 0,
-     "off": 3,
-     "tank": 32
+     "off": 8.2,
+     "tank": 75.1
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.66,
+     "rate": 0.67,
      "star3": 0,
-     "off": 27,
-     "tank": 9
+     "off": 64.8,
+     "tank": 23.6
     },
     {
      "id": "da_18_yorick",
      "rate": 0.58,
      "star3": 0,
-     "off": 6,
-     "tank": 1
+     "off": 7.7,
+     "tank": 3.3
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.36,
+     "rate": 0.37,
      "star3": 0,
-     "off": 37,
-     "tank": 0
+     "off": 84.7,
+     "tank": 1.2
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.25,
+     "rate": 0.22,
      "star3": 0,
-     "off": 1,
-     "tank": 5
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.18,
-     "star3": 0,
-     "off": 5,
-     "tank": 2
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.16,
-     "star3": 0,
-     "off": 4,
-     "tank": 13
+     "off": 5.1,
+     "tank": 14.9
     },
     {
      "id": "da_18_yunara",
-     "rate": 0.15,
+     "rate": 0.19,
      "star3": 0,
-     "off": 0,
+     "off": 5.8,
      "tank": 0
     },
     {
-     "id": "da_18_ahri",
-     "rate": 0.12,
+     "id": "da_18_sett",
+     "rate": 0.16,
      "star3": 0,
-     "off": 14,
+     "off": 5.1,
+     "tank": 56
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 14.9,
+     "tank": 3.7
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 40.8,
      "tank": 0
     }
    ],
@@ -18482,8 +19609,8 @@ window.TFT_WEIGHTS = {
       "DA_RabadonsDeathcap",
       "DA_SpearOfShojin"
      ],
-     "games": 3,
-     "avgPlace": 4.33
+     "games": 5,
+     "avgPlace": 4.58
     },
     "da_18_malphite": {
      "items": [
@@ -18491,8 +19618,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 15,
-     "avgPlace": 4.13
+     "games": 27,
+     "avgPlace": 4.03
     }
    },
    "now": {
@@ -18510,7 +19637,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Blossom",
    "carry": "da_18_morgana",
    "mainCarry": "da_18_morgana",
-   "mainTank": "da_18_sett",
+   "mainTank": "da_sentinel18",
    "games": 6,
    "avgPlace": 4.32,
    "top4": 0.53,
@@ -18522,120 +19649,120 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_morgana",
      "rate": 1,
-     "star3": 0.17,
-     "off": 18,
+     "star3": 0.06,
+     "off": 48.9,
      "tank": 0
     },
     {
      "id": "da_18_sett",
      "rate": 1,
      "star3": 0,
-     "off": 1,
-     "tank": 14
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 9
+     "off": 3.9,
+     "tank": 29.1
     },
     {
      "id": "da_18_ahri",
-     "rate": 1,
+     "rate": 0.97,
      "star3": 0,
-     "off": 12,
-     "tank": 0
+     "off": 33.5,
+     "tank": 0.6
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.93,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 34.6
     },
     {
      "id": "da_karma18",
-     "rate": 0.83,
+     "rate": 0.74,
      "star3": 0,
-     "off": 3,
+     "off": 3.6,
      "tank": 0
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.83,
+     "id": "da_krug18",
+     "rate": 0.64,
      "star3": 0,
      "off": 1,
-     "tank": 1
+     "tank": 2.6
     },
     {
-     "id": "da_krug18",
-     "rate": 0.67,
+     "id": "da_lux18_base",
+     "rate": 0.63,
      "star3": 0,
-     "off": 1,
-     "tank": 2
+     "off": 9.7,
+     "tank": 2.2
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.67,
+     "rate": 0.54,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.5,
+     "rate": 0.41,
      "star3": 0,
-     "off": 2,
-     "tank": 1
+     "off": 3.7,
+     "tank": 2.2
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.5,
+     "rate": 0.24,
      "star3": 0,
-     "off": 0,
+     "off": 1.7,
      "tank": 0
     },
     {
-     "id": "da_18_gnarsmall",
+     "id": "da_18_alune",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 4.1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_diana",
      "rate": 0.17,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_elise",
-     "rate": 0.17,
-     "star3": 0,
+     "id": "da_18_rakan",
+     "rate": 0.14,
+     "star3": 0.25,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_reksai",
-     "rate": 0.17,
-     "star3": 1,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.17,
+     "id": "da_18_yunara",
+     "rate": 0.1,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_morgana": {
      "items": [
-      "DA_HextechGunblade",
+      "DA_JeweledGauntlet",
       "DA_RedBuff",
       "DA_VoidStaff"
      ],
      "games": 2,
-     "avgPlace": 1.5
+     "avgPlace": 4.73
     },
-    "da_18_sett": {
+    "da_sentinel18": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 2,
+     "avgPlace": 3.53
     }
    },
    "now": {
@@ -18666,99 +19793,99 @@ window.TFT_WEIGHTS = {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 33,
+     "off": 90.1,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 1,
+     "rate": 0.98,
      "star3": 0,
-     "off": 1,
-     "tank": 18
+     "off": 2.2,
+     "tank": 44.8
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.82,
+     "rate": 0.88,
      "star3": 0,
-     "off": 0,
-     "tank": 7
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.55,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.55,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_elderdragon",
-     "rate": 0.55,
-     "star3": 0,
-     "off": 16,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.45,
-     "star3": 0.4,
-     "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 5,
-     "tank": 2
+     "off": 0.6,
+     "tank": 17.5
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.45,
+     "rate": 0.58,
      "star3": 0,
-     "off": 8,
-     "tank": 1
+     "off": 20.2,
+     "tank": 1.6
     },
     {
-     "id": "da_18_maokai",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 0,
-     "tank": 8
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.36,
-     "star3": 0,
-     "off": 8,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.27,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.27,
-     "star3": 0,
+     "id": "da_18_rakan",
+     "rate": 0.52,
+     "star3": 0.12,
      "off": 1,
      "tank": 2
     },
     {
-     "id": "da_fiddlesticks18",
-     "rate": 0.27,
+     "id": "da_18_maokai",
+     "rate": 0.52,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 18.5
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.46,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.44,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 5.2
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.4,
+     "star3": 0,
+     "off": 1,
+     "tank": 11.9
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 0.38,
+     "star3": 0,
+     "off": 29.4,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.37,
+     "star3": 0,
+     "off": 9.7,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 21.4,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 6.7
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 14.5,
+     "tank": 1
     }
    ],
    "builds": {
@@ -18768,8 +19895,8 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 2,
-     "avgPlace": 3
+     "games": 4,
+     "avgPlace": 4.71
     },
     "da_taric18": {
      "items": [
@@ -18796,7 +19923,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_Juggernaut18",
    "carry": "da_18_elderdragon",
    "mainCarry": "da_18_elderdragon",
-   "mainTank": "da_amumu18",
+   "mainTank": "da_18_maokai",
    "games": 5,
    "avgPlace": 4.35,
    "top4": 0.545,
@@ -18806,122 +19933,122 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_maokai",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 7
-    },
-    {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 15,
+     "off": 55.2,
      "tank": 0
     },
     {
-     "id": "da_scuttlecrab18",
-     "rate": 0.8,
+     "id": "da_18_maokai",
+     "rate": 0.94,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 0,
+     "tank": 33.8
     },
     {
      "id": "da_amumu18",
-     "rate": 0.8,
+     "rate": 0.92,
      "star3": 0,
-     "off": 0,
-     "tank": 9
+     "off": 0.6,
+     "tank": 24.1
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.6,
+     "id": "da_scuttlecrab18",
+     "rate": 0.76,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1,
+     "tank": 3.5
     },
     {
      "id": "da_vi18",
-     "rate": 0.6,
+     "rate": 0.74,
      "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.4,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.4,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.4,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 1.6,
+     "tank": 0.6
     },
     {
      "id": "da_draven18",
-     "rate": 0.4,
+     "rate": 0.5,
      "star3": 0,
-     "off": 4,
+     "off": 19.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.43,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_zyra",
-     "rate": 0.2,
+     "id": "da_18_kennen",
+     "rate": 0.42,
      "star3": 0,
-     "off": 3,
+     "off": 6.1,
+     "tank": 1
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.4,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 5.2
+    },
+    {
+     "id": "da_18_ashe",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 10,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 6.4,
      "tank": 0
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.2,
+     "rate": 0.3,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 5.1,
+     "tank": 0.6
     },
     {
-     "id": "da_18_akali_ad",
-     "rate": 0.2,
+     "id": "da_sentinel18",
+     "rate": 0.23,
      "star3": 0,
      "off": 1,
-     "tank": 0
+     "tank": 3.5
     },
     {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.2,
+     "id": "da_18_yorick",
+     "rate": 0.23,
      "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 0,
+     "tank": 3
     }
    ],
    "builds": {
     "da_18_elderdragon": {
      "items": [
-      "DA_HextechGunblade",
       "DA_InfinityEdge",
+      "DA_LastWhisper",
       "DA_StrikersFlail"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 6.12
     },
-    "da_amumu18": {
+    "da_18_maokai": {
      "items": [
-      "DA_DragonsClaw",
+      "DA_GargoyleStoneplate",
       "DA_SpiritVisage",
-      "DA_SunfireCape"
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 1
+     "avgPlace": 5.5
     }
    },
    "now": {
@@ -18952,75 +20079,96 @@ window.TFT_WEIGHTS = {
      "id": "da_18_sivir",
      "rate": 1,
      "star3": 0,
-     "off": 9,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
+     "off": 51.5,
      "tank": 0
     },
     {
      "id": "da_18_malphite",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 9
+     "rate": 0.97,
+     "star3": 0.03,
+     "off": 1.7,
+     "tank": 48
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 1,
+     "rate": 0.9,
      "star3": 0,
-     "off": 9,
+     "off": 38.1,
+     "tank": 2.9
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.88,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.2
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.83,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 5.8
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 3.3,
      "tank": 0
     },
     {
      "id": "da_18_ashe",
-     "rate": 1,
+     "rate": 0.64,
      "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 11.2,
+     "tank": 1.2
     },
     {
-     "id": "da_18_reksai",
-     "rate": 0.67,
+     "id": "da_krug18",
+     "rate": 0.56,
      "star3": 0,
      "off": 0,
-     "tank": 1
+     "tank": 0.6
     },
     {
      "id": "da_taric18",
-     "rate": 0.67,
+     "rate": 0.38,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 0.6,
+     "tank": 3.3
     },
     {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.33,
+     "id": "da_cinderling18",
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.33,
+     "id": "da_lux18_base",
+     "rate": 0.17,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 4.1,
+     "tank": 0
     },
     {
-     "id": "da_18_veigar",
-     "rate": 0.33,
+     "id": "da_18_warwick",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.1,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -19029,21 +20177,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_sivir": {
      "items": [
-      "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_InfinityEdge"
+      "DA_InfinityEdge",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 3,
+     "avgPlace": 2.48
     },
     "da_18_malphite": {
      "items": [
+      "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
+      "DA_SpiritVisage"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 3,
+     "avgPlace": 3.45
     }
    },
    "now": {
@@ -19074,96 +20222,96 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ahri",
      "rate": 1,
      "star3": 0,
-     "off": 12,
-     "tank": 0
+     "off": 23.6,
+     "tank": 0.6
     },
     {
      "id": "da_18_alune",
      "rate": 1,
      "star3": 0,
-     "off": 21,
-     "tank": 0
+     "off": 40.2,
+     "tank": 0.6
     },
     {
      "id": "da_18_sett",
-     "rate": 0.86,
+     "rate": 0.85,
      "star3": 0,
-     "off": 5,
-     "tank": 9
+     "off": 6.2,
+     "tank": 17.2
     },
     {
-     "id": "da_18_zyra",
-     "rate": 0.57,
+     "id": "da_fiddlesticks18",
+     "rate": 0.55,
      "star3": 0,
-     "off": 5,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.57,
+     "rate": 0.54,
      "star3": 0,
-     "off": 3,
+     "off": 5.9,
      "tank": 1
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.43,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
      "id": "da_18_yorick",
-     "rate": 0.43,
+     "rate": 0.46,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_fiddlesticks18",
-     "rate": 0.43,
+     "id": "da_18_lillia",
+     "rate": 0.42,
+     "star3": 0,
+     "off": 0,
+     "tank": 8.2
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.39,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.29,
+     "rate": 0.35,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.29,
-     "star3": 0,
-     "off": 0,
+     "off": 1.7,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.29,
+     "rate": 0.35,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 4.7
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.29,
+     "id": "da_18_zyra",
+     "rate": 0.33,
      "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.29,
-     "star3": 0,
-     "off": 0,
+     "off": 6.7,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.29,
+     "id": "da_amumu18",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 4.3
+    },
+    {
+     "id": "da_karma18",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -19172,21 +20320,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_alune": {
      "items": [
-      "DA_BlueBuff",
-      "DA_RabadonsDeathcap",
+      "DA_Morellonomicon",
+      "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
      "games": 2,
-     "avgPlace": 4
+     "avgPlace": 3.15
     },
     "da_18_sett": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_BrambleVest",
-      "DA_Component_ChainVest"
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 4
+     "avgPlace": 4.5
     }
    },
    "now": {
@@ -19216,111 +20364,111 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_nidalee18_ap",
      "rate": 1,
-     "star3": 0.09,
-     "off": 33,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sivir",
-     "rate": 1,
-     "star3": 0,
-     "off": 28,
-     "tank": 0
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.91,
-     "star3": 0,
-     "off": 6,
+     "star3": 0.05,
+     "off": 94.1,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
+     "rate": 0.97,
+     "star3": 0,
+     "off": 6.7,
+     "tank": 33.2
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.93,
+     "star3": 0,
+     "off": 18.8,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_sivir",
      "rate": 0.91,
      "star3": 0,
-     "off": 2,
-     "tank": 14
+     "off": 74,
+     "tank": 0.6
     },
     {
      "id": "da_krug18",
-     "rate": 0.73,
+     "rate": 0.81,
      "star3": 0,
      "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_reksai",
-     "rate": 0.73,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
+     "tank": 5.3
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.73,
+     "rate": 0.79,
      "star3": 0,
-     "off": 2,
-     "tank": 21
+     "off": 3.7,
+     "tank": 64.7
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.79,
+     "star3": 0.02,
+     "off": 1.2,
+     "tank": 2.6
     },
     {
      "id": "da_cinderling18",
-     "rate": 0.64,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.76,
+     "star3": 0.02,
+     "off": 1.7,
      "tank": 0
     },
     {
      "id": "da_18_elderdragon",
-     "rate": 0.45,
+     "rate": 0.2,
      "star3": 0,
-     "off": 9,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.18,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.18,
-     "star3": 0,
-     "off": 0,
+     "off": 11.9,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.18,
+     "rate": 0.19,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_hecarim",
+     "id": "da_amumu18",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.7
+    },
+    {
+     "id": "da_vi18",
      "rate": 0.09,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.09,
+     "id": "da_18_ivern",
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
-     "tank": 2
+     "tank": 0
     }
    ],
    "builds": {
     "da_nidalee18_ap": {
      "items": [
-      "DA_Deathblade",
+      "DA_EdgeOfNight",
       "DA_InfinityEdge",
       "DA_SteraksGage"
      ],
-     "games": 2,
-     "avgPlace": 3
+     "games": 3,
+     "avgPlace": 3.8
     },
     "da_18_malphite": {
      "items": [
@@ -19328,7 +20476,7 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage"
      ],
-     "games": 2,
+     "games": 4,
      "avgPlace": 4
     }
    },
@@ -19357,102 +20505,102 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_xayah",
+     "id": "da_18_aphelios",
      "rate": 1,
-     "star3": 0.14,
-     "off": 2,
+     "star3": 0,
+     "off": 39.3,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 1,
+     "rate": 0.93,
      "star3": 0,
-     "off": 0,
-     "tank": 15
+     "off": 1.7,
+     "tank": 33.6
     },
     {
-     "id": "da_18_aphelios",
-     "rate": 1,
-     "star3": 0,
-     "off": 16,
+     "id": "da_18_xayah",
+     "rate": 0.93,
+     "star3": 0.17,
+     "off": 6.7,
      "tank": 0
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.86,
-     "star3": 0.17,
+     "rate": 0.87,
+     "star3": 0.19,
      "off": 1,
+     "tank": 8.2
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.62,
+     "star3": 0,
+     "off": 2.7,
      "tank": 3
     },
     {
      "id": "da_amumu18",
-     "rate": 0.71,
+     "rate": 0.5,
      "star3": 0,
      "off": 0,
-     "tank": 7
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.57,
-     "star3": 0,
-     "off": 1,
-     "tank": 3
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.57,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 14
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.43,
+     "rate": 0.45,
      "star3": 0,
-     "off": 2,
+     "off": 4.9,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.41,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
-    },
-    {
-     "id": "da_18_leona",
-     "rate": 0.29,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kayle",
-     "rate": 0.29,
-     "star3": 0.5,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_18_sejuani",
-     "rate": 0.29,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 3
     },
     {
      "id": "da_18_alune",
      "rate": 0.29,
      "star3": 0,
-     "off": 1,
+     "off": 3.3,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.29,
+     "star3": 0.2,
+     "off": 0.6,
+     "tank": 3
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.29,
+     "star3": 0.32,
+     "off": 2.7,
      "tank": 1
     },
     {
-     "id": "da_18_ashe",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "id": "da_18_leona",
+     "rate": 0.29,
+     "star3": 0.44,
+     "off": 0,
+     "tank": 1.7
     },
     {
-     "id": "da_taric18",
-     "rate": 0.14,
+     "id": "da_sentinel18",
+     "rate": 0.23,
      "star3": 0,
-     "off": 0,
-     "tank": 2
+     "off": 2,
+     "tank": 6.4
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -19490,112 +20638,112 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Lunar",
    "carry": "da_18_aphelios",
    "mainCarry": "da_18_aphelios",
-   "mainTank": "da_18_lillia",
+   "mainTank": "da_amumu18",
    "games": 47,
    "avgPlace": 4.42,
    "top4": 0.546,
    "win": 0.104,
    "patchGames": 47,
    "playRate": 0.009,
-   "level": 8,
+   "level": 9,
    "core": [
     {
      "id": "da_18_aphelios",
      "rate": 1,
-     "star3": 0.04,
-     "off": 141,
+     "star3": 0.03,
+     "off": 290.6,
      "tank": 0
     },
     {
      "id": "da_18_diana",
-     "rate": 0.91,
-     "star3": 0,
-     "off": 6,
-     "tank": 2
+     "rate": 0.92,
+     "star3": 0.01,
+     "off": 11.8,
+     "tank": 4.3
     },
     {
      "id": "da_18_kayle",
-     "rate": 0.68,
-     "star3": 0.09,
-     "off": 17,
+     "rate": 0.69,
+     "star3": 0.06,
+     "off": 30.4,
      "tank": 0
     },
     {
      "id": "da_18_sejuani",
-     "rate": 0.68,
-     "star3": 0.03,
-     "off": 1,
-     "tank": 8
+     "rate": 0.67,
+     "star3": 0.07,
+     "off": 3.3,
+     "tank": 22.6
     },
     {
      "id": "da_amumu18",
-     "rate": 0.62,
+     "rate": 0.65,
      "star3": 0,
-     "off": 3,
-     "tank": 44
+     "off": 5.9,
+     "tank": 115.6
     },
     {
      "id": "da_18_leona",
-     "rate": 0.62,
-     "star3": 0.14,
-     "off": 1,
-     "tank": 5
+     "rate": 0.64,
+     "star3": 0.09,
+     "off": 3.9,
+     "tank": 7.3
     },
     {
      "id": "da_18_lillia",
      "rate": 0.57,
      "star3": 0,
-     "off": 0,
-     "tank": 48
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 3,
-     "tank": 38
+     "off": 2.9,
+     "tank": 101.6
     },
     {
      "id": "da_18_alune",
-     "rate": 0.45,
+     "rate": 0.49,
      "star3": 0,
-     "off": 35,
-     "tank": 6
+     "off": 72.8,
+     "tank": 8.9
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.3,
+     "id": "da_sentinel18",
+     "rate": 0.48,
      "star3": 0,
-     "off": 10,
-     "tank": 2
+     "off": 4.7,
+     "tank": 86.9
     },
     {
      "id": "da_taric18",
+     "rate": 0.28,
+     "star3": 0,
+     "off": 3.2,
+     "tank": 33.5
+    },
+    {
+     "id": "da_lux18_base",
      "rate": 0.26,
      "star3": 0,
-     "off": 2,
-     "tank": 16
+     "off": 22.8,
+     "tank": 3.7
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.23,
-     "star3": 0.18,
-     "off": 1,
-     "tank": 6
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.21,
-     "star3": 0,
-     "off": 1,
-     "tank": 12
+     "rate": 0.24,
+     "star3": 0.14,
+     "off": 1.6,
+     "tank": 9.5
     },
     {
      "id": "da_18_varus",
      "rate": 0.19,
-     "star3": 0.11,
+     "star3": 0.05,
      "off": 2,
      "tank": 0
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 19.6
     }
    ],
    "builds": {
@@ -19605,17 +20753,17 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_LastWhisper"
      ],
-     "games": 5,
-     "avgPlace": 5
+     "games": 10,
+     "avgPlace": 4.72
     },
-    "da_18_lillia": {
+    "da_amumu18": {
      "items": [
-      "DA_BrambleVest",
       "DA_DragonsClaw",
-      "DA_SunfireCape"
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 2,
+     "avgPlace": 4.19
     }
    },
    "now": {
@@ -19646,99 +20794,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ezreal",
      "rate": 1,
      "star3": 0,
-     "off": 862,
-     "tank": 1
+     "off": 1983.3,
+     "tank": 6.2
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.95,
+     "rate": 0.94,
      "star3": 0.01,
-     "off": 15,
-     "tank": 56
+     "off": 33.6,
+     "tank": 131.7
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.9,
-     "star3": 0.02,
-     "off": 28,
-     "tank": 318
+     "rate": 0.89,
+     "star3": 0.01,
+     "off": 72.8,
+     "tank": 677.8
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.88,
-     "star3": 0.02,
-     "off": 6,
-     "tank": 8
+     "rate": 0.87,
+     "star3": 0.01,
+     "off": 16.5,
+     "tank": 24.9
     },
     {
      "id": "da_18_xayah",
-     "rate": 0.78,
-     "star3": 0.02,
-     "off": 28,
+     "rate": 0.76,
+     "star3": 0.01,
+     "off": 53,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
      "rate": 0.62,
      "star3": 0,
-     "off": 13,
-     "tank": 364
+     "off": 28.7,
+     "tank": 864.1
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.59,
-     "star3": 0.01,
-     "off": 378,
-     "tank": 1
+     "rate": 0.55,
+     "star3": 0,
+     "off": 796,
+     "tank": 2.7
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.43,
+     "rate": 0.45,
      "star3": 0,
-     "off": 26,
-     "tank": 1
+     "off": 69.7,
+     "tank": 2.7
     },
     {
      "id": "da_18_kennen",
      "rate": 0.29,
      "star3": 0,
-     "off": 66,
-     "tank": 13
+     "off": 137,
+     "tank": 39.8
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 13.6,
+     "tank": 153
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 183.3,
+     "tank": 21.6
     },
     {
      "id": "da_18_soraka",
      "rate": 0.24,
      "star3": 0.01,
-     "off": 126,
-     "tank": 12
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.23,
-     "star3": 0,
-     "off": 6,
-     "tank": 61
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.22,
-     "star3": 0,
-     "off": 50,
-     "tank": 7
+     "off": 279.7,
+     "tank": 34.7
     },
     {
      "id": "da_fiddlesticks18",
      "rate": 0.15,
      "star3": 0,
-     "off": 3,
-     "tank": 21
+     "off": 5.3,
+     "tank": 61.2
     },
     {
      "id": "da_draven18",
      "rate": 0.13,
      "star3": 0,
-     "off": 84,
-     "tank": 0
+     "off": 184.7,
+     "tank": 1.2
     }
    ],
    "builds": {
@@ -19748,17 +20896,17 @@ window.TFT_WEIGHTS = {
       "DA_LastWhisper",
       "DA_SpearOfShojin"
      ],
-     "games": 33,
-     "avgPlace": 4.21
+     "games": 65,
+     "avgPlace": 4.3
     },
     "da_18_lillia": {
      "items": [
       "DA_AdaptiveHelm",
-      "DA_AdaptiveHelm",
+      "DA_Crownguard",
       "DA_ProtectorsVow"
      ],
-     "games": 3,
-     "avgPlace": 4
+     "games": 6,
+     "avgPlace": 3.85
     }
    },
    "now": {
@@ -19786,55 +20934,6 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_amumu18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_malphite",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_soraka",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
-    },
-    {
-     "id": "da_18_azir",
-     "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ezreal",
-     "rate": 1,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
      "id": "da_18_yorick",
      "rate": 1,
      "star3": 0,
@@ -19842,10 +20941,73 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_shen",
+     "id": "da_18_azir",
      "rate": 1,
      "star3": 0,
+     "off": 3.3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 1,
+     "star3": 0,
+     "off": 17,
+     "tank": 0
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 1,
+     "star3": 0,
+     "off": 11.3,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 1,
+     "star3": 0,
+     "off": 8.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_malphite",
+     "rate": 0.9,
+     "star3": 0,
      "off": 0,
+     "tank": 15.2
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.9
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.28,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     }
    ],
@@ -19862,11 +21024,11 @@ window.TFT_WEIGHTS = {
     "da_18_malphite": {
      "items": [
       "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate"
      ],
      "games": 1,
-     "avgPlace": 4
+     "avgPlace": 3.5
     }
    },
    "now": {
@@ -19897,119 +21059,119 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ahri",
      "rate": 1,
      "star3": 0,
-     "off": 90,
-     "tank": 1
+     "off": 176.7,
+     "tank": 1.6
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.9,
+     "rate": 0.91,
      "star3": 0,
-     "off": 0,
-     "tank": 12
+     "off": 2.3,
+     "tank": 20.2
     },
     {
      "id": "da_18_sett",
-     "rate": 0.84,
-     "star3": 0,
-     "off": 12,
-     "tank": 59
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.81,
-     "star3": 0,
-     "off": 38,
-     "tank": 5
+     "rate": 0.79,
+     "star3": 0.01,
+     "off": 21.9,
+     "tank": 97.4
     },
     {
      "id": "da_karma18",
-     "rate": 0.74,
+     "rate": 0.75,
      "star3": 0,
-     "off": 2,
+     "off": 3.2,
      "tank": 1
     },
     {
-     "id": "da_18_cassiopeia",
-     "rate": 0.45,
+     "id": "da_18_alune",
+     "rate": 0.74,
      "star3": 0,
-     "off": 11,
-     "tank": 1
+     "off": 63,
+     "tank": 11.4
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.45,
+     "rate": 0.44,
      "star3": 0,
-     "off": 0,
-     "tank": 17
+     "off": 2.3,
+     "tank": 40.3
+    },
+    {
+     "id": "da_18_cassiopeia",
+     "rate": 0.38,
+     "star3": 0,
+     "off": 24.4,
+     "tank": 1
     },
     {
      "id": "da_lux18_base",
      "rate": 0.35,
      "star3": 0,
-     "off": 17,
-     "tank": 1
+     "off": 33.3,
+     "tank": 2.7
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.32,
-     "star3": 0.1,
-     "off": 3,
+     "rate": 0.34,
+     "star3": 0.05,
+     "off": 3.6,
      "tank": 1
     },
     {
      "id": "da_krug18",
-     "rate": 0.29,
+     "rate": 0.24,
      "star3": 0,
      "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.19,
-     "star3": 0,
-     "off": 9,
-     "tank": 1
+     "tank": 5.7
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.16,
+     "rate": 0.22,
      "star3": 0,
-     "off": 0,
-     "tank": 13
+     "off": 1.2,
+     "tank": 21.2
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.16,
+     "id": "da_18_morgana",
+     "rate": 0.21,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 21.2,
+     "tank": 2.2
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.16,
-     "star3": 0.4,
+     "rate": 0.17,
+     "star3": 0.2,
      "off": 1,
      "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 10.4
     }
    ],
    "builds": {
     "da_18_ahri": {
      "items": [
       "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap",
-      "DA_SpearOfShojin"
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
      ],
-     "games": 4,
-     "avgPlace": 3.75
+     "games": 7,
+     "avgPlace": 4.99
     },
     "da_18_sett": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
+      "DA_SteadfastHeart",
+      "DA_WarmogsArmor"
      ],
      "games": 2,
-     "avgPlace": 4.5
+     "avgPlace": 4.04
     }
    },
    "now": {
@@ -20039,120 +21201,120 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_sivir",
      "rate": 1,
-     "star3": 0,
-     "off": 31,
+     "star3": 0.05,
+     "off": 65.9,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.91,
+     "rate": 0.96,
      "star3": 0,
-     "off": 1,
-     "tank": 21
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.82,
-     "star3": 0,
-     "off": 10,
-     "tank": 3
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.73,
-     "star3": 0,
-     "off": 1,
-     "tank": 9
+     "off": 2.2,
+     "tank": 50.1
     },
     {
      "id": "da_18_shen",
-     "rate": 0.73,
+     "rate": 0.86,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 1.6,
+     "tank": 4.1
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.73,
+     "rate": 0.76,
      "star3": 0,
-     "off": 10,
+     "off": 28.6,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.55,
+     "id": "da_18_kennen",
+     "rate": 0.73,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 19.3,
+     "tank": 6.5
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.72,
+     "star3": 0,
+     "off": 1,
+     "tank": 18.9
     },
     {
      "id": "da_18_akali_ad",
-     "rate": 0.55,
+     "rate": 0.52,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_vi18",
-     "rate": 0.45,
+     "rate": 0.48,
      "star3": 0,
      "off": 1,
-     "tank": 1
+     "tank": 1.6
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.45,
+     "rate": 0.39,
      "star3": 0,
-     "off": 3,
-     "tank": 2
+     "off": 4.2,
+     "tank": 2.6
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.27,
+     "id": "da_18_rakan",
+     "rate": 0.38,
      "star3": 0,
-     "off": 3,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.27,
+     "rate": 0.28,
      "star3": 0,
      "off": 0,
-     "tank": 6
+     "tank": 8.3
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.18,
+     "id": "da_18_varus",
+     "rate": 0.25,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 1.7,
+     "tank": 0
     },
     {
-     "id": "da_18_tristana",
-     "rate": 0.18,
+     "id": "da_nidalee18_ap",
+     "rate": 0.24,
      "star3": 0,
-     "off": 0,
+     "off": 12.2,
+     "tank": 2.2
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 3.6,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_sivir": {
      "items": [
-      "DA_Deathblade",
       "DA_InfinityEdge",
-      "DA_KrakensFury"
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 2,
+     "avgPlace": 2
     },
     "da_amumu18": {
      "items": [
-      "DA_Crownguard",
-      "DA_SunfireCape",
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 4.74
     }
    },
    "now": {
@@ -20183,68 +21345,96 @@ window.TFT_WEIGHTS = {
      "id": "da_18_yorick",
      "rate": 1,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_kogmaw18_ad",
      "rate": 1,
-     "star3": 0.4,
-     "off": 13,
+     "star3": 0.61,
+     "off": 24.1,
      "tank": 0
-    },
-    {
-     "id": "da_18_masteryi_ad",
-     "rate": 1,
-     "star3": 0.4,
-     "off": 9,
-     "tank": 2
     },
     {
      "id": "da_vi18",
      "rate": 1,
-     "star3": 0.4,
+     "star3": 0.54,
      "off": 0,
-     "tank": 7
+     "tank": 14
+    },
+    {
+     "id": "da_18_masteryi_ad",
+     "rate": 1,
+     "star3": 0.61,
+     "off": 17.7,
+     "tank": 4.3
     },
     {
      "id": "da_krug18",
-     "rate": 1,
-     "star3": 0.2,
+     "rate": 0.94,
+     "star3": 0.32,
      "off": 0,
-     "tank": 4
+     "tank": 5.7
     },
     {
      "id": "da_18_sett",
-     "rate": 0.8,
+     "rate": 0.76,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 4.2
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.4,
+     "rate": 0.48,
      "star3": 0.5,
-     "off": 0,
-     "tank": 0
+     "off": 2.3,
+     "tank": 0.6
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.2,
+     "rate": 0.17,
      "star3": 0,
-     "off": 2,
+     "off": 2.6,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.2,
+     "rate": 0.17,
      "star3": 0,
      "off": 2,
      "tank": 0
     },
     {
+     "id": "da_18_ahri",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
      "id": "da_18_yunara",
-     "rate": 0.2,
+     "rate": 0.11,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -20292,28 +21482,42 @@ window.TFT_WEIGHTS = {
    "win": 0.055,
    "patchGames": 6,
    "playRate": 0.0011,
-   "level": 9,
+   "level": 8,
    "core": [
     {
      "id": "da_18_ahri",
      "rate": 1,
-     "star3": 0,
-     "off": 16,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 13
+     "star3": 0.03,
+     "off": 53.8,
+     "tank": 0.6
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 1,
+     "rate": 0.91,
      "star3": 0,
      "off": 0,
-     "tank": 2
+     "tank": 6.1
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 0.89,
+     "star3": 0,
+     "off": 25.3,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.89,
+     "star3": 0,
+     "off": 38.9,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.88,
+     "star3": 0,
+     "off": 6.7,
+     "tank": 41.5
     },
     {
      "id": "da_18_ornn",
@@ -20323,94 +21527,80 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_ezreal",
-     "rate": 0.83,
-     "star3": 0,
-     "off": 11,
-     "tank": 0
-    },
-    {
-     "id": "da_18_soraka",
-     "rate": 0.83,
-     "star3": 0,
-     "off": 9,
-     "tank": 0
-    },
-    {
      "id": "da_18_yunara",
-     "rate": 0.67,
+     "rate": 0.81,
      "star3": 0,
-     "off": 1,
+     "off": 2.7,
      "tank": 0
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.33,
+     "rate": 0.49,
      "star3": 0,
-     "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_18_azir",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.6,
+     "tank": 3.7
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.17,
+     "rate": 0.23,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 5.2,
+     "tank": 1.2
     },
     {
-     "id": "da_18_yorick",
-     "rate": 0.17,
+     "id": "da_18_azir",
+     "rate": 0.19,
      "star3": 0,
-     "off": 0,
+     "off": 2.2,
      "tank": 0
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.17,
+     "rate": 0.11,
      "star3": 0,
      "off": 0,
-     "tank": 2
+     "tank": 3.7
+    },
+    {
+     "id": "da_18_gnarsmall",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.2
     }
    ],
    "builds": {
     "da_18_ahri": {
      "items": [
-      "DA_JeweledGauntlet",
+      "DA_Morellonomicon",
       "DA_SpearOfShojin",
-      "DA_StrikersFlail"
+      "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 2.92
     },
     "da_18_sett": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
+      "DA_SteraksGage",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 6.33
     }
    },
    "now": {
@@ -20440,99 +21630,99 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_nidalee18_ap",
      "rate": 1,
-     "star3": 0.05,
-     "off": 55,
-     "tank": 1
+     "star3": 0.03,
+     "off": 94,
+     "tank": 2.2
     },
     {
      "id": "da_18_lillia",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 54
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.95,
-     "star3": 0,
-     "off": 2,
-     "tank": 4
+     "off": 1.2,
+     "tank": 88.3
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.95,
+     "rate": 0.97,
      "star3": 0,
-     "off": 42,
+     "off": 71.1,
      "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 2.6,
+     "tank": 4.6
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.86,
+     "rate": 0.9,
      "star3": 0,
-     "off": 18,
-     "tank": 0
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.73,
-     "star3": 0,
-     "off": 0,
+     "off": 26.7,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.68,
+     "rate": 0.7,
      "star3": 0,
-     "off": 2,
-     "tank": 24
+     "off": 3.2,
+     "tank": 37.4
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.69,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.7
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.56,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 18.2
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.5,
+     "rate": 0.44,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 10
-    },
-    {
      "id": "da_vi18",
-     "rate": 0.36,
+     "rate": 0.33,
      "star3": 0,
-     "off": 0,
-     "tank": 8
+     "off": 0.6,
+     "tank": 8.6
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.18,
+     "rate": 0.24,
      "star3": 0,
-     "off": 4,
+     "off": 9.8,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.18,
+     "rate": 0.2,
      "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 2.2
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.14,
+     "rate": 0.15,
      "star3": 0,
-     "off": 3,
+     "off": 5.3,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 2,
      "tank": 0
     }
    ],
@@ -20543,8 +21733,8 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_SteraksGage"
      ],
-     "games": 2,
-     "avgPlace": 3.5
+     "games": 3,
+     "avgPlace": 4.06
     },
     "da_18_lillia": {
      "items": [
@@ -20584,99 +21774,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ashe",
      "rate": 1,
      "star3": 0,
-     "off": 25,
+     "off": 54.7,
      "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 3.2,
+     "tank": 39.1
     },
     {
      "id": "da_18_kennen",
      "rate": 0.91,
      "star3": 0,
-     "off": 4,
-     "tank": 4
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.91,
-     "star3": 0,
-     "off": 2,
-     "tank": 17
+     "off": 11,
+     "tank": 10.4
     },
     {
      "id": "da_18_shen",
      "rate": 0.82,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 0.6
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.55,
-     "star3": 0.17,
-     "off": 7,
+     "rate": 0.65,
+     "star3": 0.06,
+     "off": 16.9,
      "tank": 0
     },
     {
+     "id": "da_18_maokai",
+     "rate": 0.57,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 16.6
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.49,
+     "star3": 0,
+     "off": 0,
+     "tank": 14
+    },
+    {
      "id": "da_18_akali_ad",
-     "rate": 0.55,
+     "rate": 0.48,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.55,
+     "rate": 0.39,
      "star3": 0,
-     "off": 1,
-     "tank": 8
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 0,
-     "tank": 7
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.36,
-     "star3": 0,
-     "off": 0,
-     "tank": 8
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.36,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
+     "off": 2.2,
+     "tank": 10.9
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.27,
+     "rate": 0.34,
      "star3": 0,
-     "off": 4,
+     "off": 10.4,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.18,
+     "id": "da_taric18",
+     "rate": 0.28,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 13.2
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.18,
+     "rate": 0.25,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_varus",
-     "rate": 0.18,
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 8.2,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -20691,12 +21881,12 @@ window.TFT_WEIGHTS = {
     },
     "da_amumu18": {
      "items": [
-      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
       "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 3.54
     }
    },
    "now": {
@@ -20727,119 +21917,119 @@ window.TFT_WEIGHTS = {
      "id": "da_18_diana",
      "rate": 1,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 1,
+     "star3": 0.03,
+     "off": 52.5,
+     "tank": 0.6
     },
     {
      "id": "da_sentinel18",
      "rate": 1,
      "star3": 0,
-     "off": 2,
-     "tank": 8
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 1,
-     "star3": 0,
-     "off": 24,
-     "tank": 0
+     "off": 3.7,
+     "tank": 18.5
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.88,
+     "rate": 0.91,
      "star3": 0,
-     "off": 11,
-     "tank": 1
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 1,
-     "tank": 4
+     "off": 16.8,
+     "tank": 2.7
     },
     {
      "id": "da_18_alune",
-     "rate": 0.75,
+     "rate": 0.86,
      "star3": 0,
-     "off": 12,
-     "tank": 1
+     "off": 32.4,
+     "tank": 4.5
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.83,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.83,
+     "star3": 0,
+     "off": 2.7,
+     "tank": 18
     },
     {
      "id": "da_taric18",
-     "rate": 0.75,
+     "rate": 0.73,
      "star3": 0,
      "off": 1,
-     "tank": 11
+     "tank": 23.8
     },
     {
      "id": "da_18_rakan",
      "rate": 0.5,
-     "star3": 0.25,
+     "star3": 0.11,
      "off": 0,
      "tank": 3
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.5,
+     "rate": 0.34,
      "star3": 0,
-     "off": 2,
+     "off": 2.6,
      "tank": 0
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.25,
-     "star3": 0,
+     "rate": 0.3,
+     "star3": 0.11,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_cassiopeia",
-     "rate": 0.13,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 1.7
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.13,
+     "rate": 0.12,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_elise",
-     "rate": 0.13,
-     "star3": 1,
+     "rate": 0.12,
+     "star3": 0.46,
      "off": 0,
      "tank": 3
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 4.2
     }
    ],
    "builds": {
     "da_18_morgana": {
      "items": [
-      "DA_JeweledGauntlet",
-      "DA_RedBuff",
+      "DA_HextechGunblade",
+      "DA_Morellonomicon",
       "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 3,
+     "avgPlace": 5.58
     },
     "da_taric18": {
      "items": [
-      "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 1
+     "avgPlace": 5.5
     }
    },
    "now": {
@@ -20864,104 +22054,104 @@ window.TFT_WEIGHTS = {
    "win": 0.098,
    "patchGames": 19,
    "playRate": 0.0036,
-   "level": 7,
+   "level": 8,
    "core": [
-    {
-     "id": "da_18_caitlyn",
-     "rate": 1,
-     "star3": 0.89,
-     "off": 56,
-     "tank": 0
-    },
     {
      "id": "da_vi18",
      "rate": 1,
      "star3": 0.05,
-     "off": 2,
-     "tank": 15
+     "off": 4.9,
+     "tank": 29.6
     },
     {
-     "id": "da_18_sejuani",
-     "rate": 0.95,
-     "star3": 0.61,
-     "off": 2,
-     "tank": 29
+     "id": "da_18_caitlyn",
+     "rate": 1,
+     "star3": 0.94,
+     "off": 100.8,
+     "tank": 0
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.95,
-     "star3": 0.72,
-     "off": 2,
-     "tank": 31
+     "rate": 0.92,
+     "star3": 0.64,
+     "off": 2.6,
+     "tank": 53.7
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.9,
+     "star3": 0.6,
+     "off": 2.6,
+     "tank": 38.9
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.79,
+     "rate": 0.83,
      "star3": 0,
-     "off": 21,
+     "off": 52.4,
      "tank": 1
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.68,
-     "star3": 0.15,
-     "off": 1,
-     "tank": 5
+     "rate": 0.79,
+     "star3": 0.1,
+     "off": 1.6,
+     "tank": 6.7
     },
     {
      "id": "da_amumu18",
-     "rate": 0.47,
+     "rate": 0.54,
      "star3": 0,
-     "off": 2,
-     "tank": 6
+     "off": 2.6,
+     "tank": 15.3
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.32,
+     "rate": 0.35,
      "star3": 0,
-     "off": 7,
+     "off": 11.1,
      "tank": 0
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.32,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.26,
-     "star3": 0,
-     "off": 7,
-     "tank": 1
+     "rate": 0.31,
+     "star3": 0.05,
+     "off": 1.6,
+     "tank": 0.6
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.16,
+     "rate": 0.29,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
+     "tank": 7
+    },
+    {
+     "id": "da_18_ashe",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 10.5,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 1.7,
      "tank": 0
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.11,
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_sentinel18",
+     "id": "da_taric18",
      "rate": 0.05,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_cinderling18",
-     "rate": 0.05,
-     "star3": 0,
-     "off": 1,
      "tank": 0
     }
    ],
@@ -20972,17 +22162,17 @@ window.TFT_WEIGHTS = {
       "DA_HextechGunblade",
       "DA_KrakensFury"
      ],
-     "games": 4,
-     "avgPlace": 3.5
+     "games": 9,
+     "avgPlace": 3.43
     },
     "da_scuttlecrab18": {
      "items": [
       "DA_Evenshroud",
-      "DA_ProtectorsVow",
-      "DA_SunfireCape"
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 2,
+     "avgPlace": 6.19
     }
    },
    "now": {
@@ -21010,85 +22200,99 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_maokai",
-     "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 17
-    },
-    {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 32,
-     "tank": 0
+     "off": 84.4,
+     "tank": 0.6
     },
     {
      "id": "da_amumu18",
-     "rate": 1,
+     "rate": 0.96,
      "star3": 0,
-     "off": 0,
-     "tank": 10
+     "off": 0.6,
+     "tank": 19.9
     },
     {
-     "id": "da_18_kennen",
-     "rate": 0.91,
+     "id": "da_18_maokai",
+     "rate": 0.9,
      "star3": 0,
-     "off": 7,
-     "tank": 2
+     "off": 1.6,
+     "tank": 48.4
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.82,
+     "rate": 0.83,
      "star3": 0,
      "off": 1,
-     "tank": 0
+     "tank": 8.2
     },
     {
      "id": "da_taric18",
-     "rate": 0.82,
+     "rate": 0.81,
      "star3": 0,
-     "off": 2,
-     "tank": 9
+     "off": 3.7,
+     "tank": 17.7
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.73,
+     "id": "da_18_kennen",
+     "rate": 0.81,
      "star3": 0,
-     "off": 7,
-     "tank": 2
+     "off": 15.7,
+     "tank": 6.1
     },
     {
      "id": "da_draven18",
-     "rate": 0.73,
+     "rate": 0.64,
      "star3": 0,
-     "off": 18,
+     "off": 40.1,
      "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.64,
+     "star3": 0,
+     "off": 15.2,
+     "tank": 3.7
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.64,
+     "rate": 0.61,
      "star3": 0,
-     "off": 6,
-     "tank": 2
+     "off": 11.8,
+     "tank": 3.2
     },
     {
      "id": "da_18_shen",
-     "rate": 0.27,
+     "rate": 0.16,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_akali_ad",
-     "rate": 0.09,
+     "id": "da_18_ashe",
+     "rate": 0.12,
      "star3": 0,
-     "off": 0,
+     "off": 4.7,
      "tank": 0
     },
     {
-     "id": "da_18_elise",
-     "rate": 0.09,
+     "id": "da_vi18",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -21099,19 +22303,19 @@ window.TFT_WEIGHTS = {
      "items": [
       "DA_InfinityEdge",
       "DA_LastWhisper",
-      "DA_StrikersFlail"
+      "DA_SteraksGage"
      ],
-     "games": 3,
-     "avgPlace": 2.67
+     "games": 5,
+     "avgPlace": 3.87
     },
     "da_18_maokai": {
      "items": [
       "DA_Crownguard",
       "DA_Evenshroud",
-      "DA_ProtectorsVow"
+      "DA_GargoyleStoneplate"
      ],
      "games": 1,
-     "avgPlace": 3
+     "avgPlace": 4.5
     }
    },
    "now": {
@@ -21136,116 +22340,116 @@ window.TFT_WEIGHTS = {
    "win": 0.088,
    "patchGames": 46,
    "playRate": 0.0088,
-   "level": 9,
+   "level": 8,
    "core": [
-    {
-     "id": "da_18_rakan",
-     "rate": 1,
-     "star3": 0.02,
-     "off": 2,
-     "tank": 1
-    },
     {
      "id": "da_18_tristana",
      "rate": 1,
-     "star3": 0.26,
-     "off": 133,
-     "tank": 0
+     "star3": 0.34,
+     "off": 333.3,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.96,
+     "star3": 0.05,
+     "off": 4.9,
+     "tank": 9.2
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.96,
+     "rate": 0.93,
      "star3": 0,
-     "off": 5,
-     "tank": 66
+     "off": 17.2,
+     "tank": 165.6
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.89,
+     "rate": 0.88,
      "star3": 0,
-     "off": 76,
+     "off": 166.2,
      "tank": 0
     },
     {
      "id": "da_vi18",
-     "rate": 0.8,
-     "star3": 0.14,
-     "off": 5,
-     "tank": 23
+     "rate": 0.82,
+     "star3": 0.13,
+     "off": 11.4,
+     "tank": 59.1
     },
     {
      "id": "da_18_rammus",
      "rate": 0.5,
      "star3": 0.39,
-     "off": 2,
-     "tank": 31
+     "off": 5.5,
+     "tank": 78.2
     },
     {
      "id": "da_amumu18",
-     "rate": 0.48,
+     "rate": 0.42,
      "star3": 0,
-     "off": 1,
-     "tank": 37
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.35,
-     "star3": 0,
-     "off": 21,
-     "tank": 1
+     "off": 3.3,
+     "tank": 75.4
     },
     {
      "id": "da_18_shen",
-     "rate": 0.33,
+     "rate": 0.35,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_taric18",
-     "rate": 0.28,
+     "id": "da_18_ashe",
+     "rate": 0.29,
      "star3": 0,
-     "off": 1,
-     "tank": 9
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.24,
-     "star3": 0,
-     "off": 2,
-     "tank": 2
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.2,
-     "star3": 0,
-     "off": 1,
-     "tank": 10
-    },
-    {
-     "id": "da_18_rengar",
-     "rate": 0.17,
-     "star3": 0.75,
-     "off": 10,
+     "off": 40.2,
      "tank": 1
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.13,
+     "id": "da_18_rengar",
+     "rate": 0.23,
+     "star3": 0.68,
+     "off": 34.5,
+     "tank": 4.5
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.22,
      "star3": 0,
-     "off": 3,
-     "tank": 2
+     "off": 1.6,
+     "tank": 17.2
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 3.7,
+     "tank": 10.2
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.19,
+     "star3": 0,
+     "off": 2.2,
+     "tank": 22.8
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.15,
+     "star3": 0.13,
+     "off": 8.2,
+     "tank": 0.6
     }
    ],
    "builds": {
     "da_18_tristana": {
      "items": [
-      "DA_Deathblade",
       "DA_GuinsoosRageblade",
-      "DA_HextechGunblade"
+      "DA_HextechGunblade",
+      "DA_LastWhisper"
      ],
-     "games": 4,
-     "avgPlace": 3.75
+     "games": 8,
+     "avgPlace": 5.27
     },
     "da_18_lillia": {
      "items": [
@@ -21253,7 +22457,7 @@ window.TFT_WEIGHTS = {
       "DA_ProtectorsVow",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
+     "games": 3,
      "avgPlace": 5
     }
    },
@@ -21284,111 +22488,111 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_azir",
      "rate": 1,
-     "star3": 0.32,
-     "off": 72,
+     "star3": 0.31,
+     "off": 138.4,
      "tank": 1
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.88,
+     "rate": 0.84,
      "star3": 0,
-     "off": 23,
-     "tank": 6
+     "off": 35.2,
+     "tank": 8.9
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.84,
+     "rate": 0.78,
      "star3": 0,
-     "off": 1,
-     "tank": 42
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.76,
-     "star3": 0.11,
-     "off": 2,
-     "tank": 9
+     "off": 3.3,
+     "tank": 78.1
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.72,
-     "star3": 0,
-     "off": 24,
-     "tank": 1
+     "rate": 0.74,
+     "star3": 0.02,
+     "off": 51.4,
+     "tank": 1.6
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.73,
+     "star3": 0.11,
+     "off": 4.9,
+     "tank": 16
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.64,
-     "star3": 0.19,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.4,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.66,
+     "star3": 0.15,
+     "off": 7.5,
      "tank": 0
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.4,
-     "star3": 0.1,
-     "off": 3,
-     "tank": 2
+     "rate": 0.42,
+     "star3": 0.08,
+     "off": 5.3,
+     "tank": 6.1
     },
     {
-     "id": "da_18_rammus",
-     "rate": 0.28,
-     "star3": 0.71,
-     "off": 0,
-     "tank": 14
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.24,
+     "id": "da_18_yorick",
+     "rate": 0.38,
      "star3": 0,
-     "off": 1,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.24,
+     "rate": 0.27,
      "star3": 0,
      "off": 2,
-     "tank": 4
+     "tank": 9.2
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.27,
+     "star3": 0.71,
+     "off": 0.6,
+     "tank": 30.9
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.24,
+     "rate": 0.22,
      "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 4.2,
+     "tank": 2.3
     },
     {
      "id": "da_18_teemo",
-     "rate": 0.2,
-     "star3": 0.6,
+     "rate": 0.21,
+     "star3": 0.46,
      "off": 0,
      "tank": 0
     },
     {
+     "id": "da_lux18_base",
+     "rate": 0.19,
+     "star3": 0,
+     "off": 20.2,
+     "tank": 0.6
+    },
+    {
      "id": "da_18_sett",
-     "rate": 0.2,
+     "rate": 0.17,
      "star3": 0,
      "off": 1,
-     "tank": 7
+     "tank": 14
     }
    ],
    "builds": {
     "da_18_azir": {
      "items": [
+      "DA_GuinsoosRageblade",
       "DA_HextechGunblade",
-      "DA_RedBuff",
-      "DA_VoidStaff"
+      "DA_RabadonsDeathcap"
      ],
-     "games": 3,
-     "avgPlace": 7.33
+     "games": 9,
+     "avgPlace": 3.92
     },
     "da_18_malphite": {
      "items": [
@@ -21396,8 +22600,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 3
+     "games": 4,
+     "avgPlace": 3.31
     }
    },
    "now": {
@@ -21429,48 +22633,41 @@ window.TFT_WEIGHTS = {
      "rate": 1,
      "star3": 0,
      "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 5
+     "tank": 9
     },
     {
      "id": "da_nidalee18_ap",
      "rate": 1,
-     "star3": 0.5,
-     "off": 6,
+     "star3": 0.15,
+     "off": 19.4,
      "tank": 0
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.76,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.74,
+     "star3": 0,
+     "off": 2.2,
+     "tank": 9.7
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.67,
+     "star3": 0,
+     "off": 0,
+     "tank": 3.5
     },
     {
      "id": "da_18_akali_ad",
      "rate": 0.5,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 2,
+     "off": 0.6,
      "tank": 0
     },
     {
@@ -21481,43 +22678,64 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
+     "id": "da_18_sivir",
+     "rate": 0.44,
+     "star3": 0,
+     "off": 6.4,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.41,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 3.2
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.35,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
      "id": "da_18_varus",
-     "rate": 0.5,
+     "rate": 0.24,
      "star3": 0,
      "off": 2,
      "tank": 0
     },
     {
-     "id": "da_vi18",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
      "id": "da_18_aphelios",
-     "rate": 0.5,
+     "rate": 0.24,
      "star3": 0,
-     "off": 3,
+     "off": 4.2,
      "tank": 0
     },
     {
-     "id": "da_18_kobuko",
-     "rate": 0.5,
+     "id": "da_18_morgana",
+     "rate": 0.15,
      "star3": 0,
-     "off": 0,
+     "off": 2,
      "tank": 0
     }
    ],
    "builds": {
     "da_nidalee18_ap": {
      "items": [
-      "DA_GuinsoosRagebladeRadiant",
-      "DA_HextechGunblade",
-      "DA_RabadonsDeathcap"
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
      ],
      "games": 1,
-     "avgPlace": 6
+     "avgPlace": 3
     },
     "da_sentinel18": {
      "items": [
@@ -21556,8 +22774,8 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_murkwolf18",
      "rate": 1,
-     "star3": 0.79,
-     "off": 55,
+     "star3": 0.72,
+     "off": 103.3,
      "tank": 0
     },
     {
@@ -21565,89 +22783,89 @@ window.TFT_WEIGHTS = {
      "rate": 1,
      "star3": 0.47,
      "off": 0,
-     "tank": 31
+     "tank": 61.9
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.89,
-     "star3": 0.29,
-     "off": 0,
+     "rate": 0.91,
+     "star3": 0.28,
+     "off": 4.1,
      "tank": 0
     },
     {
-     "id": "da_brambleback18",
-     "rate": 0.84,
-     "star3": 0,
-     "off": 32,
-     "tank": 2
+     "id": "da_sentinel18",
+     "rate": 0.9,
+     "star3": 0.02,
+     "off": 1.6,
+     "tank": 34.5
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.84,
+     "id": "da_brambleback18",
+     "rate": 0.88,
      "star3": 0,
-     "off": 1,
-     "tank": 17
+     "off": 68.1,
+     "tank": 4.9
     },
     {
      "id": "da_scuttlecrab18",
      "rate": 0.74,
-     "star3": 0.21,
+     "star3": 0.18,
      "off": 0,
-     "tank": 8
+     "tank": 11.5
     },
     {
      "id": "da_cinderling18",
-     "rate": 0.58,
-     "star3": 0.36,
-     "off": 10,
+     "rate": 0.49,
+     "star3": 0.26,
+     "off": 11.2,
      "tank": 0
     },
     {
      "id": "da_gromp18_ap",
-     "rate": 0.47,
-     "star3": 0.33,
-     "off": 13,
-     "tank": 1
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.16,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.16,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.35,
+     "star3": 0.24,
+     "off": 16.5,
      "tank": 1
     },
     {
      "id": "da_18_elderdragon",
-     "rate": 0.16,
+     "rate": 0.25,
      "star3": 0,
-     "off": 8,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.11,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 19.1,
+     "tank": 1.2
     },
     {
      "id": "da_crimsonraptor18",
-     "rate": 0.11,
-     "star3": 0.5,
-     "off": 2,
+     "rate": 0.19,
+     "star3": 0.15,
+     "off": 3.2,
+     "tank": 1
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 2
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 0,
      "tank": 1
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.11,
-     "star3": 0.5,
+     "rate": 0.09,
+     "star3": 0.32,
      "off": 0,
      "tank": 0
     }
@@ -21655,12 +22873,12 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_murkwolf18": {
      "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
-      "DA_SteraksGage"
+      "DA_EdgeOfNight",
+      "DA_HandOfJustice",
+      "DA_Quicksilver"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 2.46
     },
     "da_krug18": {
      "items": [
@@ -21687,7 +22905,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Lunar",
    "carry": "da_draven18",
    "mainCarry": "da_draven18",
-   "mainTank": "da_sentinel18",
+   "mainTank": "da_18_maokai",
    "games": 3,
    "avgPlace": 4.55,
    "top4": 0.455,
@@ -21697,99 +22915,99 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_diana",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 9,
+     "off": 21.2,
      "tank": 0
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.67,
+     "id": "da_18_diana",
+     "rate": 0.84,
      "star3": 0,
-     "off": 1,
-     "tank": 2
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.64,
+     "star3": 0,
+     "off": 0,
+     "tank": 6.1
     },
     {
      "id": "da_taric18",
-     "rate": 0.67,
+     "rate": 0.61,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 4.1
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.61,
+     "star3": 0,
+     "off": 1,
+     "tank": 5.5
     },
     {
      "id": "da_18_alune",
-     "rate": 0.67,
+     "rate": 0.61,
      "star3": 0,
-     "off": 5,
-     "tank": 0
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_elise",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
+     "off": 6.7,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.33,
+     "rate": 0.55,
+     "star3": 0,
+     "off": 3.5,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 0,
+     "tank": 3
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.2
+    },
+    {
+     "id": "da_18_leona",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.31,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.33,
+     "rate": 0.31,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -21802,17 +23020,17 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 5.47
     },
-    "da_sentinel18": {
+    "da_18_maokai": {
      "items": [
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_SteraksGage"
+      "DA_Crownguard",
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate"
      ],
      "games": 1,
-     "avgPlace": 4
+     "avgPlace": 1
     }
    },
    "now": {
@@ -21830,7 +23048,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Vanguard",
    "carry": "da_nidalee18_ap",
    "mainCarry": "da_nidalee18_ap",
-   "mainTank": "da_sentinel18",
+   "mainTank": "da_amumu18",
    "games": 2,
    "avgPlace": 4.55,
    "top4": 0.455,
@@ -21840,39 +23058,67 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
      "id": "da_nidalee18_ap",
      "rate": 1,
      "star3": 0,
-     "off": 6,
+     "off": 19.4,
      "tank": 0
     },
     {
-     "id": "da_taric18",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
-    },
-    {
      "id": "da_kogmaw18_ad",
-     "rate": 1,
+     "rate": 0.91,
      "star3": 0,
-     "off": 0,
+     "off": 1.7,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 1,
+     "rate": 0.83,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 8.2
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.83,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 8.2
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.74,
+     "star3": 0,
+     "off": 2,
+     "tank": 3.9
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 10.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 0,
+     "tank": 3.9
     },
     {
      "id": "da_18_rakan",
@@ -21883,59 +23129,31 @@ window.TFT_WEIGHTS = {
     },
     {
      "id": "da_18_shen",
-     "rate": 0.5,
+     "rate": 0.33,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
+     "id": "da_18_sivir",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 5.3,
+     "tank": 0.6
+    },
+    {
      "id": "da_18_lillia",
-     "rate": 0.5,
+     "rate": 0.33,
      "star3": 0,
      "off": 0,
      "tank": 2
     },
     {
-     "id": "da_18_sivir",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
      "id": "da_18_ashe",
-     "rate": 0.5,
+     "rate": 0.24,
      "star3": 0,
-     "off": 2,
+     "off": 2.6,
      "tank": 1
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
     }
    ],
    "builds": {
@@ -21948,14 +23166,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 1
     },
-    "da_sentinel18": {
+    "da_amumu18": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_CrownguardRadiant",
-      "DA_GargoyleStoneplate"
+      "DA_DragonsClaw",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
      ],
      "games": 1,
-     "avgPlace": 1
+     "avgPlace": 3
     }
    },
    "now": {
@@ -21985,100 +23203,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_yunara",
      "rate": 1,
-     "star3": 0.97,
-     "off": 710,
-     "tank": 0
+     "star3": 0.96,
+     "off": 1608.9,
+     "tank": 0.6
     },
     {
      "id": "da_18_yorick",
      "rate": 1,
-     "star3": 0.91,
-     "off": 32,
-     "tank": 259
+     "star3": 0.93,
+     "off": 83.2,
+     "tank": 599
     },
     {
      "id": "da_karma18",
      "rate": 1,
      "star3": 0.97,
-     "off": 609,
-     "tank": 15
+     "off": 1386.8,
+     "tank": 40.6
     },
     {
      "id": "da_18_sejuani",
-     "rate": 0.98,
+     "rate": 0.99,
      "star3": 0.84,
-     "off": 30,
-     "tank": 589
+     "off": 60.9,
+     "tank": 1346.4
     },
     {
      "id": "da_18_leona",
      "rate": 0.93,
-     "star3": 0.52,
-     "off": 13,
-     "tank": 51
+     "star3": 0.55,
+     "off": 34,
+     "tank": 114.5
     },
     {
      "id": "da_18_kayle",
-     "rate": 0.92,
+     "rate": 0.9,
      "star3": 0.11,
-     "off": 50,
-     "tank": 0
+     "off": 112.9,
+     "tank": 1.2
     },
     {
      "id": "da_18_leblanc",
      "rate": 0.72,
      "star3": 0.79,
-     "off": 210,
-     "tank": 10
+     "off": 462.1,
+     "tank": 25.1
     },
     {
      "id": "da_18_azir",
-     "rate": 0.34,
-     "star3": 0.05,
-     "off": 16,
+     "rate": 0.36,
+     "star3": 0.04,
+     "off": 24.7,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.14,
-     "star3": 0.06,
-     "off": 5,
-     "tank": 6
+     "rate": 0.17,
+     "star3": 0.03,
+     "off": 8.5,
+     "tank": 9.5
     },
     {
      "id": "da_18_soraka",
      "rate": 0.05,
      "star3": 0,
-     "off": 10,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
+     "off": 18.2,
+     "tank": 1.2
     },
     {
      "id": "da_lux18_base",
      "rate": 0.03,
      "star3": 0,
-     "off": 10,
-     "tank": 1
+     "off": 26.3,
+     "tank": 2.2
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 3.7,
+     "tank": 2.2
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 7.5,
+     "tank": 0
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.02,
+     "rate": 0.01,
      "star3": 0,
-     "off": 4,
+     "off": 5.2,
      "tank": 1
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.02,
-     "star3": 0,
-     "off": 1,
-     "tank": 7
     }
    ],
    "builds": {
@@ -22088,8 +23306,8 @@ window.TFT_WEIGHTS = {
       "DA_LastWhisper",
       "DA_SpearOfShojin"
      ],
-     "games": 21,
-     "avgPlace": 4.71
+     "games": 43,
+     "avgPlace": 4.49
     },
     "da_18_sejuani": {
      "items": [
@@ -22097,8 +23315,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 17,
-     "avgPlace": 4.59
+     "games": 40,
+     "avgPlace": 4.51
     }
    },
    "now": {
@@ -22126,101 +23344,101 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_reksai",
-     "rate": 1,
-     "star3": 0.94,
-     "off": 31,
-     "tank": 97
-    },
-    {
      "id": "da_18_veigar",
      "rate": 1,
      "star3": 1,
-     "off": 265,
-     "tank": 1
+     "off": 692.9,
+     "tank": 2.7
     },
     {
-     "id": "da_18_ornn",
+     "id": "da_18_reksai",
      "rate": 1,
      "star3": 0.93,
-     "off": 19,
-     "tank": 142
+     "off": 75.2,
+     "tank": 286.2
     },
     {
      "id": "da_18_leblanc",
      "rate": 1,
-     "star3": 0.68,
-     "off": 79,
-     "tank": 3
+     "star3": 0.63,
+     "off": 176.8,
+     "tank": 11.7
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 1,
+     "rate": 0.99,
      "star3": 0.03,
-     "off": 13,
-     "tank": 16
+     "off": 40.4,
+     "tank": 41.6
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.99,
+     "star3": 0.95,
+     "off": 55.1,
+     "tank": 363.8
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.96,
-     "star3": 0.64,
-     "off": 24,
-     "tank": 158
+     "rate": 0.94,
+     "star3": 0.63,
+     "off": 58.3,
+     "tank": 367.6
     },
     {
      "id": "da_18_cassiopeia",
-     "rate": 0.72,
-     "star3": 0,
-     "off": 90,
-     "tank": 2
+     "rate": 0.67,
+     "star3": 0.02,
+     "off": 228.6,
+     "tank": 5.5
     },
     {
      "id": "da_18_alune",
      "rate": 0.29,
      "star3": 0,
-     "off": 52,
-     "tank": 2
+     "off": 149.2,
+     "tank": 9
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.14,
+     "rate": 0.19,
      "star3": 0,
-     "off": 15,
-     "tank": 0
+     "off": 48.2,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.08,
+     "star3": 0,
+     "off": 19.6,
+     "tank": 3.7
     },
     {
      "id": "da_18_soraka",
      "rate": 0.07,
      "star3": 0,
-     "off": 2,
+     "off": 9.6,
      "tank": 0
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 8,
-     "tank": 2
-    },
-    {
      "id": "da_lux18_base",
-     "rate": 0.04,
+     "rate": 0.05,
      "star3": 0,
-     "off": 6,
-     "tank": 1
+     "off": 18.8,
+     "tank": 2.2
     },
     {
-     "id": "da_gromp18_ap",
-     "rate": 0.03,
-     "star3": 0,
-     "off": 0,
+     "id": "da_karma18",
+     "rate": 0.04,
+     "star3": 0.09,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.03,
+     "rate": 0.04,
      "star3": 0,
-     "off": 4,
+     "off": 5.7,
      "tank": 0
     }
    ],
@@ -22231,17 +23449,17 @@ window.TFT_WEIGHTS = {
       "DA_HextechGunblade",
       "DA_JeweledGauntlet"
      ],
-     "games": 14,
-     "avgPlace": 4.36
+     "games": 32,
+     "avgPlace": 4.79
     },
     "da_18_alistar": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
+      "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 4,
-     "avgPlace": 2.5
+     "games": 8,
+     "avgPlace": 3.98
     }
    },
    "now": {
@@ -22272,99 +23490,99 @@ window.TFT_WEIGHTS = {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 69,
-     "tank": 0
+     "off": 144.1,
+     "tank": 0.6
     },
     {
      "id": "da_amumu18",
-     "rate": 0.96,
+     "rate": 0.98,
      "star3": 0,
-     "off": 2,
-     "tank": 19
+     "off": 3.7,
+     "tank": 40.5
     },
     {
      "id": "da_18_kennen",
      "rate": 0.92,
      "star3": 0,
-     "off": 18,
-     "tank": 5
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.84,
-     "star3": 0,
-     "off": 9,
-     "tank": 0
+     "off": 29.1,
+     "tank": 7.9
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.8,
+     "rate": 0.85,
      "star3": 0,
-     "off": 1,
-     "tank": 26
+     "off": 3.3,
+     "tank": 67.3
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.79,
+     "star3": 0,
+     "off": 20.6,
+     "tank": 1.7
     },
     {
      "id": "da_taric18",
-     "rate": 0.76,
+     "rate": 0.78,
      "star3": 0,
-     "off": 0,
-     "tank": 22
+     "off": 2.9,
+     "tank": 33.1
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.76,
+     "rate": 0.71,
      "star3": 0,
      "off": 3,
-     "tank": 13
+     "tank": 27.6
     },
     {
      "id": "da_18_elderdragon",
-     "rate": 0.56,
+     "rate": 0.51,
      "star3": 0,
-     "off": 37,
-     "tank": 0
+     "off": 64.9,
+     "tank": 1.2
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.44,
+     "rate": 0.43,
      "star3": 0,
-     "off": 12,
-     "tank": 2
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.24,
-     "star3": 0.17,
-     "off": 0,
-     "tank": 4
+     "off": 17.8,
+     "tank": 3.7
     },
     {
      "id": "da_18_ezreal",
      "rate": 0.24,
      "star3": 0,
-     "off": 4,
+     "off": 10.4,
+     "tank": 0
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.22,
+     "star3": 0.14,
+     "off": 0,
+     "tank": 4
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_varus",
      "rate": 0.12,
-     "star3": 0,
-     "off": 1,
+     "star3": 0.1,
+     "off": 1.6,
      "tank": 0
     },
     {
-     "id": "da_18_ashe",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "id": "da_18_akali_ad",
+     "rate": 0.07,
+     "star3": 0.17,
+     "off": 1.2,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -22374,17 +23592,17 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_KrakensFury"
      ],
-     "games": 3,
-     "avgPlace": 6.33
+     "games": 5,
+     "avgPlace": 4.66
     },
     "da_18_maokai": {
      "items": [
-      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
       "DA_SpiritVisage",
-      "DA_SteraksGage"
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 1.75
     }
    },
    "now": {
@@ -22412,122 +23630,122 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_18_masteryi_ad",
-     "rate": 1,
-     "star3": 0.74,
-     "off": 41,
-     "tank": 5
-    },
-    {
      "id": "da_kogmaw18_ad",
      "rate": 1,
-     "star3": 0.89,
-     "off": 55,
+     "star3": 0.87,
+     "off": 121.4,
      "tank": 2
+    },
+    {
+     "id": "da_18_masteryi_ad",
+     "rate": 1,
+     "star3": 0.72,
+     "off": 88.2,
+     "tank": 10.2
     },
     {
      "id": "da_vi18",
      "rate": 1,
-     "star3": 0.47,
-     "off": 6,
-     "tank": 38
+     "star3": 0.49,
+     "off": 10.7,
+     "tank": 82.2
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 39.5,
+     "tank": 2
     },
     {
      "id": "da_18_yorick",
      "rate": 0.95,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 1
     },
     {
-     "id": "da_nidalee18_ap",
-     "rate": 0.95,
-     "star3": 0,
-     "off": 15,
-     "tank": 2
-    },
-    {
      "id": "da_18_sett",
-     "rate": 0.74,
+     "rate": 0.81,
      "star3": 0,
-     "off": 2,
-     "tank": 15
+     "off": 4.3,
+     "tank": 24.9
     },
     {
      "id": "da_krug18",
-     "rate": 0.58,
-     "star3": 0.09,
-     "off": 4,
-     "tank": 10
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.16,
-     "star3": 0,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_18_akali_ad",
-     "rate": 0.16,
-     "star3": 0.33,
-     "off": 0,
-     "tank": 0
+     "rate": 0.62,
+     "star3": 0.2,
+     "off": 4.6,
+     "tank": 27.5
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.16,
+     "rate": 0.24,
+     "star3": 0.52,
+     "off": 20.7,
+     "tank": 4.9
+    },
+    {
+     "id": "da_18_akali_ad",
+     "rate": 0.14,
+     "star3": 0.17,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.1,
      "star3": 0,
-     "off": 5,
-     "tank": 2
+     "off": 4.6,
+     "tank": 0
     },
     {
      "id": "da_gromp18_ap",
-     "rate": 0.11,
+     "rate": 0.09,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_karma18",
-     "rate": 0.11,
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_zyra",
-     "rate": 0.05,
+     "id": "da_lux18_base",
+     "rate": 0.04,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 0.6
     },
     {
-     "id": "da_18_teemo",
-     "rate": 0.05,
+     "id": "da_18_yunara",
+     "rate": 0.04,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     }
    ],
    "builds": {
     "da_kogmaw18_ad": {
      "items": [
-      "DA_GiantSlayer",
       "DA_InfinityEdge",
+      "DA_RedBuff",
       "DA_SpearOfShojin"
      ],
      "games": 2,
-     "avgPlace": 5.5
+     "avgPlace": 4.66
     },
     "da_vi18": {
      "items": [
-      "DA_ProtectorsVow",
+      "DA_GargoyleStoneplate",
       "DA_SpiritVisage",
-      "DA_SunfireCape"
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 3,
+     "avgPlace": 5.06
     }
    },
    "now": {
@@ -22558,99 +23776,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_soraka",
      "rate": 1,
      "star3": 0,
-     "off": 62,
-     "tank": 1
+     "off": 173.2,
+     "tank": 2.7
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.96,
+     "rate": 0.97,
      "star3": 0,
-     "off": 44,
-     "tank": 2
+     "off": 137.7,
+     "tank": 4.9
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.87,
+     "rate": 0.9,
      "star3": 0,
-     "off": 2,
-     "tank": 15
+     "off": 7.8,
+     "tank": 53.4
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.78,
-     "star3": 0,
-     "off": 2,
-     "tank": 3
+     "rate": 0.88,
+     "star3": 0.01,
+     "off": 2.6,
+     "tank": 8.8
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.7,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_xayah",
-     "rate": 0.52,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "rate": 0.84,
+     "star3": 0.04,
+     "off": 0.6,
+     "tank": 4.7
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.52,
-     "star3": 0,
-     "off": 1,
+     "rate": 0.59,
+     "star3": 0.02,
+     "off": 10.9,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.52,
+     "rate": 0.48,
      "star3": 0,
      "off": 0,
-     "tank": 9
+     "tank": 23
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.43,
+     "rate": 0.48,
      "star3": 0,
-     "off": 1,
-     "tank": 21
+     "off": 2.2,
+     "tank": 60.6
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.39,
+     "id": "da_18_xayah",
+     "rate": 0.47,
      "star3": 0,
-     "off": 13,
-     "tank": 1
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.26,
-     "star3": 0,
-     "off": 5,
-     "tank": 3
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 1,
-     "tank": 6
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.13,
-     "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
-     "id": "da_18_gnarsmall",
-     "rate": 0.13,
+     "id": "da_lux18_base",
+     "rate": 0.3,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 25.8,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 13.2,
+     "tank": 3.6
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 10.8
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 1,
+     "tank": 7.2
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 3.7,
+     "tank": 0
     }
    ],
    "builds": {
@@ -22660,8 +23878,8 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 3,
-     "avgPlace": 2.33
+     "games": 4,
+     "avgPlace": 2.77
     },
     "da_18_lillia": {
      "items": [
@@ -22688,7 +23906,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Elderwood",
    "carry": "da_18_zyra",
    "mainCarry": "da_18_zyra",
-   "mainTank": "da_krug18",
+   "mainTank": "da_18_hecarim",
    "games": 6,
    "avgPlace": 4.57,
    "top4": 0.381,
@@ -22701,119 +23919,119 @@ window.TFT_WEIGHTS = {
      "id": "da_18_zyra",
      "rate": 1,
      "star3": 0,
-     "off": 18,
+     "off": 38.4,
      "tank": 0
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.88,
+     "star3": 0.39,
+     "off": 1.2,
+     "tank": 23.3
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 0.88,
+     "star3": 0.8,
+     "off": 23.4,
+     "tank": 10.8
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.88,
+     "star3": 0.19,
+     "off": 0.6,
+     "tank": 16.6
     },
     {
      "id": "da_18_xayah",
      "rate": 0.83,
      "star3": 0,
-     "off": 4,
+     "off": 4.6,
      "tank": 0
     },
     {
-     "id": "da_crimsonraptor18",
-     "rate": 0.83,
-     "star3": 1,
-     "off": 10,
-     "tank": 5
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.83,
-     "star3": 0.2,
-     "off": 0,
-     "tank": 7
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.83,
-     "star3": 0.2,
-     "off": 0,
-     "tank": 9
-    },
-    {
      "id": "da_18_alistar",
-     "rate": 0.67,
-     "star3": 0.25,
+     "rate": 0.76,
+     "star3": 0.16,
      "off": 2,
-     "tank": 1
+     "tank": 3.3
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.67,
+     "rate": 0.76,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 8.5
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.12,
      "star3": 0,
      "off": 0,
-     "tank": 5
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 3
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 1,
+     "tank": 0
+    },
+    {
+     "id": "da_scuttlecrab18",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.17,
+     "rate": 0.12,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.17,
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.17,
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_soraka",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 2,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_zyra": {
      "items": [
-      "DA_BlueBuff",
-      "DA_GiantSlayer",
-      "DA_RedBuff"
+      "DA_LastWhisper",
+      "DA_RedBuff",
+      "DA_SpearOfShojin"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 4.63
     },
-    "da_krug18": {
+    "da_18_hecarim": {
      "items": [
-      "DA_AdaptiveHelm",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 5.54
     }
    },
    "now": {
@@ -22844,99 +24062,99 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ahri",
      "rate": 1,
      "star3": 0.01,
-     "off": 503,
-     "tank": 8
+     "off": 1180.7,
+     "tank": 16.7
     },
     {
      "id": "da_18_sett",
      "rate": 0.99,
-     "star3": 0.01,
-     "off": 73,
-     "tank": 336
+     "star3": 0,
+     "off": 154.5,
+     "tank": 737.7
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.94,
+     "rate": 0.93,
      "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.87,
-     "star3": 0,
-     "off": 355,
-     "tank": 18
+     "off": 3.3,
+     "tank": 1.6
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.84,
+     "rate": 0.86,
      "star3": 0,
-     "off": 11,
-     "tank": 13
+     "off": 33.7,
+     "tank": 34
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.86,
+     "star3": 0,
+     "off": 806.8,
+     "tank": 44.2
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.58,
+     "rate": 0.61,
      "star3": 0,
-     "off": 15,
-     "tank": 150
+     "off": 46.4,
+     "tank": 360.8
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.51,
+     "rate": 0.53,
      "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 5.9,
+     "tank": 4.1
     },
     {
      "id": "da_krug18",
      "rate": 0.35,
      "star3": 0,
-     "off": 5,
-     "tank": 8
+     "off": 7.3,
+     "tank": 16.7
     },
     {
      "id": "da_amumu18",
-     "rate": 0.33,
+     "rate": 0.3,
      "star3": 0,
-     "off": 7,
-     "tank": 92
+     "off": 14,
+     "tank": 177
     },
     {
      "id": "da_18_shen",
-     "rate": 0.26,
-     "star3": 0,
-     "off": 2,
-     "tank": 2
+     "rate": 0.24,
+     "star3": 0.02,
+     "off": 6.1,
+     "tank": 4.3
     },
     {
      "id": "da_taric18",
-     "rate": 0.2,
+     "rate": 0.19,
      "star3": 0,
-     "off": 2,
-     "tank": 19
+     "off": 6.7,
+     "tank": 52.2
     },
     {
      "id": "da_lux18_base",
      "rate": 0.14,
      "star3": 0,
-     "off": 24,
-     "tank": 3
+     "off": 61.8,
+     "tank": 8.2
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 49.3
     },
     {
      "id": "da_karma18",
      "rate": 0.12,
      "star3": 0,
-     "off": 4,
+     "off": 11,
      "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.12,
-     "star3": 0,
-     "off": 22,
-     "tank": 1
     }
    ],
    "builds": {
@@ -22946,17 +24164,17 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 39,
-     "avgPlace": 4.21
+     "games": 87,
+     "avgPlace": 4.51
     },
     "da_18_sett": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_SteraksGage",
-      "DA_WarmogsArmor"
+      "DA_GargoyleStoneplate",
+      "DA_SteraksGage"
      ],
-     "games": 8,
-     "avgPlace": 5.75
+     "games": 15,
+     "avgPlace": 4.56
     }
    },
    "now": {
@@ -22987,7 +24205,7 @@ window.TFT_WEIGHTS = {
      "id": "da_18_aphelios",
      "rate": 1,
      "star3": 0,
-     "off": 26,
+     "off": 44.6,
      "tank": 0
     },
     {
@@ -22995,90 +24213,90 @@ window.TFT_WEIGHTS = {
      "rate": 1,
      "star3": 0,
      "off": 1,
-     "tank": 22
+     "tank": 33.6
     },
     {
      "id": "da_18_diana",
-     "rate": 0.89,
+     "rate": 0.86,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 1
     },
     {
      "id": "da_18_varus",
-     "rate": 0.67,
+     "rate": 0.62,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.56,
+     "rate": 0.55,
      "star3": 0,
      "off": 1,
-     "tank": 4
+     "tank": 9.8
     },
     {
-     "id": "da_18_shen",
-     "rate": 0.44,
+     "id": "da_vi18",
+     "rate": 0.41,
      "star3": 0,
-     "off": 1,
+     "off": 0,
+     "tank": 5.9
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.38,
+     "star3": 0,
+     "off": 10.8,
+     "tank": 0.6
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.38,
+     "star3": 0,
+     "off": 8.7,
      "tank": 1
     },
     {
      "id": "da_18_alune",
-     "rate": 0.44,
+     "rate": 0.37,
      "star3": 0,
-     "off": 2,
+     "off": 3.2,
      "tank": 1
     },
     {
-     "id": "da_vi18",
-     "rate": 0.44,
+     "id": "da_18_shen",
+     "rate": 0.37,
      "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.44,
-     "star3": 0,
-     "off": 3,
-     "tank": 2
+     "off": 1,
+     "tank": 1
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.33,
+     "rate": 0.35,
      "star3": 0,
-     "off": 2,
+     "off": 3.7,
      "tank": 0
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 5,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 4,
-     "tank": 1
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.22,
-     "star3": 0,
-     "off": 0,
-     "tank": 6
     },
     {
      "id": "da_18_leona",
-     "rate": 0.22,
+     "rate": 0.32,
+     "star3": 0.12,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.32,
      "star3": 0,
      "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.32,
+     "star3": 0.12,
+     "off": 1.7,
      "tank": 0
     }
    ],
@@ -23089,8 +24307,8 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 3,
-     "avgPlace": 2.67
+     "games": 4,
+     "avgPlace": 2.88
     },
     "da_amumu18": {
      "items": [
@@ -23098,8 +24316,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 2,
+     "avgPlace": 5.9
     }
    },
    "now": {
@@ -23117,7 +24335,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_Riftbeast18",
    "carry": "da_18_ashe",
    "mainCarry": "da_18_ashe",
-   "mainTank": "da_taric18",
+   "mainTank": "da_18_maokai",
    "games": 3,
    "avgPlace": 4.6,
    "top4": 0.435,
@@ -23127,88 +24345,102 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_sivir",
-     "rate": 1,
-     "star3": 0,
-     "off": 6,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 1,
-     "star3": 0,
-     "off": 9,
-     "tank": 0
-    },
-    {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 9,
-     "tank": 0
+     "off": 39.9,
+     "tank": 0.6
     },
     {
      "id": "da_taric18",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 1.2,
+     "tank": 11.7
     },
     {
-     "id": "da_vi18",
-     "rate": 0.67,
+     "id": "da_18_ashe",
+     "rate": 1,
      "star3": 0,
-     "off": 0,
+     "off": 46.8,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.67,
+     "rate": 0.94,
      "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 1.2,
+     "tank": 11.2
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.33,
+     "rate": 0.8,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 16.4
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.79,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 13.8
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.69,
+     "star3": 0,
+     "off": 5.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.48,
+     "star3": 0,
+     "off": 11.8,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.47,
+     "star3": 0,
+     "off": 7.2,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 0,
+     "tank": 3.5
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 3.6
+    },
+    {
+     "id": "da_draven18",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_cinderling18",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
     }
    ],
    "builds": {
@@ -23218,17 +24450,17 @@ window.TFT_WEIGHTS = {
       "DA_RedBuff",
       "DA_SpearOfShojin"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 3,
+     "avgPlace": 3.12
     },
-    "da_taric18": {
+    "da_18_maokai": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 4.21
     }
    },
    "now": {
@@ -23246,129 +24478,129 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Slayer",
    "carry": "da_18_warwick",
    "mainCarry": "da_18_warwick",
-   "mainTank": "da_18_malphite",
+   "mainTank": "da_18_elise",
    "games": 6,
    "avgPlace": 4.6,
    "top4": 0.513,
    "win": 0.027,
    "patchGames": 6,
    "playRate": 0.0011,
-   "level": 8,
+   "level": 7,
    "core": [
     {
      "id": "da_murkwolf18",
      "rate": 1,
-     "star3": 0.83,
-     "off": 3,
-     "tank": 0
+     "star3": 0.75,
+     "off": 5.3,
+     "tank": 0.6
     },
     {
      "id": "da_18_warwick",
      "rate": 1,
-     "star3": 1,
-     "off": 17,
-     "tank": 0
-    },
-    {
-     "id": "da_brambleback18",
-     "rate": 1,
-     "star3": 0,
-     "off": 9,
-     "tank": 0
+     "star3": 0.97,
+     "off": 50.2,
+     "tank": 3.5
     },
     {
      "id": "da_18_diana",
-     "rate": 0.83,
+     "rate": 0.91,
      "star3": 0,
-     "off": 1,
-     "tank": 2
+     "off": 9.7,
+     "tank": 7.2
     },
     {
-     "id": "da_18_camille",
-     "rate": 0.67,
+     "id": "da_brambleback18",
+     "rate": 0.9,
      "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_elise",
-     "rate": 0.5,
-     "star3": 1,
-     "off": 3,
-     "tank": 3
-    },
-    {
-     "id": "da_18_malphite",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 5
+     "off": 25.3,
+     "tank": 2.3
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.5,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 5
+     "rate": 0.68,
+     "star3": 0.35,
+     "off": 0.6,
+     "tank": 12
+    },
+    {
+     "id": "da_18_elise",
+     "rate": 0.64,
+     "star3": 0.9,
+     "off": 7.1,
+     "tank": 19.9
     },
     {
      "id": "da_krug18",
-     "rate": 0.5,
-     "star3": 0.33,
+     "rate": 0.58,
+     "star3": 0.15,
      "off": 0,
-     "tank": 3
+     "tank": 11.2
+    },
+    {
+     "id": "da_18_camille",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 2,
+     "tank": 1.2
     },
     {
      "id": "da_18_akali_ad",
-     "rate": 0.33,
+     "rate": 0.27,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
+     "id": "da_18_malphite",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 0,
+     "tank": 8.5
+    },
+    {
      "id": "da_sentinel18",
-     "rate": 0.33,
+     "rate": 0.17,
      "star3": 0,
      "off": 1,
      "tank": 4
     },
     {
-     "id": "da_18_azir",
-     "rate": 0.17,
+     "id": "da_18_alistar",
+     "rate": 0.13,
+     "star3": 1,
+     "off": 0,
+     "tank": 5.2
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.12,
      "star3": 0,
-     "off": 1,
+     "off": 2.6,
      "tank": 0
     },
     {
      "id": "da_18_khazix",
-     "rate": 0.17,
-     "star3": 1,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "rate": 0.09,
+     "star3": 0.63,
+     "off": 0.6,
+     "tank": 0.6
     }
    ],
    "builds": {
     "da_18_warwick": {
      "items": [
-      "DA_Artifact_RapidFireCannon",
-      "DA_Quicksilver",
-      "DA_SpearOfShojin"
+      "DA_EdgeOfNight",
+      "DA_GiantSlayer",
+      "DA_InfinityEdge"
      ],
      "games": 1,
-     "avgPlace": 5
+     "avgPlace": 4
     },
-    "da_18_malphite": {
+    "da_18_elise": {
      "items": [
-      "DA_DragonsClaw",
+      "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SunfireCape"
+      "DA_SteadfastHeart"
      ],
      "games": 1,
      "avgPlace": 4
@@ -23389,86 +24621,129 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Blackthorn",
    "carry": "da_18_yunara",
    "mainCarry": "da_18_yunara",
-   "mainTank": "da_18_warwick",
+   "mainTank": "da_18_alistar",
    "games": 2,
    "avgPlace": 4.6,
    "top4": 0.6,
    "win": 0.1,
    "patchGames": 2,
    "playRate": 0.0004,
-   "level": 8,
+   "level": 7,
    "core": [
-    {
-     "id": "da_18_warwick",
-     "rate": 1,
-     "star3": 1,
-     "off": 2,
-     "tank": 3
-    },
     {
      "id": "da_18_yunara",
      "rate": 1,
-     "star3": 1,
-     "off": 4,
+     "star3": 0.9,
+     "off": 13.9,
      "tank": 0
-    },
-    {
-     "id": "da_18_reksai",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
     },
     {
      "id": "da_18_azir",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 3.5,
+     "tank": 1.2
     },
     {
-     "id": "da_18_veigar",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "id": "da_18_warwick",
+     "rate": 0.81,
+     "star3": 0.88,
+     "off": 7.8,
+     "tank": 5.3
     },
     {
-     "id": "da_18_malphite",
-     "rate": 0.5,
+     "id": "da_18_reksai",
+     "rate": 0.81,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 2.6
     },
     {
-     "id": "da_18_kennen",
-     "rate": 0.5,
-     "star3": 0,
+     "id": "da_murkwolf18",
+     "rate": 0.64,
+     "star3": 0.74,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.5,
-     "star3": 1,
-     "off": 0,
-     "tank": 3
+     "rate": 0.55,
+     "star3": 0.83,
+     "off": 0.6,
+     "tank": 9.4
     },
     {
-     "id": "da_murkwolf18",
-     "rate": 0.5,
+     "id": "da_18_malphite",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 5.3
+    },
+    {
+     "id": "da_18_veigar",
+     "rate": 0.36,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.19,
+     "star3": 0.5,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 0.1,
      "star3": 0,
      "off": 0,
      "tank": 0
     }
    ],
    "builds": {
-    "da_18_yunara": null,
-    "da_18_warwick": {
+    "da_18_yunara": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_Bloodthirster",
-      "DA_TitansResolve"
+      "DA_Component_BFSword",
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin"
+     ],
+     "games": 1,
+     "avgPlace": 8
+    },
+    "da_18_alistar": {
+     "items": [
+      "DA_Crownguard",
+      "DA_DragonsClaw",
+      "DA_SpiritVisage"
      ],
      "games": 1,
      "avgPlace": 8
@@ -23499,102 +24774,102 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_ezreal",
-     "rate": 1,
-     "star3": 0,
-     "off": 15,
-     "tank": 2
-    },
-    {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 30,
+     "off": 41.6,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 1,
+     "rate": 0.96,
      "star3": 0,
      "off": 0,
-     "tank": 4
+     "tank": 8.1
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.91,
+     "rate": 0.93,
      "star3": 0,
-     "off": 10,
-     "tank": 3
+     "off": 12.3,
+     "tank": 6.5
     },
     {
-     "id": "da_18_alistar",
-     "rate": 0.73,
+     "id": "da_18_ezreal",
+     "rate": 0.88,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 19.1,
+     "tank": 2
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.73,
+     "rate": 0.72,
      "star3": 0,
-     "off": 2,
-     "tank": 13
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.64,
-     "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 3.2,
+     "tank": 20
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.64,
+     "rate": 0.62,
      "star3": 0,
-     "off": 3,
+     "off": 4.2,
      "tank": 0
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.55,
+     "id": "da_taric18",
+     "rate": 0.58,
      "star3": 0,
-     "off": 2,
+     "off": 0,
      "tank": 6
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.45,
+     "rate": 0.56,
+     "star3": 0,
+     "off": 2.9,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.53,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
+     "id": "da_sentinel18",
+     "rate": 0.51,
+     "star3": 0,
+     "off": 2,
+     "tank": 7.2
+    },
+    {
      "id": "da_18_hecarim",
-     "rate": 0.18,
+     "rate": 0.21,
      "star3": 0,
      "off": 0,
      "tank": 3
     },
     {
      "id": "da_18_elderdragon",
-     "rate": 0.09,
+     "rate": 0.14,
      "star3": 0,
-     "off": 1,
+     "off": 3.9,
      "tank": 0
     },
     {
-     "id": "da_18_diana",
-     "rate": 0.09,
+     "id": "da_18_azir",
+     "rate": 0.1,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_krug18",
-     "rate": 0.09,
+     "id": "da_18_diana",
+     "rate": 0.1,
      "star3": 0,
-     "off": 1,
-     "tank": 2
+     "off": 0.6,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -23604,8 +24879,8 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 2,
-     "avgPlace": 5.5
+     "games": 3,
+     "avgPlace": 5.16
     },
     "da_18_maokai": {
      "items": [
@@ -23642,113 +24917,113 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 7
-    },
-    {
      "id": "da_18_alune",
      "rate": 1,
      "star3": 0,
-     "off": 30,
+     "off": 48.6,
      "tank": 0
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.9,
+     "id": "da_vi18",
+     "rate": 0.93,
      "star3": 0,
-     "off": 2,
-     "tank": 8
+     "off": 0,
+     "tank": 9.9
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.87,
+     "star3": 0,
+     "off": 2.6,
+     "tank": 15
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.8,
+     "rate": 0.74,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.7,
+     "rate": 0.68,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
+     "id": "da_18_sejuani",
+     "rate": 0.59,
+     "star3": 0.1,
+     "off": 0,
+     "tank": 0.6
+    },
+    {
      "id": "da_18_maokai",
-     "rate": 0.5,
+     "rate": 0.55,
      "star3": 0,
      "off": 0,
-     "tank": 9
+     "tank": 17.2
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.5,
+     "rate": 0.45,
      "star3": 0,
      "off": 0,
      "tank": 1
     },
     {
-     "id": "da_18_sejuani",
-     "rate": 0.5,
-     "star3": 0.2,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_ivern",
-     "rate": 0.5,
+     "rate": 0.45,
      "star3": 0,
-     "off": 7,
+     "off": 9.3,
      "tank": 1
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.4,
+     "rate": 0.42,
      "star3": 0,
-     "off": 9,
+     "off": 16,
      "tank": 1
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.4,
+     "rate": 0.35,
      "star3": 0,
-     "off": 9,
+     "off": 13.1,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 1,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.2,
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
-     "tank": 1
+     "tank": 2.7
     },
     {
-     "id": "da_18_diana",
-     "rate": 0.2,
+     "id": "da_18_kennen",
+     "rate": 0.14,
      "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.1,
-     "star3": 0,
-     "off": 1,
+     "off": 0.6,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_alune": {
      "items": [
-      "DA_JeweledGauntlet",
-      "DA_NashorsTooth",
-      "DA_StrikersFlail"
+      "DA_ArchangelsStaff",
+      "DA_SpearOfShojin",
+      "DA_VoidStaffRadiant"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 6
     },
     "da_18_maokai": {
      "items": [
@@ -23775,7 +25050,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Hunter",
    "carry": "da_18_ashe",
    "mainCarry": "da_18_ashe",
-   "mainTank": "da_18_maokai",
+   "mainTank": "da_18_malphite",
    "games": 7,
    "avgPlace": 4.65,
    "top4": 0.47,
@@ -23788,119 +25063,119 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ashe",
      "rate": 1,
      "star3": 0,
-     "off": 21,
+     "off": 58.8,
      "tank": 0
     },
     {
      "id": "da_18_sivir",
-     "rate": 1,
+     "rate": 0.97,
      "star3": 0,
-     "off": 11,
-     "tank": 0
+     "off": 36.6,
+     "tank": 0.6
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.71,
+     "rate": 0.72,
      "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 1.6,
+     "tank": 13.7
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.71,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.57,
+     "rate": 0.49,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.57,
+     "rate": 0.47,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 10.2
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.41,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 5.2
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.35,
+     "star3": 0,
+     "off": 12.2,
+     "tank": 0
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.32,
      "star3": 0,
      "off": 0,
-     "tank": 2
+     "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.57,
+     "rate": 0.32,
      "star3": 0,
      "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_tristana",
-     "rate": 0.43,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.43,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.43,
-     "star3": 0,
-     "off": 1,
-     "tank": 8
+     "tank": 1.6
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.43,
+     "rate": 0.3,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 6.5
     },
     {
-     "id": "da_18_rammus",
+     "id": "da_18_maokai",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 1,
+     "tank": 9.7
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 2.6,
+     "tank": 1.6
+    },
+    {
+     "id": "da_krug18",
      "rate": 0.29,
      "star3": 0,
      "off": 0,
-     "tank": 2
+     "tank": 0
     },
     {
-     "id": "da_18_elderdragon",
+     "id": "da_18_malphite",
      "rate": 0.29,
      "star3": 0,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 15.7
     }
    ],
    "builds": {
     "da_18_ashe": {
      "items": [
-      "DA_InfinityEdge",
-      "DA_LastWhisper",
+      "DA_Deathblade",
+      "DA_RedBuff",
       "DA_SpearOfShojin"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 2,
+     "avgPlace": 3.21
     },
-    "da_18_maokai": {
+    "da_18_malphite": {
      "items": [
-      "DA_BrambleVest",
+      "DA_Crownguard",
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 3
+     "avgPlace": 4.5
     }
    },
    "now": {
@@ -23928,102 +25203,102 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
+     "id": "da_18_malphite",
+     "rate": 1,
+     "star3": 0,
+     "off": 9.3,
+     "tank": 109.7
+    },
+    {
      "id": "da_18_soraka",
      "rate": 1,
      "star3": 0,
-     "off": 62,
-     "tank": 5
+     "off": 113.2,
+     "tank": 5.6
     },
     {
      "id": "da_18_azir",
      "rate": 1,
      "star3": 0,
-     "off": 12,
+     "off": 23.1,
      "tank": 3
     },
     {
-     "id": "da_18_malphite",
-     "rate": 1,
-     "star3": 0,
-     "off": 7,
-     "tank": 62
-    },
-    {
      "id": "da_fiddlesticks18",
-     "rate": 0.87,
+     "rate": 0.86,
      "star3": 0,
-     "off": 1,
-     "tank": 2
+     "off": 1.6,
+     "tank": 5.5
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.87,
+     "rate": 0.86,
      "star3": 0,
-     "off": 36,
-     "tank": 5
+     "off": 64.5,
+     "tank": 6.7
     },
     {
      "id": "da_amumu18",
-     "rate": 0.83,
+     "rate": 0.77,
      "star3": 0,
-     "off": 2,
-     "tank": 14
+     "off": 4.9,
+     "tank": 19.2
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.65,
+     "rate": 0.73,
      "star3": 0,
      "off": 0,
      "tank": 1
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.61,
+     "rate": 0.54,
      "star3": 0,
-     "off": 2,
+     "off": 4.3,
      "tank": 0
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.52,
+     "rate": 0.42,
      "star3": 0,
-     "off": 4,
-     "tank": 3
+     "off": 7.5,
+     "tank": 5.9
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.26,
+     "rate": 0.34,
      "star3": 0,
-     "off": 13,
-     "tank": 1
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 19.4,
+     "tank": 2.2
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.13,
+     "rate": 0.19,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_sett",
-     "rate": 0.13,
+     "id": "da_18_lillia",
+     "rate": 0.14,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 0.6,
+     "tank": 5.3
     },
     {
-     "id": "da_18_alune",
-     "rate": 0.09,
+     "id": "da_18_sett",
+     "rate": 0.12,
      "star3": 0,
      "off": 1,
-     "tank": 0
+     "tank": 2.9
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.08,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.2
     }
    ],
    "builds": {
@@ -24038,12 +25313,12 @@ window.TFT_WEIGHTS = {
     },
     "da_18_malphite": {
      "items": [
-      "DA_GargoyleStoneplate",
+      "DA_Crownguard",
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 4,
-     "avgPlace": 5.5
+     "games": 6,
+     "avgPlace": 4.51
     }
    },
    "now": {
@@ -24074,96 +25349,96 @@ window.TFT_WEIGHTS = {
      "id": "da_18_zyra",
      "rate": 1,
      "star3": 0,
-     "off": 29,
-     "tank": 0
+     "off": 72.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_azir",
      "rate": 1,
      "star3": 0,
-     "off": 16,
-     "tank": 2
+     "off": 23,
+     "tank": 2.6
     },
     {
      "id": "da_18_malphite",
      "rate": 1,
      "star3": 0,
-     "off": 2,
-     "tank": 26
+     "off": 4.3,
+     "tank": 70.8
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.91,
+     "rate": 0.88,
      "star3": 0,
-     "off": 18,
-     "tank": 2
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.73,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.64,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 44.2,
+     "tank": 6.7
     },
     {
      "id": "da_amumu18",
-     "rate": 0.64,
+     "rate": 0.66,
      "star3": 0,
-     "off": 2,
-     "tank": 5
+     "off": 4.9,
+     "tank": 12.6
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.66,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.62,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.55,
+     "rate": 0.5,
      "star3": 0,
      "off": 3,
      "tank": 1
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.55,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.43,
+     "star3": 0.05,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.45,
+     "rate": 0.4,
      "star3": 0,
-     "off": 3,
-     "tank": 1
+     "off": 11.7,
+     "tank": 2.2
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.27,
+     "rate": 0.39,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 7.6,
+     "tank": 0.6
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.09,
+     "rate": 0.19,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 2.7
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -24172,21 +25447,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_zyra": {
      "items": [
-      "DA_RedBuff",
+      "DA_Morellonomicon",
       "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
-     "games": 1,
+     "games": 2,
      "avgPlace": 5
     },
     "da_18_malphite": {
      "items": [
       "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
+      "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 5.5
+     "games": 3,
+     "avgPlace": 4.36
     }
    },
    "now": {
@@ -24216,100 +25491,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_aphelios",
      "rate": 1,
-     "star3": 0.03,
-     "off": 192,
+     "star3": 0.02,
+     "off": 494.2,
      "tank": 0
     },
     {
      "id": "da_18_xayah",
-     "rate": 0.96,
-     "star3": 0,
-     "off": 10,
-     "tank": 0
+     "rate": 0.95,
+     "star3": 0.01,
+     "off": 16.4,
+     "tank": 0.6
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.96,
+     "rate": 0.95,
      "star3": 0,
-     "off": 153,
-     "tank": 2
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.94,
-     "star3": 0,
-     "off": 4,
-     "tank": 6
+     "off": 374.8,
+     "tank": 7.8
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.94,
+     "rate": 0.92,
      "star3": 0,
-     "off": 11,
-     "tank": 64
+     "off": 25.6,
+     "tank": 150.2
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.93,
+     "rate": 0.91,
      "star3": 0.02,
-     "off": 1,
-     "tank": 3
+     "off": 3.3,
+     "tank": 8.2
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.91,
+     "star3": 0.01,
+     "off": 6.3,
+     "tank": 35.7
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.82,
-     "star3": 0.02,
-     "off": 3,
-     "tank": 110
+     "rate": 0.79,
+     "star3": 0.01,
+     "off": 10.6,
+     "tank": 285.2
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.34,
+     "rate": 0.33,
      "star3": 0,
-     "off": 4,
+     "off": 10.4,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.24,
-     "star3": 0,
-     "off": 16,
-     "tank": 1
-    },
-    {
-     "id": "da_18_diana",
      "rate": 0.21,
      "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 39.9,
+     "tank": 3.9
     },
     {
      "id": "da_18_kennen",
      "rate": 0.19,
      "star3": 0,
-     "off": 10,
-     "tank": 2
+     "off": 25.1,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 3.9,
+     "tank": 7.9
     },
     {
      "id": "da_taric18",
-     "rate": 0.12,
+     "rate": 0.17,
      "star3": 0,
-     "off": 2,
-     "tank": 7
+     "off": 2.6,
+     "tank": 29.7
     },
     {
      "id": "da_18_gnarsmall",
-     "rate": 0.06,
+     "rate": 0.07,
      "star3": 0,
-     "off": 3,
-     "tank": 1
+     "off": 7.7,
+     "tank": 2.7
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.04,
+     "id": "da_18_alune",
+     "rate": 0.06,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 12.1,
+     "tank": 2.9
     }
    ],
    "builds": {
@@ -24319,17 +25594,17 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 7,
-     "avgPlace": 5.71
+     "games": 16,
+     "avgPlace": 4.87
     },
     "da_18_lillia": {
      "items": [
       "DA_Evenshroud",
       "DA_ProtectorsVow",
-      "DA_SteadfastHeart"
+      "DA_SunfireCape"
      ],
-     "games": 2,
-     "avgPlace": 2.5
+     "games": 3,
+     "avgPlace": 6.4
     }
    },
    "now": {
@@ -24357,59 +25632,59 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_18_rakan",
-     "rate": 1,
-     "star3": 0.86,
-     "off": 3,
-     "tank": 34
-    },
-    {
      "id": "da_18_xayah",
      "rate": 1,
-     "star3": 1,
-     "off": 35,
+     "star3": 0.98,
+     "off": 85.1,
      "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 1,
+     "star3": 0.83,
+     "off": 5.3,
+     "tank": 60.8
     },
     {
      "id": "da_18_kayle",
      "rate": 1,
      "star3": 1,
-     "off": 41,
+     "off": 96.3,
      "tank": 0
     },
     {
      "id": "da_18_sejuani",
      "rate": 1,
-     "star3": 0.5,
-     "off": 3,
-     "tank": 13
+     "star3": 0.46,
+     "off": 6.5,
+     "tank": 31.6
     },
     {
      "id": "da_18_leona",
-     "rate": 1,
+     "rate": 0.98,
      "star3": 0.93,
-     "off": 2,
-     "tank": 11
+     "off": 6.1,
+     "tank": 29.6
     },
     {
      "id": "da_18_ornn",
      "rate": 0.93,
-     "star3": 1,
-     "off": 5,
-     "tank": 13
+     "star3": 0.96,
+     "off": 8.5,
+     "tank": 29.9
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.79,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "rate": 0.75,
+     "star3": 0.02,
+     "off": 3.3,
+     "tank": 2.3
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.29,
-     "star3": 0.75,
-     "off": 3,
+     "rate": 0.23,
+     "star3": 0.63,
+     "off": 4.2,
      "tank": 0
     },
     {
@@ -24420,36 +25695,50 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
+     "id": "da_18_elise",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_cinderling18",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_scuttlecrab18",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
      "id": "da_18_diana",
-     "rate": 0.07,
+     "rate": 0.03,
      "star3": 0,
      "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_elise",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 0,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_kayle": {
      "items": [
+      "DA_Artifact_NavoriFlickerblade",
       "DA_Artifact_WitsEnd",
-      "DA_GiantSlayer",
-      "DA_GuinsoosRageblade"
+      "DA_JeweledGauntlet"
      ],
-     "games": 1,
-     "avgPlace": 6
+     "games": 2,
+     "avgPlace": 4.37
     },
     "da_18_rakan": {
      "items": [
@@ -24457,7 +25746,7 @@ window.TFT_WEIGHTS = {
       "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
+     "games": 3,
      "avgPlace": 5
     }
    },
@@ -24483,84 +25772,105 @@ window.TFT_WEIGHTS = {
    "win": 0.231,
    "patchGames": 5,
    "playRate": 0.001,
-   "level": 7,
+   "level": 8,
    "core": [
-    {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0.6,
-     "off": 0,
-     "tank": 13
-    },
     {
      "id": "da_18_masteryi_ad",
      "rate": 1,
-     "star3": 0.8,
-     "off": 13,
+     "star3": 0.81,
+     "off": 23.5,
      "tank": 1
     },
     {
-     "id": "da_18_yorick",
+     "id": "da_vi18",
      "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "star3": 0.63,
+     "off": 1.2,
+     "tank": 18.8
     },
     {
      "id": "da_kogmaw18_ad",
      "rate": 1,
-     "star3": 0.2,
-     "off": 7,
-     "tank": 1
+     "star3": 0.12,
+     "off": 14,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.93,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.8,
+     "rate": 0.81,
      "star3": 0,
-     "off": 4,
+     "off": 8.1,
      "tank": 0
     },
     {
      "id": "da_18_sett",
-     "rate": 0.8,
+     "rate": 0.61,
      "star3": 0,
      "off": 0,
      "tank": 5
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.4,
-     "star3": 0.5,
-     "off": 4,
+     "rate": 0.51,
+     "star3": 0.63,
+     "off": 8.7,
      "tank": 0
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.4,
+     "rate": 0.44,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 1.2,
+     "tank": 1.2
     },
     {
      "id": "da_amumu18",
-     "rate": 0.4,
+     "rate": 0.44,
+     "star3": 0,
+     "off": 1,
+     "tank": 2.9
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.32,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.2,
+     "rate": 0.12,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.2,
+     "id": "da_krug18",
+     "rate": 0.07,
      "star3": 0,
-     "off": 1,
+     "off": 0.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_scuttlecrab18",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -24598,7 +25908,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_Riftbeast18",
    "carry": "da_crimsonraptor18",
    "mainCarry": "da_crimsonraptor18",
-   "mainTank": "da_18_hecarim",
+   "mainTank": "da_krug18",
    "games": 11,
    "avgPlace": 4.7,
    "top4": 0.435,
@@ -24608,122 +25918,122 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_krug18",
-     "rate": 1,
-     "star3": 0.36,
-     "off": 0,
-     "tank": 12
-    },
-    {
      "id": "da_crimsonraptor18",
      "rate": 1,
-     "star3": 1,
-     "off": 31,
-     "tank": 2
+     "star3": 0.77,
+     "off": 67.1,
+     "tank": 2.6
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.87,
+     "star3": 0.34,
+     "off": 0,
+     "tank": 28.3
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.73,
+     "rate": 0.82,
      "star3": 0,
-     "off": 0,
-     "tank": 11
+     "off": 0.6,
+     "tank": 24.4
+    },
+    {
+     "id": "da_brambleback18",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 30.3,
+     "tank": 1.2
     },
     {
      "id": "da_murkwolf18",
-     "rate": 0.55,
-     "star3": 0.33,
-     "off": 7,
-     "tank": 0
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.45,
-     "star3": 0.8,
-     "off": 0,
-     "tank": 15
-    },
-    {
-     "id": "da_18_sentry",
-     "rate": 0.45,
-     "star3": 0.2,
-     "off": 1,
+     "rate": 0.58,
+     "star3": 0.15,
+     "off": 8.7,
      "tank": 0
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
+     "rate": 0.52,
+     "star3": 0.24,
+     "off": 0.6,
+     "tank": 9.4
     },
     {
-     "id": "da_brambleback18",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 14,
+     "id": "da_18_sentry",
+     "rate": 0.44,
+     "star3": 0.1,
+     "off": 1.6,
      "tank": 0
     },
     {
-     "id": "da_18_alistar",
-     "rate": 0.36,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.27,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
+     "id": "da_18_hecarim",
+     "rate": 0.32,
+     "star3": 0.63,
+     "off": 0.6,
+     "tank": 18.5
     },
     {
      "id": "da_18_elderdragon",
-     "rate": 0.27,
+     "rate": 0.28,
      "star3": 0,
-     "off": 2,
-     "tank": 2
+     "off": 6.7,
+     "tank": 3.2
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.18,
+     "id": "da_18_zyra",
+     "rate": 0.25,
      "star3": 0,
-     "off": 1,
+     "off": 5.3,
      "tank": 0
     },
     {
-     "id": "da_18_yorick",
-     "rate": 0.18,
+     "id": "da_taric18",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.2,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.09,
+     "id": "da_amumu18",
+     "rate": 0.16,
      "star3": 0,
-     "off": 2,
+     "off": 1.6,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     }
    ],
    "builds": {
     "da_crimsonraptor18": {
      "items": [
-      "DA_GuinsoosRagebladeRadiant",
+      "DA_GuinsoosRageblade",
       "DA_HextechGunblade",
-      "DA_TitansResolve"
+      "DA_KrakensFury"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 4.92
     },
-    "da_18_hecarim": {
+    "da_krug18": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_Crownguard",
-      "DA_ProtectorsVow"
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 2.37
     }
    },
    "now": {
@@ -24735,6 +26045,145 @@ window.TFT_WEIGHTS = {
     "games": 32,
     "avgPlace": 5.19,
     "top4": 0.375
+   }
+  },
+  {
+   "trait": "DA_18_Invoker",
+   "carry": "da_18_aphelios",
+   "mainCarry": "da_18_aphelios",
+   "mainTank": "da_sentinel18",
+   "games": 10,
+   "avgPlace": 4.7,
+   "top4": 0.5,
+   "win": 0,
+   "patchGames": 0,
+   "playRate": 0.0004,
+   "level": 9,
+   "core": [
+    {
+     "id": "da_18_aphelios",
+     "rate": 1,
+     "star3": 0,
+     "off": 14.6,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 1,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 8.7
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.56,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.56,
+     "star3": 0,
+     "off": 6.4,
+     "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.56,
+     "star3": 0,
+     "off": 0,
+     "tank": 7
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.56,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leona",
+     "rate": 0.22,
+     "star3": 0.5,
+     "off": 0.6,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    }
+   ],
+   "builds": {
+    "da_18_aphelios": {
+     "items": [
+      "DA_Deathblade",
+      "DA_GuinsoosRageblade",
+      "DA_InfinityEdge"
+     ],
+     "games": 1,
+     "avgPlace": 2.5
+    },
+    "da_sentinel18": {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_AdaptiveHelm",
+      "DA_Artifact_ForbiddenIdol"
+     ],
+     "games": 1,
+     "avgPlace": 2
+    }
+   },
+   "now": null,
+   "before": {
+    "games": 10,
+    "avgPlace": 4.7,
+    "top4": 0.5
    }
   },
   {
@@ -24754,110 +26203,110 @@ window.TFT_WEIGHTS = {
      "id": "da_18_sivir",
      "rate": 1,
      "star3": 0.03,
-     "off": 113,
+     "off": 277.8,
      "tank": 0
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.85,
+     "rate": 0.83,
      "star3": 0,
-     "off": 59,
-     "tank": 2
+     "off": 143.4,
+     "tank": 4.9
     },
     {
      "id": "da_sentinel18",
      "rate": 0.72,
      "star3": 0,
-     "off": 4,
-     "tank": 27
+     "off": 7.5,
+     "tank": 58.4
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.69,
+     "rate": 0.71,
      "star3": 0,
-     "off": 15,
+     "off": 44.1,
      "tank": 0
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.59,
+     "rate": 0.6,
      "star3": 0,
-     "off": 32,
-     "tank": 1
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.49,
-     "star3": 0,
-     "off": 1,
-     "tank": 22
-    },
-    {
-     "id": "da_18_malphite",
-     "rate": 0.46,
-     "star3": 0,
-     "off": 1,
-     "tank": 47
+     "off": 69.3,
+     "tank": 2.7
     },
     {
      "id": "da_cinderling18",
-     "rate": 0.44,
+     "rate": 0.5,
      "star3": 0,
-     "off": 2,
+     "off": 3.2,
      "tank": 0
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.41,
+     "id": "da_18_malphite",
+     "rate": 0.48,
+     "star3": 0.01,
+     "off": 2.7,
+     "tank": 125
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.46,
      "star3": 0,
-     "off": 3,
-     "tank": 29
+     "off": 4.5,
+     "tank": 66.2
     },
     {
      "id": "da_krug18",
-     "rate": 0.38,
+     "rate": 0.44,
      "star3": 0,
-     "off": 0,
-     "tank": 4
+     "off": 1.2,
+     "tank": 4.6
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.36,
+     "rate": 0.43,
+     "star3": 0.01,
+     "off": 3.2,
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.35,
      "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 5.9,
+     "tank": 61.6
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.33,
+     "rate": 0.3,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_shen",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "rate": 0.29,
+     "star3": 0.02,
+     "off": 1.2,
+     "tank": 1.7
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.26,
+     "rate": 0.24,
      "star3": 0,
-     "off": 5,
+     "off": 10.2,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_sivir": {
      "items": [
-      "DA_GiantSlayer",
       "DA_InfinityEdge",
-      "DA_LastWhisper"
+      "DA_RedBuff",
+      "DA_StrikersFlail"
      ],
-     "games": 3,
-     "avgPlace": 5.33
+     "games": 6,
+     "avgPlace": 5.18
     },
     "da_18_malphite": {
      "items": [
@@ -24865,8 +26314,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 3,
-     "avgPlace": 3.67
+     "games": 11,
+     "avgPlace": 3.44
     }
    },
    "now": {
@@ -24894,67 +26343,67 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_yorick",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 1,
-     "star3": 0.02,
-     "off": 37,
-     "tank": 181
-    },
-    {
      "id": "da_18_zyra",
      "rate": 1,
-     "star3": 0.01,
-     "off": 272,
-     "tank": 2
+     "star3": 0,
+     "off": 614.9,
+     "tank": 4.3
     },
     {
      "id": "da_18_ahri",
      "rate": 1,
      "star3": 0.01,
-     "off": 238,
-     "tank": 16
+     "off": 543.7,
+     "tank": 27.6
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.99,
+     "star3": 0.01,
+     "off": 83.6,
+     "tank": 406.9
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.99,
+     "star3": 0,
+     "off": 2,
+     "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.99,
+     "rate": 0.98,
      "star3": 0,
-     "off": 14,
-     "tank": 6
+     "off": 30.3,
+     "tank": 21.1
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.75,
+     "rate": 0.73,
      "star3": 0,
-     "off": 13,
-     "tank": 96
+     "off": 25.8,
+     "tank": 217.1
     },
     {
      "id": "da_18_rakan",
      "rate": 0.68,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
+     "star3": 0.01,
+     "off": 2.3,
+     "tank": 3.3
     },
     {
      "id": "da_krug18",
-     "rate": 0.41,
+     "rate": 0.4,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 2.9,
+     "tank": 6.2
     },
     {
      "id": "da_amumu18",
      "rate": 0.3,
      "star3": 0,
-     "off": 6,
-     "tank": 34
+     "off": 12.4,
+     "tank": 84.1
     },
     {
      "id": "da_18_shen",
@@ -24965,31 +26414,31 @@ window.TFT_WEIGHTS = {
     },
     {
      "id": "da_taric18",
-     "rate": 0.18,
+     "rate": 0.17,
      "star3": 0,
-     "off": 3,
-     "tank": 11
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 1,
-     "tank": 1
+     "off": 4.2,
+     "tank": 23.2
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.08,
+     "rate": 0.09,
      "star3": 0,
-     "off": 5,
-     "tank": 1
+     "off": 9.7,
+     "tank": 1.6
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 13.2,
+     "tank": 0.6
     },
     {
      "id": "da_sentinel18",
      "rate": 0.07,
      "star3": 0,
      "off": 0,
-     "tank": 5
+     "tank": 9.1
     }
    ],
    "builds": {
@@ -24999,8 +26448,8 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
-     "games": 17,
-     "avgPlace": 3.65
+     "games": 33,
+     "avgPlace": 4.08
     },
     "da_18_sett": {
      "items": [
@@ -25008,8 +26457,8 @@ window.TFT_WEIGHTS = {
       "DA_SteraksGage",
       "DA_WarmogsArmor"
      ],
-     "games": 7,
-     "avgPlace": 4.71
+     "games": 14,
+     "avgPlace": 4.65
     }
    },
    "now": {
@@ -25034,97 +26483,125 @@ window.TFT_WEIGHTS = {
    "win": 0.033,
    "patchGames": 10,
    "playRate": 0.0019,
-   "level": 8,
+   "level": 7,
    "core": [
     {
-     "id": "da_18_ornn",
+     "id": "da_18_camille",
      "rate": 1,
-     "star3": 0.9,
-     "off": 3,
-     "tank": 26
+     "star3": 0.91,
+     "off": 65.1,
+     "tank": 4.9
     },
     {
      "id": "da_18_varus",
      "rate": 1,
      "star3": 1,
-     "off": 30,
+     "off": 87.6,
      "tank": 0
-    },
-    {
-     "id": "da_18_camille",
-     "rate": 1,
-     "star3": 0.8,
-     "off": 22,
-     "tank": 2
     },
     {
      "id": "da_18_akali_ad",
      "rate": 1,
-     "star3": 0.9,
-     "off": 26,
-     "tank": 1
+     "star3": 0.93,
+     "off": 71.4,
+     "tank": 2.2
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 1,
+     "star3": 0.95,
+     "off": 4.7,
+     "tank": 65
     },
     {
      "id": "da_18_leona",
      "rate": 1,
-     "star3": 0.9,
-     "off": 1,
-     "tank": 7
-    },
-    {
-     "id": "da_18_sejuani",
-     "rate": 0.9,
-     "star3": 0,
-     "off": 1,
-     "tank": 2
+     "star3": 0.93,
+     "off": 5.1,
+     "tank": 29.1
     },
     {
      "id": "da_18_kayle",
-     "rate": 0.9,
-     "star3": 0,
-     "off": 3,
+     "rate": 0.97,
+     "star3": 0.02,
+     "off": 7.1,
      "tank": 0
     },
     {
-     "id": "da_vi18",
-     "rate": 0.3,
+     "id": "da_18_sejuani",
+     "rate": 0.89,
      "star3": 0,
+     "off": 2.2,
+     "tank": 3.2
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.16,
+     "star3": 0.12,
      "off": 2,
+     "tank": 1.7
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 6,
      "tank": 0
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.2,
+     "rate": 0.07,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_nidalee18_ap",
-     "rate": 0.2,
+     "id": "da_kogmaw18_ad",
+     "rate": 0.06,
      "star3": 0,
-     "off": 6,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_varus": {
      "items": [
-      "DA_JeweledGauntlet",
-      "DA_RedBuff",
-      "DA_VoidStaff"
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 4,
+     "avgPlace": 6.21
     },
     "da_18_ornn": {
      "items": [
-      "DA_Evenshroud",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 3.5
+     "games": 3,
+     "avgPlace": 3.29
     }
    },
    "now": {
@@ -25142,7 +26619,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Vanguard",
    "carry": "da_brambleback18",
    "mainCarry": "da_brambleback18",
-   "mainTank": "da_18_lillia",
+   "mainTank": "da_sentinel18",
    "games": 3,
    "avgPlace": 4.73,
    "top4": 0.455,
@@ -25154,15 +26631,15 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_brambleback18",
      "rate": 1,
-     "star3": 0,
-     "off": 7,
+     "star3": 0.1,
+     "off": 14.6,
      "tank": 1
     },
     {
      "id": "da_18_diana",
      "rate": 1,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
@@ -25170,83 +26647,83 @@ window.TFT_WEIGHTS = {
      "rate": 1,
      "star3": 0,
      "off": 0,
-     "tank": 2
+     "tank": 7.2
     },
     {
      "id": "da_taric18",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 2
+     "off": 0.6,
+     "tank": 5.5
     },
     {
      "id": "da_crimsonraptor18",
-     "rate": 0.67,
+     "rate": 0.83,
      "star3": 0,
-     "off": 2,
+     "off": 2.6,
      "tank": 0
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.67,
+     "rate": 0.83,
      "star3": 0,
-     "off": 5,
+     "off": 12,
+     "tank": 0
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.37,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.37,
+     "star3": 0,
+     "off": 2.6,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.67,
+     "rate": 0.34,
      "star3": 0,
      "off": 0,
      "tank": 6
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.33,
+     "id": "da_18_alune",
+     "rate": 0.2,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.33,
+     "rate": 0.17,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
      "id": "da_18_cassiopeia",
-     "rate": 0.33,
+     "rate": 0.17,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.33,
+     "rate": 0.17,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sentry",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
      "tank": 0
     }
    ],
@@ -25260,14 +26737,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 2
     },
-    "da_18_lillia": {
+    "da_sentinel18": {
      "items": [
-      "DA_BrambleVest",
-      "DA_Evenshroud",
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow",
       "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 2
+     "avgPlace": 1
     }
    },
    "now": {
@@ -25285,7 +26762,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Vanguard",
    "carry": "da_18_soraka",
    "mainCarry": "da_18_soraka",
-   "mainTank": "da_18_lillia",
+   "mainTank": "da_sentinel18",
    "games": 3,
    "avgPlace": 4.73,
    "top4": 0.455,
@@ -25295,99 +26772,99 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_rakan",
+     "id": "da_18_soraka",
      "rate": 1,
+     "star3": 0,
+     "off": 18.5,
+     "tank": 1
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.85,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.82,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_18_soraka",
-     "rate": 1,
+     "id": "da_18_diana",
+     "rate": 0.76,
      "star3": 0,
-     "off": 8,
-     "tank": 1
+     "off": 1.2,
+     "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 1,
+     "rate": 0.73,
      "star3": 0,
      "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 4,
-     "tank": 1
+     "tank": 5.2
     },
     {
      "id": "da_sentinel18",
      "rate": 0.67,
      "star3": 0,
      "off": 0,
-     "tank": 4
+     "tank": 9.2
     },
     {
      "id": "da_taric18",
      "rate": 0.67,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
+     "tank": 2.7
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.67,
+     "star3": 0,
+     "off": 4.1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.58,
+     "star3": 0,
+     "off": 8.7,
      "tank": 1
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.33,
+     "rate": 0.42,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_khazix",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ezreal",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 0.6,
+     "tank": 0.6
     },
     {
      "id": "da_18_maokai",
      "rate": 0.33,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 4.7
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 3.7,
+     "tank": 0
     },
     {
      "id": "da_18_kennen",
      "rate": 0.33,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_khazix",
+     "rate": 0.24,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -25403,11 +26880,11 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 8
     },
-    "da_18_lillia": {
+    "da_sentinel18": {
      "items": [
       "DA_AdaptiveHelm",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_AdaptiveHelm",
+      "DA_BrambleVest"
      ],
      "games": 1,
      "avgPlace": 3
@@ -25438,100 +26915,100 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_18_kayle",
-     "rate": 1,
-     "star3": 1,
-     "off": 56,
-     "tank": 0
-    },
-    {
-     "id": "da_18_leona",
-     "rate": 1,
-     "star3": 0.85,
-     "off": 1,
-     "tank": 8
-    },
-    {
      "id": "da_18_rakan",
      "rate": 1,
-     "star3": 0.9,
-     "off": 1,
-     "tank": 53
+     "star3": 0.87,
+     "off": 3.9,
+     "tank": 107.7
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 1,
+     "star3": 0.99,
+     "off": 120.6,
+     "tank": 0
     },
     {
      "id": "da_18_sejuani",
      "rate": 1,
      "star3": 0.6,
-     "off": 1,
-     "tank": 17
+     "off": 3.9,
+     "tank": 39.1
+    },
+    {
+     "id": "da_18_leona",
+     "rate": 0.99,
+     "star3": 0.82,
+     "off": 3.9,
+     "tank": 16.2
     },
     {
      "id": "da_18_xayah",
-     "rate": 0.95,
-     "star3": 1,
-     "off": 48,
-     "tank": 1
+     "rate": 0.98,
+     "star3": 0.93,
+     "off": 101.6,
+     "tank": 2.2
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.7,
+     "rate": 0.66,
      "star3": 0,
-     "off": 1,
-     "tank": 13
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.4,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 3.9,
+     "tank": 18.2
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.3,
+     "rate": 0.43,
      "star3": 0,
      "off": 1,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.35,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.15,
+     "rate": 0.16,
      "star3": 0,
-     "off": 3,
+     "off": 4.7,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.15,
+     "rate": 0.14,
      "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.15,
-     "star3": 0,
-     "off": 2,
+     "off": 5.3,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.15,
+     "rate": 0.12,
      "star3": 0,
      "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 2.6,
      "tank": 0
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.06,
+     "star3": 1,
+     "off": 0,
+     "tank": 5.9
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.1,
+     "rate": 0.06,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 0.1,
-     "star3": 1,
      "off": 0,
      "tank": 0
     }
@@ -25543,8 +27020,8 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_JeweledGauntlet"
      ],
-     "games": 2,
-     "avgPlace": 5
+     "games": 3,
+     "avgPlace": 5.68
     },
     "da_18_rakan": {
      "items": [
@@ -25552,8 +27029,8 @@ window.TFT_WEIGHTS = {
       "DA_ProtectorsVow",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 6
+     "games": 4,
+     "avgPlace": 5.06
     }
    },
    "now": {
@@ -25583,100 +27060,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_morgana",
      "rate": 1,
-     "star3": 0,
-     "off": 225,
-     "tank": 3
+     "star3": 0.01,
+     "off": 560.3,
+     "tank": 10
     },
     {
      "id": "da_sentinel18",
      "rate": 0.99,
      "star3": 0,
-     "off": 12,
-     "tank": 144
+     "off": 21.3,
+     "tank": 378.6
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.87,
+     "rate": 0.83,
      "star3": 0,
-     "off": 6,
+     "off": 10.1,
      "tank": 0
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.83,
+     "rate": 0.82,
      "star3": 0,
-     "off": 141,
-     "tank": 0
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.83,
-     "star3": 0,
-     "off": 3,
-     "tank": 7
+     "off": 348.8,
+     "tank": 7.6
     },
     {
      "id": "da_18_sett",
      "rate": 0.82,
      "star3": 0,
-     "off": 31,
-     "tank": 111
+     "off": 74.1,
+     "tank": 267
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.8,
+     "star3": 0,
+     "off": 12.3,
+     "tank": 21
     },
     {
      "id": "da_karma18",
-     "rate": 0.65,
+     "rate": 0.64,
      "star3": 0,
-     "off": 4,
+     "off": 16.8,
      "tank": 0
     },
     {
      "id": "da_taric18",
      "rate": 0.5,
      "star3": 0,
-     "off": 8,
-     "tank": 25
+     "off": 15,
+     "tank": 52.4
     },
     {
      "id": "da_18_alune",
-     "rate": 0.28,
+     "rate": 0.29,
      "star3": 0,
-     "off": 33,
-     "tank": 1
+     "off": 76.1,
+     "tank": 4.5
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.19,
+     "rate": 0.22,
      "star3": 0,
-     "off": 1,
-     "tank": 2
+     "off": 3.9,
+     "tank": 11.3
     },
     {
      "id": "da_18_diana",
-     "rate": 0.18,
+     "rate": 0.22,
      "star3": 0,
-     "off": 2,
-     "tank": 1
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 4,
-     "tank": 2
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.15,
-     "star3": 0,
-     "off": 1,
-     "tank": 8
+     "off": 5.5,
+     "tank": 1.6
     },
     {
      "id": "da_18_ivern",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 29.4,
+     "tank": 2.7
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 8.2,
+     "tank": 0
+    },
+    {
+     "id": "da_fiddlesticks18",
      "rate": 0.15,
      "star3": 0,
-     "off": 9,
-     "tank": 1
+     "off": 4.6,
+     "tank": 3.7
     }
    ],
    "builds": {
@@ -25686,8 +27163,8 @@ window.TFT_WEIGHTS = {
       "DA_RabadonsDeathcap",
       "DA_VoidStaff"
      ],
-     "games": 7,
-     "avgPlace": 3.86
+     "games": 16,
+     "avgPlace": 4.34
     },
     "da_sentinel18": {
      "items": [
@@ -25695,8 +27172,8 @@ window.TFT_WEIGHTS = {
       "DA_ProtectorsVow",
       "DA_ProtectorsVow"
      ],
-     "games": 5,
-     "avgPlace": 3.4
+     "games": 8,
+     "avgPlace": 3.51
     }
    },
    "now": {
@@ -25724,95 +27201,102 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_lillia",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 8
-    },
-    {
      "id": "da_18_aphelios",
      "rate": 1,
      "star3": 0,
-     "off": 12,
+     "off": 34.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.9,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 17.9
+    },
+    {
+     "id": "da_18_leona",
+     "rate": 0.66,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_diana",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sejuani",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_leona",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kayle",
-     "rate": 0.75,
+     "rate": 0.66,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.75,
+     "rate": 0.61,
+     "star3": 0.08,
+     "off": 0,
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.61,
      "star3": 0,
      "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.61,
+     "star3": 0,
+     "off": 2.7,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.5,
+     "rate": 0.53,
      "star3": 0,
-     "off": 0,
-     "tank": 2
+     "off": 0.6,
+     "tank": 10.7
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_akali_ad",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_khazix",
-     "rate": 0.25,
+     "rate": 0.37,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.25,
+     "rate": 0.34,
      "star3": 0,
      "off": 0,
      "tank": 3
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 0,
+     "tank": 3
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.25,
+     "star3": 0.2,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.25,
+     "star3": 0,
+     "off": 3.5,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
     }
    ],
    "builds": {
@@ -25822,8 +27306,8 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_StrikersFlail"
      ],
-     "games": 2,
-     "avgPlace": 7
+     "games": 3,
+     "avgPlace": 5.87
     },
     "da_18_lillia": {
      "items": [
@@ -25862,100 +27346,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_aphelios",
      "rate": 1,
-     "star3": 0,
-     "off": 45,
-     "tank": 0
+     "star3": 0.01,
+     "off": 131.7,
+     "tank": 1.7
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.87,
+     "rate": 0.89,
      "star3": 0,
-     "off": 0,
-     "tank": 23
+     "off": 4.7,
+     "tank": 73.7
     },
     {
      "id": "da_crimsonraptor18",
-     "rate": 0.87,
-     "star3": 0.23,
-     "off": 16,
-     "tank": 3
+     "rate": 0.77,
+     "star3": 0.09,
+     "off": 32.3,
+     "tank": 4.2
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.73,
+     "star3": 0.02,
+     "off": 2.7,
+     "tank": 5.7
     },
     {
      "id": "da_brambleback18",
      "rate": 0.67,
-     "star3": 0,
-     "off": 19,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.6,
-     "star3": 0.11,
-     "off": 1,
-     "tank": 15
-    },
-    {
-     "id": "da_18_xayah",
-     "rate": 0.6,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "star3": 0.02,
+     "off": 54.5,
+     "tank": 1.2
     },
     {
      "id": "da_18_varus",
-     "rate": 0.47,
-     "star3": 0.14,
+     "rate": 0.65,
+     "star3": 0.03,
      "off": 2,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.27,
+     "rate": 0.51,
      "star3": 0,
-     "off": 0,
-     "tank": 12
+     "off": 2.3,
+     "tank": 48.7
     },
     {
-     "id": "da_vi18",
-     "rate": 0.2,
-     "star3": 0,
-     "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.2,
-     "star3": 0,
+     "id": "da_18_xayah",
+     "rate": 0.49,
+     "star3": 0.03,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_krug18",
-     "rate": 0.2,
+     "id": "da_18_hecarim",
+     "rate": 0.34,
+     "star3": 0.06,
+     "off": 1.6,
+     "tank": 16.7
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.25,
+     "star3": 0.05,
+     "off": 0.6,
+     "tank": 3.7
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.25,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 2.2,
+     "tank": 8.4
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.13,
+     "rate": 0.24,
      "star3": 0,
-     "off": 0,
+     "off": 6.4,
      "tank": 0
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.13,
+     "rate": 0.21,
      "star3": 0,
-     "off": 2,
+     "off": 14.8,
      "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 4.1
     }
    ],
    "builds": {
@@ -25972,10 +27456,10 @@ window.TFT_WEIGHTS = {
      "items": [
       "DA_ProtectorsVow",
       "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 5.47
     }
    },
    "now": {
@@ -26005,120 +27489,120 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_leblanc",
      "rate": 1,
-     "star3": 0.94,
-     "off": 47,
+     "star3": 0.82,
+     "off": 108.1,
      "tank": 1
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.94,
-     "star3": 0.73,
-     "off": 3,
-     "tank": 27
+     "rate": 0.96,
+     "star3": 0.66,
+     "off": 7.1,
+     "tank": 61.3
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.81,
-     "star3": 0.85,
-     "off": 24,
+     "rate": 0.77,
+     "star3": 0.71,
+     "off": 47.9,
      "tank": 1
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.69,
-     "star3": 0.91,
-     "off": 2,
-     "tank": 11
+     "rate": 0.68,
+     "star3": 0.76,
+     "off": 4.9,
+     "tank": 29
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.56,
-     "star3": 0.78,
-     "off": 6,
-     "tank": 10
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.44,
-     "star3": 0,
-     "off": 1,
-     "tank": 2
+     "rate": 0.49,
+     "star3": 0.8,
+     "off": 7.7,
+     "tank": 18.2
     },
     {
      "id": "da_18_teemo",
-     "rate": 0.44,
-     "star3": 0.86,
-     "off": 14,
-     "tank": 0
+     "rate": 0.45,
+     "star3": 0.77,
+     "off": 32.6,
+     "tank": 4.7
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.38,
+     "id": "da_fiddlesticks18",
+     "rate": 0.4,
      "star3": 0,
-     "off": 2,
-     "tank": 3
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 0.25,
-     "star3": 0.25,
-     "off": 0,
-     "tank": 3
+     "off": 1.6,
+     "tank": 7.8
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.25,
-     "star3": 0.25,
-     "off": 0,
-     "tank": 3
+     "rate": 0.4,
+     "star3": 0.07,
+     "off": 0.6,
+     "tank": 10.6
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 2,
+     "tank": 5.9
     },
     {
      "id": "da_18_kobuko",
-     "rate": 0.19,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 0
+     "rate": 0.27,
+     "star3": 0.43,
+     "off": 1.7,
+     "tank": 5.8
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.13,
-     "star3": 0.5,
+     "id": "da_18_rammus",
+     "rate": 0.2,
+     "star3": 0.13,
      "off": 0,
-     "tank": 3
+     "tank": 4.7
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.13,
+     "rate": 0.19,
      "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 10.7,
+     "tank": 0.6
     },
     {
      "id": "da_18_xayah",
+     "rate": 0.16,
+     "star3": 0.26,
+     "off": 4.2,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
      "rate": 0.13,
-     "star3": 0.5,
-     "off": 3,
+     "star3": 0,
+     "off": 2.9,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_leblanc": {
      "items": [
-      "DA_Component_NeedlesslyLargeRod",
-      "DA_KrakensFury",
-      "DA_RedBuff"
+      "DA_BlueBuff",
+      "DA_Morellonomicon",
+      "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 2,
+     "avgPlace": 5.75
     },
     "da_18_alistar": {
      "items": [
       "DA_Crownguard",
-      "DA_DragonsClaw",
-      "DA_GargoyleStoneplate"
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 2.5
+     "games": 3,
+     "avgPlace": 5.26
     }
    },
    "now": {
@@ -26146,102 +27630,102 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_diana",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 2
-    },
-    {
      "id": "da_18_aphelios",
      "rate": 1,
-     "star3": 0,
-     "off": 50,
+     "star3": 0.01,
+     "off": 128,
      "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.99,
+     "star3": 0,
+     "off": 3.2,
+     "tank": 3.2
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.88,
+     "rate": 0.94,
      "star3": 0,
-     "off": 0,
-     "tank": 30
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.65,
-     "star3": 0,
-     "off": 1,
-     "tank": 14
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.53,
-     "star3": 0,
-     "off": 1,
-     "tank": 4
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.47,
-     "star3": 0,
-     "off": 1,
-     "tank": 9
+     "off": 1.2,
+     "tank": 84.1
     },
     {
      "id": "da_taric18",
-     "rate": 0.47,
+     "rate": 0.59,
      "star3": 0,
-     "off": 0,
-     "tank": 8
+     "off": 2.3,
+     "tank": 25.5
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.47,
+     "id": "da_18_hecarim",
+     "rate": 0.58,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.35,
-     "star3": 0,
-     "off": 14,
-     "tank": 0
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 0.35,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 2.2,
+     "tank": 13.3
     },
     {
      "id": "da_brambleback18",
-     "rate": 0.35,
+     "rate": 0.47,
      "star3": 0,
-     "off": 13,
+     "off": 34.5,
+     "tank": 1.2
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 0.46,
+     "star3": 0,
+     "off": 10,
      "tank": 0
     },
     {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.29,
+     "id": "da_18_rakan",
+     "rate": 0.44,
+     "star3": 0.06,
+     "off": 0,
+     "tank": 2.9
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.42,
      "star3": 0,
-     "off": 3,
+     "off": 2.2,
+     "tank": 26.8
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 9.6
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 8.8,
      "tank": 0
     },
     {
      "id": "da_18_varus",
-     "rate": 0.29,
+     "rate": 0.27,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_18_alune",
-     "rate": 0.24,
+     "id": "da_nidalee18_ap",
+     "rate": 0.27,
      "star3": 0,
-     "off": 3,
-     "tank": 1
+     "off": 28.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.19,
+     "star3": 0,
+     "off": 10.6,
+     "tank": 0
     }
    ],
    "builds": {
@@ -26251,7 +27735,7 @@ window.TFT_WEIGHTS = {
       "DA_KrakensFury",
       "DA_LastWhisper"
      ],
-     "games": 2,
+     "games": 3,
      "avgPlace": 5
     },
     "da_sentinel18": {
@@ -26286,105 +27770,105 @@ window.TFT_WEIGHTS = {
    "win": 0.08,
    "patchGames": 370,
    "playRate": 0.0707,
-   "level": 9,
+   "level": 8,
    "core": [
     {
      "id": "da_brambleback18",
      "rate": 1,
-     "star3": 0.01,
-     "off": 1098,
-     "tank": 7
+     "star3": 0.02,
+     "off": 2260.7,
+     "tank": 15.2
     },
     {
      "id": "da_sentinel18",
      "rate": 0.98,
      "star3": 0,
-     "off": 44,
-     "tank": 629
+     "off": 85.3,
+     "tank": 1302.6
     },
     {
      "id": "da_murkwolf18",
      "rate": 0.97,
-     "star3": 0.03,
-     "off": 122,
-     "tank": 5
+     "star3": 0.02,
+     "off": 281.5,
+     "tank": 10.8
     },
     {
      "id": "da_krug18",
      "rate": 0.96,
-     "star3": 0.23,
-     "off": 31,
-     "tank": 490
+     "star3": 0.25,
+     "off": 72.3,
+     "tank": 1025.6
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.89,
+     "rate": 0.88,
      "star3": 0.09,
-     "off": 90,
-     "tank": 4
+     "off": 185.5,
+     "tank": 10.4
     },
     {
      "id": "da_18_elderdragon",
      "rate": 0.64,
      "star3": 0,
-     "off": 528,
-     "tank": 19
+     "off": 1077,
+     "tank": 31.2
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.49,
+     "rate": 0.51,
      "star3": 0.1,
-     "off": 12,
-     "tank": 58
+     "off": 22.5,
+     "tank": 130.8
     },
     {
      "id": "da_taric18",
-     "rate": 0.39,
+     "rate": 0.37,
      "star3": 0,
-     "off": 10,
-     "tank": 78
+     "off": 19.9,
+     "tank": 132.7
     },
     {
      "id": "da_cinderling18",
      "rate": 0.24,
-     "star3": 0.07,
-     "off": 48,
-     "tank": 2
+     "star3": 0.05,
+     "off": 94.6,
+     "tank": 2.6
     },
     {
      "id": "da_18_sett",
-     "rate": 0.24,
+     "rate": 0.23,
      "star3": 0,
-     "off": 14,
-     "tank": 78
+     "off": 28,
+     "tank": 136.2
     },
     {
      "id": "da_gromp18_ap",
      "rate": 0.18,
-     "star3": 0.02,
-     "off": 85,
-     "tank": 2
+     "star3": 0.01,
+     "off": 161.9,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 0
     },
     {
      "id": "da_crimsonraptor18",
      "rate": 0.13,
-     "star3": 0.04,
-     "off": 51,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.11,
-     "star3": 0,
-     "off": 1,
+     "star3": 0.03,
+     "off": 96.4,
      "tank": 0
     },
     {
      "id": "da_18_diana",
-     "rate": 0.09,
+     "rate": 0.08,
      "star3": 0,
-     "off": 6,
-     "tank": 2
+     "off": 13,
+     "tank": 4.3
     }
    ],
    "builds": {
@@ -26394,17 +27878,17 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_Quicksilver"
      ],
-     "games": 245,
-     "avgPlace": 4.69
+     "games": 453,
+     "avgPlace": 4.68
     },
     "da_sentinel18": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_Crownguard",
-      "DA_ProtectorsVow"
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_WarmogsArmor"
      ],
-     "games": 7,
-     "avgPlace": 4.29
+     "games": 13,
+     "avgPlace": 4
     }
    },
    "now": {
@@ -26432,102 +27916,102 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_azir",
-     "rate": 1,
-     "star3": 0,
-     "off": 22,
-     "tank": 1
-    },
-    {
      "id": "da_18_zyra",
      "rate": 1,
+     "star3": 0.01,
+     "off": 240.7,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.99,
      "star3": 0,
-     "off": 101,
-     "tank": 0
+     "off": 49.4,
+     "tank": 1
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.91,
+     "rate": 0.92,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 2.3,
+     "tank": 0.6
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.91,
+     "rate": 0.89,
      "star3": 0,
-     "off": 3,
-     "tank": 1
+     "off": 5.9,
+     "tank": 9.2
     },
     {
      "id": "da_18_soraka",
      "rate": 0.88,
      "star3": 0,
-     "off": 66,
-     "tank": 8
+     "off": 157.4,
+     "tank": 19.6
     },
     {
      "id": "da_18_malphite",
      "rate": 0.88,
      "star3": 0,
-     "off": 5,
-     "tank": 83
+     "off": 11.4,
+     "tank": 199.4
     },
     {
      "id": "da_amumu18",
-     "rate": 0.85,
+     "rate": 0.78,
      "star3": 0,
-     "off": 3,
-     "tank": 20
+     "off": 7.7,
+     "tank": 35.1
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.47,
+     "rate": 0.46,
      "star3": 0,
-     "off": 18,
-     "tank": 1
+     "off": 31.4,
+     "tank": 5.7
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.29,
+     "rate": 0.25,
      "star3": 0,
-     "off": 3,
-     "tank": 8
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.18,
-     "star3": 0,
-     "off": 5,
-     "tank": 1
+     "off": 7.1,
+     "tank": 13.8
     },
     {
      "id": "da_18_shen",
-     "rate": 0.15,
+     "rate": 0.16,
+     "star3": 0.04,
+     "off": 1.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.13,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 5,
+     "tank": 1
     },
     {
      "id": "da_18_ezreal",
      "rate": 0.12,
      "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 5.3,
+     "tank": 1.2
     },
     {
      "id": "da_crimsonraptor18",
-     "rate": 0.09,
-     "star3": 1,
-     "off": 6,
-     "tank": 3
+     "rate": 0.1,
+     "star3": 0.79,
+     "off": 15.9,
+     "tank": 6.5
     },
     {
-     "id": "da_18_xayah",
+     "id": "da_krug18",
      "rate": 0.09,
-     "star3": 0,
+     "star3": 0.23,
      "off": 0,
-     "tank": 0
+     "tank": 6.5
     }
    ],
    "builds": {
@@ -26537,17 +28021,17 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_VoidStaff"
      ],
-     "games": 6,
+     "games": 11,
      "avgPlace": 5
     },
     "da_18_malphite": {
      "items": [
+      "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
       "DA_WarmogsArmor"
      ],
-     "games": 5,
-     "avgPlace": 5.4
+     "games": 11,
+     "avgPlace": 4.13
     }
    },
    "now": {
@@ -26577,111 +28061,111 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_sivir",
      "rate": 1,
-     "star3": 0.03,
-     "off": 90,
-     "tank": 1
+     "star3": 0.01,
+     "off": 224.5,
+     "tank": 1.6
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.87,
+     "rate": 0.85,
      "star3": 0,
-     "off": 46,
-     "tank": 1
+     "off": 122.3,
+     "tank": 3.9
     },
     {
      "id": "da_vi18",
-     "rate": 0.81,
-     "star3": 0.04,
-     "off": 1,
-     "tank": 16
+     "rate": 0.79,
+     "star3": 0.02,
+     "off": 3.3,
+     "tank": 34
     },
     {
      "id": "da_amumu18",
-     "rate": 0.74,
+     "rate": 0.67,
      "star3": 0,
-     "off": 2,
-     "tank": 35
+     "off": 3.2,
+     "tank": 86.2
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.52,
+     "rate": 0.5,
      "star3": 0,
-     "off": 1,
-     "tank": 23
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.48,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.45,
-     "star3": 0,
-     "off": 15,
-     "tank": 0
+     "off": 2.2,
+     "tank": 42.8
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.42,
+     "rate": 0.49,
      "star3": 0,
-     "off": 7,
+     "off": 15.2,
      "tank": 1
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.39,
+     "id": "da_18_ashe",
+     "rate": 0.42,
      "star3": 0,
-     "off": 0,
-     "tank": 27
+     "off": 39.5,
+     "tank": 1.7
     },
     {
-     "id": "da_18_maokai",
-     "rate": 0.32,
+     "id": "da_18_rakan",
+     "rate": 0.41,
      "star3": 0,
-     "off": 0,
-     "tank": 14
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.4,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 71.8
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.32,
+     "rate": 0.3,
      "star3": 0,
-     "off": 8,
+     "off": 15.6,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
      "rate": 0.29,
      "star3": 0,
-     "off": 16,
-     "tank": 1
+     "off": 33.5,
+     "tank": 3.3
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 22.2
     },
     {
      "id": "da_18_shen",
-     "rate": 0.19,
+     "rate": 0.22,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.13,
+     "rate": 0.19,
      "star3": 0,
-     "off": 1,
-     "tank": 1
+     "off": 1.6,
+     "tank": 8
     }
    ],
    "builds": {
     "da_18_sivir": {
      "items": [
       "DA_InfinityEdge",
-      "DA_RedBuff",
-      "DA_StrikersFlail"
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
      ],
-     "games": 2,
-     "avgPlace": 4
+     "games": 5,
+     "avgPlace": 5.83
     },
     "da_amumu18": {
      "items": [
@@ -26689,8 +28173,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 3,
+     "avgPlace": 5.55
     }
    },
    "now": {
@@ -26708,67 +28192,109 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Vanguard",
    "carry": "da_18_ashe",
    "mainCarry": "da_18_ashe",
-   "mainTank": "da_vi18",
+   "mainTank": "da_sentinel18",
    "games": 1,
    "avgPlace": 4.8,
    "top4": 0.5,
    "win": 0.1,
    "patchGames": 1,
    "playRate": 0.0002,
-   "level": 8,
+   "level": 9,
    "core": [
-    {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
     {
      "id": "da_18_ashe",
      "rate": 1,
      "star3": 0,
-     "off": 3,
+     "off": 11.7,
      "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.85,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.85,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 4.7
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.74,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.1
     },
     {
      "id": "da_18_sivir",
-     "rate": 1,
+     "rate": 0.7,
      "star3": 0,
-     "off": 3,
+     "off": 8.2,
      "tank": 0
     },
     {
+     "id": "da_vi18",
+     "rate": 0.7,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 1
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.55,
+     "star3": 0,
+     "off": 4.9,
+     "tank": 1.6
+    },
+    {
      "id": "da_18_hecarim",
-     "rate": 1,
+     "rate": 0.55,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 4.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_elise",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.15,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -26784,7 +28310,15 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 8
     },
-    "da_vi18": null
+    "da_sentinel18": {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow"
+     ],
+     "games": 1,
+     "avgPlace": 1
+    }
    },
    "now": {
     "games": 1,
@@ -26811,87 +28345,101 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_18_xayah",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
      "id": "da_crimsonraptor18",
      "rate": 1,
-     "star3": 0.83,
-     "off": 14,
-     "tank": 4
+     "star3": 0.86,
+     "off": 82.1,
+     "tank": 12.2
     },
     {
      "id": "da_krug18",
-     "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 11
+     "rate": 0.98,
+     "star3": 0.26,
+     "off": 4.5,
+     "tank": 39.5
     },
     {
      "id": "da_18_hecarim",
-     "rate": 1,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 15
+     "rate": 0.94,
+     "star3": 0.41,
+     "off": 2.9,
+     "tank": 65.1
     },
     {
-     "id": "da_18_zyra",
-     "rate": 0.67,
+     "id": "da_18_xayah",
+     "rate": 0.91,
      "star3": 0,
-     "off": 8,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
+     "off": 10.7,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.5,
+     "rate": 0.81,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 1.2,
+     "tank": 16.4
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.77,
+     "star3": 0,
+     "off": 37.7,
+     "tank": 2.9
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.72,
+     "star3": 0.03,
+     "off": 1.2,
+     "tank": 6.4
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 7.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rengar",
+     "rate": 0.09,
+     "star3": 0.8,
+     "off": 4.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.33,
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.33,
+     "rate": 0.08,
      "star3": 0,
      "off": 0,
      "tank": 1
     },
     {
+     "id": "da_18_diana",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
+    },
+    {
      "id": "da_taric18",
-     "rate": 0.17,
+     "rate": 0.07,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.17,
+     "rate": 0.07,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     }
    ],
@@ -26902,13 +28450,13 @@ window.TFT_WEIGHTS = {
       "DA_HextechGunblade",
       "DA_TitansResolve"
      ],
-     "games": 3,
-     "avgPlace": 5.33
+     "games": 10,
+     "avgPlace": 5.51
     },
     "da_18_hecarim": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
      "games": 1,
@@ -26942,100 +28490,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_ezreal",
      "rate": 1,
-     "star3": 0.03,
-     "off": 108,
-     "tank": 1
+     "star3": 0.01,
+     "off": 241.3,
+     "tank": 2.2
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.78,
+     "rate": 0.8,
      "star3": 0,
-     "off": 50,
-     "tank": 4
+     "off": 105.3,
+     "tank": 11.6
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.73,
+     "rate": 0.69,
      "star3": 0,
-     "off": 3,
-     "tank": 8
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.54,
-     "star3": 0,
-     "off": 34,
-     "tank": 1
+     "off": 8.8,
+     "tank": 25.5
     },
     {
      "id": "da_18_yunara",
-     "rate": 0.51,
+     "rate": 0.54,
      "star3": 0,
-     "off": 6,
+     "off": 11.8,
      "tank": 0
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.53,
+     "star3": 0,
+     "off": 73,
+     "tank": 2.2
     },
     {
      "id": "da_18_sett",
-     "rate": 0.49,
-     "star3": 0,
-     "off": 8,
-     "tank": 40
+     "rate": 0.52,
+     "star3": 0.01,
+     "off": 15,
+     "tank": 100.5
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.43,
-     "star3": 0.06,
-     "off": 2,
-     "tank": 3
+     "rate": 0.45,
+     "star3": 0.03,
+     "off": 2.6,
+     "tank": 4.2
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.41,
+     "rate": 0.42,
      "star3": 0,
-     "off": 12,
-     "tank": 7
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.38,
-     "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 22.5,
+     "tank": 12.2
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.35,
+     "rate": 0.38,
      "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 1.6,
+     "tank": 7.9
     },
     {
-     "id": "da_18_malphite",
-     "rate": 0.27,
+     "id": "da_amumu18",
+     "rate": 0.36,
      "star3": 0,
-     "off": 2,
-     "tank": 28
+     "off": 0,
+     "tank": 13
     },
     {
      "id": "da_18_azir",
-     "rate": 0.24,
+     "rate": 0.26,
      "star3": 0,
-     "off": 5,
+     "off": 10.8,
      "tank": 0
     },
     {
-     "id": "da_18_maokai",
-     "rate": 0.19,
+     "id": "da_18_malphite",
+     "rate": 0.24,
      "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 2.6,
+     "tank": 51.9
     },
     {
-     "id": "da_18_yorick",
-     "rate": 0.16,
+     "id": "da_18_maokai",
+     "rate": 0.2,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 1.2,
+     "tank": 24
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -27045,8 +28593,8 @@ window.TFT_WEIGHTS = {
       "DA_LastWhisper",
       "DA_SpearOfShojin"
      ],
-     "games": 2,
-     "avgPlace": 6
+     "games": 7,
+     "avgPlace": 5.36
     },
     "da_18_sett": {
      "items": [
@@ -27054,8 +28602,8 @@ window.TFT_WEIGHTS = {
       "DA_SpiritVisage",
       "DA_SteraksGage"
      ],
-     "games": 3,
-     "avgPlace": 5
+     "games": 4,
+     "avgPlace": 4.84
     }
    },
    "now": {
@@ -27085,104 +28633,111 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_nidalee18_ap",
      "rate": 1,
-     "star3": 0.12,
-     "off": 78,
+     "star3": 0.08,
+     "off": 135.1,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 1,
+     "rate": 0.96,
      "star3": 0,
-     "off": 6,
-     "tank": 43
+     "off": 7.2,
+     "tank": 73.3
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.94,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
     },
     {
      "id": "da_sentinel18",
-     "rate": 1,
+     "rate": 0.94,
      "star3": 0,
-     "off": 1,
-     "tank": 27
+     "off": 1.6,
+     "tank": 36.9
     },
     {
      "id": "da_18_rakan",
-     "rate": 1,
+     "rate": 0.91,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.96,
+     "rate": 0.9,
      "star3": 0,
-     "off": 16,
-     "tank": 0
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.96,
-     "star3": 0,
-     "off": 0,
+     "off": 24.7,
      "tank": 0
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.96,
+     "rate": 0.9,
      "star3": 0,
-     "off": 68,
-     "tank": 3
+     "off": 110.5,
+     "tank": 3.6
     },
     {
      "id": "da_amumu18",
-     "rate": 0.96,
+     "rate": 0.89,
      "star3": 0,
-     "off": 1,
-     "tank": 36
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 2.2,
+     "tank": 61.6
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.08,
+     "rate": 0.19,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_murkwolf18",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sentry",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 0,
+     "off": 8.2,
      "tank": 0
     },
     {
      "id": "da_18_rammus",
-     "rate": 0.04,
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_draven18",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 2.3,
      "tank": 0
     }
    ],
    "builds": {
     "da_nidalee18_ap": {
      "items": [
+      "DA_EdgeOfNight",
       "DA_HandOfJustice",
-      "DA_InfinityEdge",
-      "DA_SpearOfShojin"
+      "DA_InfinityEdge"
      ],
      "games": 2,
-     "avgPlace": 4.5
+     "avgPlace": 3.69
     },
     "da_18_lillia": {
      "items": [
@@ -27222,98 +28777,98 @@ window.TFT_WEIGHTS = {
      "id": "da_nidalee18_ap",
      "rate": 1,
      "star3": 0,
-     "off": 86,
-     "tank": 0
+     "off": 189.6,
+     "tank": 0.6
     },
     {
      "id": "da_vi18",
-     "rate": 1,
+     "rate": 0.99,
      "star3": 0,
-     "off": 11,
-     "tank": 23
+     "off": 16.2,
+     "tank": 45.7
     },
     {
      "id": "da_amumu18",
-     "rate": 0.9,
+     "rate": 0.95,
      "star3": 0,
-     "off": 2,
-     "tank": 45
+     "off": 9.6,
+     "tank": 109.6
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.86,
+     "rate": 0.85,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.76,
+     "rate": 0.77,
      "star3": 0,
-     "off": 56,
-     "tank": 2
+     "off": 124.1,
+     "tank": 4.3
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.72,
+     "rate": 0.73,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 1.7,
+     "tank": 2.2
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.69,
+     "rate": 0.67,
      "star3": 0,
-     "off": 0,
-     "tank": 27
+     "off": 2.9,
+     "tank": 49.7
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.55,
+     "rate": 0.61,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 1.7
     },
     {
      "id": "da_18_sejuani",
      "rate": 0.45,
      "star3": 0,
-     "off": 2,
-     "tank": 1
+     "off": 3.2,
+     "tank": 2.7
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.31,
+     "rate": 0.26,
      "star3": 0,
-     "off": 10,
-     "tank": 3
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.24,
-     "star3": 0,
-     "off": 0,
-     "tank": 9
+     "off": 18.2,
+     "tank": 5.9
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.17,
+     "rate": 0.21,
      "star3": 0,
-     "off": 5,
-     "tank": 1
+     "off": 15.5,
+     "tank": 3.3
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 11.3
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 5.5
     },
     {
      "id": "da_18_azir",
      "rate": 0.1,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sivir",
-     "rate": 0.07,
-     "star3": 0,
-     "off": 5,
+     "off": 1.7,
      "tank": 0
     }
    ],
@@ -27324,17 +28879,17 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_HextechGunblade"
      ],
-     "games": 5,
-     "avgPlace": 5.2
+     "games": 7,
+     "avgPlace": 5.06
     },
     "da_amumu18": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
+      "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 4.9
     }
    },
    "now": {
@@ -27352,7 +28907,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Brawler",
    "carry": "da_18_teemo",
    "mainCarry": "da_18_teemo",
-   "mainTank": "da_18_kobuko",
+   "mainTank": "da_18_alistar",
    "games": 4,
    "avgPlace": 4.83,
    "top4": 0.522,
@@ -27364,92 +28919,99 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_teemo",
      "rate": 1,
-     "star3": 1,
-     "off": 12,
+     "star3": 0.96,
+     "off": 41.7,
      "tank": 0
     },
     {
      "id": "da_18_kobuko",
-     "rate": 1,
-     "star3": 0.5,
+     "rate": 0.96,
+     "star3": 0.59,
      "off": 1,
-     "tank": 6
+     "tank": 12.4
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.75,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 5
+     "rate": 0.93,
+     "star3": 0.79,
+     "off": 1.7,
+     "tank": 27.7
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.75,
-     "star3": 1,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.84,
+     "star3": 0.6,
+     "off": 9.2,
      "tank": 0
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.5,
-     "star3": 0.5,
-     "off": 2,
+     "rate": 0.6,
+     "star3": 0.53,
+     "off": 6.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 0,
+     "tank": 6.3
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.42,
+     "star3": 0.1,
+     "off": 0.6,
+     "tank": 6.4
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.38,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
-     "id": "da_18_reksai",
-     "rate": 0.5,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 3
+     "id": "da_18_morgana",
+     "rate": 0.37,
+     "star3": 0,
+     "off": 10.3,
+     "tank": 0
     },
     {
-     "id": "da_18_morgana",
-     "rate": 0.25,
+     "id": "da_18_sett",
+     "rate": 0.37,
      "star3": 0,
-     "off": 1,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.31,
+     "star3": 0.5,
+     "off": 0.6,
+     "tank": 4.2
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 1.7,
      "tank": 0
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.25,
+     "rate": 0.07,
      "star3": 1,
      "off": 0,
      "tank": 2
     },
     {
-     "id": "da_18_sett",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_elderdragon",
-     "rate": 0.25,
+     "rate": 0.07,
      "star3": 0,
      "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
      "tank": 0
     }
    ],
@@ -27463,14 +29025,14 @@ window.TFT_WEIGHTS = {
      "games": 2,
      "avgPlace": 4
     },
-    "da_18_kobuko": {
+    "da_18_alistar": {
      "items": [
+      "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 2,
+     "avgPlace": 4.33
     }
    },
    "now": {
@@ -27500,99 +29062,99 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_masteryi_ad",
      "rate": 1,
-     "star3": 0.84,
-     "off": 129,
-     "tank": 0
+     "star3": 0.81,
+     "off": 285.6,
+     "tank": 2.9
     },
     {
      "id": "da_18_yorick",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "rate": 0.99,
+     "star3": 0.01,
+     "off": 3.2,
+     "tank": 1.7
     },
     {
      "id": "da_vi18",
-     "rate": 0.98,
-     "star3": 0.48,
-     "off": 7,
-     "tank": 87
+     "rate": 0.95,
+     "star3": 0.47,
+     "off": 18.1,
+     "tank": 179
     },
     {
      "id": "da_18_sett",
-     "rate": 0.87,
+     "rate": 0.89,
      "star3": 0,
-     "off": 10,
-     "tank": 21
+     "off": 14.1,
+     "tank": 53.6
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.82,
+     "rate": 0.86,
      "star3": 0.62,
-     "off": 84,
-     "tank": 11
+     "off": 185.3,
+     "tank": 28.5
     },
     {
      "id": "da_krug18",
-     "rate": 0.8,
-     "star3": 0.17,
-     "off": 5,
-     "tank": 22
+     "rate": 0.81,
+     "star3": 0.21,
+     "off": 7.3,
+     "tank": 52.3
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.56,
-     "star3": 0.2,
-     "off": 30,
+     "rate": 0.53,
+     "star3": 0.21,
+     "off": 66.1,
      "tank": 0
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.49,
+     "rate": 0.52,
      "star3": 0,
-     "off": 32,
-     "tank": 1
+     "off": 69.8,
+     "tank": 2.2
     },
     {
-     "id": "da_18_ashe",
-     "rate": 0.09,
+     "id": "da_lux18_base",
+     "rate": 0.08,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 9.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_yunara",
-     "rate": 0.09,
-     "star3": 0.25,
+     "rate": 0.06,
+     "star3": 0.16,
      "off": 4,
      "tank": 0
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.09,
+     "id": "da_18_ivern",
+     "rate": 0.06,
      "star3": 0,
-     "off": 5,
+     "off": 3.3,
      "tank": 0
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.07,
+     "rate": 0.06,
      "star3": 0,
-     "off": 3,
+     "off": 5.3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ashe",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 2.7,
      "tank": 0
     },
     {
      "id": "da_karma18",
-     "rate": 0.04,
+     "rate": 0.05,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 2,
      "tank": 0
     }
    ],
@@ -27603,17 +29165,17 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_Quicksilver"
      ],
-     "games": 5,
-     "avgPlace": 5.6
+     "games": 10,
+     "avgPlace": 6.03
     },
     "da_vi18": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 4
+     "games": 3,
+     "avgPlace": 4.6
     }
    },
    "now": {
@@ -27644,119 +29206,119 @@ window.TFT_WEIGHTS = {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 44,
-     "tank": 0
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.93,
-     "star3": 0,
-     "off": 0,
-     "tank": 26
+     "off": 112.1,
+     "tank": 0.6
     },
     {
      "id": "da_amumu18",
-     "rate": 0.93,
+     "rate": 0.97,
      "star3": 0,
-     "off": 3,
-     "tank": 16
+     "off": 4.2,
+     "tank": 39.9
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.96,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 65.6
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.73,
+     "rate": 0.67,
      "star3": 0,
      "off": 0,
      "tank": 0
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.73,
-     "star3": 0,
-     "off": 0,
-     "tank": 15
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.6,
-     "star3": 0,
-     "off": 13,
-     "tank": 2
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.6,
-     "star3": 0,
-     "off": 4,
-     "tank": 1
     },
     {
      "id": "da_vi18",
-     "rate": 0.53,
+     "rate": 0.62,
      "star3": 0,
-     "off": 3,
-     "tank": 4
+     "off": 4.2,
+     "tank": 7.5
     },
     {
-     "id": "da_18_elderdragon",
-     "rate": 0.4,
+     "id": "da_taric18",
+     "rate": 0.59,
      "star3": 0,
-     "off": 9,
-     "tank": 0
+     "off": 0,
+     "tank": 22.6
     },
     {
-     "id": "da_18_sivir",
-     "rate": 0.27,
+     "id": "da_18_kennen",
+     "rate": 0.57,
      "star3": 0,
-     "off": 9,
-     "tank": 1
+     "off": 13.3,
+     "tank": 3.9
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.55,
+     "star3": 0,
+     "off": 20,
+     "tank": 3.7
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.27,
+     "rate": 0.45,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 1.2
     },
     {
-     "id": "da_18_sejuani",
-     "rate": 0.2,
+     "id": "da_18_elderdragon",
+     "rate": 0.42,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 33.5,
+     "tank": 1.2
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.2,
+     "rate": 0.34,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 7.7
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.2,
+     "rate": 0.18,
      "star3": 0,
-     "off": 6,
+     "off": 11.8,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 11.9,
+     "tank": 1
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     }
    ],
    "builds": {
     "da_draven18": {
      "items": [
-      "DA_Deathblade",
       "DA_GuinsoosRageblade",
+      "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 2,
-     "avgPlace": 1
+     "games": 3,
+     "avgPlace": 5.3
     },
     "da_18_maokai": {
      "items": [
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor",
-      "DA_WarmogsArmor"
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 5.46
     }
    },
    "now": {
@@ -27774,7 +29336,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Adaptor",
    "carry": "da_nidalee18_ap",
    "mainCarry": "da_nidalee18_ap",
-   "mainTank": "da_sentinel18",
+   "mainTank": "da_amumu18",
    "games": 37,
    "avgPlace": 4.86,
    "top4": 0.413,
@@ -27784,99 +29346,99 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_kogmaw18_ad",
-     "rate": 1,
-     "star3": 0.08,
-     "off": 21,
-     "tank": 1
-    },
-    {
      "id": "da_nidalee18_ap",
      "rate": 1,
      "star3": 0,
-     "off": 109,
-     "tank": 0
+     "off": 247.6,
+     "tank": 1.2
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 1,
+     "star3": 0.08,
+     "off": 54.8,
+     "tank": 2.2
     },
     {
      "id": "da_vi18",
-     "rate": 0.95,
-     "star3": 0.2,
-     "off": 5,
-     "tank": 24
+     "rate": 0.96,
+     "star3": 0.12,
+     "off": 10.2,
+     "tank": 49.6
     },
     {
      "id": "da_amumu18",
-     "rate": 0.73,
+     "rate": 0.74,
      "star3": 0,
-     "off": 2,
-     "tank": 48
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.68,
-     "star3": 0,
-     "off": 4,
-     "tank": 0
+     "off": 7.8,
+     "tank": 117.9
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.68,
+     "rate": 0.73,
      "star3": 0,
-     "off": 2,
-     "tank": 53
+     "off": 6.7,
+     "tank": 114.1
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.73,
+     "star3": 0,
+     "off": 6.3,
+     "tank": 1.7
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.68,
+     "rate": 0.73,
      "star3": 0,
-     "off": 70,
-     "tank": 0
+     "off": 172.5,
+     "tank": 1.7
     },
     {
      "id": "da_18_varus",
-     "rate": 0.65,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.7,
+     "star3": 0.01,
+     "off": 2.3,
      "tank": 0
     },
     {
      "id": "da_18_masteryi_ad",
-     "rate": 0.27,
-     "star3": 0.5,
-     "off": 19,
-     "tank": 4
+     "rate": 0.24,
+     "star3": 0.51,
+     "off": 41.1,
+     "tank": 6.9
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.27,
+     "rate": 0.24,
      "star3": 0,
      "off": 0,
      "tank": 2
     },
     {
+     "id": "da_18_sett",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 4.3,
+     "tank": 14
+    },
+    {
      "id": "da_krug18",
-     "rate": 0.27,
-     "star3": 0.2,
+     "rate": 0.19,
+     "star3": 0.12,
      "off": 1,
      "tank": 4
     },
     {
-     "id": "da_18_sett",
-     "rate": 0.22,
-     "star3": 0,
-     "off": 2,
-     "tank": 7
+     "id": "da_18_rengar",
+     "rate": 0.06,
+     "star3": 0.56,
+     "off": 8.7,
+     "tank": 3.5
     },
     {
      "id": "da_18_akali_ad",
-     "rate": 0.05,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.05,
+     "rate": 0.04,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -27885,21 +29447,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_nidalee18_ap": {
      "items": [
-      "DA_EdgeOfNight",
-      "DA_HandOfJustice",
-      "DA_InfinityEdge"
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_SteraksGage"
      ],
-     "games": 4,
-     "avgPlace": 4.5
+     "games": 7,
+     "avgPlace": 5.99
     },
-    "da_sentinel18": {
+    "da_amumu18": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 3.5
+     "games": 5,
+     "avgPlace": 4.27
     }
    },
    "now": {
@@ -27917,7 +29479,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_Primal18",
    "carry": "da_nidalee18_ap",
    "mainCarry": "da_nidalee18_ap",
-   "mainTank": "da_18_lillia",
+   "mainTank": "da_amumu18",
    "games": 13,
    "avgPlace": 4.87,
    "top4": 0.442,
@@ -27927,102 +29489,102 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 8
-    },
-    {
      "id": "da_nidalee18_ap",
      "rate": 1,
      "star3": 0,
-     "off": 38,
+     "off": 105.5,
+     "tank": 0.6
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.97,
+     "star3": 0.03,
+     "off": 2.3,
+     "tank": 21.4
+    },
+    {
+     "id": "da_18_sivir",
+     "rate": 0.83,
+     "star3": 0,
+     "off": 70.3,
      "tank": 0
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.92,
-     "star3": 0,
-     "off": 9,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sivir",
-     "rate": 0.92,
-     "star3": 0,
-     "off": 29,
+     "rate": 0.66,
+     "star3": 0.02,
+     "off": 12.5,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.69,
+     "rate": 0.62,
      "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 1.2,
+     "tank": 18.8
     },
     {
      "id": "da_amumu18",
-     "rate": 0.54,
+     "rate": 0.58,
      "star3": 0,
-     "off": 1,
-     "tank": 11
+     "off": 2.7,
+     "tank": 35.5
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.54,
+     "rate": 0.41,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.46,
+     "rate": 0.34,
      "star3": 0,
-     "off": 0,
-     "tank": 14
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.31,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 22.2
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.31,
+     "rate": 0.3,
      "star3": 0,
-     "off": 6,
+     "off": 15.9,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.22,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.31,
+     "rate": 0.2,
      "star3": 0,
-     "off": 1,
+     "off": 4.5,
      "tank": 0
     },
     {
-     "id": "da_taric18",
-     "rate": 0.23,
+     "id": "da_18_diana",
+     "rate": 0.19,
      "star3": 0,
-     "off": 1,
-     "tank": 6
+     "off": 2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 14.1,
+     "tank": 0
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.15,
+     "rate": 0.16,
      "star3": 0,
      "off": 1,
-     "tank": 3
-    },
-    {
-     "id": "da_18_malphite",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
+     "tank": 9.4
     }
    ],
    "builds": {
@@ -28032,17 +29594,17 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_SteraksGage"
      ],
-     "games": 4,
-     "avgPlace": 5.5
+     "games": 5,
+     "avgPlace": 4.93
     },
-    "da_18_lillia": {
+    "da_amumu18": {
      "items": [
-      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
       "DA_SpiritVisage",
       "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 5.53
     }
    },
    "now": {
@@ -28070,81 +29632,81 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_lillia",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 59
-    },
-    {
      "id": "da_18_sivir",
      "rate": 1,
-     "star3": 0,
-     "off": 129,
+     "star3": 0.01,
+     "off": 242.5,
      "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.99,
+     "star3": 0,
+     "off": 6.7,
+     "tank": 122.5
     },
     {
      "id": "da_amumu18",
-     "rate": 0.98,
+     "rate": 0.97,
      "star3": 0,
-     "off": 4,
-     "tank": 69
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.95,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 9.2,
+     "tank": 129
     },
     {
      "id": "da_18_shen",
-     "rate": 0.95,
+     "rate": 0.96,
      "star3": 0.02,
-     "off": 1,
-     "tank": 2
+     "off": 2.7,
+     "tank": 4.3
     },
     {
      "id": "da_nidalee18_ap",
      "rate": 0.95,
+     "star3": 0.01,
+     "off": 177.5,
+     "tank": 2.2
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.94,
      "star3": 0,
-     "off": 89,
-     "tank": 1
+     "off": 1,
+     "tank": 0
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.91,
+     "rate": 0.92,
      "star3": 0,
-     "off": 25,
+     "off": 45.4,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.91,
-     "star3": 0,
-     "off": 5,
-     "tank": 31
+     "rate": 0.89,
+     "star3": 0.01,
+     "off": 7.9,
+     "tank": 55.5
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.14,
+     "rate": 0.2,
      "star3": 0,
-     "off": 12,
+     "off": 22.5,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.09,
+     "rate": 0.08,
      "star3": 0,
      "off": 1,
-     "tank": 0
+     "tank": 1.7
     },
     {
      "id": "da_18_maokai",
      "rate": 0.05,
      "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 1.2,
+     "tank": 7.2
     },
     {
      "id": "da_fiddlesticks18",
@@ -28157,14 +29719,14 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ivern",
      "rate": 0.05,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 0
     },
     {
      "id": "da_18_tristana",
      "rate": 0.05,
      "star3": 0,
-     "off": 4,
+     "off": 4.6,
      "tank": 0
     }
    ],
@@ -28175,8 +29737,8 @@ window.TFT_WEIGHTS = {
       "DA_RedBuff",
       "DA_StrikersFlail"
      ],
-     "games": 5,
-     "avgPlace": 4.4
+     "games": 8,
+     "avgPlace": 4.84
     },
     "da_amumu18": {
      "items": [
@@ -28184,8 +29746,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 2,
-     "avgPlace": 3.5
+     "games": 4,
+     "avgPlace": 4.04
     }
    },
    "now": {
@@ -28216,99 +29778,99 @@ window.TFT_WEIGHTS = {
      "id": "da_amumu18",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 13
+     "off": 0.6,
+     "tank": 18.2
     },
     {
      "id": "da_18_aphelios",
      "rate": 1,
      "star3": 0,
-     "off": 18,
+     "off": 31.4,
      "tank": 0
     },
     {
-     "id": "da_18_maokai",
-     "rate": 0.83,
+     "id": "da_18_diana",
+     "rate": 0.65,
      "star3": 0,
      "off": 0,
-     "tank": 9
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.63,
+     "star3": 0,
+     "off": 0,
+     "tank": 11.3
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.55,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.9
     },
     {
      "id": "da_18_sejuani",
-     "rate": 0.67,
+     "rate": 0.54,
      "star3": 0,
      "off": 3,
      "tank": 1
     },
     {
-     "id": "da_18_kayle",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
      "id": "da_18_leona",
-     "rate": 0.67,
-     "star3": 0,
+     "rate": 0.54,
+     "star3": 0.1,
      "off": 0,
-     "tank": 0
+     "tank": 0.6
     },
     {
-     "id": "da_18_diana",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.33,
+     "id": "da_18_kayle",
+     "rate": 0.48,
      "star3": 0,
      "off": 1,
-     "tank": 3
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.33,
+     "rate": 0.41,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 7.1
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_scuttlecrab18",
-     "rate": 0.17,
+     "id": "da_18_rakan",
+     "rate": 0.35,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_sivir",
-     "rate": 0.17,
+     "id": "da_18_varus",
+     "rate": 0.26,
      "star3": 0,
-     "off": 1,
+     "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 4.9,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 4.3
     }
    ],
    "builds": {
@@ -28318,8 +29880,8 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_KrakensFury"
      ],
-     "games": 2,
-     "avgPlace": 4.5
+     "games": 3,
+     "avgPlace": 5.06
     },
     "da_amumu18": {
      "items": [
@@ -28359,98 +29921,98 @@ window.TFT_WEIGHTS = {
      "id": "da_brambleback18",
      "rate": 1,
      "star3": 0,
-     "off": 18,
-     "tank": 0
+     "off": 52.3,
+     "tank": 0.6
     },
     {
      "id": "da_18_diana",
-     "rate": 1,
-     "star3": 0,
-     "off": 4,
-     "tank": 3
+     "rate": 0.97,
+     "star3": 0.03,
+     "off": 13.3,
+     "tank": 4.2
     },
     {
      "id": "da_murkwolf18",
-     "rate": 0.83,
-     "star3": 0.4,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_warwick",
-     "rate": 0.67,
-     "star3": 0.5,
-     "off": 4,
-     "tank": 1
+     "rate": 0.84,
+     "star3": 0.21,
+     "off": 3.7,
+     "tank": 0.6
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.67,
+     "rate": 0.72,
      "star3": 0,
-     "off": 0,
-     "tank": 5
+     "off": 0.6,
+     "tank": 20.7
+    },
+    {
+     "id": "da_18_warwick",
+     "rate": 0.62,
+     "star3": 0.39,
+     "off": 8.7,
+     "tank": 3.3
     },
     {
      "id": "da_18_akali_ad",
-     "rate": 0.67,
+     "rate": 0.56,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.33,
+     "rate": 0.38,
      "star3": 0,
-     "off": 4,
+     "off": 12.2,
      "tank": 0
     },
     {
-     "id": "da_krug18",
-     "rate": 0.33,
+     "id": "da_18_aphelios",
+     "rate": 0.26,
      "star3": 0,
-     "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
+     "off": 8.2,
      "tank": 0
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.33,
+     "id": "da_18_malphite",
+     "rate": 0.22,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 0.6,
+     "tank": 11.2
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.33,
+     "rate": 0.21,
      "star3": 0,
-     "off": 3,
+     "off": 3.6,
      "tank": 1
     },
     {
-     "id": "da_18_yunara",
-     "rate": 0.17,
-     "star3": 1,
+     "id": "da_18_elise",
+     "rate": 0.19,
+     "star3": 0.48,
      "off": 1,
-     "tank": 0
+     "tank": 4.5
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 0,
+     "tank": 5.2
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.16,
+     "star3": 0.21,
+     "off": 0,
+     "tank": 1.2
     },
     {
      "id": "da_18_camille",
-     "rate": 0.17,
+     "rate": 0.16,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_veigar",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     }
    ],
@@ -28461,8 +30023,8 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_Quicksilver"
      ],
-     "games": 2,
-     "avgPlace": 4
+     "games": 3,
+     "avgPlace": 4.92
     },
     "da_sentinel18": {
      "items": [
@@ -28499,87 +30061,122 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_18_rakan",
-     "rate": 1,
-     "star3": 1,
-     "off": 1,
-     "tank": 5
-    },
-    {
-     "id": "da_18_leona",
-     "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_xayah",
      "rate": 1,
      "star3": 1,
-     "off": 6,
+     "off": 33.9,
      "tank": 0
-    },
-    {
-     "id": "da_18_sejuani",
-     "rate": 1,
-     "star3": 0.5,
-     "off": 1,
-     "tank": 4
     },
     {
      "id": "da_18_kayle",
-     "rate": 1,
-     "star3": 1,
-     "off": 4,
+     "rate": 0.95,
+     "star3": 0.67,
+     "off": 14.5,
      "tank": 1
     },
     {
+     "id": "da_18_leona",
+     "rate": 0.95,
+     "star3": 0.73,
+     "off": 0.6,
+     "tank": 5.2
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.95,
+     "star3": 0.42,
+     "off": 2.2,
+     "tank": 12.2
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.9,
+     "star3": 0.89,
+     "off": 1.6,
+     "tank": 24.2
+    },
+    {
      "id": "da_18_varus",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.54,
+     "star3": 0.29,
+     "off": 1.2,
      "tank": 0
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.5,
+     "id": "da_18_aphelios",
+     "rate": 0.41,
      "star3": 0,
-     "off": 0,
+     "off": 7.6,
      "tank": 0
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.5,
+     "rate": 0.29,
+     "star3": 0.7,
+     "off": 0,
+     "tank": 4.1
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.29,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_hecarim",
-     "rate": 0.5,
+     "id": "da_18_diana",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.14,
      "star3": 0,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 0.1,
+     "star3": 0.5,
+     "off": 1.7,
+     "tank": 0.6
     }
    ],
    "builds": {
     "da_18_xayah": {
      "items": [
       "DA_GuinsoosRageblade",
-      "DA_KrakensFury",
+      "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 2,
+     "avgPlace": 5.1
     },
     "da_18_rakan": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_Artifact_ForbiddenIdol",
-      "DA_SteadfastHeart"
+      "DA_GargoyleStoneplate",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 2,
+     "avgPlace": 4.27
     }
    },
    "now": {
@@ -28607,52 +30204,101 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_18_hecarim",
-     "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_rengar",
      "rate": 1,
-     "star3": 1,
-     "off": 3,
+     "star3": 0.91,
+     "off": 20.5,
      "tank": 0
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 1,
+     "star3": 0.57,
+     "off": 1.2,
+     "tank": 14.1
     },
     {
      "id": "da_18_khazix",
-     "rate": 1,
-     "star3": 1,
-     "off": 3,
+     "rate": 0.66,
+     "star3": 0.87,
+     "off": 11.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.66,
+     "star3": 0,
+     "off": 4.9,
      "tank": 0
     },
     {
      "id": "da_18_diana",
-     "rate": 1,
+     "rate": 0.66,
+     "star3": 0.26,
+     "off": 2.3,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.49,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 1,
+     "rate": 0.49,
      "star3": 0,
      "off": 0,
+     "tank": 4.1
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.34,
+     "star3": 0.5,
+     "off": 0.6,
+     "tank": 2.9
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 0.34,
+     "star3": 1,
+     "off": 6.4,
+     "tank": 0.6
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 0,
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
-     "id": "da_18_ezreal",
-     "rate": 1,
+     "id": "da_18_xayah",
+     "rate": 0.34,
      "star3": 0,
-     "off": 2,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.26,
+     "star3": 0.33,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     }
    ],
@@ -28663,8 +30309,8 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_SteraksGage"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 2,
+     "avgPlace": 6.26
     },
     "da_18_hecarim": {
      "items": [
@@ -28691,7 +30337,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Brawler",
    "carry": "da_18_ahri",
    "mainCarry": "da_18_ahri",
-   "mainTank": "da_18_alistar",
+   "mainTank": "da_18_sett",
    "games": 6,
    "avgPlace": 4.94,
    "top4": 0.471,
@@ -28704,97 +30350,97 @@ window.TFT_WEIGHTS = {
      "id": "da_18_ahri",
      "rate": 1,
      "star3": 0,
-     "off": 18,
-     "tank": 0
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.83,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 33.7,
+     "tank": 0.6
     },
     {
      "id": "da_18_sett",
-     "rate": 0.67,
-     "star3": 0.25,
-     "off": 4,
-     "tank": 2
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 7,
-     "tank": 0
+     "rate": 0.83,
+     "star3": 0.1,
+     "off": 5.7,
+     "tank": 12.5
     },
     {
      "id": "da_krug18",
-     "rate": 0.5,
+     "rate": 0.75,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 4.2
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.62,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.48,
+     "star3": 0,
+     "off": 11.2,
+     "tank": 2.3
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.48,
+     "star3": 0,
+     "off": 0,
+     "tank": 9.3
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.4,
+     "star3": 0.42,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sentry",
+     "rate": 0.38,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.35,
+     "star3": 0,
+     "off": 8.7,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.5,
+     "rate": 0.25,
      "star3": 0.67,
      "off": 0,
      "tank": 6
     },
     {
-     "id": "da_18_reksai",
-     "rate": 0.5,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.33,
+     "id": "da_18_lillia",
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 2.7
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.33,
-     "star3": 1,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_veigar",
-     "rate": 0.33,
-     "star3": 1,
-     "off": 4,
-     "tank": 1
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.33,
-     "star3": 1,
-     "off": 0,
-     "tank": 5
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.17,
-     "star3": 0,
+     "rate": 0.22,
+     "star3": 0.77,
      "off": 0,
      "tank": 0
     }
@@ -28806,17 +30452,17 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 1,
-     "avgPlace": 6
+     "games": 2,
+     "avgPlace": 6.74
     },
-    "da_18_alistar": {
+    "da_18_sett": {
      "items": [
-      "DA_AdaptiveHelm",
+      "DA_Bloodthirster",
       "DA_GargoyleStoneplate",
-      "DA_SteadfastHeart"
+      "DA_SteraksGage"
      ],
      "games": 1,
-     "avgPlace": 1
+     "avgPlace": 2
     }
    },
    "now": {
@@ -28846,99 +30492,99 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_xayah",
      "rate": 1,
-     "star3": 0.96,
-     "off": 146,
-     "tank": 0
+     "star3": 0.94,
+     "off": 293.3,
+     "tank": 0.6
     },
     {
      "id": "da_18_rakan",
      "rate": 1,
-     "star3": 0.9,
-     "off": 3,
-     "tank": 124
-    },
-    {
-     "id": "da_18_kayle",
-     "rate": 0.86,
-     "star3": 0.62,
-     "off": 58,
-     "tank": 1
+     "star3": 0.88,
+     "off": 7.1,
+     "tank": 250.3
     },
     {
      "id": "da_18_sejuani",
-     "rate": 0.86,
-     "star3": 0.55,
-     "off": 4,
-     "tank": 42
+     "rate": 0.84,
+     "star3": 0.53,
+     "off": 8.1,
+     "tank": 71.1
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.84,
+     "star3": 0.63,
+     "off": 121.5,
+     "tank": 2.2
     },
     {
      "id": "da_18_leona",
      "rate": 0.82,
-     "star3": 0.85,
-     "off": 4,
-     "tank": 9
+     "star3": 0.82,
+     "off": 6.9,
+     "tank": 23
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.63,
+     "rate": 0.69,
      "star3": 0,
-     "off": 5,
-     "tank": 26
+     "off": 12,
+     "tank": 58.6
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.47,
+     "rate": 0.44,
      "star3": 0,
-     "off": 17,
+     "off": 28.1,
      "tank": 1
     },
     {
-     "id": "da_18_aphelios",
-     "rate": 0.31,
+     "id": "da_18_diana",
+     "rate": 0.28,
      "star3": 0,
-     "off": 14,
+     "off": 1.6,
      "tank": 0
     },
     {
-     "id": "da_18_diana",
+     "id": "da_18_aphelios",
      "rate": 0.27,
      "star3": 0,
-     "off": 1,
+     "off": 25.1,
      "tank": 0
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.22,
-     "star3": 0.09,
-     "off": 4,
-     "tank": 3
+     "rate": 0.23,
+     "star3": 0.07,
+     "off": 6.3,
+     "tank": 7.1
     },
     {
      "id": "da_18_ornn",
      "rate": 0.16,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.1,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
+     "star3": 0.61,
+     "off": 1.7,
+     "tank": 7.7
     },
     {
      "id": "da_amumu18",
      "rate": 0.1,
      "star3": 0,
+     "off": 1.2,
+     "tank": 5.9
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.08,
+     "star3": 0.14,
      "off": 0,
-     "tank": 3
+     "tank": 1.7
     },
     {
      "id": "da_18_alune",
      "rate": 0.08,
      "star3": 0,
-     "off": 0,
+     "off": 2.3,
      "tank": 0
     }
    ],
@@ -28949,8 +30595,8 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_LastWhisper"
      ],
-     "games": 3,
-     "avgPlace": 3
+     "games": 5,
+     "avgPlace": 3.87
     },
     "da_18_rakan": {
      "items": [
@@ -28958,8 +30604,8 @@ window.TFT_WEIGHTS = {
       "DA_ProtectorsVow",
       "DA_SpiritVisage"
      ],
-     "games": 3,
-     "avgPlace": 4.33
+     "games": 6,
+     "avgPlace": 4.76
     }
    },
    "now": {
@@ -28989,100 +30635,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_akali_ad",
      "rate": 1,
-     "star3": 0.96,
-     "off": 133,
+     "star3": 0.95,
+     "off": 303,
      "tank": 1
     },
     {
      "id": "da_18_leona",
-     "rate": 1,
-     "star3": 0.98,
-     "off": 5,
-     "tank": 41
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.98,
-     "star3": 0.89,
-     "off": 4,
-     "tank": 99
+     "rate": 0.99,
+     "star3": 0.91,
+     "off": 15.5,
+     "tank": 82.9
     },
     {
      "id": "da_18_camille",
      "rate": 0.98,
-     "star3": 0.98,
-     "off": 87,
-     "tank": 20
+     "star3": 0.95,
+     "off": 210.4,
+     "tank": 32.2
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.97,
+     "star3": 0.91,
+     "off": 11.6,
+     "tank": 227.1
     },
     {
      "id": "da_18_varus",
-     "rate": 0.98,
-     "star3": 0.98,
-     "off": 79,
+     "rate": 0.96,
+     "star3": 0.94,
+     "off": 178,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.83,
+     "star3": 0.02,
+     "off": 10.8,
      "tank": 0
     },
     {
      "id": "da_18_sejuani",
      "rate": 0.82,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kayle",
-     "rate": 0.8,
-     "star3": 0,
-     "off": 5,
-     "tank": 0
+     "star3": 0.02,
+     "off": 2.2,
+     "tank": 5.2
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.24,
+     "rate": 0.17,
      "star3": 0,
-     "off": 12,
+     "off": 14.9,
      "tank": 0
     },
     {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.2
+    },
+    {
      "id": "da_lux18_base",
-     "rate": 0.04,
+     "rate": 0.03,
      "star3": 0,
      "off": 3,
      "tank": 0
     },
     {
-     "id": "da_vi18",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_rakan",
      "rate": 0.02,
-     "star3": 0,
+     "star3": 0.27,
      "off": 0,
-     "tank": 0
+     "tank": 1.7
     },
     {
-     "id": "da_kogmaw18_ad",
+     "id": "da_taric18",
      "rate": 0.02,
      "star3": 0,
      "off": 0,
      "tank": 0
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.02,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.02,
-     "star3": 1,
-     "off": 0,
-     "tank": 3
     }
    ],
    "builds": {
@@ -29092,17 +30738,17 @@ window.TFT_WEIGHTS = {
       "DA_HandOfJustice",
       "DA_InfinityEdge"
      ],
-     "games": 12,
-     "avgPlace": 5.42
+     "games": 19,
+     "avgPlace": 5.14
     },
     "da_18_ornn": {
      "items": [
       "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_WarmogsArmor"
      ],
-     "games": 4,
-     "avgPlace": 4
+     "games": 6,
+     "avgPlace": 3.97
     }
    },
    "now": {
@@ -29127,90 +30773,83 @@ window.TFT_WEIGHTS = {
    "win": 0.055,
    "patchGames": 19,
    "playRate": 0.0036,
-   "level": 9,
+   "level": 8,
    "core": [
     {
      "id": "da_18_azir",
      "rate": 1,
      "star3": 0,
-     "off": 11,
+     "off": 14.5,
      "tank": 1
     },
     {
      "id": "da_18_zyra",
      "rate": 1,
-     "star3": 0.05,
-     "off": 42,
-     "tank": 0
+     "star3": 0.03,
+     "off": 72.9,
+     "tank": 1.2
     },
     {
      "id": "da_18_soraka",
-     "rate": 1,
+     "rate": 0.98,
      "star3": 0,
-     "off": 37,
-     "tank": 8
+     "off": 58,
+     "tank": 15
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.95,
+     "rate": 0.93,
      "star3": 0,
-     "off": 4,
-     "tank": 46
+     "off": 4.6,
+     "tank": 80.3
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.95,
+     "rate": 0.92,
      "star3": 0,
-     "off": 0,
-     "tank": 5
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.79,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.79,
-     "star3": 0,
-     "off": 9,
-     "tank": 7
+     "off": 1.2,
+     "tank": 8.5
     },
     {
      "id": "da_amumu18",
+     "rate": 0.8,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 15.2
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.77,
+     "star3": 0,
+     "off": 16.6,
+     "tank": 9.9
+    },
+    {
+     "id": "da_18_yorick",
      "rate": 0.74,
      "star3": 0,
-     "off": 1,
-     "tank": 7
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.21,
-     "star3": 0,
-     "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.16,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 0,
+     "tank": 0.6
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.16,
+     "rate": 0.21,
      "star3": 0,
-     "off": 0,
-     "tank": 5
+     "off": 0.6,
+     "tank": 10.8
     },
     {
-     "id": "da_18_alune",
-     "rate": 0.11,
+     "id": "da_18_maokai",
+     "rate": 0.16,
      "star3": 0,
-     "off": 0,
+     "off": 1,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 2,
      "tank": 0
     },
     {
@@ -29221,22 +30860,29 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_ahri",
-     "rate": 0.11,
+     "id": "da_18_yunara",
+     "rate": 0.1,
      "star3": 0,
-     "off": 2,
+     "off": 1,
      "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.1,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
     }
    ],
    "builds": {
     "da_18_zyra": {
      "items": [
-      "DA_HextechGunblade",
-      "DA_RedBuff",
+      "DA_BlueBuff",
+      "DA_Morellonomicon",
       "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 2,
+     "avgPlace": 5.9
     },
     "da_18_malphite": {
      "items": [
@@ -29244,8 +30890,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 6,
-     "avgPlace": 5.83
+     "games": 8,
+     "avgPlace": 5.6
     }
    },
    "now": {
@@ -29270,105 +30916,105 @@ window.TFT_WEIGHTS = {
    "win": 0.089,
    "patchGames": 51,
    "playRate": 0.0097,
-   "level": 8,
+   "level": 9,
    "core": [
-    {
-     "id": "da_18_yorick",
-     "rate": 1,
-     "star3": 0.02,
-     "off": 2,
-     "tank": 3
-    },
-    {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0,
-     "off": 7,
-     "tank": 47
-    },
     {
      "id": "da_18_zyra",
      "rate": 1,
-     "star3": 0.02,
-     "off": 149,
-     "tank": 2
+     "star3": 0.01,
+     "off": 346.4,
+     "tank": 4.9
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 1,
+     "star3": 0.01,
+     "off": 4.3,
+     "tank": 4.2
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.97,
+     "star3": 0,
+     "off": 14,
+     "tank": 122.1
     },
     {
      "id": "da_amumu18",
-     "rate": 0.96,
+     "rate": 0.97,
      "star3": 0,
-     "off": 2,
-     "tank": 85
+     "off": 13.6,
+     "tank": 206.7
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.71,
-     "star3": 0,
+     "rate": 0.7,
+     "star3": 0.01,
      "off": 4,
-     "tank": 0
+     "tank": 4.1
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.65,
+     "rate": 0.7,
      "star3": 0,
-     "off": 3,
-     "tank": 2
+     "off": 8.2,
+     "tank": 6.1
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.61,
+     "rate": 0.63,
      "star3": 0,
-     "off": 5,
-     "tank": 32
+     "off": 7.9,
+     "tank": 75.7
     },
     {
      "id": "da_18_sejuani",
-     "rate": 0.59,
-     "star3": 0,
+     "rate": 0.58,
+     "star3": 0.01,
      "off": 0,
-     "tank": 4
+     "tank": 8.1
     },
     {
      "id": "da_nidalee18_ap",
      "rate": 0.45,
      "star3": 0,
-     "off": 39,
-     "tank": 1
+     "off": 101.3,
+     "tank": 3.3
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.39,
+     "rate": 0.4,
      "star3": 0,
-     "off": 31,
-     "tank": 8
+     "off": 72.3,
+     "tank": 12.7
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.27,
+     "rate": 0.28,
      "star3": 0,
-     "off": 33,
+     "off": 74.3,
      "tank": 1
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.24,
+     "rate": 0.17,
      "star3": 0,
-     "off": 14,
-     "tank": 2
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.12,
-     "star3": 0,
-     "off": 7,
-     "tank": 1
+     "off": 22.2,
+     "tank": 4.3
     },
     {
      "id": "da_18_azir",
-     "rate": 0.1,
+     "rate": 0.11,
      "star3": 0,
-     "off": 2,
+     "off": 4.9,
      "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 17.5,
+     "tank": 1
     }
    ],
    "builds": {
@@ -29378,8 +31024,8 @@ window.TFT_WEIGHTS = {
       "DA_ArchangelsStaff",
       "DA_HextechGunblade"
      ],
-     "games": 19,
-     "avgPlace": 4.68
+     "games": 46,
+     "avgPlace": 4.14
     },
     "da_amumu18": {
      "items": [
@@ -29387,8 +31033,8 @@ window.TFT_WEIGHTS = {
       "DA_WarmogsArmor",
       "DA_WarmogsArmor"
      ],
-     "games": 4,
-     "avgPlace": 5.5
+     "games": 6,
+     "avgPlace": 4.94
     }
    },
    "now": {
@@ -29416,122 +31062,122 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_crimsonraptor18",
-     "rate": 1,
-     "star3": 0.73,
-     "off": 65,
-     "tank": 13
-    },
-    {
      "id": "da_18_hecarim",
      "rate": 1,
-     "star3": 0.5,
-     "off": 6,
-     "tank": 61
-    },
-    {
-     "id": "da_krug18",
-     "rate": 1,
-     "star3": 0.23,
-     "off": 3,
-     "tank": 24
+     "star3": 0.49,
+     "off": 10.1,
+     "tank": 119.2
     },
     {
      "id": "da_18_xayah",
      "rate": 1,
-     "star3": 0.04,
-     "off": 12,
+     "star3": 0.03,
+     "off": 21.3,
      "tank": 0
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 1,
+     "star3": 0.79,
+     "off": 135.4,
+     "tank": 25.8
+    },
+    {
+     "id": "da_krug18",
+     "rate": 1,
+     "star3": 0.22,
+     "off": 6.5,
+     "tank": 53.7
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.92,
+     "rate": 0.9,
      "star3": 0,
-     "off": 34,
-     "tank": 1
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.81,
-     "star3": 0.05,
-     "off": 4,
-     "tank": 2
+     "off": 71.3,
+     "tank": 3.3
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.73,
+     "rate": 0.79,
      "star3": 0,
-     "off": 2,
-     "tank": 37
+     "off": 4.9,
+     "tank": 60.9
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.78,
+     "star3": 0.04,
+     "off": 5.2,
+     "tank": 6.1
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.15,
+     "rate": 0.14,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 0.6
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.12,
+     "rate": 0.11,
+     "star3": 0.1,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.06,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_brambleback18",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yorick",
      "rate": 0.04,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.04,
+     "id": "da_18_gnarsmall",
+     "rate": 0.03,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
-    },
-    {
-     "id": "da_18_ezreal",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.04,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
     }
    ],
    "builds": {
     "da_crimsonraptor18": {
      "items": [
-      "DA_GuinsoosRagebladeRadiant",
+      "DA_GuinsoosRageblade",
       "DA_HextechGunblade",
       "DA_TitansResolve"
      ],
-     "games": 7,
-     "avgPlace": 4.29
+     "games": 13,
+     "avgPlace": 5.98
     },
     "da_18_hecarim": {
      "items": [
-      "DA_BrambleVest",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
-     "games": 1,
-     "avgPlace": 7
+     "games": 2,
+     "avgPlace": 3.73
     }
    },
    "now": {
@@ -29556,105 +31202,105 @@ window.TFT_WEIGHTS = {
    "win": 0.022,
    "patchGames": 10,
    "playRate": 0.0019,
-   "level": 7,
+   "level": 8,
    "core": [
     {
      "id": "da_18_teemo",
      "rate": 1,
-     "star3": 0.8,
-     "off": 30,
+     "star3": 0.86,
+     "off": 67.8,
      "tank": 0
     },
     {
      "id": "da_18_kobuko",
-     "rate": 0.9,
-     "star3": 0.44,
-     "off": 2,
-     "tank": 6
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 0.8,
-     "star3": 0.13,
-     "off": 0,
-     "tank": 8
+     "rate": 0.91,
+     "star3": 0.5,
+     "off": 4.3,
+     "tank": 15.3
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.6,
-     "star3": 0.17,
-     "off": 2,
-     "tank": 0
+     "rate": 0.77,
+     "star3": 0.35,
+     "off": 11.3,
+     "tank": 1.2
     },
     {
-     "id": "da_18_leblanc",
-     "rate": 0.6,
-     "star3": 0.17,
-     "off": 9,
-     "tank": 1
+     "id": "da_18_rammus",
+     "rate": 0.71,
+     "star3": 0.24,
+     "off": 1.2,
+     "tank": 18.5
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.6,
-     "star3": 0.83,
-     "off": 0,
-     "tank": 14
+     "rate": 0.65,
+     "star3": 0.73,
+     "off": 2.3,
+     "tank": 26.8
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.54,
+     "star3": 0.32,
+     "off": 19.5,
+     "tank": 2.2
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.3,
+     "rate": 0.46,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 0.6,
+     "tank": 5.9
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.3,
+     "rate": 0.34,
      "star3": 0,
-     "off": 6,
-     "tank": 0
+     "off": 15.9,
+     "tank": 0.6
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.2,
+     "rate": 0.29,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 2.3
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.2,
+     "rate": 0.27,
      "star3": 0,
-     "off": 0,
-     "tank": 2
+     "off": 0.6,
+     "tank": 2.6
     },
     {
-     "id": "da_18_reksai",
-     "rate": 0.2,
-     "star3": 0,
-     "off": 0,
+     "id": "da_18_tristana",
+     "rate": 0.22,
+     "star3": 0.2,
+     "off": 4.9,
      "tank": 0
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.2,
-     "star3": 0.5,
-     "off": 2,
+     "rate": 0.16,
+     "star3": 0.27,
+     "off": 3.2,
      "tank": 0
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.16,
+     "star3": 0.47,
+     "off": 0,
+     "tank": 3.5
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.2,
+     "rate": 0.14,
      "star3": 0.5,
      "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 3.6
     }
    ],
    "builds": {
@@ -29664,8 +31310,8 @@ window.TFT_WEIGHTS = {
       "DA_RabadonsDeathcap",
       "DA_SpearOfShojin"
      ],
-     "games": 2,
-     "avgPlace": 3.5
+     "games": 3,
+     "avgPlace": 3.32
     },
     "da_18_alistar": {
      "items": [
@@ -29692,7 +31338,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Summoner",
    "carry": "da_18_azir",
    "mainCarry": "da_18_azir",
-   "mainTank": "da_18_yorick",
+   "mainTank": "da_18_malphite",
    "games": 8,
    "avgPlace": 5,
    "top4": 0.357,
@@ -29704,100 +31350,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_azir",
      "rate": 1,
-     "star3": 0.38,
-     "off": 22,
+     "star3": 0.37,
+     "off": 44.7,
      "tank": 0
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.88,
-     "star3": 0.14,
-     "off": 1,
-     "tank": 6
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 0.63,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
+     "rate": 0.9,
+     "star3": 0.07,
+     "off": 2.2,
+     "tank": 7.2
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.63,
-     "star3": 0.2,
-     "off": 8,
+     "rate": 0.74,
+     "star3": 0.08,
+     "off": 21.4,
+     "tank": 1.6
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.67,
+     "star3": 0,
+     "off": 2.6,
      "tank": 1
     },
     {
+     "id": "da_18_soraka",
+     "rate": 0.57,
+     "star3": 0,
+     "off": 11,
+     "tank": 2.2
+    },
+    {
+     "id": "da_18_malphite",
+     "rate": 0.41,
+     "star3": 0,
+     "off": 0,
+     "tank": 17
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 0.36,
+     "star3": 0.38,
+     "off": 4.7,
+     "tank": 1.6
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.35,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 1.7
+    },
+    {
      "id": "da_18_yunara",
-     "rate": 0.63,
+     "rate": 0.35,
      "star3": 0,
      "off": 2,
      "tank": 0
     },
     {
-     "id": "da_18_soraka",
-     "rate": 0.5,
+     "id": "da_18_lillia",
+     "rate": 0.21,
      "star3": 0,
-     "off": 4,
-     "tank": 1
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 0.5,
-     "star3": 0.25,
-     "off": 3,
-     "tank": 1
-    },
-    {
-     "id": "da_18_malphite",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 2.2,
+     "tank": 3.7
     },
     {
      "id": "da_18_rammus",
-     "rate": 0.25,
+     "rate": 0.2,
      "star3": 0.5,
      "off": 0,
-     "tank": 6
+     "tank": 9.5
     },
     {
-     "id": "da_scuttlecrab18",
-     "rate": 0.25,
+     "id": "da_18_veigar",
+     "rate": 0.17,
      "star3": 0,
      "off": 0,
      "tank": 0
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
     },
     {
      "id": "da_18_sett",
-     "rate": 0.25,
+     "rate": 0.16,
      "star3": 0,
      "off": 0,
-     "tank": 2
+     "tank": 3.2
     },
     {
-     "id": "da_18_sejuani",
-     "rate": 0.25,
-     "star3": 0,
+     "id": "da_scuttlecrab18",
+     "rate": 0.16,
+     "star3": 0.23,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.13,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 1.7
     }
    ],
    "builds": {
@@ -29810,14 +31456,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 7
     },
-    "da_18_yorick": {
+    "da_18_malphite": {
      "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
+      "DA_Crownguard",
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate"
      ],
-     "games": 1,
-     "avgPlace": 3
+     "games": 2,
+     "avgPlace": 3.21
     }
    },
    "now": {
@@ -29835,7 +31481,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Blossom",
    "carry": "da_nidalee18_ap",
    "mainCarry": "da_nidalee18_ap",
-   "mainTank": "da_18_sett",
+   "mainTank": "da_vi18",
    "games": 4,
    "avgPlace": 5,
    "top4": 0.385,
@@ -29847,8 +31493,15 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_masteryi_ad",
      "rate": 1,
-     "star3": 0.25,
-     "off": 0,
+     "star3": 0.31,
+     "off": 5.2,
+     "tank": 1.7
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 1,
+     "star3": 0.14,
+     "off": 18.2,
      "tank": 0
     },
     {
@@ -29859,88 +31512,81 @@ window.TFT_WEIGHTS = {
      "tank": 8
     },
     {
-     "id": "da_nidalee18_ap",
-     "rate": 1,
-     "star3": 0.25,
-     "off": 10,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yunara",
-     "rate": 0.75,
-     "star3": 0,
+     "id": "da_vi18",
+     "rate": 0.71,
+     "star3": 0.56,
      "off": 0,
-     "tank": 0
+     "tank": 10.6
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.5,
+     "rate": 0.63,
      "star3": 0,
      "off": 1,
      "tank": 1
     },
     {
-     "id": "da_vi18",
-     "rate": 0.5,
-     "star3": 0.5,
+     "id": "da_18_yunara",
+     "rate": 0.52,
+     "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 0
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.48,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_rengar",
+     "rate": 0.31,
+     "star3": 0.73,
+     "off": 4.9,
+     "tank": 1.6
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.5,
+     "rate": 0.29,
      "star3": 0,
      "off": 4,
      "tank": 0
     },
     {
-     "id": "da_18_rengar",
-     "rate": 0.25,
-     "star3": 1,
-     "off": 2,
-     "tank": 1
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.25,
+     "id": "da_18_ahri",
+     "rate": 0.23,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_karma18",
-     "rate": 0.25,
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 0
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
     },
     {
      "id": "da_gromp18_ap",
-     "rate": 0.25,
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_cinderling18",
-     "rate": 0.25,
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 0,
+     "tank": 1
     }
    ],
    "builds": {
@@ -29953,14 +31599,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 1
     },
-    "da_18_sett": {
+    "da_vi18": {
      "items": [
-      "DA_Crownguard",
-      "DA_GargoyleStoneplate",
-      "DA_SteraksGage"
+      "DA_AdaptiveHelm",
+      "DA_BrambleVest",
+      "DA_ProtectorsVow"
      ],
      "games": 1,
-     "avgPlace": 8
+     "avgPlace": 1
     }
    },
    "now": {
@@ -29988,78 +31634,78 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_18_teemo",
-     "rate": 1,
-     "star3": 0.91,
-     "off": 98,
-     "tank": 1
-    },
-    {
      "id": "da_18_alistar",
      "rate": 1,
-     "star3": 0.79,
-     "off": 7,
-     "tank": 77
+     "star3": 0.77,
+     "off": 14.6,
+     "tank": 162.6
+    },
+    {
+     "id": "da_18_teemo",
+     "rate": 1,
+     "star3": 0.93,
+     "off": 211.5,
+     "tank": 2.2
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.97,
-     "star3": 0.19,
-     "off": 6,
+     "rate": 0.99,
+     "star3": 0.24,
+     "off": 18.8,
      "tank": 0
     },
     {
      "id": "da_18_leblanc",
      "rate": 0.97,
-     "star3": 0.66,
-     "off": 59,
-     "tank": 1
+     "star3": 0.64,
+     "off": 124.8,
+     "tank": 6.2
     },
     {
      "id": "da_18_hecarim",
      "rate": 0.97,
      "star3": 0.09,
-     "off": 4,
-     "tank": 31
+     "off": 11.6,
+     "tank": 60.1
     },
     {
      "id": "da_18_kobuko",
-     "rate": 0.85,
-     "star3": 0.46,
-     "off": 5,
-     "tank": 16
+     "rate": 0.82,
+     "star3": 0.5,
+     "off": 7.9,
+     "tank": 37.5
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.52,
+     "rate": 0.56,
      "star3": 0,
-     "off": 0,
-     "tank": 10
+     "off": 3.5,
+     "tank": 24
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.33,
+     "rate": 0.34,
      "star3": 0,
-     "off": 13,
-     "tank": 1
+     "off": 31.6,
+     "tank": 4.5
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.15,
+     "rate": 0.09,
      "star3": 0,
-     "off": 7,
+     "off": 8.2,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.12,
+     "rate": 0.09,
      "star3": 0,
-     "off": 8,
+     "off": 9.2,
      "tank": 0
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.09,
+     "rate": 0.07,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -30072,15 +31718,15 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.03,
+     "id": "da_18_diana",
+     "rate": 0.04,
      "star3": 0,
-     "off": 1,
+     "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_diana",
-     "rate": 0.03,
+     "id": "da_18_ezreal",
+     "rate": 0.02,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -30093,8 +31739,8 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 4,
-     "avgPlace": 7
+     "games": 10,
+     "avgPlace": 5.66
     },
     "da_18_alistar": {
      "items": [
@@ -30102,8 +31748,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 4,
-     "avgPlace": 3.5
+     "games": 5,
+     "avgPlace": 3.95
     }
    },
    "now": {
@@ -30121,7 +31767,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Defender",
    "carry": "da_18_alune",
    "mainCarry": "da_18_alune",
-   "mainTank": "da_18_shen",
+   "mainTank": "da_18_lillia",
    "games": 3,
    "avgPlace": 5.05,
    "top4": 0.5,
@@ -30134,96 +31780,96 @@ window.TFT_WEIGHTS = {
      "id": "da_18_alune",
      "rate": 1,
      "star3": 0,
-     "off": 8,
+     "off": 31.3,
      "tank": 1
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "rate": 0.9,
+     "star3": 0.06,
+     "off": 1.2,
+     "tank": 3.5
     },
     {
-     "id": "da_18_diana",
-     "rate": 0.67,
+     "id": "da_18_lillia",
+     "rate": 0.83,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 2.3,
+     "tank": 14
     },
     {
      "id": "da_18_ivern",
      "rate": 0.67,
      "star3": 0,
-     "off": 2,
+     "off": 9,
      "tank": 0
     },
     {
-     "id": "da_18_shen",
-     "rate": 0.67,
-     "star3": 0.5,
+     "id": "da_18_diana",
+     "rate": 0.57,
+     "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 0.6
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.67,
-     "star3": 0,
+     "id": "da_18_shen",
+     "rate": 0.57,
+     "star3": 0.15,
      "off": 0,
      "tank": 3
     },
     {
      "id": "da_18_rammus",
-     "rate": 0.67,
-     "star3": 0,
+     "rate": 0.52,
+     "star3": 0.1,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.43,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 6.4
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.42,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.2
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.67,
+     "rate": 0.42,
      "star3": 0,
-     "off": 5,
-     "tank": 0
+     "off": 7.3,
+     "tank": 0.6
     },
     {
-     "id": "da_18_camille",
-     "rate": 0.33,
+     "id": "da_18_maokai",
+     "rate": 0.38,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 5.9
     },
     {
      "id": "da_sentinel18",
      "rate": 0.33,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 0.6,
+     "tank": 6.5
     },
     {
-     "id": "da_18_zyra",
-     "rate": 0.33,
+     "id": "da_18_morgana",
+     "rate": 0.3,
      "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 7,
+     "tank": 1.7
     },
     {
      "id": "da_18_leona",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.33,
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -30232,21 +31878,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_alune": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_Artifact_Dawncore",
-      "DA_RabadonsDeathcap"
+      "DA_JeweledGauntlet",
+      "DA_SpearOfShojin",
+      "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 2,
+     "avgPlace": 3.37
     },
-    "da_18_shen": {
+    "da_18_lillia": {
      "items": [
-      "DA_IonicSpark",
       "DA_ProtectorsVow",
-      "DA_SunfireCape"
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
      ],
      "games": 1,
-     "avgPlace": 8
+     "avgPlace": 3
     }
    },
    "now": {
@@ -30264,7 +31910,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_FloraFatalis18",
    "carry": "da_18_soraka",
    "mainCarry": "da_18_soraka",
-   "mainTank": "da_18_lillia",
+   "mainTank": "da_18_malphite",
    "games": 2,
    "avgPlace": 5.06,
    "top4": 0.438,
@@ -30276,30 +31922,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_soraka",
      "rate": 1,
-     "star3": 0.5,
-     "off": 6,
+     "star3": 0.11,
+     "off": 22.9,
+     "tank": 2.9
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.58,
+     "star3": 0,
+     "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 4.1
+    },
+    {
+     "id": "da_18_malphite",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 8.7
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.5,
+     "rate": 0.37,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 3.6
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 4.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.19,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
     },
     {
      "id": "da_18_warwick",
-     "rate": 0.5,
+     "rate": 0.11,
      "star3": 0,
      "off": 0,
      "tank": 2
-    },
-    {
-     "id": "da_18_masteryi_ad",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
     }
    ],
    "builds": {
@@ -30312,14 +32028,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 3
     },
-    "da_18_lillia": {
+    "da_18_malphite": {
      "items": [
-      "DA_Crownguard",
+      "DA_Artifact_ForbiddenIdol",
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate"
+      "DA_SteadfastHeart"
      ],
      "games": 1,
-     "avgPlace": 2
+     "avgPlace": 7
     }
    },
    "now": {
@@ -30354,94 +32070,94 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_lillia",
+     "id": "da_18_morgana",
      "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 11
+     "star3": 0.1,
+     "off": 28.5,
+     "tank": 0
     },
     {
      "id": "da_sentinel18",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 9
+     "off": 0.6,
+     "tank": 11.9
     },
     {
-     "id": "da_18_morgana",
+     "id": "da_18_lillia",
      "rate": 1,
-     "star3": 0.17,
-     "off": 18,
+     "star3": 0,
+     "off": 0,
+     "tank": 18
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.74,
+     "star3": 0,
+     "off": 8.7,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.83,
+     "rate": 0.73,
      "star3": 0,
-     "off": 1,
+     "off": 1.6,
      "tank": 1
     },
     {
      "id": "da_18_diana",
-     "rate": 0.67,
+     "rate": 0.63,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 7,
      "tank": 0
     },
     {
      "id": "da_18_alune",
-     "rate": 0.5,
+     "rate": 0.53,
      "star3": 0,
-     "off": 5,
-     "tank": 1
-    },
-    {
-     "id": "da_18_tristana",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 7.9,
+     "tank": 1.6
     },
     {
      "id": "da_taric18",
-     "rate": 0.33,
+     "rate": 0.37,
      "star3": 0,
      "off": 0,
-     "tank": 6
+     "tank": 7.7
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.33,
+     "id": "da_18_tristana",
+     "rate": 0.31,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_teemo",
-     "rate": 0.17,
-     "star3": 1,
      "off": 2,
      "tank": 0
     },
     {
-     "id": "da_18_veigar",
-     "rate": 0.17,
+     "id": "da_18_sivir",
+     "rate": 0.21,
      "star3": 0,
-     "off": 0,
+     "off": 4.3,
      "tank": 0
     },
     {
      "id": "da_vi18",
-     "rate": 0.17,
+     "rate": 0.21,
      "star3": 0,
      "off": 1,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     }
    ],
@@ -30487,125 +32203,125 @@ window.TFT_WEIGHTS = {
    "win": 0.115,
    "patchGames": 30,
    "playRate": 0.0057,
-   "level": 8,
+   "level": 9,
    "core": [
     {
      "id": "da_18_sivir",
      "rate": 1,
-     "star3": 0.07,
-     "off": 69,
+     "star3": 0.03,
+     "off": 227.9,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 1,
+     "rate": 0.97,
      "star3": 0,
-     "off": 2,
-     "tank": 64
+     "off": 7.8,
+     "tank": 196.2
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.93,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "rate": 0.92,
+     "star3": 0.01,
+     "off": 3.7,
+     "tank": 2.3
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.9,
-     "star3": 0,
-     "off": 27,
-     "tank": 1
+     "rate": 0.89,
+     "star3": 0.01,
+     "off": 87.5,
+     "tank": 1.6
     },
     {
      "id": "da_amumu18",
-     "rate": 0.63,
+     "rate": 0.66,
      "star3": 0,
-     "off": 2,
-     "tank": 24
+     "off": 6.1,
+     "tank": 85.7
     },
     {
      "id": "da_vi18",
-     "rate": 0.6,
-     "star3": 0.06,
-     "off": 0,
-     "tank": 9
+     "rate": 0.66,
+     "star3": 0.02,
+     "off": 4.1,
+     "tank": 23
     },
     {
      "id": "da_18_shen",
-     "rate": 0.53,
+     "rate": 0.58,
      "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.37,
-     "star3": 0,
-     "off": 14,
-     "tank": 0
+     "off": 2.3,
+     "tank": 2.2
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.33,
+     "rate": 0.39,
      "star3": 0,
-     "off": 11,
-     "tank": 2
+     "off": 48.3,
+     "tank": 2.6
     },
     {
      "id": "da_sentinel18",
+     "rate": 0.38,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 34.6
+    },
+    {
+     "id": "da_nidalee18_ap",
      "rate": 0.3,
      "star3": 0,
-     "off": 0,
-     "tank": 9
+     "off": 42.5,
+     "tank": 1.2
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.27,
+     "rate": 0.26,
      "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 0.6,
+     "tank": 18.8
     },
     {
      "id": "da_taric18",
-     "rate": 0.23,
+     "rate": 0.24,
      "star3": 0,
-     "off": 0,
-     "tank": 8
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 0.23,
-     "star3": 0,
-     "off": 0,
-     "tank": 6
+     "off": 2.9,
+     "tank": 17.3
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.2,
+     "rate": 0.23,
      "star3": 0,
-     "off": 7,
-     "tank": 2
+     "off": 28.5,
+     "tank": 3.7
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.22,
+     "star3": 0.03,
+     "off": 0,
+     "tank": 15.9
     }
    ],
    "builds": {
     "da_18_sivir": {
      "items": [
-      "DA_GiantSlayer",
-      "DA_LastWhisper",
-      "DA_RedBuff"
+      "DA_InfinityEdge",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 3,
+     "avgPlace": 3
     },
     "da_18_lillia": {
      "items": [
       "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
+      "DA_Crownguard",
+      "DA_ProtectorsVow"
      ],
-     "games": 3,
-     "avgPlace": 5.67
+     "games": 4,
+     "avgPlace": 5.23
     }
    },
    "now": {
@@ -30633,59 +32349,66 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_vi18",
-     "rate": 1,
-     "star3": 0,
-     "off": 3,
-     "tank": 12
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 5,
-     "tank": 83
-    },
-    {
      "id": "da_18_aphelios",
      "rate": 1,
-     "star3": 0.05,
-     "off": 128,
+     "star3": 0.02,
+     "off": 335.3,
      "tank": 0
     },
     {
-     "id": "da_kogmaw18_ad",
+     "id": "da_vi18",
      "rate": 1,
      "star3": 0,
-     "off": 26,
-     "tank": 3
+     "off": 15.2,
+     "tank": 48.7
     },
     {
      "id": "da_nidalee18_ap",
      "rate": 1,
      "star3": 0,
-     "off": 102,
-     "tank": 0
+     "off": 274.3,
+     "tank": 3.5
     },
     {
-     "id": "da_amumu18",
+     "id": "da_kogmaw18_ad",
      "rate": 1,
      "star3": 0,
-     "off": 6,
-     "tank": 86
+     "off": 60.9,
+     "tank": 4.2
     },
     {
      "id": "da_18_diana",
      "rate": 1,
      "star3": 0,
-     "off": 3,
-     "tank": 0
+     "off": 7.1,
+     "tank": 1.2
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.99,
+     "star3": 0,
+     "off": 13.6,
+     "tank": 211.2
     },
     {
      "id": "da_18_varus",
      "rate": 0.98,
      "star3": 0.02,
-     "off": 3,
+     "off": 5.9,
+     "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.97,
+     "star3": 0,
+     "off": 9.7,
+     "tank": 180.8
+    },
+    {
+     "id": "da_brambleback18",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
@@ -30696,36 +32419,29 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_crimsonraptor18",
+     "id": "da_18_ivern",
      "rate": 0.02,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 1.2
     },
     {
      "id": "da_murkwolf18",
-     "rate": 0.02,
+     "rate": 0.01,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_brambleback18",
-     "rate": 0.02,
+     "id": "da_crimsonraptor18",
+     "rate": 0.01,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_alune",
-     "rate": 0.02,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_gromp18_ap",
-     "rate": 0.02,
+     "id": "da_taric18",
+     "rate": 0.01,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -30738,8 +32454,8 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 8,
-     "avgPlace": 5.25
+     "games": 17,
+     "avgPlace": 5.42
     },
     "da_amumu18": {
      "items": [
@@ -30747,8 +32463,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_SpiritVisage"
      ],
-     "games": 4,
-     "avgPlace": 5.25
+     "games": 6,
+     "avgPlace": 5.38
     }
    },
    "now": {
@@ -30778,69 +32494,97 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_karma18",
      "rate": 1,
-     "star3": 1,
-     "off": 7,
+     "star3": 0.93,
+     "off": 21,
      "tank": 0
     },
     {
      "id": "da_18_yorick",
-     "rate": 1,
-     "star3": 1,
-     "off": 1,
-     "tank": 3
-    },
-    {
-     "id": "da_18_leona",
-     "rate": 1,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_sejuani",
-     "rate": 1,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 6
+     "rate": 0.93,
+     "star3": 0.92,
+     "off": 1.6,
+     "tank": 8.2
     },
     {
      "id": "da_18_yunara",
-     "rate": 1,
-     "star3": 0.67,
-     "off": 3,
+     "rate": 0.93,
+     "star3": 0.64,
+     "off": 9.4,
      "tank": 0
     },
     {
-     "id": "da_18_kayle",
-     "rate": 0.67,
-     "star3": 0,
+     "id": "da_18_sejuani",
+     "rate": 0.93,
+     "star3": 0.64,
      "off": 0,
-     "tank": 0
+     "tank": 17.1
     },
     {
      "id": "da_18_azir",
-     "rate": 0.67,
+     "rate": 0.74,
      "star3": 0,
      "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leona",
+     "rate": 0.72,
+     "star3": 0.73,
+     "off": 0,
+     "tank": 2.7
+    },
+    {
+     "id": "da_18_kayle",
+     "rate": 0.53,
+     "star3": 0,
+     "off": 1.2,
      "tank": 0
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.33,
+     "rate": 0.47,
+     "star3": 0.6,
+     "off": 2.7,
+     "tank": 0
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.4,
      "star3": 0,
-     "off": 1,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_soraka",
      "rate": 0.33,
      "star3": 0,
-     "off": 1,
+     "off": 2.7,
      "tank": 0
     },
     {
-     "id": "da_fiddlesticks18",
-     "rate": 0.33,
+     "id": "da_18_kennen",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.14,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.07,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -30849,12 +32593,12 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_karma18": {
      "items": [
+      "DA_BlueBuff",
       "DA_JeweledGauntlet",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
+      "DA_RabadonsDeathcap"
      ],
-     "games": 1,
-     "avgPlace": 2
+     "games": 2,
+     "avgPlace": 3.67
     },
     "da_18_sejuani": {
      "items": [
@@ -30881,7 +32625,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Elderwood",
    "carry": "da_18_elderdragon",
    "mainCarry": "da_18_elderdragon",
-   "mainTank": "da_amumu18",
+   "mainTank": "da_18_maokai",
    "games": 9,
    "avgPlace": 5.25,
    "top4": 0.378,
@@ -30894,96 +32638,96 @@ window.TFT_WEIGHTS = {
      "id": "da_18_elderdragon",
      "rate": 1,
      "star3": 0,
-     "off": 26,
-     "tank": 0
+     "off": 66.8,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.67,
+     "star3": 0,
+     "off": 18.4,
+     "tank": 0.6
     },
     {
      "id": "da_amumu18",
      "rate": 0.67,
      "star3": 0,
-     "off": 0,
-     "tank": 11
+     "off": 0.6,
+     "tank": 19.2
     },
     {
      "id": "da_18_kennen",
      "rate": 0.67,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 8,
+     "tank": 1.2
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.6,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 15.6
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.6,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 19.7
     },
     {
      "id": "da_taric18",
-     "rate": 0.56,
+     "rate": 0.57,
      "star3": 0,
-     "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_18_ezreal",
-     "rate": 0.56,
-     "star3": 0,
-     "off": 5,
-     "tank": 0
+     "off": 2.2,
+     "tank": 9
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.56,
+     "rate": 0.52,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 1
     },
     {
+     "id": "da_lux18_base",
+     "rate": 0.4,
+     "star3": 0,
+     "off": 6.8,
+     "tank": 2.3
+    },
+    {
+     "id": "da_draven18",
+     "rate": 0.37,
+     "star3": 0,
+     "off": 20.1,
+     "tank": 0
+    },
+    {
      "id": "da_18_ivern",
-     "rate": 0.44,
+     "rate": 0.33,
      "star3": 0,
      "off": 3,
      "tank": 2
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.44,
-     "star3": 0,
-     "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.44,
-     "star3": 0,
-     "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.44,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
      "id": "da_18_hecarim",
-     "rate": 0.33,
+     "rate": 0.28,
      "star3": 0,
      "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_xayah",
-     "rate": 0.22,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_draven18",
-     "rate": 0.22,
-     "star3": 0,
-     "off": 5,
-     "tank": 0
+     "tank": 7.7
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.22,
+     "rate": 0.14,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.11,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -30996,17 +32740,17 @@ window.TFT_WEIGHTS = {
       "DA_LastWhisper",
       "DA_StrikersFlail"
      ],
-     "games": 2,
-     "avgPlace": 4.5
+     "games": 4,
+     "avgPlace": 3.96
     },
-    "da_amumu18": {
+    "da_18_maokai": {
      "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
+      "DA_BrambleVest",
+      "DA_Crownguard",
+      "DA_DragonsClaw"
      ],
      "games": 1,
-     "avgPlace": 7
+     "avgPlace": 5
     }
    },
    "now": {
@@ -31034,66 +32778,73 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_18_leona",
+     "id": "da_18_camille",
      "rate": 1,
-     "star3": 0.91,
-     "off": 6,
-     "tank": 33
+     "star3": 0.99,
+     "off": 216.1,
+     "tank": 0
     },
     {
      "id": "da_18_ornn",
      "rate": 1,
-     "star3": 0.91,
-     "off": 7,
-     "tank": 78
+     "star3": 0.93,
+     "off": 12.2,
+     "tank": 167.1
     },
     {
-     "id": "da_18_camille",
+     "id": "da_18_leona",
      "rate": 1,
-     "star3": 1,
-     "off": 102,
-     "tank": 0
+     "star3": 0.89,
+     "off": 13.6,
+     "tank": 70.3
     },
     {
      "id": "da_18_akali_ad",
      "rate": 1,
-     "star3": 0.97,
-     "off": 82,
-     "tank": 5
+     "star3": 0.95,
+     "off": 178.1,
+     "tank": 8.5
     },
     {
      "id": "da_18_varus",
-     "rate": 0.97,
+     "rate": 0.99,
      "star3": 0.94,
-     "off": 56,
-     "tank": 2
+     "off": 120.6,
+     "tank": 3.2
     },
     {
      "id": "da_18_kayle",
-     "rate": 0.97,
-     "star3": 0.03,
-     "off": 3,
+     "rate": 0.96,
+     "star3": 0.01,
+     "off": 6.5,
      "tank": 1
     },
     {
      "id": "da_18_sejuani",
-     "rate": 0.76,
-     "star3": 0.04,
-     "off": 1,
-     "tank": 3
+     "rate": 0.78,
+     "star3": 0.02,
+     "off": 2.7,
+     "tank": 5.9
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.12,
+     "rate": 0.09,
      "star3": 0,
-     "off": 0,
+     "off": 1.7,
      "tank": 0
     },
     {
-     "id": "da_18_elderdragon",
-     "rate": 0.03,
+     "id": "da_nidalee18_ap",
+     "rate": 0.07,
      "star3": 0,
-     "off": 3,
+     "off": 7,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
@@ -31104,29 +32855,22 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_ivern",
-     "rate": 0.03,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.03,
-     "star3": 0,
+     "id": "da_18_yorick",
+     "rate": 0.02,
+     "star3": 0.33,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_rammus",
-     "rate": 0.03,
+     "rate": 0.02,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_nidalee18_ap",
-     "rate": 0.03,
+     "id": "da_18_maokai",
+     "rate": 0.02,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -31135,21 +32879,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_camille": {
      "items": [
-      "DA_GiantSlayer",
-      "DA_HandOfJustice",
-      "DA_InfinityEdge"
+      "DA_EdgeOfNight",
+      "DA_InfinityEdge",
+      "DA_SteraksGage"
      ],
-     "games": 2,
-     "avgPlace": 4.5
+     "games": 4,
+     "avgPlace": 5.49
     },
     "da_18_ornn": {
      "items": [
       "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow"
+      "DA_WarmogsArmor"
      ],
-     "games": 3,
-     "avgPlace": 3.33
+     "games": 5,
+     "avgPlace": 4.94
     }
    },
    "now": {
@@ -31177,71 +32921,99 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_18_rengar",
+     "id": "da_18_tristana",
      "rate": 1,
-     "star3": 0.5,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
+     "star3": 0.53,
+     "off": 28.1,
+     "tank": 0
     },
     {
      "id": "da_18_rammus",
      "rate": 1,
-     "star3": 0.5,
-     "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_18_tristana",
-     "rate": 1,
-     "star3": 0.5,
-     "off": 6,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "star3": 0.47,
+     "off": 0.6,
+     "tank": 17.4
     },
     {
      "id": "da_18_sivir",
-     "rate": 0.5,
+     "rate": 0.65,
      "star3": 0,
-     "off": 0,
+     "off": 7,
      "tank": 0
     },
     {
-     "id": "da_18_diana",
-     "rate": 0.5,
-     "star3": 0,
+     "id": "da_18_rengar",
+     "rate": 0.63,
+     "star3": 0.64,
+     "off": 5.7,
+     "tank": 1.6
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.53,
+     "star3": 0.11,
      "off": 0,
-     "tank": 0
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.51,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 5.1
     },
     {
      "id": "da_18_kobuko",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_teemo",
-     "rate": 0.5,
+     "rate": 0.47,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.5,
+     "rate": 0.41,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_teemo",
+     "rate": 0.41,
+     "star3": 0.15,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.3
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.1,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -31254,10 +33026,18 @@ window.TFT_WEIGHTS = {
       "DA_GuinsoosRageblade",
       "DA_InfinityEdge"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 2,
+     "avgPlace": 7.26
     },
-    "da_18_rammus": null
+    "da_18_rammus": {
+     "items": [
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
+     ],
+     "games": 1,
+     "avgPlace": 7
+    }
    },
    "now": {
     "games": 2,
@@ -31274,70 +33054,49 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Hunter",
    "carry": "da_18_tristana",
    "mainCarry": "da_18_tristana",
-   "mainTank": "da_vi18",
+   "mainTank": "da_18_lillia",
    "games": 2,
    "avgPlace": 5.3,
    "top4": 0.3,
    "win": 0,
    "patchGames": 2,
    "playRate": 0.0004,
-   "level": 9,
+   "level": 8,
    "core": [
     {
      "id": "da_18_tristana",
      "rate": 1,
-     "star3": 0.5,
-     "off": 6,
-     "tank": 0
-    },
-    {
-     "id": "da_cinderling18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "star3": 0.39,
+     "off": 15.9,
+     "tank": 0.6
     },
     {
      "id": "da_vi18",
      "rate": 1,
-     "star3": 0.5,
+     "star3": 0.18,
      "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_rammus",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sivir",
-     "rate": 1,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
+     "tank": 4.2
     },
     {
      "id": "da_18_lillia",
-     "rate": 1,
+     "rate": 0.89,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 7.1
     },
     {
-     "id": "da_18_kobuko",
-     "rate": 0.5,
+     "id": "da_18_sivir",
+     "rate": 0.89,
      "star3": 0,
-     "off": 0,
+     "off": 8.8,
      "tank": 0
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.5,
-     "star3": 0,
+     "id": "da_18_rammus",
+     "rate": 0.79,
+     "star3": 0.27,
      "off": 0,
-     "tank": 0
+     "tank": 5.2
     },
     {
      "id": "da_18_rakan",
@@ -31347,8 +33106,57 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
+     "id": "da_cinderling18",
+     "rate": 0.47,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rengar",
+     "rate": 0.32,
+     "star3": 0.67,
+     "off": 1.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ashe",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_kobuko",
+     "rate": 0.29,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
      "id": "da_lux18_base",
-     "rate": 0.5,
+     "rate": 0.18,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -31364,14 +33172,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 6
     },
-    "da_vi18": {
+    "da_18_lillia": {
      "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_AdaptiveHelm",
+      "DA_Crownguard",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 6
+     "avgPlace": 5
     }
    },
    "now": {
@@ -31389,7 +33197,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Invoker",
    "carry": "da_nidalee18_ap",
    "mainCarry": "da_nidalee18_ap",
-   "mainTank": "da_krug18",
+   "mainTank": "da_sentinel18",
    "games": 2,
    "avgPlace": 5.31,
    "top4": 0.231,
@@ -31402,92 +33210,99 @@ window.TFT_WEIGHTS = {
      "id": "da_nidalee18_ap",
      "rate": 1,
      "star3": 0,
-     "off": 5,
+     "off": 23.6,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 7
     },
     {
      "id": "da_vi18",
-     "rate": 0.5,
+     "rate": 0.74,
      "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 2,
-     "tank": 1
+     "off": 0.6,
+     "tank": 4.9
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.5,
+     "rate": 0.74,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 2.9,
+     "tank": 0.6
     },
     {
      "id": "da_amumu18",
-     "rate": 0.5,
+     "rate": 0.74,
+     "star3": 0,
+     "off": 0,
+     "tank": 5.2
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.48,
+     "star3": 0,
+     "off": 5.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.4,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
+     "id": "da_18_aphelios",
+     "rate": 0.4,
+     "star3": 0,
+     "off": 8.4,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sentry",
+     "rate": 0.33,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.28,
+     "star3": 0,
+     "off": 0,
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 1.7,
+     "tank": 0.6
+    },
+    {
      "id": "da_krug18",
-     "rate": 0.5,
+     "rate": 0.19,
      "star3": 0,
      "off": 0,
      "tank": 3
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.5,
+     "rate": 0.19,
      "star3": 0,
-     "off": 2,
+     "off": 3.2,
      "tank": 1
-    },
-    {
-     "id": "da_18_sentry",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_karma18",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_teemo",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
     }
    ],
    "builds": {
@@ -31500,14 +33315,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 6
     },
-    "da_krug18": {
+    "da_sentinel18": {
      "items": [
-      "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor"
+      "DA_SpiritVisage",
+      "DA_SteadfastHeart"
      ],
      "games": 1,
-     "avgPlace": 6
+     "avgPlace": 7
     }
    },
    "now": {
@@ -31537,100 +33352,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_morgana",
      "rate": 1,
-     "star3": 0,
-     "off": 231,
-     "tank": 2
+     "star3": 0.01,
+     "off": 484.3,
+     "tank": 7.2
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.97,
+     "rate": 0.95,
      "star3": 0,
-     "off": 14,
-     "tank": 125
+     "off": 22.2,
+     "tank": 264.7
     },
     {
      "id": "da_18_diana",
-     "rate": 0.94,
+     "rate": 0.95,
      "star3": 0,
-     "off": 11,
-     "tank": 4
+     "off": 21.5,
+     "tank": 11.6
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.85,
+     "rate": 0.83,
      "star3": 0,
-     "off": 1,
-     "tank": 3
+     "off": 5.7,
+     "tank": 5.9
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.84,
+     "rate": 0.82,
      "star3": 0,
-     "off": 10,
-     "tank": 66
+     "off": 18.2,
+     "tank": 131.2
     },
     {
      "id": "da_taric18",
-     "rate": 0.8,
+     "rate": 0.76,
      "star3": 0,
-     "off": 7,
-     "tank": 54
+     "off": 14.6,
+     "tank": 131.4
     },
     {
      "id": "da_18_alune",
-     "rate": 0.71,
+     "rate": 0.73,
      "star3": 0,
-     "off": 123,
-     "tank": 20
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.52,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 262.7,
+     "tank": 41.5
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.52,
-     "star3": 0,
-     "off": 1,
-     "tank": 22
+     "rate": 0.56,
+     "star3": 0.01,
+     "off": 6.2,
+     "tank": 59.8
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.53,
+     "star3": 0.01,
+     "off": 1.2,
+     "tank": 1.2
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.48,
+     "rate": 0.49,
      "star3": 0,
-     "off": 26,
-     "tank": 4
+     "off": 56.3,
+     "tank": 8.1
     },
     {
      "id": "da_18_elise",
-     "rate": 0.28,
-     "star3": 0.09,
-     "off": 2,
-     "tank": 9
+     "rate": 0.31,
+     "star3": 0.1,
+     "off": 7.8,
+     "tank": 19.5
     },
     {
      "id": "da_18_cassiopeia",
      "rate": 0.18,
-     "star3": 0,
-     "off": 26,
-     "tank": 1
+     "star3": 0.02,
+     "off": 53.9,
+     "tank": 1.6
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.13,
+     "rate": 0.15,
      "star3": 0,
-     "off": 13,
-     "tank": 0
+     "off": 32.2,
+     "tank": 1.2
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.1,
+     "rate": 0.09,
      "star3": 0,
      "off": 1,
-     "tank": 15
+     "tank": 20.8
     }
    ],
    "builds": {
@@ -31640,17 +33455,17 @@ window.TFT_WEIGHTS = {
       "DA_Morellonomicon",
       "DA_VoidStaff"
      ],
-     "games": 16,
-     "avgPlace": 4.56
+     "games": 25,
+     "avgPlace": 4.77
     },
     "da_sentinel18": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow"
+      "DA_GargoyleStoneplate",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
      ],
-     "games": 3,
-     "avgPlace": 5.33
+     "games": 4,
+     "avgPlace": 4.65
     }
    },
    "now": {
@@ -31668,7 +33483,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Rapidfire",
    "carry": "da_18_varus",
    "mainCarry": "da_18_varus",
-   "mainTank": "da_18_shen",
+   "mainTank": "da_18_ornn",
    "games": 4,
    "avgPlace": 5.33,
    "top4": 0.333,
@@ -31680,100 +33495,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_varus",
      "rate": 1,
-     "star3": 0.75,
-     "off": 12,
+     "star3": 0.86,
+     "off": 20.7,
      "tank": 0
     },
     {
      "id": "da_18_leona",
-     "rate": 0.75,
+     "rate": 0.77,
      "star3": 1,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_sejuani",
-     "rate": 0.75,
-     "star3": 0.33,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 1.6
     },
     {
      "id": "da_18_kayle",
-     "rate": 0.75,
-     "star3": 0.33,
-     "off": 2,
+     "rate": 0.77,
+     "star3": 0.41,
+     "off": 3.7,
      "tank": 0
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.69,
+     "star3": 0.46,
+     "off": 0,
+     "tank": 3.5
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.46,
+     "star3": 1,
+     "off": 0,
+     "tank": 5
     },
     {
      "id": "da_18_xayah",
-     "rate": 0.5,
+     "rate": 0.46,
      "star3": 0.5,
      "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.5,
-     "star3": 0.5,
-     "off": 1,
      "tank": 0
     },
     {
      "id": "da_18_diana",
-     "rate": 0.5,
+     "rate": 0.37,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.5,
+     "rate": 0.37,
      "star3": 0,
+     "off": 2.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.37,
+     "star3": 0.61,
      "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_shen",
-     "rate": 0.5,
-     "star3": 1,
-     "off": 0,
-     "tank": 5
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_vi18",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_akali_ad",
-     "rate": 0.25,
+     "rate": 0.31,
      "star3": 1,
-     "off": 2,
+     "off": 2.6,
      "tank": 0
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.25,
+     "rate": 0.31,
      "star3": 1,
+     "off": 0.6,
+     "tank": 5.3
+    },
+    {
+     "id": "da_18_camille",
+     "rate": 0.31,
+     "star3": 1,
+     "off": 4.3,
+     "tank": 1
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.23,
+     "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 0
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -31786,14 +33601,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 7
     },
-    "da_18_shen": {
+    "da_18_ornn": {
      "items": [
+      "DA_BrambleVest",
       "DA_Crownguard",
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate"
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 7
+     "avgPlace": 5
     }
    },
    "now": {
@@ -31810,51 +33625,16 @@ window.TFT_WEIGHTS = {
   {
    "trait": "DA_18_Fae",
    "carry": "da_18_ahri",
-   "mainCarry": "da_lux18_base",
-   "mainTank": "da_18_sett",
+   "mainCarry": "da_18_ahri",
+   "mainTank": "da_18_lillia",
    "games": 1,
    "avgPlace": 5.33,
    "top4": 0.444,
    "win": 0,
    "patchGames": 1,
    "playRate": 0.0002,
-   "level": 8,
+   "level": 9,
    "core": [
-    {
-     "id": "da_18_rakan",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 1,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
     {
      "id": "da_18_yorick",
      "rate": 1,
@@ -31863,24 +33643,116 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
+     "id": "da_18_rakan",
+     "rate": 1,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 1,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 10.7
+    },
+    {
      "id": "da_18_ahri",
      "rate": 1,
      "star3": 0,
-     "off": 3,
+     "off": 14.1,
      "tank": 0
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.89,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.89,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 7.2
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.69,
+     "star3": 0,
+     "off": 5.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.66,
+     "star3": 0,
+     "off": 5.9,
+     "tank": 0
+    },
+    {
+     "id": "da_18_tristana",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_gnarsmall",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
     }
    ],
    "builds": {
-    "da_lux18_base": {
+    "da_18_ahri": {
      "items": [
-      "DA_BlueBuff",
       "DA_JeweledGauntlet",
-      "DA_RabadonsDeathcap"
+      "DA_NashorsTooth",
+      "DA_SpearOfShojin"
      ],
      "games": 1,
-     "avgPlace": 5
+     "avgPlace": 4
     },
-    "da_18_sett": null
+    "da_18_lillia": {
+     "items": [
+      "DA_AdaptiveHelm",
+      "DA_Component_GiantsBelt",
+      "DA_ProtectorsVow"
+     ],
+     "games": 1,
+     "avgPlace": 4
+    }
    },
    "now": {
     "games": 1,
@@ -31897,7 +33769,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Sprykin",
    "carry": "da_18_veigar",
    "mainCarry": "da_18_veigar",
-   "mainTank": "da_18_alistar",
+   "mainTank": "da_18_reksai",
    "games": 1,
    "avgPlace": 5.33,
    "top4": 0.417,
@@ -31907,52 +33779,101 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_ornn",
-     "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_reksai",
-     "rate": 1,
-     "star3": 1,
-     "off": 1,
-     "tank": 1
-    },
-    {
      "id": "da_18_veigar",
      "rate": 1,
      "star3": 1,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_18_kobuko",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
+     "off": 19.9,
      "tank": 0
     },
     {
      "id": "da_18_rammus",
      "rate": 1,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_kobuko",
+     "rate": 0.91,
+     "star3": 0.56,
+     "off": 0.6,
+     "tank": 2.9
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.66,
+     "star3": 0.74,
+     "off": 1,
+     "tank": 8.6
+    },
+    {
+     "id": "da_18_teemo",
+     "rate": 0.6,
+     "star3": 0,
+     "off": 7,
      "tank": 0
     },
     {
+     "id": "da_fiddlesticks18",
+     "rate": 0.51,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.49,
+     "star3": 0.48,
+     "off": 0.6,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.34,
+     "star3": 0.5,
+     "off": 2.9,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.32,
+     "star3": 1,
+     "off": 0.6,
+     "tank": 2.3
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 2.3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_malphite",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
      "id": "da_18_ahri",
-     "rate": 1,
+     "rate": 0.15,
      "star3": 0,
      "off": 3,
+     "tank": 0
+    },
+    {
+     "id": "da_18_azir",
+     "rate": 0.09,
+     "star3": 0,
+     "off": 1.2,
      "tank": 0
     }
    ],
@@ -31960,13 +33881,21 @@ window.TFT_WEIGHTS = {
     "da_18_veigar": {
      "items": [
       "DA_BlueBuff",
-      "DA_JeweledGauntlet",
-      "DA_VoidStaff"
+      "DA_HextechGunblade",
+      "DA_JeweledGauntlet"
+     ],
+     "games": 2,
+     "avgPlace": 6
+    },
+    "da_18_reksai": {
+     "items": [
+      "DA_Crownguard",
+      "DA_GargoyleStoneplate",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 4
-    },
-    "da_18_alistar": null
+     "avgPlace": 7
+    }
    },
    "now": {
     "games": 1,
@@ -31993,122 +33922,122 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_18_soraka",
-     "rate": 1,
-     "star3": 0,
-     "off": 125,
-     "tank": 3
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 1,
-     "star3": 0.02,
-     "off": 1,
-     "tank": 0
-    },
-    {
      "id": "da_18_azir",
      "rate": 1,
-     "star3": 0.02,
-     "off": 28,
-     "tank": 1
+     "star3": 0.01,
+     "off": 60.6,
+     "tank": 2.2
     },
     {
-     "id": "da_18_malphite",
+     "id": "da_18_soraka",
      "rate": 1,
-     "star3": 0,
-     "off": 7,
-     "tank": 118
+     "star3": 0.01,
+     "off": 307.2,
+     "tank": 7.1
     },
     {
      "id": "da_18_zyra",
      "rate": 1,
      "star3": 0,
-     "off": 79,
-     "tank": 4
+     "off": 218.1,
+     "tank": 8.1
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.98,
-     "star3": 0,
-     "off": 2,
-     "tank": 16
+     "id": "da_18_yorick",
+     "rate": 1,
+     "star3": 0.01,
+     "off": 2.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_malphite",
+     "rate": 0.99,
+     "star3": 0.01,
+     "off": 11.7,
+     "tank": 292.7
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.93,
+     "rate": 0.96,
      "star3": 0,
-     "off": 2,
-     "tank": 7
+     "off": 3.2,
+     "tank": 9.3
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.39,
+     "id": "da_amumu18",
+     "rate": 0.93,
      "star3": 0,
-     "off": 4,
-     "tank": 17
+     "off": 6.7,
+     "tank": 59.1
     },
     {
      "id": "da_18_kennen",
-     "rate": 0.34,
+     "rate": 0.41,
      "star3": 0,
-     "off": 12,
-     "tank": 9
+     "off": 31.8,
+     "tank": 13.7
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 6.3,
+     "tank": 26.9
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.13,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 0
     },
     {
      "id": "da_18_alune",
      "rate": 0.11,
      "star3": 0,
-     "off": 1,
+     "off": 5.7,
      "tank": 1
     },
     {
-     "id": "da_18_shen",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
      "id": "da_18_ezreal",
-     "rate": 0.07,
+     "rate": 0.1,
      "star3": 0,
-     "off": 8,
+     "off": 12.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 2.6,
      "tank": 0
     },
     {
-     "id": "da_18_ahri",
-     "rate": 0.02,
+     "id": "da_18_yunara",
+     "rate": 0.03,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.02,
-     "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_soraka": {
      "items": [
-      "DA_ArchangelsStaff",
-      "DA_BlueBuff",
-      "DA_JeweledGauntlet"
+      "DA_RabadonsDeathcap",
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
      ],
-     "games": 3,
-     "avgPlace": 4.33
+     "games": 6,
+     "avgPlace": 6.11
     },
     "da_18_malphite": {
      "items": [
       "DA_Crownguard",
       "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_WarmogsArmor"
      ],
-     "games": 5,
-     "avgPlace": 5.2
+     "games": 12,
+     "avgPlace": 3.9
     }
    },
    "now": {
@@ -32138,97 +34067,97 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_rengar",
      "rate": 1,
-     "star3": 0.68,
-     "off": 63,
-     "tank": 2
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "star3": 0.78,
+     "off": 157.3,
+     "tank": 5.5
     },
     {
      "id": "da_18_masteryi_ad",
      "rate": 1,
-     "star3": 0.5,
-     "off": 50,
-     "tank": 3
+     "star3": 0.61,
+     "off": 129.2,
+     "tank": 11.2
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.97,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
     },
     {
      "id": "da_vi18",
-     "rate": 0.91,
-     "star3": 0.3,
-     "off": 3,
-     "tank": 32
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.86,
-     "star3": 0.21,
-     "off": 4,
-     "tank": 17
+     "rate": 0.94,
+     "star3": 0.46,
+     "off": 9.4,
+     "tank": 89.1
     },
     {
      "id": "da_18_sett",
-     "rate": 0.86,
+     "rate": 0.87,
      "star3": 0,
-     "off": 0,
-     "tank": 12
+     "off": 4.7,
+     "tank": 26.6
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.83,
+     "star3": 0.25,
+     "off": 5.2,
+     "tank": 45.5
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.5,
-     "star3": 0.09,
-     "off": 13,
+     "rate": 0.51,
+     "star3": 0.14,
+     "off": 34.5,
      "tank": 0
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.45,
+     "rate": 0.49,
      "star3": 0,
-     "off": 15,
-     "tank": 0
-    },
-    {
-     "id": "da_karma18",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kobuko",
-     "rate": 0.05,
-     "star3": 1,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.05,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.05,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 38.3,
+     "tank": 1.2
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.05,
+     "rate": 0.07,
      "star3": 0,
      "off": 3,
      "tank": 0
     },
     {
-     "id": "da_brambleback18",
+     "id": "da_karma18",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_yunara",
+     "rate": 0.06,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_gnarsmall",
      "rate": 0.05,
+     "star3": 0,
+     "off": 3,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ashe",
+     "rate": 0.04,
+     "star3": 0,
+     "off": 3.7,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -32237,21 +34166,21 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_rengar": {
      "items": [
-      "DA_Bloodthirster",
+      "DA_EdgeOfNight",
       "DA_GuinsoosRageblade",
       "DA_HandOfJustice"
      ],
-     "games": 2,
-     "avgPlace": 4
+     "games": 4,
+     "avgPlace": 5.56
     },
     "da_vi18": {
      "items": [
-      "DA_GargoyleStoneplate",
+      "DA_Evenshroud",
       "DA_SpiritVisage",
       "DA_SunfireCape"
      ],
      "games": 1,
-     "avgPlace": 7
+     "avgPlace": 4
     }
    },
    "now": {
@@ -32282,98 +34211,98 @@ window.TFT_WEIGHTS = {
      "id": "da_18_sivir",
      "rate": 1,
      "star3": 0,
-     "off": 108,
-     "tank": 0
+     "off": 220.9,
+     "tank": 0.6
     },
     {
      "id": "da_amumu18",
-     "rate": 0.97,
-     "star3": 0,
-     "off": 3,
-     "tank": 86
+     "rate": 0.96,
+     "star3": 0.01,
+     "off": 9.4,
+     "tank": 146.5
     },
     {
      "id": "da_vi18",
-     "rate": 0.92,
+     "rate": 0.94,
      "star3": 0,
-     "off": 3,
-     "tank": 25
+     "off": 4.7,
+     "tank": 46
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.76,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "rate": 0.73,
+     "star3": 0.01,
+     "off": 2.2,
+     "tank": 1.7
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.73,
+     "rate": 0.65,
      "star3": 0,
-     "off": 0,
-     "tank": 17
+     "off": 2.9,
+     "tank": 47.9
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.65,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "rate": 0.59,
+     "star3": 0.01,
+     "off": 1.2,
+     "tank": 0.6
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 0.54,
+     "rate": 0.57,
      "star3": 0,
-     "off": 1,
-     "tank": 3
+     "off": 2.2,
+     "tank": 3.6
     },
     {
      "id": "da_18_ashe",
-     "rate": 0.43,
+     "rate": 0.49,
      "star3": 0,
-     "off": 20,
-     "tank": 0
+     "off": 54.3,
+     "tank": 1.2
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.41,
+     "rate": 0.38,
      "star3": 0,
-     "off": 31,
-     "tank": 2
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.27,
-     "star3": 0,
-     "off": 9,
-     "tank": 0
+     "off": 65.3,
+     "tank": 4.3
     },
     {
      "id": "da_18_sejuani",
-     "rate": 0.24,
-     "star3": 0.11,
-     "off": 0,
-     "tank": 3
+     "rate": 0.28,
+     "star3": 0.1,
+     "off": 0.6,
+     "tank": 8.2
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.28,
+     "star3": 0,
+     "off": 15.4,
+     "tank": 0
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 10.6,
+     "tank": 3.7
     },
     {
      "id": "da_taric18",
-     "rate": 0.22,
+     "rate": 0.18,
      "star3": 0,
-     "off": 1,
-     "tank": 4
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.19,
-     "star3": 0,
-     "off": 1,
-     "tank": 8
+     "off": 2.2,
+     "tank": 11
     },
     {
      "id": "da_18_tristana",
-     "rate": 0.19,
+     "rate": 0.17,
      "star3": 0,
-     "off": 2,
+     "off": 9.6,
      "tank": 0
     }
    ],
@@ -32381,11 +34310,11 @@ window.TFT_WEIGHTS = {
     "da_18_sivir": {
      "items": [
       "DA_InfinityEdge",
-      "DA_SpearOfShojin",
-      "DA_StrikersFlail"
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
      ],
-     "games": 4,
-     "avgPlace": 4.25
+     "games": 6,
+     "avgPlace": 4.1
     },
     "da_amumu18": {
      "items": [
@@ -32424,90 +34353,111 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_cinderling18",
      "rate": 1,
-     "star3": 0.75,
-     "off": 12,
+     "star3": 0.78,
+     "off": 37.6,
      "tank": 0
     },
     {
      "id": "da_18_sentry",
      "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "star3": 0.14,
+     "off": 6.2,
+     "tank": 1.2
     },
     {
      "id": "da_krug18",
-     "rate": 1,
-     "star3": 0.25,
-     "off": 1,
-     "tank": 2
+     "rate": 0.95,
+     "star3": 0.27,
+     "off": 1.6,
+     "tank": 13.1
     },
     {
      "id": "da_scuttlecrab18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
+     "rate": 0.91,
+     "star3": 0.1,
+     "off": 0.6,
+     "tank": 5.7
     },
     {
      "id": "da_sentinel18",
-     "rate": 1,
+     "rate": 0.91,
      "star3": 0,
      "off": 0,
-     "tank": 6
+     "tank": 14.2
     },
     {
      "id": "da_brambleback18",
-     "rate": 1,
+     "rate": 0.86,
      "star3": 0,
-     "off": 12,
+     "off": 28.3,
      "tank": 0
     },
     {
      "id": "da_murkwolf18",
-     "rate": 1,
+     "rate": 0.82,
      "star3": 0,
-     "off": 2,
+     "off": 3.7,
      "tank": 0
     },
     {
+     "id": "da_18_rakan",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_elderdragon",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 4.7,
+     "tank": 0.6
+    },
+    {
      "id": "da_18_sett",
-     "rate": 0.5,
+     "rate": 0.2,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_gromp18_ap",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_gnarsmall",
+     "rate": 0.14,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_amumu18",
-     "rate": 0.25,
+     "rate": 0.12,
      "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_rakan",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 3.6
     }
    ],
    "builds": {
     "da_cinderling18": {
      "items": [
-      "DA_BlueBuff",
-      "DA_Deathblade",
-      "DA_HextechGunblade"
+      "DA_InfinityEdge",
+      "DA_LastWhisper",
+      "DA_SpearOfShojin"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 2,
+     "avgPlace": 4.92
     },
     "da_sentinel18": {
      "items": [
@@ -32544,101 +34494,101 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
-     "id": "da_18_morgana",
-     "rate": 1,
-     "star3": 0,
-     "off": 25,
-     "tank": 1
-    },
-    {
      "id": "da_lux18_base",
      "rate": 1,
      "star3": 0,
-     "off": 29,
+     "off": 51.1,
      "tank": 0
     },
     {
-     "id": "da_fiddlesticks18",
-     "rate": 0.8,
+     "id": "da_18_morgana",
+     "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.8,
-     "star3": 0,
-     "off": 0,
-     "tank": 7
-    },
-    {
-     "id": "da_18_elise",
-     "rate": 0.6,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 36.6,
+     "tank": 1.6
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.6,
+     "rate": 0.71,
+     "star3": 0.05,
+     "off": 0.6,
+     "tank": 28.5
+    },
+    {
+     "id": "da_18_elise",
+     "rate": 0.71,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 2.7
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.62,
      "star3": 0,
      "off": 0,
-     "tank": 18
+     "tank": 12.2
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.62,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_cassiopeia",
+     "rate": 0.56,
+     "star3": 0,
+     "off": 6.5,
+     "tank": 0.6
     },
     {
      "id": "da_18_diana",
-     "rate": 0.5,
+     "rate": 0.55,
+     "star3": 0.06,
+     "off": 2.2,
+     "tank": 1.2
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.46,
      "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 2.6,
+     "tank": 8.1
     },
     {
      "id": "da_18_alune",
-     "rate": 0.5,
+     "rate": 0.45,
      "star3": 0,
-     "off": 5,
+     "off": 13.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_camille",
+     "rate": 0.36,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.5,
+     "rate": 0.35,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_18_cassiopeia",
-     "rate": 0.4,
+     "id": "da_18_hecarim",
+     "rate": 0.31,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.7
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.27,
      "star3": 0,
      "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.4,
-     "star3": 0,
-     "off": 2,
-     "tank": 4
-    },
-    {
-     "id": "da_18_camille",
-     "rate": 0.4,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.3,
-     "star3": 0,
-     "off": 0,
-     "tank": 4
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.3,
-     "star3": 0,
-     "off": 0,
      "tank": 0
     }
    ],
@@ -32649,8 +34599,8 @@ window.TFT_WEIGHTS = {
       "DA_RabadonsDeathcap",
       "DA_SpearOfShojin"
      ],
-     "games": 3,
-     "avgPlace": 5.33
+     "games": 4,
+     "avgPlace": 5.44
     },
     "da_sentinel18": {
      "items": [
@@ -32689,97 +34639,97 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_sivir",
      "rate": 1,
-     "star3": 0,
-     "off": 39,
+     "star3": 0.01,
+     "off": 129.8,
      "tank": 0
-    },
-    {
-     "id": "da_krug18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_cinderling18",
-     "rate": 0.92,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_nidalee18_ap",
-     "rate": 0.92,
-     "star3": 0,
-     "off": 30,
-     "tank": 2
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.92,
+     "rate": 0.96,
      "star3": 0,
-     "off": 1,
-     "tank": 6
+     "off": 5.1,
+     "tank": 42.7
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.88,
+     "star3": 0,
+     "off": 92.3,
+     "tank": 6.7
     },
     {
      "id": "da_kogmaw18_ad",
      "rate": 0.85,
      "star3": 0,
-     "off": 9,
-     "tank": 0
+     "off": 21.8,
+     "tank": 1.2
     },
     {
-     "id": "da_18_reksai",
-     "rate": 0.85,
+     "id": "da_krug18",
+     "rate": 0.83,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
+     "tank": 1.6
+    },
+    {
+     "id": "da_cinderling18",
+     "rate": 0.82,
+     "star3": 0,
+     "off": 2.2,
      "tank": 0
     },
     {
      "id": "da_18_malphite",
-     "rate": 0.85,
+     "rate": 0.8,
      "star3": 0,
-     "off": 0,
-     "tank": 32
+     "off": 3.5,
+     "tank": 98.4
+    },
+    {
+     "id": "da_18_reksai",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
     },
     {
      "id": "da_taric18",
-     "rate": 0.23,
+     "rate": 0.13,
      "star3": 0,
      "off": 1,
-     "tank": 0
+     "tank": 3.5
     },
     {
-     "id": "da_18_sett",
-     "rate": 0.15,
+     "id": "da_18_elderdragon",
+     "rate": 0.13,
      "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 11.5,
+     "tank": 1
     },
     {
-     "id": "da_18_diana",
-     "rate": 0.15,
+     "id": "da_amumu18",
+     "rate": 0.12,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 7.6
     },
     {
-     "id": "da_brambleback18",
-     "rate": 0.08,
+     "id": "da_18_rakan",
+     "rate": 0.09,
      "star3": 0,
-     "off": 2,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.08,
+     "rate": 0.09,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 2.3,
+     "tank": 0.6
     },
     {
-     "id": "da_18_elise",
-     "rate": 0.08,
+     "id": "da_18_diana",
+     "rate": 0.07,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -32788,12 +34738,12 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_sivir": {
      "items": [
-      "DA_GuinsoosRageblade",
       "DA_InfinityEdge",
-      "DA_RedBuff"
+      "DA_RedBuff",
+      "DA_StrikersFlail"
      ],
-     "games": 2,
-     "avgPlace": 5
+     "games": 4,
+     "avgPlace": 6
     },
     "da_18_malphite": {
      "items": [
@@ -32801,8 +34751,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 3,
-     "avgPlace": 4.67
+     "games": 6,
+     "avgPlace": 4.76
     }
    },
    "now": {
@@ -32827,105 +34777,105 @@ window.TFT_WEIGHTS = {
    "win": 0.076,
    "patchGames": 3,
    "playRate": 0.0006,
-   "level": 8,
+   "level": 9,
    "core": [
-    {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
     {
      "id": "da_18_sivir",
      "rate": 1,
      "star3": 0,
-     "off": 8,
+     "off": 35.4,
      "tank": 0
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.91,
+     "star3": 0,
+     "off": 0,
+     "tank": 14.1
     },
     {
      "id": "da_taric18",
-     "rate": 0.67,
+     "rate": 0.78,
      "star3": 0,
      "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_tristana",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "tank": 4.5
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.67,
+     "rate": 0.68,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_vi18",
-     "rate": 0.67,
+     "rate": 0.68,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 1.7,
+     "tank": 5.7
     },
     {
-     "id": "da_18_elderdragon",
-     "rate": 0.33,
+     "id": "da_amumu18",
+     "rate": 0.51,
      "star3": 0,
-     "off": 1,
+     "off": 0.6,
+     "tank": 10.2
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_ashe",
+     "rate": 0.41,
+     "star3": 0,
+     "off": 3.2,
      "tank": 0
     },
     {
      "id": "da_nidalee18_ap",
-     "rate": 0.33,
+     "rate": 0.36,
      "star3": 0,
-     "off": 0,
+     "off": 7.6,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_tristana",
+     "rate": 0.35,
+     "star3": 0,
+     "off": 3.9,
      "tank": 0
+    },
+    {
+     "id": "da_18_elise",
+     "rate": 0.33,
+     "star3": 0.14,
+     "off": 0,
+     "tank": 3.5
     },
     {
      "id": "da_kogmaw18_ad",
-     "rate": 0.33,
+     "rate": 0.32,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 0.6,
+     "tank": 0.6
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.33,
+     "rate": 0.32,
      "star3": 0,
-     "off": 0,
-     "tank": 2
+     "off": 0.6,
+     "tank": 6.7
     },
     {
      "id": "da_18_hecarim",
-     "rate": 0.33,
+     "rate": 0.27,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_maokai",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 1.7
     }
    ],
    "builds": {
@@ -32935,8 +34885,8 @@ window.TFT_WEIGHTS = {
       "DA_RedBuff",
       "DA_SpearOfShojin"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 3.9
     },
     "da_sentinel18": {
      "items": [
@@ -32963,95 +34913,74 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Inferno",
    "carry": "da_18_soraka",
    "mainCarry": "da_18_soraka",
-   "mainTank": "da_amumu18",
+   "mainTank": "da_18_malphite",
    "games": 3,
    "avgPlace": 5.5,
    "top4": 0.417,
    "win": 0,
    "patchGames": 3,
    "playRate": 0.0006,
-   "level": 8,
+   "level": 9,
    "core": [
     {
-     "id": "da_fiddlesticks18",
+     "id": "da_amumu18",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 8.2
     },
     {
      "id": "da_18_soraka",
      "rate": 1,
      "star3": 0,
-     "off": 8,
-     "tank": 1
+     "off": 22.6,
+     "tank": 1.6
     },
     {
-     "id": "da_amumu18",
-     "rate": 1,
+     "id": "da_fiddlesticks18",
+     "rate": 0.93,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 0.6,
+     "tank": 0.6
     },
     {
-     "id": "da_18_shen",
-     "rate": 0.67,
+     "id": "da_18_azir",
+     "rate": 0.88,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
+    },
+    {
+     "id": "da_18_malphite",
+     "rate": 0.81,
+     "star3": 0,
+     "off": 2.2,
+     "tank": 13.1
     },
     {
      "id": "da_18_kennen",
      "rate": 0.67,
      "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_azir",
-     "rate": 0.67,
-     "star3": 0,
-     "off": 0,
+     "off": 3.3,
      "tank": 0
     },
     {
      "id": "da_18_zyra",
      "rate": 0.67,
      "star3": 0,
-     "off": 1,
+     "off": 9.7,
      "tank": 0
     },
     {
-     "id": "da_18_malphite",
-     "rate": 0.67,
+     "id": "da_lux18_base",
+     "rate": 0.47,
      "star3": 0,
-     "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
+     "off": 3.5,
      "tank": 0
     },
     {
-     "id": "da_18_alune",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.33,
+     "id": "da_18_shen",
+     "rate": 0.45,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -33061,13 +34990,34 @@ window.TFT_WEIGHTS = {
      "rate": 0.33,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 4.7
     },
     {
-     "id": "da_lux18_base",
+     "id": "da_18_yorick",
      "rate": 0.33,
      "star3": 0,
      "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_maokai",
+     "rate": 0.21,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_vi18",
+     "rate": 0.14,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ezreal",
+     "rate": 0.14,
+     "star3": 0,
+     "off": 1.2,
      "tank": 0
     }
    ],
@@ -33081,11 +35031,11 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 6
     },
-    "da_amumu18": {
+    "da_18_malphite": {
      "items": [
-      "DA_Crownguard",
-      "DA_SpiritVisage",
-      "DA_WarmogsArmor"
+      "DA_Artifact_ForbiddenIdol",
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage"
      ],
      "games": 1,
      "avgPlace": 6
@@ -33118,99 +35068,99 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_veigar",
      "rate": 1,
-     "star3": 1,
-     "off": 50,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 1,
-     "star3": 0.94,
-     "off": 5,
-     "tank": 31
+     "star3": 0.97,
+     "off": 116.4,
+     "tank": 0.6
     },
     {
      "id": "da_18_leblanc",
      "rate": 1,
-     "star3": 0.47,
-     "off": 23,
-     "tank": 2
+     "star3": 0.42,
+     "off": 44,
+     "tank": 2.6
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.99,
+     "star3": 0.89,
+     "off": 8.5,
+     "tank": 74.1
     },
     {
      "id": "da_18_reksai",
-     "rate": 1,
-     "star3": 1,
-     "off": 7,
-     "tank": 24
+     "rate": 0.96,
+     "star3": 0.88,
+     "off": 11.1,
+     "tank": 45
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.88,
-     "star3": 0.4,
-     "off": 4,
-     "tank": 18
+     "rate": 0.92,
+     "star3": 0.35,
+     "off": 11.6,
+     "tank": 38.4
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.88,
+     "rate": 0.69,
      "star3": 0,
-     "off": 4,
-     "tank": 2
+     "off": 7.5,
+     "tank": 3.7
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.35,
+     "rate": 0.24,
      "star3": 0,
-     "off": 2,
+     "off": 7.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_cassiopeia",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 4.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rammus",
+     "rate": 0.14,
+     "star3": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_alune",
-     "rate": 0.24,
+     "rate": 0.13,
      "star3": 0,
-     "off": 9,
+     "off": 11.9,
      "tank": 1
     },
     {
-     "id": "da_18_cassiopeia",
-     "rate": 0.18,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_soraka",
-     "rate": 0.06,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_caitlyn",
-     "rate": 0.06,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
      "id": "da_18_teemo",
-     "rate": 0.06,
-     "star3": 1,
-     "off": 2,
+     "rate": 0.05,
+     "star3": 0.73,
+     "off": 3.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 3.5,
      "tank": 0
     },
     {
-     "id": "da_18_malphite",
-     "rate": 0.06,
+     "id": "da_18_ivern",
+     "rate": 0.05,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 2.9,
+     "tank": 0
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.06,
+     "rate": 0.05,
      "star3": 0,
-     "off": 2,
+     "off": 3.7,
      "tank": 0
     }
    ],
@@ -33221,17 +35171,17 @@ window.TFT_WEIGHTS = {
       "DA_HextechGunblade",
       "DA_JeweledGauntlet"
      ],
-     "games": 2,
-     "avgPlace": 8
+     "games": 4,
+     "avgPlace": 7.38
     },
     "da_18_ornn": {
      "items": [
-      "DA_Crownguard",
-      "DA_DragonsClaw",
-      "DA_GargoyleStoneplate"
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 3
+     "avgPlace": 7.5
     }
    },
    "now": {
@@ -33256,88 +35206,102 @@ window.TFT_WEIGHTS = {
    "win": 0.083,
    "patchGames": 4,
    "playRate": 0.0008,
-   "level": 9,
+   "level": 8,
    "core": [
     {
      "id": "da_18_zyra",
      "rate": 1,
      "star3": 0,
-     "off": 12,
-     "tank": 0
-    },
-    {
-     "id": "da_fiddlesticks18",
-     "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_18_yorick",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 23.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_sett",
-     "rate": 1,
+     "rate": 0.93,
      "star3": 0,
-     "off": 2,
-     "tank": 6
+     "off": 3.2,
+     "tank": 10.1
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.75,
+     "id": "da_fiddlesticks18",
+     "rate": 0.78,
      "star3": 0,
-     "off": 0,
-     "tank": 6
-    },
-    {
-     "id": "da_krug18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_lillia",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 5,
+     "off": 1.6,
      "tank": 1
     },
     {
-     "id": "da_18_shen",
-     "rate": 0.5,
+     "id": "da_krug18",
+     "rate": 0.66,
+     "star3": 0.11,
+     "off": 0,
+     "tank": 1.2
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.64,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_ahri",
-     "rate": 0.5,
+     "rate": 0.61,
      "star3": 0,
-     "off": 6,
+     "off": 11.8,
+     "tank": 0.6
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 7.7
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.48,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     },
     {
+     "id": "da_18_alune",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 7.3,
+     "tank": 1
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 0,
+     "tank": 2.6
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.39,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.14,
+     "star3": 0.5,
+     "off": 0,
+     "tank": 2.9
+    },
+    {
      "id": "da_lux18_base",
-     "rate": 0.25,
+     "rate": 0.12,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.25,
+     "id": "da_vi18",
+     "rate": 0.07,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -33346,12 +35310,12 @@ window.TFT_WEIGHTS = {
    "builds": {
     "da_18_zyra": {
      "items": [
-      "DA_GiantSlayer",
-      "DA_Morellonomicon",
-      "DA_VoidStaff"
+      "DA_ArchangelsStaff",
+      "DA_ArchangelsStaff",
+      "DA_HextechGunblade"
      ],
      "games": 1,
-     "avgPlace": 2
+     "avgPlace": 7.5
     },
     "da_18_sett": {
      "items": [
@@ -33378,7 +35342,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Invoker",
    "carry": "da_18_ahri",
    "mainCarry": "da_18_ahri",
-   "mainTank": "da_18_sett",
+   "mainTank": "da_sentinel18",
    "games": 44,
    "avgPlace": 5.6,
    "top4": 0.296,
@@ -33388,102 +35352,102 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_sentinel18",
-     "rate": 1,
-     "star3": 0,
-     "off": 7,
-     "tank": 67
-    },
-    {
      "id": "da_18_ahri",
      "rate": 1,
      "star3": 0,
-     "off": 113,
-     "tank": 3
+     "off": 287.1,
+     "tank": 4.7
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.99,
+     "star3": 0,
+     "off": 19.2,
+     "tank": 198.6
     },
     {
      "id": "da_18_morgana",
-     "rate": 1,
+     "rate": 0.99,
      "star3": 0,
-     "off": 87,
-     "tank": 14
+     "off": 228.5,
+     "tank": 25.1
     },
     {
      "id": "da_18_sett",
-     "rate": 0.95,
+     "rate": 0.97,
      "star3": 0,
-     "off": 13,
-     "tank": 76
+     "off": 38,
+     "tank": 170.9
     },
     {
      "id": "da_18_sentry",
-     "rate": 0.93,
-     "star3": 0.05,
-     "off": 4,
+     "rate": 0.95,
+     "star3": 0.03,
+     "off": 5.7,
      "tank": 0
     },
     {
      "id": "da_krug18",
-     "rate": 0.93,
+     "rate": 0.92,
      "star3": 0,
-     "off": 7,
-     "tank": 2
+     "off": 12.2,
+     "tank": 6.1
     },
     {
      "id": "da_karma18",
-     "rate": 0.86,
-     "star3": 0,
-     "off": 2,
+     "rate": 0.78,
+     "star3": 0.01,
+     "off": 9.6,
      "tank": 0
     },
     {
      "id": "da_taric18",
-     "rate": 0.43,
+     "rate": 0.44,
      "star3": 0,
-     "off": 1,
-     "tank": 9
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.23,
-     "star3": 0,
-     "off": 0,
-     "tank": 4
+     "off": 4.5,
+     "tank": 19.5
     },
     {
      "id": "da_18_alune",
-     "rate": 0.16,
+     "rate": 0.23,
      "star3": 0,
-     "off": 6,
-     "tank": 3
+     "off": 21.1,
+     "tank": 6.5
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.2,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 4.6
     },
     {
      "id": "da_18_diana",
-     "rate": 0.16,
+     "rate": 0.18,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.12,
+     "star3": 0,
+     "off": 6.4,
+     "tank": 3.2
+    },
+    {
+     "id": "da_18_ashe",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 4.5,
+     "tank": 0.6
     },
     {
      "id": "da_lux18_base",
      "rate": 0.09,
      "star3": 0,
-     "off": 5,
-     "tank": 1
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
-    },
-    {
-     "id": "da_18_elise",
-     "rate": 0.09,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 11.4,
+     "tank": 1.6
     }
    ],
    "builds": {
@@ -33493,17 +35457,17 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 4,
-     "avgPlace": 7
+     "games": 15,
+     "avgPlace": 5.38
     },
-    "da_18_sett": {
+    "da_sentinel18": {
      "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SteraksGage"
+      "DA_AdaptiveHelm",
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow"
      ],
-     "games": 3,
-     "avgPlace": 6
+     "games": 9,
+     "avgPlace": 5.31
     }
    },
    "now": {
@@ -33521,7 +35485,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Defender",
    "carry": "da_18_ahri",
    "mainCarry": "da_18_ahri",
-   "mainTank": "da_fiddlesticks18",
+   "mainTank": "da_18_lillia",
    "games": 2,
    "avgPlace": 5.64,
    "top4": 0.273,
@@ -33531,101 +35495,101 @@ window.TFT_WEIGHTS = {
    "level": 8,
    "core": [
     {
-     "id": "da_fiddlesticks18",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
      "id": "da_18_ahri",
      "rate": 1,
      "star3": 0,
-     "off": 6,
+     "off": 16.5,
      "tank": 0
     },
     {
-     "id": "da_18_yorick",
-     "rate": 0.5,
+     "id": "da_fiddlesticks18",
+     "rate": 0.89,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 3
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.82,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 6.2
+    },
+    {
+     "id": "da_18_shen",
+     "rate": 0.71,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_zyra",
-     "rate": 0.5,
+     "rate": 0.71,
      "star3": 0,
-     "off": 2,
+     "off": 8.4,
      "tank": 0
     },
     {
-     "id": "da_18_shen",
-     "rate": 0.5,
+     "id": "da_18_yorick",
+     "rate": 0.61,
      "star3": 0,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.53,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 1.7
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.42,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.5,
+     "rate": 0.39,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.5,
+     "id": "da_sentinel18",
+     "rate": 0.29,
      "star3": 0,
      "off": 0,
-     "tank": 1
+     "tank": 0
     },
     {
-     "id": "da_sentinel18",
-     "rate": 0.5,
+     "id": "da_krug18",
+     "rate": 0.21,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_reksai",
-     "rate": 0.5,
+     "rate": 0.18,
      "star3": 1,
      "off": 0,
      "tank": 3
     },
     {
      "id": "da_18_veigar",
-     "rate": 0.5,
+     "rate": 0.18,
      "star3": 1,
      "off": 2,
      "tank": 0
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.5,
+     "rate": 0.18,
      "star3": 1,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.5,
-     "star3": 1,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.5,
-     "star3": 1,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_18_ivern",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 1,
      "tank": 0
     }
    ],
@@ -33639,14 +35603,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 7
     },
-    "da_fiddlesticks18": {
+    "da_18_lillia": {
      "items": [
+      "DA_DragonsClaw",
       "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_SpiritVisage"
+      "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 7
+     "avgPlace": 3
     }
    },
    "now": {
@@ -33664,63 +35628,56 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Blossom",
    "carry": "da_18_sivir",
    "mainCarry": "da_18_sivir",
-   "mainTank": "da_amumu18",
+   "mainTank": "da_18_sett",
    "games": 4,
    "avgPlace": 5.69,
    "top4": 0.25,
    "win": 0.063,
    "patchGames": 4,
    "playRate": 0.0008,
-   "level": 9,
+   "level": 8,
    "core": [
     {
      "id": "da_18_sivir",
      "rate": 1,
      "star3": 0,
-     "off": 11,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ashe",
-     "rate": 1,
-     "star3": 0,
-     "off": 10,
+     "off": 25.6,
      "tank": 0
     },
     {
      "id": "da_18_sett",
      "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 4
+     "star3": 0.06,
+     "off": 1.7,
+     "tank": 18
     },
     {
-     "id": "da_amumu18",
-     "rate": 0.75,
+     "id": "da_18_ashe",
+     "rate": 0.82,
      "star3": 0,
-     "off": 1,
-     "tank": 8
+     "off": 14.7,
+     "tank": 0.6
     },
     {
      "id": "da_18_yorick",
-     "rate": 0.75,
+     "rate": 0.78,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_vi18",
-     "rate": 0.75,
+     "rate": 0.78,
      "star3": 0,
-     "off": 0,
-     "tank": 1
+     "off": 0.6,
+     "tank": 2.7
     },
     {
-     "id": "da_nidalee18_ap",
-     "rate": 0.5,
+     "id": "da_18_ahri",
+     "rate": 0.56,
      "star3": 0,
-     "off": 2,
-     "tank": 0
+     "off": 6.2,
+     "tank": 1.2
     },
     {
      "id": "da_karma18",
@@ -33730,45 +35687,52 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_ahri",
-     "rate": 0.5,
+     "id": "da_amumu18",
+     "rate": 0.42,
      "star3": 0,
      "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 9.7
     },
     {
      "id": "da_18_yunara",
-     "rate": 0.25,
+     "rate": 0.34,
      "star3": 0,
-     "off": 1,
+     "off": 2.2,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.25,
+     "rate": 0.28,
      "star3": 0,
-     "off": 1,
+     "off": 2.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_nidalee18_ap",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 3.2,
      "tank": 0
     },
     {
-     "id": "da_18_soraka",
-     "rate": 0.25,
+     "id": "da_18_masteryi_ad",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_ivern",
+     "rate": 0.18,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_akali_ad",
-     "rate": 0.25,
+     "id": "da_krug18",
+     "rate": 0.18,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     }
    ],
@@ -33782,11 +35746,11 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 7
     },
-    "da_amumu18": {
+    "da_18_sett": {
      "items": [
-      "DA_DragonsClaw",
-      "DA_Evenshroud",
-      "DA_GargoyleStoneplate"
+      "DA_GargoyleStoneplate",
+      "DA_SpiritVisage",
+      "DA_SunfireCape"
      ],
      "games": 1,
      "avgPlace": 7
@@ -33820,99 +35784,99 @@ window.TFT_WEIGHTS = {
      "id": "da_draven18",
      "rate": 1,
      "star3": 0,
-     "off": 12,
+     "off": 23.6,
      "tank": 0
     },
     {
      "id": "da_18_sett",
-     "rate": 1,
+     "rate": 0.78,
      "star3": 0,
      "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alistar",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 6
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 6.4
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.75,
+     "rate": 0.73,
      "star3": 0,
-     "off": 2,
-     "tank": 1
+     "off": 3.2,
+     "tank": 1.6
+    },
+    {
+     "id": "da_amumu18",
+     "rate": 0.66,
+     "star3": 0,
+     "off": 0,
+     "tank": 8.9
     },
     {
      "id": "da_taric18",
-     "rate": 0.5,
+     "rate": 0.61,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 4.2
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 1,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_kennen",
+     "rate": 0.59,
+     "star3": 0,
+     "off": 5.2,
+     "tank": 0.6
     },
     {
      "id": "da_18_maokai",
-     "rate": 0.5,
+     "rate": 0.54,
      "star3": 0,
      "off": 0,
-     "tank": 5
+     "tank": 7.3
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.5,
+     "rate": 0.46,
      "star3": 0,
-     "off": 2,
+     "off": 6.7,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.25,
+     "id": "da_sentinel18",
+     "rate": 0.44,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 0.6
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.25,
+     "rate": 0.2,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_elderdragon",
-     "rate": 0.25,
+     "rate": 0.2,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.2,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_azir",
-     "rate": 0.25,
+     "id": "da_krug18",
+     "rate": 0.14,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 1.2
     }
    ],
    "builds": {
@@ -33960,6 +35924,13 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
+     "id": "da_18_azir",
+     "rate": 1,
+     "star3": 0.59,
+     "off": 107.6,
+     "tank": 0
+    },
+    {
      "id": "da_18_veigar",
      "rate": 1,
      "star3": 0,
@@ -33967,64 +35938,85 @@ window.TFT_WEIGHTS = {
      "tank": 0
     },
     {
-     "id": "da_18_azir",
-     "rate": 1,
-     "star3": 0.65,
-     "off": 50,
-     "tank": 0
-    },
-    {
      "id": "da_fiddlesticks18",
      "rate": 1,
-     "star3": 0.24,
-     "off": 3,
-     "tank": 15
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 1,
-     "star3": 0,
-     "off": 36,
-     "tank": 1
+     "star3": 0.19,
+     "off": 8.8,
+     "tank": 41.2
     },
     {
      "id": "da_18_rammus",
      "rate": 1,
-     "star3": 0.65,
-     "off": 2,
-     "tank": 48
+     "star3": 0.53,
+     "off": 2.6,
+     "tank": 102.1
     },
     {
      "id": "da_18_teemo",
-     "rate": 1,
-     "star3": 0.24,
-     "off": 6,
+     "rate": 0.98,
+     "star3": 0.18,
+     "off": 7.2,
      "tank": 0
     },
     {
-     "id": "da_18_soraka",
-     "rate": 0.94,
+     "id": "da_18_zyra",
+     "rate": 0.95,
      "star3": 0,
-     "off": 11,
-     "tank": 1
+     "off": 67.4,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 0.92,
+     "star3": 0,
+     "off": 26.7,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_yunara",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
     },
     {
      "id": "da_18_khazix",
-     "rate": 0.06,
+     "rate": 0.03,
      "star3": 1,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_cinderling18",
-     "rate": 0.06,
+     "rate": 0.03,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_gromp18_ap",
-     "rate": 0.06,
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 0.02,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -34037,8 +36029,8 @@ window.TFT_WEIGHTS = {
       "DA_HextechGunblade",
       "DA_RabadonsDeathcap"
      ],
-     "games": 8,
-     "avgPlace": 5.13
+     "games": 17,
+     "avgPlace": 5.19
     },
     "da_18_rammus": {
      "items": [
@@ -34046,8 +36038,8 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_GargoyleStoneplate"
      ],
-     "games": 4,
-     "avgPlace": 6.25
+     "games": 9,
+     "avgPlace": 5.51
     }
    },
    "now": {
@@ -34075,71 +36067,43 @@ window.TFT_WEIGHTS = {
    "level": 9,
    "core": [
     {
+     "id": "da_amumu18",
+     "rate": 1,
+     "star3": 0,
+     "off": 0,
+     "tank": 1.7
+    },
+    {
      "id": "da_18_ezreal",
      "rate": 1,
      "star3": 0,
-     "off": 6,
+     "off": 13,
      "tank": 0
     },
     {
      "id": "da_18_kennen",
      "rate": 1,
      "star3": 0,
-     "off": 0,
+     "off": 1.7,
      "tank": 0
     },
     {
      "id": "da_18_maokai",
-     "rate": 1,
+     "rate": 0.87,
      "star3": 0,
-     "off": 1,
-     "tank": 5
+     "off": 1.6,
+     "tank": 7.3
     },
     {
-     "id": "da_amumu18",
-     "rate": 1,
+     "id": "da_taric18",
+     "rate": 0.77,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_varus",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_aphelios",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_gnarsmall",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_soraka",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sett",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 0.6,
+     "tank": 2.3
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.5,
+     "rate": 0.63,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -34153,21 +36117,49 @@ window.TFT_WEIGHTS = {
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.5,
+     "rate": 0.37,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_draven18",
-     "rate": 0.5,
+     "rate": 0.37,
+     "star3": 0,
+     "off": 3.6,
+     "tank": 0
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.27,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.23,
      "star3": 0,
      "off": 3,
      "tank": 0
     },
     {
-     "id": "da_taric18",
-     "rate": 0.5,
+     "id": "da_18_gnarsmall",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_soraka",
+     "rate": 0.23,
      "star3": 0,
      "off": 0,
      "tank": 0
@@ -34208,7 +36200,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Elderwood",
    "carry": "da_18_xayah",
    "mainCarry": "da_18_xayah",
-   "mainTank": "da_18_sejuani",
+   "mainTank": "da_18_ornn",
    "games": 7,
    "avgPlace": 5.81,
    "top4": 0.259,
@@ -34220,100 +36212,100 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_xayah",
      "rate": 1,
-     "star3": 0.86,
-     "off": 20,
+     "star3": 0.68,
+     "off": 46.2,
      "tank": 0
     },
     {
      "id": "da_18_ornn",
-     "rate": 1,
-     "star3": 0.57,
-     "off": 0,
-     "tank": 6
+     "rate": 0.93,
+     "star3": 0.55,
+     "off": 0.6,
+     "tank": 15.9
     },
     {
      "id": "da_18_hecarim",
-     "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 6
+     "rate": 0.89,
+     "star3": 0.04,
+     "off": 0.6,
+     "tank": 13.6
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.86,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 8
+     "rate": 0.68,
+     "star3": 0.59,
+     "off": 0.6,
+     "tank": 12.1
     },
     {
      "id": "da_18_leona",
-     "rate": 0.71,
-     "star3": 0.6,
+     "rate": 0.58,
+     "star3": 0.78,
      "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_sejuani",
-     "rate": 0.71,
-     "star3": 0.8,
-     "off": 2,
-     "tank": 9
+     "tank": 1.2
     },
     {
      "id": "da_18_kayle",
-     "rate": 0.71,
-     "star3": 0.2,
-     "off": 9,
-     "tank": 0
+     "rate": 0.5,
+     "star3": 0.13,
+     "off": 16,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_sejuani",
+     "rate": 0.47,
+     "star3": 0.63,
+     "off": 2,
+     "tank": 9.6
     },
     {
      "id": "da_18_alistar",
-     "rate": 0.29,
+     "rate": 0.39,
      "star3": 0,
      "off": 0,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.29,
+     "star3": 0.13,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.29,
+     "rate": 0.28,
      "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_leblanc",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 0.14,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
+     "off": 0.6,
+     "tank": 3.3
     },
     {
      "id": "da_18_ezreal",
-     "rate": 0.14,
+     "rate": 0.17,
      "star3": 0,
-     "off": 2,
+     "off": 6.7,
      "tank": 0
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.14,
+     "rate": 0.17,
      "star3": 0,
-     "off": 0,
+     "off": 2.3,
      "tank": 0
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.14,
+     "rate": 0.17,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 1.7
+    },
+    {
+     "id": "da_crimsonraptor18",
+     "rate": 0.14,
+     "star3": 0.27,
+     "off": 3.3,
+     "tank": 1.2
     }
    ],
    "builds": {
@@ -34323,17 +36315,17 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 2,
-     "avgPlace": 7
+     "games": 3,
+     "avgPlace": 6.77
     },
-    "da_18_sejuani": {
+    "da_18_ornn": {
      "items": [
-      "DA_ProtectorsVow",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
+      "DA_Evenshroud",
+      "DA_GargoyleStoneplate",
+      "DA_SteadfastHeart"
      ],
      "games": 1,
-     "avgPlace": 6
+     "avgPlace": 5
     }
    },
    "now": {
@@ -34350,8 +36342,8 @@ window.TFT_WEIGHTS = {
   {
    "trait": "DA_18_Vanguard",
    "carry": "da_crimsonraptor18",
-   "mainCarry": "da_18_zyra",
-   "mainTank": "da_krug18",
+   "mainCarry": "da_crimsonraptor18",
+   "mainTank": "da_18_hecarim",
    "games": 1,
    "avgPlace": 5.88,
    "top4": 0.125,
@@ -34361,58 +36353,122 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_krug18",
+     "id": "da_crimsonraptor18",
      "rate": 1,
-     "star3": 1,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 1,
-     "star3": 0,
-     "off": 2,
-     "tank": 0
+     "star3": 0.66,
+     "off": 17.7,
+     "tank": 2.2
     },
     {
      "id": "da_18_hecarim",
      "rate": 1,
-     "star3": 0,
-     "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 1,
-     "star3": 1,
-     "off": 2,
-     "tank": 1
+     "star3": 0.26,
+     "off": 1.2,
+     "tank": 13.8
     },
     {
      "id": "da_sentinel18",
-     "rate": 1,
+     "rate": 0.91,
      "star3": 0,
      "off": 0,
-     "tank": 3
+     "tank": 7.1
     },
     {
-     "id": "da_taric18",
-     "rate": 1,
+     "id": "da_18_diana",
+     "rate": 0.77,
+     "star3": 0.22,
+     "off": 1.7,
+     "tank": 1.7
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.66,
+     "star3": 0,
+     "off": 5.5,
+     "tank": 0
+    },
+    {
+     "id": "da_brambleback18",
+     "rate": 0.43,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 2.9,
+     "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_krug18",
+     "rate": 0.32,
+     "star3": 0.73,
+     "off": 0,
+     "tank": 4.2
+    },
+    {
+     "id": "da_18_alistar",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_scuttlecrab18",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0
+    },
+    {
+     "id": "da_18_elise",
+     "rate": 0.17,
+     "star3": 0.5,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_yorick",
+     "rate": 0.17,
      "star3": 0,
      "off": 0,
      "tank": 0
     }
    ],
    "builds": {
-    "da_18_zyra": null,
-    "da_krug18": {
+    "da_crimsonraptor18": {
+     "items": [
+      "DA_GuinsoosRageblade",
+      "DA_HextechGunblade",
+      "DA_TitansResolve"
+     ],
+     "games": 2,
+     "avgPlace": 6.74
+    },
+    "da_18_hecarim": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_WarmogsArmor",
-      "DA_WarmogsArmor"
+      "DA_SpiritVisage",
+      "DA_SteraksGage"
      ],
      "games": 1,
-     "avgPlace": 6
+     "avgPlace": 8
     }
    },
    "now": {
@@ -34437,105 +36493,105 @@ window.TFT_WEIGHTS = {
    "win": 0.027,
    "patchGames": 10,
    "playRate": 0.0019,
-   "level": 9,
+   "level": 8,
    "core": [
+    {
+     "id": "da_18_ahri",
+     "rate": 1,
+     "star3": 0.03,
+     "off": 63.9,
+     "tank": 1.6
+    },
     {
      "id": "da_sentinel18",
      "rate": 1,
      "star3": 0,
-     "off": 0,
-     "tank": 17
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 1,
-     "star3": 0,
-     "off": 29,
-     "tank": 1
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.8,
-     "star3": 0,
-     "off": 1,
-     "tank": 9
-    },
-    {
-     "id": "da_18_morgana",
-     "rate": 0.8,
-     "star3": 0,
-     "off": 17,
-     "tank": 0
+     "off": 1.7,
+     "tank": 36.8
     },
     {
      "id": "da_18_diana",
-     "rate": 0.8,
+     "rate": 0.86,
      "star3": 0,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_18_morgana",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 38.5,
+     "tank": 1.2
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.65,
+     "star3": 0,
+     "off": 1.6,
+     "tank": 11.3
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.6,
+     "rate": 0.56,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 7,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.4,
+     "rate": 0.44,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 1.2
     },
     {
-     "id": "da_18_hecarim",
-     "rate": 0.4,
+     "id": "da_18_alune",
+     "rate": 0.43,
      "star3": 0,
-     "off": 0,
-     "tank": 0
+     "off": 16.3,
+     "tank": 0.6
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.4,
+     "rate": 0.39,
      "star3": 0,
-     "off": 1,
-     "tank": 4
+     "off": 3.9,
+     "tank": 8.1
     },
     {
-     "id": "da_18_sett",
-     "rate": 0.3,
+     "id": "da_18_hecarim",
+     "rate": 0.39,
      "star3": 0,
-     "off": 1,
-     "tank": 3
-    },
-    {
-     "id": "da_18_zyra",
-     "rate": 0.2,
-     "star3": 0,
-     "off": 5,
-     "tank": 0
+     "off": 0.6,
+     "tank": 0.6
     },
     {
      "id": "da_18_elise",
-     "rate": 0.2,
+     "rate": 0.35,
+     "star3": 0.07,
+     "off": 0.6,
+     "tank": 5.9
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.29,
      "star3": 0,
-     "off": 0,
-     "tank": 3
+     "off": 1.6,
+     "tank": 7.7
+    },
+    {
+     "id": "da_18_zyra",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 7.3,
+     "tank": 0.6
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.2,
+     "rate": 0.14,
      "star3": 0,
      "off": 0,
-     "tank": 0
+     "tank": 0.6
     }
    ],
    "builds": {
@@ -34545,8 +36601,8 @@ window.TFT_WEIGHTS = {
       "DA_SpearOfShojin",
       "DA_StrikersFlail"
      ],
-     "games": 3,
-     "avgPlace": 5
+     "games": 5,
+     "avgPlace": 4.88
     },
     "da_sentinel18": {
      "items": [
@@ -34554,8 +36610,8 @@ window.TFT_WEIGHTS = {
       "DA_ProtectorsVow",
       "DA_ProtectorsVow"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 2,
+     "avgPlace": 6.39
     }
    },
    "now": {
@@ -34573,7 +36629,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Vanguard",
    "carry": "da_18_cassiopeia",
    "mainCarry": "da_18_cassiopeia",
-   "mainTank": "da_sentinel18",
+   "mainTank": "da_18_elise",
    "games": 13,
    "avgPlace": 5.91,
    "top4": 0.226,
@@ -34585,120 +36641,120 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_cassiopeia",
      "rate": 1,
-     "star3": 0.31,
-     "off": 37,
+     "star3": 0.36,
+     "off": 80.1,
      "tank": 1
     },
     {
-     "id": "da_18_morgana",
-     "rate": 0.85,
-     "star3": 0,
-     "off": 12,
-     "tank": 2
+     "id": "da_18_elise",
+     "rate": 0.9,
+     "star3": 0.53,
+     "off": 16.1,
+     "tank": 33.4
     },
     {
      "id": "da_sentinel18",
-     "rate": 0.85,
+     "rate": 0.89,
      "star3": 0,
-     "off": 2,
-     "tank": 14
+     "off": 2.6,
+     "tank": 30.9
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.77,
+     "id": "da_18_morgana",
+     "rate": 0.87,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_elise",
-     "rate": 0.77,
-     "star3": 0.5,
-     "off": 5,
-     "tank": 13
+     "off": 33,
+     "tank": 5.5
     },
     {
      "id": "da_18_diana",
-     "rate": 0.77,
-     "star3": 0.1,
+     "rate": 0.83,
+     "star3": 0.04,
+     "off": 1.7,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.71,
+     "star3": 0.08,
+     "off": 2.7,
+     "tank": 9.3
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.63,
+     "star3": 0.03,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.62,
+     "rate": 0.36,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_hecarim",
-     "rate": 0.54,
-     "star3": 0.14,
-     "off": 1,
-     "tank": 0
+     "id": "da_taric18",
+     "rate": 0.3,
+     "star3": 0,
+     "off": 0,
+     "tank": 9.9
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.54,
+     "rate": 0.28,
      "star3": 0,
      "off": 2,
      "tank": 12
     },
     {
      "id": "da_18_ivern",
-     "rate": 0.38,
+     "rate": 0.21,
      "star3": 0,
-     "off": 4,
-     "tank": 0
-    },
-    {
-     "id": "da_taric18",
-     "rate": 0.31,
-     "star3": 0,
-     "off": 0,
-     "tank": 7
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.23,
-     "star3": 0,
-     "off": 4,
-     "tank": 1
-    },
-    {
-     "id": "da_amumu18",
-     "rate": 0.08,
-     "star3": 0,
-     "off": 0,
+     "off": 4.6,
      "tank": 0
     },
     {
      "id": "da_18_alune",
+     "rate": 0.18,
+     "star3": 0,
+     "off": 4.7,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.17,
+     "star3": 0,
+     "off": 5.2,
+     "tank": 1
+    },
+    {
+     "id": "da_kogmaw18_ad",
      "rate": 0.08,
      "star3": 0,
-     "off": 0,
+     "off": 1.2,
      "tank": 0
     }
    ],
    "builds": {
     "da_18_cassiopeia": {
      "items": [
-      "DA_BlueBuff",
+      "DA_JeweledGauntlet",
       "DA_SpearOfShojin",
-      "DA_VoidStaff"
+      "DA_StrikersFlail"
      ],
-     "games": 1,
-     "avgPlace": 1
+     "games": 2,
+     "avgPlace": 6.33
     },
-    "da_sentinel18": {
+    "da_18_elise": {
      "items": [
-      "DA_AdaptiveHelm",
-      "DA_ProtectorsVow",
-      "DA_SpiritVisage"
+      "DA_GargoyleStoneplate",
+      "DA_GuinsoosRageblade",
+      "DA_TitansResolve"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 11,
+     "avgPlace": 5.01
     }
    },
    "now": {
@@ -34716,7 +36772,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Spellweaver",
    "carry": "da_18_morgana",
    "mainCarry": "da_18_morgana",
-   "mainTank": "da_18_sett",
+   "mainTank": "da_sentinel18",
    "games": 6,
    "avgPlace": 6.06,
    "top4": 0.125,
@@ -34729,21 +36785,7 @@ window.TFT_WEIGHTS = {
      "id": "da_18_morgana",
      "rate": 1,
      "star3": 0,
-     "off": 14,
-     "tank": 0
-    },
-    {
-     "id": "da_karma18",
-     "rate": 0.83,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ahri",
-     "rate": 0.83,
-     "star3": 0,
-     "off": 11,
+     "off": 22.7,
      "tank": 0
     },
     {
@@ -34751,76 +36793,90 @@ window.TFT_WEIGHTS = {
      "rate": 0.83,
      "star3": 0,
      "off": 0,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_ahri",
+     "rate": 0.83,
+     "star3": 0,
+     "off": 16.8,
      "tank": 0
     },
     {
+     "id": "da_karma18",
+     "rate": 0.65,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_cassiopeia",
+     "rate": 0.56,
+     "star3": 0,
+     "off": 3.9,
+     "tank": 1
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.52,
+     "star3": 0,
+     "off": 0,
+     "tank": 3
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.52,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 7.9
+    },
+    {
      "id": "da_18_sett",
-     "rate": 0.67,
+     "rate": 0.48,
      "star3": 0,
      "off": 1,
      "tank": 7
     },
     {
      "id": "da_18_alune",
-     "rate": 0.5,
+     "rate": 0.44,
      "star3": 0,
-     "off": 4,
-     "tank": 1
+     "off": 6.3,
+     "tank": 1.6
     },
     {
-     "id": "da_18_cassiopeia",
-     "rate": 0.5,
+     "id": "da_18_lillia",
+     "rate": 0.35,
      "star3": 0,
-     "off": 1,
-     "tank": 1
+     "off": 0,
+     "tank": 4.5
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.5,
+     "rate": 0.32,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_sentry",
-     "rate": 0.33,
+     "id": "da_18_veigar",
+     "rate": 0.27,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_18_veigar",
-     "rate": 0.33,
+     "id": "da_18_sentry",
+     "rate": 0.27,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
      "id": "da_krug18",
-     "rate": 0.33,
+     "rate": 0.27,
      "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 5
-    },
-    {
-     "id": "da_18_diana",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 0,
-     "tank": 3
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.33,
-     "star3": 0,
-     "off": 2,
+     "off": 0.6,
      "tank": 0
     }
    ],
@@ -34834,14 +36890,14 @@ window.TFT_WEIGHTS = {
      "games": 1,
      "avgPlace": 5
     },
-    "da_18_sett": {
+    "da_sentinel18": {
      "items": [
-      "DA_GargoyleStoneplate",
-      "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow"
+      "DA_ProtectorsVow",
+      "DA_ProtectorsVow",
+      "DA_SpiritVisage"
      ],
      "games": 1,
-     "avgPlace": 5
+     "avgPlace": 2
     }
    },
    "now": {
@@ -34859,112 +36915,112 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Elderwood",
    "carry": "da_18_khazix",
    "mainCarry": "da_18_khazix",
-   "mainTank": "da_fiddlesticks18",
+   "mainTank": "da_18_hecarim",
    "games": 6,
    "avgPlace": 6.13,
    "top4": 0.188,
    "win": 0,
    "patchGames": 6,
    "playRate": 0.0011,
-   "level": 8,
+   "level": 7,
    "core": [
     {
      "id": "da_18_khazix",
      "rate": 1,
-     "star3": 0.67,
-     "off": 18,
-     "tank": 0
-    },
-    {
-     "id": "da_18_ezreal",
-     "rate": 1,
-     "star3": 0,
-     "off": 8,
+     "star3": 0.76,
+     "off": 32,
      "tank": 0
     },
     {
      "id": "da_18_hecarim",
-     "rate": 1,
-     "star3": 0.17,
-     "off": 1,
-     "tank": 5
+     "rate": 0.95,
+     "star3": 0.21,
+     "off": 1.6,
+     "tank": 15.5
     },
     {
      "id": "da_18_diana",
-     "rate": 0.83,
-     "star3": 0.4,
-     "off": 2,
-     "tank": 1
+     "rate": 0.91,
+     "star3": 0.45,
+     "off": 6.1,
+     "tank": 2.2
     },
     {
-     "id": "da_18_leblanc",
-     "rate": 0.67,
+     "id": "da_18_ezreal",
+     "rate": 0.89,
      "star3": 0,
-     "off": 0,
+     "off": 11.5,
      "tank": 0
     },
     {
      "id": "da_18_rengar",
-     "rate": 0.67,
+     "rate": 0.59,
      "star3": 0.5,
-     "off": 10,
-     "tank": 2
+     "off": 14.1,
+     "tank": 3.2
     },
     {
-     "id": "da_fiddlesticks18",
-     "rate": 0.5,
-     "star3": 0.67,
-     "off": 0,
-     "tank": 7
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 0.5,
+     "id": "da_18_leblanc",
+     "rate": 0.59,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_18_aphelios",
-     "rate": 0.5,
+     "rate": 0.45,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
+     "id": "da_fiddlesticks18",
+     "rate": 0.45,
+     "star3": 0.42,
+     "off": 0,
+     "tank": 8.2
+    },
+    {
+     "id": "da_18_ornn",
+     "rate": 0.45,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_xayah",
+     "rate": 0.15,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.11,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
      "id": "da_18_azir",
-     "rate": 0.17,
+     "rate": 0.09,
      "star3": 0,
      "off": 1,
      "tank": 0
     },
     {
-     "id": "da_lux18_base",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_18_xayah",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
      "id": "da_18_lillia",
-     "rate": 0.17,
+     "rate": 0.09,
      "star3": 0,
      "off": 0,
      "tank": 3
-    },
-    {
-     "id": "da_18_kennen",
-     "rate": 0.17,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
     }
    ],
    "builds": {
@@ -34977,14 +37033,14 @@ window.TFT_WEIGHTS = {
      "games": 2,
      "avgPlace": 4.5
     },
-    "da_fiddlesticks18": {
+    "da_18_hecarim": {
      "items": [
-      "DA_GargoyleStoneplate",
       "DA_ProtectorsVow",
+      "DA_SteadfastHeart",
       "DA_WarmogsArmor"
      ],
      "games": 1,
-     "avgPlace": 6
+     "avgPlace": 3
     }
    },
    "now": {
@@ -35012,102 +37068,102 @@ window.TFT_WEIGHTS = {
    "level": 7,
    "core": [
     {
-     "id": "da_karma18",
-     "rate": 1,
-     "star3": 0.96,
-     "off": 211,
-     "tank": 2
-    },
-    {
      "id": "da_18_yorick",
      "rate": 1,
-     "star3": 0.82,
-     "off": 7,
-     "tank": 65
+     "star3": 0.84,
+     "off": 20.4,
+     "tank": 154.1
+    },
+    {
+     "id": "da_karma18",
+     "rate": 1,
+     "star3": 0.97,
+     "off": 449.1,
+     "tank": 2.6
     },
     {
      "id": "da_18_yunara",
-     "rate": 1,
-     "star3": 0.59,
-     "off": 111,
-     "tank": 7
+     "rate": 0.99,
+     "star3": 0.61,
+     "off": 236.8,
+     "tank": 11.7
     },
     {
      "id": "da_18_sejuani",
-     "rate": 0.99,
-     "star3": 0.69,
-     "off": 11,
-     "tank": 158
+     "rate": 0.98,
+     "star3": 0.68,
+     "off": 22.6,
+     "tank": 321.6
     },
     {
      "id": "da_18_leona",
      "rate": 0.85,
-     "star3": 0.63,
-     "off": 3,
-     "tank": 4
+     "star3": 0.59,
+     "off": 11.7,
+     "tank": 19.1
     },
     {
      "id": "da_18_leblanc",
-     "rate": 0.85,
-     "star3": 0.61,
-     "off": 48,
-     "tank": 3
+     "rate": 0.77,
+     "star3": 0.6,
+     "off": 89.3,
+     "tank": 9.4
     },
     {
      "id": "da_18_kayle",
-     "rate": 0.68,
+     "rate": 0.71,
      "star3": 0.1,
-     "off": 5,
+     "off": 12.6,
      "tank": 0
     },
     {
      "id": "da_18_azir",
-     "rate": 0.25,
-     "star3": 0.06,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.03,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_crimsonraptor18",
-     "rate": 0.03,
-     "star3": 0,
-     "off": 0,
+     "rate": 0.24,
+     "star3": 0.04,
+     "off": 3.3,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.03,
+     "rate": 0.07,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 3.9,
+     "tank": 0.6
     },
     {
      "id": "da_18_soraka",
-     "rate": 0.03,
+     "rate": 0.02,
      "star3": 0,
-     "off": 3,
+     "off": 7.1,
      "tank": 0
     },
     {
-     "id": "da_18_zyra",
-     "rate": 0.01,
+     "id": "da_18_kennen",
+     "rate": 0.02,
      "star3": 0,
-     "off": 2,
-     "tank": 1
+     "off": 2.3,
+     "tank": 1.2
     },
     {
-     "id": "da_18_gnarsmall",
-     "rate": 0.01,
+     "id": "da_18_ahri",
+     "rate": 0.02,
      "star3": 0,
-     "off": 1,
+     "off": 7.2,
      "tank": 0
+    },
+    {
+     "id": "da_18_sett",
+     "rate": 0.02,
+     "star3": 0,
+     "off": 0,
+     "tank": 4.7
     }
    ],
    "builds": {
@@ -35117,8 +37173,8 @@ window.TFT_WEIGHTS = {
       "DA_JeweledGauntlet",
       "DA_RabadonsDeathcap"
      ],
-     "games": 11,
-     "avgPlace": 6.73
+     "games": 23,
+     "avgPlace": 6.12
     },
     "da_18_sejuani": {
      "items": [
@@ -35126,7 +37182,7 @@ window.TFT_WEIGHTS = {
       "DA_GargoyleStoneplate",
       "DA_WarmogsArmor"
      ],
-     "games": 9,
+     "games": 14,
      "avgPlace": 6.44
     }
    },
@@ -35158,110 +37214,110 @@ window.TFT_WEIGHTS = {
      "id": "da_18_morgana",
      "rate": 1,
      "star3": 0,
-     "off": 21,
-     "tank": 1
+     "off": 53,
+     "tank": 2.2
+    },
+    {
+     "id": "da_sentinel18",
+     "rate": 0.78,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 26.6
     },
     {
      "id": "da_18_elise",
-     "rate": 0.88,
-     "star3": 0.14,
-     "off": 0,
-     "tank": 3
+     "rate": 0.76,
+     "star3": 0.07,
+     "off": 1.2,
+     "tank": 9.4
     },
     {
      "id": "da_18_cassiopeia",
-     "rate": 0.88,
-     "star3": 0.14,
-     "off": 11,
+     "rate": 0.7,
+     "star3": 0.07,
+     "off": 15.7,
      "tank": 1
     },
     {
      "id": "da_18_diana",
-     "rate": 0.75,
+     "rate": 0.62,
      "star3": 0,
-     "off": 0,
+     "off": 0.6,
      "tank": 0
     },
     {
      "id": "da_fiddlesticks18",
-     "rate": 0.63,
+     "rate": 0.51,
      "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_sentinel18",
-     "rate": 0.63,
-     "star3": 0,
-     "off": 0,
-     "tank": 8
+     "off": 1.6,
+     "tank": 5.7
     },
     {
      "id": "da_18_lillia",
-     "rate": 0.5,
+     "rate": 0.45,
      "star3": 0,
      "off": 1,
-     "tank": 2
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.38,
-     "star3": 0,
-     "off": 0,
-     "tank": 2
+     "tank": 7.2
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.25,
+     "rate": 0.44,
      "star3": 0,
-     "off": 2,
+     "off": 13.1,
      "tank": 1
     },
     {
-     "id": "da_18_camille",
-     "rate": 0.25,
+     "id": "da_18_ivern",
+     "rate": 0.33,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_rakan",
-     "rate": 0.25,
+     "id": "da_18_hecarim",
+     "rate": 0.31,
      "star3": 0,
-     "off": 1,
+     "off": 0.6,
      "tank": 2
     },
     {
-     "id": "da_18_leblanc",
-     "rate": 0.13,
-     "star3": 1,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.13,
-     "star3": 1,
-     "off": 2,
-     "tank": 0
-    },
-    {
      "id": "da_18_alune",
-     "rate": 0.13,
+     "rate": 0.3,
      "star3": 0,
-     "off": 0,
+     "off": 8.2,
      "tank": 0
+    },
+    {
+     "id": "da_18_camille",
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_taric18",
+     "rate": 0.24,
+     "star3": 0,
+     "off": 2.2,
+     "tank": 3.3
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 0.23,
+     "star3": 0,
+     "off": 1,
+     "tank": 2
     }
    ],
    "builds": {
     "da_18_morgana": {
      "items": [
-      "DA_Morellonomicon",
+      "DA_HextechGunblade",
       "DA_RedBuff",
-      "DA_SpearOfShojin"
+      "DA_VoidStaff"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 7.37
     },
     "da_sentinel18": {
      "items": [
@@ -35288,7 +37344,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Defender",
    "carry": "da_18_kayle",
    "mainCarry": "da_18_kayle",
-   "mainTank": "da_18_ornn",
+   "mainTank": "da_18_rakan",
    "games": 8,
    "avgPlace": 6.65,
    "top4": 0.131,
@@ -35298,72 +37354,100 @@ window.TFT_WEIGHTS = {
    "level": 6,
    "core": [
     {
-     "id": "da_18_sejuani",
-     "rate": 1,
-     "star3": 0.38,
-     "off": 2,
-     "tank": 3
-    },
-    {
-     "id": "da_18_ornn",
-     "rate": 1,
-     "star3": 0.88,
-     "off": 1,
-     "tank": 13
-    },
-    {
      "id": "da_18_leona",
      "rate": 1,
-     "star3": 0.75,
-     "off": 0,
-     "tank": 3
+     "star3": 0.89,
+     "off": 1.7,
+     "tank": 17.6
     },
     {
      "id": "da_18_kayle",
      "rate": 1,
-     "star3": 0.88,
-     "off": 24,
+     "star3": 0.96,
+     "off": 66.5,
      "tank": 0
     },
     {
-     "id": "da_18_xayah",
-     "rate": 0.88,
-     "star3": 0.86,
-     "off": 17,
-     "tank": 0
+     "id": "da_18_sejuani",
+     "rate": 0.97,
+     "star3": 0.48,
+     "off": 4.9,
+     "tank": 14.1
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.88,
-     "star3": 0.86,
-     "off": 4,
-     "tank": 7
+     "rate": 0.85,
+     "star3": 0.8,
+     "off": 6.3,
+     "tank": 25.6
     },
     {
-     "id": "da_18_aphelios",
-     "rate": 0.13,
-     "star3": 0,
-     "off": 1,
+     "id": "da_18_xayah",
+     "rate": 0.8,
+     "star3": 0.88,
+     "off": 44.4,
      "tank": 0
     },
     {
-     "id": "da_18_varus",
-     "rate": 0.13,
-     "star3": 1,
-     "off": 3,
-     "tank": 0
+     "id": "da_18_ornn",
+     "rate": 0.79,
+     "star3": 0.81,
+     "off": 2.2,
+     "tank": 24.1
     },
     {
      "id": "da_18_shen",
-     "rate": 0.13,
-     "star3": 1,
-     "off": 0,
+     "rate": 0.25,
+     "star3": 0.59,
+     "off": 1.2,
      "tank": 3
     },
     {
-     "id": "da_18_lillia",
-     "rate": 0.13,
+     "id": "da_18_varus",
+     "rate": 0.17,
+     "star3": 0.85,
+     "off": 8.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_18_aphelios",
+     "rate": 0.07,
      "star3": 0,
+     "off": 2.7,
+     "tank": 0
+    },
+    {
+     "id": "da_18_lillia",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_diana",
+     "rate": 0.05,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_camille",
+     "rate": 0.03,
+     "star3": 1,
      "off": 0,
      "tank": 0
     }
@@ -35372,17 +37456,17 @@ window.TFT_WEIGHTS = {
     "da_18_kayle": {
      "items": [
       "DA_GuinsoosRageblade",
-      "DA_HextechGunblade",
-      "DA_RedBuff"
+      "DA_JeweledGauntlet",
+      "DA_RabadonsDeathcap"
      ],
-     "games": 1,
-     "avgPlace": 8
+     "games": 2,
+     "avgPlace": 7
     },
-    "da_18_ornn": {
+    "da_18_rakan": {
      "items": [
-      "DA_SpiritVisage",
-      "DA_SteadfastHeart",
-      "DA_WarmogsArmor"
+      "DA_Artifact_ForbiddenIdol",
+      "DA_Component_TearOfTheGoddess",
+      "DA_SpiritVisage"
      ],
      "games": 1,
      "avgPlace": 8
@@ -35403,7 +37487,7 @@ window.TFT_WEIGHTS = {
    "trait": "DA_18_Coven",
    "carry": "da_18_cassiopeia",
    "mainCarry": "da_18_cassiopeia",
-   "mainTank": "da_sentinel18",
+   "mainTank": "da_18_elise",
    "games": 4,
    "avgPlace": 7.13,
    "top4": 0,
@@ -35415,120 +37499,120 @@ window.TFT_WEIGHTS = {
     {
      "id": "da_18_elise",
      "rate": 1,
-     "star3": 0,
-     "off": 1,
-     "tank": 2
+     "star3": 0.3,
+     "off": 3.9,
+     "tank": 9
     },
     {
      "id": "da_18_cassiopeia",
      "rate": 1,
-     "star3": 0,
-     "off": 12,
+     "star3": 0.12,
+     "off": 28.3,
      "tank": 0
     },
     {
      "id": "da_18_diana",
-     "rate": 0.75,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "rate": 0.84,
+     "star3": 0.07,
+     "off": 0.6,
+     "tank": 1.2
     },
     {
      "id": "da_18_morgana",
-     "rate": 0.75,
+     "rate": 0.78,
      "star3": 0,
-     "off": 3,
-     "tank": 1
+     "off": 8.2,
+     "tank": 1.6
+    },
+    {
+     "id": "da_18_hecarim",
+     "rate": 0.62,
+     "star3": 0,
+     "off": 1.2,
+     "tank": 2.9
     },
     {
      "id": "da_18_camille",
      "rate": 0.5,
      "star3": 0,
      "off": 0,
-     "tank": 1
-    },
-    {
-     "id": "da_18_caitlyn",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
-    },
-    {
-     "id": "da_lux18_base",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 3,
-     "tank": 0
-    },
-    {
-     "id": "da_18_alune",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 1,
-     "tank": 0
-    },
-    {
-     "id": "da_18_hecarim",
-     "rate": 0.5,
-     "star3": 0,
-     "off": 0,
-     "tank": 0
+     "tank": 1.6
     },
     {
      "id": "da_sentinel18",
      "rate": 0.5,
      "star3": 0,
-     "off": 0,
-     "tank": 4
+     "off": 1.7,
+     "tank": 8.7
     },
     {
-     "id": "da_taric18",
-     "rate": 0.25,
-     "star3": 0,
-     "off": 1,
-     "tank": 1
-    },
-    {
-     "id": "da_kogmaw18_ad",
-     "rate": 0.25,
+     "id": "da_18_caitlyn",
+     "rate": 0.38,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
-     "id": "da_18_ahri",
-     "rate": 0.25,
+     "id": "da_taric18",
+     "rate": 0.34,
+     "star3": 0,
+     "off": 1,
+     "tank": 3.3
+    },
+    {
+     "id": "da_18_alune",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 2.2,
+     "tank": 0.6
+    },
+    {
+     "id": "da_lux18_base",
+     "rate": 0.32,
+     "star3": 0,
+     "off": 3.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.18,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_18_rakan",
-     "rate": 0.25,
+     "rate": 0.16,
      "star3": 0,
      "off": 0,
      "tank": 0
+    },
+    {
+     "id": "da_kogmaw18_ad",
+     "rate": 0.16,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0.6
     }
    ],
    "builds": {
     "da_18_cassiopeia": {
      "items": [
-      "DA_BlueBuff",
       "DA_JeweledGauntlet",
-      "DA_Morellonomicon"
+      "DA_SpearOfShojin",
+      "DA_StrikersFlail"
      ],
      "games": 1,
      "avgPlace": 8
     },
-    "da_sentinel18": {
+    "da_18_elise": {
      "items": [
       "DA_GargoyleStoneplate",
-      "DA_ProtectorsVow",
-      "DA_WarmogsArmor"
+      "DA_GuinsoosRageblade",
+      "DA_TitansResolve"
      ],
-     "games": 1,
-     "avgPlace": 5
+     "games": 2,
+     "avgPlace": 7
     }
    },
    "now": {
@@ -35556,59 +37640,101 @@ window.TFT_WEIGHTS = {
    "level": 6,
    "core": [
     {
-     "id": "da_18_rakan",
-     "rate": 1,
-     "star3": 0.71,
-     "off": 1,
-     "tank": 12
-    },
-    {
      "id": "da_18_xayah",
      "rate": 1,
-     "star3": 1,
-     "off": 21,
+     "star3": 0.97,
+     "off": 50.1,
      "tank": 0
+    },
+    {
+     "id": "da_18_rakan",
+     "rate": 1,
+     "star3": 0.67,
+     "off": 1,
+     "tank": 19
     },
     {
      "id": "da_18_leona",
-     "rate": 1,
-     "star3": 0.71,
-     "off": 0,
-     "tank": 3
+     "rate": 0.97,
+     "star3": 0.77,
+     "off": 2.3,
+     "tank": 12.3
     },
     {
      "id": "da_18_kayle",
-     "rate": 1,
-     "star3": 0.29,
-     "off": 11,
-     "tank": 0
+     "rate": 0.97,
+     "star3": 0.41,
+     "off": 26.1,
+     "tank": 0.6
     },
     {
      "id": "da_18_sejuani",
-     "rate": 1,
-     "star3": 0.29,
+     "rate": 0.93,
+     "star3": 0.42,
      "off": 0,
-     "tank": 0
+     "tank": 9.9
     },
     {
      "id": "da_18_ornn",
-     "rate": 0.71,
-     "star3": 0.8,
-     "off": 1,
-     "tank": 8
+     "rate": 0.74,
+     "star3": 0.78,
+     "off": 2.7,
+     "tank": 17.9
     },
     {
      "id": "da_18_shen",
-     "rate": 0.29,
+     "rate": 0.26,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_18_leblanc",
+     "rate": 0.07,
+     "star3": 0,
+     "off": 0.6,
+     "tank": 0
+    },
+    {
+     "id": "da_fiddlesticks18",
+     "rate": 0.07,
      "star3": 0,
      "off": 0,
      "tank": 0
     },
     {
      "id": "da_lux18_base",
-     "rate": 0.14,
+     "rate": 0.06,
      "star3": 0,
      "off": 1,
+     "tank": 0
+    },
+    {
+     "id": "da_gromp18_ap",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_cinderling18",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_varus",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0,
+     "tank": 0
+    },
+    {
+     "id": "da_18_elise",
+     "rate": 0.03,
+     "star3": 0,
+     "off": 0,
      "tank": 0
     }
    ],
@@ -35619,7 +37745,7 @@ window.TFT_WEIGHTS = {
       "DA_InfinityEdge",
       "DA_KrakensFury"
      ],
-     "games": 2,
+     "games": 3,
      "avgPlace": 7
     },
     "da_18_rakan": {
