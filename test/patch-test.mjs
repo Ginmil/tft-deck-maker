@@ -54,3 +54,23 @@ const full = run({ queueId: 1100, weightOf: pw2.weightOf, isCurrent: pw2.isCurre
 assert.ok(Math.abs(deck(full, 'Set99_A').avgPlace - 6) < 0.1);
 console.log('이번 패치 1600판: 이전 패치 가중치 0, A 평균', deck(full, 'Set99_A').avgPlace, '등');
 console.log('패치 테스트 통과');
+
+// Set 18 처럼 경기 데이터에 패치 번호가 없을 때: 경기 시각 + 일정표로 패치 판단
+const schedule = [{ patch: '18.6', date: '2026-11-04' }, { patch: '18.6B', date: '2026-11-11' }];
+const at = (iso, decks) => ({ metadata: { match_id: `KR_${++id}` },
+  info: { queue_id: 1100, tft_set_number: 99, game_version: 'TFT Unreal Version ?.?.?.?', game_datetime: Date.parse(iso),
+    participants: decks.map((d, i) => player(d, i + 1)) } });
+assert.equal(patchOf(at('2026-11-11T12:00:00Z', [])), null, '일정표 없으면 모름');
+assert.equal(patchOf(at('2026-11-11T12:00:00Z', []), schedule), '18.6', '18.6B 한국 적용(11/12 06시 KST) 전');
+assert.equal(patchOf(at('2026-11-11T22:00:00Z', []), schedule), '18.6B');
+assert.equal(patchOf(at('2026-11-01T00:00:00Z', []), schedule), null, '일정표보다 이전');
+const byDate = [];
+for (let i = 0; i < 800; i++) byDate.push(at('2026-11-08T10:00:00Z', ['A', 'X', 'X', 'X', 'X', 'X', 'X', 'C']));
+for (let i = 0; i < 200; i++) byDate.push(at('2026-11-13T10:00:00Z', ['C', 'X', 'X', 'X', 'X', 'A', 'X', 'X']));
+const pw3 = patchWeights(byDate, { schedule });
+assert.equal(pw3.current, '18.6B');
+assert.equal(pw3.prev, '18.6');
+const w3 = toWeights(aggregate(byDate, { weightOf: pw3.weightOf, isCurrent: pw3.isCurrent }));
+assert.ok(deck(w3, 'Set99_C').avgPlace < deck(w3, 'Set99_A').avgPlace);
+console.log('날짜로 패치 판단:', JSON.stringify(pw3.counts), '이전 패치 가중치', pw3.prevWeight, '| C', deck(w3, 'Set99_C').avgPlace, '등 A', deck(w3, 'Set99_A').avgPlace, '등');
+console.log('날짜 기반 패치 테스트 통과');

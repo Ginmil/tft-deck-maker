@@ -4,13 +4,30 @@
 // =============================================================
 
 // ---- 패치 버전 ----
-/** 경기의 패치 버전 "16.22" (game_version: "Linux Version 16.22.725.6532 (...) [PUBLIC] <Releases/16.22>") */
-export function patchOf(m) {
+// 패치 시작 시각: 일정표 날짜(태평양 시간) 다음 날 06:00 KST = 그 날짜 21:00 UTC (한국 서버 적용 시각 근사)
+const patchStart = p => Date.parse(`${p.date}T21:00:00Z`);
+/**
+ * 경기의 패치 "18.6B".
+ * 1) game_version 에 번호가 있으면 그대로 ("<Releases/16.22>")
+ * 2) 없으면(Set 18: "TFT Unreal Version ?.?.?.?") 경기 시각(game_datetime)과 패치 일정표(data/patches.json)로 정함
+ */
+export function patchOf(m, schedule = null) {
   const v = String(m?.info?.game_version || '');
   const r = v.match(/Releases\/(\d+)\.(\d+)/) || v.match(/Version (\d+)\.(\d+)/);
-  return r ? `${Number(r[1])}.${Number(r[2])}` : null;
+  if (r) return `${Number(r[1])}.${Number(r[2])}`;
+  const t = m?.info?.game_datetime;
+  if (!schedule?.length || !t) return null;
+  let found = null;
+  for (const p of schedule) if (patchStart(p) <= t) found = p.patch;
+  return found;
 }
-const patchNum = p => { const [a, b] = String(p).split('.').map(Number); return a * 1000 + b; };
+// 패치 순서: 일정표 순서, 없으면 숫자("18.6" < "18.6B" < "18.7")
+const patchOrder = (p, schedule) => {
+  const i = (schedule || []).findIndex(x => x.patch === p);
+  if (i >= 0) return i;
+  const r = String(p).match(/(\d+)\.(\d+)([A-Z]?)/);
+  return r ? 1e6 + Number(r[1]) * 1000 + Number(r[2]) + (r[3] ? 0.5 : 0) : -1;
+};
 
 /**
  * 패치별 가중치 (시너지·챔피언·아이템 통계용): 최신 패치 1, 바로 이전 패치는 "부족한 만큼만" 채움.
@@ -18,25 +35,25 @@ const patchNum = p => { const [a, b] = String(p).split('.').map(Number); return 
  * 그보다 옛 패치는 0. → 패치 직후에도 통계가 비지 않으면서, 옛 패치의 많은 판수가 새 메타를 덮지 않게.
  * (메타 덱은 따로 toWeights 에서 이전 패치를 "덱마다 최대 20판어치 사전 정보"로만 씀)
  */
-export function patchWeights(matches, { queueId = 1100, setNumber = null, target = 600 } = {}) {
+export function patchWeights(matches, { queueId = 1100, setNumber = null, target = 600, schedule = null } = {}) {
   const usable = matches.filter(m => m?.info && (!queueId || m.info.queue_id === queueId));
   const set = setNumber ?? Math.max(0, ...usable.map(m => m.info.tft_set_number || 0));
   const counts = {};
   for (const m of usable) {
     if (m.info.tft_set_number !== set) continue;
-    const p = patchOf(m) || '?';
+    const p = patchOf(m, schedule) || '?';
     counts[p] = (counts[p] || 0) + 1;
   }
-  const known = Object.keys(counts).filter(p => p !== '?').sort((a, b) => patchNum(b) - patchNum(a));
+  const known = Object.keys(counts).filter(p => p !== '?').sort((a, b) => patchOrder(b, schedule) - patchOrder(a, schedule));
   const current = known[0] || null, prev = known[1] || null;
   const cur = current ? counts[current] : 0;
   const prevWeight = prev ? round(Math.min(1, Math.max(0, target - cur) / counts[prev]), 4) : 0;
   const weightOf = m => {
-    const p = patchOf(m);
+    const p = patchOf(m, schedule);
     if (!current || p === current || p === null) return 1; // 버전 정보가 없으면 그대로
     return p === prev ? prevWeight : 0;
   };
-  return { setNumber: set, current, prev, prevWeight, counts, mature: cur >= target, weightOf, isCurrent: m => !current || patchOf(m) === current };
+  return { setNumber: set, current, prev, prevWeight, counts, mature: cur >= target, weightOf, isCurrent: m => !current || patchOf(m, schedule) === current };
 }
 
 /**

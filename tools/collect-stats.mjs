@@ -149,7 +149,10 @@ try {
   const fresh = aggregateOnly ? [] : await fetchMatches(await matchIds(await topPlayers()));
   if (aggregateOnly) console.log('집계만 다시 해요 (캐시된 경기 사용)');
   const matches = [...fresh, ...cachedMatches(new Set(fresh.map(m => m?.metadata?.match_id)))];
-  const pw = patchWeights(matches, { queueId: cfg.queueId });
+  // 패치 일정표 (경기 데이터에 패치 번호가 없을 때 경기 시각으로 패치를 정함)
+  let schedule = null;
+  try { schedule = JSON.parse(fs.readFileSync(path.join(root, 'data', 'patches.json'), 'utf8')).patches; } catch { console.log('data/patches.json 이 없어 패치 구분 없이 집계해요'); }
+  const pw = patchWeights(matches, { queueId: cfg.queueId, schedule });
   const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, isCurrent: pw.isCurrent });
   stats.patch = { current: pw.current, prev: pw.prev, prevWeight: pw.prevWeight, matches: pw.counts };
   if (!pw.current) {
