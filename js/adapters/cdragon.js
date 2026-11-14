@@ -16,7 +16,7 @@
 // =============================================================
 
 // 변환 규칙을 바꾸면 이 숫자를 올리세요. 브라우저에 저장된 예전 변환 결과를 자동으로 버리고 새로 받습니다.
-export const ADAPTER_VERSION = 10;
+export const ADAPTER_VERSION = 11;
 
 export const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -136,9 +136,21 @@ export function normalize(raw, setKey) {
   const emblems = Object.values(emblemByTrait).map(({ pref, ...e }) => e);
   // 재료 아이템: 완성 아이템·상징 조합식에 나오는 것 (대검, 활, 지팡이 … 뒤집개, 프라이팬)
   const rawById = new Map((raw.items || []).map(it => [it.apiName, it]));
-  const componentIds = [...new Set([...items, ...emblems].flatMap(i => i.recipe || []))].filter(id => rawById.get(id)?.name);
+  // 같은 이름의 재료가 id 두 개로 나오는 경우(Set 18: DA_Component_ChainVest / 옛 TFT_Item_ChainVest)
+  // → 조합식에 더 많이 쓰인 id 하나로 합치고, 조합식도 그 id로 바꿈
+  const crafted = [...items, ...emblems];
+  const uses = {};
+  for (const i of crafted) for (const id of i.recipe || []) uses[id] = (uses[id] || 0) + 1;
+  const byName = {};
+  for (const id of Object.keys(uses)) {
+    const name = rawById.get(id)?.name && stripTags(rawById.get(id).name);
+    if (!name) continue;
+    if (!byName[name] || uses[id] > uses[byName[name]]) byName[name] = id;
+  }
+  const canon = id => byName[rawById.get(id)?.name && stripTags(rawById.get(id).name)] || id;
+  for (const i of crafted) if (i.recipe) i.recipe = i.recipe.map(canon);
   const order = id => { const k = COMPONENT_ORDER.findIndex(n => id.includes(n)); return k < 0 ? 99 : k; };
-  const components = componentIds.sort((a, b) => order(a) - order(b) || a.localeCompare(b))
+  const components = Object.values(byName).sort((a, b) => order(a) - order(b) || a.localeCompare(b))
     .map(id => ({ id, name: stripTags(rawById.get(id).name), icon: iconUrl(rawById.get(id).icon) }));
 
   return {
