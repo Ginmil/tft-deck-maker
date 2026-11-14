@@ -456,11 +456,39 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
 
   // 고른 챔피언인데 랭커 통계상 아이템 홀더가 아닌 경우(5코 나르: 375판, 아이템 3개 든 판 4%)는 통계로 판단할 수 없으니
   // 역할 기준 궁합을 함께 봄. 통계가 충분한 홀더(니달리·아펠리오스)는 통계만 — 역할로 보면 적응가 니달리가 AP 로 잡힘
-  const thinStats = u => { const st = data.unitStats?.[u.champ.id.toLowerCase()]; return !st || st.games < 30 || (st.carryRate || 0) < 0.15; };
+  const statOf = c => data.unitStats?.[c.id.toLowerCase()];
+  const thinStats = u => { const st = statOf(u.champ); return !st || st.games < 30 || (st.carryRate || 0) < 0.15; };
+  const isThinPick = u => carrySet.has(u.idx) && thinStats(u) && !isAdaptorChamp(u.champ);
+  // 데이터가 적은 챔피언을 골랐을 때, 끝까지 데이터로 판단하는 단계:
+  //  1) 그 챔피언의 적은 기록: 랭커가 그 챔피언에게 준 아이템 중 이 아이템의 비율 (기록이 많을수록 비중 ↑)
+  //  2) 비슷한 챔피언(같은 역할 + 시너지 공유 또는 코스트 ±1, 홀더 통계 충분)의 궁합 평균
+  //  3) 둘 다 없으면 역할 기준
+  const ownItemsTotal = u => Object.values(statOf(u.champ)?.items || {}).reduce((a, b) => a + b, 0);
+  const similarMemo = new Map();
+  const similarOf = u => {
+    if (!similarMemo.has(u.champ.id)) {
+      const me = u.champ;
+      similarMemo.set(me.id, data.champions
+        .filter(c => c.id !== me.id && c.role === me.role && (c.base || c.id) !== (me.base || me.id))
+        .map(c => ({ c, st: statOf(c), shared: c.traits.filter(t => me.traits.includes(t)).length, dc: Math.abs(c.cost - me.cost),
+          sameRange: (c.range <= 2) === (me.range <= 2) })) // 근접/원거리가 같은 쪽 우선 (나르는 근접 → 원거리 원딜보다 근접 딜러)
+        .filter(x => x.st && x.st.games >= 30 && (x.st.carryRate || 0) >= 0.15 && (x.shared > 0 || x.dc <= 1))
+        .sort((a, b) => b.sameRange - a.sameRange || b.shared - a.shared || a.dc - b.dc || b.st.games - a.st.games)
+        .slice(0, 4).map(x => x.c));
+    }
+    return similarMemo.get(u.champ.id);
+  };
+  const thinAff = (u, x) => {
+    const st = statOf(u.champ), total = ownItemsTotal(u);
+    const own = total ? Math.min(1, ((st.items?.[x.id] || 0) / total) * 3) : 0;
+    const conf = Math.min(1, total / 60); // 아이템 기록 60개면 자기 기록만
+    const sims = similarOf(u);
+    const sim = sims.length ? sims.reduce((s, c) => s + itemAffinity(data, c, x), 0) / sims.length : itemFit(u.champ, x) * 0.7;
+    return conf * own + (1 - conf) * sim;
+  };
   const aff = (u, it) => {
     const x = it.statId ? { ...it, id: it.statId } : it;
-    const a = itemAffinity(data, u.champ, x);
-    return carrySet.has(u.idx) && thinStats(u) && !isAdaptorChamp(u.champ) ? Math.max(a, itemFit(u.champ, x) * 0.7) : a;
+    return isThinPick(u) ? thinAff(u, x) : itemAffinity(data, u.champ, x);
   };
   const canHold = u => !carrySet.size || carrySet.has(u.idx);
   function isAdaptorChamp(c) { return c.traits.some(t => /Adaptor/i.test(t) || /공격력과 주문력 중 어느 쪽이 높은지/.test(data.traits[t]?.desc || '')); }
@@ -504,9 +532,12 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
     // 랭커 3신기와 일치하면 가산 (3개 완성 일치 0.5, 2개 이상이 한 3신기 안에 0.2)
     const final = [...u.held, ...added].filter(x => x.kind === 'item').map(x => x.statId || x.id).sort();
     if (added.length && final.length >= 2) {
-      const builds = buildsOf(u).filter(b => b.games >= 5);
+      // 데이터가 적은 챔피언은 2판짜리 3신기도 힌트로 (판수에 비례해 가산)
+      const minG = isThinPick(u) ? 2 : 5;
+      const builds = buildsOf(u).filter(b => b.games >= minG);
       const contains = b => { const rest = [...b.items]; return final.every(id => { const i = rest.indexOf(id); if (i < 0) return false; rest.splice(i, 1); return true; }); };
-      if (final.length === 3 && builds.some(b => [...b.items].sort().join() === final.join())) v += 0.5;
+      const exact = final.length === 3 && builds.find(b => [...b.items].sort().join() === final.join());
+      if (exact) v += 0.5 * Math.min(1, exact.games / 5);
       else if (builds.some(contains)) v += 0.2;
     }
     return v;
@@ -526,8 +557,9 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
         const gain = unitValue(u, [...list, it]) - unitValue(u, list);
         if (!best || gain > best.gain) best = { u, gain };
       }
-      // 어울리는 챔피언이 없으면 억지로 주지 않고 보관 (예: 물리 딜러가 없는데 무한의 대검)
-      if (best && best.gain >= 0.1) slots.get(best.u).push(it); else unplaced.push({ ...it, why: best ? 'nofit' : 'noslot' });
+      // 어울리는 챔피언이 없으면 억지로 주지 않고 보관 (예: 물리 딜러가 없는데 무한의 대검).
+      // 궁합 자체(가산 전)가 너무 낮으면 캐리 가산으로 점수가 넘어도 주지 않음 (나르에게 저녁갑주)
+      if (best && best.gain >= 0.1 && aff(best.u, it) >= 0.05) slots.get(best.u).push(it); else unplaced.push({ ...it, why: best ? 'nofit' : 'noslot' });
     }
     for (let iter = 0, improved = true; improved && iter < 30; iter++) {
       improved = false;
@@ -619,7 +651,15 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
   const reasonOf = (u, it) => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
     const rate = st && st.games >= 30 ? (st.items?.[it.statId || it.id] || 0) / st.games : null;
-    return { rate, roleBased: carrySet.has(u.idx) && thinStats(u) && !isAdaptorChamp(u.champ) };
+    if (!isThinPick(u)) return { rate };
+    const total = ownItemsTotal(u), sims = similarOf(u);
+    const own = total ? (st?.items?.[it.statId || it.id] || 0) / total : 0;
+    return {
+      rate: null,
+      basis: total >= 30 ? { kind: 'sparse', total, share: own } // 자기 기록 위주
+        : sims.length ? { kind: 'similar', names: sims.map(c => c.name), total } // 비슷한 챔피언 기록
+        : { kind: 'role' },
+    };
   };
   const assignments = [];
   for (const u of units) {
@@ -634,8 +674,8 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
   for (const u of units) {
     const final = [...u.held, ...best.placed.slots.get(u)].filter(x => x.kind === 'item').map(x => x.statId || x.id).sort();
     if (final.length !== 3 || !best.placed.slots.get(u).length) continue;
-    const b = buildsOf(u).find(b => b.games >= 5 && [...b.items].sort().join() === final.join());
-    if (b) buildMatch[u.idx] = { games: b.games, avgPlace: b.avgPlace };
+    const b = buildsOf(u).find(b => b.games >= (isThinPick(u) ? 2 : 5) && [...b.items].sort().join() === final.join());
+    if (b) buildMatch[u.idx] = { games: b.games, avgPlace: b.avgPlace, few: b.games < 15 };
   }
   // 같은 챔피언끼리 모아서 보여주기 좋게 (아이템을 많이 받는 챔피언 먼저)
   const per = assignments.reduce((m, a) => (m[a.idx] = (m[a.idx] || 0) + 1, m), {});

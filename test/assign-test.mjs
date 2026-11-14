@@ -83,6 +83,15 @@ if (fs.existsSync(snapPath) && fs.existsSync(wPath)) {
         assert.ok(gnar.length >= 2 && gnar.every(a => a.item.role !== 'TANK'), `나르: ${gnar.map(a => a.item.name)}`);
         assert.equal(gr.assignments.filter(a => a.champ.name === '아펠리오스').length, 3);
         console.log('실데이터 여러 캐리 선택 시나리오 통과 (나르:', gnar.map(a => a.item.name).join('·') + ')');
+        assert.ok(gnar.every(a => a.basis?.kind === 'sparse'), '나르는 자기 랭커 기록(적음)으로 판단');
+
+        // 통계가 아예 없는 챔피언(새 패치·새 세트)을 고르면 비슷한 챔피언(같은 역할 + 시너지/코스트) 기록을 빌림
+        const noStat = { ...rd, unitStats: { ...rd.unitStats } };
+        delete noStat.unitStats[rc('나르').toLowerCase()];
+        const sr = assignItems(noStat, { board: gNames.map((n, i) => ({ idx: i, id: rc(n), star: 2, items: [] })), inventory: gInv, carries: picked });
+        const sg = sr.assignments.filter(a => a.champ.name === '나르');
+        assert.ok(sg.length >= 1 && sg.every(a => a.basis?.kind === 'similar' && a.item.role !== 'TANK'), `통계 없는 나르: ${sg.map(a => a.item.name + JSON.stringify(a.basis))}`);
+        console.log('통계 없는 챔피언 → 비슷한 챔피언 기록:', sg[0].basis.names.join('·'), '→', sg.map(a => a.item.name).join('·'));
       }
     }
   }
