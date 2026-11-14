@@ -1491,6 +1491,7 @@ function setData(data) {
   renderAllPickers();
   $('results').innerHTML = '';
   bdOnData();
+  renderMeta(); // 첫 화면(메타 덱 탭)이 비어 보이지 않도록 데이터가 오면 바로 그림
 }
 
 // ---------------- 선택 UI ----------------
@@ -1707,7 +1708,7 @@ function bind() {
       state.weights = w; applyWeights(); $('results').innerHTML = '';
     } catch { setStatus('가중치 파일 형식이 아니에요. tools/collect-stats.mjs 로 만든 weights.json 을 열어주세요.', true); }
   };
-  $('useWeights').onchange = () => { applyWeights(); $('results').innerHTML = ''; renderBuilds(); };
+  $('useWeights').onchange = () => { applyWeights(); $('results').innerHTML = ''; renderBuilds(); renderMeta(); };
   $('buildFilter').oninput = renderBuilds;
   document.addEventListener('click', e => {
     const b = e.target.closest('.toBuilder'); if (!b) return;
