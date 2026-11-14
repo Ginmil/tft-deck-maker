@@ -330,3 +330,22 @@ footer { text-align: center; font-size: 12px; padding: 30px 16px; }
 .icBuild { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
 .icNext .bi { border-color: #d6a630; box-shadow: 0 0 0 1px #d6a630; }
 @media (max-width: 760px) { .icarry { grid-template-columns: 28px 1fr; } .icRates, .icBuild { grid-column: 2; } }
+
+/* ---------- 배치툴: 남은 아이템 → 자동 배분 ---------- */
+.bdInv { margin-top: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg2); display: grid; gap: 8px; }
+.bdInvHead { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.bdInvHead .btn { padding: 3px 10px; margin-left: auto; }
+.bdInv .picked { margin-bottom: 0; }
+.bdInv .picked:empty::before { content: '남은 아이템이 없어요'; }
+.chipIcon { width: 18px; height: 18px; border-radius: 4px; margin-right: 4px; vertical-align: middle; }
+#bdAssign { justify-self: start; }
+.asgRow { display: grid; grid-template-columns: 150px 1fr; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid var(--line); }
+.asgChamp { display: flex; align-items: center; gap: 6px; }
+.asgChamp img { width: 32px; height: 32px; border-radius: 6px; }
+.asgItems { display: grid; gap: 4px; }
+.asgItem { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.asgKeep { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; padding-top: 8px; border-top: 1px solid var(--line); }
+.good { color: #5fd08a; }
+#bdAssignApply { justify-self: start; margin-top: 4px; }
+.bdInv .resultHead { flex-wrap: wrap; gap: 2px 10px; }
+.bdInv .resultHead h3 { white-space: nowrap; margin: 4px 0 0; }

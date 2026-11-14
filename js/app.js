@@ -3,10 +3,10 @@
 // 데이터 → 어댑터(normalize) → 엔진(search) → 화면
 // =============================================================
 import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './adapters/cdragon.js';
-import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems } from './engine/search.js';
+import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems, assignItems } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
 import { patchReport, prevBalancePatch } from './engine/patch.js';
-import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits } from './builder.js';
+import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits, bdInventory, bdApplyItems } from './builder.js';
 
 const $ = id => document.getElementById(id);
 const CACHE_KEY = `tft-deck-maker:data:v${ADAPTER_VERSION}`; // 어댑터를 고치면 버전을 올려 옛 캐시를 무시
@@ -395,6 +395,14 @@ function bind() {
     openTab: name => document.querySelector(`.tab[data-tab="${name}"]`)?.click(),
   });
   $('bdRecommend').onclick = e => runBoard(e.currentTarget);
+  $('bdAssign').onclick = () => runAssign();
+  $('bdAssignOut').onclick = e => {
+    if (!e.target.closest('#bdAssignApply') || !lastAssign) return;
+    const r = lastAssign;
+    bdApplyItems(r.assignments.map(a => ({ idx: a.idx, itemId: a.item.id })), [...r.unplaced.map(x => x.id), ...r.leftComponents]);
+    $('bdAssignOut').innerHTML = '<p class="muted small">보드에 넣었어요. 보관한 아이템은 "남은 아이템" 칸에 남아 있어요.</p>';
+    lastAssign = null;
+  };
   $('patchSel').onchange = () => renderPatch($('patchSel').value);
   $('metaSort').onchange = renderMeta;
   $('metaMin').onchange = renderMeta;
@@ -813,6 +821,40 @@ function runBoard(btn) {
       box.innerHTML = `<div class="empty">계산 중 오류가 났어요: ${esc(e.message)}</div>`;
     } finally { btn.disabled = false; }
   }, 30);
+}
+
+// ---------------- 내 보드 + 남은 아이템 → 자동 배분 (배치툴) ----------------
+let lastAssign = null;
+function runAssign() {
+  const box = $('bdAssignOut');
+  if (!state.data) { setStatus('먼저 데이터를 불러와 주세요.', true); $('databar').open = true; return; }
+  const board = bdBoardUnits(), inventory = bdInventory();
+  if (!board.length) { box.innerHTML = '<div class="empty">보드에 지금 덱을 먼저 올려 주세요.</div>'; return; }
+  if (!inventory.length) { box.innerHTML = '<div class="empty">"오른쪽 아이템을 누르면 여기에 담기"를 체크하고 남은 아이템을 담아 주세요.</div>'; return; }
+  const r = assignItems(state.data, { board, inventory });
+  lastAssign = r;
+  const compName = id => state.data.components.find(c => c.id === id)?.name || id;
+  // 챔피언별로 묶어서
+  const groups = [];
+  for (const a of r.assignments) {
+    let g = groups.find(x => x.idx === a.idx);
+    if (!g) groups.push(g = { idx: a.idx, champ: a.champ, list: [] });
+    g.list.push(a);
+  }
+  const why = a => a.emblem
+    ? `${esc(traitName(a.emblem.trait))} ${a.emblem.from} → ${a.emblem.to}${a.emblem.reaches ? ' <b class="good">단계 달성</b>' : ''}`
+    : a.rate != null ? `랭커 ${Math.round(a.rate * 100)}%가 이 챔피언에게` : '역할 기준';
+  const rows = groups.map(g => `<div class="asgRow"><div class="asgChamp" data-cost="${g.champ.cost}">${img(g.champ.icon)}<b>${esc(g.champ.name)}</b></div>
+    <div class="asgItems">${g.list.map(a => `<div class="asgItem">${itemLabel(a.item.id)}${a.from ? `<span class="muted small">${esc(a.from.map(compName).join(' + '))} 조합</span>` : ''}<span class="small">${why(a)}</span></div>`).join('')}</div></div>`).join('');
+  const kept = [
+    ...r.unplaced.map(x => `${itemLabel(x.id)}<span class="muted small">${x.why === 'nofit' ? (x.kind === 'emblem' ? '시너지가 없는 챔피언이 없음' : '어울리는 챔피언 없음') : '넣을 칸 없음'}</span>`),
+    ...r.leftComponents.map(id => `${itemLabel(id)}<span class="muted small">짝이 없는 재료</span>`),
+  ];
+  box.innerHTML = `
+    <div class="resultHead"><h3>아이템 배분 추천</h3><span class="legend">${curPatch() ? esc(curPatch()) + ' 패치 · ' : ''}랭커 경기에서 그 챔피언이 그 아이템을 낀 비율 기준 · 이미 아이템을 든 챔피언에게 몰아줌</span></div>
+    ${rows || '<div class="empty">줄 수 있는 아이템이 없어요.</div>'}
+    ${kept.length ? `<div class="asgKeep"><b>보관</b>${kept.map(k => `<span class="asgItem">${k}</span>`).join('')}</div>` : ''}
+    ${r.assignments.length ? '<button class="btn primary" id="bdAssignApply">보드에 적용</button>' : ''}`;
 }
 
 // ---------------- 아이템 조합식 툴팁 ----------------

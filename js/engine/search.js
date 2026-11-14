@@ -406,3 +406,166 @@ export function emblemTeamMaker(data, { emblems, size, maxCost, desired = {}, ..
   all.sort((a, b) => (b.desiredMet - a.desiredMet) || (useful(b) - useful(a)) || b.score - a.score);
   return diversify(all, 6, 2);
 }
+
+// -------------------------------------------------------------
+// 기능 6. 내 보드 + 남은 아이템 → 누구에게 무슨 아이템을 줄지 (자동 배분)
+// - 이미 낀 아이템은 고정, 남은 칸(최대 3칸)에만
+// - 재료가 있으면 어떤 완성 아이템을 만들지까지 (짝짓는 모든 방법 중 가장 좋은 것)
+// - 점수: 랭커 통계 궁합(itemAffinity) + 이미 캐리 아이템을 든 챔피언에게 몰아주기 + 랭커 3신기와 일치하면 가산
+// - 상징: 그 시너지가 없는 챔피언에게, 시너지 단계가 실제로 올라가면 높게
+// -------------------------------------------------------------
+export function assignItems(data, { board, inventory }) {
+  const byId = new Map(data.champions.map(c => [c.id, c]));
+  const emblemOf = id => data.emblems.find(e => e.id === id || (e.ids || []).includes(id));
+  const componentIds = new Set((data.components || []).map(c => c.id));
+  const lookup = id => {
+    const em = emblemOf(id);
+    if (em) return { ...em, id, kind: 'emblem' };
+    const it = data.items.find(i => i.id === id);
+    if (it) return { ...it, kind: 'item' };
+    const rad = (data.radiants || []).find(i => i.id === id);
+    if (rad) { // 찬란한 아이템: 원래 아이템 기준으로 궁합 판단
+      const base = data.items.find(i => i.id === id.replace(/_?Radiant$/i, ''));
+      return { ...rad, kind: 'item', role: base?.role || 'FLEX', statId: base?.id };
+    }
+    const art = (data.artifacts || []).find(i => i.id === id);
+    if (art) return { ...art, kind: 'item', role: 'FLEX' };
+    return { id, name: id, kind: 'item', role: 'FLEX' };
+  };
+  const units = board.map(b => {
+    const champ = byId.get(b.id);
+    if (!champ) return null;
+    const held = (b.items || []).map(lookup);
+    return { idx: b.idx, champ, star: b.star || 2, held, free: Math.max(0, 3 - held.length) };
+  }).filter(Boolean);
+
+  const aff = (u, it) => itemAffinity(data, u.champ, it.statId ? { ...it, id: it.statId } : it);
+  // 이미 아이템(딜템 등)을 든 챔피언 = 그 덱의 아이템 홀더 → 같은 계열 아이템을 몰아줌
+  // (게임에서 이미 아이템을 준 챔피언 = 키우기로 정한 캐리. 다른 챔피언이 통계상 조금 더 잘 써도 몰아주는 게 보통 더 셈)
+  const holderBonus = u => 1 + 0.6 * Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length);
+  const buildsOf = u => data.unitStats?.[u.champ.id.toLowerCase()]?.builds || [];
+  const unitValue = (u, added) => {
+    let v = 0;
+    const seen = {};
+    for (const it of added) {
+      const dup = (seen[it.id] = (seen[it.id] || 0) + 1) + u.held.filter(h => h.id === it.id).length;
+      v += aff(u, it) * holderBonus(u) * (dup > 1 ? 0.6 : 1);
+    }
+    // 랭커 3신기와 일치하면 가산 (3개 완성 일치 0.5, 2개 이상이 한 3신기 안에 0.2)
+    const final = [...u.held, ...added].filter(x => x.kind === 'item').map(x => x.statId || x.id).sort();
+    if (added.length && final.length >= 2) {
+      const builds = buildsOf(u).filter(b => b.games >= 5);
+      const contains = b => { const rest = [...b.items]; return final.every(id => { const i = rest.indexOf(id); if (i < 0) return false; rest.splice(i, 1); return true; }); };
+      if (final.length === 3 && builds.some(b => [...b.items].sort().join() === final.join())) v += 0.5;
+      else if (builds.some(contains)) v += 0.2;
+    }
+    return v;
+  };
+
+  // 일반 아이템 배분: 큰 것부터 욕심껏 → 옮기기·바꾸기로 다듬기
+  function place(items) {
+    const slots = new Map(units.map(u => [u, []]));
+    const total = () => units.reduce((s, u) => s + unitValue(u, slots.get(u)), 0);
+    const order = [...items].sort((a, b) => Math.max(...units.map(u => aff(u, b))) - Math.max(...units.map(u => aff(u, a))));
+    const unplaced = [];
+    for (const it of order) {
+      let best = null;
+      for (const u of units) {
+        const list = slots.get(u);
+        if (list.length >= u.free) continue;
+        const gain = unitValue(u, [...list, it]) - unitValue(u, list);
+        if (!best || gain > best.gain) best = { u, gain };
+      }
+      // 어울리는 챔피언이 없으면 억지로 주지 않고 보관 (예: 물리 딜러가 없는데 무한의 대검)
+      if (best && best.gain >= 0.1) slots.get(best.u).push(it); else unplaced.push({ ...it, why: best ? 'nofit' : 'noslot' });
+    }
+    for (let iter = 0, improved = true; improved && iter < 30; iter++) {
+      improved = false;
+      const base = total();
+      outer: for (const u of units) {
+        for (const [k, it] of slots.get(u).entries()) {
+          for (const v of units) {
+            if (v === u) continue;
+            const lu = slots.get(u), lv = slots.get(v);
+            if (lv.length < v.free) { // 옮기기
+              lu.splice(k, 1); lv.push(it);
+              if (total() > base + 1e-9) { improved = true; break outer; }
+              lv.pop(); lu.splice(k, 0, it);
+            }
+            for (const [j, other] of lv.entries()) { // 바꾸기
+              lu[k] = other; lv[j] = it;
+              if (total() > base + 1e-9) { improved = true; break outer; }
+              lu[k] = it; lv[j] = other;
+            }
+          }
+        }
+      }
+    }
+    return { slots, unplaced, value: total() };
+  }
+
+  // 상징: 남은 칸 중, 그 시너지가 없는 챔피언에게 → 시너지 단계가 오르면 높은 점수
+  function placeEmblems(emblems, slots) {
+    const out = [], unplaced = [];
+    const count = t => units.filter(u => u.champ.traits.includes(t)).length
+      + units.filter(u => !u.champ.traits.includes(t) && u.held.some(h => h.kind === 'emblem' && h.trait === t)).length;
+    const extra = {};
+    let value = 0;
+    for (const em of emblems) {
+      const t = em.trait, bps = data.traits[t]?.breakpoints || [];
+      const n = count(t) + (extra[t] || 0);
+      const next = bps.find(b => b > n);
+      const gain = next === n + 1 ? 1 + 0.2 * bps.indexOf(next) : next ? 0.25 : 0.05;
+      // 남은 칸이 있고 시너지가 없는 챔피언 중, 일반 아이템을 덜 받은(캐리가 아닌) 쪽
+      const cand = units.filter(u => !u.champ.traits.includes(t) && slots.get(u).length < u.free)
+        .sort((a, b) => unitValue(a, slots.get(a)) - unitValue(b, slots.get(b)) || a.champ.cost - b.champ.cost)[0];
+      if (!cand) { unplaced.push({ ...em, why: units.every(u => u.champ.traits.includes(t)) ? 'nofit' : 'noslot' }); continue; }
+      slots.get(cand).push(em);
+      extra[t] = (extra[t] || 0) + 1;
+      value += gain;
+      out.push({ em, u: cand, n, next, gain });
+    }
+    return { placed: out, unplaced, value };
+  }
+
+  // 재료: 짝짓는 방법마다 배분해 보고 가장 좋은 것
+  const comps = inventory.filter(id => componentIds.has(id));
+  const ready = inventory.filter(id => !componentIds.has(id)).map(lookup);
+  const book = recipeBook(data);
+  const plans = comps.length ? pairings(comps, book, 2000) : [{ made: [], left: [] }];
+  let best = null;
+  const seenPlan = new Set();
+  for (const p of plans) {
+    const key = p.made.map(m => m.result.id).sort().join();
+    if (seenPlan.has(key)) continue;
+    seenPlan.add(key);
+    const crafted = p.made.map(m => ({ ...lookup(m.result.id), from: m.from }));
+    const all = [...ready, ...crafted];
+    const placed = place(all.filter(x => x.kind === 'item'));
+    const ems = placeEmblems(all.filter(x => x.kind === 'emblem'), placed.slots);
+    const score = placed.value + ems.value;
+    if (!best || score > best.score) best = { score, placed, ems, left: p.left };
+  }
+  const reasonOf = (u, it) => {
+    const st = data.unitStats?.[u.champ.id.toLowerCase()];
+    const rate = st && st.games >= 30 ? (st.items?.[it.statId || it.id] || 0) / st.games : null;
+    return { rate };
+  };
+  const assignments = [];
+  for (const u of units) {
+    for (const it of best.placed.slots.get(u)) {
+      if (it.kind === 'emblem') continue;
+      assignments.push({ item: it, idx: u.idx, champ: u.champ, from: it.from || null, ...reasonOf(u, it) });
+    }
+  }
+  for (const e of best.ems.placed) assignments.push({ item: e.em, idx: e.u.idx, champ: e.u.champ, from: e.em.from || null, emblem: { trait: e.em.trait, from: e.n, to: e.n + 1, reaches: e.next === e.n + 1 } });
+  // 같은 챔피언끼리 모아서 보여주기 좋게 (아이템을 많이 받는 챔피언 먼저)
+  const per = assignments.reduce((m, a) => (m[a.idx] = (m[a.idx] || 0) + 1, m), {});
+  assignments.sort((a, b) => per[b.idx] - per[a.idx] || a.idx - b.idx);
+  return {
+    assignments,
+    unplaced: [...best.placed.unplaced, ...best.ems.unplaced],
+    leftComponents: best.left,
+    crafted: assignments.filter(a => a.from).length,
+  };
+}

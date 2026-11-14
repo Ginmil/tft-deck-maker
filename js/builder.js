@@ -8,7 +8,7 @@
 const BD_ROWS = 4, BD_COLS = 7;            // 0행 = 맨 앞줄(적과 가까운 줄), 3행 = 맨 뒷줄
 const BD_SAVE_KEY = 'tft-deck-maker:boards';
 let bd = null;                              // ctx
-const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal' }; // cells[idx] = { id, star, items: [] }
+const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal', inv: [], invMode: false }; // cells[idx] = { id, star, items: [] }, inv = 남은 아이템
 
 const bdIdx = (r, c) => r * BD_COLS + c;
 const bdData = () => bd.getData();
@@ -26,7 +26,11 @@ export function initBuilder(ctx) {
     bdRenderPool();
   };
   $('bdClear').onclick = () => { bdState.cells = {}; bdState.selected = null; bdRender(); };
-  $('bdUndo').onclick = () => { const code = bdState.undo; bdState.undo = null; if (code) bdDecode(code); };
+  $('bdUndo').onclick = () => {
+    const code = bdState.undo; bdState.undo = null;
+    if (bdState.undoInv) { bdState.inv = bdState.undoInv; bdState.undoInv = null; bdRenderInv(); }
+    if (code) bdDecode(code);
+  };
   $('bdAuto').onclick = () => {
     const units = Object.values(bdState.cells).map(u => ({ ...u, champ: bdChamp(u.id) })).filter(u => u.champ);
     bdState.cells = bdAutoPlace(units);
@@ -120,6 +124,21 @@ export function initBuilder(ctx) {
     if (b.dataset.act === 'close') bdState.selected = null;
     bdRender();
   });
+  // 남은 아이템 (자동 배분용)
+  $('bdInvMode').onchange = e => { bdState.invMode = e.target.checked; if (bdState.invMode) bdState.selected = null; bdRender(); };
+  $('bdInvClear').onclick = () => { bdState.inv = []; bdRenderInv(); };
+  $('bdInv').onclick = e => {
+    const b = e.target.closest('button[data-i]'); if (!b) return;
+    bdState.inv.splice(Number(b.dataset.i), 1); bdRenderInv();
+  };
+  // 남은 아이템 칸에 끌어다 놓기
+  $('bdInv').addEventListener('dragover', e => e.preventDefault());
+  $('bdInv').addEventListener('drop', e => {
+    e.preventDefault();
+    const p = JSON.parse(e.dataTransfer.getData('text/plain') || '{}');
+    if (p.kind === 'item') { bdState.inv.push(p.id); bdRenderInv(); }
+  });
+
   // 아이템 분류 탭
   $('bdItemTabs').onclick = e => {
     const b = e.target.closest('[data-g]'); if (!b) return;
@@ -135,6 +154,7 @@ export function initBuilder(ctx) {
     $(id).addEventListener('click', e => {
       const el = e.target.closest('[data-id]'); if (!el) return;
       const s = bdState.selected;
+      if (kind === 'item' && bdState.invMode) { bdState.inv.push(el.dataset.id); bdRenderInv(); return; } // 남은 아이템 칸에 담기
       if (kind === 'item' && s?.kind === 'cell') { bdAddItem(s.idx, el.dataset.id); bdRender(); return; }
       bdState.selected = s?.kind === kind && s.id === el.dataset.id ? null : { kind, id: el.dataset.id };
       // 챔피언은 클릭하면 바로 빈 자리에 (앞/뒷줄 자동)
@@ -248,9 +268,32 @@ export function bdOpenDeck(d) {
   bdRender();
 }
 
+function bdRenderInv() {
+  const box = document.getElementById('bdInv'); if (!box) return;
+  box.innerHTML = bdState.inv.map((id, i) => {
+    const it = bdItemInfo(id);
+    return `<span class="chip">${it.icon ? `<img src="${bd.esc(it.icon)}" alt="" class="chipIcon" onerror="this.remove()">` : ''}${bd.esc(it.name)}<button data-i="${i}" aria-label="빼기">✕</button></span>`;
+  }).join('');
+}
+/** 남은 아이템 목록 (자동 배분용) */
+export function bdInventory() { return [...bdState.inv]; }
+/** 자동 배분 결과를 보드에 넣기: [{ idx, itemId }] + 남길 아이템 목록 (되돌리기 가능) */
+export function bdApplyItems(list, keep) {
+  bdState.undo = bdEncode();
+  bdState.undoInv = [...bdState.inv];
+  for (const { idx, itemId } of list) {
+    const u = bdState.cells[idx];
+    if (u && u.items.length < 3) u.items.push(itemId);
+  }
+  bdState.inv = [...keep];
+  bdRender();
+  bdRenderInv();
+  bdToast('아이템을 보드에 넣었어요 — 되돌리려면 "되돌리기"');
+}
+
 /** 지금 보드의 챔피언 목록 (다음 수 추천용) */
 export function bdBoardUnits() {
-  return Object.values(bdState.cells).map(u => ({ id: u.id, star: u.star, items: [...u.items] }));
+  return Object.entries(bdState.cells).map(([idx, u]) => ({ idx: Number(idx), id: u.id, star: u.star, items: [...u.items] }));
 }
 
 // ---------------- 시너지 계산 (보드 기준) ----------------
@@ -275,12 +318,13 @@ function bdTraits() {
 // ---------------- 그리기 ----------------
 function bdItemInfo(id) {
   const data = bdData();
-  const e = [...data.emblems, ...(data.artifacts || []), ...(data.radiants || [])].find(x => x.id === id);
+  const e = [...data.emblems, ...(data.artifacts || []), ...(data.radiants || []), ...(data.components || [])].find(x => x.id === id);
   if (e) return { name: e.name, icon: e.icon };
   return data.itemInfo?.[id.toLowerCase()] || data.items.find(i => i.id === id) || { name: id, icon: null };
 }
 
 export function bdRender() {
+  bdRenderInv();
   if (!bdData()) return;
   const { esc } = bd;
   const sel = bdState.selected;
@@ -315,7 +359,8 @@ export function bdRender() {
   document.getElementById('bdCount').textContent = `${n}명 · ${gold}골드`;
   document.getElementById('bdUndo').hidden = !bdState.undo;
   document.getElementById('bdHint').textContent =
-    sel?.kind === 'item' ? `"${bdItemInfo(sel.id).name}" 선택됨 — 끼울 챔피언을 클릭하세요`
+    bdState.invMode ? '아이템을 누르면 아래 "남은 아이템" 칸에 담겨요 (체크를 풀면 다시 챔피언에게 끼우기)'
+    : sel?.kind === 'item' ? `"${bdItemInfo(sel.id).name}" 선택됨 — 끼울 챔피언을 클릭하세요`
     : sel?.kind === 'cell' ? '선택됨 — 다른 칸을 클릭하면 이동, 아이템을 클릭하면 장착'
     : '챔피언을 끌어다 놓거나 클릭 · 챔피언을 클릭하면 아이템/별 편집 · 보드 밖으로 끌어내면 빼기';
   try { history.replaceState(null, '', n ? `#b=${encodeURIComponent(bdEncode())}` : location.pathname + location.search); } catch { /* file:// 등에서 실패해도 무시 */ }
@@ -367,6 +412,7 @@ function bdItemGroups() {
   const data = bdData();
   return {
     normal: { label: '일반', list: data.items },
+    component: { label: '재료', list: data.components || [] },
     radiant: { label: '찬란한', list: data.radiants || [] },
     artifact: { label: '유물', list: data.artifacts || [] },
     emblem: { label: '상징', list: data.emblems },

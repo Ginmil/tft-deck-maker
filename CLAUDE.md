@@ -22,8 +22,9 @@
   - `distributeItems` — 캐리 가산점은 그 캐리에게 맞는 아이템일 때만(물리 캐리에 대천사 X).
   - **`itemAffinity`**(11/15) — 챔피언-아이템 궁합: 랭커 통계(`data.unitStats`, 30판 이상)가 있으면 "그 챔피언이 그 아이템을 낀 판 비율 × 3"(최대 1), 없으면 역할 기반 `itemFit`. `decksForItems`·`distributeItems`·`craftPlans` 모두 이걸 씀(애쉬에 스테락 주던 문제 해결).
   - **`carriesForItems`** — 고른 아이템을 랭커들이 실제로 준 챔피언 TOP 5(낀 판 비율·아이템 몫·평균 등수) + 고른 아이템을 가장 많이 포함하는 실제 3신기(= 다음에 만들 아이템).
+  - **`assignItems`**(11/15, 사용자 아이디어) — 배치툴 보드 + "남은 아이템"(완성·재료·상징 섞어서) → 누구에게 무엇을 줄지. 이미 낀 아이템 고정, 남은 칸(최대 3)에만. 재료는 짝짓는 모든 방법(`pairings`) 중 최고. 점수 = `itemAffinity` × 홀더 가산(이미 캐리템을 든 챔피언 +60%/개, 최대 2개 — 게임에서 이미 준 챔피언 = 키우기로 한 캐리) × 중복 0.6 + 랭커 3신기 일치(완성 0.5, 부분 0.2). 욕심 배분 후 옮기기·바꾸기로 다듬기. 어울리는 챔피언이 없으면(궁합 < 0.1) 억지로 안 주고 보관. 상징은 그 시너지가 없는 챔피언 중 일반 아이템을 덜 받은 쪽, 시너지 단계가 오르면 높은 점수. `test/assign-test.mjs`.
   - `decksFromBoard`/`readBoard` — 배치툴 보드 → 다음 수 추천. 보드 챔피언 = required("바꿔도 돼요"면 아이템·3성·캐리만 required, 나머지 prefer), 낀 상징 = emblems, 딜 아이템 최다 챔피언 = 핵심 캐리. 목표 레벨 0 = 보드+1. 결과에 `d.board = { added, removed }`.
-- `js/builder.js` — 배치툴(4×7 육각 보드, 드래그 앤 드롭, 아이템 분류 일반/찬란한/유물/상징, 저장·코드 공유, 덱 카드 → `bdOpenDeck`). `d.board` 가 있는 덱은 기존 배치·아이템을 유지한 채 빼는 챔피언만 빼고 새 챔피언을 빈 칸에 넣음 + "되돌리기".
+- `js/builder.js` — 배치툴(4×7 육각 보드, 드래그 앤 드롭, 아이템 분류 일반/찬란한/유물/상징, 저장·코드 공유, 덱 카드 → `bdOpenDeck`). `d.board` 가 있는 덱은 기존 배치·아이템을 유지한 채 빼는 챔피언만 빼고 새 챔피언을 빈 칸에 넣음 + "되돌리기". 아이템 팔레트에 "재료" 분류. 보드 아래 "남은 아이템" 칸(체크하면 팔레트 클릭이 이 칸에 담김, 끌어다 놓기도 됨) → "아이템 자동 배분" → "보드에 적용"(`bdApplyItems`, 되돌리기 시 남은 아이템도 복원).
 - `js/app.js` 의 `mergedComps` — 같은 핵심 캐리 + 레벨만큼 채운 구성이 **완전히 같은** 메타 덱(주력 시너지만 다르게 잡힌 것, 예: 처형자·소라카 / 소환사·소라카)을 판수 가중 평균으로 합침(214 → 206). 한 명 차이까지 합치면 처형자 유나라(2.97등)가 개화 유나라(4.54등)에 묻혀서 안 됨. `metaNearBoard` 는 추가로 "보드 적용 후 결과 구성"이 같은 덱을 하나만.
 - `js/app.js` 의 `runBoard`/`metaNearBoard` — 다음 수 추천 화면(`#bdRecs`): 내 보드와 절반 이상 겹치는 메타 덱(최대 3) + 이어서 완성하는 덱(최대 5). `metaDecks(minGames)` 는 메타 덱 탭과 공용.
 - `js/app.js` — 화면 로직, 탭: 메타 덱 / 패치 노트 / 상징 팀 메이커 / 아이템으로 찾기 / 챔피언 3신기 / 배치툴. **시너지로 찾기 탭은 11/15 삭제**(사용자 판단: 시너지로 덱을 고르는 일은 드물고, 캐리 하나로 짜는 건 배치툴이 맡음 — `decksForTraits` 엔진 함수는 남아 있음). 아이템 탭(완성)은 통계가 있으면 `renderItemStats`: 랭커가 준 챔피언 TOP 5 + 추천 3신기 + 그 캐리/3신기와 겹치는 메타 덱(캐리마다 최고 1개, 최대 4), 통계 없으면 예전 엔진 덱. 아이템 조합식 툴팁(`data-item` 속성).
@@ -35,7 +36,7 @@
   - 다음 단계: 자동 티어표(이번 패치 기준 S/A/B/C).
   - 집계 규칙: 도적의 장갑 보유자는 아이템 통계에서 제외, 전략가 아이템은 3신기에서 제외. 메타 덱 = "주력 시너지 + 핵심 캐리(딜 아이템 최다 → 3성 → 코스트)", 레벨만큼 자리 채움, 3성 비율 표시.
 - `.github/workflows/collect.yml` — 매일 UTC 19시(KST 04시, 실제로는 지연됨) 수집 후 통계 파일 커밋. Secret `RIOT_API_KEY` 필요. Actions 캐시로 받은 경기 재사용.
-- `test/` — `node test/run.mjs`, `node test/fit-test.mjs`, `node test/patch-test.mjs` (샘플 세트 `data/sample-cdragon.json`, `node test/make-sample.mjs > data/sample-cdragon.json` 로 재생성 후 `node build.mjs`). 샘플은 가상 세트(사슴·곰 등)지만 재료 아이템은 실제와 같은 apiName·조합식.
+- `test/` — `node test/run.mjs`, `node test/fit-test.mjs`, `node test/patch-test.mjs`, `node test/assign-test.mjs` (샘플 세트 `data/sample-cdragon.json`, `node test/make-sample.mjs > data/sample-cdragon.json` 로 재생성 후 `node build.mjs`). 샘플은 가상 세트(사슴·곰 등)지만 재료 아이템은 실제와 같은 apiName·조합식.
 
 ## 상태 (2026-11-12 기준)
 - 완료: 위 탭 전부, 배포, 자동 수집(챌린저 200명 × 20판, 첫 수집 2,349판), 내 보드 기반 다음 수 추천(11/12), 재료 아이템 → 조합·덱 추천(11/14, 아이템 탭의 "재료 아이템").

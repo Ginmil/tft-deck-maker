@@ -964,6 +964,169 @@ function emblemTeamMaker(data, { emblems, size, maxCost, desired = {}, ...filter
   return diversify(all, 6, 2);
 }
 
+// -------------------------------------------------------------
+// 기능 6. 내 보드 + 남은 아이템 → 누구에게 무슨 아이템을 줄지 (자동 배분)
+// - 이미 낀 아이템은 고정, 남은 칸(최대 3칸)에만
+// - 재료가 있으면 어떤 완성 아이템을 만들지까지 (짝짓는 모든 방법 중 가장 좋은 것)
+// - 점수: 랭커 통계 궁합(itemAffinity) + 이미 캐리 아이템을 든 챔피언에게 몰아주기 + 랭커 3신기와 일치하면 가산
+// - 상징: 그 시너지가 없는 챔피언에게, 시너지 단계가 실제로 올라가면 높게
+// -------------------------------------------------------------
+function assignItems(data, { board, inventory }) {
+  const byId = new Map(data.champions.map(c => [c.id, c]));
+  const emblemOf = id => data.emblems.find(e => e.id === id || (e.ids || []).includes(id));
+  const componentIds = new Set((data.components || []).map(c => c.id));
+  const lookup = id => {
+    const em = emblemOf(id);
+    if (em) return { ...em, id, kind: 'emblem' };
+    const it = data.items.find(i => i.id === id);
+    if (it) return { ...it, kind: 'item' };
+    const rad = (data.radiants || []).find(i => i.id === id);
+    if (rad) { // 찬란한 아이템: 원래 아이템 기준으로 궁합 판단
+      const base = data.items.find(i => i.id === id.replace(/_?Radiant$/i, ''));
+      return { ...rad, kind: 'item', role: base?.role || 'FLEX', statId: base?.id };
+    }
+    const art = (data.artifacts || []).find(i => i.id === id);
+    if (art) return { ...art, kind: 'item', role: 'FLEX' };
+    return { id, name: id, kind: 'item', role: 'FLEX' };
+  };
+  const units = board.map(b => {
+    const champ = byId.get(b.id);
+    if (!champ) return null;
+    const held = (b.items || []).map(lookup);
+    return { idx: b.idx, champ, star: b.star || 2, held, free: Math.max(0, 3 - held.length) };
+  }).filter(Boolean);
+
+  const aff = (u, it) => itemAffinity(data, u.champ, it.statId ? { ...it, id: it.statId } : it);
+  // 이미 아이템(딜템 등)을 든 챔피언 = 그 덱의 아이템 홀더 → 같은 계열 아이템을 몰아줌
+  // (게임에서 이미 아이템을 준 챔피언 = 키우기로 정한 캐리. 다른 챔피언이 통계상 조금 더 잘 써도 몰아주는 게 보통 더 셈)
+  const holderBonus = u => 1 + 0.6 * Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length);
+  const buildsOf = u => data.unitStats?.[u.champ.id.toLowerCase()]?.builds || [];
+  const unitValue = (u, added) => {
+    let v = 0;
+    const seen = {};
+    for (const it of added) {
+      const dup = (seen[it.id] = (seen[it.id] || 0) + 1) + u.held.filter(h => h.id === it.id).length;
+      v += aff(u, it) * holderBonus(u) * (dup > 1 ? 0.6 : 1);
+    }
+    // 랭커 3신기와 일치하면 가산 (3개 완성 일치 0.5, 2개 이상이 한 3신기 안에 0.2)
+    const final = [...u.held, ...added].filter(x => x.kind === 'item').map(x => x.statId || x.id).sort();
+    if (added.length && final.length >= 2) {
+      const builds = buildsOf(u).filter(b => b.games >= 5);
+      const contains = b => { const rest = [...b.items]; return final.every(id => { const i = rest.indexOf(id); if (i < 0) return false; rest.splice(i, 1); return true; }); };
+      if (final.length === 3 && builds.some(b => [...b.items].sort().join() === final.join())) v += 0.5;
+      else if (builds.some(contains)) v += 0.2;
+    }
+    return v;
+  };
+
+  // 일반 아이템 배분: 큰 것부터 욕심껏 → 옮기기·바꾸기로 다듬기
+  function place(items) {
+    const slots = new Map(units.map(u => [u, []]));
+    const total = () => units.reduce((s, u) => s + unitValue(u, slots.get(u)), 0);
+    const order = [...items].sort((a, b) => Math.max(...units.map(u => aff(u, b))) - Math.max(...units.map(u => aff(u, a))));
+    const unplaced = [];
+    for (const it of order) {
+      let best = null;
+      for (const u of units) {
+        const list = slots.get(u);
+        if (list.length >= u.free) continue;
+        const gain = unitValue(u, [...list, it]) - unitValue(u, list);
+        if (!best || gain > best.gain) best = { u, gain };
+      }
+      // 어울리는 챔피언이 없으면 억지로 주지 않고 보관 (예: 물리 딜러가 없는데 무한의 대검)
+      if (best && best.gain >= 0.1) slots.get(best.u).push(it); else unplaced.push({ ...it, why: best ? 'nofit' : 'noslot' });
+    }
+    for (let iter = 0, improved = true; improved && iter < 30; iter++) {
+      improved = false;
+      const base = total();
+      outer: for (const u of units) {
+        for (const [k, it] of slots.get(u).entries()) {
+          for (const v of units) {
+            if (v === u) continue;
+            const lu = slots.get(u), lv = slots.get(v);
+            if (lv.length < v.free) { // 옮기기
+              lu.splice(k, 1); lv.push(it);
+              if (total() > base + 1e-9) { improved = true; break outer; }
+              lv.pop(); lu.splice(k, 0, it);
+            }
+            for (const [j, other] of lv.entries()) { // 바꾸기
+              lu[k] = other; lv[j] = it;
+              if (total() > base + 1e-9) { improved = true; break outer; }
+              lu[k] = it; lv[j] = other;
+            }
+          }
+        }
+      }
+    }
+    return { slots, unplaced, value: total() };
+  }
+
+  // 상징: 남은 칸 중, 그 시너지가 없는 챔피언에게 → 시너지 단계가 오르면 높은 점수
+  function placeEmblems(emblems, slots) {
+    const out = [], unplaced = [];
+    const count = t => units.filter(u => u.champ.traits.includes(t)).length
+      + units.filter(u => !u.champ.traits.includes(t) && u.held.some(h => h.kind === 'emblem' && h.trait === t)).length;
+    const extra = {};
+    let value = 0;
+    for (const em of emblems) {
+      const t = em.trait, bps = data.traits[t]?.breakpoints || [];
+      const n = count(t) + (extra[t] || 0);
+      const next = bps.find(b => b > n);
+      const gain = next === n + 1 ? 1 + 0.2 * bps.indexOf(next) : next ? 0.25 : 0.05;
+      // 남은 칸이 있고 시너지가 없는 챔피언 중, 일반 아이템을 덜 받은(캐리가 아닌) 쪽
+      const cand = units.filter(u => !u.champ.traits.includes(t) && slots.get(u).length < u.free)
+        .sort((a, b) => unitValue(a, slots.get(a)) - unitValue(b, slots.get(b)) || a.champ.cost - b.champ.cost)[0];
+      if (!cand) { unplaced.push({ ...em, why: units.every(u => u.champ.traits.includes(t)) ? 'nofit' : 'noslot' }); continue; }
+      slots.get(cand).push(em);
+      extra[t] = (extra[t] || 0) + 1;
+      value += gain;
+      out.push({ em, u: cand, n, next, gain });
+    }
+    return { placed: out, unplaced, value };
+  }
+
+  // 재료: 짝짓는 방법마다 배분해 보고 가장 좋은 것
+  const comps = inventory.filter(id => componentIds.has(id));
+  const ready = inventory.filter(id => !componentIds.has(id)).map(lookup);
+  const book = recipeBook(data);
+  const plans = comps.length ? pairings(comps, book, 2000) : [{ made: [], left: [] }];
+  let best = null;
+  const seenPlan = new Set();
+  for (const p of plans) {
+    const key = p.made.map(m => m.result.id).sort().join();
+    if (seenPlan.has(key)) continue;
+    seenPlan.add(key);
+    const crafted = p.made.map(m => ({ ...lookup(m.result.id), from: m.from }));
+    const all = [...ready, ...crafted];
+    const placed = place(all.filter(x => x.kind === 'item'));
+    const ems = placeEmblems(all.filter(x => x.kind === 'emblem'), placed.slots);
+    const score = placed.value + ems.value;
+    if (!best || score > best.score) best = { score, placed, ems, left: p.left };
+  }
+  const reasonOf = (u, it) => {
+    const st = data.unitStats?.[u.champ.id.toLowerCase()];
+    const rate = st && st.games >= 30 ? (st.items?.[it.statId || it.id] || 0) / st.games : null;
+    return { rate };
+  };
+  const assignments = [];
+  for (const u of units) {
+    for (const it of best.placed.slots.get(u)) {
+      if (it.kind === 'emblem') continue;
+      assignments.push({ item: it, idx: u.idx, champ: u.champ, from: it.from || null, ...reasonOf(u, it) });
+    }
+  }
+  for (const e of best.ems.placed) assignments.push({ item: e.em, idx: e.u.idx, champ: e.u.champ, from: e.em.from || null, emblem: { trait: e.em.trait, from: e.n, to: e.n + 1, reaches: e.next === e.n + 1 } });
+  // 같은 챔피언끼리 모아서 보여주기 좋게 (아이템을 많이 받는 챔피언 먼저)
+  const per = assignments.reduce((m, a) => (m[a.idx] = (m[a.idx] || 0) + 1, m), {});
+  assignments.sort((a, b) => per[b.idx] - per[a.idx] || a.idx - b.idx);
+  return {
+    assignments,
+    unplaced: [...best.placed.unplaced, ...best.ems.unplaced],
+    leftComponents: best.left,
+    crafted: assignments.filter(a => a.from).length,
+  };
+}
+
 
 // ===== js/engine/patch.js =====
 // =============================================================
@@ -1062,7 +1225,7 @@ function pRound(x, d) { return Math.round(x * 10 ** d) / 10 ** d; }
 const BD_ROWS = 4, BD_COLS = 7;            // 0행 = 맨 앞줄(적과 가까운 줄), 3행 = 맨 뒷줄
 const BD_SAVE_KEY = 'tft-deck-maker:boards';
 let bd = null;                              // ctx
-const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal' }; // cells[idx] = { id, star, items: [] }
+const bdState = { cells: {}, selected: null, costFilter: 0, itemGroup: 'normal', inv: [], invMode: false }; // cells[idx] = { id, star, items: [] }, inv = 남은 아이템
 
 const bdIdx = (r, c) => r * BD_COLS + c;
 const bdData = () => bd.getData();
@@ -1080,7 +1243,11 @@ function initBuilder(ctx) {
     bdRenderPool();
   };
   $('bdClear').onclick = () => { bdState.cells = {}; bdState.selected = null; bdRender(); };
-  $('bdUndo').onclick = () => { const code = bdState.undo; bdState.undo = null; if (code) bdDecode(code); };
+  $('bdUndo').onclick = () => {
+    const code = bdState.undo; bdState.undo = null;
+    if (bdState.undoInv) { bdState.inv = bdState.undoInv; bdState.undoInv = null; bdRenderInv(); }
+    if (code) bdDecode(code);
+  };
   $('bdAuto').onclick = () => {
     const units = Object.values(bdState.cells).map(u => ({ ...u, champ: bdChamp(u.id) })).filter(u => u.champ);
     bdState.cells = bdAutoPlace(units);
@@ -1174,6 +1341,21 @@ function initBuilder(ctx) {
     if (b.dataset.act === 'close') bdState.selected = null;
     bdRender();
   });
+  // 남은 아이템 (자동 배분용)
+  $('bdInvMode').onchange = e => { bdState.invMode = e.target.checked; if (bdState.invMode) bdState.selected = null; bdRender(); };
+  $('bdInvClear').onclick = () => { bdState.inv = []; bdRenderInv(); };
+  $('bdInv').onclick = e => {
+    const b = e.target.closest('button[data-i]'); if (!b) return;
+    bdState.inv.splice(Number(b.dataset.i), 1); bdRenderInv();
+  };
+  // 남은 아이템 칸에 끌어다 놓기
+  $('bdInv').addEventListener('dragover', e => e.preventDefault());
+  $('bdInv').addEventListener('drop', e => {
+    e.preventDefault();
+    const p = JSON.parse(e.dataTransfer.getData('text/plain') || '{}');
+    if (p.kind === 'item') { bdState.inv.push(p.id); bdRenderInv(); }
+  });
+
   // 아이템 분류 탭
   $('bdItemTabs').onclick = e => {
     const b = e.target.closest('[data-g]'); if (!b) return;
@@ -1189,6 +1371,7 @@ function initBuilder(ctx) {
     $(id).addEventListener('click', e => {
       const el = e.target.closest('[data-id]'); if (!el) return;
       const s = bdState.selected;
+      if (kind === 'item' && bdState.invMode) { bdState.inv.push(el.dataset.id); bdRenderInv(); return; } // 남은 아이템 칸에 담기
       if (kind === 'item' && s?.kind === 'cell') { bdAddItem(s.idx, el.dataset.id); bdRender(); return; }
       bdState.selected = s?.kind === kind && s.id === el.dataset.id ? null : { kind, id: el.dataset.id };
       // 챔피언은 클릭하면 바로 빈 자리에 (앞/뒷줄 자동)
@@ -1302,9 +1485,32 @@ function bdOpenDeck(d) {
   bdRender();
 }
 
+function bdRenderInv() {
+  const box = document.getElementById('bdInv'); if (!box) return;
+  box.innerHTML = bdState.inv.map((id, i) => {
+    const it = bdItemInfo(id);
+    return `<span class="chip">${it.icon ? `<img src="${bd.esc(it.icon)}" alt="" class="chipIcon" onerror="this.remove()">` : ''}${bd.esc(it.name)}<button data-i="${i}" aria-label="빼기">✕</button></span>`;
+  }).join('');
+}
+/** 남은 아이템 목록 (자동 배분용) */
+function bdInventory() { return [...bdState.inv]; }
+/** 자동 배분 결과를 보드에 넣기: [{ idx, itemId }] + 남길 아이템 목록 (되돌리기 가능) */
+function bdApplyItems(list, keep) {
+  bdState.undo = bdEncode();
+  bdState.undoInv = [...bdState.inv];
+  for (const { idx, itemId } of list) {
+    const u = bdState.cells[idx];
+    if (u && u.items.length < 3) u.items.push(itemId);
+  }
+  bdState.inv = [...keep];
+  bdRender();
+  bdRenderInv();
+  bdToast('아이템을 보드에 넣었어요 — 되돌리려면 "되돌리기"');
+}
+
 /** 지금 보드의 챔피언 목록 (다음 수 추천용) */
 function bdBoardUnits() {
-  return Object.values(bdState.cells).map(u => ({ id: u.id, star: u.star, items: [...u.items] }));
+  return Object.entries(bdState.cells).map(([idx, u]) => ({ idx: Number(idx), id: u.id, star: u.star, items: [...u.items] }));
 }
 
 // ---------------- 시너지 계산 (보드 기준) ----------------
@@ -1329,12 +1535,13 @@ function bdTraits() {
 // ---------------- 그리기 ----------------
 function bdItemInfo(id) {
   const data = bdData();
-  const e = [...data.emblems, ...(data.artifacts || []), ...(data.radiants || [])].find(x => x.id === id);
+  const e = [...data.emblems, ...(data.artifacts || []), ...(data.radiants || []), ...(data.components || [])].find(x => x.id === id);
   if (e) return { name: e.name, icon: e.icon };
   return data.itemInfo?.[id.toLowerCase()] || data.items.find(i => i.id === id) || { name: id, icon: null };
 }
 
 function bdRender() {
+  bdRenderInv();
   if (!bdData()) return;
   const { esc } = bd;
   const sel = bdState.selected;
@@ -1369,7 +1576,8 @@ function bdRender() {
   document.getElementById('bdCount').textContent = `${n}명 · ${gold}골드`;
   document.getElementById('bdUndo').hidden = !bdState.undo;
   document.getElementById('bdHint').textContent =
-    sel?.kind === 'item' ? `"${bdItemInfo(sel.id).name}" 선택됨 — 끼울 챔피언을 클릭하세요`
+    bdState.invMode ? '아이템을 누르면 아래 "남은 아이템" 칸에 담겨요 (체크를 풀면 다시 챔피언에게 끼우기)'
+    : sel?.kind === 'item' ? `"${bdItemInfo(sel.id).name}" 선택됨 — 끼울 챔피언을 클릭하세요`
     : sel?.kind === 'cell' ? '선택됨 — 다른 칸을 클릭하면 이동, 아이템을 클릭하면 장착'
     : '챔피언을 끌어다 놓거나 클릭 · 챔피언을 클릭하면 아이템/별 편집 · 보드 밖으로 끌어내면 빼기';
   try { history.replaceState(null, '', n ? `#b=${encodeURIComponent(bdEncode())}` : location.pathname + location.search); } catch { /* file:// 등에서 실패해도 무시 */ }
@@ -1421,6 +1629,7 @@ function bdItemGroups() {
   const data = bdData();
   return {
     normal: { label: '일반', list: data.items },
+    component: { label: '재료', list: data.components || [] },
     radiant: { label: '찬란한', list: data.radiants || [] },
     artifact: { label: '유물', list: data.artifacts || [] },
     emblem: { label: '상징', list: data.emblems },
@@ -1874,6 +2083,14 @@ function bind() {
     openTab: name => document.querySelector(`.tab[data-tab="${name}"]`)?.click(),
   });
   $('bdRecommend').onclick = e => runBoard(e.currentTarget);
+  $('bdAssign').onclick = () => runAssign();
+  $('bdAssignOut').onclick = e => {
+    if (!e.target.closest('#bdAssignApply') || !lastAssign) return;
+    const r = lastAssign;
+    bdApplyItems(r.assignments.map(a => ({ idx: a.idx, itemId: a.item.id })), [...r.unplaced.map(x => x.id), ...r.leftComponents]);
+    $('bdAssignOut').innerHTML = '<p class="muted small">보드에 넣었어요. 보관한 아이템은 "남은 아이템" 칸에 남아 있어요.</p>';
+    lastAssign = null;
+  };
   $('patchSel').onchange = () => renderPatch($('patchSel').value);
   $('metaSort').onchange = renderMeta;
   $('metaMin').onchange = renderMeta;
@@ -2292,6 +2509,40 @@ function runBoard(btn) {
       box.innerHTML = `<div class="empty">계산 중 오류가 났어요: ${esc(e.message)}</div>`;
     } finally { btn.disabled = false; }
   }, 30);
+}
+
+// ---------------- 내 보드 + 남은 아이템 → 자동 배분 (배치툴) ----------------
+let lastAssign = null;
+function runAssign() {
+  const box = $('bdAssignOut');
+  if (!state.data) { setStatus('먼저 데이터를 불러와 주세요.', true); $('databar').open = true; return; }
+  const board = bdBoardUnits(), inventory = bdInventory();
+  if (!board.length) { box.innerHTML = '<div class="empty">보드에 지금 덱을 먼저 올려 주세요.</div>'; return; }
+  if (!inventory.length) { box.innerHTML = '<div class="empty">"오른쪽 아이템을 누르면 여기에 담기"를 체크하고 남은 아이템을 담아 주세요.</div>'; return; }
+  const r = assignItems(state.data, { board, inventory });
+  lastAssign = r;
+  const compName = id => state.data.components.find(c => c.id === id)?.name || id;
+  // 챔피언별로 묶어서
+  const groups = [];
+  for (const a of r.assignments) {
+    let g = groups.find(x => x.idx === a.idx);
+    if (!g) groups.push(g = { idx: a.idx, champ: a.champ, list: [] });
+    g.list.push(a);
+  }
+  const why = a => a.emblem
+    ? `${esc(traitName(a.emblem.trait))} ${a.emblem.from} → ${a.emblem.to}${a.emblem.reaches ? ' <b class="good">단계 달성</b>' : ''}`
+    : a.rate != null ? `랭커 ${Math.round(a.rate * 100)}%가 이 챔피언에게` : '역할 기준';
+  const rows = groups.map(g => `<div class="asgRow"><div class="asgChamp" data-cost="${g.champ.cost}">${img(g.champ.icon)}<b>${esc(g.champ.name)}</b></div>
+    <div class="asgItems">${g.list.map(a => `<div class="asgItem">${itemLabel(a.item.id)}${a.from ? `<span class="muted small">${esc(a.from.map(compName).join(' + '))} 조합</span>` : ''}<span class="small">${why(a)}</span></div>`).join('')}</div></div>`).join('');
+  const kept = [
+    ...r.unplaced.map(x => `${itemLabel(x.id)}<span class="muted small">${x.why === 'nofit' ? (x.kind === 'emblem' ? '시너지가 없는 챔피언이 없음' : '어울리는 챔피언 없음') : '넣을 칸 없음'}</span>`),
+    ...r.leftComponents.map(id => `${itemLabel(id)}<span class="muted small">짝이 없는 재료</span>`),
+  ];
+  box.innerHTML = `
+    <div class="resultHead"><h3>아이템 배분 추천</h3><span class="legend">${curPatch() ? esc(curPatch()) + ' 패치 · ' : ''}랭커 경기에서 그 챔피언이 그 아이템을 낀 비율 기준 · 이미 아이템을 든 챔피언에게 몰아줌</span></div>
+    ${rows || '<div class="empty">줄 수 있는 아이템이 없어요.</div>'}
+    ${kept.length ? `<div class="asgKeep"><b>보관</b>${kept.map(k => `<span class="asgItem">${k}</span>`).join('')}</div>` : ''}
+    ${r.assignments.length ? '<button class="btn primary" id="bdAssignApply">보드에 적용</button>' : ''}`;
 }
 
 // ---------------- 아이템 조합식 툴팁 ----------------

@@ -144,6 +144,17 @@
           <p class="help small" id="bdHint"></p>
           <div class="bdDetail" id="bdDetail" hidden></div>
           <div class="bdTrash" id="bdTrash">보드 밖으로 끌어내면 빠져요 (여기에 놓아도 돼요)</div>
+          <div class="bdInv">
+            <div class="bdInvHead">
+              <b>남은 아이템</b>
+              <label class="check"><input type="checkbox" id="bdInvMode"> 오른쪽 아이템을 누르면 여기에 담기</label>
+              <button class="btn ghost" id="bdInvClear">비우기</button>
+            </div>
+            <div class="picked" id="bdInv"></div>
+            <button class="btn primary" id="bdAssign">아이템 자동 배분</button>
+            <span class="muted small">완성 아이템·재료·상징을 섞어 담아도 돼요 · 이미 낀 아이템은 그대로 두고 남은 칸에만 넣어요</span>
+            <div id="bdAssignOut"></div>
+          </div>
         </div>
         <div class="bdRight">
           <div class="bdPoolHead">
