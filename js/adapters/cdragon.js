@@ -21,8 +21,9 @@ export const ADAPTER_VERSION = 10;
 export const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
 
-export async function fetchRaw(url) {
-  const res = await fetch(url);
+export async function fetchRaw(url, timeoutMs = 45000) {
+  // 서버가 응답 없이 붙잡고 있으면 끝없이 기다리지 않도록 시간 제한
+  const res = await fetch(url, { signal: AbortSignal.timeout(timeoutMs) });
   if (!res.ok) throw new Error(`데이터를 받지 못했어요 (HTTP ${res.status})`);
   return res.json();
 }

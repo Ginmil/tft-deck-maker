@@ -43,11 +43,29 @@ async function loadFromUrl(url) {
     store.set(URL_KEY, url);
     useRaw(raw, `불러옴: ${url}`);
   } catch (e) {
-    const msg = e instanceof TypeError ? '데이터 서버에 연결하지 못했어요' : e.message;
+    const msg = e.name === 'TimeoutError' ? '데이터 서버가 응답하지 않아요'
+      : e instanceof TypeError ? '데이터 서버에 연결하지 못했어요' : e.message;
+    // Community Dragon 장애 대비: 저장소에 둔 사본으로 대신
+    if (!state.data && await loadSnapshot(`${msg} — 저장해 둔 사본을 쓰고 있어요`)) return;
     setStatus(`${msg}. 인터넷 연결을 확인하거나, JSON 파일을 내려받아 "JSON 파일 열기"로 불러오세요.`, true);
   } finally {
     $('btnFetch').disabled = false;
   }
+}
+
+/** data/set-snapshot.json (매일 GitHub Actions 가 만드는 세트 데이터 사본) 사용. 성공하면 true */
+async function loadSnapshot(note = '저장해 둔 세트 데이터') {
+  try {
+    const snap = await (await fetch('data/set-snapshot.json', { cache: 'no-cache', signal: AbortSignal.timeout(15000) })).json();
+    if (snap.adapterVersion !== ADAPTER_VERSION || !snap.data?.champions?.length) return false; // 변환 규칙이 바뀐 직후 등
+    const data = snap.data;
+    setData(data);
+    store.set(CACHE_KEY, JSON.stringify(data));
+    const day = (snap.fetchedAt || '').slice(0, 10);
+    setStatus(`${note} (${day} 기준) · 챔피언 ${data.champions.length} · 시너지 ${Object.keys(data.traits).length} · 아이템 ${data.items.length} · 상징 ${data.emblems.length} · 새 패치 직후라면 "불러오기"로 최신 데이터를 받으세요.`);
+    $('databar').open = false;
+    return true;
+  } catch { return false; }
 }
 
 function useRaw(raw, note) {
@@ -653,5 +671,7 @@ if (cached) {
     $('databar').open = false;
   } catch { /* 캐시 손상 시 무시 */ }
 } else {
-  loadFromUrl($('srcUrl').value);
+  // 처음 방문: 큰 원본(수십 MB) 대신 저장소의 사본(수백 KB)으로 빠르게 시작, 사본이 없으면 원본
+  setStatus('데이터를 받는 중이에요…');
+  loadSnapshot().then(ok => { if (!ok) loadFromUrl($('srcUrl').value); });
 }

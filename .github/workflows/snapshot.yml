@@ -1,0 +1,39 @@
+# Community Dragon 세트 데이터 사본(data/set-snapshot.json)을 갱신합니다.
+# 사이트는 처음 열 때 이 사본을 쓰므로 Community Dragon 서버 장애에도 동작해요. 라이엇 API 키는 필요 없어요.
+name: 세트 데이터 사본 갱신
+
+on:
+  schedule:
+    - cron: '17 18 * * *'   # 매일 한국시간 새벽 3시 17분
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['js/adapters/cdragon.js', 'tools/snapshot-set.mjs']   # 변환 규칙을 고치면 바로 다시 만듦
+
+permissions:
+  contents: write
+
+concurrency:
+  group: snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 사본 만들기
+        run: node tools/snapshot-set.mjs
+      - name: 결과 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
+          git add data/set-snapshot.json
+          git diff --cached --quiet && echo "변경 없음" && exit 0
+          git commit -m "세트 데이터 사본 갱신: $(date -u +'%Y-%m-%d')"
+          git pull --rebase -q origin main
+          git push
