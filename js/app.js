@@ -5,7 +5,7 @@
 import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './adapters/cdragon.js';
 import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems, assignItems, withForms } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
-import { patchReport, prevBalancePatch, tierOf, tierGames, tierList, shrinkAvg, TIER_CUTS } from './engine/patch.js';
+import { patchReport, prevBalancePatch, tierOf, tierGames, tierList, shrinkAvg, TIER_CUTS, groupDecks } from './engine/patch.js';
 import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits, bdInventory, bdApplyItems, bdCarries } from './builder.js';
 
 const $ = id => document.getElementById(id);
@@ -412,7 +412,7 @@ function bind() {
     for (const c of $('metaTiers').querySelectorAll('.tchip.on')) c.classList.remove('on');
     b.classList.add('on');
     const byId = new Map(state.data.champions.map(c => [c.id, c]));
-    $('tierDetail').innerHTML = deckCard(x, 0, byId).replace('<span class="rank">#1</span>', '');
+    $('tierDetail').innerHTML = tierDetailHtml(x, byId);
     $('tierDetail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
   $('metaMin').onchange = renderMeta;
@@ -777,33 +777,81 @@ function renderMeta() {
     : '<div class="empty">조건에 맞는 메타 덱이 없어요. 최소 판수를 낮춰 보세요.</div>';
 }
 
-// ---- 자동 티어표: 이번 패치 성적 기준 S/A/B/C ----
+// ---- 자동 티어표: 이번 패치 성적 기준 S/A/B/C, 덱 단위 ----
 const TIER_DESC = { S: '가장 강함', A: '강함', B: '할 만함', C: '비추천' };
 let tierDecks = [];
+const carryOfDeck = d => { const cid = d.m.mainCarry || d.m.carry; return d.team.find(c => c.id.toLowerCase() === cid); };
+/** 덱 종류: 3코 이하 챔피언이 절반 이상 3성이면 "N코 리롤", 아니면 "캐리 코스트 + 레벨" */
+function deckType(d) {
+  const rr = d.team.filter(c => c.cost <= 3 && (d.unitInfo?.[c.id]?.star3 || 0) >= 0.5).map(c => c.cost);
+  if (rr.length) return `${Math.min(...rr)}코 리롤`;
+  return `${carryOfDeck(d)?.cost || '?'}코 ${d.m.level}레벨`;
+}
+/** 같은 덱의 여러 버전(groupDecks) → 판수 가중으로 합친 성적 */
+function combineDecks(main, variants) {
+  const g = x => tierGames(x.m) || x.m.games;
+  if (!variants.length) return { ...main, variants };
+  const all = [main, ...variants];
+  const tw = all.reduce((s, x) => s + g(x), 0);
+  const wavg = f => all.reduce((s, x) => s + f(x.m) * g(x), 0) / tw;
+  const side = k => {
+    const xs = all.map(x => x.m[k]).filter(v => v?.games);
+    if (!xs.length) return null;
+    const n = xs.reduce((s, v) => s + v.games, 0);
+    return { games: n, avgPlace: Math.round(xs.reduce((s, v) => s + v.avgPlace * v.games, 0) / n * 100) / 100 };
+  };
+  const m = {
+    ...main.m,
+    games: all.reduce((s, x) => s + x.m.games, 0),
+    patchGames: main.m.patchGames == null ? undefined : all.reduce((s, x) => s + (x.m.patchGames || 0), 0),
+    avgPlace: Math.round(wavg(m => m.avgPlace) * 100) / 100,
+    top4: wavg(m => m.top4), win: wavg(m => m.win),
+    playRate: all.reduce((s, x) => s + (x.m.playRate || 0), 0),
+    now: side('now'), before: side('before'),
+  };
+  return { ...main, m, tier: deckTier(m), variants, mainM: main.m, mainGames: g(main) };
+}
 function renderTiers(byId) {
   const min = Number($('metaMin').value);
-  const { tiers, watch } = tierList(metaDecks(1), { min });
+  const decks = metaDecks(1).map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games })).filter(d => d.carryChamp);
+  const grouped = groupDecks(decks).map(g => combineDecks(g.main, g.variants));
+  const { tiers, watch } = tierList(grouped, { min });
   tierDecks = [];
   const p = curPatch();
   const chip = x => {
-    const k = tierDecks.push(x) - 1, m = x.m;
-    const cid = m.mainCarry || m.carry, carry = x.team.find(c => c.id.toLowerCase() === cid);
-    return `<button class="tchip" data-k="${k}" title="${esc(traitName(m.trait))} · ${esc(carry?.name || '')} — 눌러서 덱 보기">
+    const k = tierDecks.push(x) - 1, m = x.m, carry = carryOfDeck(x);
+    const vn = x.variants?.length || 0;
+    return `<button class="tchip" data-k="${k}" title="${esc(traitName(m.trait))} ${esc(carry?.name || '')} — 눌러서 덱 보기${vn ? ` (같은 덱 다른 버전 ${vn}개 포함)` : ''}">
       <span class="tcIcon" data-cost="${carry?.cost || 1}">${carry ? img(carry.icon) : ''}</span>
-      <span class="tcText"><b>${esc(carry?.name || '')}</b><span class="muted small">${esc(traitName(m.trait))}</span></span>
+      <span class="tcText"><b>${esc(traitName(m.trait))} ${esc(carry?.name || '')}</b><span class="muted small">${esc(deckType(x))}${vn ? ` · 버전 ${vn + 1}개` : ''}</span></span>
       <span class="tcStat"><b>${m.avgPlace.toFixed(2)}</b>${patchDelta(m)}<span class="muted small">${x.tierGames}판 · 픽 ${(m.playRate * 100).toFixed(1)}%</span></span>
     </button>`;
   };
   const row = t => tiers[t].length ? `<div class="tierRow"><div class="tierHead"><span class="tier t${t}">${t}</span><span class="muted small">${TIER_DESC[t]}</span></div><div class="tierChips">${tiers[t].map(chip).join('')}</div></div>` : '';
   const ranked = tiers.S.length + tiers.A.length + tiers.B.length + tiers.C.length;
-  const cut = (t, prev) => `${prev ? `${prev}~` : ''}${TIER_CUTS[t]}등`;
   $('metaTiers').innerHTML = !ranked && !watch.length
     ? `<div class="empty">${p ? esc(p) + ' 패치에서 ' : ''}${min}판 이상 나온 메타 덱이 아직 없어요. 최소 판수를 낮춰 보세요.</div>`
-    : `<p class="legend">${p ? `<b>${esc(p)} 패치</b> 경기만으로 매긴 티어 · ` : ''}이번 패치 ${min}판 이상인 덱 ${ranked}개 · 기준: 평균 등수를 판수로 보정한 값(판수가 적으면 4.5등 쪽으로) S ≤ ${cut('S')} · A ≤ ${cut('A')} · B ≤ ${cut('B')} · 나머지 C · 덱을 누르면 아래에 자세히</p>
+    : `<p class="legend">${p ? `<b>${esc(p)} 패치</b> 경기만으로 매긴 티어 · ` : ''}이번 패치 ${min}판 이상인 덱 ${ranked}개 · 보드 구성이 같은 덱(후반 5코 캐리로 넘어간 판, 시너지 이름만 다르게 잡힌 판)은 한 덱으로 묶음 · 기준: 평균 등수를 판수로 보정(판수가 적으면 4.5등 쪽으로) S ≤ ${TIER_CUTS.S}등 · A ≤ ${TIER_CUTS.A}등 · B ≤ ${TIER_CUTS.B}등 · 나머지 C · 덱을 누르면 아래에 자세히</p>
       <div class="tierTable">${['S', 'A', 'B'].map(row).join('')}
       ${tiers.C.length ? `<details class="tierRow tierC"><summary class="tierHead"><span class="tier tC">C</span><span class="muted small">${TIER_DESC.C} · ${tiers.C.length}개 펼치기</span></summary><div class="tierChips">${tiers.C.map(chip).join('')}</div></details>` : ''}</div>
       ${watch.length ? `<h3 class="recSub">지켜볼 덱 <span class="muted small">이번 패치 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱 · 표본이 적어 티어에 넣지 않았어요</span></h3><div class="tierChips">${watch.map(chip).join('')}</div>` : ''}
       <div id="tierDetail"></div>`;
+}
+/** 티어표 덱 상세: 대표 버전 덱 카드 + 같은 덱의 다른 버전 성적 */
+function tierDetailHtml(x, byId) {
+  const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(traitName(x.m.trait))} · ${esc(carryOfDeck(x)?.name || '')} <span class="tag soft">${esc(deckType(x))}</span>`,
+    metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.m.level}` };
+  const card = deckCard(main, 0, byId).replace('<span class="rank">#1</span>', '');
+  if (!x.variants?.length) return card;
+  const g = d => tierGames(d.m) || d.m.games;
+  const rows = [{ d: x, label: '대표 버전', main: true }, ...x.variants.map(d => ({ d }))].map(({ d, main: isMain }) => {
+    const c = carryOfDeck(d);
+    const why = isMain ? '대표 버전' : c && c.cost >= 5 && c.id !== carryOfDeck(x)?.id ? `후반 ${esc(c.name)}에게 아이템` : '같은 구성, 시너지만 다르게 잡힘';
+    const mm = isMain ? x.mainM : d.m;
+    return mm ? `<tr><td>${esc(traitName(mm.trait))} · ${esc(c?.name || '')}</td><td class="muted small">${why}</td><td><b>${mm.avgPlace}등</b></td><td>${(isMain ? x.mainGames : g(d))}판</td></tr>` : '';
+  }).join('');
+  return card + `<div class="tierVariants"><h4>같은 덱의 버전별 성적</h4><p class="muted small">보드 구성은 거의 같지만, 랭커 경기에서 아이템을 든 챔피언이나 주력 시너지가 다르게 잡힌 판들이에요. 후반 5코 캐리 버전은 이미 이기고 있는 판에서 나오는 경우가 많아 등수가 좋게 보일 수 있어요.</p>
+    <div class="tableWrap"><table class="pnTable"><thead><tr><th>버전</th><th>차이</th><th>평균</th><th>판수</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
 }
 
 // ---------------- 내 보드 → 다음 수 추천 (배치툴) ----------------

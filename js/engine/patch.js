@@ -115,3 +115,41 @@ export function tierList(decks, { min = 15, watchMin = 5 } = {}) {
   watch.sort((a, b) => a.tierScore - b.tierScore);
   return { tiers, watch: watch.slice(0, 6) };
 }
+
+// ---------------- 티어표용 덱 묶기 ----------------
+// 메타 덱은 "주력 시너지 + 아이템을 가장 많이 든 챔피언"으로 나뉘어서, 같은 보드인데 후반에 5코 케넨·럭스로 아이템을 옮긴 판이
+// 따로 잡힘(협곡야수·케넨 20판 2.88등 = 협곡야수·장로 드래곤과 구성 100% 같음 → 이미 이긴 판이라 등수가 좋아 보임).
+// 티어표는 "덱 단위"로 보여야 하므로(사용자 피드백 11/15) 보드 구성으로 묶음:
+//  - 작은 덱 A 를 더 큰 덱 B 에 넣는 조건:
+//    ① A 의 캐리가 5코스트(후반 캐리 전환)이고 구성이 75% 이상 같음 (B 도 5코 캐리면 B 가 3배 이상 클 때만)
+//    ② 캐리가 같고 구성이 85% 이상 같음 (주력 시너지 이름만 다르게 잡힘)
+//  - 싼 캐리가 다른 덱은 따로 (요정 애쉬 3.38등 vs 요정 시비르 5.25등처럼 성적이 크게 다름)
+// decks: [{ team: [{ id, base?, cost }], carryChamp: { id, base?, cost }, games }] → [{ main, variants: [...] }] (main 은 가장 큰 덱)
+export function groupDecks(decks) {
+  const key = c => c.base || c.id;
+  const sim = (a, b) => {
+    const tb = new Set(b.team.map(key));
+    return a.team.filter(c => tb.has(key(c))).length / Math.max(a.team.length, b.team.length);
+  };
+  const sorted = [...decks].sort((a, b) => b.games - a.games);
+  const parent = new Map();
+  for (const a of [...sorted].reverse()) { // 작은 덱부터 들어갈 곳을 찾음
+    let best = null;
+    for (const b of sorted) {
+      if (b === a || b.games <= a.games || parent.has(b)) continue;
+      const s = sim(a, b);
+      const late5 = a.carryChamp.cost >= 5 && (b.carryChamp.cost < 5 || b.games >= 3 * a.games);
+      const same = key(a.carryChamp) === key(b.carryChamp);
+      if (((late5 && s >= 0.75) || (same && s >= 0.85)) && (!best || s > best.s)) best = { b, s };
+    }
+    if (best) parent.set(a, best.b);
+  }
+  const root = x => { while (parent.has(x)) x = parent.get(x); return x; };
+  const groups = new Map();
+  for (const d of sorted) {
+    const r = root(d);
+    if (!groups.has(r)) groups.set(r, { main: r, variants: [] });
+    if (d !== r) groups.get(r).variants.push(d);
+  }
+  return [...groups.values()];
+}

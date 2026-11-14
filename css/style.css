@@ -391,3 +391,6 @@ footer { text-align: center; font-size: 12px; padding: 30px 16px; }
 .bdFormSw button { background: var(--bg2); border: 0; padding: 2px 6px; font-size: 11px; font-weight: 700; color: var(--muted); cursor: pointer; }
 .bdFormSw button.on[data-form="AD"] { background: #e07b39; color: #1a0d03; }
 .bdFormSw button.on[data-form="AP"] { background: #5b8def; color: #04122e; }
+.tierVariants { margin-top: 10px; padding: 10px 12px; background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); }
+.tierVariants h4 { margin: 0 0 4px; }
+.tcText b { white-space: nowrap; }

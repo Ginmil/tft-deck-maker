@@ -137,3 +137,24 @@ console.log('패치 영향 예측 테스트 통과');
   assert.equal(mainTraitOf({ traits: [T('Lunar', 3, 1, 4), T('Solar', 2, 0, 1)] }).name, 'Lunar'); // 햇빛 2명(미발동)은 아님
   console.log('main trait OK (햇빛 우선)');
 }
+
+// ---- 티어표 덱 묶기: 후반 5코 캐리 전환·시너지 이름만 다른 덱은 큰 덱에, 싼 캐리가 다르면 따로 ----
+{
+  const { groupDecks } = await import('../js/engine/patch.js');
+  const ch = (id, cost) => ({ id, cost });
+  const base = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'].map(x => ch(x, 2));
+  const dragon = ch('dragon', 5), kennen = ch('kennen', 5), ashe = ch('ashe', 3), sivir = ch('sivir', 3);
+  const mk = (name, carry, extra, games) => ({ name, carryChamp: carry, team: [...base.slice(0, 8 - extra.length), ...extra], games });
+  const big = mk('협곡야수 장로', dragon, [dragon], 900);
+  const late = mk('협곡야수 케넨', kennen, [dragon, kennen], 20);      // 구성 거의 같음 + 5코 캐리 → 큰 덱에
+  const relabel = mk('지옥불 장로', dragon, [dragon], 40);            // 같은 캐리·같은 구성 → 큰 덱에
+  const sv = mk('요정 시비르', sivir, [sivir], 200);
+  const as = mk('요정 애쉬', ashe, [ashe], 80);                       // 싼 캐리가 다름 → 따로
+  const g = groupDecks([big, late, relabel, sv, as]);
+  const of = d => g.find(x => x.main === d || x.variants.includes(d)).main;
+  assert.equal(of(late), big);
+  assert.equal(of(relabel), big);
+  assert.equal(of(as), as);
+  assert.equal(of(sv), sv);
+  console.log('deck grouping OK');
+}
