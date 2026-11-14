@@ -23,7 +23,9 @@ const fileCfg = fs.existsSync(cfgPath) ? JSON.parse(fs.readFileSync(cfgPath, 'ut
 if (process.env.RIOT_API_KEY) fileCfg.apiKey = process.env.RIOT_API_KEY;
 if (process.env.MAX_PLAYERS) fileCfg.maxPlayers = Number(process.env.MAX_PLAYERS);
 if (process.env.MATCHES_PER_PLAYER) fileCfg.matchesPerPlayer = Number(process.env.MATCHES_PER_PLAYER);
-if (!fileCfg.apiKey) {
+// AGGREGATE_ONLY=1 : 라이엇 API를 부르지 않고 캐시에 있는 경기로 다시 집계만 (키 불필요, 몇 초)
+const aggregateOnly = process.env.AGGREGATE_ONLY === '1' || process.argv.includes('--aggregate-only');
+if (!fileCfg.apiKey && !aggregateOnly) {
   console.error('API 키가 없어요. tools/config.json 에 apiKey 를 넣거나 환경변수 RIOT_API_KEY 를 설정해주세요.');
   process.exit(1);
 }
@@ -38,7 +40,7 @@ const cfg = {
   requestIntervalMs: 1250, // 개발 키 제한(2분에 100회)을 넘지 않도록 요청 간격
   ...fileCfg,
 };
-if (!/^RGAPI-/.test(cfg.apiKey || '')) {
+if (!aggregateOnly && !/^RGAPI-/.test(cfg.apiKey || '')) {
   console.error('config.json 의 apiKey 가 비어 있거나 형식이 달라요. RGAPI- 로 시작하는 키를 넣어주세요.');
   process.exit(1);
 }
@@ -144,13 +146,16 @@ function cachedMatches(skipIds) {
 // ---------------- 실행 ----------------
 try {
   console.log(`서버 ${cfg.platform} / 지역 ${cfg.region} — 예상 소요: 약 ${Math.ceil((cfg.maxPlayers * (1 + 1 + cfg.matchesPerPlayer / 2)) * cfg.requestIntervalMs / 60000)}분 (캐시된 경기는 빠름)`);
-  const players = await topPlayers();
-  const ids = await matchIds(players);
-  const fresh = await fetchMatches(ids);
+  const fresh = aggregateOnly ? [] : await fetchMatches(await matchIds(await topPlayers()));
+  if (aggregateOnly) console.log('집계만 다시 해요 (캐시된 경기 사용)');
   const matches = [...fresh, ...cachedMatches(new Set(fresh.map(m => m?.metadata?.match_id)))];
   const pw = patchWeights(matches, { queueId: cfg.queueId });
   const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, isCurrent: pw.isCurrent });
   stats.patch = { current: pw.current, prev: pw.prev, prevWeight: pw.prevWeight, matches: pw.counts };
+  if (!pw.current) {
+    const ex = matches.find(m => m?.info)?.info || {};
+    console.log(`패치 버전을 못 읽었어요. 예시 game_version=${JSON.stringify(ex.game_version)} / 버전 관련 필드: ${Object.keys(ex).filter(k => /version|patch/i.test(k)).map(k => `${k}=${JSON.stringify(ex[k])}`).join(', ')}`);
+  }
   console.log(`패치별 경기: ${Object.entries(pw.counts).map(([p, n]) => `${p} ${n}판`).join(', ')} → 최신 ${pw.current}, 이전 ${pw.prev || '없음'} 가중치 ${pw.prevWeight}`);
   if (!stats.games) throw new Error('쓸 수 있는 랭크 경기가 없어요. queueId 나 서버 설정을 확인해주세요.');
   const weights = toWeights(stats);

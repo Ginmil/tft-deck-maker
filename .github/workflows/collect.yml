@@ -13,6 +13,10 @@ on:
       matches_per_player:
         description: '플레이어당 경기 수'
         default: '20'
+      aggregate_only:
+        description: '집계만 다시 (API 호출 없이 캐시된 경기로, 키 불필요)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -44,6 +48,7 @@ jobs:
           RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
           MAX_PLAYERS: ${{ inputs.max_players || '200' }}
           MATCHES_PER_PLAYER: ${{ inputs.matches_per_player || '20' }}
+          AGGREGATE_ONLY: ${{ inputs.aggregate_only && '1' || '0' }}
         run: node tools/collect-stats.mjs
 
       - name: 결과 커밋
