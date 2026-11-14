@@ -154,7 +154,7 @@ try {
   try { schedule = JSON.parse(fs.readFileSync(path.join(root, 'data', 'patches.json'), 'utf8')).patches; } catch { console.log('data/patches.json 이 없어 패치 구분 없이 집계해요'); }
   const pw = patchWeights(matches, { queueId: cfg.queueId, schedule });
   const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, isCurrent: pw.isCurrent });
-  stats.patch = { current: pw.current, prev: pw.prev, prevWeight: pw.prevWeight, matches: pw.counts };
+  stats.patch = { current: pw.current, prev: pw.prev, prevWeight: pw.prevWeight, mature: pw.mature, matches: pw.counts };
   if (!pw.current) {
     const ex = matches.find(m => m?.info)?.info || {};
     console.log(`패치 버전을 못 읽었어요. 예시 game_version=${JSON.stringify(ex.game_version)} / 버전 관련 필드: ${Object.keys(ex).filter(k => /version|patch/i.test(k)).map(k => `${k}=${JSON.stringify(ex[k])}`).join(', ')}`);

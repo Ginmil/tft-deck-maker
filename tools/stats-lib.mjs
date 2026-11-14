@@ -35,7 +35,7 @@ const patchOrder = (p, schedule) => {
  * 그보다 옛 패치는 0. → 패치 직후에도 통계가 비지 않으면서, 옛 패치의 많은 판수가 새 메타를 덮지 않게.
  * (메타 덱은 따로 toWeights 에서 이전 패치를 "덱마다 최대 20판어치 사전 정보"로만 씀)
  */
-export function patchWeights(matches, { queueId = 1100, setNumber = null, target = 600, schedule = null } = {}) {
+export function patchWeights(matches, { queueId = 1100, setNumber = null, target = 1500, schedule = null } = {}) {
   const usable = matches.filter(m => m?.info && (!queueId || m.info.queue_id === queueId));
   const set = setNumber ?? Math.max(0, ...usable.map(m => m.info.tft_set_number || 0));
   const counts = {};

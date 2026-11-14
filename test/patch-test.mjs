@@ -34,7 +34,7 @@ const deck = (w, t) => w.comps.find(c => c.trait === t);
 const old = run({ queueId: 1100 });
 console.log('예전 방식  A', deck(old, 'Set99_A').games, '판', deck(old, 'Set99_A').avgPlace, '등 | C', deck(old, 'Set99_C').games, '판', deck(old, 'Set99_C').avgPlace, '등');
 
-const pw = patchWeights(matches);
+const pw = patchWeights(matches, { target: 600 });
 assert.equal(pw.current, '16.22');
 assert.equal(pw.prev, '16.21');
 assert.ok(pw.prevWeight > 0 && pw.prevWeight <= 0.3, `이번 패치 300판이면 이전 패치는 300판어치만: ${pw.prevWeight}`);
@@ -48,7 +48,7 @@ assert.equal(A.before.games, 1000);
 
 // 이번 패치 경기가 충분하면 이전 패치는 완전히 빠짐
 for (let i = 0; i < 1300; i++) matches.push(match('16.22', ['C', 'X', 'X', 'X', 'X', 'A', 'X', 'X']));
-const pw2 = patchWeights(matches);
+const pw2 = patchWeights(matches, { target: 600 });
 assert.equal(pw2.prevWeight, 0);
 const full = run({ queueId: 1100, weightOf: pw2.weightOf, isCurrent: pw2.isCurrent });
 assert.ok(Math.abs(deck(full, 'Set99_A').avgPlace - 6) < 0.1);
