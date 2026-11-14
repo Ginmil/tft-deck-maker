@@ -216,9 +216,14 @@ export function recipeBook(data) {
   return { get: (a, b) => book.get(key(a, b)) };
 }
 
-/** 재료 목록 → 짝짓는 방법들 (더 만들 수 있는데 남겨 두는 경우는 제외) */
+/**
+ * 재료 목록 → 짝짓는 방법들.
+ * 재료가 홀수면 하나는 남는데, "어느 것을 남길지"도 선택지 (예: 눈물 4·허리띠 2… → 허리띠를 남기고 눈물로 블루를 만들기).
+ * 그래서 짝이 있어도 홀수 개수만큼은 남겨 둘 수 있게 함. 그 이상 남기는 건(만들 수 있는데 안 만듦) 제외.
+ */
 function pairings(components, book, limit = 20000) {
   const out = [];
+  const maxSkip = components.length % 2;
   const rec = (rest, made, left) => {
     if (out.length >= limit) return;
     if (!rest.length) { out.push({ made, left }); return; }
@@ -233,7 +238,8 @@ function pairings(components, book, limit = 20000) {
       paired = true;
       rec(others.filter((_, j) => j !== i), [...made, { result: r, from: [c, p] }], left);
     });
-    if (!paired) rec(others, made, [...left, c]);
+    // 짝이 없으면 남기고, 짝이 있어도 홀수라 하나는 남는 경우 이걸 남기는 선택지도 (같은 종류는 한 번만)
+    if (!paired || (left.length < maxSkip && !left.includes(c))) rec(others, made, [...left, c]);
   };
   rec([...components].sort(), [], []);
   return out;
@@ -441,16 +447,28 @@ export function assignItems(data, { board, inventory }) {
 
   const aff = (u, it) => itemAffinity(data, u.champ, it.statId ? { ...it, id: it.statId } : it);
   // 이미 아이템(딜템 등)을 든 챔피언 = 그 덱의 아이템 홀더 → 같은 계열 아이템을 몰아줌
-  // (게임에서 이미 아이템을 준 챔피언 = 키우기로 정한 캐리. 다른 챔피언이 통계상 조금 더 잘 써도 몰아주는 게 보통 더 셈)
-  const holderBonus = u => 1 + 0.6 * Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length);
+  // (게임에서 이미 아이템을 준 챔피언 = 키우기로 정한 캐리. 다른 챔피언이 통계상 조금 더 잘 써도 몰아주는 게 보통 더 셈 — 사용자 피드백 11/15 로 +100%/개)
+  const holderBonus = u => 1 + 1.0 * Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length);
   const buildsOf = u => data.unitStats?.[u.champ.id.toLowerCase()]?.builds || [];
+  // 아이템 홀더 가중치: 랭커 경기에서 이 챔피언이 아이템 3개를 든 비율(carryRate).
+  // 롤체는 나눠 주기보다 한 챔피언에 몰아줘야 함 → 홀더가 아닌 챔피언(요릭 0.08 등)에게 준 아이템은 가치가 작음
+  const unitWeight = u => {
+    const st = data.unitStats?.[u.champ.id.toLowerCase()];
+    return st && st.games >= 30 ? Math.max(0.3, Math.min(1.4, 0.3 + 1.4 * (st.carryRate || 0))) : 1;
+  };
   const unitValue = (u, added) => {
     let v = 0;
     const seen = {};
+    const w = unitWeight(u);
     for (const it of added) {
       const dup = (seen[it.id] = (seen[it.id] || 0) + 1) + u.held.filter(h => h.id === it.id).length;
-      v += aff(u, it) * holderBonus(u) * (dup > 1 ? 0.6 : 1);
+      v += aff(u, it) * holderBonus(u) * (dup > 1 ? 0.6 : 1) * w;
     }
+    const nItems = u.held.filter(h => h.kind === 'item').length + added.filter(x => x.kind === 'item').length;
+    // 홀더의 3칸을 채우면 가산 (캐리는 3번째 아이템이 좀 덜 맞아도 채우는 게 보통 더 셈)
+    if (added.length && nItems === 3) v += 0.5 * w;
+    // 아이템이 없던 챔피언에게 하나만 덜렁 주는 건 비효율
+    if (!u.held.length && added.length === 1) v -= 0.15;
     // 랭커 3신기와 일치하면 가산 (3개 완성 일치 0.5, 2개 이상이 한 3신기 안에 0.2)
     const final = [...u.held, ...added].filter(x => x.kind === 'item').map(x => x.statId || x.id).sort();
     if (added.length && final.length >= 2) {
@@ -567,5 +585,6 @@ export function assignItems(data, { board, inventory }) {
     unplaced: [...best.placed.unplaced, ...best.ems.unplaced],
     leftComponents: best.left,
     crafted: assignments.filter(a => a.from).length,
+    score: best.score,
   };
 }
