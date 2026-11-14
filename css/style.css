@@ -338,7 +338,6 @@ footer { text-align: center; font-size: 12px; padding: 30px 16px; }
 .bdInv .picked { margin-bottom: 0; }
 .bdInv .picked:empty::before { content: '남은 아이템이 없어요'; }
 .chipIcon { width: 18px; height: 18px; border-radius: 4px; margin-right: 4px; vertical-align: middle; }
-#bdAssign { justify-self: start; }
 .asgRow { display: grid; grid-template-columns: 150px 1fr; gap: 10px; align-items: start; padding: 8px 0; border-top: 1px solid var(--line); }
 .asgChamp { display: flex; align-items: center; gap: 6px; }
 .asgChamp img { width: 32px; height: 32px; border-radius: 6px; }
@@ -349,3 +348,5 @@ footer { text-align: center; font-size: 12px; padding: 30px 16px; }
 #bdAssignApply { justify-self: start; margin-top: 4px; }
 .bdInv .resultHead { flex-wrap: wrap; gap: 2px 10px; }
 .bdInv .resultHead h3 { white-space: nowrap; margin: 4px 0 0; }
+.bdAssignBar { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.bdAssignBar label { display: flex; gap: 6px; align-items: center; font-size: 13px; }

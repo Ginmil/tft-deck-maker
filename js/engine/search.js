@@ -221,27 +221,34 @@ export function recipeBook(data) {
  * 재료가 홀수면 하나는 남는데, "어느 것을 남길지"도 선택지 (예: 눈물 4·허리띠 2… → 허리띠를 남기고 눈물로 블루를 만들기).
  * 그래서 짝이 있어도 홀수 개수만큼은 남겨 둘 수 있게 함. 그 이상 남기는 건(만들 수 있는데 안 만듦) 제외.
  */
-function pairings(components, book, limit = 20000) {
-  const out = [];
+export function pairings(components, book, limit = 20000) {
+  // 재료를 종류별 개수로 세고, "첫 번째 남은 종류"를 짝지을 상대 종류를 오름차순으로만 골라
+  // 같은 결과(완성 아이템 묶음)를 한 번씩만 만듦 (예전엔 순서만 다른 같은 결과를 수천 번 만들어 2,000개 제한에 걸렸음)
+  const types = [...new Set(components)].sort();
+  const count0 = types.map(t => components.filter(c => c === t).length);
   const maxSkip = components.length % 2;
-  const rec = (rest, made, left) => {
+  const out = [];
+  const rec = (count, made, left, minPartner) => {
     if (out.length >= limit) return;
-    if (!rest.length) { out.push({ made, left }); return; }
-    const [c, ...others] = rest;
-    const tried = new Set();
+    const i = count.findIndex(n => n > 0);
+    if (i < 0) { out.push({ made, left }); return; }
     let paired = false;
-    others.forEach((p, i) => {
-      if (tried.has(p)) return;
-      tried.add(p);
-      const r = book.get(c, p);
-      if (!r) return;
+    for (let j = Math.max(i, minPartner[i] ?? i); j < types.length; j++) {
+      if (count[j] - (j === i ? 1 : 0) <= 0) continue;
+      const r = book.get(types[i], types[j]);
+      if (!r) continue;
       paired = true;
-      rec(others.filter((_, j) => j !== i), [...made, { result: r, from: [c, p] }], left);
-    });
-    // 짝이 없으면 남기고, 짝이 있어도 홀수라 하나는 남는 경우 이걸 남기는 선택지도 (같은 종류는 한 번만)
-    if (!paired || (left.length < maxSkip && !left.includes(c))) rec(others, made, [...left, c]);
+      const next = [...count]; next[i]--; next[j]--;
+      // 같은 종류 i 를 또 짝지을 때는 j 이상인 상대만 (중복 방지)
+      rec(next, [...made, { result: r, from: [types[i], types[j]] }], left, { ...minPartner, [i]: j });
+    }
+    // 짝이 없으면 남기고, 짝이 있어도 홀수라 하나는 남는 경우 이 종류를 남기는 선택지도
+    if (!paired || left.length < maxSkip) {
+      const next = [...count]; next[i]--;
+      rec(next, made, [...left, types[i]], minPartner);
+    }
   };
-  rec([...components].sort(), [], []);
+  rec(count0, [], [], {});
   return out;
 }
 
@@ -420,7 +427,7 @@ export function emblemTeamMaker(data, { emblems, size, maxCost, desired = {}, ..
 // - 점수: 랭커 통계 궁합(itemAffinity) + 이미 캐리 아이템을 든 챔피언에게 몰아주기 + 랭커 3신기와 일치하면 가산
 // - 상징: 그 시너지가 없는 챔피언에게, 시너지 단계가 실제로 올라가면 높게
 // -------------------------------------------------------------
-export function assignItems(data, { board, inventory }) {
+export function assignItems(data, { board, inventory, carryIdx = null }) {
   const byId = new Map(data.champions.map(c => [c.id, c]));
   const emblemOf = id => data.emblems.find(e => e.id === id || (e.ids || []).includes(id));
   const componentIds = new Set((data.components || []).map(c => c.id));
@@ -448,13 +455,17 @@ export function assignItems(data, { board, inventory }) {
   const aff = (u, it) => itemAffinity(data, u.champ, it.statId ? { ...it, id: it.statId } : it);
   // 이미 아이템(딜템 등)을 든 챔피언 = 그 덱의 아이템 홀더 → 같은 계열 아이템을 몰아줌
   // (게임에서 이미 아이템을 준 챔피언 = 키우기로 정한 캐리. 다른 챔피언이 통계상 조금 더 잘 써도 몰아주는 게 보통 더 셈 — 사용자 피드백 11/15 로 +100%/개)
-  const holderBonus = u => 1 + 1.0 * Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length);
+  // 사용자가 "몰아줄 캐리"로 고른 챔피언은 캐리템 2개를 든 것과 같은 대우
+  const holderBonus = u => 1 + 1.0 * (u.idx === carryIdx ? 2 : Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length));
+  // 적응가(공격력·주문력 중 높은 쪽을 씀): 물리 아이템과 마법 아이템을 섞으면 한쪽은 버리는 셈
+  const isAdaptor = u => u.champ.traits.some(t => /Adaptor/i.test(t) || /공격력과 주문력 중 어느 쪽이 높은지/.test(data.traits[t]?.desc || ''));
   const buildsOf = u => data.unitStats?.[u.champ.id.toLowerCase()]?.builds || [];
   // 아이템 홀더 가중치: 랭커 경기에서 이 챔피언이 아이템 3개를 든 비율(carryRate).
   // 롤체는 나눠 주기보다 한 챔피언에 몰아줘야 함 → 홀더가 아닌 챔피언(요릭 0.08 등)에게 준 아이템은 가치가 작음
   const unitWeight = u => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
-    return st && st.games >= 30 ? Math.max(0.3, Math.min(1.4, 0.3 + 1.4 * (st.carryRate || 0))) : 1;
+    const w = st && st.games >= 30 ? Math.max(0.3, Math.min(1.4, 0.3 + 1.4 * (st.carryRate || 0))) : 1;
+    return u.idx === carryIdx ? Math.max(w, 1.3) : w;
   };
   const unitValue = (u, added) => {
     let v = 0;
@@ -462,11 +473,21 @@ export function assignItems(data, { board, inventory }) {
     const w = unitWeight(u);
     for (const it of added) {
       const dup = (seen[it.id] = (seen[it.id] || 0) + 1) + u.held.filter(h => h.id === it.id).length;
-      v += aff(u, it) * holderBonus(u) * (dup > 1 ? 0.6 : 1) * w;
+      v += aff(u, it) * holderBonus(u) * (dup > 1 ? 0.4 : 1) * w; // 같은 아이템 두 개는 효율이 크게 떨어짐(랭커 3신기에도 거의 없음)
     }
     const nItems = u.held.filter(h => h.kind === 'item').length + added.filter(x => x.kind === 'item').length;
-    // 홀더의 3칸을 채우면 가산 (캐리는 3번째 아이템이 좀 덜 맞아도 채우는 게 보통 더 셈)
-    if (added.length && nItems === 3) v += 0.5 * w;
+    // 홀더의 3칸을 채우면 가산 (캐리는 3번째 아이템이 좀 덜 맞아도 채우는 게 보통 더 셈 — 자이라 블루 7%)
+    // 단, 그 챔피언이 전혀 안 쓰는 아이템(이온 충격기 0% 등)으로 채우는 건 가산 없음
+    if (added.length && nItems === 3) {
+      const minAff = Math.min(...added.map(it => aff(u, it)));
+      v += 0.5 * w * Math.min(1, minAff / 0.2);
+    }
+    // 적응가: 물리(AD)와 마법(AP) 아이템을 섞으면 적은 쪽만큼 감점
+    if (isAdaptor(u)) {
+      const all = [...u.held, ...added].filter(x => x.kind === 'item');
+      const ad = all.filter(x => x.role === 'AD').length, ap = all.filter(x => x.role === 'AP').length;
+      if (ad && ap) v -= 0.8 * Math.min(ad, ap) * w;
+    }
     // 아이템이 없던 챔피언에게 하나만 덜렁 주는 건 비효율
     if (!u.held.length && added.length === 1) v -= 0.15;
     // 랭커 3신기와 일치하면 가산 (3개 완성 일치 0.5, 2개 이상이 한 3신기 안에 0.2)
@@ -550,7 +571,27 @@ export function assignItems(data, { board, inventory }) {
   const comps = inventory.filter(id => componentIds.has(id));
   const ready = inventory.filter(id => !componentIds.has(id)).map(lookup);
   const book = recipeBook(data);
-  const plans = comps.length ? pairings(comps, book, 2000) : [{ made: [], left: [] }];
+  const allPlans = comps.length ? pairings(comps, book, 100000) : [{ made: [], left: [] }];
+  // 재료가 많으면 짝짓는 방법이 수만 가지(15개 ≈ 3만) → 빠른 어림 점수로 추린 뒤 상위만 제대로 배분
+  // 어림 점수 = 아이템마다 "가장 잘 쓰는 챔피언 한 명"의 가치, 남은 칸 수만큼 큰 것부터 합
+  const totalFree = units.reduce((s, u) => s + u.free, 0);
+  const bestVal = new Map();
+  const quickOf = id => {
+    if (!bestVal.has(id)) {
+      const it = lookup(id);
+      bestVal.set(id, it.kind === 'emblem' ? 0.6 : Math.max(0, ...units.filter(u => u.free).map(u => aff(u, it) * holderBonus(u) * unitWeight(u))));
+    }
+    return bestVal.get(id);
+  };
+  const plans = allPlans.length <= 300 ? allPlans : allPlans
+    .map(p => {
+      // 같은 아이템이 여러 개면 두 번째부터 0.4 (본 배분과 같은 중복 감점)
+      const seen = {};
+      const vals = [...ready.map(it => it.id), ...p.made.map(m => m.result.id)]
+        .map(id => quickOf(id) * ((seen[id] = (seen[id] || 0) + 1) > 1 ? 0.4 : 1));
+      return { p, q: vals.sort((a, b) => b - a).slice(0, totalFree).reduce((s, x) => s + x, 0) };
+    })
+    .sort((a, b) => b.q - a.q).slice(0, 300).map(x => x.p);
   let best = null;
   const seenPlan = new Set();
   for (const p of plans) {
@@ -577,6 +618,14 @@ export function assignItems(data, { board, inventory }) {
     }
   }
   for (const e of best.ems.placed) assignments.push({ item: e.em, idx: e.u.idx, champ: e.u.champ, from: e.em.from || null, emblem: { trait: e.em.trait, from: e.n, to: e.n + 1, reaches: e.next === e.n + 1 } });
+  // 최종 아이템 3개가 랭커 3신기와 똑같으면 그 기록 (화면에 "랭커 3신기 · N판 M등")
+  const buildMatch = {};
+  for (const u of units) {
+    const final = [...u.held, ...best.placed.slots.get(u)].filter(x => x.kind === 'item').map(x => x.statId || x.id).sort();
+    if (final.length !== 3 || !best.placed.slots.get(u).length) continue;
+    const b = buildsOf(u).find(b => b.games >= 5 && [...b.items].sort().join() === final.join());
+    if (b) buildMatch[u.idx] = { games: b.games, avgPlace: b.avgPlace };
+  }
   // 같은 챔피언끼리 모아서 보여주기 좋게 (아이템을 많이 받는 챔피언 먼저)
   const per = assignments.reduce((m, a) => (m[a.idx] = (m[a.idx] || 0) + 1, m), {});
   assignments.sort((a, b) => per[b.idx] - per[a.idx] || a.idx - b.idx);
@@ -586,5 +635,6 @@ export function assignItems(data, { board, inventory }) {
     leftComponents: best.left,
     crafted: assignments.filter(a => a.from).length,
     score: best.score,
+    buildMatch,
   };
 }

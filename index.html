@@ -151,7 +151,10 @@
               <button class="btn ghost" id="bdInvClear">비우기</button>
             </div>
             <div class="picked" id="bdInv"></div>
-            <button class="btn primary" id="bdAssign">아이템 자동 배분</button>
+            <div class="bdAssignBar">
+              <button class="btn primary" id="bdAssign">아이템 자동 배분</button>
+              <label>몰아줄 캐리 <select id="bdAssignCarry"><option value="">자동 (이미 템을 든 챔피언·랭커 통계)</option></select></label>
+            </div>
             <span class="muted small">완성 아이템·재료·상징을 섞어 담아도 돼요 · 이미 낀 아이템은 그대로 두고 남은 칸에만 넣어요</span>
             <div id="bdAssignOut"></div>
           </div>

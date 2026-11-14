@@ -54,6 +54,22 @@ if (fs.existsSync(snapPath) && fs.existsSync(wPath)) {
       assert.deepEqual(gave('아무무'), [], '아무무에게 나눠 주지 않음');
       assert.deepEqual(rr.leftComponents, [rp('거인의 허리띠')]);
       console.log('실데이터 사용자 정답 시나리오 통과 (자이라 공허·모렐로·블루)');
+
+      // 적응가 니달리 (11/15 사용자 피드백): AD 로 키울 때 AP 아이템(라바돈 등)을 섞으면 안 되고,
+      // "몰아줄 캐리 = 니달리"면 랭커 최다 3신기(무한 + 스테락 + 밤의 끝자락)
+      const nNames = ['아무무', '파수꾼', '바이', '다이애나', '니달리', '아펠리오스', '코그모', '바루스'];
+      if (nNames.every(rc)) {
+        const nInv = ['곡궁', '쓸데없이 큰 지팡이', '곡궁', '음전자 망토', 'B.F. 대검', '연습용 장갑', 'B.F. 대검', '여신의 눈물', '거인의 허리띠', 'B.F. 대검', '여신의 눈물', '쇠사슬 조끼', '쓸데없이 큰 지팡이', '거인의 허리띠', '거인의 허리띠'].map(rp);
+        const t0 = Date.now();
+        const nr = assignItems(rd, { board: nNames.map((n, i) => ({ idx: i, id: rc(n), star: 2, items: n === '아펠리오스' ? [ri('구인수의 격노검')] : [] })), inventory: nInv });
+        const nid = nr.assignments.filter(a => a.champ.name === '니달리');
+        assert.ok(!nid.some(a => a.item.role === 'AP'), `AD 니달리에게 AP 아이템: ${nid.map(a => a.item.name)}`);
+        const nr2 = assignItems(rd, { board: nNames.map((n, i) => ({ idx: i, id: rc(n), star: 2, items: [] })), inventory: nInv, carryIdx: nNames.indexOf('니달리') });
+        const got = nr2.assignments.filter(a => a.champ.name === '니달리').map(a => a.item.name).sort();
+        assert.deepEqual(got, ['무한의 대검', '밤의 끝자락', '스테락의 도전'].sort(), `니달리 캐리: ${got}`);
+        assert.ok(Date.now() - t0 < 5000, '재료 15개도 몇 초 안에');
+        console.log('실데이터 적응가 니달리 시나리오 통과 (무한·스테락·밤의 끝자락, AP 아이템 없음)');
+      }
     }
   }
 }

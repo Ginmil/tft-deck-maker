@@ -270,6 +270,16 @@ export function bdOpenDeck(d) {
 
 function bdRenderInv() {
   const box = document.getElementById('bdInv'); if (!box) return;
+  // "몰아줄 캐리" 목록 = 보드 위 챔피언 (고른 값 유지)
+  const sel = document.getElementById('bdAssignCarry');
+  if (sel) {
+    const cur = sel.value;
+    const units = Object.entries(bdState.cells).map(([idx, u]) => ({ idx, c: bdChamp(u.id) })).filter(x => x.c)
+      .sort((a, b) => b.c.cost - a.c.cost || a.c.name.localeCompare(b.c.name, 'ko'));
+    sel.innerHTML = '<option value="">자동 (이미 템을 든 챔피언·랭커 통계)</option>'
+      + units.map(x => `<option value="${x.idx}">${bd.esc(x.c.name)} (${x.c.cost}코)</option>`).join('');
+    sel.value = units.some(x => x.idx === cur) ? cur : '';
+  }
   box.innerHTML = bdState.inv.map((id, i) => {
     const it = bdItemInfo(id);
     return `<span class="chip">${it.icon ? `<img src="${bd.esc(it.icon)}" alt="" class="chipIcon" onerror="this.remove()">` : ''}${bd.esc(it.name)}<button data-i="${i}" aria-label="빼기">✕</button></span>`;
