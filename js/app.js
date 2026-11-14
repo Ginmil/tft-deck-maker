@@ -570,7 +570,7 @@ function renderPatchInfo() {
   const cur = p.matches?.[p.current] || 0, prev = p.prev ? p.matches?.[p.prev] || 0 : 0;
   box.hidden = false;
   box.innerHTML = `<b>${esc(p.current)} 패치</b> 기준 · 이번 패치 ${cur.toLocaleString()}경기`
-    + (p.prev ? ` · 이전 패치(${esc(p.prev)}) ${prev.toLocaleString()}경기는 ${p.prevWeight > 0 ? '이번 패치 표본이 적어 일부만' : '참고하지 않고'} 반영` : '')
+    + (p.prev ? ` · 이전 패치(${esc(p.prev)}) ${prev.toLocaleString()}경기는 ${p.prevWeight > 0 ? '이번 패치 표본이 적어 일부만 반영' : '이번 패치 표본이 충분해 ▲▼ 비교에만 사용'}` : '')
     + ` · <span class="pdelta up">▲</span><span class="pdelta down">▼</span> = 이전 패치 대비 평균 등수 변화`;
 }
 
