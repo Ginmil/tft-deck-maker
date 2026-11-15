@@ -20,7 +20,7 @@ const cfgPath = path.join(here, 'config.json');
 
 // 설정: tools/config.json (내 컴퓨터) 또는 환경변수 RIOT_API_KEY (GitHub Actions 등 서버)
 const fileCfg = fs.existsSync(cfgPath) ? JSON.parse(fs.readFileSync(cfgPath, 'utf8')) : {};
-if (process.env.RIOT_API_KEY) fileCfg.apiKey = process.env.RIOT_API_KEY;
+if (process.env.RIOT_API_KEY) fileCfg.apiKey = process.env.RIOT_API_KEY.trim();
 if (process.env.MAX_PLAYERS) fileCfg.maxPlayers = Number(process.env.MAX_PLAYERS);
 if (process.env.MATCHES_PER_PLAYER) fileCfg.matchesPerPlayer = Number(process.env.MATCHES_PER_PLAYER);
 // AGGREGATE_ONLY=1 : 라이엇 API를 부르지 않고 캐시에 있는 경기로 다시 집계만 (키 불필요, 몇 초)
@@ -66,6 +66,11 @@ async function riot(host, apiPath) {
       continue;
     }
     if (res.status === 401 || res.status === 403) {
+      const why = await res.text().catch(() => '');
+      const k = String(cfg.apiKey);
+      // 키 자체는 출력하지 않고 형태만 (RGAPI- 로 시작, 길이 42가 정상)
+      console.error(`  라이엇 응답: ${why.slice(0, 200)}`);
+      console.error(`  키 형태: RGAPI- 로 시작 ${k.startsWith('RGAPI-') ? '예' : '아니요'}, 길이 ${k.length}(정상 42), 공백 포함 ${/\s/.test(k) ? '예' : '아니요'}`);
       throw new Error(`API 키가 거부됐어요 (HTTP ${res.status}). 개발 키는 24시간마다 만료되니 포털에서 다시 받아 config.json 에 넣어주세요.`);
     }
     if (res.status === 404) return null;
