@@ -1114,7 +1114,7 @@ function removeOne(arr, v) { const i = arr.indexOf(v); if (i >= 0) arr.splice(i,
 // ---------------- 시작 ----------------
 bind();
 // 점검용(콘솔·테스트): 메타 덱 계산 결과를 그대로 볼 수 있게
-window.__tftDebug = { metaDecks: n => metaDecks(n), state };
+window.__tftDebug = { metaDecks: n => metaDecks(n), state, tiers: () => tierDecks };
 if (window.TFT_WEIGHTS) state.weights = window.TFT_WEIGHTS; // data/weights.js 가 있으면 자동 사용
 const cached = store.get(CACHE_KEY);
 iconMapReady.then(start);

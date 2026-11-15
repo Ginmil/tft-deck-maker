@@ -11,7 +11,7 @@
 // 내부 공통 형식:
 // {
 //   source, set: { key, number, name },
-//   traits:    { [traitId]: { id, name, breakpoints:[2,4,6], desc } },
+//   traits:    { [traitId]: { id, name, breakpoints:[2,4,6], desc, icon } },
 //   champions: [ { id, name, cost, traits:[traitId], role, icon } ],
 //   items:     [ { id, name, role, icon } ],          // 완성 아이템
 //   emblems:   [ { id, name, trait, icon } ]          // 상징
@@ -20,7 +20,7 @@
 // =============================================================
 
 // 변환 규칙을 바꾸면 이 숫자를 올리세요. 브라우저에 저장된 예전 변환 결과를 자동으로 버리고 새로 받습니다.
-const ADAPTER_VERSION = 11;
+const ADAPTER_VERSION = 12; // 12: 시너지 아이콘
 
 const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -70,7 +70,7 @@ function normalize(raw, setKey) {
   for (const t of set.traits || []) {
     const bps = [...new Set((t.effects || []).map(e => e.minUnits).filter(n => n > 0 && n < 30))].sort((a, b) => a - b);
     if (!bps.length) continue;
-    traits[t.apiName] = { id: t.apiName, name: t.name, breakpoints: bps, desc: stripTags(t.desc) };
+    traits[t.apiName] = { id: t.apiName, name: t.name, breakpoints: bps, desc: stripTags(t.desc), icon: t.icon ? iconUrl(t.icon) : null };
     traitIdByName[t.name] = t.apiName;
     traitIdByName[t.apiName] = t.apiName;
   }
@@ -3048,7 +3048,7 @@ function removeOne(arr, v) { const i = arr.indexOf(v); if (i >= 0) arr.splice(i,
 // ---------------- 시작 ----------------
 bind();
 // 점검용(콘솔·테스트): 메타 덱 계산 결과를 그대로 볼 수 있게
-window.__tftDebug = { metaDecks: n => metaDecks(n), state };
+window.__tftDebug = { metaDecks: n => metaDecks(n), state, tiers: () => tierDecks };
 if (window.TFT_WEIGHTS) state.weights = window.TFT_WEIGHTS; // data/weights.js 가 있으면 자동 사용
 const cached = store.get(CACHE_KEY);
 iconMapReady.then(start);

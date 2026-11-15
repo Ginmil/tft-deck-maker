@@ -7,7 +7,7 @@
 // 내부 공통 형식:
 // {
 //   source, set: { key, number, name },
-//   traits:    { [traitId]: { id, name, breakpoints:[2,4,6], desc } },
+//   traits:    { [traitId]: { id, name, breakpoints:[2,4,6], desc, icon } },
 //   champions: [ { id, name, cost, traits:[traitId], role, icon } ],
 //   items:     [ { id, name, role, icon } ],          // 완성 아이템
 //   emblems:   [ { id, name, trait, icon } ]          // 상징
@@ -16,7 +16,7 @@
 // =============================================================
 
 // 변환 규칙을 바꾸면 이 숫자를 올리세요. 브라우저에 저장된 예전 변환 결과를 자동으로 버리고 새로 받습니다.
-export const ADAPTER_VERSION = 11;
+export const ADAPTER_VERSION = 12; // 12: 시너지 아이콘
 
 export const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -66,7 +66,7 @@ export function normalize(raw, setKey) {
   for (const t of set.traits || []) {
     const bps = [...new Set((t.effects || []).map(e => e.minUnits).filter(n => n > 0 && n < 30))].sort((a, b) => a - b);
     if (!bps.length) continue;
-    traits[t.apiName] = { id: t.apiName, name: t.name, breakpoints: bps, desc: stripTags(t.desc) };
+    traits[t.apiName] = { id: t.apiName, name: t.name, breakpoints: bps, desc: stripTags(t.desc), icon: t.icon ? iconUrl(t.icon) : null };
     traitIdByName[t.name] = t.apiName;
     traitIdByName[t.apiName] = t.apiName;
   }
