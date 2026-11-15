@@ -7,7 +7,8 @@ jobs:
     steps:
       - run: |
           B=https://raw.communitydragon.org/latest/game
-          curl -sL $B/characters/ | grep -oiE 'href="tft18_[^"]*\.cdtb\.bin"' | head -40
-          curl -sL $B/assets/characters/ | grep -oiE 'href="tft18_[^"]*"' | head -80
-          curl -sL $B/assets/characters/tft18_ironbarktree/hud/ | grep -oiE 'href="[^"]*"' | grep -iv 'http\|\?C=\|favicon\|theme' | head
-          curl -sL $B/characters/tft18_ironbarktree.cdtb.bin.json | grep -oiE '"[^"]*\.(tex|png|dds)"' | sort -u | head -20
+          for n in ironbarktree liferoot brock maokaisapling sentinel; do
+            echo "== $n"; curl -sL $B/characters/tft18_$n.cdtb.bin.json | grep -oiE '"[^"]*(icon|square|circle|portrait|splash)[^"]*\.(tex|png|dds)"' | sort -u | head -8
+            curl -sL $B/characters/tft18_$n.cdtb.bin.json | grep -oiE '"(mCharacterName|name|mDisplayName[^"]*)":"[^"]*"' | head -3
+            curl -sL $B/assets/characters/tft18_$n/hud/ | grep -oiE 'href="[^"]*\.png"' | head -6
+          done
