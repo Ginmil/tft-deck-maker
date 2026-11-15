@@ -1681,13 +1681,20 @@ function bdOpenDeck(d) {
   save();
   if (d.board) {
     // 내 보드 기반 추천: 지금 배치·아이템은 그대로 두고, 판매할 챔피언만 빼고 새 챔피언을 빈 칸에
+    // 이미 보드에 있는 챔피언은 다시 넣지 않음 (11/16 사용자: "배치툴로 보기"를 두 번 누르면 같은 챔피언이 또 추가됨)
+    // 형태만 다른 럭스(햇빛 → 달빛)는 빼고 넣는 대신 그 자리에서 형태만 바꿈 (아이템·별 유지)
     const removed = new Set(d.board.removed), added = new Set(d.board.added);
-    for (const [i, u] of Object.entries(bdState.cells)) if (removed.has(u.id)) { bdState.inv.push(...u.items); delete bdState.cells[i]; }
+    const keyAt = () => new Map(Object.entries(bdState.cells).map(([i, u]) => [champKey(bdChamp(u.id)), Number(i)]));
+    const addKeys = new Set(units.filter(u => added.has(u.champ.id)).map(u => champKey(u.champ)));
+    for (const [i, u] of Object.entries(bdState.cells)) if (removed.has(u.id) && !addKeys.has(champKey(bdChamp(u.id)))) { bdState.inv.push(...u.items); delete bdState.cells[i]; }
     for (const u of units) {
       if (!added.has(u.champ.id)) continue;
+      const at = keyAt().get(champKey(u.champ));
+      if (at != null) { bdState.cells[at].id = u.champ.id; continue; } // 이미 있음 (형태만 맞춤)
       const idx = bdFreeCell(bdIsFront(u.champ));
       if (idx != null) bdState.cells[idx] = { id: u.champ.id, star: u.star, items: u.items };
     }
+    if (snap() === bdState.past.at(-1)) { bdState.past.pop(); bd.openTab('builder'); bdRender(); return bdToast('이미 이 덱이 보드에 있어요'); }
     bdToast('추천 덱을 보드에 적용했어요 · Ctrl+Z 로 되돌리기');
   } else {
     bdState.cells = bdAutoPlace(units, { carryId, tankId });
