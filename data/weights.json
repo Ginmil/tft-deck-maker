@@ -11,7 +11,7 @@
    "18.6": 2185
   }
  },
- "generatedAt": "2026-11-15T10:44:19.495Z",
+ "generatedAt": "2026-11-15T10:46:49.756Z",
  "method": {
   "prior": 30,
   "strength": 0.35,
@@ -9256,6 +9256,7 @@
       "id": "da_18_lillia",
       "star": 2,
       "items": [
+       "DA_18_EmblemLunar",
        "DA_ProtectorsVow",
        "DA_Crownguard"
       ]
@@ -9498,6 +9499,7 @@
       "id": "da_draven18",
       "star": 2,
       "items": [
+       "DA_18_EmblemExecutioner",
        "DA_GuinsoosRageblade",
        "DA_InfinityEdge"
       ]
@@ -10215,7 +10217,8 @@
       "star": 2,
       "items": [
        "DA_ProtectorsVow",
-       "DA_AdaptiveHelm"
+       "DA_AdaptiveHelm",
+       "DA_18_EmblemLunar"
       ]
      },
      {
@@ -10709,6 +10712,7 @@
       "id": "da_18_lillia",
       "star": 2,
       "items": [
+       "DA_18_EmblemElderwood",
        "DA_AdaptiveHelm",
        "DA_WarmogsArmor"
       ]
@@ -11862,7 +11866,9 @@
      {
       "id": "da_sentinel18",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemCoven"
+      ]
      },
      {
       "id": "da_18_morgana",
@@ -11890,6 +11896,7 @@
       "id": "da_18_elderdragon",
       "star": 2,
       "items": [
+       "DA_18_EmblemInvoker",
        "DA_DeathbladeRadiant",
        "DA_BlueBuff"
       ]
@@ -12107,6 +12114,7 @@
       "star": 2,
       "items": [
        "DA_GargoyleStoneplate",
+       "DA_18_EmblemJuggernaut",
        "DA_GargoyleStoneplate"
       ]
      },
@@ -13364,6 +13372,7 @@
       "star": 2,
       "items": [
        "DA_AdaptiveHelm",
+       "DA_18_EmblemSpellweaver",
        "DA_RabadonsDeathcap"
       ]
      },
@@ -13380,6 +13389,7 @@
       "id": "da_18_zyra",
       "star": 2,
       "items": [
+       "DA_18_EmblemExecutioner",
        "DA_SpearOfShojin",
        "DA_VoidStaff"
       ]
@@ -14128,7 +14138,8 @@
       "id": "da_sentinel18",
       "star": 2,
       "items": [
-       "DA_SpiritVisage"
+       "DA_SpiritVisage",
+       "DA_18_EmblemLunar"
       ]
      },
      {
@@ -14378,6 +14389,7 @@
       "id": "da_lux18_base",
       "star": 2,
       "items": [
+       "DA_18_EmblemSpellweaver",
        "DA_Morellonomicon",
        "DA_VoidStaff"
       ]
@@ -14602,6 +14614,7 @@
       "star": 2,
       "items": [
        "DA_LastWhisper",
+       "DA_18_EmblemInferno",
        "DA_InfinityEdge"
       ]
      },
@@ -14610,6 +14623,7 @@
       "star": 2,
       "items": [
        "DA_NashorsTooth",
+       "DA_18_EmblemHunter",
        "DA_BlueBuff"
       ]
      },
@@ -14624,7 +14638,10 @@
      {
       "id": "da_18_lillia",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemJuggernaut",
+       "DA_18_EmblemInvoker"
+      ]
      },
      {
       "id": "da_amumu18",
@@ -14640,13 +14657,16 @@
       "star": 1,
       "items": [
        "DA_GuinsoosRageblade",
+       "DA_18_EmblemInferno",
        "DA_InfinityEdge"
       ]
      },
      {
       "id": "da_18_kennen",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemVanguard"
+      ]
      }
     ],
     "traits": {
@@ -14866,7 +14886,8 @@
       "star": 2,
       "items": [
        "DA_InfinityEdge",
-       "DA_SpearOfShojin"
+       "DA_SpearOfShojin",
+       "DA_18_EmblemFae"
       ]
      },
      {
@@ -15375,7 +15396,9 @@
      {
       "id": "da_taric18",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemBrawler"
+      ]
      }
     ],
     "traits": {
@@ -16571,6 +16594,7 @@
       "id": "da_18_ashe",
       "star": 2,
       "items": [
+       "DA_18_EmblemInferno",
        "DA_BlueBuff",
        "DA_RedBuff"
       ]
@@ -17067,6 +17091,7 @@
       "id": "da_18_elderdragon",
       "star": 2,
       "items": [
+       "DA_18_EmblemBrawler",
        "DA_InfinityEdge",
        "DA_LastWhisper"
       ]
@@ -17267,6 +17292,7 @@
       "star": 3,
       "items": [
        "DA_Artifact_NavoriFlickerblade",
+       "DA_18_EmblemBrawler",
        "DA_Quicksilver"
       ]
      },
@@ -17500,7 +17526,8 @@
       "star": 1,
       "items": [
        "DA_SpearOfShojin",
-       "DA_SpearOfShojin"
+       "DA_SpearOfShojin",
+       "DA_18_EmblemInvoker"
       ]
      },
      {
@@ -17517,7 +17544,8 @@
       "star": 1,
       "items": [
        "DA_Morellonomicon",
-       "DA_VoidStaff"
+       "DA_VoidStaff",
+       "DA_18_EmblemInvoker"
       ]
      },
      {
@@ -18005,7 +18033,8 @@
       "star": 2,
       "items": [
        "DA_VoidStaff",
-       "DA_RedBuff"
+       "DA_RedBuff",
+       "DA_18_EmblemBlackthorn"
       ]
      },
      {
@@ -18261,6 +18290,8 @@
       "id": "da_sentinel18",
       "star": 2,
       "items": [
+       "DA_18_EmblemBrawler",
+       "DA_18_EmblemJuggernaut",
        "DA_SpearOfShojin"
       ]
      },
@@ -18711,6 +18742,7 @@
       "id": "da_18_morgana",
       "star": 2,
       "items": [
+       "DA_18_EmblemSpellweaver",
        "DA_VoidStaff",
        "DA_Artifact_BlightingJewel"
       ]
@@ -18736,6 +18768,7 @@
       "id": "da_taric18",
       "star": 2,
       "items": [
+       "DA_18_EmblemBrawler",
        "DA_Crownguard"
       ]
      },
@@ -19488,7 +19521,9 @@
      {
       "id": "da_18_kennen",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemBlackthorn"
+      ]
      },
      {
       "id": "da_18_soraka",
@@ -19938,6 +19973,7 @@
       "id": "da_karma18",
       "star": 3,
       "items": [
+       "DA_18_EmblemExecutioner",
        "DA_RabadonsDeathcap",
        "DA_BlueBuff"
       ]
@@ -20694,7 +20730,8 @@
       "star": 1,
       "items": [
        "DA_SpearOfShojin",
-       "DA_Morellonomicon"
+       "DA_Morellonomicon",
+       "DA_18_EmblemRapidfire"
       ]
      }
     ],
@@ -20880,6 +20917,7 @@
       "id": "da_18_masteryi_ad",
       "star": 3,
       "items": [
+       "DA_18_EmblemBrawler",
        "DA_GuinsoosRageblade",
        "DA_Artifact_HellfireHatchet"
       ]
@@ -20893,6 +20931,7 @@
       "id": "da_18_rengar",
       "star": 3,
       "items": [
+       "DA_18_EmblemBrawler",
        "DA_GuinsoosRageblade",
        "DA_EdgeOfNight"
       ]
@@ -21605,6 +21644,7 @@
       "id": "da_18_masteryi_ad",
       "star": 3,
       "items": [
+       "DA_18_EmblemBrawler",
        "DA_Artifact_NavoriFlickerblade",
        "DA_EdgeOfNight"
       ]
@@ -21862,6 +21902,7 @@
       "id": "da_murkwolf18",
       "star": 3,
       "items": [
+       "DA_18_EmblemBlackthorn",
        "DA_GiantSlayer",
        "DA_EdgeOfNight"
       ]
@@ -21869,7 +21910,9 @@
      {
       "id": "da_18_diana",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemBlackthorn"
+      ]
      },
      {
       "id": "da_brambleback18",
@@ -22563,6 +22606,7 @@
       "id": "da_draven18",
       "star": 1,
       "items": [
+       "DA_18_EmblemElderwood",
        "DA_GuinsoosRageblade",
        "DA_KrakensFury"
       ]
@@ -22771,6 +22815,7 @@
       "id": "da_18_masteryi_ad",
       "star": 3,
       "items": [
+       "DA_18_EmblemBrawler",
        "DA_Quicksilver",
        "DA_Artifact_WitsEnd"
       ]
@@ -23722,7 +23767,9 @@
      {
       "id": "da_vi18",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemBlossom"
+      ]
      },
      {
       "id": "da_18_ahri",
@@ -23751,6 +23798,7 @@
       "id": "da_18_sivir",
       "star": 2,
       "items": [
+       "DA_18_EmblemBlossom",
        "DA_Component_TearOfTheGoddess"
       ]
      },
@@ -24702,6 +24750,7 @@
       "id": "da_18_lillia",
       "star": 2,
       "items": [
+       "DA_18_EmblemBrawler",
        "DA_WarmogsArmor",
        "DA_SunfireCape"
       ]
@@ -24729,6 +24778,7 @@
       "id": "da_18_ahri",
       "star": 1,
       "items": [
+       "DA_18_EmblemInferno",
        "DA_GiantSlayer"
       ]
      },
@@ -24744,7 +24794,9 @@
      {
       "id": "da_taric18",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemDefender"
+      ]
      },
      {
       "id": "da_lux18_base",
@@ -25915,6 +25967,7 @@
       "star": 2,
       "items": [
        "DA_Evenshroud",
+       "DA_18_EmblemPrimal",
        "DA_SunfireCape"
       ]
      },
@@ -25928,6 +25981,7 @@
       "star": 2,
       "items": [
        "DA_GuinsoosRageblade",
+       "DA_18_EmblemFae",
        "DA_HandOfJustice"
       ]
      },
@@ -25945,6 +25999,7 @@
       "star": 2,
       "items": [
        "DA_InfinityEdge",
+       "DA_18_EmblemFae",
        "DA_StrikersFlail"
       ]
      },
@@ -26855,6 +26910,8 @@
       "id": "da_18_diana",
       "star": 2,
       "items": [
+       "DA_18_EmblemRapidfire",
+       "DA_18_EmblemSprykin",
        "DA_Component_GiantsBelt"
       ]
      },
@@ -26896,7 +26953,8 @@
       "star": 2,
       "items": [
        "DA_SunfireCape",
-       "DA_SteadfastHeart"
+       "DA_SteadfastHeart",
+       "DA_18_EmblemLunar"
       ]
      },
      {
@@ -27582,6 +27640,7 @@
       "star": 3,
       "items": [
        "DA_TitansResolve",
+       "DA_18_EmblemDefender",
        "DA_GuinsoosRageblade"
       ]
      },
@@ -28030,7 +28089,8 @@
       "star": 2,
       "items": [
        "DA_GuinsoosRageblade",
-       "DA_LastWhisper"
+       "DA_LastWhisper",
+       "DA_18_EmblemExecutioner"
       ]
      },
      {
@@ -28509,6 +28569,7 @@
       "star": 3,
       "items": [
        "DA_GuinsoosRageblade",
+       "DA_18_EmblemBrawler",
        "DA_Quicksilver"
       ]
      },
@@ -28522,6 +28583,7 @@
       "star": 3,
       "items": [
        "DA_EdgeOfNight",
+       "DA_18_EmblemJuggernaut",
        "DA_HandOfJustice"
       ]
      },
@@ -28770,6 +28832,7 @@
       "id": "da_18_aphelios",
       "star": 2,
       "items": [
+       "DA_18_EmblemElderwood",
        "DA_GuinsoosRageblade",
        "DA_InfinityEdge"
       ]
@@ -28778,6 +28841,7 @@
       "id": "da_18_lillia",
       "star": 2,
       "items": [
+       "DA_18_EmblemElderwood",
        "DA_WarmogsArmor",
        "DA_ProtectorsVow"
       ]
@@ -28986,7 +29050,8 @@
       "star": 2,
       "items": [
        "DA_AdaptiveHelm",
-       "DA_SpiritVisage"
+       "DA_SpiritVisage",
+       "DA_18_EmblemPrimal"
       ]
      },
      {
@@ -29269,6 +29334,7 @@
       "star": 2,
       "items": [
        "DA_SpearOfShojin",
+       "DA_18_EmblemInferno",
        "DA_InfinityEdge"
       ]
      },
@@ -29497,6 +29563,7 @@
       "id": "da_nidalee18_ap",
       "star": 2,
       "items": [
+       "DA_18_EmblemHunter",
        "DA_Deathblade",
        "DA_InfinityEdge"
       ]
@@ -29512,6 +29579,7 @@
       "id": "da_18_sivir",
       "star": 2,
       "items": [
+       "DA_18_EmblemFae",
        "DA_InfinityEdge",
        "DA_SpearOfShojin"
       ]
@@ -29752,7 +29820,8 @@
       "star": 2,
       "items": [
        "DA_GiantSlayer",
-       "DA_JeweledGauntlet"
+       "DA_JeweledGauntlet",
+       "DA_18_EmblemInvoker"
       ]
      },
      {
@@ -29978,6 +30047,7 @@
       "id": "da_18_zyra",
       "star": 2,
       "items": [
+       "DA_18_EmblemSpellweaver",
        "DA_RedBuff",
        "DA_VoidStaff"
       ]
@@ -30219,6 +30289,7 @@
       "star": 2,
       "items": [
        "DA_RedBuff",
+       "DA_18_EmblemInferno",
        "DA_SpearOfShojin"
       ]
      }
@@ -30423,6 +30494,7 @@
       "id": "da_18_zyra",
       "star": 2,
       "items": [
+       "DA_18_EmblemBlackthorn",
        "DA_VoidStaff"
       ]
      },
@@ -30451,7 +30523,9 @@
      {
       "id": "da_18_yorick",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemBlackthorn"
+      ]
      },
      {
       "id": "da_18_soraka",
@@ -30654,7 +30728,9 @@
       "id": "da_kogmaw18_ad",
       "star": 2,
       "items": [
-       "DA_Component_NeedlesslyLargeRod"
+       "DA_18_EmblemLunar",
+       "DA_Component_NeedlesslyLargeRod",
+       "DA_18_EmblemFae"
       ]
      },
      {
@@ -30666,6 +30742,7 @@
       "id": "da_18_aphelios",
       "star": 2,
       "items": [
+       "DA_18_EmblemInferno",
        "DA_GuinsoosRageblade",
        "DA_InfinityEdge"
       ]
@@ -30692,6 +30769,7 @@
       "star": 2,
       "items": [
        "DA_SteraksGage",
+       "DA_18_EmblemSlayer",
        "DA_EdgeOfNight"
       ]
      },
@@ -31140,7 +31218,8 @@
       "star": 2,
       "items": [
        "DA_SpearOfShojin",
-       "DA_InfinityEdge"
+       "DA_InfinityEdge",
+       "DA_18_EmblemInferno"
       ]
      },
      {
@@ -31674,6 +31753,7 @@
       "id": "da_18_sivir",
       "star": 2,
       "items": [
+       "DA_18_EmblemInferno",
        "DA_InfinityEdge",
        "DA_StrikersFlail"
       ]
@@ -31884,7 +31964,8 @@
       "id": "da_amumu18",
       "star": 2,
       "items": [
-       "DA_IonicSpark"
+       "DA_IonicSpark",
+       "DA_18_EmblemExecutioner"
       ]
      },
      {
@@ -32385,7 +32466,8 @@
       "star": 2,
       "items": [
        "DA_Morellonomicon",
-       "DA_Component_NeedlesslyLargeRod"
+       "DA_Component_NeedlesslyLargeRod",
+       "DA_18_EmblemRapidfire"
       ]
      },
      {
@@ -33300,6 +33382,7 @@
       "star": 2,
       "items": [
        "DA_ProtectorsVow",
+       "DA_18_EmblemVanguard",
        "DA_SpiritVisage"
       ]
      },
@@ -34262,6 +34345,7 @@
       "id": "da_18_ahri",
       "star": 2,
       "items": [
+       "DA_18_EmblemFae",
        "DA_BlueBuff",
        "DA_JeweledGauntlet"
       ]
@@ -34714,7 +34798,8 @@
       "star": 3,
       "items": [
        "DA_SpearOfShojin",
-       "DA_JeweledGauntlet"
+       "DA_JeweledGauntlet",
+       "DA_18_EmblemFloraFatalis"
       ]
      },
      {
@@ -34736,6 +34821,7 @@
       "star": 2,
       "items": [
        "DA_ProtectorsVow",
+       "DA_18_EmblemSlayer",
        "DA_GargoyleStoneplate"
       ]
      },
@@ -34751,6 +34837,7 @@
       "star": 2,
       "items": [
        "DA_GargoyleStoneplate",
+       "DA_18_EmblemVanguard",
        "DA_GargoyleStoneplate"
       ]
      }
@@ -34963,6 +35050,7 @@
       "star": 3,
       "items": [
        "DA_Crownguard",
+       "DA_18_EmblemSlayer",
        "DA_GuinsoosRageblade"
       ]
      },
@@ -35230,6 +35318,7 @@
       "id": "da_draven18",
       "star": 2,
       "items": [
+       "DA_18_EmblemInferno",
        "DA_GuinsoosRageblade",
        "DA_GiantSlayer"
       ]
@@ -35468,6 +35557,7 @@
       "id": "da_18_zyra",
       "star": 2,
       "items": [
+       "DA_18_EmblemInferno",
        "DA_VoidStaff",
        "DA_HextechGunblade"
       ]
@@ -36197,6 +36287,7 @@
       "id": "da_amumu18",
       "star": 2,
       "items": [
+       "DA_18_EmblemBlackthorn",
        "DA_IonicSpark"
       ]
      }
@@ -36419,7 +36510,9 @@
      {
       "id": "da_fiddlesticks18",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemBlackthorn"
+      ]
      },
      {
       "id": "da_18_soraka",
@@ -36434,6 +36527,7 @@
       "id": "da_18_zyra",
       "star": 2,
       "items": [
+       "DA_18_EmblemExecutioner",
        "DA_SpearOfShojin",
        "DA_RedBuff"
       ]
@@ -36930,6 +37024,7 @@
       "id": "da_kogmaw18_ad",
       "star": 1,
       "items": [
+       "DA_18_EmblemPrimal",
        "DA_Component_RecurveBow",
        "DA_RabadonsDeathcap"
       ]
@@ -37151,6 +37246,7 @@
       "id": "da_18_elderdragon",
       "star": 2,
       "items": [
+       "DA_18_EmblemHunter",
        "DA_StrikersFlail",
        "DA_InfinityEdge"
       ]
@@ -38569,7 +38665,8 @@
       "star": 2,
       "items": [
        "DA_InfinityEdge",
-       "DA_Quicksilver"
+       "DA_Quicksilver",
+       "DA_18_EmblemFae"
       ]
      },
      {
@@ -38595,6 +38692,7 @@
       "star": 3,
       "items": [
        "DA_GuinsoosRageblade",
+       "DA_18_EmblemSlayer",
        "DA_LastWhisper"
       ]
      },
@@ -38603,7 +38701,8 @@
       "star": 1,
       "items": [
        "DA_SpearOfShojin",
-       "DA_RedBuff"
+       "DA_RedBuff",
+       "DA_18_EmblemFae"
       ]
      },
      {
@@ -38833,6 +38932,7 @@
       "id": "da_18_ahri",
       "star": 3,
       "items": [
+       "DA_18_EmblemInvoker",
        "DA_NashorsToothRadiant",
        "DA_JeweledGauntlet"
       ]
@@ -39290,7 +39390,8 @@
       "star": 2,
       "items": [
        "DA_GargoyleStoneplate",
-       "DA_SteadfastHeart"
+       "DA_SteadfastHeart",
+       "DA_18_EmblemFae"
       ]
      },
      {
@@ -39303,7 +39404,8 @@
       "star": 2,
       "items": [
        "DA_AdaptiveHelm",
-       "DA_AdaptiveHelm"
+       "DA_AdaptiveHelm",
+       "DA_18_EmblemJuggernaut"
       ]
      },
      {
@@ -39319,6 +39421,7 @@
       "id": "da_18_alune",
       "star": 2,
       "items": [
+       "DA_18_EmblemInvoker",
        "DA_JeweledGauntlet",
        "DA_VoidStaff"
       ]
@@ -39332,6 +39435,7 @@
       "id": "da_lux18_base",
       "star": 1,
       "items": [
+       "DA_18_EmblemSpellweaver",
        "DA_Morellonomicon",
        "DA_HextechGunblade"
       ]
@@ -40551,6 +40655,7 @@
       "star": 2,
       "items": [
        "DA_VoidStaff",
+       "DA_18_EmblemSpellweaver",
        "DA_JeweledGauntlet"
       ]
      }
@@ -40767,6 +40872,7 @@
       "id": "da_18_aphelios",
       "star": 2,
       "items": [
+       "DA_18_EmblemFae",
        "DA_InfinityEdge",
        "DA_RedBuff"
       ]
@@ -41261,6 +41367,7 @@
       "id": "da_18_zyra",
       "star": 1,
       "items": [
+       "DA_18_EmblemExecutioner",
        "DA_BlueBuff",
        "DA_RedBuff"
       ]
@@ -41269,6 +41376,7 @@
       "id": "da_18_azir",
       "star": 2,
       "items": [
+       "DA_18_EmblemLunar",
        "DA_GiantSlayer",
        "DA_StrikersFlail"
       ]
@@ -41277,6 +41385,7 @@
       "id": "da_18_soraka",
       "star": 2,
       "items": [
+       "DA_18_EmblemSpellweaver",
        "DA_AdaptiveHelm",
        "DA_HextechGunblade"
       ]
@@ -41516,7 +41625,8 @@
       "star": 2,
       "items": [
        "DA_InfinityEdge",
-       "DA_SteraksGage"
+       "DA_SteraksGage",
+       "DA_18_EmblemJuggernaut"
       ]
      },
      {
@@ -41744,6 +41854,7 @@
       "id": "da_kogmaw18_ad",
       "star": 1,
       "items": [
+       "DA_18_EmblemPrimal",
        "DA_RedBuff",
        "DA_GiantSlayer"
       ]
@@ -42436,6 +42547,7 @@
       "star": 3,
       "items": [
        "DA_SteraksGage",
+       "DA_18_EmblemSprykin",
        "DA_EdgeOfNight"
       ]
      },
@@ -42473,6 +42585,7 @@
       "id": "da_18_sivir",
       "star": 2,
       "items": [
+       "DA_18_EmblemInferno",
        "DA_HandOfJustice",
        "DA_InfinityEdge"
       ]
@@ -43438,6 +43551,7 @@
       "id": "da_18_zyra",
       "star": 2,
       "items": [
+       "DA_18_EmblemRapidfire",
        "DA_RedBuff",
        "DA_AdaptiveHelm"
       ]
@@ -43656,6 +43770,7 @@
       "id": "da_18_morgana",
       "star": 1,
       "items": [
+       "DA_18_EmblemFloraFatalis",
        "DA_Morellonomicon",
        "DA_VoidStaff"
       ]
@@ -43673,7 +43788,9 @@
       "id": "da_sentinel18",
       "star": 1,
       "items": [
-       "DA_SpiritVisage"
+       "DA_18_EmblemBrawler",
+       "DA_SpiritVisage",
+       "DA_18_EmblemBlossom"
       ]
      }
     ],
@@ -43908,6 +44025,7 @@
       "id": "da_18_malphite",
       "star": 2,
       "items": [
+       "DA_18_EmblemJuggernaut",
        "DA_GargoyleStoneplate",
        "DA_Crownguard"
       ]
@@ -43917,14 +44035,16 @@
       "star": 2,
       "items": [
        "DA_ProtectorsVow",
-       "DA_AdaptiveHelm"
+       "DA_AdaptiveHelm",
+       "DA_18_EmblemDefender"
       ]
      },
      {
       "id": "da_18_kennen",
       "star": 1,
       "items": [
-       "DA_StrikersFlail"
+       "DA_StrikersFlail",
+       "DA_18_EmblemLunar"
       ]
      }
     ],
@@ -44151,7 +44271,9 @@
      {
       "id": "da_18_kennen",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemBlackthorn"
+      ]
      }
     ],
     "traits": {
@@ -44613,7 +44735,9 @@
      {
       "id": "da_sentinel18",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemBrawler"
+      ]
      },
      {
       "id": "da_18_sett",
@@ -44814,6 +44938,7 @@
       "star": 2,
       "items": [
        "DA_SteraksGage",
+       "DA_18_EmblemRapidfire",
        "DA_EdgeOfNight"
       ]
      },
@@ -44836,7 +44961,9 @@
      {
       "id": "da_crimsonraptor18",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemBrawler"
+      ]
      },
      {
       "id": "da_taric18",
@@ -45527,6 +45654,7 @@
       "id": "da_amumu18",
       "star": 2,
       "items": [
+       "DA_18_EmblemVanguard",
        "DA_Crownguard",
        "DA_ProtectorsVow"
       ]
@@ -45787,6 +45915,7 @@
       "id": "da_18_zyra",
       "star": 2,
       "items": [
+       "DA_18_EmblemExecutioner",
        "DA_VoidStaff",
        "DA_SpearOfShojin"
       ]
@@ -46051,6 +46180,7 @@
       "star": 2,
       "items": [
        "DA_SteraksGage",
+       "DA_18_EmblemSlayer",
        "DA_EdgeOfNight"
       ]
      },
@@ -46247,7 +46377,8 @@
       "star": 3,
       "items": [
        "DA_Quicksilver",
-       "DA_Artifact_RapidFireCannon"
+       "DA_Artifact_RapidFireCannon",
+       "DA_18_EmblemExecutioner"
       ]
      },
      {
@@ -46719,6 +46850,7 @@
       "id": "da_18_alistar",
       "star": 3,
       "items": [
+       "DA_18_EmblemSprykin",
        "DA_GargoyleStoneplate",
        "DA_WarmogsArmor"
       ]
@@ -46762,7 +46894,8 @@
       "star": 2,
       "items": [
        "DA_VoidStaff",
-       "DA_RedBuff"
+       "DA_RedBuff",
+       "DA_18_EmblemSprykin"
       ]
      },
      {
@@ -46984,6 +47117,7 @@
       "id": "da_brambleback18",
       "star": 2,
       "items": [
+       "DA_18_EmblemRapidfire",
        "DA_Artifact_HellfireHatchet",
        "DA_SteraksGage"
       ]
@@ -47232,7 +47366,8 @@
       "star": 2,
       "items": [
        "DA_JeweledGauntlet",
-       "DA_SpearOfShojin"
+       "DA_SpearOfShojin",
+       "DA_18_EmblemSpellweaver"
       ]
      },
      {
@@ -47930,6 +48065,7 @@
       "id": "da_18_sett",
       "star": 1,
       "items": [
+       "DA_18_EmblemPrimal",
        "DA_Component_GiantsBelt"
       ]
      },
@@ -48147,6 +48283,7 @@
       "id": "da_18_masteryi_ad",
       "star": 3,
       "items": [
+       "DA_18_EmblemBrawler",
        "DA_TitansResolve",
        "DA_GuinsoosRageblade"
       ]
@@ -48384,6 +48521,7 @@
       "star": 2,
       "items": [
        "DA_GargoyleStoneplate",
+       "DA_18_EmblemVanguard",
        "DA_WarmogsArmor"
       ]
      },
@@ -49368,7 +49506,8 @@
       "star": 3,
       "items": [
        "DA_RedBuff",
-       "DA_HextechGunblade"
+       "DA_HextechGunblade",
+       "DA_18_EmblemFae"
       ]
      },
      {
@@ -49580,6 +49719,7 @@
       "id": "da_18_sivir",
       "star": 2,
       "items": [
+       "DA_18_EmblemFae",
        "DA_LastWhisper",
        "DA_RedBuff"
       ]
@@ -50049,7 +50189,9 @@
      {
       "id": "da_18_reksai",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemVanguard"
+      ]
      },
      {
       "id": "da_kogmaw18_ad",
@@ -50267,6 +50409,8 @@
       "id": "da_18_rengar",
       "star": 3,
       "items": [
+       "DA_18_EmblemSprykin",
+       "DA_18_EmblemHunter",
        "DA_EdgeOfNight"
       ]
      },
@@ -50311,6 +50455,7 @@
       "id": "da_18_lillia",
       "star": 1,
       "items": [
+       "DA_18_EmblemPrimal",
        "DA_ProtectorsVow",
        "DA_Evenshroud"
       ]
@@ -50525,6 +50670,7 @@
       "star": 2,
       "items": [
        "DA_Crownguard",
+       "DA_18_EmblemInvoker",
        "DA_AdaptiveHelm"
       ]
      },
@@ -50533,6 +50679,7 @@
       "star": 2,
       "items": [
        "DA_InfinityEdge",
+       "DA_18_EmblemSlayer",
        "DA_EdgeOfNight"
       ]
      },
@@ -50548,7 +50695,9 @@
      {
       "id": "da_kogmaw18_ad",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemRapidfire"
+      ]
      },
      {
       "id": "da_amumu18",
@@ -50558,7 +50707,9 @@
      {
       "id": "da_sentinel18",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemSprykin"
+      ]
      }
     ],
     "traits": {
@@ -51031,12 +51182,15 @@
      {
       "id": "da_fiddlesticks18",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemSprykin"
+      ]
      },
      {
       "id": "da_18_sett",
       "star": 2,
       "items": [
+       "DA_18_EmblemSprykin",
        "DA_SteadfastHeart",
        "DA_IonicSpark"
       ]
@@ -51264,6 +51418,7 @@
       "id": "da_sentinel18",
       "star": 2,
       "items": [
+       "DA_18_EmblemBrawler",
        "DA_Evenshroud"
       ]
      },
@@ -51503,7 +51658,8 @@
       "id": "da_18_lillia",
       "star": 2,
       "items": [
-       "DA_SunfireCape"
+       "DA_SunfireCape",
+       "DA_18_EmblemBrawler"
       ]
      },
      {
@@ -51960,7 +52116,8 @@
       "star": 2,
       "items": [
        "DA_SpearOfShojin",
-       "DA_VoidStaff"
+       "DA_VoidStaff",
+       "DA_18_EmblemFloraFatalis"
       ]
      },
      {
@@ -51972,6 +52129,7 @@
       "id": "da_18_sett",
       "star": 2,
       "items": [
+       "DA_18_EmblemDefender",
        "DA_SteraksGage"
       ]
      },
@@ -52430,13 +52588,16 @@
       "star": 2,
       "items": [
        "DA_Component_GiantsBelt",
-       "DA_SpiritVisage"
+       "DA_SpiritVisage",
+       "DA_18_EmblemDefender"
       ]
      },
      {
       "id": "da_18_azir",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemInferno"
+      ]
      },
      {
       "id": "da_18_soraka",
@@ -52460,6 +52621,7 @@
       "id": "da_18_zyra",
       "star": 2,
       "items": [
+       "DA_18_EmblemExecutioner",
        "DA_SpearOfShojin",
        "DA_VoidStaff"
       ]
@@ -52929,6 +53091,7 @@
       "id": "da_18_soraka",
       "star": 2,
       "items": [
+       "DA_18_EmblemSpellweaver",
        "DA_NashorsTooth",
        "DA_RabadonsDeathcap"
       ]
@@ -52951,6 +53114,7 @@
       "id": "da_18_zyra",
       "star": 2,
       "items": [
+       "DA_18_EmblemFloraFatalisAugment",
        "DA_RabadonsDeathcap",
        "DA_RabadonsDeathcap"
       ]
@@ -53398,7 +53562,8 @@
       "star": 2,
       "items": [
        "DA_RedBuff",
-       "DA_InfinityEdge"
+       "DA_InfinityEdge",
+       "DA_18_EmblemBlossom"
       ]
      },
      {
@@ -53645,6 +53810,7 @@
       "star": 2,
       "items": [
        "DA_HextechGunblade",
+       "DA_18_EmblemExecutioner",
        "DA_JeweledGauntlet"
       ]
      },
@@ -53665,7 +53831,11 @@
      {
       "id": "da_18_lillia",
       "star": 2,
-      "items": []
+      "items": [
+       "DA_18_EmblemJuggernaut",
+       "DA_18_EmblemCoven",
+       "DA_18_EmblemInferno"
+      ]
      },
      {
       "id": "da_fiddlesticks18",
@@ -53871,7 +54041,8 @@
       "star": 2,
       "items": [
        "DA_ProtectorsVow",
-       "DA_GargoyleStoneplate"
+       "DA_GargoyleStoneplate",
+       "DA_18_EmblemBrawler"
       ]
      },
      {
@@ -54103,6 +54274,7 @@
       "id": "da_karma18",
       "star": 3,
       "items": [
+       "DA_18_EmblemExecutioner",
        "DA_BlueBuff",
        "DA_StrikersFlail"
       ]
@@ -54595,7 +54767,9 @@
      {
       "id": "da_brambleback18",
       "star": 1,
-      "items": []
+      "items": [
+       "DA_18_EmblemVanguard"
+      ]
      },
      {
       "id": "da_18_zyra",
@@ -55038,6 +55212,7 @@
       "id": "da_18_xayah",
       "star": 2,
       "items": [
+       "DA_18_EmblemJuggernaut",
        "DA_GiantSlayer",
        "DA_Morellonomicon"
       ]
@@ -55060,6 +55235,8 @@
       "id": "da_crimsonraptor18",
       "star": 2,
       "items": [
+       "DA_18_EmblemElderwood",
+       "DA_18_EmblemFae",
        "DA_GuinsoosRageblade"
       ]
      },
@@ -55072,7 +55249,9 @@
       "id": "da_18_lillia",
       "star": 1,
       "items": [
-       "DA_ProtectorsVow"
+       "DA_ProtectorsVow",
+       "DA_18_EmblemJuggernaut",
+       "DA_18_EmblemElderwood"
       ]
      }
     ],
@@ -55262,6 +55441,7 @@
       "id": "da_18_cassiopeia",
       "star": 2,
       "items": [
+       "DA_18_EmblemLunar",
        "DA_StrikersFlail",
        "DA_HextechGunblade"
       ]
@@ -55767,6 +55947,7 @@
       "id": "da_18_morgana",
       "star": 2,
       "items": [
+       "DA_18_EmblemSlayer",
        "DA_VoidStaff",
        "DA_Morellonomicon"
       ]
@@ -56009,6 +56190,7 @@
       "id": "da_18_diana",
       "star": 3,
       "items": [
+       "DA_18_EmblemSpellweaver",
        "DA_GiantSlayer",
        "DA_Bloodthirster"
       ]
@@ -56209,7 +56391,8 @@
       "star": 2,
       "items": [
        "DA_Morellonomicon",
-       "DA_VoidStaff"
+       "DA_VoidStaff",
+       "DA_18_EmblemSpellweaver"
       ]
      },
      {
@@ -56252,6 +56435,8 @@
       "id": "da_18_varus",
       "star": 1,
       "items": [
+       "DA_18_EmblemExecutioner",
+       "DA_18_EmblemFae",
        "DA_LastWhisper"
       ]
      },
@@ -56483,6 +56668,7 @@
       "id": "da_lux18_base",
       "star": 1,
       "items": [
+       "DA_18_EmblemSpellweaver",
        "DA_SpearOfShojin",
        "DA_SpearOfShojin"
       ]
@@ -56924,7 +57110,8 @@
       "star": 3,
       "items": [
        "DA_StrikersFlail",
-       "DA_AdaptiveHelm"
+       "DA_AdaptiveHelm",
+       "DA_18_EmblemExecutioner"
       ]
      },
      {
@@ -57171,6 +57358,7 @@
       "id": "da_karma18",
       "star": 3,
       "items": [
+       "DA_18_EmblemExecutioner",
        "DA_BlueBuff",
        "DA_RabadonsDeathcap"
       ]
@@ -57396,6 +57584,7 @@
       "id": "da_18_diana",
       "star": 2,
       "items": [
+       "DA_18_EmblemCoven",
        "DA_Evenshroud"
       ]
      },
@@ -57592,7 +57781,8 @@
       "star": 3,
       "items": [
        "DA_SpearOfShojin",
-       "DA_Morellonomicon"
+       "DA_Morellonomicon",
+       "DA_18_EmblemExecutioner"
       ]
      },
      {
