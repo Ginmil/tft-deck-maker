@@ -6,7 +6,7 @@ import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './a
 import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems, assignItems, withForms } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
 import { patchReport, prevBalancePatch, tierOf, tierGames, tierList, shrinkAvg, TIER_CUTS, groupDecks } from './engine/patch.js';
-import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits, bdInventory, bdApplyItems, bdCarries } from './builder.js';
+import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits, bdInventory, bdApplyItems, bdCarries, bdMarkRecBase } from './builder.js';
 
 const $ = id => document.getElementById(id);
 const CACHE_KEY = `tft-deck-maker:data:v${ADAPTER_VERSION}`; // 어댑터를 고치면 버전을 올려 옛 캐시를 무시
@@ -1215,6 +1215,7 @@ function runBoard(btn) {
   if (!state.data) { setStatus('먼저 데이터를 불러와 주세요.', true); $('databar').open = true; return; }
   const board = bdBoardUnits();
   if (!board.length) { box.innerHTML = '<div class="empty">보드에 챔피언을 먼저 올려 주세요.</div>'; return; }
+  bdMarkRecBase();
   btn.disabled = true;
   box.innerHTML = '<div class="empty">내 보드에서 이어갈 덱을 계산하고 있어요…</div>';
   setTimeout(() => {

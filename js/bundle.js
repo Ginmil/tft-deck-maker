@@ -1678,8 +1678,13 @@ function bdOpenDeck(d) {
     const star3 = (d.unitInfo?.[c.id]?.star3 || 0) >= 0.4;
     return { champ: c, star: star3 ? 3 : 2, items };
   });
+  const before = snap();
   save();
   if (d.board) {
+    // 직접 고친 보드면(추천 적용 상태가 아니면) 지금 보드 기준
+    if (bdState.recBase && before !== bdState.recBase && before !== bdState.recLast) bdState.recBase = null;
+    // 추천은 "추천을 받던 때의 보드" 기준 → 그 보드에서 새로 여는 것처럼 (11/16 사용자: 1번 적용 후 2번을 누르면 둘 다 쌓였음)
+    if (bdState.recBase) { const b = JSON.parse(bdState.recBase); bdState.cells = b.cells; bdState.inv = b.inv; bdState.plants = b.plants || {}; bdState.carries = new Set(b.carries || []); }
     // 내 보드 기반 추천: 지금 배치·아이템은 그대로 두고, 판매할 챔피언만 빼고 새 챔피언을 빈 칸에
     // 이미 보드에 있는 챔피언은 다시 넣지 않음 (11/16 사용자: "배치툴로 보기"를 두 번 누르면 같은 챔피언이 또 추가됨)
     // 형태만 다른 럭스(햇빛 → 달빛)는 빼고 넣는 대신 그 자리에서 형태만 바꿈 (아이템·별 유지)
@@ -1695,7 +1700,8 @@ function bdOpenDeck(d) {
       if (idx != null) bdState.cells[idx] = { id: u.champ.id, star: u.star, items: u.items };
     }
     if (snap() === bdState.past.at(-1)) { bdState.past.pop(); bd.openTab('builder'); bdRender(); return bdToast('이미 이 덱이 보드에 있어요'); }
-    bdToast('추천 덱을 보드에 적용했어요 · Ctrl+Z 로 되돌리기');
+    bdState.recLast = snap();
+    bdToast('추천 덱으로 바꿨어요 · Ctrl+Z 로 되돌리기');
   } else {
     bdState.cells = bdAutoPlace(units, { carryId, tankId });
     bdState.plants = {}; bdState.carries = new Set();
@@ -1708,6 +1714,8 @@ function bdOpenDeck(d) {
 let bdResizeT = 0;
 addEventListener('resize', () => { clearTimeout(bdResizeT); bdResizeT = setTimeout(() => { if (bdData() && !bd$('panel-builder').hidden) bdRenderBoard(); }, 120); });
 
+/** 다음 수 추천을 계산하는 순간의 보드를 기억 (추천 덱은 이 보드 기준으로 적용) */
+function bdMarkRecBase() { bdState.recBase = snap(); }
 /** 남은 아이템 목록 (자동 배분용) */
 function bdInventory() { return [...bdState.inv]; }
 /** 사용자가 고른 "아이템 줄 챔피언" 칸 번호들 */
@@ -3301,6 +3309,7 @@ function runBoard(btn) {
   if (!state.data) { setStatus('먼저 데이터를 불러와 주세요.', true); $('databar').open = true; return; }
   const board = bdBoardUnits();
   if (!board.length) { box.innerHTML = '<div class="empty">보드에 챔피언을 먼저 올려 주세요.</div>'; return; }
+  bdMarkRecBase();
   btn.disabled = true;
   box.innerHTML = '<div class="empty">내 보드에서 이어갈 덱을 계산하고 있어요…</div>';
   setTimeout(() => {
