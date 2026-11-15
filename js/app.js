@@ -309,6 +309,7 @@ function renderResults(title, decks, ms) {
 
 // 덱 카드의 "배치툴로 보기" 버튼이 참조할 덱 목록
 const deckRegistry = [];
+/** 덱 카드 (11/16 새 디자인): 덱 목록·다음 수 추천·상징 팀 메이커·아이템으로 찾기 공용 */
 function deckCard(d, i, byId) {
   const reg = deckRegistry.push(d) - 1;
   const emb = {};
@@ -320,47 +321,43 @@ function deckCard(d, i, byId) {
   const goal = d.title ? d.title : d.goal?.trait
     ? `${traitName(d.goal.trait)} ${d.goal.bp}${d.goal.emblemOnly ? ' <span class="tag">상징 전용</span>' : ''}`
     : d.carry ? `캐리: ${esc(d.carry.name)}` : '';
-
+  const pct = v => Math.round(v * 100) + '%';
   const units = d.team.map(c => {
-    const gear = [
-      ...(emb[c.id] || []).map(a => `<span class="emb ${a.misfit ? 'misfit' : ''}" title="${esc(a.misfit ? '어울리는 챔피언이 없어 임시로 배정 — ' : '')}${esc(a.why || '')}">${esc(traitName(a.trait))} 상징</span>`),
-      ...((d.items?.[c.id]) || []).map(it => `<span>${esc(it.name)}</span>`),
-    ].join('');
-    const badge = c.id === carryId ? '<span class="badge carry">핵심</span>' : c.id === tankId ? '<span class="badge tank">탱커</span>' : '';
     const added = d.board?.added.includes(c.id);
     const ui = d.unitInfo?.[c.id];
-    const extra = ui ? `${ui.star3 >= 0.4 ? `<span class="star3" title="이 덱에서 ${Math.round(ui.star3 * 100)}%가 3성">★★★</span>` : ''}${ui.rate < 0.5 ? `<span class="flex" title="이 덱을 쓴 판 중 ${ui.rate < 0.05 ? '일부' : Math.round(ui.rate * 100) + '%'}에 포함">${ui.rate < 0.05 ? '드물게' : `선택 ${Math.round(ui.rate * 100)}%`}</span>` : ''}` : '';
-    return `<div class="unit ${c.id === carryId ? 'carry' : ''} ${c.id === tankId ? 'tank' : ''} ${ui && ui.rate < 0.5 ? 'flexunit' : ''} ${added ? 'added' : ''}" data-cost="${c.cost}">${badge}${added ? '<span class="addTag">+ 추가</span>' : ''}${extra}
-      ${c.icon ? `<img src="${esc(c.icon)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : '<img alt="">'}
-      <span class="nm">${esc(c.name)}</span><span class="cost" title="${esc(c.roleFromStats || '스킬 설명·스탯으로 추정한 역할')}">${c.cost}코 · ${(c.role === 'AD' || c.role === 'AP') && (c.range ?? 4) < 3 ? '근접 ' : ''}${roleKo[c.role]}${c.roleFromStats ? '✓' : ''}${c.slots > 1 ? ` · ${c.slots}칸` : ''}</span>
-      ${c.weights ? `<span class="cost" style="color:var(--gold)">${Object.entries(c.weights).map(([t, n]) => `${esc(traitName(t))} ×${n}`).join(', ')}</span>` : ''}
-      ${gear ? `<div class="gear">${gear}</div>` : ''}
+    const isCarry = c.id === carryId, isTank = c.id === tankId;
+    const opt = ui && ui.rate < 0.5 && !isCarry && !isTank;
+    const cap = isCarry ? '핵심' : isTank ? '탱커' : added ? '새로 넣기' : ui && ui.rate < 0.05 ? '드물게' : opt ? `${pct(ui.rate)} 사용` : c.base && c.weights ? `${traitName(Object.keys(c.weights)[0])} 형태` : '';
+    const tip = `${c.name} · ${c.cost}코 · ${(c.role === 'AD' || c.role === 'AP') && (c.range ?? 4) < 3 ? '근접 ' : ''}${roleKo[c.role] || ''}${c.weights ? ' · ' + Object.entries(c.weights).map(([t, n]) => `${traitName(t)} ${n}명분`).join(', ') : ''}${c.slots > 1 ? ` · ${c.slots}칸` : ''}${ui ? ` · 이 덱에서 ${pct(ui.rate ?? 1)} 사용${ui.star3 ? ` · 3성 ${pct(ui.star3)}` : ''}` : ''}`;
+    const embs = (emb[c.id] || []).map(a => `<span class="embb${a.misfit ? ' misfit' : ''}" title="${esc(traitName(a.trait))} 상징${a.misfit ? ' — 어울리는 챔피언이 없어 임시로 배정' : ''}${a.why ? ' · ' + esc(a.why) : ''}">${traitBadge(a.trait, 'gold', true)}</span>`).join('');
+    const its = (d.items?.[c.id] || []).map(it => `<span class="bi" data-item="${esc(it.id)}">${it.icon ? `<img src="${esc(it.icon)}" alt="${esc(it.name)}">` : esc(it.name.slice(0, 2))}</span>`).join('');
+    return `<div class="dcU${isCarry ? ' carry' : ''}${isTank ? ' tank' : ''}${opt ? ' opt' : ''}${added ? ' added' : ''}" title="${esc(tip)}">
+      <div class="stars">${ui && ui.star3 >= 0.4 ? '★★★' : ''}</div>
+      <span class="pwrap">${hexPor(c)}${embs}${added ? '<i class="plus">+</i>' : ''}</span>
+      <span class="nm">${esc(c.base && c.weights ? c.base : c.name)}</span><em>${cap}</em>${its ? `<span class="dcIts">${its}</span>` : ''}
     </div>`;
   }).join('');
-
-  const traits = d.traits.filter(t => t.tier > 0 || t.count >= 2).map(t => {
-    const lvl = t.tier === 0 ? 'off' : t.top === t.breakpoints.at(-1) ? 't3' : t.tier >= 2 ? 't2' : 't1';
-    const tip = t.stat ? ` title="실제 경기: 평균 ${t.stat.avgPlace}등 · 순방 ${(t.stat.top4 * 100).toFixed(0)}% · ${t.stat.games}판 · 가중치 ×${t.stat.weight}"` : '';
-    return `<span class="tp ${lvl} ${t.emblemOnly ? 'emb' : ''}"${tip}><b>${t.count}</b> ${esc(t.name)}<span class="bps">${t.breakpoints.join('/')}</span>${t.bonus ? `<span class="bonus" title="랭커 실제 판에서 챔피언·상징 말고 증강 등으로 얻은 인원">증강 +${t.bonus}</span>` : ''}${t.stat ? `<span class="avg">${t.stat.avgPlace}등</span>` : ''}</span>`;
+  const order = { prism: 0, gold: 1, silver: 2, bronze: 3, '': 4 };
+  const traits = d.traits.filter(t => t.tier > 0 || t.count >= 2).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))
+    .sort((a, b) => (b.tier > 0) - (a.tier > 0) || (a.breakpoints.length === 1) - (b.breakpoints.length === 1) || order[a.st] - order[b.st] || b.count - a.count)
+    .map(t => `<span class="tTr${t.tier ? '' : ' off'}${t.emblemOnly ? ' embOnly' : ''}" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.emblemOnly ? ' · 상징이 있어야 켜지는 단계' : ''}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등 · ${t.stat.games}판` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `<span class="aug" title="랭커 실제 판에서 챔피언·상징 말고 증강 등으로 얻은 인원">증강 +${t.bonus}</span>` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
+  const builds = [carryId, tankId].filter(Boolean).map(id => {
+    const c = byId.get(id); const own = d.builds?.[id], b = c && (own || buildsFor(c)[0]);
+    return b ? `<div class="dcBuild"><span class="who">${id === carryId ? '핵심' : '탱커'} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
   }).join('');
-
-  return `<article class="deck ${d.desiredMet === false ? 'warn' : ''}">
-    <div class="deckTop">
-      <span class="rank">#${i + 1}</span>
-      <button class="btn ghost toBuilder" data-reg="${reg}" title="이 덱을 배치툴에 자동으로 세우기">배치툴로 보기</button>
-      ${goal ? `<span class="goal">${goal}</span>` : ''}
-      ${specialIds().length && !d.team.some(c => c.special) ? `<span class="tag soft">${esc(specialName())} 없음</span>` : ''}
-      ${carryId && !d.carry ? `<span class="core">핵심 <b>${esc(nameOf(carryId))}</b>${tankId ? ` · 탱커 <b>${esc(nameOf(tankId))}</b>` : ''}</span>` : ''}
-      ${d.metaInfo ? `<span class="meta">${d.metaInfo}</span>` : `<span class="meta">점수 ${d.score.toFixed(1)} · 총 ${d.gold}골드${d.usedEmblems ? ` · 상징 ${d.usedEmblems}개 사용` : ''}${d.wastedEmblems ? ` · <span style="color:var(--danger)">상징 ${d.wastedEmblems}개는 단계를 못 올림</span>` : ''}${unused ? ` · <span style="color:var(--danger)">상징 ${unused}개 못 씀</span>` : ''}${d.desiredMet === false ? ' · 목표 미달성' : ''}</span>`}
-    </div>
+  const meta = d.metaInfo || `점수 ${d.score.toFixed(1)} · 총 ${d.gold}골드${d.usedEmblems ? ` · 상징 ${d.usedEmblems}개 사용` : ''}${d.wastedEmblems ? ` · <span style="color:var(--danger)">상징 ${d.wastedEmblems}개는 단계를 못 올림</span>` : ''}${unused ? ` · <span style="color:var(--danger)">상징 ${unused}개 못 씀</span>` : ''}${d.desiredMet === false ? ' · 목표 미달성' : ''}`;
+  return `<article class="dcard${d.desiredMet === false ? ' warn' : ''}">
+    <header class="dcHead">
+      <span class="dcRank">${i + 1}</span>
+      <div class="dcTitle">${goal}${specialIds().length && !d.team.some(c => c.special) ? ` <span class="tag soft">${esc(specialName())} 없음</span>` : ''}</div>
+      <button class="btn small toBuilder" data-reg="${reg}" title="이 덱을 배치툴에 세우기">배치툴에서 열기</button>
+    </header>
+    <p class="dcMeta">${carryId && !d.carry ? `핵심 <b>${esc(nameOf(carryId))}</b>${tankId ? ` · 탱커 <b>${esc(nameOf(tankId))}</b>` : ''} · ` : ''}${meta}</p>
     ${d.craft ? craftNote(d.craft) : ''}
-    <div class="units">${units}</div>
-    ${d.board?.removed.length ? `<div class="boardDiff">빼는 챔피언: ${d.board.removed.map(id => `<b>${esc(nameOf(id))}</b>`).join(', ')}</div>` : ''}
-    ${[carryId, tankId].filter(Boolean).map(id => {
-      const c = byId.get(id); const own = d.builds?.[id], b = c && (own || buildsFor(c)[0]);
-      return b ? `<div class="deckBuild"><span class="who">${id === carryId ? '핵심' : '탱커'} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
-    }).join('')}
-    <div class="traitsOut">${traits}</div>
+    <div class="dcUnits">${units}</div>
+    ${d.board?.removed.length ? `<p class="dcRemoved">빼는 챔피언 ${d.board.removed.map(id => { const c = byId.get(id); return c ? `<span class="mini out" title="${esc(c.name)}">${hexPor(c)}<i>−</i><small>${esc(c.base && c.weights ? c.base : c.name)}</small></span>` : ''; }).join('')}</p>` : ''}
+    ${builds ? `<div class="dcBuilds">${builds}</div>` : ''}
+    <div class="tTraits">${traits}</div>
   </article>`;
 }
 

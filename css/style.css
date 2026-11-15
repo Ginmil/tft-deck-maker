@@ -729,3 +729,49 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 #bdAssignOut .asgKeep { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-top: 10px; font-size: 12.5px; color: var(--muted); }
 #bdAssignOut #bdAssignApply { margin-top: 12px; }
 @media (max-width: 560px) { #bdAssignOut .asgRow { grid-template-columns: 1fr; gap: 6px; } }
+
+/* ---------- 새 디자인: 덱 카드 (덱 목록·다음 수 추천·상징 팀 메이커·아이템 결과 공용, 11/16) ---------- */
+.dcard { background: var(--card); border-radius: 14px; padding: 18px 20px; margin-bottom: 12px; border: 1px solid transparent; }
+.dcard.warn { border-color: #5e3631; }
+.dcHead { display: flex; align-items: center; gap: 12px; }
+.dcRank { flex: none; width: 28px; height: 30px; display: grid; place-items: center; clip-path: var(--hexv); background: var(--line); color: var(--muted); font-weight: 700; font-size: 13px; }
+.dcTitle { flex: 1; font-size: 17px; font-weight: 700; letter-spacing: -0.02em; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.dcTitle .tier { font-size: 12px; }
+.dcTitle .tag { font-size: 11.5px; font-weight: 600; }
+.dcMeta { margin: 6px 0 14px 40px; color: var(--muted); font-size: 13px; }
+.dcMeta b { color: var(--text); font-weight: 600; }
+.dcUnits { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 12px 6px; }
+.dcU { text-align: center; font-size: 12.5px; line-height: 1.25; position: relative; }
+.dcU .stars { height: 13px; color: var(--gold); font-size: 10px; letter-spacing: -1px; }
+.dcU .pwrap { position: relative; display: block; width: 54px; margin: 0 auto 5px; }
+.dcU .por { width: 54px; height: 58px; }
+.dcU .nm { display: block; font-weight: 600; }
+.dcU em { display: block; font-style: normal; color: var(--faint); font-size: 11px; min-height: 14px; }
+.dcU.carry .por::before { background: var(--gold); }
+.dcU.carry em { color: var(--gold); font-weight: 600; }
+.dcU.tank em { color: var(--silver); font-weight: 600; }
+.dcU.opt .pwrap, .dcU.opt .nm { opacity: .5; }
+.dcU.added .por::before { background: var(--up); }
+.dcU.added em { color: var(--up); font-weight: 600; }
+.dcU .plus { position: absolute; top: -4px; left: -4px; width: 17px; height: 17px; border-radius: 50%; background: var(--up); color: var(--bg); font-style: normal; font-weight: 700; font-size: 13px; line-height: 17px; }
+.embb.misfit .tb { outline: 2px solid var(--danger); }
+.dcIts { display: flex; justify-content: center; gap: 2px; margin-top: 3px; }
+.dcIts .bi { padding: 0; border: 0; background: none; }
+.dcIts img { width: 20px; height: 20px; border-radius: 4px; }
+.dcRemoved { display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; margin: 12px 0 0; color: var(--muted); font-size: 12.5px; }
+.dcBuilds { margin-top: 16px; display: grid; gap: 8px; }
+.dcBuild { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.dcBuild .who { min-width: 110px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.dcBuild .build { margin: 0; }
+.dcard .tTraits { margin-top: 14px; }
+.tTr.off { opacity: .45; }
+.tTr.embOnly { box-shadow: inset 0 0 0 1px var(--gold); }
+.dcard .craftNote { margin: 0 0 12px 40px; }
+@media (max-width: 560px) {
+  .dcard { padding: 14px; }
+  .dcHead { flex-wrap: wrap; }
+  .dcHead .toBuilder { order: 3; width: 100%; }
+  .dcMeta, .dcard .craftNote { margin-left: 0; }
+  .dcUnits { grid-template-columns: repeat(4, 1fr); }
+  .dcBuild .who { min-width: 0; width: 100%; }
+}
