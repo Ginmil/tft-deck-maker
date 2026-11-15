@@ -2387,13 +2387,16 @@ function bind() {
   $('metaSort').onchange = renderMeta;
   $('metaView').onclick = e => { const b = e.target.closest('button[data-view]'); if (!b) return; metaView = b.dataset.view; renderMeta(); };
   $('metaTiers').addEventListener('click', e => {
-    const b = e.target.closest('.tchip'); if (!b) return;
+    const f = e.target.closest('#tierFilters button');
+    if (f) { tierFilter = f.dataset.f; renderMeta(); return; }
+    const b = e.target.closest('.dk'); if (!b) return;
     const x = tierDecks[Number(b.dataset.k)]; if (!x) return;
-    for (const c of $('metaTiers').querySelectorAll('.tchip.on')) c.classList.remove('on');
-    b.classList.add('on');
+    tierSel = deckName(x) + '|' + deckType(x);
+    for (const c of $('metaTiers').querySelectorAll('.dk')) c.setAttribute('aria-pressed', c === b);
     const byId = new Map(state.data.champions.map(c => [c.id, c]));
-    $('tierDetail').innerHTML = tierDetailHtml(x, byId);
-    $('tierDetail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const el = $('tierDetail'); el.innerHTML = tierDetailHtml(x, byId);
+    el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap');
+    if (innerWidth <= 980) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   $('metaMin').onchange = renderMeta;
   $('btnSample').onclick = async () => {
@@ -2971,6 +2974,7 @@ function renderMeta() {
   const box = $('metaList'), tbox = $('metaTiers');
   for (const b of $('metaView').querySelectorAll('button')) b.classList.toggle('on', b.dataset.view === metaView);
   $('metaSortWrap').hidden = metaView === 'tier';
+  $('metaHelp').hidden = metaView === 'tier';
   tbox.innerHTML = ''; box.innerHTML = '';
   if (!d) return;
   if (!metaAvailable()) {
@@ -2998,7 +3002,9 @@ let tierDecks = [];
 /** 덱 이름: 밸류덱은 "드레이븐 밸류", 아니면 "주력 시너지 캐리" */
 // 캐리 여러 명이 아이템을 나눠 드는 덱(묶인 버전의 캐리가 판수 15% 이상)은 "개화 아리·자이라"
 const carryNames = d => (d.carries?.length ? d.carries : [carryOfDeck(d)?.name || '']).join('·');
-const deckName = (d, sep = ' ') => (d.value ? `${carryNames(d)} 밸류` : `${traitName(d.m.trait)}${sep}${carryNames(d)}`);
+// "지옥불 럭스 (지옥불)" → "럭스" 처럼 형태 챔피언 이름의 괄호 정리 (덱 이름 앞에 시너지가 이미 붙음)
+const formClean = n => n.replace(/^(.+?) \((.+)\)$/, '$1');
+const deckName = (d, sep = ' ') => (d.value ? `${formClean(carryNames(d))} 밸류` : `${traitName(d.m.trait)}${sep}${formClean(carryNames(d))}`);
 const carryOfDeck = d => { const cid = d.carryChampId?.toLowerCase() || d.m.mainCarry || d.m.carry; return d.team.find(c => c.id.toLowerCase() === cid); };
 /** 덱 종류: 3코 이하 챔피언이 절반 이상 3성이면 "N코 리롤", 아니면 "캐리 코스트 + 레벨" */
 function deckType(d) {
@@ -3046,6 +3052,17 @@ function combineDecks(main, variants) {
   }
   return { ...main, m, tier: deckTier(m), variants, mainM: main.m, mainGames: g(main), carries: carries.length > 1 ? carries : undefined, unitInfo };
 }
+let tierFilter = 'all', tierSel = null;
+/** 덱 종류 필터: 밸류 / 리롤 / 레벨업 */
+const tierKind = x => x.value ? 'value' : /리롤/.test(deckType(x)) ? 'reroll' : 'level';
+/** 시너지 육각 배지 (단계 색: 고유 금, 마지막 단계 금(4단계 이상이면 프리즘), 그 아래 동·은·금) */
+function traitStyle(tier, max) { return !tier ? '' : max === 1 ? 'gold' : tier >= max ? (max >= 4 ? 'prism' : 'gold') : ['bronze', 'silver', 'gold'][Math.min(tier, 3) - 1]; }
+function traitBadge(id, style = '', sm = false) {
+  const ic = state.data?.traits?.[id]?.icon;
+  return `<span class="tb ${style}${sm ? ' sm' : ''}">${ic ? `<img src="${esc(ic)}" alt="" loading="lazy">` : ''}</span>`;
+}
+const hexPor = (c, extra = '') => `<span class="por" data-cost="${c?.cost || 1}"${extra}>${c?.icon ? `<img src="${esc(c.icon)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : ''}</span>`;
+
 function renderTiers(byId) {
   const min = Number($('metaMin').value);
   const decks = metaDecks(1).map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games, value: d.value, trait: d.m.trait })).filter(d => d.carryChamp);
@@ -3053,44 +3070,98 @@ function renderTiers(byId) {
   const { tiers, watch, cuts } = tierList(grouped, { min });
   tierDecks = [];
   const p = curPatch();
-  const chip = x => {
-    const k = tierDecks.push(x) - 1, m = x.m, carry = carryOfDeck(x);
-    const vn = x.variants?.length || 0;
-    return `<button class="tchip" data-k="${k}" title="${esc(deckName(x))} — 눌러서 덱 보기${vn ? ` (같은 덱 다른 버전 ${vn}개 포함)` : ''}">
-      <span class="tcIcon" data-cost="${carry?.cost || 1}">${carry ? img(carry.icon) : ''}</span>
-      <span class="tcText"><b>${esc(deckName(x))}</b><span class="muted small">${esc(deckType(x))}${vn ? ` · 버전 ${vn + 1}개` : ''}</span></span>
-      <span class="tcStat"><b>${m.avgPlace.toFixed(2)}</b>${patchDelta(m)}<span class="muted small">${x.tierGames}판 · 픽 ${(m.playRate * 100).toFixed(1)}%</span></span>
+  const show = x => tierFilter === 'all' || tierKind(x) === tierFilter;
+  const keyOf = x => deckName(x) + '|' + deckType(x);
+  const all = [...tiers.S, ...tiers.A, ...tiers.B, ...tiers.C, ...watch];
+  if (!tierSel || !all.some(x => keyOf(x) === tierSel)) tierSel = all[0] ? keyOf(all[0]) : null;
+  const tile = x => {
+    const k = tierDecks.push(x) - 1, m = x.m, carry = carryOfDeck(x), vn = x.variants?.length || 0;
+    return `<button class="dk" data-k="${k}" aria-pressed="${keyOf(x) === tierSel}" title="${esc(deckName(x))} — 눌러서 덱 보기">
+      ${hexPor(carry)}
+      <span><span class="nm">${esc(deckName(x))}</span><br><span class="ty">${x.value ? '' : traitBadge(m.trait, '', true)}${esc(deckType(x))}${vn ? ` · 버전 ${vn + 1}개` : ''}</span></span>
+      <span class="sc"><b>${m.avgPlace.toFixed(2)}${patchDelta(m)}</b><span>${x.tierGames.toLocaleString()}판</span></span>
     </button>`;
   };
-  const row = t => tiers[t].length ? `<div class="tierRow"><div class="tierHead"><span class="tier t${t}">${t}</span><span class="muted small">${TIER_DESC[t]}</span></div><div class="tierChips">${tiers[t].map(chip).join('')}</div></div>` : '';
+  const row = (t, list, label, open = true) => {
+    const vis = list.filter(show);
+    if (!vis.length) return '';
+    const body = `<div class="decks">${vis.map(tile).join('')}</div>`;
+    return open ? `<div class="tierBand" data-t="${t}"><div class="tmark"><span class="thex">${t}</span><small>${label}</small></div>${body}</div>`
+      : `<details class="tierBand" data-t="${t}"><summary class="tmark"><span class="thex">${t}</span><small>${label} · ${vis.length}개</small></summary>${body}</details>`;
+  };
   const ranked = tiers.S.length + tiers.A.length + tiers.B.length + tiers.C.length;
+  const filters = [['all', '전체'], ['reroll', '리롤'], ['level', '레벨업'], ['value', '밸류']]
+    .map(([k, n]) => `<button aria-pressed="${tierFilter === k}" data-f="${k}">${n}</button>`).join('');
+  const bands = ['S', 'A', 'B'].map(t => row(t, tiers[t], TIER_DESC[t])).join('') + row('C', tiers.C, TIER_DESC.C, false)
+    + (watch.filter(show).length ? `<div class="tierBand" data-t="W"><div class="tmark"><span class="thex">?</span><small>지켜볼 덱</small></div><div><p class="tierNote">이번 패치 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱이에요.</p><div class="decks">${watch.filter(show).map(tile).join('')}</div></div></div>` : '');
   $('metaTiers').innerHTML = !ranked && !watch.length
     ? `<div class="empty">${p ? esc(p) + ' 패치에서 ' : ''}${min}판 이상 나온 메타 덱이 아직 없어요. 최소 판수를 낮춰 보세요.</div>`
-    : `<p class="legend">${p ? `<b>${esc(p)} 패치</b> 경기만으로 매긴 티어 · ` : ''}이번 패치 ${min}판 이상인 덱 ${ranked}개 · 보드 구성이 같은 덱(후반 5코 캐리로 넘어간 판, 시너지 이름만 다르게 잡힌 판)은 한 덱으로 묶음 · 기준: 평균 등수를 판수로 보정(판수가 적으면 4.5등 쪽으로)한 순위 — 상위 10% S(${cuts.S.toFixed(2)}등까지) · 다음 20% A(${cuts.A.toFixed(2)}) · 다음 30% B(${cuts.B.toFixed(2)}) · 나머지 C · 덱을 누르면 아래에 자세히</p>
-      <div class="tierTable">${['S', 'A', 'B'].map(row).join('')}
-      ${tiers.C.length ? `<details class="tierRow tierC"><summary class="tierHead"><span class="tier tC">C</span><span class="muted small">${TIER_DESC.C} · ${tiers.C.length}개 펼치기</span></summary><div class="tierChips">${tiers.C.map(chip).join('')}</div></details>` : ''}</div>
-      ${watch.length ? `<h3 class="recSub">지켜볼 덱 <span class="muted small">이번 패치 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱 · 표본이 적어 티어에 넣지 않았어요</span></h3><div class="tierChips">${watch.map(chip).join('')}</div>` : ''}
-      <div id="tierDetail"></div>`;
+    : `<div class="tierHead2">
+        <div><h2>${p ? esc(p) + ' 패치 티어' : '메타 티어'}</h2>
+        <p>랭커 경기의 최종 덱을 묶어 평균 등수 순위로 나눴어요 — 상위 10% S(${cuts.S.toFixed(2)}등까지), 다음 20% A(${cuts.A.toFixed(2)}), 30% B(${cuts.B.toFixed(2)}), 나머지 C. 판수가 적은 덱은 4.5등 쪽으로 보정했고, 보드가 같은 덱은 아이템을 든 챔피언이 달라도 한 덱으로 묶었어요.</p></div>
+        <div class="pillFilters" id="tierFilters" role="group" aria-label="덱 종류">${filters}</div>
+      </div>
+      <div class="tierLayout"><section class="tierBands">${bands || '<p class="muted">이 종류의 덱이 아직 없어요.</p>'}</section><aside class="tierDetail" id="tierDetail" aria-live="polite"></aside></div>`;
+  const cur = tierDecks.find(x => keyOf(x) === tierSel) || tierDecks[0];
+  if (cur && $('tierDetail')) $('tierDetail').innerHTML = tierDetailHtml(cur, byId);
 }
-/** 티어표 덱 상세: 대표 버전 덱 카드 + 같은 덱의 다른 버전 성적 */
+
+/** 티어표 덱 상세 (오른쪽 패널): 구성 · 3신기 · 시너지 · 다른 구성 · 버전별 성적 */
 function tierDetailHtml(x, byId) {
-  const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x, ' · '))} <span class="tag soft">${esc(deckType(x))}</span>${emblemNote(x.mainM || x.m, x)}`,
-    metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.level || x.m.level}${x.realBoard && (x.mainM || x.m).board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중 자주 쓰인 챔피언을 가장 많이 담은 보드">${(x.mainM || x.m).board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${(x.mainM || x.m).board.same}판` : '랭커 실제 보드'}</span>` : ''}` };
-  const alts = altBoards(x.mainM || x.m, x.team);
-  const altHtml = alts.length ? `<div class="tierVariants"><h4>다른 구성</h4><p class="muted small">이 덱을 쓴 랭커의 실제 보드 중 위 보드와 다른 것 (자주 나온 순)</p>
-    <div class="tableWrap"><table class="pnTable"><thead><tr><th>위 보드와 차이</th><th>평균</th><th>판수</th><th></th></tr></thead><tbody>${alts.map(a => { const ad = altDeck(x, a); const reg = ad ? deckRegistry.push(ad) - 1 : -1; return `<tr><td>${[...a.remove.map(c => `<span class="muted">−${esc(c.base || c.name)}</span>`), ...a.add.map(c => `+${esc(c.name)}`), a.emb ? `+${esc(traitName((x.mainM || x.m).trait))} 상징${a.emb > 1 ? ` ×${a.emb}` : ''}` : ''].filter(Boolean).join(' ')}</td><td><b>${a.avgPlace}등</b></td><td>${a.games}판</td><td>${reg >= 0 ? `<button class="btn ghost small toBuilder" data-reg="${reg}" title="이 구성을 배치툴에 세우기">배치툴</button>` : ''}</td></tr>`; }).join('')}</tbody></table></div></div>` : '';
-  const card = deckCard(main, 0, byId).replace('<span class="rank">#1</span>', '') + altHtml;
-  if (!x.variants?.length) return card;
-  const g = d => tierGames(d.m) || d.m.games;
-  const rows = [{ d: x, label: '대표 버전', main: true }, ...x.variants.map(d => ({ d }))].map(({ d, main: isMain }) => {
-    const c = carryOfDeck(d);
-    const mc = carryOfDeck(x), otherCarry = !isMain && c && mc && (c.base || c.id) !== (mc.base || mc.id);
-    const why = isMain ? (x.carries ? `${esc(mc?.name || '')}에게 아이템을 몰아준 판` : '대표 버전') : otherCarry && c.cost >= 5 && !(x.carries || []).includes(c.base || c.name) && d.m.trait !== x.m.trait ? `후반 ${esc(c.name)}에게 아이템` : otherCarry ? `${esc(c.name)}에게 아이템을 몰아준 판` : x.value && d.value ? `같은 밸류덱, 함께 켠 시너지가 ${esc(traitName(d.m.trait))}` : '같은 구성, 시너지만 다르게 잡힘';
-    const mm = isMain ? x.mainM : d.m;
-    return mm ? `<tr><td>${esc(traitName(mm.trait))} · ${esc(c?.name || '')}</td><td class="muted small">${why}</td><td><b>${mm.avgPlace}등</b></td><td>${(isMain ? x.mainGames : g(d))}판</td></tr>` : '';
+  const m = x.m, mm = x.mainM || x.m;
+  const tierColor = { S: 'var(--gold)', A: 'var(--silver)', B: 'var(--bronze)', C: 'var(--faint)' }[x.tier] || 'var(--line)';
+  const carry = carryOfDeck(x), carryId = carry?.id, tankId = x.core?.tank;
+  const emb = {};
+  for (const a of x.assignment || []) if (a.holder) (emb[a.holder] ||= []).push(a);
+  const pct = v => Math.round(v * 100) + '%';
+  const units = [...x.team].sort((a, b) => (b.id === carryId) - (a.id === carryId) || (b.id === tankId) - (a.id === tankId) || b.cost - a.cost).map(c => {
+    const ui = x.unitInfo?.[c.id] || {}, rate = ui.rate ?? 1;
+    const opt = rate < 0.5 && c.id !== carryId && c.id !== tankId;
+    return `<div class="tUnit${c.id === carryId ? ' carry' : ''}${opt ? ' opt' : ''}">
+      <div class="stars">${(ui.star3 || 0) >= 0.5 ? '★★★' : ''}</div>
+      <span class="pwrap">${hexPor(c)}${(emb[c.id] || []).map(a => `<span class="embb" title="${esc(traitName(a.trait))} 상징">${traitBadge(a.trait, 'gold', true)}</span>`).join('')}</span>
+      ${esc(c.base && c.weights ? c.base : c.name)}<em>${c.id === carryId ? '핵심 캐리' : c.id === tankId ? '메인 탱커' : rate < 0.05 ? '드물게 사용' : opt ? `${pct(rate)}만 사용` : ''}</em></div>`;
   }).join('');
-  return card + `<div class="tierVariants"><h4>같은 덱의 버전별 성적</h4><p class="muted small">보드 구성은 거의 같지만, 랭커 경기에서 아이템을 든 챔피언이나 주력 시너지가 다르게 잡힌 판들이에요. 후반 5코 캐리 버전은 이미 이기고 있는 판에서 나오는 경우가 많아 등수가 좋게 보일 수 있어요.</p>
-    <div class="tableWrap"><table class="pnTable"><thead><tr><th>버전</th><th>차이</th><th>평균</th><th>판수</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+  const builds = [carryId, tankId].filter(Boolean).map(id => {
+    const c = byId.get(id), b = c && (x.builds?.[id] || buildsFor(c)[0]);
+    return b ? `<div class="tBuild"><span class="who">${id === carryId ? '캐리' : '탱커'} ${esc(c.name)}</span>${buildRow(b)}</div>` : '';
+  }).join('');
+  const order = { prism: 0, gold: 1, silver: 2, bronze: 3, '': 4 };
+  const traits = (x.traits || []).filter(t => t.tier > 0).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))
+    .sort((a, b) => (a.breakpoints.length === 1) - (b.breakpoints.length === 1) || order[a.st] - order[b.st] || b.count - a.count)
+    .map(t => `<span class="tTr" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `<span class="aug" title="랭커 실제 판에서 챔피언·상징 말고 증강 등으로 얻은 인원">증강 +${t.bonus}</span>` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
+  const regMain = deckRegistry.push(x) - 1;
+  const alts = altBoards(mm, x.team);
+  const mini = (c, cls) => `<span class="mini ${cls}" title="${esc(c.name)}">${hexPor(c)}<i>${cls === 'out' ? '−' : '+'}</i><small>${esc(c.base && c.weights ? c.base : c.name)}</small></span>`;
+  const altHtml = alts.length ? `<div class="dSec"><h3>다른 구성</h3><p class="real">랭커가 실제로 쓴 다른 보드예요. 위 보드에서 빼고 넣으면 돼요.</p>${alts.map(a => {
+    const ad = altDeck(x, a), reg = ad ? deckRegistry.push(ad) - 1 : -1;
+    const diff = m.avgPlace - a.avgPlace, few = a.games < 5;
+    return `<div class="alt${few ? ' few' : ''}"><div class="altswap">
+        <div class="side">${a.remove.map(c => mini(c, 'out')).join('')}</div><span class="arrow" aria-hidden="true">→</span>
+        <div class="side">${a.add.map(c => mini(c, 'in')).join('')}${a.emb ? `<span class="mini in" title="${esc(traitName(mm.trait))} 상징">${traitBadge(mm.trait, 'gold')}<i>+</i><small>상징${a.emb > 1 ? ' ×' + a.emb : ''}</small></span>` : ''}${!a.add.length && !a.emb ? '<small class="none">빼기만</small>' : ''}</div>
+      </div>
+      <div class="altStat"><b>${a.avgPlace}등</b>${few ? '<span class="cmp">표본 적음</span>' : Math.abs(diff) < 0.15 ? '<span class="cmp">덱 평균과 비슷</span>' : `<span class="cmp ${diff > 0 ? 'up' : 'down'}">덱 평균보다 ${diff > 0 ? '▲' : '▼'}${Math.abs(diff).toFixed(2)}</span>`}<small>${a.games}판</small>${reg >= 0 ? `<button class="altopen toBuilder" data-reg="${reg}" title="이 구성을 배치툴에 세우기">배치툴에서 열기</button>` : ''}</div></div>`;
+  }).join('')}</div>` : '';
+  let vers = '';
+  if (x.variants?.length) {
+    const g = d => tierGames(d.m) || d.m.games;
+    const rows = [{ d: x, main: true }, ...x.variants.map(d => ({ d }))].map(({ d, main: isMain }) => {
+      const c = carryOfDeck(d), mc = carryOfDeck(x), otherCarry = !isMain && c && mc && (c.base || c.id) !== (mc.base || mc.id);
+      const why = isMain ? (x.carries ? `${mc?.name || ''}에게 아이템을 몰아준 판` : '대표 버전') : otherCarry && c.cost >= 5 && !(x.carries || []).includes(c.base || c.name) && d.m.trait !== x.m.trait ? `후반 ${c.name}에게 아이템` : otherCarry ? `${c.name}에게 아이템을 몰아준 판` : x.value && d.value ? `같은 밸류덱, 함께 켠 시너지가 ${traitName(d.m.trait)}` : '같은 구성, 시너지만 다르게 잡힘';
+      const vm = isMain ? x.mainM : d.m;
+      return vm ? `<tr><td>${esc(traitName(vm.trait))} · ${esc(c?.name || '')}<span class="why">${esc(why)}</span></td><td>${vm.avgPlace}등</td><td>${(isMain ? x.mainGames : g(d))}판</td></tr>` : '';
+    }).join('');
+    vers = `<div class="dSec"><h3>버전별 성적</h3><p class="real">보드는 거의 같지만 아이템을 든 챔피언이나 주력 시너지가 다르게 잡힌 판들이에요. 후반 5코 캐리 버전은 이미 이기는 판에서 나오는 경우가 많아 좋아 보일 수 있어요.</p><table class="ver">${rows}</table></div>`;
+  }
+  const realNote = x.realBoard && mm.board ? `<p class="real">랭커가 실제로 쓴 보드예요${mm.board.same > 1 ? ` · 똑같은 구성 ${mm.board.same}판` : ''}. 흐린 챔피언은 이 덱을 쓴 판 중 절반이 안 되게 넣은 자리고, 육각 배지는 상징이에요.</p>` : '';
+  return `<div class="dTop"><span class="thex" style="background:${tierColor}">${x.tier || '?'}</span>
+      <div><h2>${esc(deckName(x))}</h2><p>${esc(deckType(x))}${x.value ? ` · 함께 켠 시너지 ${esc(traitName(m.trait))}` : ''}${emblemNote(mm, x)}</p></div></div>
+    <div class="dStats"><div><b>${m.avgPlace.toFixed(2)}</b><span>평균 등수${patchDelta(m)}</span></div><div><b>${pct(m.top4)}</b><span>순방</span></div><div><b>${pct(m.win)}</b><span>1등</span></div><div><b>${(x.tierGames || m.games).toLocaleString()}</b><span>판</span></div></div>
+    <div class="dSec"><h3>구성 · ${x.level || m.level}레벨</h3>${realNote}<div class="tBoard">${units}</div></div>
+    ${builds ? `<div class="dSec"><h3>랭커 3신기</h3>${builds}</div>` : ''}
+    <div class="dSec"><h3>시너지</h3><div class="tTraits">${traits}</div></div>
+    ${altHtml}${vers}
+    <div class="dCta"><button class="btn primary toBuilder" data-reg="${regMain}">배치툴에서 열기</button></div>`;
 }
 
 // ---------------- 내 보드 → 다음 수 추천 (배치툴) ----------------
