@@ -123,6 +123,7 @@ export function tierList(decks, { min = 15, watchMin = 5 } = {}) {
 //  - 작은 덱 A 를 더 큰 덱 B 에 넣는 조건:
 //    ① A 의 캐리가 5코스트(후반 캐리 전환)이고 구성이 75% 이상 같음 (B 도 5코 캐리면 B 가 3배 이상 클 때만)
 //    ② 캐리가 같고 구성이 85% 이상 같음 (주력 시너지 이름만 다르게 잡힘)
+//    ③ 둘 다 밸류덱(value)이고 캐리가 같으면 구성 50% 이상 (드레이븐 밸류의 협곡야수·나무정령·전쟁기계… 버전)
 //  - 싼 캐리가 다른 덱은 따로 (요정 애쉬 3.38등 vs 요정 시비르 5.25등처럼 성적이 크게 다름)
 // decks: [{ team: [{ id, base?, cost }], carryChamp: { id, base?, cost }, games }] → [{ main, variants: [...] }] (main 은 가장 큰 덱)
 export function groupDecks(decks) {
@@ -140,7 +141,11 @@ export function groupDecks(decks) {
       const s = sim(a, b);
       const late5 = a.carryChamp.cost >= 5 && (b.carryChamp.cost < 5 || b.games >= 3 * a.games);
       const same = key(a.carryChamp) === key(b.carryChamp);
-      if (((late5 && s >= 0.75) || (same && s >= 0.85)) && (!best || s > best.s)) best = { b, s };
+      // ③ 같은 캐리의 밸류덱끼리(드레이븐 밸류: 우연히 켜진 작은 시너지만 다름, 구성 50~89% 겹침)
+      const value = same && a.value && b.value && s >= 0.5;
+      // 캐리가 같은 덱에 우선 붙음 (전쟁기계 드레이븐이 장로 드래곤 밸류보다 드레이븐 밸류로)
+      const pr = s + (same ? 1 : 0);
+      if (((late5 && s >= 0.75) || (same && s >= 0.85) || value) && (!best || pr > best.pr)) best = { b, s, pr };
     }
     if (best) parent.set(a, best.b);
   }

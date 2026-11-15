@@ -1394,6 +1394,7 @@ function tierList(decks, { min = 15, watchMin = 5 } = {}) {
 //  - 작은 덱 A 를 더 큰 덱 B 에 넣는 조건:
 //    ① A 의 캐리가 5코스트(후반 캐리 전환)이고 구성이 75% 이상 같음 (B 도 5코 캐리면 B 가 3배 이상 클 때만)
 //    ② 캐리가 같고 구성이 85% 이상 같음 (주력 시너지 이름만 다르게 잡힘)
+//    ③ 둘 다 밸류덱(value)이고 캐리가 같으면 구성 50% 이상 (드레이븐 밸류의 협곡야수·나무정령·전쟁기계… 버전)
 //  - 싼 캐리가 다른 덱은 따로 (요정 애쉬 3.38등 vs 요정 시비르 5.25등처럼 성적이 크게 다름)
 // decks: [{ team: [{ id, base?, cost }], carryChamp: { id, base?, cost }, games }] → [{ main, variants: [...] }] (main 은 가장 큰 덱)
 function groupDecks(decks) {
@@ -1411,7 +1412,11 @@ function groupDecks(decks) {
       const s = sim(a, b);
       const late5 = a.carryChamp.cost >= 5 && (b.carryChamp.cost < 5 || b.games >= 3 * a.games);
       const same = key(a.carryChamp) === key(b.carryChamp);
-      if (((late5 && s >= 0.75) || (same && s >= 0.85)) && (!best || s > best.s)) best = { b, s };
+      // ③ 같은 캐리의 밸류덱끼리(드레이븐 밸류: 우연히 켜진 작은 시너지만 다름, 구성 50~89% 겹침)
+      const value = same && a.value && b.value && s >= 0.5;
+      // 캐리가 같은 덱에 우선 붙음 (전쟁기계 드레이븐이 장로 드래곤 밸류보다 드레이븐 밸류로)
+      const pr = s + (same ? 1 : 0);
+      if (((late5 && s >= 0.75) || (same && s >= 0.85) || value) && (!best || pr > best.pr)) best = { b, s, pr };
     }
     if (best) parent.set(a, best.b);
   }
@@ -2585,6 +2590,17 @@ function fitMainCount(team, info, m, byLower, carry, carryRef = {}) {
   return emblems;
 }
 
+/**
+ * 밸류덱: 시너지보다 5코스트 챔피언으로 힘을 내는 덱 (사용자 피드백 11/15: 드레이븐은 같이 가는 시너지가 없어 대부분 밸류덱)
+ * 9레벨 이상 + 5코스트 4명 이상 + 주력 시너지가 두 번째 단계 이하·4명 이하 (지옥불 5명처럼 시너지를 3단계까지 맞춘 덱은 아님)
+ * → 18.6: 드레이븐 8개 전부, 장로 드래곤 6개 등 21개
+ */
+function isValueDeck(team, m, ev) {
+  const bps = state.data.traits[m.trait]?.breakpoints || [];
+  const n = ev.traits.find(t => t.id === m.trait)?.count || 0;
+  return m.level >= 9 && team.filter(c => c.cost >= 5).length >= 4 && bps.filter(b => b <= n).length <= 2 && n <= 4;
+}
+
 function metaDecks(minGames) {
   const d = state.data;
   if (!metaAvailable()) return [];
@@ -2624,9 +2640,11 @@ function metaDecks(minGames) {
     const reroll = team.some(c => c.cost <= 3 && (info[c.id]?.star3 || 0) >= 0.5);
     const builds = {};
     for (const [id, b] of Object.entries(m.builds || {})) { let c = byLower.get(id); if (c && swap[c.id]) c = swap[c.id]; if (c && b) builds[c.id] = b; }
+    const value = isValueDeck(team, m, ev);
+    const mainCnt = ev.traits.find(t => t.id === m.trait)?.count || 0;
     return {
-      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id,
-      title: `<span class="tier t${tier}">${tier}</span> ${esc(traitName(m.trait))} · ${esc(carry.name)}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${emblemNote(m)}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
+      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id, value,
+      title: `<span class="tier t${tier}">${tier}</span> ${value ? `${esc(carry.name)} 밸류 <span class="tag soft" title="밸류덱: 시너지보다 5코스트 챔피언으로 힘을 내는 덱. 랭커 경기에서 주력으로 잡힌 시너지는 ${esc(traitName(m.trait))} ${mainCnt}명">${esc(traitName(m.trait))} ${mainCnt}</span>` : `${esc(traitName(m.trait))} · ${esc(carry.name)}`}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${emblemNote(m)}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
       metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}`,
     };
   }).filter(Boolean);
@@ -2801,6 +2819,8 @@ function renderMeta() {
 // ---- 자동 티어표: 이번 패치 성적 기준 S/A/B/C, 덱 단위 ----
 const TIER_DESC = { S: '가장 강함', A: '강함', B: '할 만함', C: '비추천' };
 let tierDecks = [];
+/** 덱 이름: 밸류덱은 "드레이븐 밸류", 아니면 "주력 시너지 캐리" */
+const deckName = (d, sep = ' ') => (d.value ? `${carryOfDeck(d)?.name || ''} 밸류` : `${traitName(d.m.trait)}${sep}${carryOfDeck(d)?.name || ''}`);
 const carryOfDeck = d => { const cid = d.carryChampId?.toLowerCase() || d.m.mainCarry || d.m.carry; return d.team.find(c => c.id.toLowerCase() === cid); };
 /** 덱 종류: 3코 이하 챔피언이 절반 이상 3성이면 "N코 리롤", 아니면 "캐리 코스트 + 레벨" */
 function deckType(d) {
@@ -2834,7 +2854,7 @@ function combineDecks(main, variants) {
 }
 function renderTiers(byId) {
   const min = Number($('metaMin').value);
-  const decks = metaDecks(1).map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games })).filter(d => d.carryChamp);
+  const decks = metaDecks(1).map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games, value: d.value })).filter(d => d.carryChamp);
   const grouped = groupDecks(decks).map(g => combineDecks(g.main, g.variants));
   const { tiers, watch } = tierList(grouped, { min });
   tierDecks = [];
@@ -2842,9 +2862,9 @@ function renderTiers(byId) {
   const chip = x => {
     const k = tierDecks.push(x) - 1, m = x.m, carry = carryOfDeck(x);
     const vn = x.variants?.length || 0;
-    return `<button class="tchip" data-k="${k}" title="${esc(traitName(m.trait))} ${esc(carry?.name || '')} — 눌러서 덱 보기${vn ? ` (같은 덱 다른 버전 ${vn}개 포함)` : ''}">
+    return `<button class="tchip" data-k="${k}" title="${esc(deckName(x))} — 눌러서 덱 보기${vn ? ` (같은 덱 다른 버전 ${vn}개 포함)` : ''}">
       <span class="tcIcon" data-cost="${carry?.cost || 1}">${carry ? img(carry.icon) : ''}</span>
-      <span class="tcText"><b>${esc(traitName(m.trait))} ${esc(carry?.name || '')}</b><span class="muted small">${esc(deckType(x))}${vn ? ` · 버전 ${vn + 1}개` : ''}</span></span>
+      <span class="tcText"><b>${esc(deckName(x))}</b><span class="muted small">${esc(deckType(x))}${vn ? ` · 버전 ${vn + 1}개` : ''}</span></span>
       <span class="tcStat"><b>${m.avgPlace.toFixed(2)}</b>${patchDelta(m)}<span class="muted small">${x.tierGames}판 · 픽 ${(m.playRate * 100).toFixed(1)}%</span></span>
     </button>`;
   };
@@ -2860,14 +2880,14 @@ function renderTiers(byId) {
 }
 /** 티어표 덱 상세: 대표 버전 덱 카드 + 같은 덱의 다른 버전 성적 */
 function tierDetailHtml(x, byId) {
-  const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(traitName(x.m.trait))} · ${esc(carryOfDeck(x)?.name || '')} <span class="tag soft">${esc(deckType(x))}</span>${emblemNote(x.mainM || x.m)}`,
+  const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x, ' · '))} <span class="tag soft">${esc(deckType(x))}</span>${emblemNote(x.mainM || x.m)}`,
     metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.m.level}` };
   const card = deckCard(main, 0, byId).replace('<span class="rank">#1</span>', '');
   if (!x.variants?.length) return card;
   const g = d => tierGames(d.m) || d.m.games;
   const rows = [{ d: x, label: '대표 버전', main: true }, ...x.variants.map(d => ({ d }))].map(({ d, main: isMain }) => {
     const c = carryOfDeck(d);
-    const why = isMain ? '대표 버전' : c && c.cost >= 5 && c.id !== carryOfDeck(x)?.id ? `후반 ${esc(c.name)}에게 아이템` : '같은 구성, 시너지만 다르게 잡힘';
+    const why = isMain ? '대표 버전' : c && c.cost >= 5 && c.id !== carryOfDeck(x)?.id ? `후반 ${esc(c.name)}에게 아이템` : x.value && d.value ? `같은 밸류덱, 함께 켠 시너지가 ${esc(traitName(d.m.trait))}` : '같은 구성, 시너지만 다르게 잡힘';
     const mm = isMain ? x.mainM : d.m;
     return mm ? `<tr><td>${esc(traitName(mm.trait))} · ${esc(c?.name || '')}</td><td class="muted small">${why}</td><td><b>${mm.avgPlace}등</b></td><td>${(isMain ? x.mainGames : g(d))}판</td></tr>` : '';
   }).join('');

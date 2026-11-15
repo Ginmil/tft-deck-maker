@@ -158,3 +158,18 @@ console.log('패치 영향 예측 테스트 통과');
   assert.equal(of(sv), sv);
   console.log('deck grouping OK');
 }
+
+// ---- 밸류덱: 같은 캐리면 구성이 덜 겹쳐도(50%+) 한 덱 ----
+{
+  const { groupDecks } = await import('../js/engine/patch.js');
+  const ch = (id, cost) => ({ id, cost });
+  const draven = ch('draven', 5);
+  const t = (ids) => [...ids.map(i => ch(i, 5)), draven];
+  const a = { carryChamp: draven, value: true, games: 500, team: t(['k', 'x', 'y', 'z', 'p1', 'p2', 'p3', 'p4']) };
+  const b = { carryChamp: draven, value: true, games: 300, team: t(['k', 'x', 'y', 'z', 'q1', 'q2', 'q3', 'q4']) };   // 5/9 겹침
+  const c = { carryChamp: draven, value: false, games: 100, team: t(['k', 'x', 'y', 'z', 'r1', 'r2', 'r3', 'r4']) };  // 밸류 아님 → 따로
+  const g = groupDecks([a, b, c]);
+  assert.equal(g.length, 2);
+  assert.ok(g.find(x => x.main === a).variants.includes(b));
+  console.log('value deck grouping OK');
+}
