@@ -599,31 +599,61 @@ function emblemNote(m) {
 }
 
 /**
- * 자주 쓰인 순으로 자리를 채우면 주력 시너지가 단계 사이에 걸릴 수 있음(개화 럭스: 선택 39% 애쉬까지 넣어 6개화 = 1명 낭비).
- * 랭커 기록(mainCount)엔 6개화가 0% → 선택 자리(50% 미만, 캐리·탱커 아님) 하나를 다음 후보로 바꿔 낭비를 줄임.
+ * 자주 쓰인 순으로 자리를 채우면 주력 시너지 인원이 랭커 실제 기록과 어긋날 수 있음 (11/15 점검: 197개 중 28개)
+ *  - 넘침: 개화 럭스 6개화(랭커 0%), 협곡야수 덩굴정령 8명(랭커 92%가 7명)
+ *  - 모자람: 상징 덱 — 요정 시비르 3명(랭커 87%가 4명, 요정 상징 82%), 싸움꾼 코그모 2명(상징 100%)
+ * 목표 = 랭커가 가장 많이 간 인원(mainCount 최빈값, 40% 이상일 때). 없으면 단계 사이 낭비만 없앰.
+ * ① 주력 시너지 상징을 쓴 판이 50% 이상이면 상징으로 채움(90% 이상이면 2개까지)
+ * ② 그래도 다르면 선택 자리(캐리·탱커 제외, 쓰인 비율 낮은 쪽)를 다음 후보로 바꿈(최대 2번)
+ * → 쓸 상징 목록(시너지 id) 반환
  */
-function fixMainWaste(team, info, m, byLower, carry) {
-  const bps = state.data.traits[m.trait]?.breakpoints;
-  if (!bps?.length) return;
+function fitMainCount(team, info, m, byLower, carry, carryRef = {}) {
+  const d = state.data, bps = d.traits[m.trait]?.breakpoints;
+  if (!bps?.length) return [];
   const countOf = list => list.reduce((s, c) => s + (c.traits.includes(m.trait) ? (c.weights?.[m.trait] ?? 1) : 0), 0);
-  const waste = list => { const n = countOf(list); const r = bps.filter(b => b <= n).at(-1) || 0; return n - r; };
-  if (!waste(team)) return;
+  const mode = Object.entries(m.mainCount || {}).sort((a, b) => b[1] - a[1])[0];
+  const target = mode && mode[1] >= 0.5 ? Number(mode[0]) : null; // 기록이 여러 인원으로 흩어진 덱(개화 럭스 3명 42%·5명 24%·9명 15%)은 목표 없이 낭비만 없앰
+  const em = d.emblems.find(e => e.trait === m.trait);
+  const embRate = em ? Object.entries(m.emblems || {}).find(([id]) => id === em.id || (em.ids || []).includes(id))?.[1] || 0 : 0;
+  const emblems = [];
+  const fillEmblems = () => {
+    if (target == null || embRate < 0.5) return;
+    while (countOf(team) + emblems.length < target && emblems.length < (embRate >= 0.9 ? 2 : 1)) emblems.push(m.trait);
+  };
+  // 목표와의 거리 (목표가 없으면 단계 사이 낭비)
+  const off = list => {
+    const n = countOf(list) + emblems.length;
+    if (target != null) return Math.abs(n - target);
+    return n - (bps.filter(b => b <= n).at(-1) || 0);
+  };
+  fillEmblems();
   const slotsOf = list => list.reduce((s, c) => s + (c.slots || 1), 0);
-  const used = new Set(team.map(c => c.base || c.id));
-  const cands = m.core.map(u => ({ u, c: byLower.get(u.id) })).filter(x => x.c && !used.has(x.c.base || x.c.id))
-    .map(x => ({ ...x, c: formFor(x.c, m.trait, team) || x.c }));
-  let best = null;
-  for (let i = 0; i < team.length; i++) {
-    const out = team[i];
-    if (out === carry || out.id === m.mainTank || (info[out.id]?.rate ?? 1) >= 0.5) continue;
-    for (const { u, c } of cands) {
-      const next = team.map((x, k) => (k === i ? c : x));
-      if (slotsOf(next) > m.level) continue;
-      const w = waste(next), share = m.mainCount?.[countOf(next)] || 0; // 랭커가 실제로 많이 간 인원 쪽을 우선
-      if (w < waste(team) && (!best || w < best.w || (w === best.w && (share > best.share || (share === best.share && u.rate > best.u.rate))))) best = { i, c, u, w, share };
+  for (let round = 0; round < 2 && off(team) > 0; round++) {
+    const used = new Set(team.map(c => c.base || c.id));
+    const cands = m.core.map(u => ({ u, c: byLower.get(u.id) })).filter(x => x.c && !used.has(x.c.base || x.c.id))
+      .map(x => ({ ...x, c: formFor(x.c, m.trait, team) || x.c }));
+    let best = null;
+    for (let i = 0; i < team.length; i++) {
+      const out = team[i];
+      // 형태 챔피언(럭스)은 다른 형태로 바꾸는 것도 후보 (요정 아펠리오스: 요정 럭스면 5명인데 랭커 82%가 4명 → 다른 형태였음)
+      const forms = out.weights && out.base ? d.champions.filter(x => x.base === out.base && x.weights && x !== out).map(c => ({ u: info[out.id] || { rate: 1 }, c, form: true })) : [];
+      const isCore = out === carry || out.id.toLowerCase() === m.mainTank || (info[out.id]?.rate ?? 1) >= 0.75; // 거의 항상 쓰는 챔피언은 유지
+      const outRate = info[out.id]?.rate ?? 1;
+      for (const { u, c, form } of [...(isCore ? [] : cands), ...forms]) {
+        const next = team.map((x, k) => (k === i ? c : x));
+        if (slotsOf(next) > m.level) continue;
+        const o = off(next);
+        if (o >= off(team)) continue;
+        const loss = form ? -1 : outRate - u.rate; // 형태만 바꾸는 게 가장 나음, 그다음 덜 쓰인 챔피언을 빼고 더 쓰인 후보를 넣기
+        if (!best || o < best.o || (o === best.o && loss < best.loss)) best = { i, c, u, o, loss };
+      }
     }
+    if (!best) break;
+    const was = team[best.i];
+    delete info[was.id]; team[best.i] = best.c; info[best.c.id] = best.u;
+    if (was === carry) carryRef.swapped = best.c; // 캐리(럭스)의 형태가 바뀌면 호출한 쪽에 알림
   }
-  if (best) { delete info[team[best.i].id]; team[best.i] = best.c; info[best.c.id] = best.u; }
+  return emblems;
 }
 
 function metaDecks(minGames) {
@@ -653,8 +683,10 @@ function metaDecks(minGames) {
       if (f) { swap[team[i].id] = f; info[f.id] = info[team[i].id]; team[i] = f; }
     }
     if (swap[carry.id]) carry = swap[carry.id];
-    fixMainWaste(team, info, m, byLower, carry);
-    const ev = evaluateTeam(team, d, { carryIds: [carry.id] });
+    const carryRef = {};
+    const emblems = fitMainCount(team, info, m, byLower, carry, carryRef);
+    if (carryRef.swapped) { swap[carry.id] = carryRef.swapped; carry = carryRef.swapped; }
+    const ev = evaluateTeam(team, d, { carryIds: [carry.id], emblems });
     let tank = m.mainTank ? byLower.get(m.mainTank) : null;
     if (tank && swap[tank.id]) tank = swap[tank.id];
     if (tank && team.includes(tank)) ev.core = { carry: carry.id, tank: tank.id };
@@ -1062,6 +1094,8 @@ function removeOne(arr, v) { const i = arr.indexOf(v); if (i >= 0) arr.splice(i,
 
 // ---------------- 시작 ----------------
 bind();
+// 점검용(콘솔·테스트): 메타 덱 계산 결과를 그대로 볼 수 있게
+window.__tftDebug = { metaDecks: n => metaDecks(n), state };
 if (window.TFT_WEIGHTS) state.weights = window.TFT_WEIGHTS; // data/weights.js 가 있으면 자동 사용
 const cached = store.get(CACHE_KEY);
 iconMapReady.then(start);
