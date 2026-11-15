@@ -2789,12 +2789,14 @@ function metaDeckFrom(m, team, info, emblems, carry, byLower, swap, isReal, bonu
     const reroll = team.some(c => c.cost <= 3 && (info[c.id]?.star3 || 0) >= 0.5);
     const builds = {};
     for (const [id, b] of Object.entries(m.builds || {})) { let c = byLower.get(id); if (c && swap[c.id]) c = swap[c.id]; if (c && !team.includes(c)) c = team.find(x => (x.base || x.id) === (c.base || c.id)) || c; if (c && b) builds[c.id] = b; }
-    const value = isValueDeck(team, m, ev);
+    // 화면 레벨 = 보여 주는 보드의 칸 수(2칸 챔피언 포함). 평균 레벨 반올림(m.level)을 쓰면 "9레벨인데 8명"처럼 어긋남 (11/15 사용자 피드백)
+    const level = isReal ? Math.min(10, team.reduce((s, c) => s + (c.slots || 1), 0)) : m.level;
+    const value = isValueDeck(team, { ...m, level }, ev);
     const mainCnt = ev.traits.find(t => t.id === m.trait)?.count || 0;
     return {
-      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id, value, realBoard: isReal,
+      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id, value, realBoard: isReal, level,
       title: `<span class="tier t${tier}">${tier}</span> ${value ? `${esc(carry.name)} 밸류 <span class="tag soft" title="밸류덱: 시너지보다 5코스트 챔피언으로 힘을 내는 덱. 랭커 경기에서 주력으로 잡힌 시너지는 ${esc(traitName(m.trait))} ${mainCnt}명">${esc(traitName(m.trait))} ${mainCnt}</span>` : `${esc(traitName(m.trait))} · ${esc(carry.name)}`}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${emblemNote(m, { team, assignment: ev.assignment, unitInfo: info })}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
-      metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}${isReal && m.board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중, 자주 쓰인 챔피언을 가장 많이 담은 보드예요. 같은 구성으로 ${m.board.same}판, 평균 ${m.board.avgPlace}등">${m.board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${m.board.same}판` : '랭커 실제 보드'}</span>` : ''}`,
+      metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${level}${isReal && m.board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중, 자주 쓰인 챔피언을 가장 많이 담은 보드예요. 같은 구성으로 ${m.board.same}판, 평균 ${m.board.avgPlace}등">${m.board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${m.board.same}판` : '랭커 실제 보드'}</span>` : ''}`,
     };
   }
 }
@@ -2977,7 +2979,7 @@ const carryOfDeck = d => { const cid = d.carryChampId?.toLowerCase() || d.m.main
 function deckType(d) {
   const rr = d.team.filter(c => c.cost <= 3 && (d.unitInfo?.[c.id]?.star3 || 0) >= 0.5).map(c => c.cost);
   if (rr.length) return `${Math.min(...rr)}코 리롤`;
-  return `${carryOfDeck(d)?.cost || '?'}코 ${d.m.level}레벨`;
+  return `${carryOfDeck(d)?.cost || '?'}코 ${d.level || d.m.level}레벨`;
 }
 /** 같은 덱의 여러 버전(groupDecks) → 판수 가중으로 합친 성적 */
 function combineDecks(main, variants) {
@@ -3048,7 +3050,7 @@ function renderTiers(byId) {
 /** 티어표 덱 상세: 대표 버전 덱 카드 + 같은 덱의 다른 버전 성적 */
 function tierDetailHtml(x, byId) {
   const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x, ' · '))} <span class="tag soft">${esc(deckType(x))}</span>${emblemNote(x.mainM || x.m, x)}`,
-    metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.m.level}${x.realBoard && (x.mainM || x.m).board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중 자주 쓰인 챔피언을 가장 많이 담은 보드">${(x.mainM || x.m).board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${(x.mainM || x.m).board.same}판` : '랭커 실제 보드'}</span>` : ''}` };
+    metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.level || x.m.level}${x.realBoard && (x.mainM || x.m).board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중 자주 쓰인 챔피언을 가장 많이 담은 보드">${(x.mainM || x.m).board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${(x.mainM || x.m).board.same}판` : '랭커 실제 보드'}</span>` : ''}` };
   const alts = altBoards(x.mainM || x.m, x.team);
   const altHtml = alts.length ? `<div class="tierVariants"><h4>다른 구성</h4><p class="muted small">이 덱을 쓴 랭커의 실제 보드 중 위 보드와 다른 것 (자주 나온 순)</p>
     <div class="tableWrap"><table class="pnTable"><thead><tr><th>위 보드와 차이</th><th>평균</th><th>판수</th><th></th></tr></thead><tbody>${alts.map(a => { const ad = altDeck(x, a); const reg = ad ? deckRegistry.push(ad) - 1 : -1; return `<tr><td>${[...a.remove.map(c => `<span class="muted">−${esc(c.base || c.name)}</span>`), ...a.add.map(c => `+${esc(c.name)}`), a.emb ? `+${esc(traitName((x.mainM || x.m).trait))} 상징${a.emb > 1 ? ` ×${a.emb}` : ''}` : ''].filter(Boolean).join(' ')}</td><td><b>${a.avgPlace}등</b></td><td>${a.games}판</td><td>${reg >= 0 ? `<button class="btn ghost small toBuilder" data-reg="${reg}" title="이 구성을 배치툴에 세우기">배치툴</button>` : ''}</td></tr>`; }).join('')}</tbody></table></div></div>` : '';
