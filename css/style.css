@@ -399,3 +399,4 @@ footer { text-align: center; font-size: 12px; padding: 30px 16px; }
 .optBar { align-items: center; padding: 10px 14px; background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); margin: 4px 0 14px; }
 .optBar .optTitle { font-size: 13px; font-weight: 700; color: var(--text); }
 .tp .bonus { margin-left: 6px; font-size: 11px; color: var(--gold); }
+.btn.small { padding: 4px 10px; font-size: 12.5px; white-space: nowrap; }

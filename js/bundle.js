@@ -2564,10 +2564,33 @@ function altBoards(m, team, limit = 3) {
     const keys = new Set(champs.map(key));
     const add = champs.filter(c => !have.has(key(c))), remove = team.filter(c => !keys.has(key(c)));
     if (!add.length && !remove.length && !(a.mainEmb >= 0.5)) continue; // 대표 보드와 같은 구성
-    out.push({ add, remove, emb: Math.round(a.mainEmb || 0), games: a.games, avgPlace: a.avgPlace });
+    out.push({ add, remove, emb: Math.round(a.mainEmb || 0), games: a.games, avgPlace: a.avgPlace, ids: a.ids, traits: a.traits });
     if (out.length >= limit) break;
   }
   return out;
+}
+
+/**
+ * 다른 구성 → 배치툴에서 열 덱 (11/15 사용자 아이디어: 다른 구성 옆에 "배치툴에서 열기")
+ * 그 판 시너지 인원에 맞춰 럭스 형태, 그 보드에서 쓴 개수만큼 주력 상징, 핵심 캐리·탱커가 있으면 랭커 3신기
+ */
+function altDeck(x, a) {
+  const d = state.data, mm = x.mainM || x.m;
+  const real = realBoardTeam({ ...mm, board: { units: a.ids.map(id => ({ id, items: [] })), traits: a.traits } }, new Map(d.champions.map(c => [c.id.toLowerCase(), c])));
+  if (!real) return null;
+  const team = real.team;
+  const emblems = Array(a.emb || 0).fill(mm.trait);
+  const key = c => c.base || c.id;
+  const pick = id => id && team.find(c => key(c) === key(d.champions.find(x => x.id === id) || { id }));
+  const carry = pick(x.carryChampId) || team.find(c => c.cost >= 4) || team[0];
+  const tank = pick(x.core?.tank);
+  const ev = evaluateTeam(team, d, { carryIds: [carry.id], emblems });
+  ev.core = { carry: carry.id, tank: tank?.id };
+  const builds = {};
+  for (const [id, b] of Object.entries(x.builds || {})) { const c = pick(id); if (c) builds[c.id] = b; }
+  const unitInfo = {};
+  for (const c of team) { const o = x.team.find(t => key(t) === key(c)); unitInfo[c.id] = (o && x.unitInfo?.[o.id]) || { rate: 0, star3: 0 }; }
+  return { ...ev, team, builds, unitInfo, m: mm };
 }
 
 function emblemNote(m, deck = null) {
@@ -3015,7 +3038,7 @@ function tierDetailHtml(x, byId) {
     metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.m.level}${x.realBoard && (x.mainM || x.m).board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중 자주 쓰인 챔피언을 가장 많이 담은 보드">${(x.mainM || x.m).board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${(x.mainM || x.m).board.same}판` : '랭커 실제 보드'}</span>` : ''}` };
   const alts = altBoards(x.mainM || x.m, x.team);
   const altHtml = alts.length ? `<div class="tierVariants"><h4>다른 구성</h4><p class="muted small">이 덱을 쓴 랭커의 실제 보드 중 위 보드와 다른 것 (자주 나온 순)</p>
-    <div class="tableWrap"><table class="pnTable"><thead><tr><th>위 보드와 차이</th><th>평균</th><th>판수</th></tr></thead><tbody>${alts.map(a => `<tr><td>${[...a.remove.map(c => `<span class="muted">−${esc(c.base || c.name)}</span>`), ...a.add.map(c => `+${esc(c.name)}`), a.emb ? `+${esc(traitName((x.mainM || x.m).trait))} 상징${a.emb > 1 ? ` ×${a.emb}` : ''}` : ''].filter(Boolean).join(' ')}</td><td><b>${a.avgPlace}등</b></td><td>${a.games}판</td></tr>`).join('')}</tbody></table></div></div>` : '';
+    <div class="tableWrap"><table class="pnTable"><thead><tr><th>위 보드와 차이</th><th>평균</th><th>판수</th><th></th></tr></thead><tbody>${alts.map(a => { const ad = altDeck(x, a); const reg = ad ? deckRegistry.push(ad) - 1 : -1; return `<tr><td>${[...a.remove.map(c => `<span class="muted">−${esc(c.base || c.name)}</span>`), ...a.add.map(c => `+${esc(c.name)}`), a.emb ? `+${esc(traitName((x.mainM || x.m).trait))} 상징${a.emb > 1 ? ` ×${a.emb}` : ''}` : ''].filter(Boolean).join(' ')}</td><td><b>${a.avgPlace}등</b></td><td>${a.games}판</td><td>${reg >= 0 ? `<button class="btn ghost small toBuilder" data-reg="${reg}" title="이 구성을 배치툴에 세우기">배치툴</button>` : ''}</td></tr>`; }).join('')}</tbody></table></div></div>` : '';
   const card = deckCard(main, 0, byId).replace('<span class="rank">#1</span>', '') + altHtml;
   if (!x.variants?.length) return card;
   const g = d => tierGames(d.m) || d.m.games;
