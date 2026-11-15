@@ -2196,10 +2196,10 @@ const specialIds = () => (state.data?.champions || []).filter(c => c.special).ma
 const specialName = () => [...new Set((state.data?.champions || []).filter(c => c.special).map(c => c.base))].join('·');
 
 // 특수 기물(럭스 등) 설정에 따라 탐색: 포함 / 제외 / 둘 다 (결과를 번갈아 섞음)
-function runSearch(fn) {
-  const base = opts();
+function runSearch(fn, override = null) {
+  const base = override || opts();
   const special = specialIds();
-  const mode = $('specialMode').value;
+  const mode = override ? 'both' : $('specialMode').value; // 탭 위 설정 줄을 안 쓰는 화면(배치툴)은 기본값
   if (!special.length || mode === 'with') return fn(base);
   if (mode === 'without') return fn({ ...base, exclude: special });
   const withS = fn(base);
@@ -2363,6 +2363,8 @@ function bind() {
     if (t.dataset.tab === 'patch') renderPatch();
     if (t.dataset.tab === 'builder') bdRender();
     $('results').hidden = ['meta', 'patch', 'builds', 'builder'].includes(t.dataset.tab);
+    // 레벨·코스트·5코스트·특수 기물 설정은 덱을 새로 짜는 탭에서만 의미가 있음 (사용자 피드백 11/15: 메타 덱에도 떠서 헷갈림)
+    $('globalSettings').hidden = !['emblem', 'items'].includes(t.dataset.tab);
     $('results').innerHTML = '';
   });
 
@@ -2929,7 +2931,9 @@ function runBoard(btn) {
     try {
       const size = Number($('bdRecSize').value), keepAll = !$('bdRecFlex').checked;
       let res = null;
-      const decks = runSearch(o => { res = decksFromBoard(withForms(state.data, board), { ...o, board, size, keepAll }); return res.decks; });
+      // 배치툴은 탭 위 설정 줄(상징 팀 메이커·아이템 탭용)과 무관하게: 코스트 전체, 5코는 9레벨 이상이면 제한 없음(밸류덱), 아래면 2개까지
+      const lvl = size || board.length + 1;
+      const decks = runSearch(o => { res = decksFromBoard(withForms(state.data, board), { ...o, board, size, keepAll }); return res.decks; }, { size: lvl, maxCost: 5, max5: lvl >= 9 ? 99 : 2 });
       const { info } = res;
       const byId = new Map(state.data.champions.map(c => [c.id, c]));
       const near = metaNearBoard(board, info.carry?.id);
