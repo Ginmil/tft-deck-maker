@@ -194,6 +194,9 @@ function addComp(comps, p, place, w = 1, cur = true, label = null) {
   const bd = ((c.boards ||= {})[bk] ||= { games: 0, sumPlace: 0, best: null });
   bd.games += w;
   bd.sumPlace += w * place;
+  // 이 보드에서 주력 시너지 상징을 낀 개수 (럭스 없이 상징 + 다른 챔피언으로 채우는지 확인용)
+  const mainEmb = units.reduce((n, u) => n + (u.itemNames || []).filter(it => typeof it === 'string' && /emblem/i.test(it) && it.toLowerCase().includes(String(main.name).replace(/^(DA_18_|DA_)|18$/g, '').toLowerCase())).length, 0);
+  bd.embSum = (bd.embSum || 0) + w * mainEmb;
   if (!bd.best || place < bd.best.place) bd.best = {
     place,
     units: units.map(u => ({ id: String(u.character_id).toLowerCase(), star: u.tier || 1, items: (u.itemNames || []).filter(n => typeof n === 'string') })), // 상징 포함
@@ -280,8 +283,11 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
       .map(b => ({ b, score: b.ids.reduce((s, id) => s + rate(id), 0) + 0.6 * Math.min(4, b.games - 1) }))
       .sort((x, y) => (y.score - x.score) || (y.b.games - x.b.games))[0]?.b;
     const board = rep ? { units: rep.best.units, traits: rep.best.traits, same: Math.round(rep.games), avgPlace: round(rep.sumPlace / rep.games, 2), distinct: boards.length } : null;
+    // 자주 나온 실제 보드 (다른 구성 보기·상징 쓰는 방식 확인용): 판수 순 6개, 주력 상징 평균 개수
+    const alts = [...boards].sort((a, b) => b.games - a.games).slice(0, 6)
+      .map(b => ({ ids: b.ids, games: Math.round(b.games), avgPlace: round(b.sumPlace / b.games, 2), mainEmb: round((b.embSum || 0) / b.games, 2), traits: b.best.traits }));
     return {
-      trait: c.trait, carry: c.carry, mainCarry, mainTank: tankId, board,
+      trait: c.trait, carry: c.carry, mainCarry, mainTank: tankId, board, alts,
       ...blend(c.now, c.before, prevPrior),
       playRate: round((c.now.games || c.games) / Math.max(1, c.now.games ? curPlayers : stats.games), 4), level, core, builds,
       // 패치 비교: 이번 패치만 / 이전 패치만 (가중치 없는 실제 판수)
