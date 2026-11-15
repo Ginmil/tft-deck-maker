@@ -2935,7 +2935,16 @@ function combineDecks(main, variants) {
     playRate: all.reduce((s, x) => s + (x.m.playRate || 0), 0),
     now: side('now'), before: side('before'),
   };
-  return { ...main, m, tier: deckTier(m), variants, mainM: main.m, mainGames: g(main), carries: carries.length > 1 ? carries : undefined };
+  // 챔피언 사용 비율도 묶인 버전 전체 기준으로 (지옥불 럭스·애쉬: 럭스 버전만 보면 애쉬 39% → 전체로는 거의 매판)
+  const bk = c => c.base || c.id;
+  const rateIn = (x, base) => { const c = x.team.find(t => bk(t) === base); return c ? (x.unitInfo?.[c.id]?.rate ?? 1) : 0; };
+  const star3In = (x, base) => { const c = x.team.find(t => bk(t) === base); return c ? (x.unitInfo?.[c.id]?.star3 || 0) : 0; };
+  const unitInfo = {};
+  for (const c of main.team) {
+    const base = bk(c);
+    unitInfo[c.id] = { ...(main.unitInfo?.[c.id] || {}), rate: all.reduce((s, x) => s + g(x) * rateIn(x, base), 0) / totalG, star3: all.reduce((s, x) => s + g(x) * star3In(x, base), 0) / totalG };
+  }
+  return { ...main, m, tier: deckTier(m), variants, mainM: main.m, mainGames: g(main), carries: carries.length > 1 ? carries : undefined, unitInfo };
 }
 function renderTiers(byId) {
   const min = Number($('metaMin').value);
