@@ -1087,10 +1087,14 @@ function traitBadge(id, style = '', sm = false) {
 }
 const hexPor = (c, extra = '') => `<span class="por" data-cost="${c?.cost || 1}"${extra}>${c?.icon ? `<img src="${esc(c.icon)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : ''}</span>`;
 
+/** 티어표와 같은 덱 묶음 (작은 버전은 큰 덱에 합침) — 티어표·다음 수 추천 공용 */
+function groupedDecks() {
+  const decks = metaDecks(1).map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games, value: d.value, trait: d.m.trait })).filter(d => d.carryChamp);
+  return groupDecks(decks).map(g => combineDecks(g.main, g.variants));
+}
 function renderTiers(byId) {
   const min = Number($('metaMin').value);
-  const decks = metaDecks(1).map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games, value: d.value, trait: d.m.trait })).filter(d => d.carryChamp);
-  const grouped = groupDecks(decks).map(g => combineDecks(g.main, g.variants));
+  const grouped = groupedDecks();
   const { tiers, watch, cuts } = tierList(grouped, { min });
   tierDecks = [];
   const p = curPatch();
@@ -1197,7 +1201,8 @@ function metaNearBoard(board, carryId) {
   // 11/16 사용자 피드백: 8명 보드에 +5명짜리 덱이 추천됨 → 보드 6명 이상이면 "3명 이하로 더해서 되는 덱"만,
   // 초반(5명 이하)은 지금 챔피언을 거의 다(1명 빼고) 살리는 덱
   const early = mine.length <= 5, MAX_ADD = 3;
-  return metaDecks(8).map(d => {
+  // 티어표처럼 묶은 덱 기준 (11/16 사용자: 8판짜리 "햇빛 아지르"가 따로 추천됨 — 실제로는 유나라·카르마·르블랑 3성 리롤에 아지르는 시너지용인 햇빛 유나라 덱의 한 버전)
+  return groupedDecks().filter(d => d.m.games >= 8).map(d => ({ ...d, title: `<span class="tier t${d.tier}">${d.tier}</span> ${esc(deckName(d, ' · '))} <span class="tag soft">${esc(deckType(d))}</span>${d.variants?.length ? ` <span class="muted small">버전 ${d.variants.length + 1}개 · 덱 전체 평균 ${d.m.avgPlace}등 · ${d.m.games}판</span>` : ''}`, bdName: deckName(d) })).map(d => {
     const overlap = d.team.filter(c => bases.has(c.base || c.id)).length;
     const carryMatch = carryId && d.core?.carry === carryId;
     const ids = new Set(d.team.map(c => c.id));
