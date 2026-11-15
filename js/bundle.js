@@ -1620,7 +1620,6 @@ function addChamp(id, at = null, exact = false) {
   const i = at ?? bdFreeCell(bdIsFront(c));
   if (i == null) return bdToast('보드가 가득 찼어요');
   save();
-  if (bdState.cells[i]) bdState.inv.push(...bdState.cells[i].items);
   if (bdState.plants[i]) { const p = bdState.plants[i]; delete bdState.plants[i]; const j = freePlantCell(p); if (j != null) bdState.plants[j] = p; }
   bdState.cells[i] = { id: c.id, star: 2, items: [] };
   bdState.sel = i; bdRender();
@@ -1629,15 +1628,16 @@ function addItem(id) {
   const u = bdState.sel != null && bdState.cells[bdState.sel];
   save();
   if (u && u.items.length < 3) { u.items.push(id); bdToast(`${cleanName(bdChamp(u.id))}에게 ${bdItemInfo(id).name}`); }
-  else { bdState.inv.push(id); if (u) bdToast('아이템은 3개까지라 남은 아이템 칸에 담았어요'); }
+  else if (u) { bdState.past.pop(); return bdToast('아이템은 3개까지예요'); }
+  else bdState.inv.push(id);
   bdRender();
 }
 function removeUnit(i) {
   const u = bdState.cells[i]; if (!u) return;
-  save(); bdState.inv.push(...u.items); delete bdState.cells[i];
+  save(); delete bdState.cells[i]; // 낀 아이템도 같이 사라짐 (남은 아이템 칸은 분배할 아이템만 — 11/16 사용자)
   if (bdState.sel === i) bdState.sel = null;
   bdRender();
-  bdToast(`${bdEul(cleanName(bdChamp(u.id)))} 뺐어요${u.items.length ? ' · 아이템은 남은 아이템 칸으로' : ''}`);
+  bdToast(`${bdEul(cleanName(bdChamp(u.id)))} 뺐어요 · Ctrl+Z 로 되돌리기`);
 }
 
 // ---------------- 덱 → 보드 (자동 배치) ----------------
@@ -1776,8 +1776,8 @@ function initBuilder(ctx) {
   document.addEventListener('dragstart', e => {
     if (bd$('panel-builder').hidden) return;
     const h = e.target.closest('#bdBoard .b2hex'), pc = e.target.closest('#bdPal .pc'), ic = e.target.closest('#bdItems .ic');
-    const pl = h && e.target.closest('.plant');
-    bdState.drag = pl ? { plantFrom: Number(h.dataset.i) } : h ? { from: Number(h.dataset.i) } : pc ? { champ: pc.dataset.id, exact: !!pc.dataset.exact } : ic ? { item: ic.dataset.id } : null;
+    const pl = h && e.target.closest('.plant'), it = h && e.target.closest('.its [data-k]');
+    bdState.drag = it ? { itemFrom: Number(h.dataset.i), k: Number(it.dataset.k) } : pl ? { plantFrom: Number(h.dataset.i) } : h ? { from: Number(h.dataset.i) } : pc ? { champ: pc.dataset.id, exact: !!pc.dataset.exact } : ic ? { item: ic.dataset.id } : null;
     if (bdState.drag) { e.dataTransfer.setData('text/plain', 'tft'); e.dataTransfer.effectAllowed = 'move'; hideTip(); }
   });
   document.addEventListener('dragover', e => {
@@ -1791,11 +1791,17 @@ function initBuilder(ctx) {
     document.querySelectorAll('#panel-builder .drop').forEach(x => x.classList.remove('drop'));
     const h = e.target.closest('#bdBoard .b2hex'), inv = e.target.closest('#bdInv');
     if (!h && !inv) return; // 보드·남은 아이템 칸 밖 = 빼기 (dragend 에서)
-    e.preventDefault(); d.done = true;
+    e.preventDefault(); d.done = true; bdState.inDrop = true;
     if (inv && d.item) { save(); bdState.inv.push(d.item); bdRender(); return; }
     if (!h) return;
     const i = Number(h.dataset.i), S = bdState;
-    if (d.plantFrom != null && d.plantFrom !== i) { // 식물 옮기기: 자리를 서로 바꿈
+    if (d.itemFrom != null) { // 낀 아이템을 다른 챔피언에게
+      const src = S.cells[d.itemFrom], dst = S.cells[i];
+      if (i === d.itemFrom || !src) return;
+      if (!dst) return bdToast('아이템은 챔피언에게 옮겨 주세요');
+      if (dst.items.length >= 3) return bdToast('아이템은 3개까지예요');
+      save(); dst.items.push(...src.items.splice(d.k, 1)); S.sel = i; bdRender();
+    } else if (d.plantFrom != null && d.plantFrom !== i) { // 식물 옮기기: 자리를 서로 바꿈
       save(); const f = d.plantFrom, p = S.plants[f], bp = S.plants[i], bc = S.cells[i];
       delete S.plants[f]; if (bp) S.plants[f] = bp; if (bc) { S.cells[f] = bc; delete S.cells[i]; } S.plants[i] = p; bdRender();
     } else if (d.from != null && d.from !== i) {
@@ -1811,9 +1817,13 @@ function initBuilder(ctx) {
   document.addEventListener('pointerdown', () => { bdState.drag = null; });
   document.addEventListener('dragend', e => {
     const d = bdState.drag; bdState.drag = null;
-    if (!d || d.done || d.from == null || !bdState.cells[d.from]) return;
+    if (!d || d.done) return;
     const at = document.elementFromPoint(e.clientX, e.clientY);
-    if (!at || !at.closest('#bdBoard')) removeUnit(d.from);
+    if (at && at.closest('#bdBoard')) return;
+    if (d.from != null && bdState.cells[d.from]) removeUnit(d.from);
+    else if (d.itemFrom != null && bdState.cells[d.itemFrom]?.items[d.k]) { // 낀 아이템을 보드 밖으로 = 버리기
+      save(); const [gone] = bdState.cells[d.itemFrom].items.splice(d.k, 1); bdRender(); bdToast(`${bdItemInfo(gone).name} 뺐어요`);
+    }
   });
 
   // 선택한 챔피언: 별 / 적응가 형태 / 럭스 형태 / 아이템 빼기
@@ -1823,7 +1833,7 @@ function initBuilder(ctx) {
     if (f) { save(); u.id = f.dataset.f; }
     else if (s) { save(); u.star = Number(s.dataset.setstar); }
     else if (fm) { save(); if (fm.dataset.form && u.form !== fm.dataset.form) u.form = fm.dataset.form; else delete u.form; }
-    else if (r) { save(); bdState.inv.push(...u.items.splice(Number(r.dataset.rmit), 1)); }
+    else if (r) { save(); u.items.splice(Number(r.dataset.rmit), 1); }
     else return;
     bdRender();
   });
@@ -1902,6 +1912,8 @@ const itemImg = (id, cls = '') => { const it = bdItemInfo(id); return it.icon ? 
 const porImg = c => `<span class="por" data-cost="${c.cost}">${c.icon ? `<img src="${bd.esc(c.icon)}" alt="" draggable="false" loading="lazy" onerror="this.style.visibility='hidden'">` : ''}</span>`;
 
 function bdRender() {
+  // 끌어다 놓는 중에 다시 그리면 끌던 요소가 사라져 dragend 가 안 옴 → 끝난 뒤에 그림
+  if (bdState.inDrop) { clearTimeout(bdState.rt); bdState.rt = setTimeout(() => { bdState.inDrop = false; bdRender(); }, 40); return; }
   const data = bdData();
   if (!data) return;
   for (const k of [...bdState.carries]) if (!bdState.cells[k]) bdState.carries.delete(k);
@@ -1936,7 +1948,7 @@ function bdRenderBoard() {
       + (ch ? `<div class="bu" draggable="true" data-cost="${ch.cost}">${ch.icon ? `<img class="face" src="${esc(ch.icon)}" alt="${esc(ch.name)}" draggable="false" onerror="this.style.visibility='hidden'">` : ''}</div>
         <button class="stars" data-star="${i}" title="눌러서 ${u.star === 3 ? 2 : 3}성으로">${'★'.repeat(u.star)}</button><div class="nm">${esc(cleanName(ch))}</div>
         ${S.carries.has(i) ? '<span class="carryTag" title="아이템 줄 챔피언">템</span>' : ''}${u.form ? `<span class="formTag ${u.form}" title="적응가 ${u.form === 'AD' ? '물리' : '마법'} 형태">${u.form}</span>` : ''}
-        <div class="its">${u.items.map(id => itemImg(id)).join('')}</div>
+        <div class="its">${u.items.map((id, k) => `<span data-k="${k}" data-item="${esc(id)}" draggable="true" title="끌어서 다른 챔피언에게 · 보드 밖으로 끌어내면 빼기">${itemImg(id)}</span>`).join('')}</div>
         <button class="x" data-rm="${i}" aria-label="${esc(cleanName(ch))} 빼기">×</button>` : '')
       + '</div>';
   }
@@ -1965,7 +1977,7 @@ function bdRenderUnit() {
   const forms = formGroup(c);
   const star = k => `<button data-setstar="${k}" aria-pressed="${u.star === k}"><span class="st">${'★'.repeat(k)}</span>${k}성</button>`;
   box.innerHTML = `<div class="uh"><b>${esc(cleanName(c))}</b><span class="muted small">${c.cost}코스트 · ${c.traits.map(bd.traitName).map(esc).join(', ')}</span>
-      <span class="uits">${u.items.map((id, k) => `<button data-rmit="${k}" title="${esc(bdItemInfo(id).name)} 빼기 (남은 아이템 칸으로)">${itemImg(id)}</button>`).join('') || '<span class="muted small">아이템 없음 · 오른쪽 아이템을 누르면 끼워져요</span>'}</span></div>
+      <span class="uits">${u.items.map((id, k) => `<button data-rmit="${k}" title="${esc(bdItemInfo(id).name)} 빼기">${itemImg(id)}</button>`).join('') || '<span class="muted small">아이템 없음 · 오른쪽 아이템을 누르면 끼워져요</span>'}</span></div>
     <div class="urow"><div class="seg2">${star(2)}${star(3)}</div>
       ${adaptorChamp(bdData(), c) ? `<div class="seg2" title="적응가: 공격력·주문력 중 높은 쪽을 써요. 형태를 정하면 자동 배분·다음 수 추천이 그 형태 아이템만 줘요"><span class="lbl">형태</span>${[['', '자동'], ['AD', 'AD 물리'], ['AP', 'AP 마법']].map(([v, l]) => `<button data-form="${v}" aria-pressed="${(u.form || '') === v}">${l}</button>`).join('')}</div>` : ''}</div>
     ${forms ? `<div class="formRow"><span class="lbl">${esc(c.base)} 형태</span>${forms.map(f => { const t = Object.keys(f.weights || {})[0]; return `<button data-f="${esc(f.id)}" aria-pressed="${f.id === u.id}">${tbadge(t, f.id === u.id ? 'gold' : '', true)}${esc(bd.traitName(t))}</button>`; }).join('')}</div>` : ''}`;
@@ -1974,7 +1986,7 @@ function bdRenderUnit() {
 function bdRenderInv() {
   const { esc } = bd, S = bdState;
   bd$('bdInv').innerHTML = S.inv.length ? S.inv.map((id, k) => `<button data-k="${k}" title="${esc(bdItemInfo(id).name)} — 눌러서 빼기">${itemImg(id)}</button>`).join('')
-    : '<span class="muted small">가진 아이템을 담아 두면 누구에게 줄지 나눠 줘요 · 아이템을 이 칸으로 끌어오거나, 챔피언을 고르지 않은 채 오른쪽 아이템을 누르세요</span>';
+    : '<span class="muted small">가진 아이템을 담아 두면 누구에게 줄지 나눠 줘요 · 재료나 어쩌다 생긴 완성 아이템을 담아 두세요 (챔피언을 고르지 않은 채 오른쪽 아이템을 누르거나 이 칸으로 끌어오기)</span>';
   const list = Object.entries(S.cells).map(([i, u]) => ({ i: Number(i), u, c: bdChamp(u.id) })).filter(x => x.c)
     .sort((a, b) => b.u.items.length - a.u.items.length || b.c.cost - a.c.cost);
   bd$('bdCarries').innerHTML = list.map(x => `<span class="cwrap${S.carries.has(x.i) ? ' on' : ''}"><button class="cchip" data-c="${x.i}" data-cost="${x.c.cost}" aria-pressed="${S.carries.has(x.i)}" aria-label="${esc(cleanName(x.c))}에게 아이템 주기">${x.c.icon ? `<img src="${esc(x.c.icon)}" alt="">` : ''}</button>${esc(cleanName(x.c))}</span>`).join('')

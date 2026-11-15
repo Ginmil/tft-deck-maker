@@ -584,7 +584,9 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 .b2hex .stars { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); padding: 0 4px; color: var(--gold); font-size: 10px; text-shadow: 0 1px 2px #000; cursor: pointer; border: 0; background: none; line-height: 14px; letter-spacing: -1px; }
 .b2hex button.stars:hover { color: #fff; }
 .b2hex .pst { pointer-events: none; color: #9be7c0; }
-.b2hex .its { position: absolute; left: 50%; transform: translateX(-50%); bottom: -9px; display: flex; gap: 1px; pointer-events: none; }
+.b2hex .its { position: absolute; left: 50%; transform: translateX(-50%); bottom: -9px; display: flex; gap: 1px; z-index: 3; }
+.b2hex .its span { cursor: grab; display: block; line-height: 0; }
+.b2hex .its img { pointer-events: none; }
 .b2hex .its img, .b2hex .its .noimg { width: 18px; height: 18px; border-radius: 3px; border: 1px solid #000; font-size: 8px; background: var(--bg); }
 .b2hex .x { position: absolute; top: 8px; right: 2px; width: 18px; height: 18px; border-radius: 50%; border: 0; background: var(--danger); color: var(--bg); font-size: 12px; font-weight: 700; line-height: 18px; padding: 0; cursor: pointer; display: none; }
 .b2hex:hover .x, .b2hex.sel .x { display: block; }
