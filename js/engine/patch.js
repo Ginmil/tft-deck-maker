@@ -86,7 +86,8 @@ function pRound(x, d) { return Math.round(x * 10 ** d) / 10 ** d; }
 // 이번 패치 성적으로 메타 덱을 S/A/B/C 로 나눔.
 // 평균 등수는 판수가 적으면 운이 크게 작용하므로, 전체 평균(4.5등)짜리 가상의 10판을 섞어서 보정한 값으로 판단.
 // 판수 = 이번 패치 판수(patchGames). 이번 패치 기록이 아직 없으면(0) 티어에 넣지 않음.
-export const TIER_CUTS = { S: 3.7, A: 4.0, B: 4.3 };
+export const TIER_CUTS = { S: 3.7, A: 4.0, B: 4.3 }; // 고정 기준(덱 목록 카드·지켜볼 덱 판단용)
+export const TIER_SHARES = { S: 0.1, A: 0.2, B: 0.3 }; // 티어표: 상대 순위 비율
 export const shrinkAvg = (avg, games) => (avg * games + 4.5 * 10) / (games + 10);
 export function tierOf(avg, games) {
   const s = shrinkAvg(avg, games);
@@ -101,19 +102,32 @@ export const tierGames = m => (m.patchGames != null ? m.patchGames : m.games);
  * → { tiers: { S:[], A:[], B:[], C:[] }, watch: [] }
  *   watch = 이번 패치 판수가 min 에 못 미치지만 지금까지 성적이 좋은(보정 4.0등 이하) 덱, 최대 6개 — "지켜볼 덱"
  */
-export function tierList(decks, { min = 15, watchMin = 5 } = {}) {
+export function tierList(decks, { min = 15, watchMin = 5, shares = TIER_SHARES } = {}) {
+  // 상대 순위 (11/15): 덱을 묶을수록 평균 등수가 4.5등 쪽으로 모여서 고정 기준(S ≤3.7등)으론 S 3개·A 1개만 남음
+  //  → 판수로 보정한 점수 순으로 상위 10% S, 다음 20% A, 다음 30% B, 나머지 C
   const tiers = { S: [], A: [], B: [], C: [] }, watch = [];
+  const ranked = [];
   for (const d of decks) {
     const g = tierGames(d.m);
     const score = shrinkAvg(d.m.avgPlace, g);
     const row = { ...d, tierScore: score, tierGames: g };
-    if (g >= min) tiers[tierOf(d.m.avgPlace, g)].push(row);
+    if (g >= min) ranked.push(row);
     else if (g >= watchMin && score <= TIER_CUTS.A) watch.push(row);
   }
-  // 티어는 보정값으로 정하고, 같은 티어 안에서는 화면에 보이는 실제 평균 등수 순
+  ranked.sort((a, b) => a.tierScore - b.tierScore);
+  const n = ranked.length;
+  const cut = { S: Math.max(1, Math.round(n * shares.S)), A: Math.round(n * (shares.S + shares.A)), B: Math.round(n * (shares.S + shares.A + shares.B)) };
+  ranked.forEach((row, i) => {
+    row.tier = i < cut.S ? 'S' : i < cut.A ? 'A' : i < cut.B ? 'B' : 'C';
+    tiers[row.tier].push(row);
+  });
+  // 같은 티어 안에서는 화면에 보이는 실제 평균 등수 순
   for (const k in tiers) tiers[k].sort((a, b) => a.m.avgPlace - b.m.avgPlace);
   watch.sort((a, b) => a.tierScore - b.tierScore);
-  return { tiers, watch: watch.slice(0, 6) };
+  // 지켜볼 덱도 같은 기준선으로 티어 글자
+  const line = t => ranked[Math.min(n, cut[t]) - 1]?.tierScore ?? -Infinity;
+  for (const w of watch) w.tier = w.tierScore <= line('S') ? 'S' : w.tierScore <= line('A') ? 'A' : 'B';
+  return { tiers, watch: watch.slice(0, 6), cuts: { S: line('S'), A: line('A'), B: line('B') } };
 }
 
 // ---------------- 티어표용 덱 묶기 ----------------
@@ -124,7 +138,8 @@ export function tierList(decks, { min = 15, watchMin = 5 } = {}) {
 //    ① A 의 캐리가 5코스트(후반 캐리 전환)이고 구성이 75% 이상 같음 (B 도 5코 캐리면 B 가 3배 이상 클 때만)
 //    ② 캐리가 같고 구성이 85% 이상 같음 (주력 시너지 이름만 다르게 잡힘)
 //    ③ 둘 다 밸류덱(value)이고 캐리가 같으면 구성 50% 이상 (드레이븐 밸류의 협곡야수·나무정령·전쟁기계… 버전)
-//  - 싼 캐리가 다른 덱은 따로 (요정 애쉬 3.38등 vs 요정 시비르 5.25등처럼 성적이 크게 다름)
+//    ④ 주력 시너지가 같고 구성 75% 이상 (캐리 여러 명이 아이템을 나눠 드는 덱: 개화 아리·자이라)
+//  - 그 밖에 캐리가 다른 덱은 따로 (요정 애쉬 3.38등 vs 요정 시비르 5.25등처럼 성적이 크게 다름)
 // decks: [{ team: [{ id, base?, cost }], carryChamp: { id, base?, cost }, games }] → [{ main, variants: [...] }] (main 은 가장 큰 덱)
 export function groupDecks(decks) {
   const key = c => c.base || c.id;
@@ -143,9 +158,12 @@ export function groupDecks(decks) {
       const same = key(a.carryChamp) === key(b.carryChamp);
       // ③ 같은 캐리의 밸류덱끼리(드레이븐 밸류: 우연히 켜진 작은 시너지만 다름, 구성 50~89% 겹침)
       const value = same && a.value && b.value && s >= 0.5;
-      // 캐리가 같은 덱에 우선 붙음 (전쟁기계 드레이븐이 장로 드래곤 밸류보다 드레이븐 밸류로)
-      const pr = s + (same ? 1 : 0);
-      if (((late5 && s >= 0.75) || (same && s >= 0.85) || value) && (!best || pr > best.pr)) best = { b, s, pr };
+      // ④ 주력 시너지가 같고 보드가 75% 이상 같으면 캐리가 달라도 한 덱 (11/15 사용자 피드백: 지옥불 럭스인데 애쉬도 자주 씀 —
+      //    아이템을 누가 들었는지로만 갈림. 개화 아리=자이라, 햇빛 유나라=르블랑=카르마처럼 보드 100% 같은 덱이 많았음)
+      const sameTrait = a.trait && a.trait === b.trait && !a.value && !b.value && s >= 0.75;
+      // 캐리가 같은 덱 → 시너지가 같은 덱 순으로 우선 (전쟁기계 드레이븐이 장로 드래곤 밸류보다 드레이븐 밸류로)
+      const pr = s + (same ? 1 : 0) + (a.trait && a.trait === b.trait ? 0.5 : 0);
+      if (((late5 && s >= 0.75) || (same && s >= 0.85) || value || sameTrait) && (!best || pr > best.pr)) best = { b, s, pr };
     }
     if (best) parent.set(a, best.b);
   }

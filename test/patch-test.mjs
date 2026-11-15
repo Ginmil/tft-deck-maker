@@ -173,3 +173,17 @@ console.log('패치 영향 예측 테스트 통과');
   assert.ok(g.find(x => x.main === a).variants.includes(b));
   console.log('value deck grouping OK');
 }
+
+// ---- 같은 시너지·같은 보드면 캐리가 달라도 한 덱 (개화 아리·자이라) ----
+{
+  const { groupDecks } = await import('../js/engine/patch.js');
+  const ch = (id, cost) => ({ id, cost });
+  const base = ['a', 'b', 'c', 'd', 'e', 'f', 'g'].map(x => ch(x, 2));
+  const ahri = ch('ahri', 4), zyra = ch('zyra', 4);
+  const A = { trait: 'Bloom', carryChamp: ahri, games: 600, team: [...base, ahri, zyra] };
+  const Z = { trait: 'Bloom', carryChamp: zyra, games: 300, team: [...base, ahri, zyra] };
+  const other = { trait: 'Fae', carryChamp: zyra, games: 100, team: [...base, ahri, zyra] }; // 시너지가 다르면 ④ 아님 (캐리 같으니 ②로는 붙음)
+  const g = groupDecks([A, Z, other]);
+  assert.ok(g.find(x => x.main === A).variants.includes(Z));
+  console.log('same-trait multi-carry grouping OK');
+}

@@ -941,7 +941,9 @@ function renderMeta() {
 const TIER_DESC = { S: '가장 강함', A: '강함', B: '할 만함', C: '비추천' };
 let tierDecks = [];
 /** 덱 이름: 밸류덱은 "드레이븐 밸류", 아니면 "주력 시너지 캐리" */
-const deckName = (d, sep = ' ') => (d.value ? `${carryOfDeck(d)?.name || ''} 밸류` : `${traitName(d.m.trait)}${sep}${carryOfDeck(d)?.name || ''}`);
+// 캐리 여러 명이 아이템을 나눠 드는 덱(묶인 버전의 캐리가 판수 15% 이상)은 "개화 아리·자이라"
+const carryNames = d => (d.carries?.length ? d.carries : [carryOfDeck(d)?.name || '']).join('·');
+const deckName = (d, sep = ' ') => (d.value ? `${carryNames(d)} 밸류` : `${traitName(d.m.trait)}${sep}${carryNames(d)}`);
 const carryOfDeck = d => { const cid = d.carryChampId?.toLowerCase() || d.m.mainCarry || d.m.carry; return d.team.find(c => c.id.toLowerCase() === cid); };
 /** 덱 종류: 3코 이하 챔피언이 절반 이상 3성이면 "N코 리롤", 아니면 "캐리 코스트 + 레벨" */
 function deckType(d) {
@@ -954,6 +956,13 @@ function combineDecks(main, variants) {
   const g = x => tierGames(x.m) || x.m.games;
   if (!variants.length) return { ...main, variants };
   const all = [main, ...variants];
+  // 캐리별 판수 (같은 챔피언의 다른 형태는 하나로) → 판수 15% 이상인 캐리 최대 2명을 이름에
+  const ck = c => c?.base || c?.name;
+  const byCarry = new Map();
+  for (const x of all) { const c = carryOfDeck(x); if (!c) continue; byCarry.set(ck(c), (byCarry.get(ck(c)) || 0) + g(x)); }
+  const totalG = all.reduce((s, x) => s + g(x), 0);
+  const mainKey = ck(carryOfDeck(main));
+  const carries = [mainKey, ...[...byCarry].filter(([k, n]) => k !== mainKey && n >= 0.15 * totalG).sort((a, b) => b[1] - a[1]).map(([k]) => k)].slice(0, 2);
   const tw = all.reduce((s, x) => s + g(x), 0);
   const wavg = f => all.reduce((s, x) => s + f(x.m) * g(x), 0) / tw;
   const side = k => {
@@ -971,13 +980,13 @@ function combineDecks(main, variants) {
     playRate: all.reduce((s, x) => s + (x.m.playRate || 0), 0),
     now: side('now'), before: side('before'),
   };
-  return { ...main, m, tier: deckTier(m), variants, mainM: main.m, mainGames: g(main) };
+  return { ...main, m, tier: deckTier(m), variants, mainM: main.m, mainGames: g(main), carries: carries.length > 1 ? carries : undefined };
 }
 function renderTiers(byId) {
   const min = Number($('metaMin').value);
-  const decks = metaDecks(1).map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games, value: d.value })).filter(d => d.carryChamp);
+  const decks = metaDecks(1).map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games, value: d.value, trait: d.m.trait })).filter(d => d.carryChamp);
   const grouped = groupDecks(decks).map(g => combineDecks(g.main, g.variants));
-  const { tiers, watch } = tierList(grouped, { min });
+  const { tiers, watch, cuts } = tierList(grouped, { min });
   tierDecks = [];
   const p = curPatch();
   const chip = x => {
@@ -993,7 +1002,7 @@ function renderTiers(byId) {
   const ranked = tiers.S.length + tiers.A.length + tiers.B.length + tiers.C.length;
   $('metaTiers').innerHTML = !ranked && !watch.length
     ? `<div class="empty">${p ? esc(p) + ' 패치에서 ' : ''}${min}판 이상 나온 메타 덱이 아직 없어요. 최소 판수를 낮춰 보세요.</div>`
-    : `<p class="legend">${p ? `<b>${esc(p)} 패치</b> 경기만으로 매긴 티어 · ` : ''}이번 패치 ${min}판 이상인 덱 ${ranked}개 · 보드 구성이 같은 덱(후반 5코 캐리로 넘어간 판, 시너지 이름만 다르게 잡힌 판)은 한 덱으로 묶음 · 기준: 평균 등수를 판수로 보정(판수가 적으면 4.5등 쪽으로) S ≤ ${TIER_CUTS.S}등 · A ≤ ${TIER_CUTS.A}등 · B ≤ ${TIER_CUTS.B}등 · 나머지 C · 덱을 누르면 아래에 자세히</p>
+    : `<p class="legend">${p ? `<b>${esc(p)} 패치</b> 경기만으로 매긴 티어 · ` : ''}이번 패치 ${min}판 이상인 덱 ${ranked}개 · 보드 구성이 같은 덱(후반 5코 캐리로 넘어간 판, 시너지 이름만 다르게 잡힌 판)은 한 덱으로 묶음 · 기준: 평균 등수를 판수로 보정(판수가 적으면 4.5등 쪽으로)한 순위 — 상위 10% S(${cuts.S.toFixed(2)}등까지) · 다음 20% A(${cuts.A.toFixed(2)}) · 다음 30% B(${cuts.B.toFixed(2)}) · 나머지 C · 덱을 누르면 아래에 자세히</p>
       <div class="tierTable">${['S', 'A', 'B'].map(row).join('')}
       ${tiers.C.length ? `<details class="tierRow tierC"><summary class="tierHead"><span class="tier tC">C</span><span class="muted small">${TIER_DESC.C} · ${tiers.C.length}개 펼치기</span></summary><div class="tierChips">${tiers.C.map(chip).join('')}</div></details>` : ''}</div>
       ${watch.length ? `<h3 class="recSub">지켜볼 덱 <span class="muted small">이번 패치 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱 · 표본이 적어 티어에 넣지 않았어요</span></h3><div class="tierChips">${watch.map(chip).join('')}</div>` : ''}
@@ -1008,7 +1017,8 @@ function tierDetailHtml(x, byId) {
   const g = d => tierGames(d.m) || d.m.games;
   const rows = [{ d: x, label: '대표 버전', main: true }, ...x.variants.map(d => ({ d }))].map(({ d, main: isMain }) => {
     const c = carryOfDeck(d);
-    const why = isMain ? '대표 버전' : c && c.cost >= 5 && c.id !== carryOfDeck(x)?.id ? `후반 ${esc(c.name)}에게 아이템` : x.value && d.value ? `같은 밸류덱, 함께 켠 시너지가 ${esc(traitName(d.m.trait))}` : '같은 구성, 시너지만 다르게 잡힘';
+    const mc = carryOfDeck(x), otherCarry = !isMain && c && mc && (c.base || c.id) !== (mc.base || mc.id);
+    const why = isMain ? (x.carries ? `${esc(mc?.name || '')}에게 아이템을 몰아준 판` : '대표 버전') : otherCarry && c.cost >= 5 && !(x.carries || []).includes(c.base || c.name) && d.m.trait !== x.m.trait ? `후반 ${esc(c.name)}에게 아이템` : otherCarry ? `${esc(c.name)}에게 아이템을 몰아준 판` : x.value && d.value ? `같은 밸류덱, 함께 켠 시너지가 ${esc(traitName(d.m.trait))}` : '같은 구성, 시너지만 다르게 잡힘';
     const mm = isMain ? x.mainM : d.m;
     return mm ? `<tr><td>${esc(traitName(mm.trait))} · ${esc(c?.name || '')}</td><td class="muted small">${why}</td><td><b>${mm.avgPlace}등</b></td><td>${(isMain ? x.mainGames : g(d))}판</td></tr>` : '';
   }).join('');
