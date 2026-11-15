@@ -594,10 +594,20 @@ function formFor(c, mainTrait, team) {
 }
 
 /** 랭커들이 이 덱에서 주력 시너지 상징을 쓴 비율 (20% 이상일 때) */
-function emblemNote(m) {
+function emblemNote(m, deck = null) {
   const e = state.data.emblems.find(x => x.trait === m.trait);
   const r = e && Object.entries(m.emblems || {}).find(([id]) => id === e.id || (e.ids || []).includes(id))?.[1];
-  return r >= 0.2 ? ` <span class="tag soft" title="랭커들이 이 덱을 쓴 판 중 ${Math.round(r * 100)}%에서 ${esc(e.name)}을 썼어요">${esc(e.name)} ${Math.round(r * 100)}%</span>` : '';
+  if (!(r >= 0.2)) return '';
+  // 보여 주는 보드가 그 상징을 안 쓰면 이유를 같이 (11/15 사용자 피드백: 검은 가시 베이가 — 보드는 럭스로 4를 맞췄는데 "상징 49%"만 보여서 5검은가시처럼 읽힘)
+  const used = deck?.assignment?.some(a => a.holder && a.trait === m.trait);
+  let why = '';
+  if (deck && !used) {
+    const form = deck.team.find(c => c.weights?.[m.trait]);
+    const fr = form ? Math.round((deck.unitInfo?.[form.id]?.rate ?? 0) * 100) : 0;
+    why = form ? ` 이 보드는 상징 대신 ${traitName(m.trait)} ${form.base || form.name}(2명분)로 맞춘 버전이에요(${form.base || form.name} ${fr}% 판에서 사용) — ${form.base || form.name}를 못 쓰면 상징으로 채워요.`
+      : ' 이 보드는 상징 없이 맞춘 버전이에요.';
+  }
+  return ` <span class="tag soft" title="랭커들이 이 덱을 쓴 판 중 ${Math.round(r * 100)}%에서 ${esc(e.name)}을 썼어요.${esc(why)}">${esc(e.name)} ${Math.round(r * 100)}%${deck && !used ? ' · 이 보드는 미사용' : ''}</span>`;
 }
 
 /**
@@ -765,7 +775,7 @@ function metaDeckFrom(m, team, info, emblems, carry, byLower, swap, isReal, bonu
     const mainCnt = ev.traits.find(t => t.id === m.trait)?.count || 0;
     return {
       ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id, value, realBoard: isReal,
-      title: `<span class="tier t${tier}">${tier}</span> ${value ? `${esc(carry.name)} 밸류 <span class="tag soft" title="밸류덱: 시너지보다 5코스트 챔피언으로 힘을 내는 덱. 랭커 경기에서 주력으로 잡힌 시너지는 ${esc(traitName(m.trait))} ${mainCnt}명">${esc(traitName(m.trait))} ${mainCnt}</span>` : `${esc(traitName(m.trait))} · ${esc(carry.name)}`}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${emblemNote(m)}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
+      title: `<span class="tier t${tier}">${tier}</span> ${value ? `${esc(carry.name)} 밸류 <span class="tag soft" title="밸류덱: 시너지보다 5코스트 챔피언으로 힘을 내는 덱. 랭커 경기에서 주력으로 잡힌 시너지는 ${esc(traitName(m.trait))} ${mainCnt}명">${esc(traitName(m.trait))} ${mainCnt}</span>` : `${esc(traitName(m.trait))} · ${esc(carry.name)}`}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${emblemNote(m, { team, assignment: ev.assignment, unitInfo: info })}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
       metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}${isReal && m.board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중, 자주 쓰인 챔피언을 가장 많이 담은 보드예요. 같은 구성으로 ${m.board.same}판, 평균 ${m.board.avgPlace}등">${m.board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${m.board.same}판` : '랭커 실제 보드'}</span>` : ''}`,
     };
   }
@@ -1019,7 +1029,7 @@ function renderTiers(byId) {
 }
 /** 티어표 덱 상세: 대표 버전 덱 카드 + 같은 덱의 다른 버전 성적 */
 function tierDetailHtml(x, byId) {
-  const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x, ' · '))} <span class="tag soft">${esc(deckType(x))}</span>${emblemNote(x.mainM || x.m)}`,
+  const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x, ' · '))} <span class="tag soft">${esc(deckType(x))}</span>${emblemNote(x.mainM || x.m, x)}`,
     metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.m.level}${x.realBoard && (x.mainM || x.m).board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중 자주 쓰인 챔피언을 가장 많이 담은 보드">${(x.mainM || x.m).board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${(x.mainM || x.m).board.same}판` : '랭커 실제 보드'}</span>` : ''}` };
   const card = deckCard(main, 0, byId).replace('<span class="rank">#1</span>', '');
   if (!x.variants?.length) return card;
