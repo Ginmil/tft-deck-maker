@@ -2699,7 +2699,7 @@ function metaDeckFrom(m, team, info, emblems, carry, byLower, swap, isReal, bonu
     return {
       ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id, value, realBoard: isReal,
       title: `<span class="tier t${tier}">${tier}</span> ${value ? `${esc(carry.name)} 밸류 <span class="tag soft" title="밸류덱: 시너지보다 5코스트 챔피언으로 힘을 내는 덱. 랭커 경기에서 주력으로 잡힌 시너지는 ${esc(traitName(m.trait))} ${mainCnt}명">${esc(traitName(m.trait))} ${mainCnt}</span>` : `${esc(traitName(m.trait))} · ${esc(carry.name)}`}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${emblemNote(m)}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
-      metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}`,
+      metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}${isReal && m.board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중, 자주 쓰인 챔피언을 가장 많이 담은 보드예요. 같은 구성으로 ${m.board.same}판, 평균 ${m.board.avgPlace}등">랭커 실제 보드 · 같은 구성 ${m.board.same}판</span>` : ''}`,
     };
   }
 }
@@ -2935,7 +2935,7 @@ function renderTiers(byId) {
 /** 티어표 덱 상세: 대표 버전 덱 카드 + 같은 덱의 다른 버전 성적 */
 function tierDetailHtml(x, byId) {
   const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x, ' · '))} <span class="tag soft">${esc(deckType(x))}</span>${emblemNote(x.mainM || x.m)}`,
-    metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.m.level}` };
+    metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.m.level}${x.realBoard && (x.mainM || x.m).board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중 자주 쓰인 챔피언을 가장 많이 담은 보드">랭커 실제 보드 · 같은 구성 ${(x.mainM || x.m).board.same}판</span>` : ''}` };
   const card = deckCard(main, 0, byId).replace('<span class="rank">#1</span>', '');
   if (!x.variants?.length) return card;
   const g = d => tierGames(d.m) || d.m.games;
