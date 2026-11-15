@@ -384,7 +384,7 @@ function bind() {
   document.addEventListener('click', e => {
     const b = e.target.closest('.toBuilder'); if (!b) return;
     const d = deckRegistry[Number(b.dataset.reg)];
-    if (d) bdOpenDeck(d);
+    if (d) { bdOpenDeck(d); window.scrollTo({ top: 0 }); }
   });
   bindItemTips();
   initBuilder({
@@ -422,6 +422,7 @@ function bind() {
   };
 
   document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+    if (!t.classList.contains('active')) window.scrollTo({ top: 0 });
     document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
     document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== `panel-${t.dataset.tab}`);
     if (t.dataset.tab === 'builds') renderBuilds();
