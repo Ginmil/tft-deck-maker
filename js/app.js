@@ -1150,11 +1150,11 @@ function tierDetailHtml(x, byId) {
   const traits = (x.traits || []).filter(t => t.tier > 0).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))
     .sort((a, b) => (a.breakpoints.length === 1) - (b.breakpoints.length === 1) || order[a.st] - order[b.st] || b.count - a.count)
     .map(t => `<span class="tTr" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `<span class="aug" title="랭커 실제 판에서 챔피언·상징 말고 증강 등으로 얻은 인원">증강 +${t.bonus}</span>` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
-  const regMain = deckRegistry.push(x) - 1;
+  const regMain = deckRegistry.push({ ...x, bdName: deckName(x) }) - 1;
   const alts = altBoards(mm, x.team);
   const mini = (c, cls) => `<span class="mini ${cls}" title="${esc(c.name)}">${hexPor(c)}<i>${cls === 'out' ? '−' : '+'}</i><small>${esc(c.base && c.weights ? c.base : c.name)}</small></span>`;
   const altHtml = alts.length ? `<div class="dSec"><h3>다른 구성</h3><p class="real">랭커가 실제로 쓴 다른 보드예요. 위 보드에서 빼고 넣으면 돼요.</p>${alts.map(a => {
-    const ad = altDeck(x, a), reg = ad ? deckRegistry.push(ad) - 1 : -1;
+    const ad = altDeck(x, a), reg = ad ? deckRegistry.push({ ...ad, bdName: deckName(x) + ' · 다른 구성' }) - 1 : -1;
     const diff = m.avgPlace - a.avgPlace, few = a.games < 5;
     return `<div class="alt${few ? ' few' : ''}"><div class="altswap">
         <div class="side">${a.remove.map(c => mini(c, 'out')).join('')}</div><span class="arrow" aria-hidden="true">→</span>
@@ -1238,7 +1238,7 @@ function runBoard(btn) {
         + ` · 점선 = 새로 넣을 챔피언</span></div>`;
       const metaHtml = near.length
         ? `<h3 class="recSub">내 보드와 가까운 메타 덱</h3>${near.map((d, i) => deckCard(d, i, byId)).join('')}`
-        : metaAvailable() ? '<p class="muted small">내 보드와 절반 이상 겹치는 메타 덱이 없어요.</p>' : '';
+        : metaAvailable() ? `<p class="muted small">${board.length <= 5 ? '지금 챔피언을 살려서 갈 수 있는 메타 덱이 없어요.' : '3명 안으로 더해서 갈 수 있는 메타 덱이 없어요.'}</p>` : '';
       const searchHtml = decks.length
         ? `<h3 class="recSub">보드를 이어서 완성하는 덱</h3>${decks.map((d, i) => deckCard(d, i, byId)).join('')}`
         : `<div class="empty">${keepAll && info.slots >= 10 ? '보드가 이미 꽉 찼어요 (최대 10레벨).' : '이어갈 덱을 찾지 못했어요. 목표 레벨을 바꾸거나 "바꿔도 돼요"를 켜 보세요.'}</div>`;
@@ -1257,7 +1257,7 @@ function runAssign() {
   if (!state.data) { setStatus('먼저 데이터를 불러와 주세요.', true); $('databar').open = true; return; }
   const board = bdBoardUnits(), inventory = bdInventory();
   if (!board.length) { box.innerHTML = '<div class="empty">보드에 지금 덱을 먼저 올려 주세요.</div>'; return; }
-  if (!inventory.length) { box.innerHTML = '<div class="empty">"오른쪽 아이템을 누르면 여기에 담기"를 체크하고 남은 아이템을 담아 주세요.</div>'; return; }
+  if (!inventory.length) { box.innerHTML = '<div class="empty">가진 아이템을 "남은 아이템" 칸에 먼저 담아 주세요 (챔피언을 고르지 않은 채 오른쪽 아이템을 누르거나 끌어다 놓기).</div>'; return; }
   const carries = bdCarries();
   const r = assignItems(withForms(state.data, board), { board, inventory, carries });
   lastAssign = r;
@@ -1282,7 +1282,7 @@ function runAssign() {
     ...r.leftComponents.map(id => `${itemLabel(id)}<span class="muted small">재료 그대로</span>`),
   ];
   box.innerHTML = `
-    <div class="resultHead"><h3>아이템 배분 추천</h3><span class="legend">${curPatch() ? esc(curPatch()) + ' 패치 · ' : ''}랭커 경기에서 그 챔피언이 그 아이템을 낀 비율 기준 · ${carries.length ? `<b>${esc(carries.map(i => state.data.champions.find(c => c.id === board.find(b => b.idx === i)?.id)?.name).filter(Boolean).join('·'))}</b>에게만 줌` : '이미 아이템을 든 챔피언에게 몰아줌'} · 적응가는 물리/마법 아이템을 섞지 않음</span></div>
+    <div class="resultHead"><h3>아이템 배분 추천</h3><span class="legend">${curPatch() ? esc(curPatch()) + ' 패치 · ' : ''}랭커 경기에서 그 챔피언이 그 아이템을 낀 비율 기준 · ${carries.length ? `<b>${esc(carries.map(i => state.data.champions.find(c => c.id === board.find(b => b.idx === i)?.id)?.name).filter(Boolean).join('·'))}</b>에게 먼저, 남는 아이템은 잘 쓰는 다른 챔피언에게` : '이미 아이템을 든 챔피언에게 몰아줌'} · 적응가는 물리/마법 아이템을 섞지 않음</span></div>
     ${rows || '<div class="empty">줄 수 있는 아이템이 없어요.</div>'}
     ${kept.length ? `<div class="asgKeep"><b>보관</b>${kept.map(k => `<span class="asgItem">${k}</span>`).join('')}</div>` : ''}
     ${r.assignments.length ? '<button class="btn primary" id="bdAssignApply">보드에 적용</button>' : ''}`;
