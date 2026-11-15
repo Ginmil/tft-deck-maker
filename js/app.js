@@ -627,7 +627,9 @@ function emblemNote(m, deck = null) {
     // 그 형태 챔피언 없이 상징을 쓴 실제 보드에서 "무엇으로 채웠는지"
     const alt = form && altBoards(m, deck.team, 6).find(a => a.remove.some(c => (c.base || c.id) === (form.base || form.id)) && a.emb >= 1);
     const fill = alt ? alt.add.filter(c => c.traits.includes(m.trait)).map(c => c.name) : [];
-    why = form ? ` 이 보드는 상징 대신 ${traitName(m.trait)} ${form.base || form.name}(2명분)로 맞춘 버전이에요(${form.base || form.name} ${fr}% 판에서 사용) — ${form.base || form.name}를 못 쓰면 ${fill.length ? fill.join('·') + ' + ' : ''}${traitName(m.trait)} 상징으로 채워요.`
+    const fb = form && (form.base || form.name);
+    // "못 쓰면 ~로 채워요"는 랭커가 실제로 그 형태 없이 상징을 쓴 보드가 있을 때만 (럭스가 캐리인 덱은 럭스를 늘 써서 근거 없음)
+    why = form ? ` 이 보드는 상징 대신 ${traitName(m.trait)} ${fb}(2명분)로 맞춘 버전이에요${fr < 95 ? `(${fb} ${fr}% 판에서 사용)` : ''}.${alt ? ` ${fb}를 못 쓴 판에서는 ${fill.length ? fill.join('·') + ' + ' : ''}${traitName(m.trait)} 상징${alt.emb > 1 ? ` ${alt.emb}개로` : '으로'} 채웠어요.` : ''}`
       : ' 이 보드는 상징 없이 맞춘 버전이에요.';
   }
   return ` <span class="tag soft" title="랭커들이 이 덱을 쓴 판 중 ${Math.round(r * 100)}%에서 ${esc(e.name)}을 썼어요.${esc(why)}">${esc(e.name)} ${Math.round(r * 100)}%${deck && !used ? ' · 이 보드는 미사용' : ''}</span>`;
@@ -769,7 +771,8 @@ function realBoardTeam(m, byLower) {
     const forms = d.champions.filter(x => x.base === c.base && x.weights);
     if (!forms.length) continue;
     const countWith = f => { const t = Object.keys(f.weights)[0]; return team.reduce((s, x) => s + (x === c ? 0 : x.traits.includes(t) ? (x.weights?.[t] ?? 1) : 0), 0) + f.weights[t] + emblems.filter(e => e === t).length; };
-    const fit = f => { const t = Object.keys(f.weights)[0]; return b.traits?.[t] != null && countWith(f) === b.traits[t] ? 2 : b.traits?.[t] != null ? 1 : 0; };
+    // 그 판 실제 인원과 정확히 맞으면 2, 넘치면 -1(그 형태일 수 없음 — 지옥불 아리: 지옥불 럭스면 5인데 실제 3), 시너지만 있으면 1
+    const fit = f => { const t = Object.keys(f.weights)[0], real = b.traits?.[t]; if (real == null) return 0; const n = countWith(f); return n === real ? 2 : n > real ? -1 : 1; };
     const best = [...forms].sort((x, y) => fit(y) - fit(x) || (Object.keys(y.weights)[0] === m.trait) - (Object.keys(x.weights)[0] === m.trait))[0];
     if (best) { info[best.id] = info[c.id]; team[i] = best; }
   }
