@@ -5,21 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>롤토체스 덱 메이커</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="top">
+  <header class="top"><div class="top-in">
     <div class="brand">
-      <span class="logo">◆</span>
+      <span class="logo" aria-hidden="true"></span>
       <div>
         <h1>롤토체스 덱 메이커</h1>
         <p id="setLabel" class="muted">데이터를 불러와 주세요</p>
       </div>
     </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" data-tab="meta" role="tab">메타 덱</button>
+      <button class="tab" data-tab="patch" role="tab">패치 노트</button>
+      <button class="tab active" data-tab="emblem" role="tab">상징 팀 메이커 </button>
+      <button class="tab" data-tab="items" role="tab">아이템으로 찾기</button>
+      <button class="tab" data-tab="builds" role="tab">챔피언 3신기</button>
+      <button class="tab" data-tab="builder" role="tab">배치툴</button>
+    </nav>
 
-    <details class="databar" id="databar" open>
-      <summary>데이터 소스</summary>
+    <details class="databar" id="databar">
+      <summary>데이터</summary>
       <div class="row">
         <input id="srcUrl" type="url" spellcheck="false" aria-label="데이터 URL">
         <button id="btnFetch" class="btn primary">불러오기</button>
@@ -35,18 +44,11 @@
       </div>
       <p id="status" class="status muted"></p>
     </details>
-  </header>
+  </div></header>
 
   <main>
 
-    <nav class="tabs" role="tablist">
-      <button class="tab" data-tab="meta" role="tab">메타 덱</button>
-      <button class="tab" data-tab="patch" role="tab">패치 노트</button>
-      <button class="tab active" data-tab="emblem" role="tab">상징 팀 메이커 <span class="tag">핵심</span></button>
-      <button class="tab" data-tab="items" role="tab">아이템으로 찾기</button>
-      <button class="tab" data-tab="builds" role="tab">챔피언 3신기</button>
-      <button class="tab" data-tab="builder" role="tab">배치툴</button>
-    </nav>
+    
     <!-- 덱을 새로 짜는 탭(상징 팀 메이커·아이템으로 찾기)에서만 보임 -->
     <section class="settings optBar" id="globalSettings">
       <span class="optTitle">옵션</span>
