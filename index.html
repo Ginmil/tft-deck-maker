@@ -38,8 +38,18 @@
   </header>
 
   <main>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab" data-tab="meta" role="tab">메타 덱</button>
+      <button class="tab" data-tab="patch" role="tab">패치 노트</button>
+      <button class="tab active" data-tab="emblem" role="tab">상징 팀 메이커 <span class="tag">핵심</span></button>
+      <button class="tab" data-tab="items" role="tab">아이템으로 찾기</button>
+      <button class="tab" data-tab="builds" role="tab">챔피언 3신기</button>
+      <button class="tab" data-tab="builder" role="tab">배치툴</button>
+    </nav>
     <!-- 덱을 새로 짜는 탭(상징 팀 메이커·아이템으로 찾기)에서만 보임 -->
-    <section class="settings" id="globalSettings">
+    <section class="settings optBar" id="globalSettings">
+      <span class="optTitle">옵션</span>
       <label>레벨(인원)
         <select id="size">
           <option>6</option><option>7</option><option selected>8</option><option>9</option><option>10</option>
@@ -61,15 +71,6 @@
         </select>
       </label>
     </section>
-
-    <nav class="tabs" role="tablist">
-      <button class="tab" data-tab="meta" role="tab">메타 덱</button>
-      <button class="tab" data-tab="patch" role="tab">패치 노트</button>
-      <button class="tab active" data-tab="emblem" role="tab">상징 팀 메이커 <span class="tag">핵심</span></button>
-      <button class="tab" data-tab="items" role="tab">아이템으로 찾기</button>
-      <button class="tab" data-tab="builds" role="tab">챔피언 3신기</button>
-      <button class="tab" data-tab="builder" role="tab">배치툴</button>
-    </nav>
 
     <!-- 3. 상징 -->
     <section class="panel" id="panel-emblem">
