@@ -89,9 +89,14 @@ export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf 
         if (!id) continue;
         const items = u.itemNames || u.items || [];
         const names = items.filter(x => typeof x === 'string');
-        const ur = (units[id] ||= { games: 0, sumPlace: 0, full: 0, items: {}, builds: {} });
+        const ur = (units[id] ||= { games: 0, sumPlace: 0, top4: 0, win: 0, full: 0, items: {}, builds: {}, stars: {} });
         ur.games += w;
         ur.sumPlace += w * place;
+        ur.top4 = (ur.top4 || 0) + (place <= 4 ? w : 0);
+        ur.win = (ur.win || 0) + (place === 1 ? w : 0);
+        // 별(성)별 성적: 배치툴 칸마다 "2성 / 3성일 때" 성적 표시용
+        const st = ((ur.stars ||= {})[u.tier || 1] ||= { games: 0, sumPlace: 0, top4: 0, win: 0 });
+        st.games += w; st.sumPlace += w * place; st.top4 += place <= 4 ? w : 0; st.win += place === 1 ? w : 0;
         // 도적의 장갑: 끼면 나머지 아이템이 랜덤 → 이 챔피언의 아이템 기록은 3신기·역할 통계에서 제외
         // 전략가의 왕관/망토/방패: 인원 +1용이라 캐리 아이템 조합이 아님 → 3신기에서 제외
         const random = names.some(n => /ThiefsGloves/i.test(n));
@@ -244,7 +249,9 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
     const builds = Object.entries(r.builds || {})
       .sort((a, b) => b[1].games - a[1].games).slice(0, 10)
       .map(([k, b]) => ({ items: k.split('|'), games: Math.round(b.games), avgPlace: round(b.sumPlace / b.games, 2) }));
-    units[id] = { games: Math.round(r.games), avgPlace: round(r.sumPlace / r.games, 2), carryRate: round(r.full / r.games, 3), items, builds };
+    const stars = Object.fromEntries(Object.entries(r.stars || {}).filter(([, s]) => s.games >= 5)
+      .map(([k, s]) => [k, { games: Math.round(s.games), avgPlace: round(s.sumPlace / s.games, 2), top4: round(s.top4 / s.games, 3), win: round(s.win / s.games, 3) }]));
+    units[id] = { games: Math.round(r.games), avgPlace: round(r.sumPlace / r.games, 2), top4: round((r.top4 || 0) / r.games, 3), win: round((r.win || 0) / r.games, 3), carryRate: round(r.full / r.games, 3), items, builds, stars };
   }
   // 상징: 어떤 챔피언에게 몇 번 장착됐는지
   const emblems = {};
