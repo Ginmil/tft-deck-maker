@@ -187,6 +187,18 @@ function addComp(comps, p, place, w = 1, cur = true, label = null) {
   mc[main.num_units] = (mc[main.num_units] || 0) + w;
   const embs = new Set(units.flatMap(u => (u.itemNames || []).filter(n => typeof n === 'string' && /emblem/i.test(n))));
   for (const e of embs) (c.emblemGames ||= {})[e] = ((c.emblemGames ||= {})[e] || 0) + w;
+  // 실제 최종 보드(같은 챔피언 조합)별 기록 + 가장 잘한 판의 보드 그대로(별·아이템·시너지 인원) — 대표 보드용
+  // (11/15 사용자 피드백: 자주 나온 챔피언을 모아 채우면 "N% 선택"만 6명인 아무도 안 쓴 보드가 됨)
+  const ids = [...seen].sort();
+  const bk = ids.join(',');
+  const bd = ((c.boards ||= {})[bk] ||= { games: 0, sumPlace: 0, best: null });
+  bd.games += w;
+  bd.sumPlace += w * place;
+  if (!bd.best || place < bd.best.place) bd.best = {
+    place,
+    units: units.map(u => ({ id: String(u.character_id).toLowerCase(), star: u.tier || 1, items: itemsOf(u) })),
+    traits: Object.fromEntries((p.traits || []).filter(t => t.tier_current > 0).map(t => [t.name, t.num_units])),
+  };
   // 이 덱 안에서 각 챔피언의 3신기 (핵심 캐리·메인 탱커 표시에 사용)
   for (const u of units) {
     const items = itemsOf(u);
@@ -257,8 +269,18 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
       .map(([k, b]) => ({ items: k.split('|'), games: Math.round(b.games), avgPlace: round(b.sumPlace / b.games, 2) }))[0] || null;
     const tankId = mainTank && mainTank[1].tank > 0 ? mainTank[0] : null;
     const builds = { [mainCarry]: topBuild(mainCarry), ...(tankId ? { [tankId]: topBuild(tankId) } : {}) };
+    // 대표 보드: 랭커가 실제로 쓴 보드 중 "자주 쓰인 챔피언을 가장 많이 담은" 것 (가장 흔한 인원 수 보드 중에서, 같으면 판수)
+    const rate = id => (c.units[id]?.n || 0) / c.games;
+    const boards = Object.entries(c.boards || {}).map(([k, b]) => ({ ids: k.split(','), ...b }));
+    const sizeGames = {};
+    for (const b of boards) sizeGames[b.ids.length] = (sizeGames[b.ids.length] || 0) + b.games;
+    const size = Number(Object.entries(sizeGames).sort((a, b) => b[1] - a[1])[0]?.[0] || 0);
+    const rep = boards.filter(b => b.ids.length === size)
+      .map(b => ({ b, score: b.ids.reduce((s, id) => s + rate(id), 0) }))
+      .sort((x, y) => (y.score - x.score) || (y.b.games - x.b.games))[0]?.b;
+    const board = rep ? { units: rep.best.units, traits: rep.best.traits, same: Math.round(rep.games), avgPlace: round(rep.sumPlace / rep.games, 2), distinct: boards.length } : null;
     return {
-      trait: c.trait, carry: c.carry, mainCarry, mainTank: tankId,
+      trait: c.trait, carry: c.carry, mainCarry, mainTank: tankId, board,
       ...blend(c.now, c.before, prevPrior),
       playRate: round((c.now.games || c.games) / Math.max(1, c.now.games ? curPlayers : stats.games), 4), level, core, builds,
       // 패치 비교: 이번 패치만 / 이전 패치만 (가중치 없는 실제 판수)
