@@ -357,8 +357,8 @@ function deckCard(d, i, byId) {
     <div class="units">${units}</div>
     ${d.board?.removed.length ? `<div class="boardDiff">빼는 챔피언: ${d.board.removed.map(id => `<b>${esc(nameOf(id))}</b>`).join(', ')}</div>` : ''}
     ${[carryId, tankId].filter(Boolean).map(id => {
-      const c = byId.get(id); const b = c && (d.builds?.[id] || buildsFor(c)[0]);
-      return b ? `<div class="deckBuild"><span class="who">${id === carryId ? '핵심' : '탱커'} ${esc(c.name)}</span>${buildRow(b)}</div>` : '';
+      const c = byId.get(id); const own = d.builds?.[id], b = c && (own || buildsFor(c)[0]);
+      return b ? `<div class="deckBuild"><span class="who">${id === carryId ? '핵심' : '탱커'} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
     }).join('')}
     <div class="traitsOut">${traits}</div>
   </article>`;
@@ -481,6 +481,9 @@ function bind() {
 // 판수가 적으면 평균(4.5등) 쪽으로 강하게 보정 → 몇 판 우연히 잘 나온 조합이 1등으로 오지 않게
 const BUILD_MIN_GAMES = 5;
 const BUILD_PRIOR = 15;
+// 덱 안 3신기는 그 덱에서 3판 이상 똑같이 쓴 조합만 (11/16 사용자: 햇빛 아지르가 1판짜리 거인 학살자 2개+수은으로 나옴 —
+// 덱 413개 중 209개가 1~2판짜리). 모자라면 그 챔피언 전체 랭커 기록의 3신기(아지르: 구인수+총검+라바돈 71판)
+const DECK_BUILD_MIN = 3;
 function buildsFor(c) {
   const st = state.data?.unitStats?.[c.id.toLowerCase()];
   const list = (st?.builds || []).filter(b => !b.items.some(i => /ThiefsGloves|Tacticians/i.test(i))); // 예전 통계 파일 대비
@@ -495,9 +498,10 @@ function itemLabel(id) {
   const name = info?.name || id.replace(/^(DA_|TFT\d*_Item_|TFT_Item_)/, '').replace(/([a-z])([A-Z])/g, '$1 $2');
   return `<span class="bi" data-item="${esc(id)}">${info?.icon ? `<img src="${esc(info.icon)}" alt="" loading="lazy" onerror="this.remove()">` : ''}${esc(name)}</span>`;
 }
-function buildRow(b) {
+function buildRow(b, overall = false) {
   const low = b.games < 15 ? ' <span class="lowconf" title="판수가 적어 참고용">표본 적음</span>' : '';
-  return `<div class="build">${b.items.map(itemLabel).join('')}<span class="bmeta">평균 ${b.avgPlace}등 · ${b.games}판${low}</span></div>`;
+  const src = overall ? ' <span class="lowconf" title="이 덱에서 똑같이 쓴 조합이 3판이 안 돼서, 이 챔피언의 모든 랭커 경기 기록 기준으로 보여 줘요">챔피언 전체 기록</span>' : '';
+  return `<div class="build">${b.items.map(itemLabel).join('')}<span class="bmeta">평균 ${b.avgPlace}등 · ${b.games}판${low}${src}</span></div>`;
 }
 function renderBuilds() {
   const d = state.data;
@@ -836,7 +840,7 @@ function metaDeckFrom(m, team, info, emblems, carry, byLower, swap, isReal, bonu
     // 3성작: 3코스트 이하 챔피언이 그 덱에서 절반 이상 3성으로 완성됨
     const reroll = team.some(c => c.cost <= 3 && (info[c.id]?.star3 || 0) >= 0.5);
     const builds = {};
-    for (const [id, b] of Object.entries(m.builds || {})) { let c = byLower.get(id); if (c && swap[c.id]) c = swap[c.id]; if (c && !team.includes(c)) c = team.find(x => (x.base || x.id) === (c.base || c.id)) || c; if (c && b) builds[c.id] = b; }
+    for (const [id, b] of Object.entries(m.builds || {})) { let c = byLower.get(id); if (c && swap[c.id]) c = swap[c.id]; if (c && !team.includes(c)) c = team.find(x => (x.base || x.id) === (c.base || c.id)) || c; if (c && b && b.games >= DECK_BUILD_MIN) builds[c.id] = b; }
     // 화면 레벨 = 보여 주는 보드의 칸 수(2칸 챔피언 포함). 평균 레벨 반올림(m.level)을 쓰면 "9레벨인데 8명"처럼 어긋남 (11/15 사용자 피드백)
     const level = isReal ? Math.min(10, team.reduce((s, c) => s + (c.slots || 1), 0)) : m.level;
     const value = isValueDeck(team, { ...m, level }, ev);
@@ -893,7 +897,7 @@ function renderItemStats(btn) {
   const carrierRank = new Map(carriers.map((r, i) => [r.champ.id.toLowerCase(), i]));
   const metas = metaDecks(8).map(dk => {
     const carryId = dk.m.mainCarry || dk.m.carry;
-    const build = dk.m.builds?.[carryId]?.items || [];
+    const db = dk.m.builds?.[carryId], build = db && db.games >= DECK_BUILD_MIN ? db.items : [];
     const rest = [...chosen];
     let overlap = 0;
     for (const it of build) { const k = rest.indexOf(it); if (k >= 0) { overlap++; rest.splice(k, 1); } }
@@ -1143,8 +1147,8 @@ function tierDetailHtml(x, byId) {
       ${esc(c.base && c.weights ? c.base : c.name)}<em>${c.id === carryId ? '핵심 캐리' : c.id === tankId ? '메인 탱커' : rate < 0.05 ? '드물게 사용' : opt ? `${pct(rate)}만 사용` : ''}</em></div>`;
   }).join('');
   const builds = [carryId, tankId].filter(Boolean).map(id => {
-    const c = byId.get(id), b = c && (x.builds?.[id] || buildsFor(c)[0]);
-    return b ? `<div class="tBuild"><span class="who">${id === carryId ? '캐리' : '탱커'} ${esc(c.name)}</span>${buildRow(b)}</div>` : '';
+    const c = byId.get(id), own = x.builds?.[id], b = c && (own || buildsFor(c)[0]);
+    return b ? `<div class="tBuild"><span class="who">${id === carryId ? '캐리' : '탱커'} ${esc(c.name)}</span>${buildRow(b, !own)}</div>` : '';
   }).join('');
   const order = { prism: 0, gold: 1, silver: 2, bronze: 3, '': 4 };
   const traits = (x.traits || []).filter(t => t.tier > 0).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))
