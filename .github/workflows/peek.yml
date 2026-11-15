@@ -1,4 +1,4 @@
-# 임시: 나무정령 식물 유닛 찾기
+# 임시: 나무정령 식물 이미지 찾기
 name: 스킬 정보 확인
 on: workflow_dispatch
 jobs:
@@ -6,5 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl -sL https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json -o cd.json
-          node -e "const d=require('./cd.json'); const s=Object.values(d.sets||{}).find(x=>x.number==18)||d.setData.find(x=>x.number==18); for (const c of s.champions) if (!(c.cost>=1&&c.cost<=5) || !(c.traits||[]).length) console.log('U', c.apiName, c.name, c.cost, JSON.stringify(c.traits), c.squareIcon||c.tileIcon||c.icon);"
+          B=https://raw.communitydragon.org/latest/game
+          curl -sL $B/characters/ | grep -oiE 'href="[^"]*(elderwood|bark|flower|bloom|guardian|plant|tree|sprout|lunar|moon)[^"]*"' | head -40
+          curl -sL $B/assets/characters/ | grep -oiE 'href="[^"]*(elderwood|bark|flower|bloom|guardian|plant|tree|sprout|lunar|moon)[^"]*"' | head -40
+          curl -sL $B/assets/ux/tft/championsplashes/patching/ | grep -oiE 'href="[^"]*(elderwood|bark|flower|bloom|guardian|plant|tree|sprout)[^"]*"' | head -40
