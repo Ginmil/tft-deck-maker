@@ -2829,7 +2829,35 @@ function isValueDeck(team, m, ev) {
   return m.level >= 9 && team.filter(c => c.cost >= 5).length >= 4 && bps.filter(b => b <= n).length <= 2 && n <= 4;
 }
 
-function metaDecks(minGames) {
+/**
+ * 캐리 바로잡기 (11/16 사용자 피드백 "햇빛 아지르" 점검 후 전체 점검):
+ * 판마다 "딜 아이템 최다" 챔피언을 캐리로 잡다 보니, 3성 리롤 캐리가 아이템을 든 덱인데도 다른 챔피언이 캐리로 잡힘
+ *  - 약탈자 다이애나: 다이애나는 탱템(랭커 기록상 아이템 3개 드는 비율 2%) → 3성 워윅이 캐리
+ *  - 싸움꾼 니달리 / 개화 니달리 / 나무정령 자이라: 3성 마스터 이·렝가·어미 부리도 3아이템 → 둘 다 캐리("마스터 이·니달리")
+ * 대표 보드에서 아이템 2개 이상 든 챔피언 + 챔피언 전체 기록의 carryRate(아이템 3개 든 비율)로 판단
+ */
+function fixCarry(x) {
+  const st = id => state.data.unitStats?.[id.toLowerCase()];
+  const rate = c => st(c.id)?.carryRate ?? (/lux/i.test(c.id) ? st('da_lux18_base')?.carryRate : null) ?? 0.5;
+  const carry = carryOfDeck(x); if (!carry) return x;
+  const units = x.m.board?.units || [];
+  const items = c => (units.find(u => u.id === c.id.toLowerCase() || (c.base && st(u.id) && x.team.find(t => t.id.toLowerCase() === u.id)?.base === c.base))?.items || []).filter(i => !/Emblem/i.test(i)).length;
+  const holders = x.team.filter(c => c !== carry && items(c) >= 2 && rate(c) >= 0.3);
+  // ① 캐리로 잡힌 챔피언이 사실상 아이템을 안 드는 챔피언(탱커 등)이면 홀더로 바꿈
+  if (rate(carry) < 0.15 && holders.length) {
+    const nc = holders.sort((a, b) => rate(b) - rate(a) || items(b) - items(a))[0];
+    return { ...x, carryChampId: nc.id, core: { ...(x.core || {}), carry: nc.id } };
+  }
+  // ② 리롤 덱에서 3성 리롤 챔피언도 아이템 3개를 들면 그 챔피언을 앞에, 원래 캐리를 뒤에 ("마스터 이·니달리")
+  const star3 = c => (x.unitInfo?.[c.id]?.star3 || 0) >= 0.5;
+  if (!star3(carry)) {
+    const rr = x.team.filter(c => c !== carry && c.cost <= 3 && star3(c) && items(c) >= 2 && rate(c) >= 0.2 && c.cost <= carry.cost).sort((a, b) => rate(b) - rate(a))[0];
+    if (rr) return { ...x, carryChampId: rr.id, core: { ...(x.core || {}), carry: rr.id }, carries: [rr.base || rr.name, carry.base || carry.name] };
+  }
+  return x;
+}
+function metaDecks(minGames) { return metaDecksRaw(minGames).map(fixCarry); }
+function metaDecksRaw(minGames) {
   const d = state.data;
   if (!metaAvailable()) return [];
   const byLower = new Map(d.champions.map(c => [c.id.toLowerCase(), c]));
@@ -3168,7 +3196,7 @@ function combineDecks(main, variants) {
     const base = bk(c);
     unitInfo[c.id] = { ...(main.unitInfo?.[c.id] || {}), rate: all.reduce((s, x) => s + g(x) * rateIn(x, base), 0) / totalG, star3: all.reduce((s, x) => s + g(x) * star3In(x, base), 0) / totalG };
   }
-  return { ...main, m, tier: deckTier(m), variants, mainM: main.m, mainGames: g(main), carries: carries.length > 1 ? carries : undefined, unitInfo };
+  return { ...main, m, tier: deckTier(m), variants, mainM: main.m, mainGames: g(main), carries: carries.length > 1 ? carries : main.carries, unitInfo };
 }
 let tierFilter = 'all', tierSel = null;
 /** 덱 종류 필터: 밸류 / 리롤 / 레벨업 */
@@ -3443,7 +3471,7 @@ function removeOne(arr, v) { const i = arr.indexOf(v); if (i >= 0) arr.splice(i,
 // ---------------- 시작 ----------------
 bind();
 // 점검용(콘솔·테스트): 메타 덱 계산 결과를 그대로 볼 수 있게
-window.__tftDebug = { metaDecks: n => metaDecks(n), state, tiers: () => tierDecks };
+window.__tftDebug = { metaDecks: n => metaDecks(n), state, tiers: () => tierDecks, grouped: () => groupedDecks(), carryOfDeck: d => carryOfDeck(d), deckName: d => deckName(d), deckType: d => deckType(d) };
 if (window.TFT_WEIGHTS) state.weights = window.TFT_WEIGHTS; // data/weights.js 가 있으면 자동 사용
 const cached = store.get(CACHE_KEY);
 iconMapReady.then(start);
