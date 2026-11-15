@@ -20,7 +20,11 @@
 // =============================================================
 
 // 변환 규칙을 바꾸면 이 숫자를 올리세요. 브라우저에 저장된 예전 변환 결과를 자동으로 버리고 새로 받습니다.
-const ADAPTER_VERSION = 12; // 12: 시너지 아이콘
+/** 스킬 설명 정리: {Augment...} 같은 내부 표식 제거, 줄바꿈 정리 */
+function cleanAbility(s) {
+  return String(s || '').replace(/\{[^}]*\}/g, '').replace(/\\r|\r/g, '').replace(/\\n|\n/g, '\n').replace(/<[^>]+>/g, '').replace(/\n{3,}/g, '\n\n').trim();
+}
+const ADAPTER_VERSION = 13; // 12: 시너지 아이콘, 13: 챔피언 스킬·기본 능력치(툴팁)
 
 const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -86,6 +90,9 @@ function normalize(raw, setKey) {
     champions.push({
       id: c.apiName, name: c.name, cost: c.cost, traits: traitIds, base: c.name.replace(/\s*[(（].*[)）]\s*$/, ''), // "럭스 (요정)" → "럭스"
       role: championRole(c), range: c.stats?.range ?? null, icon: iconUrl(c.squareIcon || c.tileIcon || c.icon),
+      // 툴팁용: 스킬 이름·설명(수치 변수 @X@ 는 그대로 — Set 18 은 데이터에 수치가 없음), 기본 능력치
+      ability: c.ability ? { name: c.ability.name || '', desc: cleanAbility(c.ability.desc) } : null,
+      stats: c.stats ? { hp: c.stats.hp, ad: c.stats.damage, armor: c.stats.armor, mr: c.stats.magicResist, as: Math.round((c.stats.attackSpeed || 0) * 100) / 100, mana: c.stats.mana, startMana: c.stats.initialMana } : null,
     });
   }
 
