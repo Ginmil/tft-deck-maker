@@ -1,0 +1,10 @@
+# 임시: Community Dragon 챔피언 스킬 정보 형태 확인
+name: 스킬 정보 확인
+on: workflow_dispatch
+jobs:
+  peek:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -sL https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json -o cd.json
+          node -e "const d=require('./cd.json'); const s=Object.values(d.sets||{}).find(x=>x.number==18)||d.setData.find(x=>x.number==18); const cs=s.champions; const k=cs.find(c=>/khazix/i.test(c.apiName)); console.log('KEYS', Object.keys(k)); console.log('KHA', JSON.stringify(k).slice(0,4000)); const v=cs.find(c=>/veigar/i.test(c.apiName)); console.log('VEI', JSON.stringify({ability:v.ability, stats:v.stats}).slice(0,3000));"
