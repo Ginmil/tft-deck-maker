@@ -460,7 +460,8 @@ function assignEmblems(team, emblemTraits, { data = null, coreId = null } = {}) 
  * @param opts.size      최종 인원 (partial 휴리스틱용)
  */
 function evaluateTeam(team, data, opts = {}) {
-  const { emblems = [], desired = {}, carryIds = [], partial = false, size = team.length } = opts;
+  // bonus: 챔피언·상징으로 설명 안 되는 시너지 인원 (랭커 실제 보드에서 증강 등으로 얻은 것, { 시너지: +N })
+  const { emblems = [], desired = {}, carryIds = [], partial = false, size = team.length, bonus = {} } = opts;
   const counts = {};
   for (const c of team) for (const t of c.traits) counts[t] = (counts[t] || 0) + (c.weights?.[t] ?? 1); // 2명분 챔피언 반영
   const base = { ...counts };
@@ -473,6 +474,7 @@ function evaluateTeam(team, data, opts = {}) {
     counts[a.trait] = (counts[a.trait] || 0) + 1;
     applied[a.trait] = (applied[a.trait] || 0) + 1;
   }
+  for (const [t, k] of Object.entries(bonus)) if (k > 0) counts[t] = (counts[t] || 0) + k;
   // 낭비된 상징: 상징을 빼도 같은 단계라면 그 상징은 쓸모가 없음 (예: 이미 6인데 상징으로 7 → 7단계 없음)
   const topOf = (bps, n) => bps.filter(b => n >= b).at(-1) || 0;
   let wastedEmblems = 0;
@@ -510,6 +512,7 @@ function evaluateTeam(team, data, opts = {}) {
       id, name: t.name, count, base: base[id] || 0, breakpoints: bps,
       top, tier: reached.length, next,
       emblemOnly: top > 0 && (base[id] || 0) < top, // 상징이 있어야만 발동되는 단계
+      bonus: bonus[id] || 0,
     });
     score += s;
   }
@@ -2275,7 +2278,7 @@ function deckCard(d, i, byId) {
   const traits = d.traits.filter(t => t.tier > 0 || t.count >= 2).map(t => {
     const lvl = t.tier === 0 ? 'off' : t.top === t.breakpoints.at(-1) ? 't3' : t.tier >= 2 ? 't2' : 't1';
     const tip = t.stat ? ` title="실제 경기: 평균 ${t.stat.avgPlace}등 · 순방 ${(t.stat.top4 * 100).toFixed(0)}% · ${t.stat.games}판 · 가중치 ×${t.stat.weight}"` : '';
-    return `<span class="tp ${lvl} ${t.emblemOnly ? 'emb' : ''}"${tip}><b>${t.count}</b> ${esc(t.name)}<span class="bps">${t.breakpoints.join('/')}</span>${t.stat ? `<span class="avg">${t.stat.avgPlace}등</span>` : ''}</span>`;
+    return `<span class="tp ${lvl} ${t.emblemOnly ? 'emb' : ''}"${tip}><b>${t.count}</b> ${esc(t.name)}<span class="bps">${t.breakpoints.join('/')}</span>${t.bonus ? `<span class="bonus" title="랭커 실제 판에서 챔피언·상징 말고 증강 등으로 얻은 인원">증강 +${t.bonus}</span>` : ''}${t.stat ? `<span class="avg">${t.stat.avgPlace}등</span>` : ''}</span>`;
   }).join('');
 
   return `<article class="deck ${d.desiredMet === false ? 'warn' : ''}">
@@ -2610,7 +2613,15 @@ function metaDecks(minGames) {
   return mergedComps().filter(m => m.games >= minGames).map(m => {
     let carry = byLower.get(m.mainCarry || m.carry);
     if (!carry) return null;
-    // 레벨만큼 자리 채우기: 자주 쓰인 순, 같은 챔피언의 다른 형태(럭스 등)는 하나만, 2칸 챔피언 고려
+    // ① 랭커가 실제로 쓴 대표 보드가 있으면 그대로 (11/15 사용자 피드백: 자주 나온 챔피언을 모아 채우면
+    //    "N% 선택"만 6명인, 아무도 안 쓴 보드가 돼서 뭘 쓰라는 건지 모름)
+    const real = realBoardTeam(m, byLower);
+    if (real && real.team.some(c => (c.base || c.id) === (carry.base || carry.id))) {
+      const { team, info, emblems, bonus } = real;
+      carry = team.find(c => (c.base || c.id) === (carry.base || carry.id));
+      return metaDeckFrom(m, team, info, emblems, carry, byLower, {}, true, bonus);
+    }
+    // ② 없으면 예전처럼 레벨만큼 자리 채우기: 자주 쓰인 순, 같은 챔피언의 다른 형태(럭스 등)는 하나만, 2칸 챔피언 고려
     const info = {}, team = [], bases = new Set();
     let slots = 0;
     for (const u of m.core) {
@@ -2633,23 +2644,64 @@ function metaDecks(minGames) {
     const carryRef = {};
     const emblems = fitMainCount(team, info, m, byLower, carry, carryRef);
     if (carryRef.swapped) { swap[carry.id] = carryRef.swapped; carry = carryRef.swapped; }
-    const ev = evaluateTeam(team, d, { carryIds: [carry.id], emblems });
+    return metaDeckFrom(m, team, info, emblems, carry, byLower, swap, false);
+  }).filter(Boolean);
+}
+
+/** 대표 보드(m.board: 랭커 실제 보드 — 챔피언·별·아이템·시너지 인원) → 팀. 럭스 형태는 그 판의 시너지 인원에 맞춰, 상징은 그 판에 낀 것 */
+function realBoardTeam(m, byLower) {
+  const d = state.data, b = m.board;
+  if (!b?.units?.length) return null;
+  const coreById = new Map(m.core.map(u => [u.id, u]));
+  const team = [], info = {}, bases = new Set(), emblems = [];
+  for (const u of b.units) {
+    const c = byLower.get(u.id);
+    if (!c || bases.has(c.base || c.id)) continue;
+    bases.add(c.base || c.id); team.push(c);
+    info[c.id] = coreById.get(u.id) || { id: u.id, rate: 0, star3: 0 };
+    for (const it of u.items || []) { const e = d.emblems.find(x => x.id === it || (x.ids || []).includes(it)); if (e) emblems.push(e.trait); }
+  }
+  if (team.length < 4) return null;
+  // 형태 챔피언(럭스): 그 판의 시너지 인원과 맞는 형태
+  for (let i = 0; i < team.length; i++) {
+    const c = team[i];
+    if (c.weights || !c.base) continue;
+    const forms = d.champions.filter(x => x.base === c.base && x.weights);
+    if (!forms.length) continue;
+    const countWith = f => { const t = Object.keys(f.weights)[0]; return team.reduce((s, x) => s + (x === c ? 0 : x.traits.includes(t) ? (x.weights?.[t] ?? 1) : 0), 0) + f.weights[t] + emblems.filter(e => e === t).length; };
+    const fit = f => { const t = Object.keys(f.weights)[0]; return b.traits?.[t] != null && countWith(f) === b.traits[t] ? 2 : b.traits?.[t] != null ? 1 : 0; };
+    const best = [...forms].sort((x, y) => fit(y) - fit(x) || (Object.keys(y.weights)[0] === m.trait) - (Object.keys(x.weights)[0] === m.trait))[0];
+    if (best) { info[best.id] = info[c.id]; team[i] = best; }
+  }
+  // 챔피언·상징으로 설명 안 되는 인원 = 증강 등 (요정 시비르: 챔피언 3명 + 증강 1 = 요정 4) → 주력 시너지만 반영
+  const bonus = {};
+  const t = m.trait, have = team.reduce((s, x) => s + (x.traits.includes(t) ? (x.weights?.[t] ?? 1) : 0), 0) + emblems.filter(e => e === t).length;
+  if (b.traits?.[t] > have) bonus[t] = b.traits[t] - have;
+  return { team, info, emblems, bonus };
+}
+
+/** 팀·정보 → 메타 덱 카드 데이터 */
+function metaDeckFrom(m, team, info, emblems, carry, byLower, swap, isReal, bonus = {}) {
+  const d = state.data;
+  {
+    const ev = evaluateTeam(team, d, { carryIds: [carry.id], emblems, bonus });
     let tank = m.mainTank ? byLower.get(m.mainTank) : null;
     if (tank && swap[tank.id]) tank = swap[tank.id];
+    if (tank && !team.includes(tank)) tank = team.find(c => (c.base || c.id) === (tank.base || tank.id)) || tank;
     if (tank && team.includes(tank)) ev.core = { carry: carry.id, tank: tank.id };
     const tier = deckTier(m);
     // 3성작: 3코스트 이하 챔피언이 그 덱에서 절반 이상 3성으로 완성됨
     const reroll = team.some(c => c.cost <= 3 && (info[c.id]?.star3 || 0) >= 0.5);
     const builds = {};
-    for (const [id, b] of Object.entries(m.builds || {})) { let c = byLower.get(id); if (c && swap[c.id]) c = swap[c.id]; if (c && b) builds[c.id] = b; }
+    for (const [id, b] of Object.entries(m.builds || {})) { let c = byLower.get(id); if (c && swap[c.id]) c = swap[c.id]; if (c && !team.includes(c)) c = team.find(x => (x.base || x.id) === (c.base || c.id)) || c; if (c && b) builds[c.id] = b; }
     const value = isValueDeck(team, m, ev);
     const mainCnt = ev.traits.find(t => t.id === m.trait)?.count || 0;
     return {
-      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id, value,
+      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id, value, realBoard: isReal,
       title: `<span class="tier t${tier}">${tier}</span> ${value ? `${esc(carry.name)} 밸류 <span class="tag soft" title="밸류덱: 시너지보다 5코스트 챔피언으로 힘을 내는 덱. 랭커 경기에서 주력으로 잡힌 시너지는 ${esc(traitName(m.trait))} ${mainCnt}명">${esc(traitName(m.trait))} ${mainCnt}</span>` : `${esc(traitName(m.trait))} · ${esc(carry.name)}`}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${emblemNote(m)}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
       metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${m.level}`,
     };
-  }).filter(Boolean);
+  }
 }
 
 // ---- 패치별 메타 (통계에 patch 정보가 있을 때) ----

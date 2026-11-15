@@ -81,7 +81,8 @@ export function assignEmblems(team, emblemTraits, { data = null, coreId = null }
  * @param opts.size      최종 인원 (partial 휴리스틱용)
  */
 export function evaluateTeam(team, data, opts = {}) {
-  const { emblems = [], desired = {}, carryIds = [], partial = false, size = team.length } = opts;
+  // bonus: 챔피언·상징으로 설명 안 되는 시너지 인원 (랭커 실제 보드에서 증강 등으로 얻은 것, { 시너지: +N })
+  const { emblems = [], desired = {}, carryIds = [], partial = false, size = team.length, bonus = {} } = opts;
   const counts = {};
   for (const c of team) for (const t of c.traits) counts[t] = (counts[t] || 0) + (c.weights?.[t] ?? 1); // 2명분 챔피언 반영
   const base = { ...counts };
@@ -94,6 +95,7 @@ export function evaluateTeam(team, data, opts = {}) {
     counts[a.trait] = (counts[a.trait] || 0) + 1;
     applied[a.trait] = (applied[a.trait] || 0) + 1;
   }
+  for (const [t, k] of Object.entries(bonus)) if (k > 0) counts[t] = (counts[t] || 0) + k;
   // 낭비된 상징: 상징을 빼도 같은 단계라면 그 상징은 쓸모가 없음 (예: 이미 6인데 상징으로 7 → 7단계 없음)
   const topOf = (bps, n) => bps.filter(b => n >= b).at(-1) || 0;
   let wastedEmblems = 0;
@@ -131,6 +133,7 @@ export function evaluateTeam(team, data, opts = {}) {
       id, name: t.name, count, base: base[id] || 0, breakpoints: bps,
       top, tier: reached.length, next,
       emblemOnly: top > 0 && (base[id] || 0) < top, // 상징이 있어야만 발동되는 단계
+      bonus: bonus[id] || 0,
     });
     score += s;
   }

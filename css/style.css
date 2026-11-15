@@ -398,3 +398,4 @@ footer { text-align: center; font-size: 12px; padding: 30px 16px; }
 /* 탭 줄 아래 옵션 (상징 팀 메이커·아이템으로 찾기) — 탭 줄 위치가 탭마다 바뀌지 않게 아래에 둠 */
 .optBar { align-items: center; padding: 10px 14px; background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); margin: 4px 0 14px; }
 .optBar .optTitle { font-size: 13px; font-weight: 700; color: var(--text); }
+.tp .bonus { margin-left: 6px; font-size: 11px; color: var(--gold); }

@@ -196,7 +196,7 @@ function addComp(comps, p, place, w = 1, cur = true, label = null) {
   bd.sumPlace += w * place;
   if (!bd.best || place < bd.best.place) bd.best = {
     place,
-    units: units.map(u => ({ id: String(u.character_id).toLowerCase(), star: u.tier || 1, items: itemsOf(u) })),
+    units: units.map(u => ({ id: String(u.character_id).toLowerCase(), star: u.tier || 1, items: (u.itemNames || []).filter(n => typeof n === 'string') })), // 상징 포함
     traits: Object.fromEntries((p.traits || []).filter(t => t.tier_current > 0).map(t => [t.name, t.num_units])),
   };
   // 이 덱 안에서 각 챔피언의 3신기 (핵심 캐리·메인 탱커 표시에 사용)
