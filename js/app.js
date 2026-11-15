@@ -594,6 +594,26 @@ function formFor(c, mainTrait, team) {
 }
 
 /** 랭커들이 이 덱에서 주력 시너지 상징을 쓴 비율 (20% 이상일 때) */
+/**
+ * 대표 보드와 다른 실제 보드(m.alts, 판수 순) → 차이만: { add:[챔피언], remove:[챔피언], emb: 주력 상징 개수, games, avgPlace }
+ * (11/15 사용자 피드백: 럭스를 못 쓰면 "다른 검은 가시 챔피언 + 상징"으로 채움 — 실제 보드로 확인)
+ */
+function altBoards(m, team, limit = 3) {
+  const byLower = new Map(state.data.champions.map(c => [c.id.toLowerCase(), c]));
+  const key = c => c.base || c.id;
+  const have = new Set(team.map(key));
+  const out = [];
+  for (const a of m.alts || []) {
+    const champs = a.ids.map(id => byLower.get(id)).filter(Boolean);
+    const keys = new Set(champs.map(key));
+    const add = champs.filter(c => !have.has(key(c))), remove = team.filter(c => !keys.has(key(c)));
+    if (!add.length && !remove.length && !(a.mainEmb >= 0.5)) continue; // 대표 보드와 같은 구성
+    out.push({ add, remove, emb: Math.round(a.mainEmb || 0), games: a.games, avgPlace: a.avgPlace });
+    if (out.length >= limit) break;
+  }
+  return out;
+}
+
 function emblemNote(m, deck = null) {
   const e = state.data.emblems.find(x => x.trait === m.trait);
   const r = e && Object.entries(m.emblems || {}).find(([id]) => id === e.id || (e.ids || []).includes(id))?.[1];
@@ -604,7 +624,10 @@ function emblemNote(m, deck = null) {
   if (deck && !used) {
     const form = deck.team.find(c => c.weights?.[m.trait]);
     const fr = form ? Math.round((deck.unitInfo?.[form.id]?.rate ?? 0) * 100) : 0;
-    why = form ? ` 이 보드는 상징 대신 ${traitName(m.trait)} ${form.base || form.name}(2명분)로 맞춘 버전이에요(${form.base || form.name} ${fr}% 판에서 사용) — ${form.base || form.name}를 못 쓰면 상징으로 채워요.`
+    // 그 형태 챔피언 없이 상징을 쓴 실제 보드에서 "무엇으로 채웠는지"
+    const alt = form && altBoards(m, deck.team, 6).find(a => a.remove.some(c => (c.base || c.id) === (form.base || form.id)) && a.emb >= 1);
+    const fill = alt ? alt.add.filter(c => c.traits.includes(m.trait)).map(c => c.name) : [];
+    why = form ? ` 이 보드는 상징 대신 ${traitName(m.trait)} ${form.base || form.name}(2명분)로 맞춘 버전이에요(${form.base || form.name} ${fr}% 판에서 사용) — ${form.base || form.name}를 못 쓰면 ${fill.length ? fill.join('·') + ' + ' : ''}${traitName(m.trait)} 상징으로 채워요.`
       : ' 이 보드는 상징 없이 맞춘 버전이에요.';
   }
   return ` <span class="tag soft" title="랭커들이 이 덱을 쓴 판 중 ${Math.round(r * 100)}%에서 ${esc(e.name)}을 썼어요.${esc(why)}">${esc(e.name)} ${Math.round(r * 100)}%${deck && !used ? ' · 이 보드는 미사용' : ''}</span>`;
@@ -1031,7 +1054,10 @@ function renderTiers(byId) {
 function tierDetailHtml(x, byId) {
   const main = { ...x, title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x, ' · '))} <span class="tag soft">${esc(deckType(x))}</span>${emblemNote(x.mainM || x.m, x)}`,
     metaInfo: `덱 전체 평균 <b>${x.m.avgPlace}등</b>${patchDelta(x.m)} · 순방 ${(x.m.top4 * 100).toFixed(0)}% · 1등 ${(x.m.win * 100).toFixed(0)}% · ${x.tierGames}판 · 레벨 ${x.m.level}${x.realBoard && (x.mainM || x.m).board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중 자주 쓰인 챔피언을 가장 많이 담은 보드">${(x.mainM || x.m).board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${(x.mainM || x.m).board.same}판` : '랭커 실제 보드'}</span>` : ''}` };
-  const card = deckCard(main, 0, byId).replace('<span class="rank">#1</span>', '');
+  const alts = altBoards(x.mainM || x.m, x.team);
+  const altHtml = alts.length ? `<div class="tierVariants"><h4>다른 구성</h4><p class="muted small">이 덱을 쓴 랭커의 실제 보드 중 위 보드와 다른 것 (자주 나온 순)</p>
+    <div class="tableWrap"><table class="pnTable"><thead><tr><th>위 보드와 차이</th><th>평균</th><th>판수</th></tr></thead><tbody>${alts.map(a => `<tr><td>${[...a.remove.map(c => `<span class="muted">−${esc(c.base || c.name)}</span>`), ...a.add.map(c => `+${esc(c.name)}`), a.emb ? `+${esc(traitName((x.mainM || x.m).trait))} 상징${a.emb > 1 ? ` ×${a.emb}` : ''}` : ''].filter(Boolean).join(' ')}</td><td><b>${a.avgPlace}등</b></td><td>${a.games}판</td></tr>`).join('')}</tbody></table></div></div>` : '';
+  const card = deckCard(main, 0, byId).replace('<span class="rank">#1</span>', '') + altHtml;
   if (!x.variants?.length) return card;
   const g = d => tierGames(d.m) || d.m.games;
   const rows = [{ d: x, label: '대표 버전', main: true }, ...x.variants.map(d => ({ d }))].map(({ d, main: isMain }) => {
