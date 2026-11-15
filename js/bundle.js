@@ -2559,6 +2559,7 @@ function altBoards(m, team, limit = 3) {
   const have = new Set(team.map(key));
   const out = [];
   for (const a of m.alts || []) {
+    if (a.games < 2) continue; // 1판짜리 구성은 우연일 수 있어 빼기
     const champs = a.ids.map(id => byLower.get(id)).filter(Boolean);
     const keys = new Set(champs.map(key));
     const add = champs.filter(c => !have.has(key(c))), remove = team.filter(c => !keys.has(key(c)));
