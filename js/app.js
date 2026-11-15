@@ -1119,7 +1119,9 @@ function metaNearBoard(board, carryId) {
   const byId = new Map(state.data.champions.map(c => [c.id, c]));
   const mine = board.map(u => byId.get(u.id)).filter(Boolean);
   const bases = new Set(mine.map(c => c.base || c.id));
-  const need = Math.max(2, Math.ceil(mine.length / 2));
+  // 11/16 사용자 피드백: 8명 보드에 +5명짜리 덱이 추천됨 → 보드 6명 이상이면 "3명 이하로 더해서 되는 덱"만,
+  // 초반(5명 이하)은 지금 챔피언을 거의 다(1명 빼고) 살리는 덱
+  const early = mine.length <= 5, MAX_ADD = 3;
   return metaDecks(8).map(d => {
     const overlap = d.team.filter(c => bases.has(c.base || c.id)).length;
     const carryMatch = carryId && d.core?.carry === carryId;
@@ -1129,7 +1131,9 @@ function metaNearBoard(board, carryId) {
       board: { added: d.team.filter(c => !bases.has(c.base || c.id)).map(c => c.id), removed: mine.filter(c => !ids.has(c.id)).map(c => c.id) },
       metaInfo: `<b>내 보드와 ${overlap}명 겹침</b>${carryMatch ? ' · 같은 핵심 캐리' : ''} · ${d.metaInfo}`,
     };
-  }).filter(d => d.overlap >= need).sort((a, b) => b.rank - a.rank)
+  }).filter(d => early ? d.overlap >= 2 && d.board.removed.length <= 1
+    : d.board.added.length <= MAX_ADD && d.overlap * 2 >= d.team.length && d.team.length >= mine.length) // 지금보다 작은 덱(빼기만)은 다음 수가 아님
+    .sort((a, b) => early ? b.rank - a.rank : a.board.added.length - b.board.added.length || b.rank - a.rank)
     // 보드에 적용했을 때 결과 구성이 같은 덱은 하나만 (예: 처형자·소라카 / 소환사·소라카 → 둘 다 같은 8명)
     .filter((d, i, arr) => arr.findIndex(x => x.team.map(c => c.base || c.id).sort().join() === d.team.map(c => c.base || c.id).sort().join()) === i)
     .slice(0, 3);
