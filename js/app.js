@@ -775,16 +775,17 @@ function realBoardTeam(m, byLower) {
   const d = state.data, b = m.board;
   if (!b?.units?.length) return null;
   const coreById = new Map(m.core.map(u => [u.id, u]));
-  const team = [], info = {}, bases = new Set(), emblems = [];
+  const team = [], info = {}, bases = new Set(), emblems = [], rare = [];
   for (const u of b.units) {
     const c = byLower.get(u.id);
     if (!c || bases.has(c.base || c.id)) continue;
     bases.add(c.base || c.id); team.push(c);
     info[c.id] = coreById.get(u.id) || { id: u.id, rate: 0, star3: 0 };
-    // 상징: 그 판에만 있던 상징(상징 증강 등)은 빼고, 이 덱에서 30% 이상 쓴 상징만
+    // 상징: 이 덱에서 30% 이상 쓴 상징은 그대로, 드문 상징은 일단 후보로 (아래에서 시너지 단계에 꼭 필요한 것만 남김)
     for (const it of u.items || []) {
       const e = d.emblems.find(x => x.id === it || (x.ids || []).includes(it));
       if (e && (m.emblems?.[it] || 0) >= 0.3) emblems.push(e.trait);
+      else if (e) rare.push(e.trait);
     }
   }
   if (team.length < 4) return null;
@@ -799,6 +800,14 @@ function realBoardTeam(m, byLower) {
     const fit = f => { const t = Object.keys(f.weights)[0], real = b.traits?.[t]; if (real == null) return 0; const n = countWith(f); return n === real ? 2 : n > real ? -1 : 1; };
     const best = [...forms].sort((x, y) => fit(y) - fit(x) || (Object.keys(y.weights)[0] === m.trait) - (Object.keys(x.weights)[0] === m.trait))[0];
     if (best) { info[best.id] = info[c.id]; team[i] = best; }
+  }
+  // 드문 상징이라도 그 판에서 시너지 단계를 만든 것은 남김 (11/15 사용자 피드백: 지옥불 럭스·애쉬가 3전쟁기계로 보임 —
+  // 실제 판은 릴리아에게 전쟁기계 상징을 줘서 4전쟁기계. 빼면 단계가 떨어지는 상징만 남기고, 효과 없던 상징은 뺌)
+  const cnt = t => team.reduce((s, x) => s + (x.traits.includes(t) ? (x.weights?.[t] ?? 1) : 0), 0) + emblems.filter(e => e === t).length;
+  const lvl = (t, n) => (d.traits[t]?.breakpoints || []).filter(x => x <= n).length;
+  for (const t of rare) {
+    const real = b.traits?.[t];
+    if (real != null && lvl(t, cnt(t) + 1) > lvl(t, cnt(t)) && cnt(t) + 1 <= real) emblems.push(t);
   }
   // 챔피언·상징으로 설명 안 되는 인원 = 증강 등 (요정 시비르: 챔피언 3명 + 증강 1 = 요정 4) → 주력 시너지만 반영
   const bonus = {};

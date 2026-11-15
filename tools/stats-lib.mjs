@@ -280,7 +280,11 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
     const size = Number(Object.entries(sizeGames).sort((a, b) => b[1] - a[1])[0]?.[0] || 0);
     // 여러 판에서 똑같이 나온 보드를 우선 (11/15: 지옥불 럭스가 상징 6개 낀 1판짜리 특이한 보드로 잡힘)
     const rep = boards.filter(b => b.ids.length === size)
-      .map(b => ({ b, score: b.ids.reduce((s, id) => s + rate(id), 0) + 0.6 * Math.min(4, b.games - 1) }))
+      // 이 덱에서 잘 안 쓰는 상징(30% 미만)을 낀 보드는 감점 — 상징 증강으로 상징을 여러 개 받은 특이한 판(지옥불 럭스 1판짜리 상징 6개)을 피함
+      .map(b => {
+        const odd = (b.best?.units || []).flatMap(u => u.items || []).filter(it => /emblem/i.test(it) && (c.emblemGames?.[it] || 0) / c.games < 0.3).length;
+        return { b, score: b.ids.reduce((s, id) => s + rate(id), 0) + 0.6 * Math.min(4, b.games - 1) - 0.5 * odd };
+      })
       .sort((x, y) => (y.score - x.score) || (y.b.games - x.b.games))[0]?.b;
     const board = rep ? { units: rep.best.units, traits: rep.best.traits, same: Math.round(rep.games), avgPlace: round(rep.sumPlace / rep.games, 2), distinct: boards.length } : null;
     // 자주 나온 실제 보드 (다른 구성 보기·상징 쓰는 방식 확인용): 판수 순 6개, 주력 상징 평균 개수
