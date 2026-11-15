@@ -7,8 +7,6 @@ jobs:
     steps:
       - run: |
           B=https://raw.communitydragon.org/latest/game
-          for n in ironbarktree liferoot brock maokaisapling sentinel; do
-            echo "== $n"; curl -sL $B/characters/tft18_$n.cdtb.bin.json | grep -oiE '"[^"]*(icon|square|circle|portrait|splash)[^"]*\.(tex|png|dds)"' | sort -u | head -8
-            curl -sL $B/characters/tft18_$n.cdtb.bin.json | grep -oiE '"(mCharacterName|name|mDisplayName[^"]*)":"[^"]*"' | head -3
-            curl -sL $B/assets/characters/tft18_$n/hud/ | grep -oiE 'href="[^"]*\.png"' | head -6
-          done
+          curl -sL -o m.json $B/data/maps/shipping/map22/map22.bin.json
+          node -e "const s=require('fs').readFileSync('m.json','utf8'); for (const w of ['IronbarkTree','LifeRoot','TFT18_Brock','Elderwood_Guardian','ElderwoodGuardian']) { let i=s.indexOf(w), n=0; while(i>=0&&n<3){ console.log('HIT',w, s.slice(Math.max(0,i-300), i+500).replace(/\s+/g,' ')); i=s.indexOf(w,i+800); n++; } }"
+          for n in ironbarktree liferoot; do curl -sL $B/assets/characters/tft18_$n/ | grep -oiE 'href="[^"]*"' | grep -iv 'http\|\?C=\|favicon\|theme'; curl -sL $B/assets/characters/tft18_$n/skins/base/ | grep -oiE 'href="[^"]*"' | grep -iv 'http\|\?C=\|favicon\|theme'; curl -sL $B/assets/characters/tft18_$n/skins/base/images/ | grep -oiE 'href="[^"]*"' | grep -iv 'http\|\?C=\|favicon\|theme'; done
