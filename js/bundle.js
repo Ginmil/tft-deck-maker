@@ -2765,9 +2765,13 @@ function realBoardTeam(m, byLower) {
     if (real != null && lvl(t, cnt(t) + 1) > lvl(t, cnt(t)) && cnt(t) + 1 <= real) emblems.push(t);
   }
   // 챔피언·상징으로 설명 안 되는 인원 = 증강 등 (요정 시비르: 챔피언 3명 + 증강 1 = 요정 4) → 주력 시너지만 반영
+  // 주력 시너지뿐 아니라 모든 시너지에 (11/15 점검: 싸움꾼 1 표시인데 실제 2 같은 경우 47건 — 증강으로 받은 인원)
   const bonus = {};
-  const t = m.trait, have = team.reduce((s, x) => s + (x.traits.includes(t) ? (x.weights?.[t] ?? 1) : 0), 0) + emblems.filter(e => e === t).length;
-  if (b.traits?.[t] > have) bonus[t] = b.traits[t] - have;
+  for (const [t, real] of Object.entries(b.traits || {})) {
+    if (!d.traits[t]) continue;
+    const have = team.reduce((s, x) => s + (x.traits.includes(t) ? (x.weights?.[t] ?? 1) : 0), 0) + emblems.filter(e => e === t).length;
+    if (real > have) bonus[t] = real - have;
+  }
   return { team, info, emblems, bonus };
 }
 
