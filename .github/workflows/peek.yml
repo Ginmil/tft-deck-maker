@@ -1,0 +1,13 @@
+# 임시: 나무정령 식물 그림 찾기
+name: 스킬 정보 확인
+on: workflow_dispatch
+jobs:
+  peek:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          B=https://raw.communitydragon.org/latest/game
+          curl -sL $B/characters/ | grep -oiE 'href="tft18_[^"]*\.cdtb\.bin"' | head -40
+          curl -sL $B/assets/characters/ | grep -oiE 'href="tft18_[^"]*"' | head -80
+          curl -sL $B/assets/characters/tft18_ironbarktree/hud/ | grep -oiE 'href="[^"]*"' | grep -iv 'http\|\?C=\|favicon\|theme' | head
+          curl -sL $B/characters/tft18_ironbarktree.cdtb.bin.json | grep -oiE '"[^"]*\.(tex|png|dds)"' | sort -u | head -20
