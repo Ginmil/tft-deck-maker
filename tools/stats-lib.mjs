@@ -275,8 +275,9 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
     const sizeGames = {};
     for (const b of boards) sizeGames[b.ids.length] = (sizeGames[b.ids.length] || 0) + b.games;
     const size = Number(Object.entries(sizeGames).sort((a, b) => b[1] - a[1])[0]?.[0] || 0);
+    // 여러 판에서 똑같이 나온 보드를 우선 (11/15: 지옥불 럭스가 상징 6개 낀 1판짜리 특이한 보드로 잡힘)
     const rep = boards.filter(b => b.ids.length === size)
-      .map(b => ({ b, score: b.ids.reduce((s, id) => s + rate(id), 0) }))
+      .map(b => ({ b, score: b.ids.reduce((s, id) => s + rate(id), 0) + 0.6 * Math.min(4, b.games - 1) }))
       .sort((x, y) => (y.score - x.score) || (y.b.games - x.b.games))[0]?.b;
     const board = rep ? { units: rep.best.units, traits: rep.best.traits, same: Math.round(rep.games), avgPlace: round(rep.sumPlace / rep.games, 2), distinct: boards.length } : null;
     return {

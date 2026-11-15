@@ -2659,7 +2659,11 @@ function realBoardTeam(m, byLower) {
     if (!c || bases.has(c.base || c.id)) continue;
     bases.add(c.base || c.id); team.push(c);
     info[c.id] = coreById.get(u.id) || { id: u.id, rate: 0, star3: 0 };
-    for (const it of u.items || []) { const e = d.emblems.find(x => x.id === it || (x.ids || []).includes(it)); if (e) emblems.push(e.trait); }
+    // 상징: 그 판에만 있던 상징(상징 증강 등)은 빼고, 이 덱에서 30% 이상 쓴 상징만
+    for (const it of u.items || []) {
+      const e = d.emblems.find(x => x.id === it || (x.ids || []).includes(it));
+      if (e && (m.emblems?.[it] || 0) >= 0.3) emblems.push(e.trait);
+    }
   }
   if (team.length < 4) return null;
   // 형태 챔피언(럭스): 그 판의 시너지 인원과 맞는 형태
