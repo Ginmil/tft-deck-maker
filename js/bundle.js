@@ -1133,7 +1133,9 @@ function assignItems(data, { board, inventory, carryIdx = null, carries = null }
   // 일반 아이템 배분: 큰 것부터 욕심껏 → 옮기기·바꾸기로 다듬기
   function place(items) {
     const slots = new Map(units.map(u => [u, []]));
-    const total = () => units.reduce((s, u) => s + unitValue(u, slots.get(u)), 0);
+    // 고른 챔피언("아이템 줄 챔피언")이 있으면 그 밖의 챔피언 가치는 절반 — 고른 챔피언이 먼저, 남는 아이템만 다른 챔피언에게
+    const share = u => carrySet.size && !carrySet.has(u.idx) ? 0.5 : 1;
+    const total = () => units.reduce((s, u) => s + unitValue(u, slots.get(u)) * share(u), 0);
     const order = [...items].sort((a, b) => Math.max(...units.map(u => aff(u, b))) - Math.max(...units.map(u => aff(u, a))));
     const unplaced = [];
     for (const it of order) {
@@ -1147,6 +1149,19 @@ function assignItems(data, { board, inventory, carryIdx = null, carries = null }
       // 어울리는 챔피언이 없으면 억지로 주지 않고 보관 (예: 물리 딜러가 없는데 무한의 대검).
       // 궁합 자체(가산 전)가 너무 낮으면 캐리 가산으로 점수가 넘어도 주지 않음 (나르에게 저녁갑주)
       if (best && best.gain >= 0.1 && aff(best.u, it) >= 0.05) slots.get(best.u).push(it); else unplaced.push({ ...it, why: best ? 'nofit' : 'noslot' });
+    }
+    // 고른 챔피언에게 못 준 아이템은 다른 챔피언 중 잘 쓰는 쪽에게 (11/16 사용자 피드백: 남는 아이템도 최대한 누구에게 줄지 알려 주기)
+    if (carrySet.size) {
+      for (const it of [...unplaced]) {
+        let best = null;
+        for (const u of units) {
+          const list = slots.get(u);
+          if (carrySet.has(u.idx) || list.length >= u.free) continue;
+          const gain = unitValue(u, [...list, it]) - unitValue(u, list);
+          if (aff(u, it) >= 0.05 && (!best || gain > best.gain)) best = { u, gain };
+        }
+        if (best && best.gain >= 0.1) { slots.get(best.u).push(it); unplaced.splice(unplaced.indexOf(it), 1); }
+      }
     }
     for (let iter = 0, improved = true; improved && iter < 30; iter++) {
       improved = false;
@@ -1252,7 +1267,7 @@ function assignItems(data, { board, inventory, carryIdx = null, carries = null }
   for (const u of units) {
     for (const it of best.placed.slots.get(u)) {
       if (it.kind === 'emblem') continue;
-      assignments.push({ item: it, idx: u.idx, champ: u.champ, from: it.from || null, ...reasonOf(u, it) });
+      assignments.push({ item: it, idx: u.idx, champ: u.champ, from: it.from || null, ...(carrySet.size && !carrySet.has(u.idx) ? { other: true } : {}), ...reasonOf(u, it) });
     }
   }
   for (const e of best.ems.placed) assignments.push({ item: e.em, idx: e.u.idx, champ: e.u.champ, from: e.em.from || null, emblem: { trait: e.em.trait, from: e.n, to: e.n + 1, reaches: e.next === e.n + 1 } });
@@ -1266,11 +1281,14 @@ function assignItems(data, { board, inventory, carryIdx = null, carries = null }
   }
   // 같은 챔피언끼리 모아서 보여주기 좋게 (아이템을 많이 받는 챔피언 먼저)
   const per = assignments.reduce((m, a) => (m[a.idx] = (m[a.idx] || 0) + 1, m), {});
-  assignments.sort((a, b) => per[b.idx] - per[a.idx] || a.idx - b.idx);
+  assignments.sort((a, b) => (a.other ? 1 : 0) - (b.other ? 1 : 0) || per[b.idx] - per[a.idx] || a.idx - b.idx); // 고른 챔피언 먼저
+  // 재료로 만들었는데 줄 곳이 없는 아이템은 만들지 말고 재료 그대로 보관 (11/16 사용자 피드백: 남는 건 안 합치는 게 나음)
+  const unplacedAll = [...best.placed.unplaced, ...best.ems.unplaced];
+  const keepComps = unplacedAll.filter(x => x.from).flatMap(x => x.from);
   return {
     assignments,
-    unplaced: [...best.placed.unplaced, ...best.ems.unplaced],
-    leftComponents: best.left,
+    unplaced: unplacedAll.filter(x => !x.from),
+    leftComponents: [...best.left, ...keepComps],
     crafted: assignments.filter(a => a.from).length,
     score: best.score,
     buildMatch,
@@ -3166,11 +3184,11 @@ function runAssign() {
     : a.basis?.kind === 'similar' ? `<span title="이 챔피언의 랭커 기록이 없어서, 역할이 같고 시너지·코스트가 비슷한 챔피언들의 기록으로 판단했어요">비슷한 챔피언(${esc(a.basis.names.join('·'))}) 기록 기준</span>`
     : a.basis?.kind === 'role' ? '<span class="muted" title="참고할 랭커 기록이 없어 역할(물리/마법/탱커)로 판단했어요">기록 없음 → 역할 기준</span>'
     : a.rate != null ? `랭커 ${Math.round(a.rate * 100)}%가 이 챔피언에게` : '역할 기준';
-  const rows = groups.map(g => `<div class="asgRow"><div class="asgChamp" data-cost="${g.champ.cost}">${img(g.champ.icon)}<div><b>${esc(g.champ.name)}</b>${r.buildMatch?.[g.idx] ? `<div class="small good" title="최종 아이템 3개가 랭커들이 실제로 쓴 조합과 같아요">랭커 3신기 · ${r.buildMatch[g.idx].games}판 ${r.buildMatch[g.idx].avgPlace}등${r.buildMatch[g.idx].few ? ' <span class="lowconf">표본 적음</span>' : ''}</div>` : ''}</div></div>
+  const rows = groups.map(g => `<div class="asgRow"><div class="asgChamp" data-cost="${g.champ.cost}">${img(g.champ.icon)}<div><b>${esc(g.champ.name)}</b>${g.list.every(a => a.other) ? '<div class="small muted" title="고른 챔피언에게 줄 칸이 없거나 안 맞는 아이템이라, 다른 챔피언 중 잘 쓰는 쪽에게 줘요">남는 아이템</div>' : ''}${r.buildMatch?.[g.idx] ? `<div class="small good" title="최종 아이템 3개가 랭커들이 실제로 쓴 조합과 같아요">랭커 3신기 · ${r.buildMatch[g.idx].games}판 ${r.buildMatch[g.idx].avgPlace}등${r.buildMatch[g.idx].few ? ' <span class="lowconf">표본 적음</span>' : ''}</div>` : ''}</div></div>
     <div class="asgItems">${g.list.map(a => `<div class="asgItem">${itemLabel(a.item.id)}${a.from ? `<span class="muted small">${esc(a.from.map(compName).join(' + '))} 조합</span>` : ''}<span class="small">${why(a)}</span></div>`).join('')}</div></div>`).join('');
   const kept = [
     ...r.unplaced.map(x => `${itemLabel(x.id)}<span class="muted small">${x.why === 'nofit' ? (x.kind === 'emblem' ? '시너지가 없는 챔피언이 없음' : '어울리는 챔피언 없음') : '넣을 칸 없음'}</span>`),
-    ...r.leftComponents.map(id => `${itemLabel(id)}<span class="muted small">짝이 없는 재료</span>`),
+    ...r.leftComponents.map(id => `${itemLabel(id)}<span class="muted small">재료 그대로</span>`),
   ];
   box.innerHTML = `
     <div class="resultHead"><h3>아이템 배분 추천</h3><span class="legend">${curPatch() ? esc(curPatch()) + ' 패치 · ' : ''}랭커 경기에서 그 챔피언이 그 아이템을 낀 비율 기준 · ${carries.length ? `<b>${esc(carries.map(i => state.data.champions.find(c => c.id === board.find(b => b.idx === i)?.id)?.name).filter(Boolean).join('·'))}</b>에게만 줌` : '이미 아이템을 든 챔피언에게 몰아줌'} · 적응가는 물리/마법 아이템을 섞지 않음</span></div>
