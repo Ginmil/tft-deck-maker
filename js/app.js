@@ -1071,16 +1071,20 @@ function renderPatch(selected) {
       if (r.predAvg != null) dots.push(`<i class="dot pred" style="left:${pos(r.predAvg)}%" title="${esc(p.patch)} 예측 ${r.predAvg}등"></i>`);
       if (r.now) dots.push(`<i class="dot now ${vc}" style="left:${pos(r.now.avgPlace)}%" title="${esc(p.patch)} 실제 ${r.now.avgPlace}등 (${r.now.games}판)"></i>`);
       const span = r.base && r.now ? `<i class="span" style="left:${Math.min(pos(r.base.avgPlace), pos(r.now.avgPlace))}%;width:${Math.abs(pos(r.now.avgPlace) - pos(r.base.avgPlace))}%"></i>` : '';
+      // 실제 결과도 예측과 같은 기준(이전 패치 대비)으로 색 표시 (11/17 사용자: 4.95 → 예측 4.62 → 실제 4.83 이면 "그래도 올랐다" 초록)
+      const ad = r.base && r.now ? r.now.avgPlace - r.base.avgPlace : null;
+      const actWord = ad == null ? '' : Math.abs(ad) < 0.05 ? '<span class="pdir same">– 비슷</span><br>' : `<span class="pdir ${ad < 0 ? 'up' : 'down'}">${ad < 0 ? '▲' : '▼'}${Math.abs(ad).toFixed(2)} ${ad < 0 ? '올랐음' : '내렸음'}</span><br>`;
+      const gap = r.predAvg != null && r.now ? r.now.avgPlace - r.predAvg : null;
       const predWord = r.predDelta <= -PRED_MIN ? '<span class="pdir up">▲ 오를 것</span>' : r.predDelta >= PRED_MIN ? '<span class="pdir down">▼ 내릴 것</span>' : '<span class="pdir same">– 비슷</span>';
       return `<div class="pnRow ${vc}">
         <div class="pnDeck">${carry ? hexPor(carry) : ''}<div><b>${esc(traitName(c.trait))} ${esc(formClean(carry?.name || ''))}</b><div class="pnWhys">${why}</div></div></div>
         <div class="pnNums">
           <div><span class="k">${esc(prev)}</span><b>${r.base ? r.base.avgPlace.toFixed(2) : '—'}</b><small>${r.base ? r.base.games + '판' : '표본 부족'}</small></div>
           <div><span class="k">예측</span><b>${r.predAvg != null ? r.predAvg.toFixed(2) : '—'}</b><small>${predWord}</small></div>
-          <div><span class="k">${esc(p.patch)} 실제</span><b>${r.now ? r.now.avgPlace.toFixed(2) : '—'}</b><small>${r.now ? r.now.games + '판' : '쌓이는 중'}</small></div>
+          <div><span class="k">${esc(p.patch)} 실제</span><b>${r.now ? r.now.avgPlace.toFixed(2) : '—'}</b><small>${actWord}${r.now ? r.now.games + '판' : '쌓이는 중'}</small></div>
         </div>
         <div class="pnTrack" aria-hidden="true">${span}${dots.join('')}</div>
-        <div class="pnRes"><span class="pnVerdict ${vc}">${vt}</span>${r.actualDelta != null ? `<small>실제 ${Math.abs(r.actualDelta) < 0.005 ? '변화 없음' : `${r.actualDelta < 0 ? '▲' : '▼'}${Math.abs(r.actualDelta).toFixed(2)}등 ${r.actualDelta < 0 ? '좋아짐' : '나빠짐'}`} · 오차 ±${r.noise}</small>` : ''}${reg >= 0 ? `<button class="altopen toBuilder" data-reg="${reg}">배치툴</button>` : ''}</div>
+        <div class="pnRes"><span class="pnVerdict ${vc}">${vt}</span>${r.actualDelta != null ? `<small>${gap != null && Math.abs(gap) >= 0.05 ? `예측보다 ${Math.abs(gap).toFixed(2)}등 ${r.predDelta <= -PRED_MIN ? (gap > 0 ? '덜 오름' : '더 오름') : r.predDelta >= PRED_MIN ? (gap > 0 ? '더 내림' : '덜 내림') : (gap > 0 ? '나쁨' : '좋음')} · ` : ''}판수 오차 ±${r.noise}</small>` : ''}${reg >= 0 ? `<button class="altopen toBuilder" data-reg="${reg}">배치툴</button>` : ''}</div>
       </div>`;
     }).join('');
     predHtml = `<div class="pnFilters" id="pnFilters">${F.map(([k, l, n]) => `<button class="pill${k === pnFilter ? ' on' : ''}" data-f="${k}">${l} <span>${n}</span></button>`).join('')}</div>
