@@ -1,5 +1,5 @@
 {
-  "_설명": "TFT 패치 일정 + 패치노트 요약. 날짜는 라이엇 공식 일정(태평양 시간). Set 18 경기 데이터에는 패치 번호가 없어서(game_version 이 'TFT Unreal Version ?.?.?.?') 경기 시각으로 패치를 정함. 경계 = 날짜 21:00 UTC(다음 날 06:00 KST). balance: false = 밸런스 변경 없는 패치 → 통계는 직전 패치와 합침. changes: kind(champion|trait|augment|wisp|item), match(데이터 id 일부, 대소문자 무시) 또는 name(데이터에 없는 증강·수호령은 이름 그대로), dir(buff|nerf|adjust), scale(영향 크기 0~1, 기본 1 — 예: 9단계만 바뀐 시너지는 작게), note(짧은 요약).",
+  "_설명": "TFT 패치 일정 + 패치노트 요약. 날짜는 라이엇 공식 일정(태평양 시간). Set 18 경기 데이터에는 패치 번호가 없어서(game_version 이 'TFT Unreal Version ?.?.?.?') 경기 시각으로 패치를 정함. 경계 = 날짜 21:00 UTC(다음 날 06:00 KST). balance: false = 밸런스 변경 없는 패치 → 통계는 직전 패치와 합침. changes: kind(champion|trait|augment|wisp|item), match(데이터 id 일부, 대소문자 무시) 또는 name(데이터에 없는 증강·수호령은 이름 그대로), dir(buff|nerf|adjust), scale(영향 크기 0~1, 기본 1), minCount(시너지의 특정 단계만 바뀐 경우 그 인원 — 덱이 그 인원까지 간 판 비율만큼만 반영, 예: 나무정령 9단계 너프는 9), note(짧은 요약).",
   "schedule_source": "https://support.riotgames.com/en-us/tft/events/patch-schedule-teamfight-tactics",
   "patches": [
     {
@@ -91,6 +91,7 @@
           "match": "DA_18_Blossom",
           "dir": "buff",
           "scale": 0.6,
+          "minCount": 7,
           "note": "공격력/주문력 12/30/50/55% → 12/30/55/65% (상위 단계)"
         },
         {
@@ -104,7 +105,7 @@
           "kind": "trait",
           "match": "DA_18_Elderwood",
           "dir": "nerf",
-          "scale": 0.3,
+          "minCount": 9,
           "note": "(9) 구간 추가 체력 25% → 10% (9단계만)"
         },
         {

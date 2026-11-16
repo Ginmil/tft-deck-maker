@@ -1339,7 +1339,9 @@ function patchImpact(comp, changes) {
       }
       if (best) hits.push(best);
     } else if (ch.kind === 'trait' && has(comp.trait, ch.match) && String(comp.trait).length <= String(ch.match).length + 2) {
-      hits.push({ change: ch, where: 'trait', weight: 0.8 * scale * dir });
+      // 특정 단계만 바뀐 변경(나무정령 9단계 등, minCount): 그 인원까지 간 판 비율만큼만 (11/17 사용자: 7나무정령 덱은 9단계 너프와 무관)
+      const reach = ch.minCount && comp.mainCount ? Object.entries(comp.mainCount).reduce((s, [n, r]) => s + (Number(n) >= ch.minCount ? r : 0), 0) : 1;
+      if (reach > 0) hits.push({ change: ch, where: 'trait', weight: 0.8 * scale * dir * reach, reach: ch.minCount ? reach : undefined });
     }
   }
   return { hits, score: hits.reduce((s, h) => s + h.weight, 0) };
@@ -1351,6 +1353,8 @@ function patchImpact(comp, changes) {
  * @param patch   패치 일정 항목 { patch, changes }
  * @param prevPatch 바로 이전 (밸런스) 패치 이름 — 예측의 기준 성적
  */
+// 예측 변화가 이보다 작으면 "비슷"으로 보고 채점하지 않음 (11/17: 덱 자체 영향은 거의 없고 다른 덱이 버프받아서 상대적으로 조금 내려갈 것이라는 예측은 의미가 약함)
+const PRED_MIN = 0.1;
 function patchReport(comps, patch, prevPatch) {
   // 평균 등수는 제로섬(8명이 1~8등을 나눔): 여러 덱이 함께 버프되면 서로 상쇄됨.
   // → 메타 전체의 평균 영향(이전 패치 판수 가중)을 빼서 "다른 덱보다 얼마나 더" 영향받는지로 예측
@@ -1369,7 +1373,7 @@ function patchReport(comps, patch, prevPatch) {
       row.actualDelta = pRound(row.now.avgPlace - row.base.avgPlace, 2);
       // 판수가 적으면 평균 등수 자체가 흔들림: 변화가 오차(표준오차)보다 작으면 "구분 어려움"
       row.noise = pRound(PLACE_SD * Math.sqrt(1 / row.base.games + 1 / row.now.games), 2);
-      row.verdict = Math.abs(row.actualDelta) < row.noise || Math.abs(predDelta) < 0.05 ? 'flat'
+      row.verdict = Math.abs(row.actualDelta) < row.noise || Math.abs(predDelta) < PRED_MIN ? 'flat'
         : Math.sign(row.actualDelta) === Math.sign(predDelta) ? 'hit' : 'miss';
     }
     rows.push(row);
@@ -3226,7 +3230,7 @@ function renderPatch(selected) {
       const why = r.hits.map(h => {
         const nm = h.where === 'trait' ? traitName(c.trait) : formClean(byLower.get(h.id)?.name || h.id);
         const [arrow, , cls] = DIR_KO[h.change.dir];
-        return `<span class="pnWhy">${WHERE_KO[h.where]} ${esc(nm)} <span class="pdir ${cls}">${arrow}</span></span>`;
+        return `<span class="pnWhy"${h.reach != null ? ` title="${h.change.minCount}단계만 바뀐 변경이라, 이 덱이 ${h.change.minCount}명 이상 간 판(${Math.round(h.reach * 100)}%)만큼만 반영했어요"` : ''}>${WHERE_KO[h.where]} ${esc(nm)}${h.reach != null ? ` ${h.change.minCount}단계 ${Math.round(h.reach * 100)}%` : ''} <span class="pdir ${cls}">${arrow}</span></span>`;
       }).join('');
       const st = status(r), [vc, vt] = V[st];
       const dk = decks.find(x => x.m.trait === c.trait && (x.m.mainCarry || x.m.carry) === (c.mainCarry || c.carry));
@@ -3236,7 +3240,7 @@ function renderPatch(selected) {
       if (r.predAvg != null) dots.push(`<i class="dot pred" style="left:${pos(r.predAvg)}%" title="${esc(p.patch)} 예측 ${r.predAvg}등"></i>`);
       if (r.now) dots.push(`<i class="dot now ${vc}" style="left:${pos(r.now.avgPlace)}%" title="${esc(p.patch)} 실제 ${r.now.avgPlace}등 (${r.now.games}판)"></i>`);
       const span = r.base && r.now ? `<i class="span" style="left:${Math.min(pos(r.base.avgPlace), pos(r.now.avgPlace))}%;width:${Math.abs(pos(r.now.avgPlace) - pos(r.base.avgPlace))}%"></i>` : '';
-      const predWord = r.predDelta < -0.05 ? '<span class="pdir up">▲ 오를 것</span>' : r.predDelta > 0.05 ? '<span class="pdir down">▼ 내릴 것</span>' : '<span class="pdir same">– 비슷</span>';
+      const predWord = r.predDelta <= -PRED_MIN ? '<span class="pdir up">▲ 오를 것</span>' : r.predDelta >= PRED_MIN ? '<span class="pdir down">▼ 내릴 것</span>' : '<span class="pdir same">– 비슷</span>';
       return `<div class="pnRow ${vc}">
         <div class="pnDeck">${carry ? hexPor(carry) : ''}<div><b>${esc(traitName(c.trait))} ${esc(formClean(carry?.name || ''))}</b><div class="pnWhys">${why}</div></div></div>
         <div class="pnNums">

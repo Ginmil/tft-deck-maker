@@ -5,7 +5,7 @@
 import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './adapters/cdragon.js';
 import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems, assignItems, withForms } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
-import { patchReport, prevBalancePatch, tierOf, tierGames, tierList, shrinkAvg, TIER_CUTS, groupDecks } from './engine/patch.js';
+import { patchReport, prevBalancePatch, tierOf, tierGames, tierList, shrinkAvg, TIER_CUTS, groupDecks, PRED_MIN } from './engine/patch.js';
 import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits, bdInventory, bdApplyItems, bdCarries, bdMarkRecBase } from './builder.js';
 
 const $ = id => document.getElementById(id);
@@ -1061,7 +1061,7 @@ function renderPatch(selected) {
       const why = r.hits.map(h => {
         const nm = h.where === 'trait' ? traitName(c.trait) : formClean(byLower.get(h.id)?.name || h.id);
         const [arrow, , cls] = DIR_KO[h.change.dir];
-        return `<span class="pnWhy">${WHERE_KO[h.where]} ${esc(nm)} <span class="pdir ${cls}">${arrow}</span></span>`;
+        return `<span class="pnWhy"${h.reach != null ? ` title="${h.change.minCount}단계만 바뀐 변경이라, 이 덱이 ${h.change.minCount}명 이상 간 판(${Math.round(h.reach * 100)}%)만큼만 반영했어요"` : ''}>${WHERE_KO[h.where]} ${esc(nm)}${h.reach != null ? ` ${h.change.minCount}단계 ${Math.round(h.reach * 100)}%` : ''} <span class="pdir ${cls}">${arrow}</span></span>`;
       }).join('');
       const st = status(r), [vc, vt] = V[st];
       const dk = decks.find(x => x.m.trait === c.trait && (x.m.mainCarry || x.m.carry) === (c.mainCarry || c.carry));
@@ -1071,7 +1071,7 @@ function renderPatch(selected) {
       if (r.predAvg != null) dots.push(`<i class="dot pred" style="left:${pos(r.predAvg)}%" title="${esc(p.patch)} 예측 ${r.predAvg}등"></i>`);
       if (r.now) dots.push(`<i class="dot now ${vc}" style="left:${pos(r.now.avgPlace)}%" title="${esc(p.patch)} 실제 ${r.now.avgPlace}등 (${r.now.games}판)"></i>`);
       const span = r.base && r.now ? `<i class="span" style="left:${Math.min(pos(r.base.avgPlace), pos(r.now.avgPlace))}%;width:${Math.abs(pos(r.now.avgPlace) - pos(r.base.avgPlace))}%"></i>` : '';
-      const predWord = r.predDelta < -0.05 ? '<span class="pdir up">▲ 오를 것</span>' : r.predDelta > 0.05 ? '<span class="pdir down">▼ 내릴 것</span>' : '<span class="pdir same">– 비슷</span>';
+      const predWord = r.predDelta <= -PRED_MIN ? '<span class="pdir up">▲ 오를 것</span>' : r.predDelta >= PRED_MIN ? '<span class="pdir down">▼ 내릴 것</span>' : '<span class="pdir same">– 비슷</span>';
       return `<div class="pnRow ${vc}">
         <div class="pnDeck">${carry ? hexPor(carry) : ''}<div><b>${esc(traitName(c.trait))} ${esc(formClean(carry?.name || ''))}</b><div class="pnWhys">${why}</div></div></div>
         <div class="pnNums">

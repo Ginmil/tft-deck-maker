@@ -178,6 +178,8 @@ function addComp(comps, p, place, w = 1, cur = true, label = null) {
     if (place <= 4) side.top4++;
     if (place === 1) side.wins++;
   }
+  // 패치별로 이 덱이 고른 증강 (11/17: 증강 너프·버프가 덱 성적에 얼마나 닿는지 확인용)
+  if (label && Array.isArray(p.augments)) { const s = c.byPatch[label]; s.augs ||= {}; for (const a of p.augments) s.augs[a] = (s.augs[a] || 0) + 1; }
   if (!(w > 0)) return; // 이전 패치(가중치 0)는 비교 기록만
   const seen = new Set();
   for (const u of units) {
@@ -342,4 +344,5 @@ function blend(n, b, k) {
     patchGames: n.games, // 이번 패치 실제 판수 (0 이면 이전 패치 기록만 있는 덱 = 예측)
   };
 }
-const side = s => (s && s.games ? { games: s.games, avgPlace: round(s.sumPlace / s.games, 2), top4: round(s.top4 / s.games, 3) } : null);
+const side = s => (s && s.games ? { games: s.games, avgPlace: round(s.sumPlace / s.games, 2), top4: round(s.top4 / s.games, 3),
+  ...(s.augs ? { augs: Object.fromEntries(Object.entries(s.augs).map(([a, n]) => [a, round(n / s.games, 3)]).filter(([, r]) => r >= 0.05).sort((x, y) => y[1] - x[1]).slice(0, 10)) } : {}) } : null);

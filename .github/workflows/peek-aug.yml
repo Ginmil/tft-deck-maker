@@ -1,0 +1,9 @@
+name: peek-aug (임시)
+on: workflow_dispatch
+jobs:
+  peek:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -sL https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json -o ko.json
+          jq -r '.items[] | select((.apiName // "") | test("Augment"; "i")) | select(.name | test("커져라|주인공|경쟁을|흥청망청|시계태엽")) | "\(.apiName)\t\(.name)"' ko.json
