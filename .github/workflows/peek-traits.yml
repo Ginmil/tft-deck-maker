@@ -4,10 +4,6 @@ jobs:
   peek:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - uses: actions/cache/restore@v4
-        with: { path: tools/cache, key: matches-none, restore-keys: matches- }
       - run: |
-          for t in DA_18_Elderwood DA_18_Brawler DA_18_Executioner DA_18_Rapidfire; do node tools/peek-traits.mjs $t; done
+          curl -sL https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json -o ko.json
+          jq -r '.items[] | select((.apiName // "") | test("^DA_|TFT18|Set18"; "i")) | select((.apiName // "") | test("Elderwood|Brawler|Executioner|Rapidfire|Heart|Crown|Soul|Trait"; "i")) | "\(.apiName)\t\(.name)\t\((.desc // "") | gsub("\n";" ") | .[0:160])\t\(.effects // {} | tostring | .[0:120])"' ko.json | head -80
