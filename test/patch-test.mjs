@@ -91,15 +91,15 @@ console.log('밸런스 병합·byPatch 테스트 통과');
 // 패치 노트 → 메타 덱 영향 예측
 const { patchImpact, patchReport, prevBalancePatch } = await import('../js/engine/patch.js');
 const comp = { trait: 'DA_18_Elderwood', mainCarry: 'da_18_kennen', mainTank: 'da_sentinel18',
-  core: [{ id: 'da_18_kennen', rate: 1 }, { id: 'da_sentinel18', rate: 0.9 }, { id: 'da_18_kobuko', rate: 0.7 }, { id: 'da_nidalee18_ap', rate: 0.2 }, { id: 'da_nidalee18_ad', rate: 0.1 }],
+  core: [{ id: 'da_18_kennen', rate: 1 }, { id: 'da_sentinel18', rate: 0.9 }, { id: 'da_18_kobuko', rate: 0.7 }, { id: 'da_nidalee18_ap', rate: 0.4 }, { id: 'da_nidalee18_ad', rate: 0.3 }, { id: 'da_18_reksai', rate: 0.1 }],
   byPatch: { '18.5': { games: 40, avgPlace: 4.0 }, '18.6': { games: 30, avgPlace: 3.6 } } };
 const changes = [
   { kind: 'champion', match: 'Sentinel', dir: 'buff' }, { kind: 'champion', match: 'Kobuko', dir: 'buff' },
-  { kind: 'champion', match: 'Nidalee', dir: 'buff' }, { kind: 'trait', match: 'DA_18_Elderwood', dir: 'nerf', scale: 0.3 },
+  { kind: 'champion', match: 'Nidalee', dir: 'buff' }, { kind: 'champion', match: 'RekSai', dir: 'buff' }, { kind: 'trait', match: 'DA_18_Elderwood', dir: 'nerf', scale: 0.3 },
   { kind: 'augment', name: 'Embiggen', dir: 'nerf' },
 ];
 const imp = patchImpact(comp, changes);
-assert.deepEqual(imp.hits.map(h => h.where), ['tank', 'core', 'flex', 'trait'], '니달리 두 형태는 한 번만');
+assert.deepEqual(imp.hits.map(h => h.where), ['tank', 'core', 'flex', 'trait'], '니달리 두 형태는 한 번만, 10%만 쓰는 렉사이는 뺌');
 assert.ok(imp.score > 0, '버프가 더 큼');
 const rep = patchReport([comp], { patch: '18.6', changes }, '18.5');
 assert.equal(rep.rows[0].verdict, 'flat', '덱이 하나뿐이면 상대 영향 0 → 예측 없음');
