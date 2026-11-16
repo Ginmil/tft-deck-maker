@@ -400,7 +400,8 @@ function bind() {
     $('bdAssignOut').innerHTML = '<p class="muted small">보드에 넣었어요. 보관한 아이템은 "남은 아이템" 칸에 남아 있어요.</p>';
     lastAssign = null;
   };
-  $('patchSel').onchange = () => renderPatch($('patchSel').value);
+  $('patchChips').onclick = e => { const b = e.target.closest('[data-patch]'); if (b) renderPatch(b.dataset.patch); };
+  $('patchView').addEventListener('click', e => { const f = e.target.closest('#pnFilters [data-f]'); if (f) { pnFilter = f.dataset.f; renderPatch(); } });
   $('metaSort').onchange = renderMeta;
   $('metaView').onclick = e => { const b = e.target.closest('button[data-view]'); if (!b) return; metaView = b.dataset.view; renderMeta(); };
   $('metaTiers').addEventListener('click', e => {
@@ -971,72 +972,123 @@ const patchDocReady = fetch('data/patches.json', { cache: 'no-cache', signal: Ab
 const DIR_KO = { buff: ['▲', '버프', 'up'], nerf: ['▼', '너프', 'down'], adjust: ['◆', '조정', 'same'] };
 const WHERE_KO = { carry: '핵심 캐리', tank: '메인 탱커', core: '구성원', flex: '가끔 쓰는', trait: '주력 시너지' };
 
+// 패치 노트 (11/16 새 디자인): 요약·예측 성적표 → 바뀐 것(숫자 차이 강조) → 덱별 예측 vs 실제 (점 그래프)
+let pnFilter = 'all';
+/** "285/335/480 → 300/350/550" → 이전 값은 흐리게, 바뀐 숫자만 강조 */
+function pnNote(note) {
+  return esc(note || '').replace(/([0-9][0-9.%/]*)\s*→\s*([0-9][0-9.%/]*)/g, (all, a, b) => {
+    const A = a.split('/'), B = b.split('/');
+    const nb = B.map((x, k) => (A.length === B.length && A[k] === x ? x : `<b>${x}</b>`)).join('/');
+    return `<span class="pnOld">${a}</span><span class="pnArr">→</span><span class="pnNew">${nb}</span>`;
+  }).replace(/ · /g, '<br>');
+}
 function renderPatch(selected) {
-  const box = $('patchView'), sel = $('patchSel');
+  const box = $('patchView'), chips = $('patchChips');
   if (!patchDoc?.patches) { box.innerHTML = '<div class="empty">패치 정보(data/patches.json)를 불러오지 못했어요.</div>'; return; }
   const list = patchDoc.patches.filter(p => p.summary || p.changes);
   if (!list.length) { box.innerHTML = '<div class="empty">등록된 패치 노트가 없어요.</div>'; return; }
   const latest = [...list].reverse();
-  if (!sel.options.length) sel.innerHTML = latest.map(p => `<option value="${esc(p.patch)}">${esc(p.patch)} (${esc(p.date)})</option>`).join('');
-  // 기본: 변경 목록이 있는 가장 최근 패치 (사용자가 고른 게 있으면 그것)
-  if (selected) sel.dataset.chosen = selected;
-  const name = sel.dataset.chosen || (latest.find(x => x.changes?.length) || latest[0]).patch;
-  sel.value = name;
+  if (selected) chips.dataset.chosen = selected;
+  const name = chips.dataset.chosen || (latest.find(x => x.changes?.length) || latest[0]).patch;
+  chips.innerHTML = latest.slice(0, 8).map(x => `<button class="pill${x.patch === name ? ' on' : ''}${x.balance === false ? ' minor' : ''}" data-patch="${esc(x.patch)}" title="${esc(x.date)}${x.balance === false ? ' · 밸런스 변경 없음' : ''}">${esc(x.patch)}</button>`).join('');
   const p = list.find(x => x.patch === name);
   const prev = prevBalancePatch(patchDoc.patches, name);
   const d = state.data, byLower = new Map((d?.champions || []).map(c => [c.id.toLowerCase(), c]));
   const champsOf = m => (d?.champions || []).filter(c => c.id.toLowerCase().includes(String(m).toLowerCase()));
   const traitOf = m => Object.entries(d?.traits || {}).find(([k]) => k.toLowerCase() === String(m).toLowerCase());
+  const changes = p.changes || [];
+  const nBuff = changes.filter(c => c.dir === 'buff').length, nNerf = changes.filter(c => c.dir === 'nerf').length, nAdj = changes.length - nBuff - nNerf;
 
-  // 1) 바뀐 것
-  const groups = { champion: '챔피언', trait: '시너지', item: '아이템', augment: '증강', wisp: '수호령' };
-  const changeHtml = Object.entries(groups).map(([kind, label]) => {
-    const items = (p.changes || []).filter(c => c.kind === kind);
-    if (!items.length) return '';
-    return `<div class="pnGroup"><h4>${label}</h4>${items.map(c => {
-      const [arrow, word, cls] = DIR_KO[c.dir] || DIR_KO.adjust;
-      let icon = '', nm = c.name || c.match;
-      if (kind === 'champion') { const ch = champsOf(c.match)[0]; if (ch) { icon = img(ch.icon); nm = ch.name; } }
-      if (kind === 'trait') { const t = traitOf(c.match); if (t) { icon = img(t[1].icon); nm = t[1].name; } }
-      return `<div class="pnChange"><span class="pnIcon">${icon}</span><b>${esc(nm)}</b> <span class="pdelta ${cls}">${arrow} ${word}</span> <span class="muted small">${c.note && c.note !== word ? esc(c.note) : ''}</span></div>`;
-    }).join('')}</div>`;
-  }).join('');
-
-  // 2) 메타 덱 영향 예측 vs 실측
+  // 예측 vs 실제
   const comps = metaAvailable() ? state.weights.comps : [];
-  const rep = p.changes?.length && prev ? patchReport(comps, p, prev) : null;
-  const hasByPatch = comps.some(c => c.byPatch);
+  const rep = changes.length && prev && comps.some(c => c.byPatch) ? patchReport(comps, p, prev) : null;
+  const affected = new Map(); // 변경 → 영향 받는 덱 수
+  for (const r of rep?.rows || []) for (const h of r.hits) if (h.where !== 'flex' && h.where !== 'core') affected.set(h.change, (affected.get(h.change) || 0) + 1); // 핵심 캐리·탱커·주력 시너지인 덱만
+
+  // 1) 머리: 요약 + 성적표
+  const miss = rep ? rep.judged - rep.hits : 0;
+  const score = rep && rep.judged
+    ? `<div class="pnScore"><span class="lbl">예측이 맞은 덱</span><div class="big">${rep.hits}<small> / ${rep.judged}</small></div>
+        <div class="pnBar" role="img" aria-label="적중 ${rep.hits}, 빗나감 ${miss}, 구분 어려움 ${rep.flat}"><i class="hit" style="flex:${rep.hits}"></i><i class="miss" style="flex:${miss}"></i><i class="flat" style="flex:${rep.flat}"></i></div>
+        <div class="pnLegend"><span><i class="hit"></i>적중 ${rep.hits}</span><span><i class="miss"></i>빗나감 ${miss}</span><span><i class="flat"></i>구분 어려움 ${rep.flat}</span></div>
+        <p>실제 변화가 판수 오차보다 큰 덱만 채점해요. 기준 패치(${esc(prev)}) 표본이 적으면 구분 어려움이 많아져요.</p></div>`
+    : `<div class="pnScore"><span class="lbl">예측 채점</span><div class="big muted">—</div><p>${!changes.length ? '밸런스 변경이 없는 패치예요.' : !rep ? '패치별 경기 기록이 쌓이면 채점돼요.' : '이번 패치 경기가 쌓이는 중이에요.'}</p></div>`;
+  const head = `<div class="pnHero">
+    <div class="pnIntro">
+      <div class="pnTitle"><h2>${esc(p.patch)} 패치</h2><span class="muted">${esc(p.date)} · 한국 서버는 다음 날 아침 적용</span></div>
+      ${changes.length ? `<div class="pnCounts">${nBuff ? `<span class="cnt up">▲ 버프 ${nBuff}</span>` : ''}${nNerf ? `<span class="cnt down">▼ 너프 ${nNerf}</span>` : ''}${nAdj ? `<span class="cnt same">◆ 조정 ${nAdj}</span>` : ''}</div>` : ''}
+      ${p.summary ? `<p class="pnSum">${esc(p.summary)}</p>` : ''}
+      <div class="pnLinks">${p.source ? `<a href="${esc(p.source)}" target="_blank" rel="noopener">공식 패치노트 ↗</a>` : ''}${p.source_ko ? `<a href="${esc(p.source_ko)}" target="_blank" rel="noopener">롤체지지 한글 노트 ↗</a>` : ''}</div>
+    </div>${score}</div>`;
+
+  // 2) 바뀐 것
+  const card = c => {
+    const [arrow, word, cls] = DIR_KO[c.dir] || DIR_KO.adjust;
+    let icon = '', nm = c.name || c.match;
+    if (c.kind === 'champion') { const ch = champsOf(c.match)[0]; if (ch) { icon = hexPor(ch); nm = formClean(ch.name); } }
+    if (c.kind === 'trait') { const tr = traitOf(c.match); if (tr) { icon = traitBadge(tr[0], c.dir === 'nerf' ? 'bronze' : 'gold'); nm = tr[1].name; } }
+    const n = affected.get(c);
+    return `<div class="pnCard ${cls}">${icon ? `<span class="pnIc">${icon}</span>` : ''}<div class="pnTx"><div class="pnName"><b>${esc(nm)}</b><span class="pdir ${cls}">${arrow} ${word}</span>${n ? `<span class="pnAff" title="이 챔피언·시너지가 핵심 캐리·메인 탱커·주력 시너지인 메타 덱 수">핵심인 덱 ${n}개</span>` : ''}</div><div class="pnNote">${pnNote(c.note)}</div></div></div>`;
+  };
+  const main = changes.filter(c => c.kind === 'champion' || c.kind === 'trait' || c.kind === 'item');
+  const etc = changes.filter(c => !main.includes(c));
+  const KIND = { augment: '증강', wisp: '수호령' };
+  const changeHtml = changes.length ? `<section class="pnSec"><h3>바뀐 것</h3>
+    ${main.length ? `<div class="pnGrid">${main.map(card).join('')}</div>` : ''}
+    ${etc.length ? `<div class="pnEtc"><span class="muted small">증강·수호령 (덱 예측에는 반영 안 함)</span>${etc.map(c => { const [arrow, , cls] = DIR_KO[c.dir] || DIR_KO.adjust; return `<div class="pnLine"><span class="kind">${KIND[c.kind] || ''}</span><b>${esc(c.name || c.match)}</b><span class="pdir ${cls}">${arrow}</span><span class="pnNote">${pnNote(c.note)}</span></div>`; }).join('')}</div>` : ''}
+  </section>` : '';
+
+  // 3) 덱별 예측 vs 실제
   let predHtml = '';
-  if (!p.changes?.length) predHtml = '<div class="empty">이 패치는 변경 내용이 등록되지 않았어요.</div>';
+  if (!changes.length) predHtml = '';
   else if (!comps.length) predHtml = '<div class="empty">메타 덱 통계가 없어서 영향 예측을 할 수 없어요.</div>';
-  else if (!hasByPatch) predHtml = '<div class="empty">통계 파일에 패치별 기록이 아직 없어요. 다음 수집 후 표시돼요.</div>';
+  else if (!rep) predHtml = '<div class="empty">통계 파일에 패치별 기록이 아직 없어요. 다음 수집 후 표시돼요.</div>';
   else if (!rep.rows.length) predHtml = '<div class="empty">바뀐 챔피언·시너지를 쓰는 메타 덱이 없어요.</div>';
   else {
-    const fmt = (s, avg) => s ? `<span class="tier t${metaTier(avg ?? s.avgPlace, s.games)}">${metaTier(avg ?? s.avgPlace, s.games)}</span> ${(avg ?? s.avgPlace).toFixed(2)}등` : '<span class="muted">—</span>';
-    const verdict = { hit: '<span class="pnVerdict hit">✓ 예측 적중</span>', miss: '<span class="pnVerdict miss">✗ 빗나감</span>', flat: '<span class="pnVerdict flat">– 구분 어려움</span>' };
-    // 비교할 수 있는 덱(이전 패치 표본 있음) 먼저, 그중 실측 판정이 난 덱 먼저
-    const rank = r => (r.verdict === 'hit' || r.verdict === 'miss' ? 0 : r.verdict ? 1 : r.base ? 2 : 3);
-    const rows = rep.rows.filter(r => r.base || r.now).sort((a, b) => rank(a) - rank(b) || Math.abs(b.rel) - Math.abs(a.rel)).slice(0, 20).map(r => {
+    const status = r => r.verdict || (r.base ? 'wait' : 'nobase');
+    const order = { hit: 0, miss: 0, flat: 1, wait: 2, nobase: 3 };
+    const all = rep.rows.filter(r => r.base || r.now).sort((a, b) => order[status(a)] - order[status(b)] || Math.abs(b.rel) - Math.abs(a.rel));
+    const counts = all.reduce((o, r) => (o[status(r)] = (o[status(r)] || 0) + 1, o), {});
+    const F = [['all', '전체', all.length], ['hit', '적중', counts.hit], ['miss', '빗나감', counts.miss], ['flat', '구분 어려움', counts.flat], ['wait', '판 쌓이는 중', (counts.wait || 0) + (counts.nobase || 0)]].filter(f => f[0] === 'all' || f[2]);
+    if (!F.some(f => f[0] === pnFilter)) pnFilter = 'all';
+    const shown = all.filter(r => pnFilter === 'all' || status(r) === pnFilter || (pnFilter === 'wait' && status(r) === 'nobase')).slice(0, 24);
+    const decks = metaDecks(8);
+    // 점 그래프: 평균 등수 2.5(왼쪽, 좋음) ~ 6(오른쪽, 나쁨)
+    const LO = 2.5, HI = 6, pos = v => Math.max(0, Math.min(100, (v - LO) / (HI - LO) * 100));
+    const V = { hit: ['hit', '✓ 적중'], miss: ['miss', '✗ 빗나감'], flat: ['flat', '구분 어려움'], wait: ['wait', '판 쌓이는 중'], nobase: ['wait', '비교 불가'] };
+    const rows = shown.map(r => {
       const c = r.comp, carry = byLower.get(c.mainCarry || c.carry);
       const why = r.hits.map(h => {
-        const nm = h.where === 'trait' ? traitName(c.trait) : byLower.get(h.id)?.name || h.id;
+        const nm = h.where === 'trait' ? traitName(c.trait) : formClean(byLower.get(h.id)?.name || h.id);
         const [arrow, , cls] = DIR_KO[h.change.dir];
-        return `<span class="pnWhy">${WHERE_KO[h.where]} ${esc(nm)} <span class="pdelta ${cls}">${arrow}</span></span>`;
+        return `<span class="pnWhy">${WHERE_KO[h.where]} ${esc(nm)} <span class="pdir ${cls}">${arrow}</span></span>`;
       }).join('');
-      const dir = r.predDelta < -0.05 ? '<span class="pdelta up">▲ 오를 것</span>' : r.predDelta > 0.05 ? '<span class="pdelta down">▼ 내릴 것</span>' : '<span class="pdelta same">– 비슷</span>';
-      return `<tr><td><b>${esc(traitName(c.trait))}</b> · ${esc(carry?.name || '')}<div class="pnWhys">${why}</div></td>
-        <td>${fmt(r.base)}<div class="muted small">${r.base ? r.base.games + '판' : '이전 패치 표본 부족'}</div></td>
-        <td>${r.base ? fmt({ ...r.base }, r.predAvg) : '—'}<div>${dir}</div></td>
-        <td>${fmt(r.now)}<div class="muted small">${r.now ? r.now.games + '판' : '이번 패치 표본 부족'}</div></td>
-        <td>${r.verdict ? `<span title="실제 변화 ${r.actualDelta > 0 ? '+' : ''}${r.actualDelta}등, 판수로 인한 오차 ±${r.noise}등">${verdict[r.verdict]}</span><div class="muted small">${r.actualDelta > 0 ? '+' : ''}${r.actualDelta}등 (±${r.noise})</div>` : `<span class="muted small">${r.base ? '이번 패치 판 쌓이는 중' : '비교 불가'}</span>`}</td></tr>`;
+      const st = status(r), [vc, vt] = V[st];
+      const dk = decks.find(x => x.m.trait === c.trait && (x.m.mainCarry || x.m.carry) === (c.mainCarry || c.carry));
+      const reg = dk ? deckRegistry.push({ ...dk, bdName: `${traitName(c.trait)} ${formClean(carry?.name || '')}` }) - 1 : -1;
+      const dots = [];
+      if (r.base) dots.push(`<i class="dot base" style="left:${pos(r.base.avgPlace)}%" title="${esc(prev)} 실제 ${r.base.avgPlace}등 (${r.base.games}판)"></i>`);
+      if (r.predAvg != null) dots.push(`<i class="dot pred" style="left:${pos(r.predAvg)}%" title="${esc(p.patch)} 예측 ${r.predAvg}등"></i>`);
+      if (r.now) dots.push(`<i class="dot now ${vc}" style="left:${pos(r.now.avgPlace)}%" title="${esc(p.patch)} 실제 ${r.now.avgPlace}등 (${r.now.games}판)"></i>`);
+      const span = r.base && r.now ? `<i class="span" style="left:${Math.min(pos(r.base.avgPlace), pos(r.now.avgPlace))}%;width:${Math.abs(pos(r.now.avgPlace) - pos(r.base.avgPlace))}%"></i>` : '';
+      const predWord = r.predDelta < -0.05 ? '<span class="pdir up">▲ 오를 것</span>' : r.predDelta > 0.05 ? '<span class="pdir down">▼ 내릴 것</span>' : '<span class="pdir same">– 비슷</span>';
+      return `<div class="pnRow ${vc}">
+        <div class="pnDeck">${carry ? hexPor(carry) : ''}<div><b>${esc(traitName(c.trait))} ${esc(formClean(carry?.name || ''))}</b><div class="pnWhys">${why}</div></div></div>
+        <div class="pnNums">
+          <div><span class="k">${esc(prev)}</span><b>${r.base ? r.base.avgPlace.toFixed(2) : '—'}</b><small>${r.base ? r.base.games + '판' : '표본 부족'}</small></div>
+          <div><span class="k">예측</span><b>${r.predAvg != null ? r.predAvg.toFixed(2) : '—'}</b><small>${predWord}</small></div>
+          <div><span class="k">${esc(p.patch)} 실제</span><b>${r.now ? r.now.avgPlace.toFixed(2) : '—'}</b><small>${r.now ? r.now.games + '판' : '쌓이는 중'}</small></div>
+        </div>
+        <div class="pnTrack" aria-hidden="true">${span}${dots.join('')}</div>
+        <div class="pnRes"><span class="pnVerdict ${vc}">${vt}</span>${r.actualDelta != null ? `<small>실제 ${Math.abs(r.actualDelta) < 0.005 ? '변화 없음' : `${r.actualDelta < 0 ? '▲' : '▼'}${Math.abs(r.actualDelta).toFixed(2)}등 ${r.actualDelta < 0 ? '좋아짐' : '나빠짐'}`} · 오차 ±${r.noise}</small>` : ''}${reg >= 0 ? `<button class="altopen toBuilder" data-reg="${reg}">배치툴</button>` : ''}</div>
+      </div>`;
     }).join('');
-    predHtml = `<p class="muted small">이전 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 핵심 캐리면 크게·탱커면 중간·구성원이면 작게, 주력 시너지 변경도 반영해 평균 등수 변화를 예측해요. 평균 등수는 8명이 나눠 갖는 값이라, 메타 전체가 받은 평균 영향보다 <b>더</b> 받은 만큼만 오르내린다고 봐요.${rep.judged ? ` 실제 변화가 판수 오차보다 큰 덱 중 <b>${rep.hits}/${rep.judged}</b>개에서 예측 방향이 맞았어요 (나머지 ${rep.flat}개는 판수가 적거나 변화가 작아 구분 어려움).` : ''}</p>
-      <div class="tableWrap"><table class="pnTable"><thead><tr><th>메타 덱 · 영향 원인</th><th>${esc(prev)} 실제</th><th>${esc(p.patch)} 예측</th><th>${esc(p.patch)} 실제</th><th>결과</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    predHtml = `<div class="pnFilters" id="pnFilters">${F.map(([k, l, n]) => `<button class="pill${k === pnFilter ? ' on' : ''}" data-f="${k}">${l} <span>${n}</span></button>`).join('')}</div>
+      <div class="pnAxis"><span></span><span></span><span class="pnScale"><em>2.5등 · 좋음</em><em>6등 · 나쁨</em></span><span class="pnKeys"><span><i class="dot base"></i>${esc(prev)}</span><span><i class="dot pred"></i>예측</span><span><i class="dot now hit"></i>실제</span></span></div>
+      <div class="pnRows">${rows || '<div class="empty">이 조건의 덱이 없어요.</div>'}</div>
+      <details class="pnHow"><summary>예측은 어떻게 하나요?</summary><p>이전 밸런스 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 그 덱의 <b>핵심 캐리</b>면 크게, <b>탱커</b>면 중간, <b>구성원</b>이면 작게, <b>주력 시너지</b>가 바뀌면 크게 반영해요. 평균 등수는 8명이 1~8등을 나눠 갖는 값이라, 메타 전체가 받은 평균 영향보다 더 받은 만큼만 오르내린다고 봐요. 실제 변화가 판수로 생기는 오차(±)보다 작으면 "구분 어려움"으로 채점하지 않아요. 증강·수호령 변경은 예측에 넣지 않아요.</p></details>`;
   }
-  box.innerHTML = `<div class="pnHead"><h3>${esc(p.patch)} 패치</h3><span class="muted small">${esc(p.date)} (태평양 시간) · 한국 서버는 보통 다음 날 아침 적용${p.source ? ` · <a href="${esc(p.source)}" target="_blank" rel="noopener">공식 패치노트</a>` : ''}</span></div>
-    ${p.summary ? `<p class="pnSummary">${esc(p.summary)}</p>` : ''}
-    ${changeHtml ? `<div class="pnChanges">${changeHtml}</div>` : ''}
-    <h3 class="recSub">메타 덱 영향 예측</h3>${predHtml}`;
+  box.innerHTML = head + changeHtml + (changes.length ? `<section class="pnSec"><h3>메타 덱 영향 · 예측 vs 실제</h3>${predHtml}</section>` : '');
 }
 
 let metaView = 'tier';
