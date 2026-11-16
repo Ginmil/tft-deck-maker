@@ -2468,7 +2468,7 @@ function runSearch(fn, override = null) {
   return out.slice(0, 8);
 }
 
-function run(btn, title, fn) {
+function run(btn, title, fn, extra = null) { // extra() → { pre, post } (엔진 결과 앞·뒤에 붙일 HTML)
   if (!state.data) { setStatus('먼저 데이터를 불러와 주세요.', true); $('databar').open = true; return; }
   btn.disabled = true;
   $('results').innerHTML = `<div class="empty">조합을 계산하고 있어요…</div>`;
@@ -2476,7 +2476,7 @@ function run(btn, title, fn) {
     const t0 = performance.now();
     try {
       const decks = runSearch(fn);
-      renderResults(title, decks, performance.now() - t0);
+      renderResults(title, decks, performance.now() - t0, extra ? extra() : {});
     } catch (e) {
       console.error(e);
       $('results').innerHTML = `<div class="empty">계산 중 오류가 났어요: ${esc(e.message)}</div>`;
@@ -2484,15 +2484,168 @@ function run(btn, title, fn) {
   }, 30);
 }
 
-function renderResults(title, decks, ms) {
+function renderResults(title, decks, ms, { pre = '', post = '' } = {}) {
   if (!decks.length) {
-    $('results').innerHTML = `<div class="empty">조건에 맞는 덱을 찾지 못했어요. 목표 단계를 낮추거나 레벨을 올려 보세요.</div>`;
+    $('results').innerHTML = `${pre}<div class="empty">조건에 맞는 덱을 찾지 못했어요. 목표 단계를 낮추거나 레벨을 올려 보세요.</div>${post}`;
     return;
   }
   const byId = new Map(state.data.champions.map(c => [c.id, c]));
-  $('results').innerHTML = `
-    <div class="resultHead"><h2>${esc(title)}</h2><span class="legend">${(ms / 1000).toFixed(1)}초 · 점선 테두리 = 상징 덕분에 열린 단계</span></div>
-    ${decks.map((d, i) => deckCard(d, i, byId)).join('')}`;
+  $('results').innerHTML = `${pre}
+    <div class="resultHead"${pre ? ' style="margin-top:28px"' : ''}><h2>${esc(title)}</h2><span class="legend">${(ms / 1000).toFixed(1)}초 · 점선 테두리 = 상징 덕분에 열린 단계</span></div>
+    ${decks.map((d, i) => deckCard(d, i, byId)).join('')}${post}`;
+}
+
+// ---- 상징 팀 메이커: 랭커가 이 상징으로 쓴 덱 (11/17 사용자: 요정+날렵이 상징이면 렝가 덱이 떠올랐는데 추천엔 없음) ----
+// 고른 상징을 모두 낀 랭커 보드(weights.emblemBoards, 이번 패치)를 덱(주력 시너지|핵심 캐리)별로 합침.
+// 엔진 추천 순위는 그대로 두고 아래에 따로 — 랭커 기록이 엔진과 다르거나 성적이 낮아도 그 자체로 정보
+const EMB_DECK_MIN = 3, EMB_DECK_LOW = 10;
+function emblemRankerDecks(picked) {
+  const d = state.data, eb = state.weights?.emblemBoards;
+  if (!eb || !picked.length || !$('useWeights').checked || state.weights.setNumber !== d.set.number) return null;
+  const need = {};
+  for (const t of picked) need[t] = (need[t] || 0) + 1;
+  const traitOfItem = id => d.emblems.find(e => e.id === id || (e.ids || []).includes(id))?.trait;
+  const acc = {};
+  for (const [combo, rows] of Object.entries(eb)) {
+    const have = {};
+    for (const it of combo.split('+')) { const t = traitOfItem(it); if (t) have[t] = (have[t] || 0) + 1; }
+    if (!Object.entries(need).every(([t, n]) => (have[t] || 0) >= n)) continue;
+    const extra = { ...have };
+    for (const [t, n] of Object.entries(need)) extra[t] -= n;
+    const extraKey = Object.entries(extra).filter(([, n]) => n > 0).map(([t, n]) => traitName(t) + (n > 1 ? ` ${n}개` : '')).join(', ');
+    for (const [dk, games, avg, top4, board] of rows) {
+      const a = (acc[dk] ||= { key: dk, games: 0, sum: 0, top4: 0, board: null, extras: {} });
+      a.games += games; a.sum += games * avg; a.top4 += games * top4;
+      a.extras[extraKey] = (a.extras[extraKey] || 0) + games;
+      if (board && (!a.board || board.same > a.board.same)) a.board = board;
+    }
+  }
+  const all = Object.values(acc);
+  const total = all.reduce((s, a) => s + a.games, 0);
+  const byLower = new Map(d.champions.map(c => [c.id.toLowerCase(), c]));
+  const decks = all.filter(a => a.games >= EMB_DECK_MIN && a.board).sort((x, y) => y.games - x.games).slice(0, 3)
+    .map(a => emblemRankerDeck(a, byLower)).filter(Boolean);
+  return { decks, total: Math.round(total) };
+}
+function emblemRankerDeck(a, byLower) {
+  const d = state.data;
+  const [trait, carryLow] = a.key.split('|');
+  const units = a.board.units;
+  const allEmb = {};
+  for (const u of units) for (const it of u.items) if (/emblem/i.test(it)) allEmb[it] = 1;
+  const real = realBoardTeam({ board: { units }, core: [], emblems: allEmb, trait }, byLower);
+  if (!real) return null;
+  const { team, emblems } = real;
+  const keyOf = c => (c.base || c.id).toLowerCase();
+  const champOf = id => { const c = byLower.get(id); return c && team.find(x => keyOf(x) === keyOf(c)); };
+  const carry = carryLow ? champOf(carryLow) : null;
+  const ev = evaluateTeam(team, d, { carryIds: carry ? [carry.id] : [], emblems });
+  // 상징은 랭커가 실제로 준 챔피언에게 (엔진 배정 대신)
+  const holders = {};
+  for (const u of units) for (const it of u.items) {
+    const e = d.emblems.find(x => x.id === it || (x.ids || []).includes(it)); const c = champOf(u.id);
+    if (e && c) (holders[e.trait] ||= []).push(c.id);
+  }
+  for (const x of ev.assignment || []) { const h = holders[x.trait]?.shift(); if (h) { x.holder = h; x.misfit = false; x.why = '랭커가 실제로 준 챔피언'; } }
+  const items = {}, unitInfo = {};
+  for (const u of units) {
+    const c = champOf(u.id); if (!c) continue;
+    items[c.id] = u.items.filter(it => !/emblem/i.test(it)).map(it => { const info = d.itemInfo?.[it.toLowerCase()]; return { id: it, name: info?.name || it, icon: info?.icon }; });
+    unitInfo[c.id] = { rate: 1, star3: u.star >= 3 ? 1 : 0 };
+  }
+  const avg = a.sum / a.games, games = Math.round(a.games);
+  const low = games < EMB_DECK_LOW ? ' <span class="lowconf" title="판수가 적어 참고용">표본 적음</span>' : '';
+  const extras = Object.entries(a.extras).filter(([k]) => k).sort((x, y) => y[1] - x[1])[0];
+  const name = carry ? `${trait && d.traits[trait] ? esc(traitName(trait)) + ' · ' : ''}${esc(carry.name)}` : esc(traitName(trait) || '랭커 덱');
+  // 고른 상징을 캐리가 아닌 한 챔피언이 모두 들었으면 이름에 표시 (요정+날렵이 → 렝가)
+  const pickedHolders = new Set(state.emblems.map(t => (ev.assignment || []).find(x => x.trait === t && x.holder)?.holder).filter(Boolean));
+  const embHolder = pickedHolders.size === 1 && ![...pickedHolders].includes(carry?.id) ? team.find(c => pickedHolders.has(c.id)) : null;
+  return {
+    ...ev, team: [...team].sort((x, y) => x.cost - y.cost), items, unitInfo,
+    core: { carry: carry?.id, tank: null }, noSpecialTag: true,
+    title: `${name}${embHolder ? ` <span class="tag" title="고른 상징을 랭커가 모두 이 챔피언에게 줬어요">상징은 ${esc(embHolder.base && embHolder.weights ? embHolder.base : embHolder.name)}</span>` : ''} <span class="tag soft">랭커 실제 보드</span>`,
+    metaInfo: `랭커 <b>${games}판</b> · 평균 <b>${avg.toFixed(2)}등</b> · 순방 ${Math.round(a.top4 / a.games * 100)}%${low} · 보이는 보드는 같은 구성 ${a.board.same}판 중 가장 잘한 판${extras && extras[1] >= a.games * 0.3 ? ` · ${esc(extras[0])} 상징도 함께 낀 판 ${Math.round(extras[1] / a.games * 100)}%` : ''}`,
+  };
+}
+// ---- 상징 팀 메이커: 이 상징을 쓰기 좋은 메타 덱 (11/17 사용자: 상징을 주면 핵심 유닛 기준으로 — 억지 시너지(3협곡야수+코그모로 적응가)는 의미 없음) ----
+// 티어표 덱(랭커 실제 보드)을 그대로 두고 상징만 더함. 상징이 그 덱에서 쓸모 있을 때만:
+//   ① 랭커가 그 덱에서 이 상징을 쓴 판 비율(m.emblems) 10% 이상, 또는 ② 상징으로 그 시너지 단계가 실제로 오름
+// 상징을 받을 챔피언 = 그 시너지가 없는 챔피언 중 랭커가 이 상징을 가장 많이 준 챔피언(전체 기록), 없으면 엔진 배정
+const EMB_META_MIN = 15, EMB_USED = 0.1;
+function emblemMetaDecks(picked) {
+  const d = state.data;
+  if (!metaAvailable() || !picked.length) return [];
+  const itemOf = t => d.emblems.find(e => e.trait === t);
+  const wEmb = state.weights?.emblems || {};
+  const out = [];
+  for (const g of groupedDecks()) {
+    if ((g.tierGames ?? tierGames(g.m) ?? g.m.games) < EMB_META_MIN && g.m.games < EMB_META_MIN) continue;
+    let best = null;
+    for (const v of [g, ...(g.variants || [])]) {
+      const carryId = v.carryChampId || v.core?.carry;
+      const base = (v.assignment || []).filter(a => a.holder).map(a => a.trait);
+      // 랭커 보드에 이미 그 상징이 있으면 내 상징이 그 자리를 채움 (같은 상징을 하나 더 얹지 않음)
+      const rest = [...base], filled = [];
+      for (const t of picked) { const i = rest.indexOf(t); if (i >= 0) { rest.splice(i, 1); filled.push(t); } }
+      const extra = [...picked]; for (const t of filled) extra.splice(extra.indexOf(t), 1);
+      const ev0 = evaluateTeam(v.team, d, { carryIds: carryId ? [carryId] : [], emblems: base });
+      const ev1 = evaluateTeam(v.team, d, { carryIds: carryId ? [carryId] : [], emblems: [...base, ...extra] });
+      const tierOfT = (ev, t) => ev.traits.find(x => x.id === t)?.tier || 0;
+      const why = [];
+      let ok = true, fit = 0;
+      // 점수: 랭커가 이 덱에서 이 상징을 쓴 비율이 가장 중요, 주력 시너지면 가산, 단계 상승은 작게, 덱 성적은 보조
+      // (11/17 사용자: 사냥꾼 상징이면 사냥꾼 시비르 — 다른 강한 덱에 사냥꾼 하나 더 붙이는 건 억지)
+      for (const t of [...new Set(picked)]) {
+        const e = itemOf(t), used = Math.max(0, ...[e?.id, ...(e?.ids || [])].map(id => v.m.emblems?.[id] || 0));
+        const t0 = tierOfT(ev0, t), t1 = tierOfT(ev1, t);
+        if (filled.includes(t)) why.push(`랭커도 이 덱에서 ${traitName(t)} 상징을 ${Math.round(used * 100)}% 써요 (상징 자리)`);
+        else if (t1 > t0) { const c0 = ev0.traits.find(x => x.id === t)?.count || 0, c1 = ev1.traits.find(x => x.id === t)?.count || 0; why.push(`${traitName(t)} ${c0} → ${c1}${used >= EMB_USED ? ` · 랭커도 이 덱에서 ${Math.round(used * 100)}%` : ''}`); fit += 0.3; }
+        else if (used >= EMB_USED) why.push(`랭커도 이 덱에서 ${traitName(t)} 상징 ${Math.round(used * 100)}%`);
+        fit += 2 * used + (v.m.trait === t ? 1 : 0);
+        // 랭커가 이 덱에서 안 쓰는 상징은 단계를 올려도, 꺼져 있던 시너지를 최저 단계로만 켜는 건 억지 (기원자 알룬에 사냥꾼 2)
+        if (!filled.includes(t) && used < EMB_USED && (t1 <= t0 || t0 === 0)) ok = false;
+      }
+      if (!ok) continue;
+      // 상징 받을 챔피언: 랭커가 이 상징을 가장 많이 준 챔피언(그 시너지가 없는)
+      for (const a of ev1.assignment || []) {
+        if (!picked.includes(a.trait)) continue;
+        const e = itemOf(a.trait), holders = wEmb[e?.id]?.holders || {};
+        const cands = v.team.filter(c => !c.traits.includes(a.trait) && (v.items?.[c.id]?.length || 0) < 3);
+        const pick = cands.sort((x, y) => (holders[y.id.toLowerCase()] || 0) - (holders[x.id.toLowerCase()] || 0))[0];
+        if (pick && (holders[pick.id.toLowerCase()] || 0) > 0) { a.holder = pick.id; a.misfit = false; a.why = `랭커가 ${traitName(a.trait)} 상징을 많이 준 챔피언`; }
+      }
+      const score = fit + 0.5 * (4.5 - shrinkAvg(v.m.avgPlace, v.m.patchGames || v.m.games));
+      if (!best || score > best.score) best = { v, ev1, why, score };
+    }
+    if (!best) continue;
+    const { v, ev1, why } = best;
+    const pickedNames = picked.map(t => traitName(t));
+    const holderNames = [...new Set((ev1.assignment || []).filter(a => picked.includes(a.trait) && a.holder).map(a => v.team.find(c => c.id === a.holder)?.name).filter(Boolean))];
+    out.push({ score: best.score, deck: {
+      ...v, traits: ev1.traits, assignment: ev1.assignment, usedEmblems: ev1.usedEmblems, noSpecialTag: true,
+      title: `${(v.title || esc(deckName(g))).replace(' · 이 보드는 미사용', '')}${g.variants?.length ? ` <span class="tag soft">${esc(deckName(g))} · 버전 ${g.variants.length + 1}개</span>` : ''}`,
+      metaInfo: `${v.metaInfo || ''}<br><span class="embWhy">${esc(pickedNames.join(' + '))} 상징${holderNames.length ? ` → <b>${esc(holderNames.join(', '))}</b>` : ''} · ${esc(why.join(' · '))}</span>`,
+    } });
+  }
+  return out.sort((a, b) => b.score - a.score).slice(0, 4).map(x => x.deck);
+}
+function emblemMetaHtml() {
+  const decks = emblemMetaDecks(state.emblems);
+  const byId = new Map(state.data.champions.map(c => [c.id, c]));
+  const head = `<div class="resultHead"><h2>이 상징을 쓰기 좋은 메타 덱</h2><span class="legend">랭커 메타 덱의 핵심 유닛은 그대로 두고 상징만 더해요 · 상징으로 단계가 오르거나 랭커가 그 덱에서 쓴 경우만</span></div>`;
+  if (!metaAvailable()) return '';
+  if (!decks.length) return head + `<div class="empty">이 상징이 단계를 올려 주는 메타 덱이 없어요. 아래 랭커 기록과 시너지 계산 추천을 참고하세요.</div>`;
+  return head + decks.map((x, i) => deckCard(x, i, byId)).join('');
+}
+
+function emblemRankerHtml() {
+  const r = emblemRankerDecks(state.emblems);
+  if (!r) return '';
+  const byId = new Map(state.data.champions.map(c => [c.id, c]));
+  const names = state.emblems.map(t => traitName(t)).join(' + ');
+  const head = `<div class="resultHead" style="margin-top:28px"><h2>랭커가 이 상징 조합으로 쓴 보드</h2><span class="legend">${esc(names)} 상징을 모두 낀 랭커 보드 ${r.total}판 · 이번 패치 · 판수 많은 순</span></div>`;
+  if (!r.decks.length) return head + `<div class="empty">이 상징을 모두 낀 랭커 덱이 ${EMB_DECK_MIN}판 이상인 경우가 없어요. 위의 추천은 시너지 계산 결과예요.</div>`;
+  return head + r.decks.map((x, i) => deckCard(x, i, byId)).join('');
 }
 
 // 덱 카드의 "배치툴로 보기" 버튼이 참조할 덱 목록
@@ -2537,7 +2690,7 @@ function deckCard(d, i, byId) {
   return `<article class="dcard${d.desiredMet === false ? ' warn' : ''}">
     <header class="dcHead">
       <span class="dcRank">${i + 1}</span>
-      <div class="dcTitle">${goal}${specialIds().length && !d.team.some(c => c.special) ? ` <span class="tag soft">${esc(specialName())} 없음</span>` : ''}</div>
+      <div class="dcTitle">${goal}${specialIds().length && !d.noSpecialTag && !d.team.some(c => c.special) ? ` <span class="tag soft">${esc(specialName())} 없음</span>` : ''}</div>
       <button class="btn small toBuilder" data-reg="${reg}" title="이 덱을 배치툴에 세우기">배치툴에서 열기</button>
     </header>
     <p class="dcMeta">${carryId && !d.carry ? `핵심 <b>${esc(nameOf(carryId))}</b>${tankId ? ` · 탱커 <b>${esc(nameOf(tankId))}</b>` : ''} · ` : ''}${meta}</p>
@@ -2630,7 +2783,8 @@ function bind() {
   $('emblemPicked').onclick = e => { const b = e.target.closest('button[data-trait]'); if (!b) return; removeOne(state.emblems, b.dataset.trait); renderEmblems(); };
   $('runEmblem').onclick = e => {
     if (!state.emblems.length) { $('results').innerHTML = '<div class="empty">상징을 하나 이상 골라 주세요.</div>'; return; }
-    run(e.currentTarget, '상징 활용 추천 팀', o => emblemTeamMaker(state.data, { ...o, emblems: state.emblems, desired: state.emblemDesired }));
+    run(e.currentTarget, '시너지 계산 추천 (참고)', o => emblemTeamMaker(state.data, { ...o, emblems: state.emblems, desired: state.emblemDesired }),
+      () => ({ pre: emblemMetaHtml() + emblemRankerHtml() }));
   };
 
   // 시너지

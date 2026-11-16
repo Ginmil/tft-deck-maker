@@ -909,3 +909,4 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 }
 .trow .aug { margin-left: 6px; padding: 1px 6px; border-radius: 6px; background: #e2b04a22; cursor: pointer; font-weight: 600; }
 .trow .aug:hover { background: #e2b04a44; }
+.embWhy { display: inline-block; margin-top: 4px; color: var(--gold); }

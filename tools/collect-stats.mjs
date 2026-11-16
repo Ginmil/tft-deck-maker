@@ -170,7 +170,8 @@ try {
 
   const json = JSON.stringify(weights, null, 1);
   fs.writeFileSync(path.join(root, 'data', 'weights.json'), json);
-  fs.writeFileSync(path.join(root, 'data', 'weights.js'), `window.TFT_WEIGHTS = ${json};\n`);
+  // 브라우저가 읽는 weights.js 는 줄바꿈 없이 (상징 조합별 보드가 들어가 커짐, 11/17)
+  fs.writeFileSync(path.join(root, 'data', 'weights.js'), `window.TFT_WEIGHTS = ${JSON.stringify(weights)};\n`);
 
   console.log(`\n완료: 세트 ${weights.setNumber}, 경기 ${matches.length}개(오늘 목록 ${fresh.length}), 플레이어 기록 ${weights.games}개(패치 가중치 반영)`);
   const rows = Object.entries(weights.traits).flatMap(([t, tiers]) =>
