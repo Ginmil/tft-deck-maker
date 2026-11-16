@@ -103,6 +103,9 @@ export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf 
         const tactician = names.some(n => /Tacticians/i.test(n));
         const done = names.filter(n => !/emblem/i.test(n));
         if (!random && done.length >= 3) ur.full += w;
+        // 도적의 장갑을 낀 판 (11/17 사용자: 케넨·나르처럼 템을 잘 안 드는 챔피언이 도적을 끼는지) + 낀 완성 아이템 개수 분포
+        if (random) { ur.thief = (ur.thief || 0) + w; ur.thiefPlace = (ur.thiefPlace || 0) + w * place; }
+        else { (ur.held ||= [0, 0, 0, 0])[Math.min(3, done.length)] += w; }
         if (!random) for (const n of done) ur.items[n] = (ur.items[n] || 0) + w; // 어떤 아이템을 끼는지 → 역할 판단
         // 아이템 3개 조합(3신기): 순서 무관하게 묶어서 판수·등수 집계
         if (!random && !tactician && done.length >= 3) {
@@ -251,7 +254,9 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
       .map(([k, b]) => ({ items: k.split('|'), games: Math.round(b.games), avgPlace: round(b.sumPlace / b.games, 2) }));
     const stars = Object.fromEntries(Object.entries(r.stars || {}).filter(([, s]) => s.games >= 5)
       .map(([k, s]) => [k, { games: Math.round(s.games), avgPlace: round(s.sumPlace / s.games, 2), top4: round(s.top4 / s.games, 3), win: round(s.win / s.games, 3) }]));
-    units[id] = { games: Math.round(r.games), avgPlace: round(r.sumPlace / r.games, 2), top4: round((r.top4 || 0) / r.games, 3), win: round((r.win || 0) / r.games, 3), carryRate: round(r.full / r.games, 3), items, builds, stars };
+    units[id] = { games: Math.round(r.games), avgPlace: round(r.sumPlace / r.games, 2), top4: round((r.top4 || 0) / r.games, 3), win: round((r.win || 0) / r.games, 3), carryRate: round(r.full / r.games, 3), items, builds, stars,
+      ...(r.thief ? { thief: { rate: round(r.thief / r.games, 3), games: Math.round(r.thief), avgPlace: round(r.thiefPlace / r.thief, 2) } } : {}),
+      ...(r.held ? { held: r.held.map(x => round(x / r.games, 3)) } : {}) };
   }
   // 상징: 어떤 챔피언에게 몇 번 장착됐는지
   const emblems = {};
