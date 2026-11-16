@@ -15,6 +15,7 @@ const BD_SAVE_KEY = 'tft-deck-maker:boards';
 let bd = null;                              // ctx
 // cells[idx] = { id, star, items: [], form?: 'AD'|'AP' }, plants[idx] = 'bark'|'flower'|'guardian', inv = 남은 아이템
 const bdState = {
+  bonus: {}, // 증강으로 얻은 시너지 인원 { 시너지 id: n }
   cells: {}, plants: {}, sel: null, inv: [], carries: new Set(),
   past: [], future: [], pgroup: 'cost', costF: 0, igroup: 'normal', pane: 'champ', drag: null,
 };
@@ -37,7 +38,7 @@ const isForm = c => !!formGroup(c);
 const champKey = c => (isForm(c) ? 'F:' + c.base : c.id);
 
 // ---------------- 되돌리기 기록 ----------------
-const snap = () => JSON.stringify({ cells: bdState.cells, inv: bdState.inv, carries: [...bdState.carries], plants: bdState.plants, alphaAug: bdState.alphaAug });
+const snap = () => JSON.stringify({ cells: bdState.cells, inv: bdState.inv, carries: [...bdState.carries], plants: bdState.plants, alphaAug: bdState.alphaAug, bonus: bdState.bonus || {} });
 function save() {
   bdState.past.push(snap());
   if (bdState.past.length > 50) bdState.past.shift();
@@ -45,7 +46,7 @@ function save() {
 }
 function restore(s) {
   const o = JSON.parse(s);
-  bdState.cells = o.cells; bdState.inv = o.inv || []; bdState.carries = new Set(o.carries || []); bdState.plants = o.plants || {}; bdState.alphaAug = !!o.alphaAug;
+  bdState.cells = o.cells; bdState.inv = o.inv || []; bdState.carries = new Set(o.carries || []); bdState.plants = o.plants || {}; bdState.alphaAug = !!o.alphaAug; bdState.bonus = o.bonus || {};
   bdState.sel = null; bdRender();
 }
 function undoStep() { if (!bdState.past.length) return; bdState.future.push(snap()); restore(bdState.past.pop()); bdToast('되돌렸어요'); }
@@ -63,6 +64,8 @@ function bdTraitCounts() {
       if (e && !c.traits.includes(e.trait)) n[e.trait] = (n[e.trait] || 0) + 1;
     }
   }
+  // 증강으로 얻은 인원 (랭커 실제 보드를 열 때 따라옴 — 나무정령 럭스 9나무정령 = 챔피언·상징 8 + 증강 1)
+  for (const [t, k] of Object.entries(bdState.bonus || {})) if (k > 0) n[t] = (n[t] || 0) + k;
   return n;
 }
 const bdTraitStyle = (tier, max) => !tier ? '' : max === 1 ? 'gold' : tier >= max ? (max >= 4 ? 'prism' : 'gold') : ['bronze', 'silver', 'gold'][Math.min(tier, 3) - 1];
@@ -220,7 +223,9 @@ export function bdOpenDeck(d) {
   const units = d.team.map(c => {
     const items = [];
     for (const a of d.assignment || []) if (a.holder === c.id && emblemItem(a.trait)) items.push(emblemItem(a.trait));
-    const build = d.builds?.[c.id] || ((c.id === carryId || c.id === tankId) ? bd.buildsFor(c)[0] : null);
+    // 핵심 캐리·탱커 + 이 덱에서 아이템을 평균 1.5개 이상 드는 챔피언(11/17 사용자: 햇빛 르블랑의 유나라·카르마)
+    const holds = c.id === carryId || c.id === tankId || (d.unitInfo?.[c.id]?.held || 0) >= 1.5;
+    const build = d.builds?.[c.id] || (holds ? bd.buildsFor(c)[0] : null);
     for (const it of build?.items || []) if (items.length < 3) items.push(it);
     for (const it of d.items?.[c.id] || []) if (items.length < 3) items.push(it.id); // 아이템 탭 결과
     const star3 = (d.unitInfo?.[c.id]?.star3 || 0) >= 0.4;
@@ -253,6 +258,8 @@ export function bdOpenDeck(d) {
   } else {
     bdState.cells = bdAutoPlace(units, { carryId, tankId });
     bdState.plants = {}; bdState.carries = new Set();
+    // 랭커 실제 보드의 증강 인원 (덱 카드의 "증강 +1")도 함께
+    bdState.bonus = Object.fromEntries((d.traits || []).filter(t => t.bonus > 0).map(t => [t.id, t.bonus]));
     bd$('bdName').value = d.bdName || (d.title || '').replace(/<span class="tag[^]*$/, '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
   }
   bdState.sel = null;
@@ -287,7 +294,7 @@ export function bdBoardUnits() {
 // ---------------- 이벤트 ----------------
 export function initBuilder(ctx) {
   bd = ctx;
-  bd$('bdClear').onclick = () => { save(); bdState.cells = {}; bdState.inv = []; bdState.plants = {}; bdState.carries = new Set(); bdState.sel = null; bdRender(); };
+  bd$('bdClear').onclick = () => { save(); bdState.cells = {}; bdState.inv = []; bdState.plants = {}; bdState.carries = new Set(); bdState.bonus = {}; bdState.sel = null; bdRender(); };
   bd$('bdUndo').onclick = undoStep;
   bd$('bdRedo').onclick = redoStep;
   document.addEventListener('keydown', e => {
@@ -448,7 +455,11 @@ export function initBuilder(ctx) {
     g.classList.add('flash'); setTimeout(() => g.classList.remove('flash'), 1300);
     if (innerWidth <= 900) bd$('bdPal').scrollIntoView({ block: 'start', behavior: 'smooth' });
   };
-  bd$('bdTraits').addEventListener('click', e => { const r = e.target.closest('[data-tr]'); if (r) jump(r.dataset.tr); });
+  bd$('bdTraits').addEventListener('click', e => {
+    const b = e.target.closest('[data-rmbonus]');
+    if (b) { e.stopPropagation(); save(); delete bdState.bonus[b.dataset.rmbonus]; bdRender(); return bdToast('증강 인원을 뺐어요 · Ctrl+Z 로 되돌리기'); }
+    const r = e.target.closest('[data-tr]'); if (r) jump(r.dataset.tr);
+  });
   bd$('bdTraits').addEventListener('keydown', e => { const r = e.target.closest('[data-tr]'); if (r && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); jump(r.dataset.tr); } });
 
   // 챔피언 툴팁
@@ -546,7 +557,7 @@ function bdRenderTraits() {
     const lvl = t.breakpoints.filter(b => b <= k).length;
     return { id, t, k, lvl, uniq: t.breakpoints.length === 1 && t.breakpoints[0] === 1 };
   }).filter(Boolean).sort((a, b) => (b.lvl > 0) - (a.lvl > 0) || a.uniq - b.uniq || b.lvl / b.t.breakpoints.length - a.lvl / a.t.breakpoints.length || b.k - a.k);
-  bd$('bdTraits').innerHTML = rows.length ? rows.map(r => `<div class="trow${r.lvl ? '' : ' off'}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}</span>${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`).join('')
+  bd$('bdTraits').innerHTML = rows.length ? rows.map(r => `<div class="trow${r.lvl ? '' : ' off'}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}${bdState.bonus?.[r.id] ? `<span class="aug" data-rmbonus="${r.id}" role="button" title="랭커 실제 판에서 증강 등으로 얻은 인원이에요. 누르면 빼요">증강 +${bdState.bonus[r.id]} ×</span>` : ''}</span>${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`).join('')
     : '<p class="muted small">챔피언을 올리면 여기에 시너지가 나와요.</p>';
 }
 

@@ -907,3 +907,5 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
   .pnRow { grid-template-columns: 1fr; gap: 10px; }
   .pnRes { flex-direction: row; align-items: center; flex-wrap: wrap; }
 }
+.trow .aug { margin-left: 6px; padding: 1px 6px; border-radius: 6px; background: #e2b04a22; cursor: pointer; font-weight: 600; }
+.trow .aug:hover { background: #e2b04a44; }

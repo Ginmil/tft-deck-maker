@@ -341,9 +341,9 @@ function deckCard(d, i, byId) {
   const traits = d.traits.filter(t => t.tier > 0 || t.count >= 2).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))
     .sort((a, b) => (b.tier > 0) - (a.tier > 0) || (a.breakpoints.length === 1) - (b.breakpoints.length === 1) || order[a.st] - order[b.st] || b.count - a.count)
     .map(t => `<span class="tTr${t.tier ? '' : ' off'}${t.emblemOnly ? ' embOnly' : ''}" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.emblemOnly ? ' · 상징이 있어야 켜지는 단계' : ''}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등 · ${t.stat.games}판` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `<span class="aug" title="랭커 실제 판에서 챔피언·상징 말고 증강 등으로 얻은 인원">증강 +${t.bonus}</span>` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
-  const builds = [carryId, tankId].filter(Boolean).map(id => {
+  const builds = [carryId, tankId, ...(d.m ? holderIds(d, carryId, tankId) : [])].filter(Boolean).map(id => {
     const c = byId.get(id); const own = d.builds?.[id], b = c && (own || buildsFor(c)[0]);
-    return b ? `<div class="dcBuild"><span class="who">${id === carryId ? '핵심' : '탱커'} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
+    return b ? `<div class="dcBuild"><span class="who">${id === carryId ? '핵심' : id === tankId ? '탱커' : '아이템도 드는'} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
   }).join('');
   const meta = d.metaInfo || `점수 ${d.score.toFixed(1)} · 총 ${d.gold}골드${d.usedEmblems ? ` · 상징 ${d.usedEmblems}개 사용` : ''}${d.wastedEmblems ? ` · <span style="color:var(--danger)">상징 ${d.wastedEmblems}개는 단계를 못 올림</span>` : ''}${unused ? ` · <span style="color:var(--danger)">상징 ${unused}개 못 씀</span>` : ''}${d.desiredMet === false ? ' · 목표 미달성' : ''}`;
   return `<article class="dcard${d.desiredMet === false ? ' warn' : ''}">
@@ -877,6 +877,18 @@ function realBoardTeam(m, byLower) {
 }
 
 /** 팀·정보 → 메타 덱 카드 데이터 */
+/** unitInfo 에 held = 이 덱에서 그 챔피언이 든 평균 아이템 수(딜+탱 아이템, 상징·도적 제외) */
+function withHeld(info, m) {
+  const out = {};
+  for (const [k, u] of Object.entries(info || {})) out[k] = u?.off != null ? { ...u, held: Math.round((u.off + (u.tank || 0)) / Math.max(1, (u.rate || 0) * m.games) * 100) / 100 } : u;
+  return out;
+}
+/** 핵심 캐리·탱커 말고도 아이템을 드는 챔피언 (평균 1.5개 이상, 많이 드는 순 최대 2명) */
+const HOLDER_MIN = 1.5;
+function holderIds(x, carryId, tankId) {
+  return x.team.filter(c => c.id !== carryId && c.id !== tankId && (x.unitInfo?.[c.id]?.held || 0) >= HOLDER_MIN)
+    .sort((a, b) => x.unitInfo[b.id].held - x.unitInfo[a.id].held).slice(0, 2).map(c => c.id);
+}
 function metaDeckFrom(m, team, info, emblems, carry, byLower, swap, isReal, bonus = {}) {
   const d = state.data;
   {
@@ -895,7 +907,7 @@ function metaDeckFrom(m, team, info, emblems, carry, byLower, swap, isReal, bonu
     const value = isValueDeck(team, { ...m, level }, ev);
     const mainCnt = ev.traits.find(t => t.id === m.trait)?.count || 0;
     return {
-      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: info, builds, carryChampId: carry.id, value, realBoard: isReal, level,
+      ...ev, team: [...team].sort((a, b) => a.cost - b.cost), m, tier, unitInfo: withHeld(info, m), builds, carryChampId: carry.id, value, realBoard: isReal, level,
       title: `<span class="tier t${tier}">${tier}</span> ${value ? `${esc(carry.name)} 밸류 <span class="tag soft" title="밸류덱: 시너지보다 5코스트 챔피언으로 힘을 내는 덱. 랭커 경기에서 주력으로 잡힌 시너지는 ${esc(traitName(m.trait))} ${mainCnt}명">${esc(traitName(m.trait))} ${mainCnt}</span>` : `${esc(traitName(m.trait))} · ${esc(carry.name)}`}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${emblemNote(m, { team, assignment: ev.assignment, unitInfo: info })}${m.mergedTraits?.length ? ` <span class="tag soft" title="같은 구성인데 랭커 경기에서 주력 시너지가 ${esc(m.mergedTraits.map(traitName).join(', '))}(으)로 잡힌 판도 합쳤어요">${esc(m.mergedTraits.map(traitName).join('·'))} 포함</span>` : ''}`,
       metaInfo: `평균 <b>${m.avgPlace}등</b>${patchDelta(m)} · 순방 ${(m.top4 * 100).toFixed(0)}% · 1등 ${(m.win * 100).toFixed(0)}% · 픽률 ${(m.playRate * 100).toFixed(1)}% · ${m.games}판${patchNote(m)} · 레벨 ${level}${isReal && m.board ? ` · <span class="tag soft" title="이 덱을 쓴 랭커의 실제 최종 보드 중, 자주 쓰인 챔피언을 가장 많이 담은 보드예요. 같은 구성으로 ${m.board.same}판, 평균 ${m.board.avgPlace}등">${m.board.same > 1 ? `랭커 실제 보드 · 같은 구성 ${m.board.same}판` : '랭커 실제 보드'}</span>` : ''}`,
     };
@@ -1285,9 +1297,9 @@ function tierDetailHtml(x, byId) {
       <span class="pwrap">${hexPor(c)}${(emb[c.id] || []).map(a => `<span class="embb" title="${esc(traitName(a.trait))} 상징">${traitBadge(a.trait, 'gold', true)}</span>`).join('')}</span>
       ${esc(c.base && c.weights ? c.base : c.name)}<em>${c.id === carryId ? '핵심 캐리' : c.id === tankId ? '메인 탱커' : rate < 0.05 ? '드물게 사용' : opt ? `${pct(rate)}만 사용` : ''}</em></div>`;
   }).join('');
-  const builds = [carryId, tankId].filter(Boolean).map(id => {
+  const builds = [carryId, tankId, ...holderIds(x, carryId, tankId)].filter(Boolean).map(id => {
     const c = byId.get(id), own = x.builds?.[id], b = c && (own || buildsFor(c)[0]);
-    return b ? `<div class="tBuild"><span class="who">${id === carryId ? '캐리' : '탱커'} ${esc(c.name)}</span>${buildRow(b, !own)}</div>` : '';
+    return b ? `<div class="tBuild"><span class="who">${id === carryId ? '캐리' : id === tankId ? '탱커' : '아이템도 드는'} ${esc(c.name)}</span>${buildRow(b, !own)}</div>` : '';
   }).join('');
   const order = { prism: 0, gold: 1, silver: 2, bronze: 3, '': 4 };
   const traits = (x.traits || []).filter(t => t.tier > 0).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))

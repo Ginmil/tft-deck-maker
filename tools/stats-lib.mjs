@@ -285,7 +285,10 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
     const topBuild = id => Object.entries(c.builds[id] || {}).sort((a, b) => b[1].games - a[1].games).slice(0, 1)
       .map(([k, b]) => ({ items: k.split('|'), games: Math.round(b.games), avgPlace: round(b.sumPlace / b.games, 2) }))[0] || null;
     const tankId = mainTank && mainTank[1].tank > 0 ? mainTank[0] : null;
-    const builds = { [mainCarry]: topBuild(mainCarry), ...(tankId ? { [tankId]: topBuild(tankId) } : {}) };
+    // 핵심 캐리·메인 탱커 + 이 덱에서 아이템을 평균 1.5개 이상 드는 챔피언(11/17 사용자: 햇빛 르블랑은 카르마·유나라도 템을 듦) 최대 4명
+    const holders = units.filter(([id, r]) => id !== mainCarry && id !== tankId && r.n / c.games >= 0.5 && (r.off + r.tank) / r.n >= 1.5)
+      .sort((a, b) => (b[1].off + b[1].tank) / b[1].n - (a[1].off + a[1].tank) / a[1].n).slice(0, 4).map(([id]) => id);
+    const builds = { [mainCarry]: topBuild(mainCarry), ...(tankId ? { [tankId]: topBuild(tankId) } : {}), ...Object.fromEntries(holders.map(id => [id, topBuild(id)]).filter(([, b]) => b)) };
     // 대표 보드: 랭커가 실제로 쓴 보드 중 "자주 쓰인 챔피언을 가장 많이 담은" 것 (가장 흔한 인원 수 보드 중에서, 같으면 판수)
     const rate = id => (c.units[id]?.n || 0) / c.games;
     const boards = Object.entries(c.boards || {}).map(([k, b]) => ({ ids: k.split(','), ...b }));
