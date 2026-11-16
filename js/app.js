@@ -1086,7 +1086,7 @@ function renderPatch(selected) {
     predHtml = `<div class="pnFilters" id="pnFilters">${F.map(([k, l, n]) => `<button class="pill${k === pnFilter ? ' on' : ''}" data-f="${k}">${l} <span>${n}</span></button>`).join('')}</div>
       <div class="pnAxis"><span></span><span></span><span class="pnScale"><em>2.5등 · 좋음</em><em>6등 · 나쁨</em></span><span class="pnKeys"><span><i class="dot base"></i>${esc(prev)}</span><span><i class="dot pred"></i>예측</span><span><i class="dot now hit"></i>실제</span></span></div>
       <div class="pnRows">${rows || '<div class="empty">이 조건의 덱이 없어요.</div>'}</div>
-      <details class="pnHow"><summary>예측은 어떻게 하나요?</summary><p>이전 밸런스 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 그 덱의 <b>핵심 캐리</b>면 크게, <b>탱커</b>면 중간, <b>구성원</b>이면 작게, <b>주력 시너지</b>가 바뀌면 크게 반영해요. 평균 등수는 8명이 1~8등을 나눠 갖는 값이라, 메타 전체가 받은 평균 영향보다 더 받은 만큼만 오르내린다고 봐요. 실제 변화가 판수로 생기는 오차(±)보다 작으면 "구분 어려움"으로 채점하지 않아요. 증강·수호령 변경은 예측에 넣지 않아요.</p></details>`;
+      <details class="pnHow"><summary>예측은 어떻게 하나요?</summary><p>이전 밸런스 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 그 덱의 <b>핵심 캐리</b>면 크게, <b>탱커</b>면 중간, <b>구성원</b>이면 작게, <b>주력 시너지</b>가 바뀌면 크게 반영해요. 평균 등수는 8명이 1~8등을 나눠 갖는 값이라, 메타 전체가 받은 평균 영향보다 더 받은 만큼만 오르내린다고 봐요. 실제 변화가 판수로 생기는 오차(±)보다 작거나, 덱 자체가 받는 영향이 0.1등보다 작으면 "구분 어려움"으로 보고 채점하지 않아요. 시너지의 특정 단계만 바뀐 경우(나무정령 9단계 등)는 그 덱이 그 인원까지 간 판 비율만큼만 반영해요. 증강·수호령 변경은 예측에 넣지 않아요.</p></details>`;
   }
   box.innerHTML = head + changeHtml + (changes.length ? `<section class="pnSec"><h3>메타 덱 영향 · 예측 vs 실제</h3>${predHtml}</section>` : '');
 }

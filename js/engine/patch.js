@@ -46,7 +46,7 @@ export function patchImpact(comp, changes) {
  * @param patch   패치 일정 항목 { patch, changes }
  * @param prevPatch 바로 이전 (밸런스) 패치 이름 — 예측의 기준 성적
  */
-// 예측 변화가 이보다 작으면 "비슷"으로 보고 채점하지 않음 (11/17: 덱 자체 영향은 거의 없고 다른 덱이 버프받아서 상대적으로 조금 내려갈 것이라는 예측은 의미가 약함)
+// 예측 변화가 이보다 작거나, 덱 자체가 받는 영향(다른 덱과 비교하기 전)이 이보다 작으면 "비슷"으로 보고 채점하지 않음 (11/17: 덱 자체 영향은 거의 없고 다른 덱이 버프받아서 상대적으로 조금 내려갈 것이라는 예측은 의미가 약함)
 export const PRED_MIN = 0.1;
 export function patchReport(comps, patch, prevPatch) {
   // 평균 등수는 제로섬(8명이 1~8등을 나눔): 여러 덱이 함께 버프되면 서로 상쇄됨.
@@ -66,7 +66,7 @@ export function patchReport(comps, patch, prevPatch) {
       row.actualDelta = pRound(row.now.avgPlace - row.base.avgPlace, 2);
       // 판수가 적으면 평균 등수 자체가 흔들림: 변화가 오차(표준오차)보다 작으면 "구분 어려움"
       row.noise = pRound(PLACE_SD * Math.sqrt(1 / row.base.games + 1 / row.now.games), 2);
-      row.verdict = Math.abs(row.actualDelta) < row.noise || Math.abs(predDelta) < PRED_MIN ? 'flat'
+      row.verdict = Math.abs(row.actualDelta) < row.noise || Math.abs(predDelta) < PRED_MIN || Math.abs(PRED_PER_POINT * score) < PRED_MIN ? 'flat'
         : Math.sign(row.actualDelta) === Math.sign(predDelta) ? 'hit' : 'miss';
     }
     rows.push(row);
