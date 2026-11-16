@@ -37,7 +37,7 @@ const isForm = c => !!formGroup(c);
 const champKey = c => (isForm(c) ? 'F:' + c.base : c.id);
 
 // ---------------- 되돌리기 기록 ----------------
-const snap = () => JSON.stringify({ cells: bdState.cells, inv: bdState.inv, carries: [...bdState.carries], plants: bdState.plants });
+const snap = () => JSON.stringify({ cells: bdState.cells, inv: bdState.inv, carries: [...bdState.carries], plants: bdState.plants, alphaAug: bdState.alphaAug });
 function save() {
   bdState.past.push(snap());
   if (bdState.past.length > 50) bdState.past.shift();
@@ -45,7 +45,7 @@ function save() {
 }
 function restore(s) {
   const o = JSON.parse(s);
-  bdState.cells = o.cells; bdState.inv = o.inv || []; bdState.carries = new Set(o.carries || []); bdState.plants = o.plants || {};
+  bdState.cells = o.cells; bdState.inv = o.inv || []; bdState.carries = new Set(o.carries || []); bdState.plants = o.plants || {}; bdState.alphaAug = !!o.alphaAug;
   bdState.sel = null; bdRender();
 }
 function undoStep() { if (!bdState.past.length) return; bdState.future.push(snap()); restore(bdState.past.pop()); bdToast('되돌렸어요'); }
@@ -117,6 +117,33 @@ function lunarCells() {
   const area = new Set(); for (const i of src) for (const j of neighbors(i)) if (!src.has(j)) area.add(j);
   return { src, area, id };
 }
+
+// 협곡야수 우두머리 표식 (11/17 사용자): 협곡야수 3단계부터 1개, 증강이 있으면 2명에게 (단계와 무관)
+// cells[i].alpha = 준 순서(숫자). 시너지 인원에는 영향 없음, 표식 받은 챔피언의 "OO 버프" 효과가 켜짐
+const riftId = () => traitIdBy(/Riftbeast/i);
+function alphaSlots(n = bdTraitCounts()) {
+  const id = riftId(), t = id && bdData().traits[id];
+  return t && (n[id] || 0) >= t.breakpoints[0] ? (bdState.alphaAug ? 2 : 1) : 0;
+}
+const isRift = u => { const c = u && bdChamp(u.id); return !!c && c.traits.includes(riftId()); };
+const alphaList = () => Object.entries(bdState.cells).filter(([, u]) => u.alpha).map(([i, u]) => ({ i: Number(i), u })).sort((a, b) => a.u.alpha - b.u.alpha);
+function syncAlpha() {
+  const k = alphaSlots();
+  alphaList().filter(x => isRift(x.u)).forEach((x, n) => { if (n >= k) delete x.u.alpha; });
+  for (const x of alphaList()) if (!isRift(x.u)) delete x.u.alpha;
+}
+function setAlpha(i) { // 자리가 1개면 옮기고, 2개가 다 찼으면 안내
+  const u = bdState.cells[i], k = alphaSlots();
+  if (!isRift(u)) return bdToast('우두머리 표식은 협곡야수 챔피언에게만 줄 수 있어요');
+  if (!k) return bdToast('협곡야수 3명부터 우두머리 표식을 써요');
+  if (u.alpha) return;
+  const cur = alphaList();
+  if (cur.length >= k && k > 1) return bdToast('우두머리 표식은 2개까지예요 · 하나를 빼고 주세요');
+  save();
+  if (cur.length >= k) delete cur[0].u.alpha;
+  u.alpha = (cur.at(-1)?.u.alpha || 0) + 1; bdRender();
+}
+const alphaBuff = c => { const m = c?.ability?.desc?.match(/(?:^|\n)([^\n]*버프:[^\n]*)/); return m ? m[1].replace(/@[^@]*@/g, '?').replace(/%i:[a-zA-Z]+%/g, '').replace(/\s+/g, ' ').trim() : ''; };
 
 // ---------------- 배치 조작 ----------------
 function bdFreeCell(front) {
@@ -312,8 +339,8 @@ export function initBuilder(ctx) {
   document.addEventListener('dragstart', e => {
     if (bd$('panel-builder').hidden) return;
     const h = e.target.closest('#bdBoard .b2hex'), pc = e.target.closest('#bdPal .pc'), ic = e.target.closest('#bdItems .ic');
-    const pl = h && e.target.closest('.plant'), it = h && e.target.closest('.its [data-k]');
-    bdState.drag = it ? { itemFrom: Number(h.dataset.i), k: Number(it.dataset.k) } : pl ? { plantFrom: Number(h.dataset.i) } : h ? { from: Number(h.dataset.i) } : pc ? { champ: pc.dataset.id, exact: !!pc.dataset.exact } : ic ? { item: ic.dataset.id } : null;
+    const pl = h && e.target.closest('.plant'), it = h && e.target.closest('.its [data-k]'), al = e.target.closest('#bdAlpha .aslot');
+    bdState.drag = al ? (al.dataset.alphaFrom != null ? { alphaFrom: Number(al.dataset.alphaFrom) } : { alpha: true }) : it ? { itemFrom: Number(h.dataset.i), k: Number(it.dataset.k) } : pl ? { plantFrom: Number(h.dataset.i) } : h ? { from: Number(h.dataset.i) } : pc ? { champ: pc.dataset.id, exact: !!pc.dataset.exact } : ic ? { item: ic.dataset.id } : null;
     if (bdState.drag) { e.dataTransfer.setData('text/plain', 'tft'); e.dataTransfer.effectAllowed = 'move'; hideTip(); }
   });
   document.addEventListener('dragover', e => {
@@ -331,6 +358,13 @@ export function initBuilder(ctx) {
     if (inv && d.item) { save(); bdState.inv.push(d.item); bdRender(); return; }
     if (!h) return;
     const i = Number(h.dataset.i), S = bdState;
+    if (d.alpha || d.alphaFrom != null) { // 우두머리 표식 주기·옮기기
+      const dst = S.cells[i]; S.sel = dst ? i : S.sel;
+      if (!isRift(dst)) { bdRender(); return bdToast('우두머리 표식은 협곡야수 챔피언에게만 줄 수 있어요'); }
+      if (d.alpha) return setAlpha(i);
+      const src = S.cells[d.alphaFrom]; if (!src?.alpha || d.alphaFrom === i || dst.alpha) return bdRender();
+      save(); dst.alpha = src.alpha; delete src.alpha; bdRender(); return;
+    }
     if (d.itemFrom != null) { // 낀 아이템을 다른 챔피언에게
       const src = S.cells[d.itemFrom], dst = S.cells[i];
       if (i === d.itemFrom || !src) return;
@@ -355,8 +389,9 @@ export function initBuilder(ctx) {
     const d = bdState.drag; bdState.drag = null;
     if (!d || d.done) return;
     const at = document.elementFromPoint(e.clientX, e.clientY);
-    if (at && at.closest('#bdBoard')) return;
+    if (at && at.closest('#bdBoard, #bdAlpha')) return;
     if (d.from != null && bdState.cells[d.from]) removeUnit(d.from);
+    else if (d.alphaFrom != null && bdState.cells[d.alphaFrom]?.alpha) { save(); delete bdState.cells[d.alphaFrom].alpha; bdRender(); bdToast('우두머리 표식을 뺐어요'); }
     else if (d.itemFrom != null && bdState.cells[d.itemFrom]?.items[d.k]) { // 낀 아이템을 보드 밖으로 = 버리기
       save(); const [gone] = bdState.cells[d.itemFrom].items.splice(d.k, 1); bdRender(); bdToast(`${bdItemInfo(gone).name} 뺐어요`);
     }
@@ -365,8 +400,9 @@ export function initBuilder(ctx) {
   // 선택한 챔피언: 별 / 적응가 형태 / 럭스 형태 / 아이템 빼기
   bd$('bdUnit').addEventListener('click', e => {
     const i = bdState.sel, u = i != null && bdState.cells[i]; if (!u) return;
-    const f = e.target.closest('[data-f]'), s = e.target.closest('[data-setstar]'), r = e.target.closest('[data-rmit]'), fm = e.target.closest('[data-form]');
-    if (f) { save(); u.id = f.dataset.f; }
+    const f = e.target.closest('[data-f]'), s = e.target.closest('[data-setstar]'), r = e.target.closest('[data-rmit]'), fm = e.target.closest('[data-form]'), al = e.target.closest('[data-alpha]');
+    if (al) { if (!u.alpha) return setAlpha(i); save(); delete u.alpha; }
+    else if (f) { save(); u.id = f.dataset.f; }
     else if (s) { save(); u.star = Number(s.dataset.setstar); }
     else if (fm) { save(); if (fm.dataset.form && u.form !== fm.dataset.form) u.form = fm.dataset.form; else delete u.form; }
     else if (r) { save(); u.items.splice(Number(r.dataset.rmit), 1); }
@@ -383,6 +419,14 @@ export function initBuilder(ctx) {
     if (bdState.carries.has(i)) bdState.carries.delete(i); else bdState.carries.add(i);
     bdRender();
   };
+
+  // 협곡야수 우두머리 칸
+  bd$('bdAlpha').addEventListener('click', e => {
+    const rm = e.target.closest('[data-alpha-rm]'), nw = e.target.closest('[data-alpha-new]');
+    if (rm) { const u = bdState.cells[rm.dataset.alphaRm]; if (u?.alpha) { save(); delete u.alpha; bdRender(); } }
+    else if (nw) { if (bdState.sel != null && isRift(bdState.cells[bdState.sel])) setAlpha(bdState.sel); else bdToast('협곡야수 챔피언에게 끌어다 놓거나, 보드에서 챔피언을 고른 뒤 누르세요'); }
+  });
+  bd$('bdAlpha').addEventListener('change', e => { if (e.target.id !== 'bdAlphaAug') return; save(); bdState.alphaAug = e.target.checked; bdRender(); });
 
   // 오른쪽: 챔피언 / 아이템
   bd$('bdSeg').onclick = e => { const b = e.target.closest('[data-v]'); if (!b) return; bdState.pane = b.dataset.v; bdRenderPalette(); };
@@ -453,8 +497,8 @@ export function bdRender() {
   const data = bdData();
   if (!data) return;
   for (const k of [...bdState.carries]) if (!bdState.cells[k]) bdState.carries.delete(k);
-  syncPlants();
-  bdRenderBoard(); bdRenderTraits(); bdRenderUnit(); bdRenderInv(); bdRenderPalette(); bdRenderSaved();
+  syncPlants(); syncAlpha();
+  bdRenderBoard(); bdRenderTraits(); bdRenderUnit(); bdRenderAlpha(); bdRenderInv(); bdRenderPalette(); bdRenderSaved();
   bd$('bdUndo').disabled = !bdState.past.length; bd$('bdRedo').disabled = !bdState.future.length;
   bd$('bdUndo').title = bdState.past.length ? `되돌리기 (Ctrl+Z) · ${bdState.past.length}단계` : '되돌릴 것이 없어요';
   const n = Object.keys(bdState.cells).length;
@@ -471,7 +515,7 @@ function bdRenderBoard() {
   board.classList.toggle('small', W < 60);
   board.style.width = (BD_COLS * (W + gap) + W / 2) + 'px';
   board.style.height = (BD_ROWS * H * 0.78 + H * 0.3 + 10) + 'px';
-  const moon = lunarCells(), pStar = plantStar(), moonIcon = moon.id ? bdData().traits[moon.id]?.icon : null;
+  const moon = lunarCells(), pStar = plantStar(), moonIcon = moon.id ? bdData().traits[moon.id]?.icon : null, riftIcon = bdData().traits[riftId()]?.icon;
   let html = '';
   for (let r = 0; r < BD_ROWS; r++) for (let c = 0; c < BD_COLS; c++) {
     const i = bdIdx(r, c), u = S.cells[i], ch = u && bdChamp(u.id), pl = S.plants[i];
@@ -483,7 +527,7 @@ function bdRenderBoard() {
       + (pl ? `<div class="bu plant ${pl}" draggable="true" title="${PLANT[pl].name} (나무정령) — 끌어서 옮기기"><img class="face" src="data/icons/plant_${pl}.webp" alt="${PLANT[pl].name}" draggable="false"></div><div class="stars pst">${'★'.repeat(pStar)}</div><div class="nm">${PLANT[pl].name}</div>` : '')
       + (ch ? `<div class="bu" draggable="true" data-cost="${ch.cost}">${ch.icon ? `<img class="face" src="${esc(ch.icon)}" alt="${esc(ch.name)}" draggable="false" onerror="this.style.visibility='hidden'">` : ''}</div>
         <button class="stars" data-star="${i}" title="눌러서 ${u.star === 3 ? 2 : 3}성으로">${'★'.repeat(u.star)}</button><div class="nm">${esc(cleanName(ch))}</div>
-        ${S.carries.has(i) ? '<span class="carryTag" title="아이템 줄 챔피언">템</span>' : ''}${u.form ? `<span class="formTag ${u.form}" title="적응가 ${u.form === 'AD' ? '물리' : '마법'} 형태">${u.form}</span>` : ''}
+        ${S.carries.has(i) ? '<span class="carryTag" title="아이템 줄 챔피언">템</span>' : ''}${u.alpha ? `<span class="alphaTag" title="협곡야수 우두머리 · ${esc(alphaBuff(ch))}">${riftIcon ? `<img src="${esc(riftIcon)}" alt="">` : ''}</span>` : ''}${u.form ? `<span class="formTag ${u.form}" title="적응가 ${u.form === 'AD' ? '물리' : '마법'} 형태">${u.form}</span>` : ''}
         <div class="its">${u.items.map((id, k) => `<span data-k="${k}" data-item="${esc(id)}" draggable="true" title="끌어서 다른 챔피언에게 · 보드 밖으로 끌어내면 빼기">${itemImg(id)}</span>`).join('')}</div>
         <button class="x" data-rm="${i}" aria-label="${esc(cleanName(ch))} 빼기">×</button>` : '')
       + '</div>';
@@ -516,7 +560,22 @@ function bdRenderUnit() {
       <span class="uits">${u.items.map((id, k) => `<button data-rmit="${k}" title="${esc(bdItemInfo(id).name)} 빼기">${itemImg(id)}</button>`).join('') || '<span class="muted small">아이템 없음 · 오른쪽 아이템을 누르면 끼워져요</span>'}</span></div>
     <div class="urow"><div class="seg2">${star(2)}${star(3)}</div>
       ${adaptorChamp(bdData(), c) ? `<div class="seg2" title="적응가: 공격력·주문력 중 높은 쪽을 써요. 형태를 정하면 자동 배분·다음 수 추천이 그 형태 아이템만 줘요"><span class="lbl">형태</span>${[['', '자동'], ['AD', 'AD 물리'], ['AP', 'AP 마법']].map(([v, l]) => `<button data-form="${v}" aria-pressed="${(u.form || '') === v}">${l}</button>`).join('')}</div>` : ''}</div>
+    ${isRift(u) && alphaSlots() ? `<div class="formRow"><span class="lbl">협곡야수</span><button data-alpha aria-pressed="${!!u.alpha}">${tbadge(riftId(), u.alpha ? 'gold' : '', true)}${u.alpha ? '우두머리 표식 빼기' : '우두머리로 지정'}</button><span class="muted small">${esc(alphaBuff(c))}</span></div>` : ''}
     ${forms ? `<div class="formRow"><span class="lbl">${esc(c.base)} 형태</span>${forms.map(f => { const t = Object.keys(f.weights || {})[0]; return `<button data-f="${esc(f.id)}" aria-pressed="${f.id === u.id}">${tbadge(t, f.id === u.id ? 'gold' : '', true)}${esc(bd.traitName(t))}</button>`; }).join('')}</div>` : ''}`;
+}
+
+function bdRenderAlpha() {
+  const { esc } = bd, box = bd$('bdAlpha'), k = alphaSlots();
+  if (!k) { box.hidden = true; box.innerHTML = ''; return; }
+  box.hidden = false;
+  const icon = bdData().traits[riftId()]?.icon, list = alphaList(), slots = [];
+  for (let n = 0; n < k; n++) {
+    const x = list[n], c = x && bdChamp(x.u.id);
+    slots.push(c
+      ? `<div class="aslot on" data-alpha-from="${x.i}" draggable="true" title="끌어서 다른 협곡야수에게 · 밖으로 끌어내거나 × 로 빼기">${porImg(c)}<span class="atx"><b>${esc(cleanName(c))}</b><small>${esc(alphaBuff(c))}</small></span><button class="x" data-alpha-rm="${x.i}" aria-label="${esc(cleanName(c))} 우두머리 표식 빼기">×</button></div>`
+      : `<div class="aslot" data-alpha-new draggable="true" role="button" tabindex="0" title="협곡야수 챔피언에게 끌어다 놓거나, 보드에서 챔피언을 고른 뒤 누르세요"><span class="atok">${icon ? `<img src="${esc(icon)}" alt="" draggable="false">` : ''}</span><span class="atx"><b>우두머리 표식</b><small>협곡야수 챔피언에게 끌어다 놓으세요</small></span></div>`);
+  }
+  box.innerHTML = `<div class="ahead"><b>협곡야수 우두머리</b><span class="muted small">표식을 받은 협곡야수는 고유 버프가 켜져요</span><label class="small"><input type="checkbox" id="bdAlphaAug"${bdState.alphaAug ? ' checked' : ''}> 증강으로 2명에게</label></div><div class="aslots">${slots.join('')}</div>`;
 }
 
 function bdRenderInv() {
@@ -578,6 +637,7 @@ function tipHtml(c) {
   return `<div class="th">${porImg(c)}<div><b>${esc(cleanName(c))}</b><div class="sub">${c.cost}코스트 · ${ROLE[c.role] || '—'}${c.range ? ` · 기본 공격 사거리 ${c.range}칸` : ''}</div>
       <div class="trs">${c.traits.map(t => `<span>${tbadge(t, '', true)}${esc(traitName(t))}${(c.weights?.[t] || 1) > 1 ? ' ×' + c.weights[t] : ''}</span>`).join('')}</div></div></div>
     ${ab?.name ? `<hr><div class="ab"><b>${esc(ab.name)}</b>${s?.mana ? `<span class="mana">마나 ${s.startMana || 0}/${s.mana}</span>` : ''}</div>` : ''}
+    ${c.traits.includes(riftId()) && alphaBuff(c) ? `<hr><div class="buff">우두머리 표식: ${esc(alphaBuff(c))}</div>` : ''}
     ${s ? `<hr><div class="st"><span>체력 <b>${s.hp ?? '—'}</b></span><span>공격력 <b>${s.ad ?? '—'}</b></span><span>방어력 <b>${s.armor ?? '—'}</b></span><span>마저 <b>${s.mr ?? '—'}</b></span><span>공속 <b>${s.as ?? '—'}</b></span></div>` : ''}
     ${st?.games ? `<hr><div class="rk">랭커 평균 <b>${st.avgPlace.toFixed(2)}등</b> · ${st.games.toLocaleString()}판${b ? ` · 3신기 ${b.items.map(id => itemImg(id)).join('')}` : ''}</div>` : ''}`;
 }
@@ -592,14 +652,16 @@ function bdLoadList() { try { return JSON.parse(localStorage.getItem(BD_SAVE_KEY
 
 // 코드 형식: [[칸번호, 챔피언id, 별, [아이템...], 형태?], ...] 을 JSON → base64 (한글 안전). 예전 코드도 그대로 읽힘
 function bdEncode() {
-  const arr = Object.entries(bdState.cells).map(([i, u]) => (u.form ? [Number(i), u.id, u.star, u.items, u.form] : [Number(i), u.id, u.star, u.items]));
+  // 6번째 값 = 협곡야수 우두머리 순서 (형태가 없으면 5번째는 null)
+  const arr = Object.entries(bdState.cells).map(([i, u]) => [Number(i), u.id, u.star, u.items, ...(u.form || u.alpha ? [u.form || null] : []), ...(u.alpha ? [u.alpha] : [])]);
   return btoa(unescape(encodeURIComponent(JSON.stringify(arr))));
 }
 function bdDecode(code) {
   try {
     const arr = JSON.parse(decodeURIComponent(escape(atob(code))));
     const cells = {};
-    for (const [i, id, star, items, form] of arr) if (bdChamp(id)) cells[i] = { id, star: star === 3 ? 3 : 2, items: items || [], ...(form === 'AD' || form === 'AP' ? { form } : {}) };
+    for (const [i, id, star, items, form, alpha] of arr) if (bdChamp(id)) cells[i] = { id, star: star === 3 ? 3 : 2, items: items || [], ...(form === 'AD' || form === 'AP' ? { form } : {}), ...(alpha > 0 ? { alpha: Number(alpha) } : {}) };
+    bdState.alphaAug = Object.values(cells).filter(u => u.alpha).length > 1;
     bdState.cells = cells; bdState.plants = {}; bdState.sel = null; bdState.carries = new Set();
     bd.openTab('builder'); bdRender();
     return true;

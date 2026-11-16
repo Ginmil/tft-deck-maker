@@ -108,3 +108,24 @@ if (fs.existsSync(snapPath) && fs.existsSync(wPath)) {
     }
   }
 }
+
+// 밤끝 vs 수은 (11/17 사용자): 둘 다 낀 판 비율이 높아(77%·59%) 예전엔 똑같이 1로 쳐서 다른 챔피언 사정으로 갈렸음.
+// 덩굴정령이 구인수+정의의 손길을 들었으면 랭커는 밤끝으로 마무리(179판) ≫ 수은(25판) → 밤끝
+{
+  const sp = new URL('../data/set-snapshot.json', import.meta.url), wp = new URL('../data/weights.json', import.meta.url);
+  const rd = fs.existsSync(sp) && JSON.parse(fs.readFileSync(sp)).data, w = fs.existsSync(wp) && JSON.parse(fs.readFileSync(wp));
+  if (rd && w && w.setNumber === rd.set.number && w.units?.da_brambleback18) {
+    rd.unitStats = w.units;
+    const rc = n => rd.champions.find(c => c.name === n)?.id, ri = n => rd.items.find(i => i.name === n)?.id, rp = n => rd.components.find(c => c.name === n)?.id;
+    const names = ['덩굴정령', '파수꾼', '바위 게', '조약돌', '어스름늑대', '렝가', '세주아니'];
+    if (names.every(rc)) {
+      const r = assignItems(rd, {
+        board: names.map((n, i) => ({ idx: i, id: rc(n), star: 2, items: n === '덩굴정령' ? [ri('구인수의 격노검'), ri('정의의 손길')] : [] })),
+        inventory: ['B.F. 대검', '쇠사슬 조끼', '연습용 장갑', '음전자 망토'].map(rp), carries: [0],
+      });
+      const got = r.assignments.filter(a => a.champ.name === '덩굴정령').map(a => a.item.name);
+      assert.deepEqual(got, ['밤의 끝자락'], `덩굴정령 마지막 칸: ${got}`);
+      console.log('밤끝 vs 수은: 든 아이템 기준 랭커 마무리로 밤끝 통과');
+    }
+  }
+}

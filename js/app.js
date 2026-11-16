@@ -1310,7 +1310,7 @@ function runAssign() {
     : a.basis?.kind === 'sparse' ? `<span title="이 챔피언은 랭커 경기에서 아이템을 드는 일이 드물어요. 랭커들이 이 챔피언에게 준 아이템 ${a.basis.total}개 중 비율이에요">랭커가 준 아이템 ${a.basis.total}개 중 ${Math.round(a.basis.share * 100)}% <span class="lowconf">기록 적음</span></span>`
     : a.basis?.kind === 'similar' ? `<span title="이 챔피언의 랭커 기록이 없어서, 역할이 같고 시너지·코스트가 비슷한 챔피언들의 기록으로 판단했어요">비슷한 챔피언(${esc(a.basis.names.join('·'))}) 기록 기준</span>`
     : a.basis?.kind === 'role' ? '<span class="muted" title="참고할 랭커 기록이 없어 역할(물리/마법/탱커)로 판단했어요">기록 없음 → 역할 기준</span>'
-    : a.rate != null ? `랭커 ${Math.round(a.rate * 100)}%가 이 챔피언에게` : '역할 기준';
+    : a.rate != null ? `<span title="랭커 경기에서 이 챔피언이 나온 판 중 이 아이템을 낀 비율이에요">랭커 판 ${Math.round(a.rate * 100)}%에서 낌</span>` : '역할 기준';
   const rows = groups.map(g => `<div class="asgRow"><div class="asgChamp" data-cost="${g.champ.cost}">${img(g.champ.icon)}<div><b>${esc(g.champ.name)}</b>${g.list.every(a => a.other) ? '<div class="small muted" title="고른 챔피언에게 줄 칸이 없거나 안 맞는 아이템이라, 다른 챔피언 중 잘 쓰는 쪽에게 줘요">남는 아이템</div>' : ''}${r.buildMatch?.[g.idx] ? `<div class="small good" title="최종 아이템 3개가 랭커들이 실제로 쓴 조합과 같아요">랭커 3신기 · ${r.buildMatch[g.idx].games}판 ${r.buildMatch[g.idx].avgPlace}등${r.buildMatch[g.idx].few ? ' <span class="lowconf">표본 적음</span>' : ''}</div>` : ''}</div></div>
     <div class="asgItems">${g.list.map(a => `<div class="asgItem">${itemLabel(a.item.id)}${a.from ? `<span class="muted small">${esc(a.from.map(compName).join(' + '))} 조합</span>` : ''}<span class="small">${why(a)}</span></div>`).join('')}</div></div>`).join('');
   const kept = [

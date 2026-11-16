@@ -124,7 +124,9 @@ export function itemAffinity(data, champ, item) {
   }
   const u = unitStatOf(data, champ);
   if (!u) return itemFit(champ, item) * (data.unitStats ? 0.3 : 1);
-  return Math.min(1, ((u.items?.[item.id] || 0) / u.games) * 3);
+  // 낀 판 비율 × 3 (33% 이상이면 1) — 다만 77%(밤끝)와 59%(수은)가 똑같이 1이 되지 않게 비율을 조금 더함 (11/17)
+  const r = (u.items?.[item.id] || 0) / u.games;
+  return Math.min(1, r * 3) * 0.85 + Math.min(1, r) * 0.15;
 }
 
 // ---- 적응가(공격력·주문력 중 높은 쪽을 쓰는 챔피언: 니달리·심술두꺼비·아칼리·코그모·마스터 이) ----
@@ -557,8 +559,14 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
       const builds = buildsOf(u).filter(b => b.games >= minG);
       const contains = b => { const rest = [...b.items]; return final.every(id => { const i = rest.indexOf(id); if (i < 0) return false; rest.splice(i, 1); return true; }); };
       const exact = final.length === 3 && builds.find(b => [...b.items].sort().join() === final.join());
-      if (exact) v += 0.5 * Math.min(1, exact.games / 5);
-      else if (builds.some(contains)) v += 0.2;
+      // 같은 아이템을 든 상태에서 랭커들이 어떤 아이템으로 마무리했는지 (11/17 사용자: 밤끝 vs 수은 — 남은 템까지 본 기댓값)
+      // 예: 덩굴정령이 구인수+정의의 손길을 들었으면 밤끝으로 마무리 179판, 수은 25판 → 밤끝 쪽 가산이 큼
+      const heldIds = u.held.filter(x => x.kind === 'item').map(x => x.statId || x.id);
+      const has = (b, ids) => { const rest = [...b.items]; return ids.every(id => { const i = rest.indexOf(id); if (i < 0) return false; rest.splice(i, 1); return true; }); };
+      const base = builds.filter(b => has(b, heldIds)), sumG = arr => arr.reduce((s, b) => s + b.games, 0);
+      const top = Math.max(0, ...base.map(b => b.games));
+      if (exact) v += 0.5 * Math.min(1, exact.games / 5) * (top ? 0.4 + 0.6 * exact.games / top : 1);
+      else if (builds.some(contains)) { const r = sumG(base) ? sumG(base.filter(contains)) / sumG(base) : 1; v += 0.2 * (0.4 + 0.6 * Math.min(1, r * 2)); }
     }
     return v;
   };
