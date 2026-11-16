@@ -639,6 +639,7 @@ function tipHtml(c) {
     ${ab?.name ? `<hr><div class="ab"><b>${esc(ab.name)}</b>${s?.mana ? `<span class="mana">마나 ${s.startMana || 0}/${s.mana}</span>` : ''}</div>` : ''}
     ${c.traits.includes(riftId()) && alphaBuff(c) ? `<hr><div class="buff">우두머리 표식: ${esc(alphaBuff(c))}</div>` : ''}
     ${s ? `<hr><div class="st"><span>체력 <b>${s.hp ?? '—'}</b></span><span>공격력 <b>${s.ad ?? '—'}</b></span><span>방어력 <b>${s.armor ?? '—'}</b></span><span>마저 <b>${s.mr ?? '—'}</b></span><span>공속 <b>${s.as ?? '—'}</b></span></div>` : ''}
+    ${bd.itemHabitHtml ? bd.itemHabitHtml(c, true) : ''}
     ${st?.games ? `<hr><div class="rk">랭커 평균 <b>${st.avgPlace.toFixed(2)}등</b> · ${st.games.toLocaleString()}판${b ? ` · 3신기 ${b.items.map(id => itemImg(id)).join('')}` : ''}</div>` : ''}`;
 }
 

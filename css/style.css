@@ -797,3 +797,12 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 .b2hex .alphaTag img { width: 13px; height: 13px; }
 .b2grid.small .b2hex .alphaTag { top: 22px; width: 14px; height: 14px; } .b2grid.small .b2hex .alphaTag img { width: 10px; height: 10px; }
 .ctip .buff { color: #7fd6b5; font-size: 12.5px; line-height: 1.45; }
+
+/* 아이템을 드는 방식: 도적의 장갑 비율·아이템 적게 드는 챔피언 (11/17) */
+.habits { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 10px; }
+.habit { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px 3px 4px; border-radius: 999px; font-size: 12px; background: var(--card-hi); color: var(--muted); }
+.habit img { width: 18px; height: 18px; border-radius: 4px; }
+.habit.thief { color: #f0c987; box-shadow: inset 0 0 0 1px #e2b04a55; }
+.habit.thief b { color: var(--gold); font-weight: 600; }
+.habit.few { padding-left: 9px; }
+.ctip .habits { margin: 8px 0 0; }

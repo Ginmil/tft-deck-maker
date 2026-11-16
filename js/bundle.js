@@ -2126,6 +2126,7 @@ function tipHtml(c) {
     ${ab?.name ? `<hr><div class="ab"><b>${esc(ab.name)}</b>${s?.mana ? `<span class="mana">마나 ${s.startMana || 0}/${s.mana}</span>` : ''}</div>` : ''}
     ${c.traits.includes(riftId()) && alphaBuff(c) ? `<hr><div class="buff">우두머리 표식: ${esc(alphaBuff(c))}</div>` : ''}
     ${s ? `<hr><div class="st"><span>체력 <b>${s.hp ?? '—'}</b></span><span>공격력 <b>${s.ad ?? '—'}</b></span><span>방어력 <b>${s.armor ?? '—'}</b></span><span>마저 <b>${s.mr ?? '—'}</b></span><span>공속 <b>${s.as ?? '—'}</b></span></div>` : ''}
+    ${bd.itemHabitHtml ? bd.itemHabitHtml(c, true) : ''}
     ${st?.games ? `<hr><div class="rk">랭커 평균 <b>${st.avgPlace.toFixed(2)}등</b> · ${st.games.toLocaleString()}판${b ? ` · 3신기 ${b.items.map(id => itemImg(id)).join('')}` : ''}</div>` : ''}`;
 }
 
@@ -2552,7 +2553,7 @@ function bind() {
   });
   bindItemTips();
   initBuilder({
-    getData: () => state.data, esc, traitName, roleKo, buildsFor,
+    getData: () => state.data, esc, traitName, roleKo, buildsFor, itemHabitHtml,
     openTab: name => document.querySelector(`.tab[data-tab="${name}"]`)?.click(),
   });
   $('bdRecommend').onclick = e => runBoard(e.currentTarget);
@@ -2665,6 +2666,27 @@ function buildRow(b, overall = false) {
   const src = overall ? ' <span class="lowconf" title="이 덱에서 똑같이 쓴 조합이 3판이 안 돼서, 이 챔피언의 모든 랭커 경기 기록 기준으로 보여 줘요">챔피언 전체 기록</span>' : '';
   return `<div class="build">${b.items.map(itemLabel).join('')}<span class="bmeta">평균 ${b.avgPlace}등 · ${b.games}판${low}${src}</span></div>`;
 }
+// 아이템을 드는 방식 (11/17 사용자): 도적의 장갑을 많이 끼는 챔피언(케넨 20%)·아이템을 거의 안 받는 챔피언 표시
+const THIEF_SHOW = 0.07, THIEF_MIN_GAMES = 20;
+function unitStatFor(c) {
+  const us = state.data?.unitStats; if (!us || !c) return null;
+  return us[c.id.toLowerCase()] || (c.weights && c.base && /lux/i.test(c.id) ? us.da_lux18_base : null);
+}
+function itemHabitHtml(c, compact = false) {
+  const st = unitStatFor(c); if (!st || st.games < 30) return '';
+  const pct = v => Math.round(v * 100) + '%';
+  const out = [];
+  const th = st.thief;
+  if (th && th.rate >= THIEF_SHOW && th.games >= THIEF_MIN_GAMES) {
+    const more = th.rate > (st.carryRate || 0);
+    out.push(`<span class="habit thief" title="랭커 경기에서 이 챔피언이 도적의 장갑(무작위 아이템 2개)을 낀 판이 ${pct(th.rate)}(${th.games.toLocaleString()}판), 그때 평균 ${th.avgPlace}등 · 이 챔피언 전체 평균 ${st.avgPlace}등${more ? ` · 아이템 3개 조합(${pct(st.carryRate || 0)})보다 많아요` : ''}"><img src="${esc(state.data.items.find(i => /ThiefsGloves/i.test(i.id))?.icon || '')}" alt="" onerror="this.remove()">도적의 장갑 ${pct(th.rate)}${compact ? '' : ` · ${th.avgPlace}등`}${more && !compact ? ' <b>3신기보다 많음</b>' : ''}</span>`);
+  }
+  if ((st.carryRate || 0) < 0.15 && st.held) {
+    out.push(`<span class="habit few" title="랭커 경기에서 아이템 3개를 다 든 판이 ${pct(st.carryRate || 0)}뿐이에요 (아이템 없음 ${pct(st.held[0])}). 보통 아이템을 몰아주지 않는 챔피언이라 3신기 판수가 적어요">아이템 3개 든 판 ${pct(st.carryRate || 0)}${compact ? '' : ` · 템 없음 ${pct(st.held[0])}`}</span>`);
+  }
+  return out.length ? `<div class="habits">${out.join('')}</div>` : '';
+}
+
 function renderBuilds() {
   const d = state.data;
   if (!d) { $('buildList').innerHTML = ''; return; }
@@ -2678,6 +2700,7 @@ function renderBuilds() {
     return `<div class="bcard">
       <div class="bhead">${c.icon ? `<img src="${esc(c.icon)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : ''}
         <div><b>${esc(c.name)}</b><span class="muted"> ${c.cost}코 · ${roleKo[c.role]}</span><div class="muted small">${c.traits.map(traitName).map(esc).join(' · ')}</div></div></div>
+      ${itemHabitHtml(c)}
       ${bs.length ? bs.map((b, i) => (i ? '<div class="alt">' : '<div class="best">') + buildRow(b) + '</div>').join('') : '<div class="muted small">아이템 3개 조합 기록이 부족해요 (5판 이상인 조합 없음)</div>'}
     </div>`;
   }).join('');
