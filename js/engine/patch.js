@@ -6,7 +6,7 @@
 // =============================================================
 
 const DIR = { buff: 1, nerf: -1, adjust: 0 };
-const PRED_PER_POINT = 0.35; // 영향 점수 1 = 평균 등수 0.35등 변화로 봄 (핵심 캐리 버프 1건 ≈ 0.35등 좋아짐)
+export const PRED_PER_POINT = 0.35; // 영향 점수 1 = 평균 등수 0.35등 변화로 봄 (핵심 캐리 버프 1건 ≈ 0.35등 좋아짐)
 const PRED_MAX = 1.0;
 const MIN_BASE_GAMES = 8;    // 이전 패치 판수가 이보다 적으면 예측 안 함
 const MIN_ACTUAL_GAMES = 10; // 이번 패치 판수가 이보다 적으면 실측 비교 안 함
@@ -51,7 +51,8 @@ export const PRED_MIN = 0.1;
 export function patchReport(comps, patch, prevPatch) {
   // 평균 등수는 제로섬(8명이 1~8등을 나눔): 여러 덱이 함께 버프되면 서로 상쇄됨.
   // → 메타 전체의 평균 영향(이전 패치 판수 가중)을 빼서 "다른 덱보다 얼마나 더" 영향받는지로 예측
-  const all = (comps || []).map(c => ({ c, ...patchImpact(c, patch.changes), base: c.byPatch?.[prevPatch], now: c.byPatch?.[patch.patch] }));
+  // c.impact 가 있으면 그대로(앱이 묶은 덱의 버전별 영향을 판수 가중으로 미리 계산해 넘김)
+  const all = (comps || []).map(c => ({ c, ...(c.impact || patchImpact(c, patch.changes)), base: c.byPatch?.[prevPatch], now: c.byPatch?.[patch.patch] }));
   const weighted = all.filter(x => x.base?.games);
   const totalGames = weighted.reduce((s, x) => s + x.base.games, 0);
   const meanScore = totalGames ? weighted.reduce((s, x) => s + x.score * x.base.games, 0) / totalGames : 0;

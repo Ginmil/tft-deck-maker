@@ -5,7 +5,7 @@
 import { ADAPTER_VERSION, DEFAULT_URL, fetchRaw, listSets, normalize } from './adapters/cdragon.js';
 import { decksForItems, emblemTeamMaker, decksFromBoard, craftPlans, recipeBook, carriesForItems, assignItems, withForms } from './engine/search.js';
 import { evaluateTeam } from './engine/scorer.js';
-import { patchReport, prevBalancePatch, tierOf, tierGames, tierList, shrinkAvg, TIER_CUTS, groupDecks, PRED_MIN } from './engine/patch.js';
+import { patchReport, prevBalancePatch, tierOf, tierGames, tierList, shrinkAvg, TIER_CUTS, groupDecks, PRED_MIN, PRED_PER_POINT, patchImpact } from './engine/patch.js';
 import { initBuilder, bdOpenDeck, bdOnData, bdRender, bdBoardUnits, bdInventory, bdApplyItems, bdCarries, bdMarkRecBase } from './builder.js';
 
 const $ = id => document.getElementById(id);
@@ -982,6 +982,35 @@ function pnNote(note) {
     return `<span class="pnOld">${a}</span><span class="pnArr">→</span><span class="pnNew">${nb}</span>`;
   }).replace(/ · /g, '<br>');
 }
+/** 패치 예측용 덱 묶음: groupedDecks() 와 같은 단위. 반환 객체는 patchReport 가 쓰는 comp 모양 + impact + group */
+function patchGroups(changes, prev, cur) {
+  return groupedDecks().map(g => {
+    const members = [g.mainM || g.m, ...(g.variants || []).map(v => v.m)];
+    const byPatch = {};
+    for (const m of members) for (const [k, s] of Object.entries(m.byPatch || {})) {
+      const b = (byPatch[k] ||= { games: 0, sum: 0 }); b.games += s.games; b.sum += s.avgPlace * s.games;
+    }
+    for (const k in byPatch) byPatch[k] = { games: byPatch[k].games, avgPlace: Math.round(byPatch[k].sum / byPatch[k].games * 100) / 100 };
+    const wOf = m => (m.byPatch?.[prev]?.games || 0) + (m.byPatch?.[cur]?.games || 0) || m.games || 1;
+    const W = members.reduce((s, m) => s + wOf(m), 0);
+    let score = 0;
+    const hm = new Map();
+    for (const m of members) {
+      const w = wOf(m) / W, imp = patchImpact(m, changes);
+      score += w * imp.score;
+      for (const h of imp.hits) {
+        // 같은 변경은 하나로 (버전마다 자리가 달라도: 니달리가 어떤 버전은 핵심 캐리, 어떤 버전은 구성원) — 가장 큰 자리로 표시
+        const k = `${changes.indexOf(h.change)}|${h.id || ''}`;
+        const e = hm.get(k) || { ...h, weight: 0, share: 0, reachSum: 0, best: 0 };
+        e.weight += w * h.weight; e.share += w; e.reachSum += w * (h.reach ?? 1);
+        if (Math.abs(h.weight) > e.best) { e.best = Math.abs(h.weight); e.where = h.where; }
+        hm.set(k, e);
+      }
+    }
+    const hits = [...hm.values()].map(e => ({ ...e, reach: e.reach != null ? e.reachSum / e.share : undefined }));
+    return { trait: g.m.trait, mainCarry: g.m.mainCarry, carry: g.m.carry, byPatch, impact: { hits, score }, group: g };
+  });
+}
 function renderPatch(selected) {
   const box = $('patchView'), chips = $('patchChips');
   if (!patchDoc?.patches) { box.innerHTML = '<div class="empty">패치 정보(data/patches.json)를 불러오지 못했어요.</div>'; return; }
@@ -1000,10 +1029,12 @@ function renderPatch(selected) {
   const nBuff = changes.filter(c => c.dir === 'buff').length, nNerf = changes.filter(c => c.dir === 'nerf').length, nAdj = changes.length - nBuff - nNerf;
 
   // 예측 vs 실제
-  const comps = metaAvailable() ? state.weights.comps : [];
+  // 11/17 사용자(나무정령 드레이븐 = 실제로는 드레이븐 밸류): 티어표와 같은 덱 묶음 단위로 예측·채점.
+  // 버전마다 영향을 계산해 판수(이전+이번 패치) 가중 평균, 패치별 성적은 판수 합산 → 이름·표본이 티어표와 일치
+  const comps = metaAvailable() ? patchGroups(changes, prev, p.patch) : [];
   const rep = changes.length && prev && comps.some(c => c.byPatch) ? patchReport(comps, p, prev) : null;
   const affected = new Map(); // 변경 → 영향 받는 덱 수
-  for (const r of rep?.rows || []) for (const h of r.hits) if (h.where !== 'flex' && h.where !== 'core') affected.set(h.change, (affected.get(h.change) || 0) + 1); // 핵심 캐리·탱커·주력 시너지인 덱만
+  for (const r of rep?.rows || []) for (const h of r.hits) if (h.where !== 'flex' && h.where !== 'core' && (h.share ?? 1) >= 0.2) affected.set(h.change, (affected.get(h.change) || 0) + 1); // 핵심 캐리·탱커·주력 시너지인 덱만
 
   // 1) 머리: 요약 + 성적표
   const miss = rep ? rep.judged - rep.hits : 0;
@@ -1012,7 +1043,7 @@ function renderPatch(selected) {
         <div class="pnBar" role="img" aria-label="적중 ${rep.hits}, 빗나감 ${miss}, 구분 어려움 ${rep.flat}"><i class="hit" style="flex:${rep.hits}"></i><i class="miss" style="flex:${miss}"></i><i class="flat" style="flex:${rep.flat}"></i></div>
         <div class="pnLegend"><span><i class="hit"></i>적중 ${rep.hits}</span><span><i class="miss"></i>빗나감 ${miss}</span><span><i class="flat"></i>구분 어려움 ${rep.flat}</span></div>
         <p>실제 변화가 판수 오차보다 큰 덱만 채점해요. 기준 패치(${esc(prev)}) 표본이 적으면 구분 어려움이 많아져요.</p></div>`
-    : `<div class="pnScore"><span class="lbl">예측 채점</span><div class="big muted">—</div><p>${!changes.length ? '밸런스 변경이 없는 패치예요.' : !rep ? '패치별 경기 기록이 쌓이면 채점돼요.' : '이번 패치 경기가 쌓이는 중이에요.'}</p></div>`;
+    : `<div class="pnScore"><span class="lbl">예측 채점</span><div class="big muted">—</div><p>${!changes.length ? '밸런스 변경이 없는 패치예요.' : !rep ? '패치별 경기 기록이 쌓이면 채점돼요.' : rep.rows.some(r => r.now) ? '채점할 만큼 바뀐 덱이 없어요. 변화가 판수 오차 안이거나, 덱 자체가 받은 영향이 작아요.' : '이번 패치 경기가 쌓이는 중이에요.'}</p></div>`;
   const head = `<div class="pnHero">
     <div class="pnIntro">
       <div class="pnTitle"><h2>${esc(p.patch)} 패치</h2><span class="muted">${esc(p.date)} · 한국 서버는 다음 날 아침 적용</span></div>
@@ -1052,20 +1083,18 @@ function renderPatch(selected) {
     const F = [['all', '전체', all.length], ['hit', '적중', counts.hit], ['miss', '빗나감', counts.miss], ['flat', '구분 어려움', counts.flat], ['wait', '판 쌓이는 중', (counts.wait || 0) + (counts.nobase || 0)]].filter(f => f[0] === 'all' || f[2]);
     if (!F.some(f => f[0] === pnFilter)) pnFilter = 'all';
     const shown = all.filter(r => pnFilter === 'all' || status(r) === pnFilter || (pnFilter === 'wait' && status(r) === 'nobase')).slice(0, 24);
-    const decks = metaDecks(8);
     // 점 그래프: 평균 등수 2.5(왼쪽, 좋음) ~ 6(오른쪽, 나쁨)
     const LO = 2.5, HI = 6, pos = v => Math.max(0, Math.min(100, (v - LO) / (HI - LO) * 100));
     const V = { hit: ['hit', '✓ 적중'], miss: ['miss', '✗ 빗나감'], flat: ['flat', '구분 어려움'], wait: ['wait', '판 쌓이는 중'], nobase: ['wait', '비교 불가'] };
     const rows = shown.map(r => {
-      const c = r.comp, carry = byLower.get(c.mainCarry || c.carry);
-      const why = r.hits.map(h => {
-        const nm = h.where === 'trait' ? traitName(c.trait) : formClean(byLower.get(h.id)?.name || h.id);
+      const c = r.comp, g = c.group, carry = carryOfDeck(g) || byLower.get(c.mainCarry || c.carry);
+      const why = r.hits.filter(h => (h.share ?? 1) * (h.reach ?? 1) >= 0.2).sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight)).map(h => {
+        const nm = h.where === 'trait' ? (traitOf(h.change.match)?.[1].name || traitName(c.trait)) : formClean(byLower.get(h.id)?.name || h.id);
         const [arrow, , cls] = DIR_KO[h.change.dir];
-        return `<span class="pnWhy"${h.reach != null ? ` title="${h.change.minCount}단계만 바뀐 변경이라, 이 덱이 ${h.change.minCount}명 이상 간 판(${Math.round(h.reach * 100)}%)만큼만 반영했어요"` : ''}>${WHERE_KO[h.where]} ${esc(nm)}${h.reach != null ? ` ${h.change.minCount}단계 ${Math.round(h.reach * 100)}%` : ''} <span class="pdir ${cls}">${arrow}</span></span>`;
+        return `<span class="pnWhy"${h.reach != null ? ` title="${h.change.minCount}단계만 바뀐 변경이라, 이 덱이 ${h.change.minCount}명 이상 간 판(${Math.round(h.reach * 100)}%)만큼만 반영했어요"` : ''}>${WHERE_KO[h.where]} ${esc(nm)}${h.reach != null ? ` ${h.change.minCount}단계 ${Math.round(h.reach * 100)}%` : ''}${h.share < 0.95 ? ` <small title="이 덱의 버전 중 이 변경이 닿는 판 비율">(${Math.round(h.share * 100)}%)</small>` : ''} <span class="pdir ${cls}">${arrow}</span></span>`;
       }).join('');
       const st = status(r), [vc, vt] = V[st];
-      const dk = decks.find(x => x.m.trait === c.trait && (x.m.mainCarry || x.m.carry) === (c.mainCarry || c.carry));
-      const reg = dk ? deckRegistry.push({ ...dk, bdName: `${traitName(c.trait)} ${formClean(carry?.name || '')}` }) - 1 : -1;
+      const reg = deckRegistry.push({ ...g, bdName: deckName(g) }) - 1;
       const dots = [];
       if (r.base) dots.push(`<i class="dot base" style="left:${pos(r.base.avgPlace)}%" title="${esc(prev)} 실제 ${r.base.avgPlace}등 (${r.base.games}판)"></i>`);
       if (r.predAvg != null) dots.push(`<i class="dot pred" style="left:${pos(r.predAvg)}%" title="${esc(p.patch)} 예측 ${r.predAvg}등"></i>`);
@@ -1075,9 +1104,10 @@ function renderPatch(selected) {
       const ad = r.base && r.now ? r.now.avgPlace - r.base.avgPlace : null;
       const actWord = ad == null ? '' : Math.abs(ad) < 0.05 ? '<span class="pdir same">– 비슷</span><br>' : `<span class="pdir ${ad < 0 ? 'up' : 'down'}">${ad < 0 ? '▲' : '▼'}${Math.abs(ad).toFixed(2)} ${ad < 0 ? '올랐음' : '내렸음'}</span><br>`;
       const gap = r.predAvg != null && r.now ? r.now.avgPlace - r.predAvg : null;
-      const predWord = r.predDelta <= -PRED_MIN ? '<span class="pdir up">▲ 오를 것</span>' : r.predDelta >= PRED_MIN ? '<span class="pdir down">▼ 내릴 것</span>' : '<span class="pdir same">– 비슷</span>';
+      const own = Math.abs(PRED_PER_POINT * r.score) >= PRED_MIN; // 덱 자체 영향이 있어야 오를/내릴 것
+      const predWord = !own ? '<span class="pdir same" title="덱 자체가 받는 영향이 작아요 (숫자는 다른 덱 변화까지 반영한 값)">– 비슷</span>' : r.predDelta <= -PRED_MIN ? '<span class="pdir up">▲ 오를 것</span>' : r.predDelta >= PRED_MIN ? '<span class="pdir down">▼ 내릴 것</span>' : '<span class="pdir same">– 비슷</span>';
       return `<div class="pnRow ${vc}">
-        <div class="pnDeck">${carry ? hexPor(carry) : ''}<div><b>${esc(traitName(c.trait))} ${esc(formClean(carry?.name || ''))}</b><div class="pnWhys">${why}</div></div></div>
+        <div class="pnDeck">${carry ? hexPor(carry) : ''}<div><b>${esc(deckName(g))}</b>${g.variants?.length ? `<span class="muted small"> · 버전 ${g.variants.length + 1}개</span>` : ''}<div class="pnWhys">${why || '<span class="pnWhy">직접 바뀐 것 없음</span>'}</div></div></div>
         <div class="pnNums">
           <div><span class="k">${esc(prev)}</span><b>${r.base ? r.base.avgPlace.toFixed(2) : '—'}</b><small>${r.base ? r.base.games + '판' : '표본 부족'}</small></div>
           <div><span class="k">예측</span><b>${r.predAvg != null ? r.predAvg.toFixed(2) : '—'}</b><small>${predWord}</small></div>
