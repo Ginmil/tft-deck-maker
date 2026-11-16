@@ -3062,7 +3062,8 @@ function realBoardTeam(m, byLower) {
     // 증강 '환영 조합'(비활성 특성을 가장 낮은 단계로 켬)으로 설명되는 경우만 반영.
     // 이미 켜진 시너지에 붙은 +1 은 게임 규칙상 원인이 없어(사용자 11/17: 상징·수호령 말고 인원을 올리는 건 없음) 무시 — 챔피언·상징 기준 인원으로 보여 줌
     const low = d.traits[t].breakpoints?.[0];
-    if (real > have && have < low && real === low) bonus[t] = real - have;
+    // 11/17 사용자: '환영 조합'은 수호령 효과라 덱 구성으로 보여 줄 필요 없음 → 추가 인원은 모두 빼고 챔피언·상징 기준으로만
+    void low; void real; void have;
   }
   return { team, info, emblems, bonus };
 }
