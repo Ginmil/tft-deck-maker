@@ -1,9 +1,0 @@
-name: peek-traits (임시)
-on: workflow_dispatch
-jobs:
-  peek:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          curl -sL https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json -o ko.json
-          jq -r '.. | objects | select(has("name") and (.name|type=="string")) | select(((.desc // "") | type=="string") and (((.desc // "") | test("특성|시너지|\\+1|간주|추가로 적용|1개 추가")))) | select((.apiName // "") | test("^DA_|18"; "i")) | "\(.apiName)\t\(.name)\t\((.desc // "") | gsub("\n";" ") | .[0:200])"' ko.json | grep -v Emblem | head -60

@@ -557,7 +557,8 @@ function bdRenderTraits() {
     const lvl = t.breakpoints.filter(b => b <= k).length;
     return { id, t, k, lvl, uniq: t.breakpoints.length === 1 && t.breakpoints[0] === 1 };
   }).filter(Boolean).sort((a, b) => (b.lvl > 0) - (a.lvl > 0) || a.uniq - b.uniq || b.lvl / b.t.breakpoints.length - a.lvl / a.t.breakpoints.length || b.k - a.k);
-  bd$('bdTraits').innerHTML = rows.length ? rows.map(r => `<div class="trow${r.lvl ? '' : ' off'}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}${bdState.bonus?.[r.id] ? `<span class="aug" data-rmbonus="${r.id}" role="button" title="랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요 (원인은 경기 데이터에 안 남음 — 증강·아이번 생물군계 등으로 추정). 누르면 빼요">기타 +${bdState.bonus[r.id]} ×</span>` : ''}</span>${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`).join('')
+  bd$('bdTraits').innerHTML = rows.length ? rows.map(r => `<div class="trow${r.lvl ? '' : ' off'}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}${bdState.bonus?.[r.id] ? (() => { const b = bdState.bonus[r.id], low = r.t.breakpoints[0], ph = r.k - b < low && r.k === low;
+      return `<span class="aug" data-rmbonus="${r.id}" role="button" title="${ph ? "증강 '환영 조합': 전투 시작 시 비활성 특성을 가장 낮은 단계로 켜 줘요 (랭커 실제 판 기준)" : '랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요 (원인은 경기 데이터에 안 남음)'}. 누르면 빼요">${ph ? '환영 조합' : `기타 +${b}`} ×</span>`; })() : ''}</span>${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`).join('')
     : '<p class="muted small">챔피언을 올리면 여기에 시너지가 나와요.</p>';
 }
 

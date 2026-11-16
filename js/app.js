@@ -340,7 +340,7 @@ function deckCard(d, i, byId) {
   const order = { prism: 0, gold: 1, silver: 2, bronze: 3, '': 4 };
   const traits = d.traits.filter(t => t.tier > 0 || t.count >= 2).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))
     .sort((a, b) => (b.tier > 0) - (a.tier > 0) || (a.breakpoints.length === 1) - (b.breakpoints.length === 1) || order[a.st] - order[b.st] || b.count - a.count)
-    .map(t => `<span class="tTr${t.tier ? '' : ' off'}${t.emblemOnly ? ' embOnly' : ''}" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.emblemOnly ? ' · 상징이 있어야 켜지는 단계' : ''}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등 · ${t.stat.games}판` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `<span class="aug" title="랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요. 경기 데이터엔 원인이 남지 않아요 (증강·아이번 생물군계 등으로 추정)">기타 +${t.bonus}</span>` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
+    .map(t => `<span class="tTr${t.tier ? '' : ' off'}${t.emblemOnly ? ' embOnly' : ''}" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.emblemOnly ? ' · 상징이 있어야 켜지는 단계' : ''}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등 · ${t.stat.games}판` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `${bonusLabel(t)}` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
   const builds = [carryId, tankId, ...(d.m ? holderIds(d, carryId, tankId) : [])].filter(Boolean).map(id => {
     const c = byId.get(id); const own = d.builds?.[id], b = c && (own || buildsFor(c)[0]);
     return b ? `<div class="dcBuild"><span class="who">${id === carryId ? '핵심' : id === tankId ? '탱커' : '아이템도 드는'} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
@@ -878,6 +878,15 @@ function realBoardTeam(m, byLower) {
 
 /** 팀·정보 → 메타 덱 카드 데이터 */
 /** unitInfo 에 held = 이 덱에서 그 챔피언이 든 평균 아이템 수(딜+탱 아이템, 상징·도적 제외) */
+/** 시너지 추가 인원 표시: 챔피언·상징으로는 비활성인데 실제 판에선 가장 낮은 단계로 켜져 있었으면 증강 "환영 조합"
+ * (11/17 확인: DA_PhantomSplash18 "전투 시작: 비활성화된 특성 최대 N개가 가장 낮은 등급으로 활성화" — 싸움꾼 1→2, 나무정령 1→3 같은 판이 많음) */
+function bonusLabel(t) {
+  const before = t.count - t.bonus, low = t.breakpoints?.[0];
+  const phantom = low && before < low && t.count === low;
+  return phantom
+    ? `<span class="aug" title="증강 '환영 조합': 전투 시작 시 비활성 특성을 가장 낮은 단계로 켜 줘요. 랭커 실제 판에서 이 시너지가 그렇게 켜졌어요">환영 조합</span>`
+    : `<span class="aug" title="랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요. 경기 데이터엔 원인이 남지 않아요">기타 +${t.bonus}</span>`;
+}
 function withHeld(info, m) {
   const out = {};
   for (const [k, u] of Object.entries(info || {})) out[k] = u?.off != null ? { ...u, held: Math.round((u.off + (u.tank || 0)) / Math.max(1, (u.rate || 0) * m.games) * 100) / 100 } : u;
@@ -1304,7 +1313,7 @@ function tierDetailHtml(x, byId) {
   const order = { prism: 0, gold: 1, silver: 2, bronze: 3, '': 4 };
   const traits = (x.traits || []).filter(t => t.tier > 0).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))
     .sort((a, b) => (a.breakpoints.length === 1) - (b.breakpoints.length === 1) || order[a.st] - order[b.st] || b.count - a.count)
-    .map(t => `<span class="tTr" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `<span class="aug" title="랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요. 경기 데이터엔 원인이 남지 않아요 (증강·아이번 생물군계 등으로 추정)">기타 +${t.bonus}</span>` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
+    .map(t => `<span class="tTr" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `${bonusLabel(t)}` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
   const regMain = deckRegistry.push({ ...x, bdName: deckName(x) }) - 1;
   const alts = altBoards(mm, x.team);
   const mini = (c, cls) => `<span class="mini ${cls}" title="${esc(c.name)}">${hexPor(c)}<i>${cls === 'out' ? '−' : '+'}</i><small>${esc(c.base && c.weights ? c.base : c.name)}</small></span>`;
