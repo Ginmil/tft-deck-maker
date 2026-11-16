@@ -72,6 +72,7 @@ export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf 
   const units = {};   // 챔피언별: 판수, 등수 합, 완성 아이템 3개 장착 횟수
   const emblems = {}; // 상징 아이템별 → 장착한 챔피언별 판수
   const comps = {};   // 메타 덱: "주력 시너지 + 핵심 캐리" 별 판수·등수·대표 구성
+  const emblemBoards = {}; // 상징 조합(보드 전체에 낀 상징, 정렬) → 덱별 판수·등수·실제 보드 (11/17: 상징 팀 메이커 "랭커가 이 상징으로 쓴 덱")
   let games = 0, curGames = 0;
   for (const m of usable) {
     if (m.info.tft_set_number !== latest) continue;
@@ -122,6 +123,7 @@ export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf 
         }
       }
       addComp(comps, p, place, w, cur, label);
+      addEmblemBoard(emblemBoards, p, place, w);
       for (const t of p.traits || []) {
         if (!(t.tier_current > 0)) continue; // 발동 안 된 시너지는 제외
         const row = ((traits[t.name] ||= {})[t.tier_current] ||= { games: 0, sumPlace: 0, top4: 0, wins: 0 });
@@ -132,7 +134,7 @@ export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf 
       }
     }
   }
-  return { setNumber: latest, games, curGames, traits, units, emblems, comps };
+  return { setNumber: latest, games, curGames, traits, units, emblems, comps, emblemBoards };
 }
 
 // ---- 메타 덱 분류 ----
@@ -152,15 +154,37 @@ export function mainTraitOf(p) {
 }
 // 핵심 캐리: 딜 아이템(탱커 아이템 제외)을 가장 많이 든 챔피언 → 같으면 별(3성) → 같으면 코스트
 //   (도적의 장갑 보유자는 아이템이 랜덤이라 제외)
+// 핵심 캐리: 딜 아이템 최다 → 별 → 코스트 (도적의 장갑 제외, 딜 아이템 2개 이상)
+function carryUnitOf(p) {
+  const carry = (p.units || [])
+    .filter(u => !itemsOf(u).some(n => /ThiefsGloves/i.test(n)))
+    .sort((a, b) => (offensive(b) - offensive(a)) || ((b.tier || 0) - (a.tier || 0)) || ((b.rarity || 0) - (a.rarity || 0)))[0];
+  return carry && offensive(carry) >= 2 ? carry : null;
+}
+const unitRec = u => ({ id: String(u.character_id).toLowerCase(), star: u.tier || 1, items: (u.itemNames || []).filter(n => typeof n === 'string') });
+
+/** 상징을 낀 보드: 상징 조합 → 덱(주력 시너지|핵심 캐리)별 판수·등수 + 같은 구성 보드별 기록 (가장 잘한 판 그대로) */
+function addEmblemBoard(eb, p, place, w) {
+  const units = p.units || [];
+  const embs = units.flatMap(u => (u.itemNames || []).filter(n => typeof n === 'string' && /emblem/i.test(n))).sort();
+  if (!embs.length) return;
+  const main = mainTraitOf(p), carry = carryUnitOf(p);
+  const dk = `${main?.name || ''}|${carry ? String(carry.character_id).toLowerCase() : ''}`;
+  const d = ((eb[embs.join('+')] ||= {})[dk] ||= { games: 0, sumPlace: 0, top4: 0, boards: {} });
+  d.games += w; d.sumPlace += w * place; d.top4 += place <= 4 ? w : 0;
+  const bk = [...new Set(units.map(u => String(u.character_id).toLowerCase()))].sort().join(',');
+  const b = (d.boards[bk] ||= { games: 0, sumPlace: 0, best: null });
+  b.games += w; b.sumPlace += w * place;
+  if (!b.best || place < b.best.place) b.best = { place, units: units.map(unitRec) };
+}
+
 function addComp(comps, p, place, w = 1, cur = true, label = null) {
   const main = mainTraitOf(p);
   if (!main) return;
   const traits = (p.traits || []).filter(t => t.tier_current > 0 && (t.num_units || 0) >= 2);
   const units = p.units || [];
-  const carry = units
-    .filter(u => !itemsOf(u).some(n => /ThiefsGloves/i.test(n)))
-    .sort((a, b) => (offensive(b) - offensive(a)) || ((b.tier || 0) - (a.tier || 0)) || ((b.rarity || 0) - (a.rarity || 0)))[0];
-  if (!carry || offensive(carry) < 2) return;
+  const carry = carryUnitOf(p);
+  if (!carry) return;
   const carryId = String(carry.character_id).toLowerCase();
   const key = `${main.name}|${carryId}`;
   const c = (comps[key] ||= { trait: main.name, carry: carryId, games: 0, sumPlace: 0, top4: 0, wins: 0, sumLevel: 0, units: {}, traits: {}, builds: {},
@@ -330,7 +354,23 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
     units,
     emblems,
     comps,
+    emblemBoards: emblemBoardsOut(stats.emblemBoards),
   };
+}
+
+/** 상징 조합별 덱 목록: [덱 키, 판수, 평균 등수, 순방률, 대표 보드(가장 많이 나온 구성의 가장 잘한 판)] — 판수 많은 순.
+ * 앱에서 "고른 상징을 모두 포함한 조합"을 합쳐 씀 */
+function emblemBoardsOut(eb = {}) {
+  const out = {};
+  for (const [combo, decks] of Object.entries(eb)) {
+    const rows = Object.entries(decks).map(([dk, d]) => {
+      const top = Object.values(d.boards).sort((a, b) => b.games - a.games || a.sumPlace / a.games - b.sumPlace / b.games)[0];
+      const board = d.games >= 2 && top ? { units: top.best.units, same: Math.round(top.games), avgPlace: round(top.sumPlace / top.games, 2) } : null;
+      return [dk, Math.round(d.games * 10) / 10, round(d.sumPlace / d.games, 2), round(d.top4 / d.games, 2), board];
+    }).filter(r => r[1] > 0).sort((a, b) => b[1] - a[1]);
+    if (rows.length) out[combo] = rows;
+  }
+  return out;
 }
 
 const round = (x, d) => Math.round(x * 10 ** d) / 10 ** d;
