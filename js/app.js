@@ -871,7 +871,10 @@ function realBoardTeam(m, byLower) {
   for (const [t, real] of Object.entries(b.traits || {})) {
     if (!d.traits[t]) continue;
     const have = team.reduce((s, x) => s + (x.traits.includes(t) ? (x.weights?.[t] ?? 1) : 0), 0) + emblems.filter(e => e === t).length;
-    if (real > have) bonus[t] = real - have;
+    // 증강 '환영 조합'(비활성 특성을 가장 낮은 단계로 켬)으로 설명되는 경우만 반영.
+    // 이미 켜진 시너지에 붙은 +1 은 게임 규칙상 원인이 없어(사용자 11/17: 상징·수호령 말고 인원을 올리는 건 없음) 무시 — 챔피언·상징 기준 인원으로 보여 줌
+    const low = d.traits[t].breakpoints?.[0];
+    if (real > have && have < low && real === low) bonus[t] = real - have;
   }
   return { team, info, emblems, bonus };
 }
