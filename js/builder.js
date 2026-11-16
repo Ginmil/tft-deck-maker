@@ -258,7 +258,7 @@ export function bdOpenDeck(d) {
   } else {
     bdState.cells = bdAutoPlace(units, { carryId, tankId });
     bdState.plants = {}; bdState.carries = new Set();
-    // 랭커 실제 보드의 증강 인원 (덱 카드의 "증강 +1")도 함께
+    // 랭커 실제 보드에서 챔피언·상징으로 설명 안 되는 인원 (덱 카드의 "기타 +1")도 함께
     bdState.bonus = Object.fromEntries((d.traits || []).filter(t => t.bonus > 0).map(t => [t.id, t.bonus]));
     bd$('bdName').value = d.bdName || (d.title || '').replace(/<span class="tag[^]*$/, '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
   }
@@ -457,7 +457,7 @@ export function initBuilder(ctx) {
   };
   bd$('bdTraits').addEventListener('click', e => {
     const b = e.target.closest('[data-rmbonus]');
-    if (b) { e.stopPropagation(); save(); delete bdState.bonus[b.dataset.rmbonus]; bdRender(); return bdToast('증강 인원을 뺐어요 · Ctrl+Z 로 되돌리기'); }
+    if (b) { e.stopPropagation(); save(); delete bdState.bonus[b.dataset.rmbonus]; bdRender(); return bdToast('추가 인원을 뺐어요 · Ctrl+Z 로 되돌리기'); }
     const r = e.target.closest('[data-tr]'); if (r) jump(r.dataset.tr);
   });
   bd$('bdTraits').addEventListener('keydown', e => { const r = e.target.closest('[data-tr]'); if (r && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); jump(r.dataset.tr); } });
@@ -557,7 +557,7 @@ function bdRenderTraits() {
     const lvl = t.breakpoints.filter(b => b <= k).length;
     return { id, t, k, lvl, uniq: t.breakpoints.length === 1 && t.breakpoints[0] === 1 };
   }).filter(Boolean).sort((a, b) => (b.lvl > 0) - (a.lvl > 0) || a.uniq - b.uniq || b.lvl / b.t.breakpoints.length - a.lvl / a.t.breakpoints.length || b.k - a.k);
-  bd$('bdTraits').innerHTML = rows.length ? rows.map(r => `<div class="trow${r.lvl ? '' : ' off'}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}${bdState.bonus?.[r.id] ? `<span class="aug" data-rmbonus="${r.id}" role="button" title="랭커 실제 판에서 증강 등으로 얻은 인원이에요. 누르면 빼요">증강 +${bdState.bonus[r.id]} ×</span>` : ''}</span>${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`).join('')
+  bd$('bdTraits').innerHTML = rows.length ? rows.map(r => `<div class="trow${r.lvl ? '' : ' off'}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}${bdState.bonus?.[r.id] ? `<span class="aug" data-rmbonus="${r.id}" role="button" title="랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요 (원인은 경기 데이터에 안 남음 — 증강·아이번 생물군계 등으로 추정). 누르면 빼요">기타 +${bdState.bonus[r.id]} ×</span>` : ''}</span>${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`).join('')
     : '<p class="muted small">챔피언을 올리면 여기에 시너지가 나와요.</p>';
 }
 
