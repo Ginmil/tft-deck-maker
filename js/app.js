@@ -321,7 +321,8 @@ function emblemRankerDecks(picked) {
   for (const [combo, rows] of Object.entries(eb)) {
     const have = {};
     for (const it of combo.split('+')) { const t = traitOfItem(it); if (t) have[t] = (have[t] || 0) + 1; }
-    if (!Object.entries(need).every(([t, n]) => (have[t] || 0) >= n)) continue;
+    // 11/17 사용자: 고른 상징 그대로만 쓴 보드 (다른 상징이 더 있어야 되는 보드는 의미 없음 — 상징은 쉽게 못 구함)
+    if (Object.keys({ ...need, ...have }).some(t => (have[t] || 0) !== (need[t] || 0))) continue;
     const extra = { ...have };
     for (const [t, n] of Object.entries(need)) extra[t] -= n;
     const extraKey = Object.entries(extra).filter(([, n]) => n > 0).map(([t, n]) => traitName(t) + (n > 1 ? ` ${n}개` : '')).join(', ');
@@ -400,8 +401,16 @@ function emblemMetaDecks(picked) {
       const rest = [...base], filled = [];
       for (const t of picked) { const i = rest.indexOf(t); if (i >= 0) { rest.splice(i, 1); filled.push(t); } }
       const extra = [...picked]; for (const t of filled) extra.splice(extra.indexOf(t), 1);
-      const ev0 = evaluateTeam(v.team, d, { carryIds: carryId ? [carryId] : [], emblems: base });
-      const ev1 = evaluateTeam(v.team, d, { carryIds: carryId ? [carryId] : [], emblems: [...base, ...extra] });
+      // 11/17 사용자: 상징은 쉽게 못 구함 → 고른 상징만으로 되는 덱만. 랭커 보드가 다른 상징(rest)에 기대면
+      // 그 상징을 빼고도 주력 시너지 단계가 그대로일 때만 (빼면 단계가 떨어지는 덱 = 다른 상징이 있어야 되는 덱 → 제외)
+      const evBase = evaluateTeam(v.team, d, { carryIds: carryId ? [carryId] : [], emblems: base });
+      const ev0 = evaluateTeam(v.team, d, { carryIds: carryId ? [carryId] : [], emblems: filled });
+      const ev1 = evaluateTeam(v.team, d, { carryIds: carryId ? [carryId] : [], emblems: [...picked] });
+      const mainTier = ev => ev.traits.find(x => x.id === v.m.trait)?.tier || 0;
+      if (rest.length && mainTier(ev1) < mainTier(evBase)) continue;
+      // 고른 상징이 아닌 상징을 랭커가 이 덱에서 절반 넘게 쓰면 그 상징이 필요한 덱
+      const needsOther = Object.entries(v.m.emblems || {}).some(([id, r]) => r >= 0.5 && !picked.includes(d.emblems.find(e => e.id === id || (e.ids || []).includes(id))?.trait));
+      if (needsOther) continue;
       const tierOfT = (ev, t) => ev.traits.find(x => x.id === t)?.tier || 0;
       const why = [];
       let ok = true, fit = 0;
@@ -444,7 +453,7 @@ function emblemMetaDecks(picked) {
 function emblemMetaHtml() {
   const decks = emblemMetaDecks(state.emblems);
   const byId = new Map(state.data.champions.map(c => [c.id, c]));
-  const head = `<div class="resultHead"><h2>이 상징을 쓰기 좋은 메타 덱</h2><span class="legend">랭커 메타 덱의 핵심 유닛은 그대로 두고 상징만 더해요 · 상징으로 단계가 오르거나 랭커가 그 덱에서 쓴 경우만</span></div>`;
+  const head = `<div class="resultHead"><h2>이 상징을 쓰기 좋은 메타 덱</h2><span class="legend">랭커 메타 덱의 핵심 유닛은 그대로, 고른 상징만으로 되는 덱만 · 상징으로 단계가 오르거나 랭커가 그 덱에서 쓴 경우</span></div>`;
   if (!metaAvailable()) return '';
   if (!decks.length) return head + `<div class="empty">이 상징이 단계를 올려 주는 메타 덱이 없어요. 아래 랭커 기록과 시너지 계산 추천을 참고하세요.</div>`;
   return head + decks.map((x, i) => deckCard(x, i, byId)).join('');
@@ -455,8 +464,8 @@ function emblemRankerHtml() {
   if (!r) return '';
   const byId = new Map(state.data.champions.map(c => [c.id, c]));
   const names = state.emblems.map(t => traitName(t)).join(' + ');
-  const head = `<div class="resultHead" style="margin-top:28px"><h2>랭커가 이 상징 조합으로 쓴 보드</h2><span class="legend">${esc(names)} 상징을 모두 낀 랭커 보드 ${r.total}판 · 이번 패치 · 판수 많은 순</span></div>`;
-  if (!r.decks.length) return head + `<div class="empty">이 상징을 모두 낀 랭커 덱이 ${EMB_DECK_MIN}판 이상인 경우가 없어요. 위의 추천은 시너지 계산 결과예요.</div>`;
+  const head = `<div class="resultHead" style="margin-top:28px"><h2>랭커가 이 상징 조합으로 쓴 보드</h2><span class="legend">${esc(names)} 상징만 낀 랭커 보드 ${r.total}판 · 이번 패치 · 판수 많은 순</span></div>`;
+  if (!r.decks.length) return head + `<div class="empty">이 상징만 낀 랭커 덱이 ${EMB_DECK_MIN}판 이상인 경우가 없어요. 위의 추천은 시너지 계산 결과예요.</div>`;
   return head + r.decks.map((x, i) => deckCard(x, i, byId)).join('');
 }
 
