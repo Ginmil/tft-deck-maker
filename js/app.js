@@ -160,7 +160,7 @@ function setData(data) {
   state.emblems.length = 0; state.items.length = 0; state.comps.length = 0;
   for (const k in state.desired) delete state.desired[k];
   for (const k in state.emblemDesired) delete state.emblemDesired[k];
-  $('setLabel').textContent = `세트 ${data.set.number ?? ''} · ${data.set.name}`;
+  $('setLabel').textContent = `전략적 팀 전투 · 세트 ${data.set.number ?? ''}`; // 11/17: 이름을 TFT 덱 메이커로 (롤토체스는 별명)
   $('specialWrap').hidden = !specialIds().length;
   $('specialName').textContent = specialName();
   renderAllPickers();
@@ -579,6 +579,8 @@ function bind() {
   $('patchChips').onclick = e => { const b = e.target.closest('[data-patch]'); if (b) renderPatch(b.dataset.patch); };
   $('patchView').addEventListener('click', e => { const f = e.target.closest('#pnFilters [data-f]'); if (f) { pnFilter = f.dataset.f; renderPatch(); } });
   $('metaSort').onchange = renderMeta;
+  for (const id of ['metaKind', 'metaTrait']) $(id).onchange = renderMeta;
+  $('metaQ').oninput = renderMeta;
   $('metaView').onclick = e => { const b = e.target.closest('button[data-view]'); if (!b) return; metaView = b.dataset.view; renderMeta(); };
   $('metaTiers').addEventListener('click', e => {
     const f = e.target.closest('#tierFilters button');
@@ -1476,8 +1478,7 @@ function renderMeta() {
   const d = state.data, w = state.weights;
   const box = $('metaList'), tbox = $('metaTiers');
   for (const b of $('metaView').querySelectorAll('button')) b.classList.toggle('on', b.dataset.view === metaView);
-  $('metaSortWrap').hidden = metaView === 'tier';
-  $('metaHelp').hidden = metaView === 'tier';
+  for (const id of ['metaSortWrap', 'metaKindWrap', 'metaTraitWrap', 'metaQ', 'metaHelp']) $(id).hidden = metaView === 'tier';
   tbox.innerHTML = ''; box.innerHTML = '';
   if (!d) return;
   if (!metaAvailable()) {
@@ -1486,17 +1487,45 @@ function renderMeta() {
   }
   const byId = new Map(d.champions.map(c => [c.id, c]));
   if (metaView === 'tier') return renderTiers(byId);
-  const sortKey = $('metaSort').value;
-  const list = metaDecks(Number($('metaMin').value));
+  renderMetaList(byId);
+}
+
+// ---- 덱 목록 (11/17): 티어표와 같은 덱 묶음·티어 기준 + 필터(종류·시너지·챔피언) + 정렬 ----
+// (예전엔 캐리 챔피언 단위 metaDecks 30개 + 고정 기준 티어 글자라 티어표와 달랐음)
+function renderMetaList(byId) {
+  const box = $('metaList'), min = Number($('metaMin').value);
+  const { tiers } = tierList(groupedDecks(), { min });
+  const rows = [...tiers.S, ...tiers.A, ...tiers.B, ...tiers.C];
+  // 시너지 목록: 지금 덱들의 주력 시너지 (덱 수 많은 순)
+  const sel = $('metaTrait'), cur = sel.value, cnt = {};
+  for (const x of rows) if (!x.value) cnt[x.m.trait] = (cnt[x.m.trait] || 0) + 1;
+  sel.innerHTML = `<option value="">전체</option>` + Object.entries(cnt).sort((a, b) => b[1] - a[1] || traitName(a[0]).localeCompare(traitName(b[0]), 'ko'))
+    .map(([t, n]) => `<option value="${esc(t)}"${t === cur ? ' selected' : ''}>${esc(traitName(t))} (${n})</option>`).join('');
+  const kind = $('metaKind').value, trait = sel.value, q = $('metaQ').value.trim();
+  const list = rows.filter(x => (kind === 'all' || tierKind(x) === kind) && (!trait || (!x.value && x.m.trait === trait))
+    && (!q || [x, ...(x.variants || [])].some(v => v.team.some(c => c.name.includes(q) || (c.base || '').includes(q)))));
+  const games = x => x.tierGames || tierGames(x.m) || x.m.games;
+  const rank = { S: 0, A: 1, B: 2, C: 3 };
   const sorters = {
-    avg: (a, b) => metaShrunk(a.m) - metaShrunk(b.m),
-    pick: (a, b) => b.m.playRate - a.m.playRate,
+    tier: (a, b) => rank[a.tier] - rank[b.tier] || a.m.avgPlace - b.m.avgPlace,
+    avg: (a, b) => a.m.avgPlace - b.m.avgPlace,
+    pick: (a, b) => games(b) - games(a),
     win: (a, b) => b.m.win - a.m.win,
   };
-  list.sort(sorters[sortKey]);
+  list.sort(sorters[$('metaSort').value] || sorters.tier);
+  const pct = v => Math.round(v * 100) + '%';
   box.innerHTML = list.length
-    ? `<p class="legend">${w.games.toLocaleString()}명 기록 기준 · 자주 쓰인 순으로 레벨만큼 채움 · "선택 %" = 판마다 바뀌는 자리 · ★★★ = 3성 완성 비율 높음 · 핵심/탱커 = 랭커들이 딜템/탱템을 가장 많이 준 챔피언</p>` + list.slice(0, 30).map((x, i) => deckCard(x, i, byId)).join('')
-    : '<div class="empty">조건에 맞는 메타 덱이 없어요. 최소 판수를 낮춰 보세요.</div>';
+    ? `<p class="legend">${list.length}개 덱 · 티어는 티어표와 같은 기준(이번 패치, 판수 적으면 4.5등 쪽으로 보정) · 보여 주는 보드는 가장 많이 쓰인 버전의 랭커 실제 보드</p>`
+      + list.map((x, i) => {
+        const vn = x.variants?.length || 0;
+        const reroll = /리롤/.test(deckType(x));
+        return deckCard({
+          ...x, noSpecialTag: true,
+          title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x))}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${vn ? ` <span class="tag soft" title="구성·캐리가 조금 다른 버전을 합친 성적">버전 ${vn + 1}개</span>` : ''}${emblemNote(x.mainM || x.m, x)}`,
+          metaInfo: `${esc(deckType(x))} · 평균 <b>${x.m.avgPlace.toFixed(2)}등</b>${patchDelta(x.m)} · 순방 ${pct(x.m.top4)} · 1등 ${pct(x.m.win)} · ${games(x).toLocaleString()}판`,
+        }, i, byId);
+      }).join('')
+    : '<div class="empty">조건에 맞는 덱이 없어요. 필터를 풀거나 최소 판수를 낮춰 보세요.</div>';
 }
 
 // ---- 자동 티어표: 이번 패치 성적 기준 S/A/B/C, 덱 단위 ----

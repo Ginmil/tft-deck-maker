@@ -969,3 +969,5 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 /* 티어 상세 위쪽 배치툴 버튼 (11/17 사용자: 맨 아래까지 내려야 해서 불편) */
 .dTop .dTopMain { flex: 1; min-width: 0; }
 .dTop .dTopBd { flex: none; align-self: flex-start; margin-top: 4px; }
+/* 덱 목록 필터 (11/17) — 챔피언 검색 칸을 필터 줄 안에 */
+#panel-meta .settings #metaQ { width: 210px; margin: 0; flex: none; padding: 8px 12px; }
