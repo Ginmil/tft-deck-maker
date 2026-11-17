@@ -6,7 +6,8 @@ jobs:
     steps:
       - run: |
           B=https://raw.communitydragon.org/latest/game/characters
-          for c in da_18_ornn da_18_alistar; do
-            for f in $c/$c.cdtb.bin.json $c/$c.bin.json; do curl -sSL -o x.json -w "$f %{http_code} %{size_download}\n" $B/$f; grep -io '"[a-z_]*planner[a-z_]*"[^,]*' x.json | head; grep -o '[^,{]*: *105[5]\b[^,]*' x.json | head -3; grep -o '[^,{]*: *1081\b[^,]*' x.json | head -3; done
+          for c in da_18_ornn da_18_alistar da_18_ezreal; do
+            curl -sSL -o x.json -w "$c %{http_code} %{size_download}\n" $B/$c.cdtb.bin.json
+            grep -io '"[a-z_]*planner[a-z_]*"[^,]*' x.json | head
+            grep -oE '"[^"]+": *(1055|1081|1072)[,}]' x.json | head -5
           done
-          curl -sSL -o idx.html $B/da_18_ornn/; grep -o 'href="[^"]*"' idx.html | head -20
