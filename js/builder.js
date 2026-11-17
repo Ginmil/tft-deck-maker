@@ -291,6 +291,46 @@ export function bdBoardUnits() {
   return Object.entries(bdState.cells).map(([idx, u]) => ({ idx: Number(idx), id: u.id, star: u.star, items: [...u.items], ...(u.form ? { form: u.form } : {}) }));
 }
 
+// ---------------- 게임 팀 코드 (11/17) ----------------
+// 형식: "02" + 챔피언마다 16진수 3자리 × 10칸(빈칸 000) + 세트 키("TFTSet18"). 번호 = 맵 데이터 TftShopData {4d4e5cf5}
+// (data/planner-codes.json). 예: 롤체지지 0241f4394103eb… = 오른(41f)·알리스타(439)·헤카림(410)… 보드 순서대로.
+function bdPlannerNum(pc, c) {
+  if (pc.codes[c.id] != null) return pc.codes[c.id];
+  // 형태 챔피언(럭스)은 형태마다 번호가 없으면 같은 base 의 번호로
+  const alt = bdData().champions.find(x => (x.base || x.id) === (c.base || c.id) && pc.codes[x.id] != null);
+  return alt ? pc.codes[alt.id] : null;
+}
+export function bdTeamCode() {
+  const pc = bd.plannerCodes?.(); if (!pc?.codes) return null;
+  const nums = [], missing = [], seen = new Set();
+  for (const [, u] of Object.entries(bdState.cells).sort((a, b) => a[0] - b[0])) {
+    const c = bdData().champions.find(x => x.id === u.id); if (!c) continue;
+    const n = bdPlannerNum(pc, c);
+    if (n == null) { missing.push(c.name); continue; }
+    if (seen.has(n)) continue; seen.add(n); nums.push(n);
+  }
+  const over = Math.max(0, nums.length - 10), use = nums.slice(0, 10);
+  const code = '02' + use.map(n => n.toString(16).padStart(3, '0')).join('') + '000'.repeat(10 - use.length) + pc.set;
+  return { code, n: use.length, missing, over };
+}
+/** 게임 팀 코드 → 보드 (챔피언만, 앞줄부터 빈 칸에). 읽으면 true */
+function bdTeamDecode(code) {
+  const m = /^(0[12])([0-9a-f]+)(TFTSet\d+)$/i.exec(code.replace(/\s+/g, ''));
+  const pc = bd.plannerCodes?.();
+  if (!m || !pc?.codes) return false;
+  const w = m[1] === '01' ? 2 : 3, body = m[2];
+  const byNum = new Map();
+  for (const c of bdData().champions) { const n = pc.codes[c.id]; if (n != null && !byNum.has(n)) byNum.set(n, c); }
+  const champs = [];
+  for (let i = 0; i + w <= body.length; i += w) { const n = parseInt(body.slice(i, i + w), 16); if (n && byNum.has(n)) champs.push(byNum.get(n)); }
+  if (!champs.length) return false;
+  bdState.cells = bdAutoPlace(champs.slice(0, 10).map(c => ({ champ: c, star: 2, items: [] })));
+  bdState.plants = {}; bdState.carries = new Set();
+  bdRender();
+  bdToast(`게임 팀 코드에서 챔피언 ${champs.length}명을 불러왔어요 (별·아이템·자리는 코드에 없어요)`);
+  return true;
+}
+
 // ---------------- 이벤트 ----------------
 export function initBuilder(ctx) {
   bd = ctx;
@@ -320,11 +360,20 @@ export function initBuilder(ctx) {
     try { await navigator.clipboard.writeText(code); bdToast('배치 코드를 복사했어요'); }
     catch { prompt('아래 코드를 복사하세요', code); }
   };
+  bd$('bdGameCode').onclick = async () => {
+    const r = bdTeamCode();
+    if (!r) return bdToast('게임 팀 코드 정보를 아직 못 불러왔어요. 잠시 뒤 다시 눌러 주세요.');
+    if (!r.n) return bdToast('보드에 챔피언을 먼저 올려 주세요');
+    const note = (r.missing.length ? ` · 번호 없는 챔피언 제외: ${r.missing.join(', ')}` : '') + (r.over ? ` · 10명까지만 (${r.over}명 제외)` : '');
+    try { await navigator.clipboard.writeText(r.code); bdToast(`게임 팀 코드를 복사했어요 — 팀 플래너에서 "팀 코드 붙여넣기"${note}`); }
+    catch { prompt('아래 코드를 복사하세요', r.code); }
+  };
   bd$('bdPaste').onclick = () => {
-    const code = prompt('배치 코드를 붙여넣으세요');
+    const code = prompt('배치 코드 또는 게임 팀 코드를 붙여넣으세요');
     if (!code) return;
     save();
-    if (!bdDecode(code.trim())) { bdState.past.pop(); bdToast('코드를 읽지 못했어요'); }
+    const ok = bdTeamDecode(code.trim()) || bdDecode(code.trim());
+    if (!ok) { bdState.past.pop(); bdToast('코드를 읽지 못했어요'); }
   };
 
   // 보드: 클릭 (선택·별·빼기)

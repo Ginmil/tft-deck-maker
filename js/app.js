@@ -143,6 +143,10 @@ function applyWeights() {
 
 // 아이콘을 Community Dragon 대신 저장소 사본(data/icons)에서 받도록 주소 바꾸기 (snapshot 워크플로가 만듦)
 let iconMap = {};
+// 게임 팀 코드(팀 플래너)용 챔피언 번호 — tools/planner-codes.mjs 가 만든 파일 (11/17)
+let plannerCodes = null;
+fetch('data/planner-codes.json', { cache: 'no-cache', signal: AbortSignal.timeout(8000) })
+  .then(r => (r.ok ? r.json() : null)).then(j => { plannerCodes = j; }).catch(() => {});
 const iconMapReady = fetch('data/icons/map.json', { signal: AbortSignal.timeout(5000) })
   .then(r => (r.ok ? r.json() : {})).then(m => { iconMap = m || {}; }).catch(() => {});
 function localizeIcons(data) {
@@ -564,7 +568,7 @@ function bind() {
   });
   bindItemTips();
   initBuilder({
-    getData: () => state.data, esc, traitName, roleKo, buildsFor, itemHabitHtml,
+    getData: () => state.data, esc, traitName, roleKo, buildsFor, itemHabitHtml, plannerCodes: () => plannerCodes,
     openTab: name => document.querySelector(`.tab[data-tab="${name}"]`)?.click(),
   });
   $('bdRecommend').onclick = e => runBoard(e.currentTarget);

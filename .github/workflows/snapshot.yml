@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['js/adapters/cdragon.js', 'tools/snapshot-set.mjs']   # 변환 규칙을 고치면 바로 다시 만듦
+    paths: ['js/adapters/cdragon.js', 'tools/snapshot-set.mjs', 'tools/planner-codes.mjs']   # 변환 규칙을 고치면 바로 다시 만듦
 
 permissions:
   contents: write
@@ -28,11 +28,14 @@ jobs:
           node-version: 20
       - name: 사본 만들기
         run: node tools/snapshot-set.mjs
+      - name: 게임 팀 코드 번호 (실패해도 사본은 커밋)
+        run: node tools/planner-codes.mjs
+        continue-on-error: true
       - name: 결과 커밋
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
-          git add data/set-snapshot.json data/icons
+          git add data/set-snapshot.json data/icons; [ -f data/planner-codes.json ] && git add data/planner-codes.json
           git diff --cached --quiet && echo "변경 없음" && exit 0
           git commit -m "세트 데이터 사본 갱신: $(date -u +'%Y-%m-%d')"
           git pull --rebase -q origin main
