@@ -962,3 +962,5 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 .dexTile > span:nth-child(2) { min-width: 0; }
 .dexTile .ty { max-width: none; }
 .dexGrid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.dexRow { display: flex; gap: 8px; align-items: baseline; color: var(--text); }
+.dexRow .bp { display: inline-grid; place-items: center; min-width: 22px; height: 20px; padding: 0 4px; border-radius: 5px; background: var(--card-hi); color: var(--gold); font-weight: 700; font-size: 12px; }

@@ -837,9 +837,10 @@ function dexTraitHtml(id) {
   if (!t) return '';
   const champs = d.champions.filter(c => c.traits.includes(id)).sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name, 'ko'));
   // Set 18 설명은 수치가 ? 이고 %i:scaleAD% 같은 아이콘 표시가 남아 있음 → 표시만 지우고, 글자 없는 줄(수치뿐)은 뺌
-  const desc = (t.desc || '').replace(/%i:[^%]*%/g, '').replace(/\(\?\)/g, '\n•').split('\n').map(x => x.trim()).filter(x => /[가-힣]/.test(x));
+  // 어댑터 14부터 descFilled = 단계별 실제 수치. 없으면(옛 캐시) 예전처럼 ? 줄을 정리해서
+  const desc = t.descFilled ? t.descFilled.split('\n') : (t.desc || '').replace(/%i:[^%]*%/g, '').replace(/\(\?\)/g, '\n•').split('\n').map(x => x.trim()).filter(x => /[가-힣]/.test(x));
   const head = `<div class="dTop"><span class="dexBigIc">${traitBadge(id)}</span><div><h2>${esc(t.name)}</h2><p>${t.breakpoints.join(' / ')}명</p></div></div>
-    ${desc.length ? `<div class="dexDesc">${desc.map(x => `<p>${esc(x)}</p>`).join('')}</div>` : ''}
+    ${desc.length ? `<div class="dexDesc">${desc.map(x => { const m = x.match(/^\((\d+)\)\s*(.*)$/); return m ? `<p class="dexRow"><span class="bp">${m[1]}</span>${esc(m[2])}</p>` : `<p>${esc(x)}</p>`; }).join('')}</div>` : ''}
     <div class="dexChamps">${champs.map(champLink).join('')}</div>`;
   // 단계별 성적 (weights.traits[id][단계 번호])
   const ws = state.weights?.traits?.[id];

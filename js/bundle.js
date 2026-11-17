@@ -24,7 +24,7 @@
 function cleanAbility(s) {
   return String(s || '').replace(/\{[^}]*\}/g, '').replace(/\\r|\r/g, '').replace(/\\n|\n/g, '\n').replace(/<[^>]+>/g, '').replace(/\n{3,}/g, '\n\n').trim();
 }
-const ADAPTER_VERSION = 13; // 12: 시너지 아이콘, 13: 챔피언 스킬·기본 능력치(툴팁)
+const ADAPTER_VERSION = 14; // 12: 시너지 아이콘, 13: 챔피언 스킬·기본 능력치(툴팁), 14: 시너지 단계별 수치(descFilled)
 
 const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -74,7 +74,7 @@ function normalize(raw, setKey) {
   for (const t of set.traits || []) {
     const bps = [...new Set((t.effects || []).map(e => e.minUnits).filter(n => n > 0 && n < 30))].sort((a, b) => a - b);
     if (!bps.length) continue;
-    traits[t.apiName] = { id: t.apiName, name: t.name, breakpoints: bps, desc: stripTags(t.desc), icon: t.icon ? iconUrl(t.icon) : null };
+    traits[t.apiName] = { id: t.apiName, name: t.name, breakpoints: bps, desc: stripTags(t.desc), descFilled: fillTraitDesc(t), icon: t.icon ? iconUrl(t.icon) : null };
     traitIdByName[t.name] = t.apiName;
     traitIdByName[t.apiName] = t.apiName;
   }
@@ -294,6 +294,33 @@ function itemRole(effects) {
   const sorted = Object.entries(score).sort((a, b) => b[1] - a[1]);
   if (sorted[0][1] === 0 || sorted[0][1] === sorted[1][1]) return 'FLEX';
   return sorted[0][0];
+}
+
+// 시너지 설명의 @변수@ 를 단계별 실제 수치로 (11/17: Set 18 도 시너지 effects.variables 에는 값이 있음).
+// 변수 이름이 해시({641254b6})로만 남은 경우가 있어 Community Dragon 방식(소문자 FNV-1a 32비트)으로 맞춤.
+// <row> 는 단계 순서대로 effects[i], 바깥 문장은 effects[0]. 못 찾으면 '?'. 줄은 '\n' 으로 구분.
+const fnv1a = s => { let h = 0x811c9dc5; for (const ch of s.toLowerCase()) { h ^= ch.charCodeAt(0); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(16).padStart(8, '0'); };
+const STAT_ICON = { scalead: '공격력', scaleap: '주문력', scaleadap: '공격력·주문력', scalehealth: '체력', scalearmor: '방어력', scalemr: '마법 저항력', scaleas: '공격 속도', scalemana: '마나', scaledamageamp: '피해 증폭', scaledr: '피해 감소', scalesv: '모든 피해 흡혈' };
+function fillTraitDesc(t) {
+  const effects = (t.effects || []).filter(e => e.minUnits > 0 && e.minUnits < 30);
+  if (!t.desc || !effects.length) return null;
+  const num = v => { const r = Math.round(v * 10) / 10; return Number.isInteger(r) ? String(r) : String(r); };
+  const fill = (text, e) => text.replace(/@([^@]+)@/g, (_, tok) => {
+    const m = tok.trim().match(/^([A-Za-z0-9_]+)(?:\s*\*\s*(\d+(?:\.\d+)?))?$/);
+    if (!m) return '?';
+    const vars = e?.variables || {};
+    let v = /^minunits$/i.test(m[1]) ? e?.minUnits : (m[1] in vars ? vars[m[1]] : vars[`{${fnv1a(m[1])}}`]);
+    if (typeof v !== 'number') return '?';
+    if (m[2]) v *= Number(m[2]);
+    return num(v);
+  });
+  let i = 0;
+  const raw = String(t.desc)
+    .replace(/<row>([\s\S]*?)<\/row>/gi, (_, row) => `\n${fill(row, effects[Math.min(i++, effects.length - 1)])}\n`);
+  const out = fill(raw, effects[0])
+    .replace(/%i:([A-Za-z]+)%/g, (_, k) => STAT_ICON[k.toLowerCase()] || '')
+    .replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ' ');
+  return out.split('\n').map(x => x.replace(/\s+/g, ' ').trim()).filter(Boolean).join('\n');
 }
 
 function stripTags(s) {
@@ -3025,9 +3052,10 @@ function dexTraitHtml(id) {
   if (!t) return '';
   const champs = d.champions.filter(c => c.traits.includes(id)).sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name, 'ko'));
   // Set 18 설명은 수치가 ? 이고 %i:scaleAD% 같은 아이콘 표시가 남아 있음 → 표시만 지우고, 글자 없는 줄(수치뿐)은 뺌
-  const desc = (t.desc || '').replace(/%i:[^%]*%/g, '').replace(/\(\?\)/g, '\n•').split('\n').map(x => x.trim()).filter(x => /[가-힣]/.test(x));
+  // 어댑터 14부터 descFilled = 단계별 실제 수치. 없으면(옛 캐시) 예전처럼 ? 줄을 정리해서
+  const desc = t.descFilled ? t.descFilled.split('\n') : (t.desc || '').replace(/%i:[^%]*%/g, '').replace(/\(\?\)/g, '\n•').split('\n').map(x => x.trim()).filter(x => /[가-힣]/.test(x));
   const head = `<div class="dTop"><span class="dexBigIc">${traitBadge(id)}</span><div><h2>${esc(t.name)}</h2><p>${t.breakpoints.join(' / ')}명</p></div></div>
-    ${desc.length ? `<div class="dexDesc">${desc.map(x => `<p>${esc(x)}</p>`).join('')}</div>` : ''}
+    ${desc.length ? `<div class="dexDesc">${desc.map(x => { const m = x.match(/^\((\d+)\)\s*(.*)$/); return m ? `<p class="dexRow"><span class="bp">${m[1]}</span>${esc(m[2])}</p>` : `<p>${esc(x)}</p>`; }).join('')}</div>` : ''}
     <div class="dexChamps">${champs.map(champLink).join('')}</div>`;
   // 단계별 성적 (weights.traits[id][단계 번호])
   const ws = state.weights?.traits?.[id];
