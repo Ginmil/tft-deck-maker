@@ -2601,7 +2601,7 @@ function emblemRankerDeck(a, byLower) {
 // 티어표 덱(랭커 실제 보드)을 그대로 두고 상징만 더함. 상징이 그 덱에서 쓸모 있을 때만:
 //   ① 랭커가 그 덱에서 이 상징을 쓴 판 비율(m.emblems) 10% 이상, 또는 ② 상징으로 그 시너지 단계가 실제로 오름
 // 상징을 받을 챔피언 = 그 시너지가 없는 챔피언 중 랭커가 이 상징을 가장 많이 준 챔피언(전체 기록), 없으면 엔진 배정
-const EMB_META_MIN = 15, EMB_USED = 0.1;
+const EMB_META_MIN = 15, EMB_USED = 0.1, EMB_ACTIVATE = 0.25; // 꺼진 시너지를 상징으로 최저 단계만 켜는 건 랭커가 그 덱에서 25% 이상 쓸 때만 (소환사 이즈리얼에 엄호대 2 = 10%)
 function emblemMetaDecks(picked) {
   const d = state.data;
   if (!metaAvailable() || !picked.length) return [];
@@ -2640,8 +2640,10 @@ function emblemMetaDecks(picked) {
         else if (t1 > t0) { const c0 = ev0.traits.find(x => x.id === t)?.count || 0, c1 = ev1.traits.find(x => x.id === t)?.count || 0; why.push(`${traitName(t)} ${c0} → ${c1}${used >= EMB_USED ? ` · 랭커도 이 덱에서 ${Math.round(used * 100)}%` : ''}`); fit += 0.3; }
         else if (used >= EMB_USED) why.push(`랭커도 이 덱에서 ${traitName(t)} 상징 ${Math.round(used * 100)}%`);
         fit += 2 * used + (v.m.trait === t ? 1 : 0);
-        // 랭커가 이 덱에서 안 쓰는 상징은 단계를 올려도, 꺼져 있던 시너지를 최저 단계로만 켜는 건 억지 (기원자 알룬에 사냥꾼 2)
-        if (!filled.includes(t) && used < EMB_USED && (t1 <= t0 || t0 === 0)) ok = false;
+        // 상징은 실제로 무언가를 바꿔야 함 (11/17 사용자: 엄호대+주문술사 → 5주문술사(2/4/6 사이), 3엄호대·1주문술사 덱이 나옴 —
+        // "랭커도 10% 쓴다"만으로 통과시켰던 게 원인): 랭커 보드의 상징 자리를 채우거나, 그 시너지 단계를 올려야 함.
+        // 꺼져 있던 시너지를 최저 단계로만 켜는 건 랭커도 그 덱에서 그 상징을 쓸 때만 (기원자 알룬에 사냥꾼 2 = 억지)
+        if (!filled.includes(t) && !(t1 > t0 && (t0 > 0 || used >= EMB_ACTIVATE))) ok = false;
       }
       if (!ok) continue;
       // 상징 받을 챔피언: 랭커가 이 상징을 가장 많이 준 챔피언(그 시너지가 없는)
@@ -2722,7 +2724,7 @@ function deckCard(d, i, byId) {
     .map(t => `<span class="tTr${t.tier ? '' : ' off'}${t.emblemOnly ? ' embOnly' : ''}" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.emblemOnly ? ' · 상징이 있어야 켜지는 단계' : ''}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등 · ${t.stat.games}판` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `${bonusLabel(t)}` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
   const builds = [carryId, tankId, ...(d.m ? holderIds(d, carryId, tankId) : [])].filter(Boolean).map(id => {
     const c = byId.get(id); const own = d.builds?.[id], b = c && (own || buildsFor(c)[0]);
-    return b ? `<div class="dcBuild"><span class="who">${id === carryId ? '핵심' : id === tankId ? '탱커' : '아이템도 드는'} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
+    return b ? `<div class="dcBuild"><span class="who">${id === carryId ? '핵심' : id === tankId ? '탱커' : subRole(b)} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
   }).join('');
   const meta = d.metaInfo || `점수 ${d.score.toFixed(1)} · 총 ${d.gold}골드${d.usedEmblems ? ` · 상징 ${d.usedEmblems}개 사용` : ''}${d.wastedEmblems ? ` · <span style="color:var(--danger)">상징 ${d.wastedEmblems}개는 단계를 못 올림</span>` : ''}${unused ? ` · <span style="color:var(--danger)">상징 ${unused}개 못 씀</span>` : ''}${d.desiredMet === false ? ' · 목표 미달성' : ''}`;
   return `<article class="dcard${d.desiredMet === false ? ' warn' : ''}">
@@ -2884,6 +2886,12 @@ function buildsFor(c) {
   const shrunk = b => (b.avgPlace * b.games + 4.5 * BUILD_PRIOR) / (b.games + BUILD_PRIOR);
   return list.filter(b => b.games >= min).sort((a, b) => shrunk(a) - shrunk(b)).slice(0, 3);
 }
+// 캐리·탱커 말고 아이템을 드는 챔피언의 이름표 (11/17 사용자: "아이템도 드는 니달리"는 어색함) — 3신기의 탱템이 2개 이상이면 서브 탱커
+function subRole(b) {
+  const tank = (b?.items || []).filter(id => state.data.items.find(i => i.id === id)?.role === 'TANK').length;
+  return tank >= 2 ? '서브 탱커' : '서브 딜러';
+}
+
 function itemLabel(id) {
   const info = state.data?.itemInfo?.[id.toLowerCase()];
   const name = info?.name || id.replace(/^(DA_|TFT\d*_Item_|TFT_Item_)/, '').replace(/([a-z])([A-Z])/g, '$1 $2');
@@ -3840,7 +3848,7 @@ function tierDetailHtml(x, byId) {
   }).join('');
   const builds = [carryId, tankId, ...holderIds(x, carryId, tankId)].filter(Boolean).map(id => {
     const c = byId.get(id), own = x.builds?.[id], b = c && (own || buildsFor(c)[0]);
-    return b ? `<div class="tBuild"><span class="who">${id === carryId ? '캐리' : id === tankId ? '탱커' : '아이템도 드는'} ${esc(c.name)}</span>${buildRow(b, !own)}</div>` : '';
+    return b ? `<div class="tBuild"><span class="who">${id === carryId ? '캐리' : id === tankId ? '탱커' : subRole(b)} ${esc(c.name)}</span>${buildRow(b, !own)}</div>` : '';
   }).join('');
   const order = { prism: 0, gold: 1, silver: 2, bronze: 3, '': 4 };
   const traits = (x.traits || []).filter(t => t.tier > 0).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))
