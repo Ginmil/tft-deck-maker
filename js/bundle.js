@@ -24,7 +24,7 @@
 function cleanAbility(s) {
   return String(s || '').replace(/\{[^}]*\}/g, '').replace(/\\r|\r/g, '').replace(/\\n|\n/g, '\n').replace(/<[^>]+>/g, '').replace(/\n{3,}/g, '\n\n').trim();
 }
-const ADAPTER_VERSION = 14; // 12: 시너지 아이콘, 13: 챔피언 스킬·기본 능력치(툴팁), 14: 시너지 단계별 수치(descFilled)
+const ADAPTER_VERSION = 15; // 12: 시너지 아이콘, 13: 챔피언 스킬·기본 능력치(툴팁), 14: 시너지 단계별 수치(descFilled, 15: 대소문자·아이콘 묶음)
 
 const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -309,7 +309,9 @@ function fillTraitDesc(t) {
     const m = tok.trim().match(/^([A-Za-z0-9_]+)(?:\s*\*\s*(\d+(?:\.\d+)?))?$/);
     if (!m) return '?';
     const vars = e?.variables || {};
-    let v = /^minunits$/i.test(m[1]) ? e?.minUnits : (m[1] in vars ? vars[m[1]] : vars[`{${fnv1a(m[1])}}`]);
+    // 이름 → 대소문자 무시(설명 ASPerAttack / 수치 ASperAttack) → 해시
+    const ci = Object.keys(vars).find(k => k.toLowerCase() === m[1].toLowerCase());
+    let v = /^minunits$/i.test(m[1]) ? e?.minUnits : ci != null ? vars[ci] : vars[`{${fnv1a(m[1])}}`];
     if (typeof v !== 'number') return '?';
     if (m[2]) v *= Number(m[2]);
     return num(v);
@@ -318,7 +320,7 @@ function fillTraitDesc(t) {
   const raw = String(t.desc)
     .replace(/<row>([\s\S]*?)<\/row>/gi, (_, row) => `\n${fill(row, effects[Math.min(i++, effects.length - 1)])}\n`);
   const out = fill(raw, effects[0])
-    .replace(/%i:([A-Za-z]+)%/g, (_, k) => STAT_ICON[k.toLowerCase()] || '')
+    .replace(/(?:%i:[A-Za-z]+%)+/g, g => [...g.matchAll(/%i:([A-Za-z]+)%/g)].map(([, k]) => STAT_ICON[k.toLowerCase()]).filter(Boolean).join('·'))
     .replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, ' ');
   return out.split('\n').map(x => x.replace(/\s+/g, ' ').trim()).filter(Boolean).join('\n');
 }
