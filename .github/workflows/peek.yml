@@ -6,8 +6,7 @@ jobs:
     steps:
       - run: |
           B=https://raw.communitydragon.org/latest/game/characters
-          for c in da_18_ornn da_18_alistar da_18_ezreal; do
-            curl -sSL -o x.json -w "$c %{http_code} %{size_download}\n" $B/$c.cdtb.bin.json
-            grep -io '"[a-z_]*planner[a-z_]*"[^,]*' x.json | head
-            grep -oE '"[^"]+": *(1055|1081|1072)[,}]' x.json | head -5
-          done
+          curl -sSL -o x.json $B/da_18_ornn.cdtb.bin.json
+          jq -c 'to_entries[] | {k: .key, t: .value.__type, keys: (.value|keys)}' x.json | head -20
+          jq -c 'to_entries[] | select(.value.__type=="TFTCharacterRecord" or (.key|test("CharacterRecords/Root"))) | .value' x.json | head -c 3000; echo
+          grep -oE '[0-9]{4}' x.json | sort | uniq -c | sort -rn | head
