@@ -1,0 +1,15 @@
+name: peek (임시)
+on: workflow_dispatch
+jobs:
+  peek:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -sSL https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json -o ko.json
+          jq -c '[.setData[] | .traits[]? | select(.apiName=="DA_18_Blossom" or .apiName=="DA_18_Hunter")] | unique_by(.apiName) | .[] | {apiName, effects}' ko.json | head -c 4000
+          echo; echo ---- en
+          curl -sSL https://raw.communitydragon.org/latest/cdragon/tft/en_us.json -o en.json
+          jq -r '[.setData[] | .traits[]? | select(.apiName=="DA_18_Hunter")][0].desc' en.json
+          echo ---- bin
+          curl -sSL https://raw.communitydragon.org/latest/game/maps/shipping/map22/map22.bin.json -o m.json || true
+          ls -la m.json; grep -o '"DA_18_Hunter[^"]*"' m.json | sort | uniq | head
