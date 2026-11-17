@@ -1,0 +1,9 @@
+name: peek (임시)
+on: workflow_dispatch
+jobs:
+  peek:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -sSL https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json -o ko.json
+          jq -c '[.setData[] | .traits[]? | select(.name=="속사포" and (.apiName|startswith("DA_")))][0] | {apiName, desc, e: .effects[0]}' ko.json
