@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          B=https://raw.communitydragon.org/latest/game/characters
-          curl -sSL -o x.json $B/da_18_ornn.cdtb.bin.json
-          jq -c 'to_entries[] | {k: .key, t: .value.__type, keys: (.value|keys)}' x.json | head -20
-          jq -c 'to_entries[] | select(.value.__type=="TFTCharacterRecord" or (.key|test("CharacterRecords/Root"))) | .value' x.json | head -c 3000; echo
-          grep -oE '[0-9]{4}' x.json | sort | uniq -c | sort -rn | head
+          U=https://raw.communitydragon.org/latest/game/data/maps/shipping/map22/map22.bin.json
+          curl -sSL -o m.json -w "%{http_code} %{size_download}\n" $U
+          jq -c '.["{9755618b}"]' m.json | head -c 2000; echo
+          jq -c 'to_entries | map(select(.value.__type=="TftShopData")) | length' m.json
+          jq -c 'to_entries | map(select((.value.__type // "")|test("Shop"))) | .[0:2]' m.json | head -c 2000; echo
