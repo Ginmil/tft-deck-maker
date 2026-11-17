@@ -1710,15 +1710,33 @@ function metaNearBoard(board, carryId) {
   // 11/16 사용자 피드백: 8명 보드에 +5명짜리 덱이 추천됨 → 보드 6명 이상이면 "3명 이하로 더해서 되는 덱"만,
   // 초반(5명 이하)은 지금 챔피언을 거의 다(1명 빼고) 살리는 덱
   const early = mine.length <= 5, MAX_ADD = 3;
+  // 11/17 사용자: "요정·소라카 4요정"인데 배치툴에선 3요정 — 랭커 보드의 요정 상징을 그대로 셌기 때문.
+  // 상징은 쉽게 못 구하니, 내 보드·남은 아이템에 있는 상징만 쓰고 시너지를 다시 계산
+  const d0 = state.data, haveEmb = {};
+  for (const id of [...board.flatMap(u => u.items || []), ...bdInventory()]) {
+    const e = d0.emblems.find(x => x.id === id || (x.ids || []).includes(id));
+    if (e) haveEmb[e.trait] = (haveEmb[e.trait] || 0) + 1;
+  }
+  const onlyMyEmblems = d => {
+    const want = (d.assignment || []).filter(a => a.holder).map(a => a.trait);
+    if (!want.length) return d;
+    const left = { ...haveEmb }, kept = [], dropped = [];
+    for (const t of want) (left[t] > 0 ? (left[t]--, kept) : dropped).push(t);
+    if (!dropped.length) return d;
+    const carryId = d.carryChampId || d.core?.carry;
+    const ev = evaluateTeam(d.team, d0, { carryIds: carryId ? [carryId] : [], emblems: kept });
+    const names = [...new Set(dropped)].map(t => traitName(t) + ' 상징').join(', ');
+    return { ...d, traits: ev.traits, assignment: ev.assignment, usedEmblems: ev.usedEmblems, droppedNote: ` · <span class="tag soft" title="랭커 보드에는 있었지만 내 보드·남은 아이템에 없는 상징이라 빼고 시너지를 계산했어요">${esc(names)} 없이 계산</span>` };
+  };
   // 티어표처럼 묶은 덱 기준 (11/16 사용자: 8판짜리 "햇빛 아지르"가 따로 추천됨 — 실제로는 유나라·카르마·르블랑 3성 리롤에 아지르는 시너지용인 햇빛 유나라 덱의 한 버전)
-  return groupedDecks().filter(d => d.m.games >= 8).map(d => ({ ...d, title: `<span class="tier t${d.tier}">${d.tier}</span> ${esc(deckName(d, ' · '))} <span class="tag soft">${esc(deckType(d))}</span>${d.variants?.length ? ` <span class="muted small">버전 ${d.variants.length + 1}개 · 덱 전체 평균 ${d.m.avgPlace}등 · ${d.m.games}판</span>` : ''}`, bdName: deckName(d) })).map(d => {
+  return groupedDecks().filter(d => d.m.games >= 8).map(onlyMyEmblems).map(d => ({ ...d, title: `<span class="tier t${d.tier}">${d.tier}</span> ${esc(deckName(d, ' · '))} <span class="tag soft">${esc(deckType(d))}</span>${d.variants?.length ? ` <span class="muted small">버전 ${d.variants.length + 1}개 · 덱 전체 평균 ${d.m.avgPlace}등 · ${d.m.games}판</span>` : ''}`, bdName: deckName(d) })).map(d => {
     const overlap = d.team.filter(c => bases.has(c.base || c.id)).length;
     const carryMatch = carryId && d.core?.carry === carryId;
     const ids = new Set(d.team.map(c => c.id));
     return {
       ...d, overlap, rank: overlap + (carryMatch ? 1.5 : 0) - metaShrunk(d.m) * 0.3,
       board: { added: d.team.filter(c => !bases.has(c.base || c.id)).map(c => c.id), removed: mine.filter(c => !ids.has(c.id)).map(c => c.id) },
-      metaInfo: `<b>내 보드와 ${overlap}명 겹침</b>${carryMatch ? ' · 같은 핵심 캐리' : ''} · ${d.metaInfo}`,
+      metaInfo: `<b>내 보드와 ${overlap}명 겹침</b>${carryMatch ? ' · 같은 핵심 캐리' : ''} · ${d.metaInfo}${d.droppedNote || ''}`,
     };
   }).filter(d => early ? d.overlap >= 2 && d.board.removed.length <= 1
     : d.board.added.length <= MAX_ADD && d.overlap * 2 >= d.team.length && d.team.length >= mine.length) // 지금보다 작은 덱(빼기만)은 다음 수가 아님
