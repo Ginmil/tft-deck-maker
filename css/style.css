@@ -966,3 +966,6 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 .dexRow .bp { display: inline-grid; place-items: center; min-width: 22px; height: 20px; padding: 0 4px; border-radius: 5px; background: var(--card-hi); color: var(--gold); font-weight: 700; font-size: 12px; }
 .chip.gold img { width: 18px; height: 18px; border-radius: 4px; margin-right: 6px; vertical-align: -4px; }
 #panel-emblem details.extra .optBar { margin: 12px 0 0; }
+/* 티어 상세 위쪽 배치툴 버튼 (11/17 사용자: 맨 아래까지 내려야 해서 불편) */
+.dTop .dTopMain { flex: 1; min-width: 0; }
+.dTop .dTopBd { flex: none; align-self: flex-start; margin-top: 4px; }

@@ -3879,7 +3879,8 @@ function tierDetailHtml(x, byId) {
   }
   const realNote = x.realBoard && mm.board ? `<p class="real">랭커가 실제로 쓴 보드예요${mm.board.same > 1 ? ` · 똑같은 구성 ${mm.board.same}판` : ''}. 흐린 챔피언은 이 덱을 쓴 판 중 절반이 안 되게 넣은 자리고, 육각 배지는 상징이에요.</p>` : '';
   return `<div class="dTop"><span class="thex" style="background:${tierColor}">${x.tier || '?'}</span>
-      <div><h2>${esc(deckName(x))}</h2><p>${esc(deckType(x))}${x.value ? ` · 함께 켠 시너지 ${esc(traitName(m.trait))}` : ''}${emblemNote(mm, x)}</p></div></div>
+      <div class="dTopMain"><h2>${esc(deckName(x))}</h2><p>${esc(deckType(x))}${x.value ? ` · 함께 켠 시너지 ${esc(traitName(m.trait))}` : ''}${emblemNote(mm, x)}</p></div>
+      <button class="btn small primary toBuilder dTopBd" data-reg="${regMain}" title="이 덱을 배치툴에 세우기">배치툴</button></div>
     <div class="dStats"><div><b>${m.avgPlace.toFixed(2)}</b><span>평균 등수${patchDelta(m)}</span></div><div><b>${pct(m.top4)}</b><span>순방</span></div><div><b>${pct(m.win)}</b><span>1등</span></div><div><b>${(x.tierGames || m.games).toLocaleString()}</b><span>판</span></div></div>
     <div class="dSec"><h3>구성 · ${x.level || m.level}레벨</h3>${realNote}<div class="tBoard">${units}</div></div>
     ${builds ? `<div class="dSec"><h3>랭커 3신기</h3>${builds}</div>` : ''}
