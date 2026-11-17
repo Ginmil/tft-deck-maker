@@ -2403,7 +2403,7 @@ function renderEmblems() {
     || '<p class="muted">상징이 없어요</p>';
   const counts = countBy(state.emblems);
   $('emblemPicked').innerHTML = Object.entries(counts).map(([t, n]) =>
-    `<span class="chip gold">${esc(traitName(t))} 상징 ×${n}<button data-trait="${esc(t)}" aria-label="빼기">✕</button></span>`).join('');
+    `<span class="chip gold">${img(state.data.emblems.find(e => e.trait === t)?.icon)}${esc(traitName(t))} 상징 ×${n}<button data-trait="${esc(t)}" aria-label="빼기">✕</button></span>`).join('');
 }
 
 const ITEM_HELP = {
@@ -2823,7 +2823,7 @@ function bind() {
     if (t.dataset.tab === 'builder') bdRender();
     $('results').hidden = ['meta', 'patch', 'builds', 'builder'].includes(t.dataset.tab);
     // 레벨·코스트·5코스트·특수 기물 설정은 덱을 새로 짜는 탭에서만 의미가 있음 (사용자 피드백 11/15: 메타 덱에도 떠서 헷갈림)
-    $('globalSettings').hidden = t.dataset.tab !== 'emblem';
+    // 11/17: 옵션은 상징 팀 메이커 안 "시너지 계산 추천 설정" 접기로 옮김 (패널과 함께 보이고 숨음)
     $('results').innerHTML = '';
   });
 

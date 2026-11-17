@@ -49,38 +49,37 @@
 
     
     <!-- 덱을 새로 짜는 탭(상징 팀 메이커·아이템으로 찾기)에서만 보임 -->
-    <section class="settings optBar" id="globalSettings">
-      <span class="optTitle">옵션</span>
-      <label>레벨(인원)
-        <select id="size">
-          <option>6</option><option>7</option><option selected>8</option><option>9</option><option>10</option>
-        </select>
-      </label>
-      <label>최대 코스트
-        <select id="maxCost">
-          <option value="3">3코 이하</option><option value="4">4코 이하</option><option value="5" selected>전체</option>
-        </select>
-      </label>
-      <label>5코스트
-        <select id="max5">
-          <option value="0">안 씀</option><option value="1">1개까지</option><option value="2" selected>2개까지</option><option value="99">제한 없음</option>
-        </select>
-      </label>
-      <label id="specialWrap" hidden>특수 기물(<span id="specialName"></span>)
-        <select id="specialMode">
-          <option value="both" selected>있는 덱·없는 덱 둘 다</option><option value="with">포함</option><option value="without">제외</option>
-        </select>
-      </label>
-    </section>
-
     <!-- 3. 상징 -->
     <section class="panel" id="panel-emblem">
-      <p class="help">가진 상징을 눌러 담으세요. 같은 상징을 여러 번 누르면 개수가 늘어나요. <b>상징으로만 열리는 시너지 단계</b>까지 자동으로 찾아줍니다.</p>
+      <p class="help">가진 상징을 눌러 담으세요. 같은 상징을 여러 번 누르면 개수가 늘어나요. <b>고른 상징만으로 되는 랭커 메타 덱</b>과 랭커가 그 상징으로 실제 쓴 보드를 찾아줘요.</p>
       <div class="picked" id="emblemPicked"></div>
       <input class="filter" id="emblemFilter" placeholder="상징 검색">
       <div class="grid" id="emblemGrid"></div>
       <details class="extra">
-        <summary>추가로 맞추고 싶은 시너지 (선택)</summary>
+        <summary>시너지 계산 추천 설정 (맨 아래 참고용 추천에만 적용)</summary>
+      <div class="settings optBar" id="globalSettings">
+              <label>레벨(인원)
+          <select id="size">
+            <option>6</option><option>7</option><option selected>8</option><option>9</option><option>10</option>
+          </select>
+        </label>
+        <label>최대 코스트
+          <select id="maxCost">
+            <option value="3">3코 이하</option><option value="4">4코 이하</option><option value="5" selected>전체</option>
+          </select>
+        </label>
+        <label>5코스트
+          <select id="max5">
+            <option value="0">안 씀</option><option value="1">1개까지</option><option value="2" selected>2개까지</option><option value="99">제한 없음</option>
+          </select>
+        </label>
+        <label id="specialWrap" hidden>특수 기물(<span id="specialName"></span>)
+          <select id="specialMode">
+            <option value="both" selected>있는 덱·없는 덱 둘 다</option><option value="with">포함</option><option value="without">제외</option>
+          </select>
+        </label>
+      </div>
+        <p class="muted small" style="margin:12px 0 6px">추가로 맞추고 싶은 시너지</p>
         <div class="traitList" id="emblemTraitList"></div>
       </details>
       <button class="btn primary big" id="runEmblem">팀 만들기</button>
