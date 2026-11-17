@@ -1,0 +1,13 @@
+name: peek (임시)
+on: workflow_dispatch
+jobs:
+  peek:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -sSL https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/tftchampions.json -o c.json
+          ls -la c.json
+          jq -c '.[0]' c.json | head -c 1500; echo
+          jq -c '[.[] | select((.character_record.character_id // .name // "") | test("18"; "i")) | {id: .character_record.character_id, code: .team_planner_code, name: .character_record.display_name}] | .[:60]' c.json | head -c 6000; echo
+          echo ---- teamplanner files
+          curl -sSL https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/ -o idx.html; grep -o 'tft[a-z]*\.json' idx.html | sort -u
