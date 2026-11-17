@@ -543,6 +543,18 @@ function bind() {
   };
   $('useWeights').onchange = () => { applyWeights(); $('results').innerHTML = ''; renderBuilds(); renderMeta(); };
   $('buildFilter').oninput = renderBuilds;
+  $('dexKind').onclick = e => {
+    const b = e.target.closest('[data-kind]'); if (!b) return;
+    dexKind = b.dataset.kind; dexSel = null; $('buildFilter').value = ''; renderBuilds();
+  };
+  // 도감: 목록 타일 → 상세, 상세 안의 챔피언·아이템·시너지 링크 → 그 항목으로 이동
+  $('panel-builds').addEventListener('click', e => {
+    const a = e.target.closest('[data-dex]'); if (!a) return;
+    const [kind, id] = a.dataset.dex.split(':');
+    if (kind !== dexKind) { dexKind = kind; $('buildFilter').value = ''; }
+    dexSel = id; renderBuilds();
+    if (innerWidth <= 980) $('dexDetail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
   document.addEventListener('click', e => {
     const b = e.target.closest('.toBuilder'); if (!b) return;
     const d = deckRegistry[Number(b.dataset.reg)];
@@ -594,7 +606,7 @@ function bind() {
     if (t.dataset.tab === 'builder') bdRender();
     $('results').hidden = ['meta', 'patch', 'builds', 'builder'].includes(t.dataset.tab);
     // 레벨·코스트·5코스트·특수 기물 설정은 덱을 새로 짜는 탭에서만 의미가 있음 (사용자 피드백 11/15: 메타 덱에도 떠서 헷갈림)
-    $('globalSettings').hidden = !['emblem', 'items'].includes(t.dataset.tab);
+    $('globalSettings').hidden = t.dataset.tab !== 'emblem';
     $('results').innerHTML = '';
   });
 
@@ -686,23 +698,158 @@ function itemHabitHtml(c, compact = false) {
   return out.length ? `<div class="habits">${out.join('')}</div>` : '';
 }
 
+// ---------------- 도감 (11/17: 챔피언 3신기 탭 → 챔피언·아이템·시너지 + 랭커 통계) ----------------
+let dexKind = 'champ', dexSel = null;
+const dexPct = x => `${Math.round(x * 100)}%`;
+const dexLink = (kind, id, html, title = '') => `<button class="dexLink" data-dex="${kind}:${esc(id)}"${title ? ` title="${esc(title)}"` : ''}>${html}</button>`;
+const champLink = c => dexLink('champ', c.id, `${hexPor(c)}<span>${esc(c.name)}</span>`);
+const traitLink = id => dexLink('trait', id, `${traitBadge(id, '', true)}<span>${esc(traitName(id))}</span>`);
+const itemObj = id => { const d = state.data; return d.items.find(i => i.id === id) || d.radiants?.find(i => i.id === id) || d.artifacts?.find(i => i.id === id) || d.emblems.find(e => e.id === id || (e.ids || []).includes(id)) || null; };
+const itemLink = id => { const it = itemObj(id); return it ? dexLink('item', it.id, `${img(it.icon)}<span>${esc(it.name)}</span>`, it.name) : ''; };
+// 티어표 덱 묶음 + 티어 글자 (도감의 "이 챔피언·시너지가 들어간 메타 덱")
+function dexDecks() {
+  if (!metaAvailable()) return [];
+  const grouped = groupedDecks(), { tiers } = tierList(grouped, { min: Number($('metaMin').value) || 15 });
+  const tierOfDeck = new Map(), key = x => deckName(x) + '|' + deckType(x);
+  for (const [t, list] of Object.entries(tiers)) for (const x of list) tierOfDeck.set(key(x), t);
+  return grouped.map(x => ({ x, tier: tierOfDeck.get(key(x)) || '' }));
+}
+function dexDeckRows(list, why) {
+  if (!list.length) return '';
+  return `<div class="dexDecks">${list.map(({ x, tier, note }) => {
+    const reg = deckRegistry.push({ ...x, bdName: deckName(x) }) - 1;
+    return `<div class="dexDeck">${tier ? `<span class="tl t${tier}">${tier}</span>` : '<span class="tl">–</span>'}${hexPor(carryOfDeck(x))}
+      <div><b>${esc(deckName(x))}</b><div class="muted small">${esc(deckType(x))} · ${x.m.avgPlace.toFixed(2)}등 · ${(tierGames(x.m) || x.m.games).toLocaleString()}판${note ? ` · ${note}` : ''}</div></div>
+      <button class="altopen toBuilder" data-reg="${reg}" title="이 덱을 배치툴에 세우기">배치툴</button></div>`;
+  }).join('')}</div>${why ? `<p class="muted small">${why}</p>` : ''}`;
+}
+const dexSec = (title, body, note = '') => body ? `<section class="dexSec"><h3>${title}${note ? `<span class="muted small"> ${note}</span>` : ''}</h3>${body}</section>` : '';
+const dexStats = (games, avg, top4, win) => `<div class="dexStats"><div><b>${avg != null ? Number(avg).toFixed(2) : '–'}</b><span>평균 등수</span></div><div><b>${top4 != null ? dexPct(top4) : '–'}</b><span>순방률</span></div><div><b>${win != null ? dexPct(win) : '–'}</b><span>1등률</span></div><div><b>${games != null ? Number(games).toLocaleString() : '–'}</b><span>판</span></div></div>`;
+
 function renderBuilds() {
   const d = state.data;
-  if (!d) { $('buildList').innerHTML = ''; return; }
-  if (!d.unitStats) { $('buildList').innerHTML = '<div class="empty">통계 가중치가 없어요. collect-stats.bat 으로 경기 데이터를 모은 뒤 새로고침하면 표시돼요.</div>'; return; }
+  for (const b of $('dexKind').querySelectorAll('button')) b.classList.toggle('on', b.dataset.kind === dexKind);
+  if (!d) { $('buildList').innerHTML = ''; $('dexDetail').innerHTML = ''; return; }
   const q = $('buildFilter').value.trim();
-  const champs = d.champions
-    .filter(c => !q || c.name.includes(q) || c.traits.some(t => traitName(t).includes(q)))
-    .sort((a, b) => (buildsFor(b).length > 0) - (buildsFor(a).length > 0) || b.cost - a.cost || a.name.localeCompare(b.name, 'ko'));
-  $('buildList').innerHTML = champs.map(c => {
-    const bs = buildsFor(c);
-    return `<div class="bcard">
-      <div class="bhead">${c.icon ? `<img src="${esc(c.icon)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : ''}
-        <div><b>${esc(c.name)}</b><span class="muted"> ${c.cost}코 · ${roleKo[c.role]}</span><div class="muted small">${c.traits.map(traitName).map(esc).join(' · ')}</div></div></div>
-      ${itemHabitHtml(c)}
-      ${bs.length ? bs.map((b, i) => (i ? '<div class="alt">' : '<div class="best">') + buildRow(b) + '</div>').join('') : '<div class="muted small">아이템 3개 조합 기록이 부족해요 (5판 이상인 조합 없음)</div>'}
-    </div>`;
-  }).join('');
+  $('buildFilter').placeholder = { champ: '챔피언·시너지 검색', item: '아이템 검색', trait: '시너지 검색' }[dexKind];
+  const tile = (kind, id, icon, name, sub, extra = '') => `<button class="dk dexTile" data-dex="${kind}:${esc(id)}" aria-pressed="${id === dexSel}">${icon}<span><span class="nm">${esc(name)}</span><br><span class="ty">${sub}</span></span>${extra}</button>`;
+  let groups = [];
+  if (dexKind === 'champ') {
+    const list = d.champions.filter(c => !q || c.name.includes(q) || c.traits.some(t => traitName(t).includes(q)));
+    const seen = new Set(), champs = [];
+    for (const c of list) { const k = c.base || c.id; if (c.base && seen.has(k)) continue; seen.add(k); champs.push(c); } // 럭스 형태는 하나로
+    for (const cost of [1, 2, 3, 4, 5, 6, 7]) {
+      const xs = champs.filter(c => c.cost === cost).sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+      if (xs.length) groups.push([`${cost}코스트`, xs.map(c => { const u = unitStatFor(c); return tile('champ', c.id, hexPor(c), c.base ? c.name.replace(/\s*\(.*\)$/, '') : c.name, c.traits.map(traitName).map(esc).join(' · '), u ? `<span class="sc"><b>${u.avgPlace}</b><span>${u.games.toLocaleString()}판</span></span>` : ''); })]);
+    }
+    if (!dexSel || !champs.some(c => c.id === dexSel)) dexSel = champs[0]?.id || null;
+  } else if (dexKind === 'item') {
+    const total = {};
+    for (const u of Object.values(d.unitStats || {})) for (const [id, n] of Object.entries(u.items || {})) total[id] = (total[id] || 0) + n;
+    const embTotal = id => state.weights?.emblems?.[id]?.total || 0;
+    const cats = [['완성 아이템', d.items], ['찬란한 아이템', d.radiants || []], ['유물', d.artifacts || []], ['상징', d.emblems.map(e => ({ ...e, emb: true }))]];
+    const all = [];
+    for (const [label, xs] of cats) {
+      const vis = xs.filter(i => !q || i.name.includes(q)).map(i => ({ ...i, n: i.emb ? embTotal(i.id) : total[i.id] || 0 })).sort((a, b) => b.n - a.n || a.name.localeCompare(b.name, 'ko'));
+      all.push(...vis);
+      if (vis.length) groups.push([label, vis.map(i => tile('item', i.id, `<span class="dexIc">${img(i.icon)}</span>`, i.name, i.n ? `랭커 ${i.n.toLocaleString()}번 낌` : '기록 없음'))]);
+    }
+    if (!dexSel || !all.some(i => i.id === dexSel)) dexSel = all[0]?.id || null;
+  } else {
+    const ts = Object.entries(d.traits).map(([id, t]) => ({ id, ...t })).filter(t => t.breakpoints?.length && (!q || t.name.includes(q)));
+    const nChamps = id => d.champions.filter(c => c.traits.includes(id)).length;
+    const uniq = ts.filter(t => t.breakpoints.length === 1 && t.breakpoints[0] === 1), rest = ts.filter(t => !uniq.includes(t)).sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+    groups.push(['시너지', rest.map(t => tile('trait', t.id, `<span class="dexIc">${traitBadge(t.id)}</span>`, t.name, t.breakpoints.join(' / ')))]);
+    if (uniq.length) groups.push(['고유 시너지', uniq.sort((a, b) => a.name.localeCompare(b.name, 'ko')).map(t => tile('trait', t.id, `<span class="dexIc">${traitBadge(t.id)}</span>`, t.name, `챔피언 ${nChamps(t.id)}명`))]);
+    if (!dexSel || !ts.some(t => t.id === dexSel)) dexSel = rest[0]?.id || uniq[0]?.id || null;
+  }
+  $('buildList').innerHTML = groups.map(([label, tiles]) => `<h3 class="dexGroup">${label}</h3><div class="decks dexGrid">${tiles.join('')}</div>`).join('') || '<div class="empty">찾는 항목이 없어요.</div>';
+  const el = $('dexDetail');
+  el.innerHTML = !dexSel ? '' : dexKind === 'champ' ? dexChampHtml(d.champions.find(c => c.id === dexSel)) : dexKind === 'item' ? dexItemHtml(dexSel) : dexTraitHtml(dexSel);
+  el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap');
+}
+
+function dexChampHtml(c) {
+  if (!c) return '';
+  const d = state.data, u = unitStatFor(c), base = c.base || c.id;
+  const same = d.champions.filter(x => (x.base || x.id) === base), forms = same.length > 1 ? same.filter(x => x.name !== base) : [];
+  const head = `<div class="dTop">${hexPor(c)}<div><h2>${esc(base)}</h2><p>${c.cost}코스트 · ${roleKo[c.role] || ''}${c.ability?.name ? ` · 스킬 ${esc(c.ability.name)}` : ''}${c.stats?.mana ? ` · 마나 ${c.stats.startMana ?? 0}/${c.stats.mana}` : ''}</p></div></div>
+    <div class="dexTraits">${c.traits.map(traitLink).join('')}</div>
+    ${forms.length ? `<p class="muted small">형태: ${forms.map(f => esc(f.name)).join(', ')} — 랭커 기록에는 형태 구분 없이 하나로 남아요</p>` : ''}`;
+  if (!u) return head + '<div class="empty">랭커 기록이 없어요.</div>';
+  const stars = Object.entries(u.stars || {}).filter(([, v]) => v.games >= 5).map(([k, v]) => `<span class="pill">${k}성 ${v.avgPlace}등 · ${v.games.toLocaleString()}판</span>`).join('');
+  const bs = buildsFor(c).slice(0, 3);
+  const items = Object.entries(u.items || {}).sort((a, b) => b[1] - a[1]).slice(0, 8)
+    .map(([id, n]) => `<span class="dexItemRate">${itemLink(id)}<b>${dexPct(n / u.games)}</b></span>`).join('');
+  // 상징: 랭커가 이 챔피언에게 가장 많이 준 상징
+  const embs = Object.entries(state.weights?.emblems || {}).map(([id, e]) => [id, Object.entries(e.holders || {}).filter(([k]) => k === c.id.toLowerCase() || k === base.toLowerCase()).reduce((s, [, n]) => s + n, 0)])
+    .filter(([, n]) => n >= 5).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([id, n]) => `<span class="dexItemRate">${itemLink(id)}<b>${n}번</b></span>`).join('');
+  // 메타 덱: 핵심 캐리인 덱 → 자주 들어가는 덱
+  const decks = dexDecks(), keyOf = x => x?.base || x?.id;
+  const carryIn = decks.filter(({ x }) => [x, ...(x.variants || [])].some(v => keyOf(carryOfDeck(v)) === base)).sort((a, b) => (tierGames(b.x.m) || b.x.m.games) - (tierGames(a.x.m) || a.x.m.games)).slice(0, 4);
+  const inTeam = decks.filter(({ x }) => !carryIn.some(y => y.x === x) && x.team.some(t => keyOf(t) === base && (x.unitInfo?.[t.id]?.rate ?? 1) >= 0.75))
+    .sort((a, b) => (tierGames(b.x.m) || b.x.m.games) - (tierGames(a.x.m) || a.x.m.games)).slice(0, 4);
+  return head
+    + dexStats(u.games, u.avgPlace, u.top4, u.win)
+    + (stars ? `<div class="pills">${stars}</div>` : '')
+    + itemHabitHtml(c)
+    + dexSec('랭커 3신기', bs.length ? bs.map((b, i) => `<div class="${i ? 'alt' : 'best'}">${buildRow(b)}</div>`).join('') : '<p class="muted small">아이템 3개 조합 기록이 부족해요 (5판 이상인 조합 없음)</p>')
+    + dexSec('자주 낀 아이템', items ? `<div class="dexItems">${items}</div>` : '', '이 챔피언이 나온 판 중 낀 비율')
+    + dexSec('받은 상징', embs ? `<div class="dexItems">${embs}</div>` : '')
+    + dexSec('핵심 캐리인 메타 덱', dexDeckRows(carryIn))
+    + dexSec('자주 들어가는 메타 덱', dexDeckRows(inTeam), '덱에서 75% 이상 사용');
+}
+
+function dexItemHtml(id) {
+  const d = state.data, it = itemObj(id);
+  if (!it) return '';
+  const emb = d.emblems.find(e => e.id === id);
+  const recipe = (it.recipe || d.recipes?.[id] || []);
+  const kind = emb ? '상징' : d.radiants?.some(i => i.id === id) ? '찬란한 아이템' : d.artifacts?.some(i => i.id === id) ? '유물' : '완성 아이템';
+  const roleKoItem = it.role ? `${roleKo[it.role] || it.role}용` : '';
+  const head = `<div class="dTop"><span class="dexBigIc">${img(it.icon)}</span><div><h2>${esc(it.name)}</h2><p>${kind}${roleKoItem ? ` · ${roleKoItem}` : ''}</p></div></div>
+    ${recipe.length ? `<div class="dexRecipe">${recipe.map(r => { const c = d.components?.find(x => x.id === r) || d.itemInfo?.[r.toLowerCase()]; return `<span class="dexComp">${img(c?.icon)}${esc(c?.name || r)}</span>`; }).join('<span class="muted">+</span>')}</div>` : ''}
+    ${emb ? `<div class="dexTraits">${traitLink(emb.trait)}</div>` : ''}`;
+  if (emb) {
+    const e = state.weights?.emblems?.[id];
+    if (!e) return head + '<div class="empty">랭커 기록이 없어요.</div>';
+    const byLower = new Map(d.champions.map(c => [c.id.toLowerCase(), c]));
+    const hs = Object.entries(e.holders || {}).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([k, n]) => { const c = byLower.get(k); return c ? `<div class="dexHolder">${champLink(c)}<b>${dexPct(n / e.total)}</b><span class="muted small">${n}번</span></div>` : ''; }).join('');
+    return head + `<p class="muted">랭커가 이 상징을 낀 횟수 <b>${e.total.toLocaleString()}번</b></p>` + dexSec('상징을 받은 챔피언', `<div class="dexHolders">${hs}</div>`, '이 상징 중 그 챔피언에게 간 비율');
+  }
+  if (!d.unitStats) return head + '<div class="empty">통계가 없어요.</div>';
+  // 이 아이템을 낀 챔피언: 그 챔피언이 나온 판 중 낀 비율 + 이 아이템 전체 중 몫
+  const rows = carriesForItems(d, { itemIds: [id], top: 6 });
+  const carriers = rows.map(r => `<div class="dexHolder">${champLink(r.champ)}<b>${dexPct(r.rates[0].rate)}</b><span class="muted small">판 · 몫 ${dexPct(r.rates[0].share)}</span></div>`).join('');
+  // 이 아이템이 들어간 인기 3신기 (챔피언 상관없이 판수 순)
+  const builds = [];
+  for (const c of d.champions) for (const b of buildsFor(c)) if (b.items.includes(id)) builds.push({ c, b });
+  const seen = new Set();
+  const top = builds.sort((x, y) => y.b.games - x.b.games).filter(({ c, b }) => { const k = (c.base || c.id) + b.items.join(); if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 5)
+    .map(({ c, b }) => `<div class="dexBuild">${champLink(c)}${buildRow(b)}</div>`).join('');
+  return head
+    + dexSec('이 아이템을 낀 챔피언', carriers ? `<div class="dexHolders">${carriers}</div>` : '', '판 = 그 챔피언이 나온 판 중 낀 비율 · 몫 = 이 아이템 전체 중 그 챔피언에게 간 비율')
+    + dexSec('이 아이템이 들어간 인기 3신기', top);
+}
+
+function dexTraitHtml(id) {
+  const d = state.data, t = d.traits[id];
+  if (!t) return '';
+  const champs = d.champions.filter(c => c.traits.includes(id)).sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name, 'ko'));
+  // Set 18 설명은 수치가 ? 이고 %i:scaleAD% 같은 아이콘 표시가 남아 있음 → 표시만 지우고, 글자 없는 줄(수치뿐)은 뺌
+  const desc = (t.desc || '').replace(/%i:[^%]*%/g, '').replace(/\(\?\)/g, '\n•').split('\n').map(x => x.trim()).filter(x => /[가-힣]/.test(x));
+  const head = `<div class="dTop"><span class="dexBigIc">${traitBadge(id)}</span><div><h2>${esc(t.name)}</h2><p>${t.breakpoints.join(' / ')}명</p></div></div>
+    ${desc.length ? `<div class="dexDesc">${desc.map(x => `<p>${esc(x)}</p>`).join('')}</div>` : ''}
+    <div class="dexChamps">${champs.map(champLink).join('')}</div>`;
+  // 단계별 성적 (weights.traits[id][단계 번호])
+  const ws = state.weights?.traits?.[id];
+  const tierRows = ws ? t.breakpoints.map((bp, i) => { const v = ws[i + 1]; return v?.games ? `<tr><td>${bp}명</td><td>${v.avgPlace}등</td><td>${dexPct(v.top4)}</td><td>${v.games.toLocaleString()}판</td></tr>` : ''; }).join('') : '';
+  const emb = d.emblems.find(e => e.trait === id);
+  const decks = dexDecks().filter(({ x }) => x.m.trait === id).sort((a, b) => (tierGames(b.x.m) || b.x.m.games) - (tierGames(a.x.m) || a.x.m.games)).slice(0, 6);
+  return head
+    + dexSec('단계별 랭커 성적', tierRows ? `<table class="dexTable"><thead><tr><th>단계</th><th>평균</th><th>순방</th><th>판수</th></tr></thead><tbody>${tierRows}</tbody></table>` : '', '그 단계로 끝낸 판')
+    + dexSec('이 시너지가 주력인 메타 덱', dexDeckRows(decks))
+    + (emb ? dexSec('상징', `<div class="dexItems">${itemLink(emb.id)}</div>`) : '');
 }
 
 // ---------------- 메타 덱 ----------------

@@ -910,3 +910,55 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 .trow .aug { margin-left: 6px; padding: 1px 6px; border-radius: 6px; background: #e2b04a22; cursor: pointer; font-weight: 600; }
 .trow .aug:hover { background: #e2b04a44; }
 .embWhy { display: inline-block; margin-top: 4px; color: var(--gold); }
+
+/* 도감 (11/17) */
+.dexBar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.dexBar .filter { flex: 1; min-width: 200px; margin: 0; }
+.dexGroup { margin: 18px 0 8px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.dexGroup:first-child { margin-top: 0; }
+.dexGrid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.dexTile .ty { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px; }
+.dexTile .sc b { font-size: 15px; }
+.dexIc { display: grid; place-items: center; width: 46px; height: 46px; }
+.dexIc img { width: 38px; height: 38px; border-radius: 6px; }
+.dexIc .tb { width: 38px; height: 42px; } .dexIc .tb img { width: 24px; height: 24px; border-radius: 0; }
+.dexBigIc { display: grid; place-items: center; width: 52px; height: 52px; flex: none; }
+.dexBigIc > img { width: 48px; height: 48px; border-radius: 8px; }
+.dexBigIc .tb { width: 46px; height: 50px; } .dexBigIc .tb img { width: 28px; height: 28px; }
+.dexLink { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; padding: 2px 4px 2px 0; color: var(--text); cursor: pointer; font: inherit; border-radius: 6px; }
+.dexLink:hover span { color: var(--gold); }
+.dexLink .por { width: 30px; height: 30px; }
+.dexLink > img { width: 24px; height: 24px; border-radius: 4px; }
+.dexTraits { display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 12px 0 4px; }
+.dexStats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0 10px; }
+.dexStats > div { background: var(--card-hi); border-radius: 10px; padding: 10px; text-align: center; }
+.dexStats b { display: block; font-size: 18px; letter-spacing: -0.02em; }
+.dexStats span { color: var(--muted); font-size: 12px; }
+.dexSec { margin-top: 20px; }
+.dexSec h3 { font-size: 14px; margin: 0 0 8px; }
+.dexItems { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.dexItemRate { display: inline-flex; align-items: center; gap: 2px; }
+.dexItemRate b { font-size: 13px; color: var(--gold); }
+.dexHolders { display: grid; gap: 4px; }
+.dexHolder { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; }
+.dexHolder b { color: var(--gold); }
+.dexDecks { display: grid; gap: 6px; }
+.dexDeck { display: grid; grid-template-columns: 22px 36px 1fr auto; gap: 8px; align-items: center; background: var(--card-hi); border-radius: 10px; padding: 6px 8px; }
+.dexDeck .por { width: 36px; height: 36px; }
+.dexDeck .tl { font-weight: 700; text-align: center; color: var(--muted); }
+.dexDeck .tl.tS { color: var(--gold); } .dexDeck .tl.tA { color: var(--silver); }
+.dexRecipe { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.dexComp { display: inline-flex; align-items: center; gap: 6px; background: var(--card-hi); padding: 4px 10px 4px 4px; border-radius: 8px; font-size: 13px; }
+.dexComp img { width: 24px; height: 24px; border-radius: 4px; }
+.dexBuild { display: grid; gap: 4px; padding: 6px 0; border-top: 1px solid var(--line); }
+.dexBuild:first-child { border-top: 0; }
+.dexDesc { margin-top: 12px; color: var(--muted); font-size: 13.5px; line-height: 1.55; }
+.dexDesc p { margin: 2px 0; }
+.dexChamps { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 12px; }
+.dexTable { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.dexTable th { text-align: left; color: var(--muted); font-weight: 500; padding: 4px 6px; }
+.dexTable td { padding: 6px; border-top: 1px solid var(--line); }
+#dexDetail .pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.dexTile > span:nth-child(2) { min-width: 0; }
+.dexTile .ty { max-width: none; }
+.dexGrid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }

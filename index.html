@@ -22,8 +22,7 @@
       <button class="tab" data-tab="meta" role="tab">메타 덱</button>
       <button class="tab" data-tab="patch" role="tab">패치 노트</button>
       <button class="tab active" data-tab="emblem" role="tab">상징 팀 메이커 </button>
-      <button class="tab" data-tab="items" role="tab">아이템으로 찾기</button>
-      <button class="tab" data-tab="builds" role="tab">챔피언 3신기</button>
+      <button class="tab" data-tab="builds" role="tab">도감</button>
       <button class="tab" data-tab="builder" role="tab">배치툴</button>
     </nav>
 
@@ -89,7 +88,7 @@
 
     <!-- 1. 시너지 -->
 
-    <!-- 2. 아이템 -->
+    <!-- 2. 아이템 (11/17 사용자 판단으로 탭에서 뺌 — 배치툴의 남은 아이템 배분이 대신함. 코드 연결은 남겨 둠) -->
     <section class="panel" id="panel-items" hidden>
       <div class="bdItemTabs itemMode" id="itemMode" role="tablist">
         <button class="bp on" data-mode="full">완성 아이템</button>
@@ -126,11 +125,17 @@
       <div id="metaList" class="metaList"></div>
     </section>
 
-    <!-- 4. 챔피언별 추천 아이템 -->
+    <!-- 4. 도감 (11/17: 챔피언 3신기 → 챔피언·아이템·시너지 + 랭커 통계) -->
     <section class="panel" id="panel-builds" hidden>
-      <p class="help">상위권 경기에서 각 챔피언이 실제로 든 <b>아이템 3개 조합</b> 중, 많이 쓰이면서 평균 등수가 좋은 조합이에요. (통계 수집 후 표시)</p>
-      <input class="filter" id="buildFilter" placeholder="챔피언·시너지 검색">
-      <div id="buildList" class="buildList"></div>
+      <div class="dexBar">
+        <div class="bdItemTabs itemMode" id="dexKind" role="tablist">
+          <button class="bp on" data-kind="champ">챔피언</button>
+          <button class="bp" data-kind="item">아이템</button>
+          <button class="bp" data-kind="trait">시너지</button>
+        </div>
+        <input class="filter" id="buildFilter" placeholder="이름·시너지 검색">
+      </div>
+      <div class="tierLayout"><section id="buildList" class="dexList"></section><aside class="tierDetail" id="dexDetail" aria-live="polite"></aside></div>
     </section>
 
     <!-- 5. 배치툴 (11/16 새 디자인) -->
