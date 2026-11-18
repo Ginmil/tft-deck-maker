@@ -712,6 +712,22 @@ const unitStatOf = (data, champ) => {
  * 통계: 랭커 경기에서 이 챔피언이 이 아이템을 낀 비율(판당) × 3 (33% 이상이면 1)
  * 통계 없음: 역할 기반 itemFit (통계 파일은 있는데 표본이 적은 챔피언은 낮춰서)
  */
+// 시너지 켜짐/꺼짐에 따른 아이템 몫 보정: 전체 몫 대비 그 상황의 몫 (여러 시너지면 가장 크게 달라지는 것 하나)
+// 집계 traitItems[t].items[아이템] = [켜진 판 몫, 안 켜진 판 몫]
+function traitItemRatio(u, itemId, traitsOn) {
+  if (!traitsOn || !u?.traitItems) return 1;
+  const all = Object.values(u.items || {}).reduce((a, b) => a + b, 0);
+  const base = all ? (u.items[itemId] || 0) / all : 0;
+  if (!base) return 1;
+  let best = 1;
+  for (const [t, ti] of Object.entries(u.traitItems)) {
+    const sh = ti.items?.[itemId];
+    if (!sh) continue;
+    const ratio = Math.max(0.2, Math.min(2.5, (traitsOn.includes(t) ? sh[0] : sh[1]) / base));
+    if (Math.abs(Math.log(ratio)) > Math.abs(Math.log(best))) best = ratio;
+  }
+  return best;
+}
 function itemAffinity(data, champ, item, traitsOn = null) {
   // 적응가 형태를 사용자가 정했으면(배치툴) 반대 형태 아이템은 0 — 경기 데이터는 형태를 구분 못 해서 통계엔 둘 다 섞여 있음
   if (champ.form) {
@@ -724,12 +740,7 @@ function itemAffinity(data, champ, item, traitsOn = null) {
   let r = (u.items?.[item.id] || 0) / u.games;
   // 내 시너지가 켜졌는지에 따라 랭커가 끼는 아이템이 달라지면 그 비율로 (처형자 켜짐 → 무한의 대검 덜 낌, 11/18)
   // traitsOn = 이 챔피언에게 적용되는 켜진 시너지 목록 (모르면 null → 섞인 전체 비율)
-  if (traitsOn && u.traitItems) {
-    for (const [t, ti] of Object.entries(u.traitItems)) {
-      const rates = ti.items[item.id];
-      if (rates) { r = traitsOn.includes(t) ? rates[0] : rates[1]; break; }
-    }
-  }
+  r *= traitItemRatio(u, item.id, traitsOn);
   return Math.min(1, r * 3) * 0.85 + Math.min(1, r) * 0.15;
 }
 
@@ -1139,8 +1150,10 @@ function assignItems(data, { board, inventory, carryIdx = null, carries = null }
   const buildsOf = u => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
     const on = traitsOnOf(u);
-    for (const [t, ti] of Object.entries(st?.traitItems || {})) if (on.includes(t) && ti.builds?.length) return ti.builds;
-    return st?.builds || [];
+    // 켜진 시너지가 여럿이면 아이템이 가장 크게 달라지는 시너지 기준
+    const dev = ti => Math.max(...Object.values(ti.items || {}).map(([a, b]) => Math.abs(Math.log(Math.max(a, 0.01) / Math.max(b, 0.01)))));
+    const pick = Object.entries(st?.traitItems || {}).filter(([t, ti]) => on.includes(t) && ti.builds?.length).sort((a, b) => dev(b[1]) - dev(a[1]))[0];
+    return pick ? pick[1].builds : st?.builds || [];
   };
   // 아이템 홀더 가중치: 랭커 경기에서 이 챔피언이 아이템 3개를 든 비율(carryRate).
   // 롤체는 나눠 주기보다 한 챔피언에 몰아줘야 함 → 홀더가 아닌 챔피언(요릭 0.08 등)에게 준 아이템은 가치가 작음
@@ -1336,10 +1349,7 @@ function assignItems(data, { board, inventory, carryIdx = null, carries = null }
   const reasonOf = (u, it) => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
     let rate = st && st.games >= 30 ? (st.items?.[it.statId || it.id] || 0) / st.games : null;
-    if (rate != null && st.traitItems) { // 시너지가 켜졌는지에 따른 비율 (itemAffinity 와 같은 기준)
-      const on = traitsOnOf(u);
-      for (const [t, ti] of Object.entries(st.traitItems)) { const rs = ti.items[it.statId || it.id]; if (rs) { rate = on.includes(t) ? rs[0] : rs[1]; break; } }
-    }
+    if (rate != null) rate = Math.min(1, rate * traitItemRatio(st, it.statId || it.id, traitsOnOf(u))); // 시너지 켜짐 여부 반영 (itemAffinity 와 같은 기준)
     if (!isThinPick(u)) return { rate };
     const total = ownItemsTotal(u), sims = similarOf(u);
     const own = total ? (st?.items?.[it.statId || it.id] || 0) / total : 0;
@@ -3207,7 +3217,7 @@ function dexTraitItemsHtml(c, u) {
       .map(([id, [on, off]]) => `<span class="dexItemRate">${itemLink(id)}<b>${dexPct(off)} → ${dexPct(on)}</b></span>`).join('');
     const bs = rankBuilds(ti.builds || []);
     return dexSec(`${esc(tn)} 시너지가 켜졌을 때`,
-      `<p class="muted small">켜진 판 ${ti.on.toLocaleString()} · 안 켜진 판 ${ti.off.toLocaleString()} — 낀 비율 (안 켜짐 → 켜짐)</p><div class="dexItems">${rows}</div>`
+      `<p class="muted small">켜진 판 ${ti.on.toLocaleString()} · 안 켜진 판 ${ti.off.toLocaleString()} — 든 아이템 중 그 아이템의 몫 (안 켜짐 → 켜짐)</p><div class="dexItems">${rows}</div>`
       + (bs.length ? `<p class="muted small" style="margin-top:8px">켜진 판의 랭커 3신기</p>` + bs.map((b, i) => `<div class="${i ? 'alt' : 'best'}">${buildRow(b)}</div>`).join('') : ''));
   }).join('');
 }

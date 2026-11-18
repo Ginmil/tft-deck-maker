@@ -891,7 +891,7 @@ function dexTraitItemsHtml(c, u) {
       .map(([id, [on, off]]) => `<span class="dexItemRate">${itemLink(id)}<b>${dexPct(off)} → ${dexPct(on)}</b></span>`).join('');
     const bs = rankBuilds(ti.builds || []);
     return dexSec(`${esc(tn)} 시너지가 켜졌을 때`,
-      `<p class="muted small">켜진 판 ${ti.on.toLocaleString()} · 안 켜진 판 ${ti.off.toLocaleString()} — 낀 비율 (안 켜짐 → 켜짐)</p><div class="dexItems">${rows}</div>`
+      `<p class="muted small">켜진 판 ${ti.on.toLocaleString()} · 안 켜진 판 ${ti.off.toLocaleString()} — 든 아이템 중 그 아이템의 몫 (안 켜짐 → 켜짐)</p><div class="dexItems">${rows}</div>`
       + (bs.length ? `<p class="muted small" style="margin-top:8px">켜진 판의 랭커 3신기</p>` + bs.map((b, i) => `<div class="${i ? 'alt' : 'best'}">${buildRow(b)}</div>`).join('') : ''));
   }).join('');
 }

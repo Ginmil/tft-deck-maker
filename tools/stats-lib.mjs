@@ -287,23 +287,24 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
     }
   }
   // 챔피언: 평균 등수, 캐리율(완성 아이템 3개를 든 비율)
-  // traitItems: 내 시너지가 켜진 판과 안 켜진 판의 아이템 비율이 크게 다르면(8%p 이상) 둘 다 남김 + 켜진 판 3신기
-  //  (처형자: 이즈리얼 무한의 대검 안 켜짐 68% → 켜짐 36%)
+  // traitItems: 내 시너지가 켜진 판과 안 켜진 판에서 "든 아이템 중 이 아이템의 몫"이 크게 다르면 둘 다 남김 + 켜진 판 3신기
+  //  (판당 비율이 아니라 몫으로 비교 — 시너지가 꺼진 판은 그 챔피언이 캐리가 아닌 판이 많아서 판당 비율은 다 낮게 나옴)
+  //  처형자: 이즈리얼 무한의 대검 몫 안 켜짐 → 켜짐이 크게 줄어듦 (11/18 사용자)
   const traitItemsOf = r => {
     const out = {};
+    const all = Object.values(r.items).reduce((a, b) => a + b, 0);
     for (const [t, on] of Object.entries(r.tr || {})) {
-      const offGames = r.games - on.games;
-      if (on.games < 30 || offGames < 30) continue;
+      const onAll = Object.values(on.items).reduce((a, b) => a + b, 0), offAll = all - onAll;
+      if (onAll < 90 || offAll < 90) continue; // 아이템 90개(3개 든 판 30판어치)는 있어야
       const items = {};
-      const names = new Set([...Object.entries(r.items).sort((a, b) => b[1] - a[1]).slice(0, 12).map(x => x[0]), ...Object.keys(on.items)]);
-      for (const n of names) {
-        const a = (on.items[n] || 0) / on.games, b = ((r.items[n] || 0) - (on.items[n] || 0)) / offGames;
-        if (Math.abs(a - b) >= 0.08 && Math.max(a, b) >= 0.1) items[n] = [round(a, 3), round(b, 3)];
+      for (const n of Object.keys(r.items)) {
+        const a = (on.items[n] || 0) / onAll, b = ((r.items[n] || 0) - (on.items[n] || 0)) / offAll;
+        if (Math.abs(a - b) >= 0.05 && Math.max(a, b) >= 0.08 && Math.max(a, b) / Math.max(0.01, Math.min(a, b)) >= 1.5) items[n] = [round(a, 3), round(b, 3)];
       }
       if (!Object.keys(items).length) continue;
       const builds = Object.entries(on.builds).sort((a, b) => b[1].games - a[1].games).slice(0, 6)
         .map(([k, b]) => ({ items: k.split('|'), games: Math.round(b.games), avgPlace: round(b.sumPlace / b.games, 2) }));
-      out[t] = { on: Math.round(on.games), off: Math.round(offGames), items, builds };
+      out[t] = { on: Math.round(on.games), off: Math.round(r.games - on.games), onItems: Math.round(onAll), offItems: Math.round(offAll), items, builds };
     }
     return Object.keys(out).length ? { traitItems: out } : {};
   };
