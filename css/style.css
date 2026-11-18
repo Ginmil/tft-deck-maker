@@ -971,3 +971,61 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 .dTop .dTopBd { flex: none; align-self: flex-start; margin-top: 4px; }
 /* 덱 목록 필터 (11/17) — 챔피언 검색 칸을 필터 줄 안에 */
 #panel-meta .settings #metaQ { width: 210px; margin: 0; flex: none; padding: 8px 12px; }
+
+/* ---------------- 홈 (11/18) ---------------- */
+.home { display: grid; gap: 28px; padding-bottom: 24px; }
+.homeHero { padding: 18px 0 2px; }
+.homeHero h1 { margin: 0; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.15; letter-spacing: -0.03em; font-weight: 700; }
+.homeHero h1 span { color: var(--muted); }
+.homeData { margin: 14px 0 0; color: var(--muted); font-size: 14px; }
+.homeData b { color: var(--text); font-weight: 600; }
+.homeStart { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1fr); gap: 0; border: 1px solid var(--gold); border-radius: 16px; background: linear-gradient(0deg, rgba(226,176,74,.04), rgba(226,176,74,.04)), var(--card); overflow: hidden; }
+.homeStart > div { padding: 22px 24px; }
+.homeStartSide { border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.homeStart h2 { margin: 0 0 4px; font-size: 18px; }
+.homeStart p { margin: 0 0 14px; color: var(--muted); font-size: 13.5px; max-width: 60ch; }
+.homeEmbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 6px; }
+.homeEmb { display: flex; align-items: center; gap: 6px; padding: 6px 8px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; color: var(--text); font: inherit; font-size: 12.5px; cursor: pointer; text-align: left; }
+.homeEmb img { width: 22px; height: 22px; border-radius: 4px; flex: none; }
+.homeEmb span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.homeEmb:hover, .homeEmb:focus-visible { border-color: var(--gold); outline: none; }
+.homeSecHead { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+.homeSecHead h2 { margin: 0; font-size: 20px; }
+.homeSecHead p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+.homeSecAct { display: flex; gap: 6px; align-items: center; }
+.iconBtn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--text); font-size: 18px; line-height: 1; cursor: pointer; }
+.iconBtn:hover { border-color: var(--gold); }
+.homeDecks { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(250px, 1fr); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: thin; }
+@media (min-width: 1100px) { .homeDecks { grid-auto-columns: calc((100% - 36px) / 4); } }
+.homeDeck { scroll-snap-align: start; display: flex; flex-direction: column; gap: 6px; text-align: left; padding: 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); color: var(--text); font: inherit; cursor: pointer; }
+.homeDeck:hover, .homeDeck:focus-visible { border-color: var(--gold); outline: none; }
+.homeDeckTop { display: flex; justify-content: space-between; align-items: flex-start; }
+.homeDeckTop .por { width: 64px; height: 64px; }
+.homeDeck .tl { font-weight: 800; font-size: 15px; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 8px; background: var(--bg); color: var(--muted); }
+.homeDeck .tl.tS { color: var(--on-accent); background: var(--gold); } .homeDeck .tl.tA { color: var(--bg); background: var(--silver); }
+.homeDeckName { font-size: 17px; margin-top: 4px; }
+.homeDeckType { color: var(--muted); font-size: 13px; }
+.homeDeckStat { font-size: 13px; color: var(--muted); } .homeDeckStat b { color: var(--text); }
+.homeDeckTeam { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 4px; }
+.homeDeckTeam .por { width: 24px; height: 24px; }
+.homePatch { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(220px, 1fr); border-radius: 16px; overflow: hidden; background: #22314a; border: 1px solid #33496b; }
+.homePatchMain { padding: 26px 28px; }
+.homePatchKind { color: var(--gold); font-size: 13px; font-weight: 600; }
+.homePatchMain h2 { margin: 6px 0 8px; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.02em; }
+.homePatchMain p { margin: 0 0 14px; color: #b9c3da; max-width: 62ch; font-size: 14px; }
+.homePatchCnt { display: flex; gap: 14px; margin-bottom: 16px; font-weight: 600; font-size: 14px; }
+.homePatchCnt .up { color: var(--up); } .homePatchCnt .down { color: var(--danger); }
+.homePatchList { padding: 22px 24px; border-left: 1px solid #33496b; display: flex; flex-direction: column; gap: 4px; }
+.homePatchList h3 { margin: 0 0 6px; font-size: 14px; color: var(--muted); font-weight: 600; }
+.homePatchList button { display: flex; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 8px; background: transparent; border: 0; color: var(--text); font: inherit; font-size: 14px; cursor: pointer; text-align: left; }
+.homePatchList button span { color: var(--muted); font-size: 12.5px; }
+.homePatchList button:hover { background: rgba(255,255,255,.05); }
+.homeDiff { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-top: 6px; border-top: 1px solid var(--line); }
+.homeDiff h3 { margin: 14px 0 4px; font-size: 15px; }
+.homeDiff p { margin: 0; color: var(--muted); font-size: 13.5px; }
+@media (max-width: 860px) {
+  .homeStart, .homePatch, .homeDiff { grid-template-columns: 1fr; }
+  .homeStartSide, .homePatchList { border-left: 0; border-top: 1px solid var(--line); }
+}
+.home { grid-template-columns: minmax(0, 1fr); }
+.home > * { min-width: 0; }

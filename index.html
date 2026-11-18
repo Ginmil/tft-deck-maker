@@ -19,9 +19,10 @@
       </div>
     </div>
     <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="home" role="tab">홈</button>
       <button class="tab" data-tab="meta" role="tab">메타 덱</button>
       <button class="tab" data-tab="patch" role="tab">패치 노트</button>
-      <button class="tab active" data-tab="emblem" role="tab">상징 팀 메이커 </button>
+      <button class="tab" data-tab="emblem" role="tab">상징 팀 메이커</button>
       <button class="tab" data-tab="builds" role="tab">도감</button>
       <button class="tab" data-tab="builder" role="tab">배치툴</button>
     </nav>
@@ -50,7 +51,12 @@
     
     <!-- 덱을 새로 짜는 탭(상징 팀 메이커·아이템으로 찾기)에서만 보임 -->
     <!-- 3. 상징 -->
-    <section class="panel" id="panel-emblem">
+    <!-- 0. 홈 (11/18: TFT Note·롤체지지 참고 — 한 줄 소개 + 데이터 상태, 검색창 자리엔 상징 고르기, 티어 덱 카드, 패치 예측 배너) -->
+    <section class="panel" id="panel-home">
+      <div class="home" id="homeView"><div class="empty">데이터를 불러오는 중…</div></div>
+    </section>
+
+    <section class="panel" id="panel-emblem" hidden>
       <p class="help">가진 상징을 눌러 담으세요. 같은 상징을 여러 번 누르면 개수가 늘어나요. <b>고른 상징만으로 되는 랭커 메타 덱</b>과 랭커가 그 상징으로 실제 쓴 보드를 찾아줘요.</p>
       <div class="picked" id="emblemPicked"></div>
       <input class="filter" id="emblemFilter" placeholder="상징 검색">

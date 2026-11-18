@@ -171,6 +171,7 @@ function setData(data) {
   $('results').innerHTML = '';
   bdOnData();
   renderMeta(); // 첫 화면(메타 덱 탭)이 비어 보이지 않도록 데이터가 오면 바로 그림
+  renderHome();
 }
 
 // ---------------- 선택 UI ----------------
@@ -608,14 +609,33 @@ function bind() {
     if (!t.classList.contains('active')) window.scrollTo({ top: 0 });
     document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
     document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== `panel-${t.dataset.tab}`);
+    if (t.dataset.tab === 'home') renderHome();
     if (t.dataset.tab === 'builds') renderBuilds();
     if (t.dataset.tab === 'meta') renderMeta();
     if (t.dataset.tab === 'patch') renderPatch();
     if (t.dataset.tab === 'builder') bdRender();
-    $('results').hidden = ['meta', 'patch', 'builds', 'builder'].includes(t.dataset.tab);
+    $('results').hidden = ['home', 'meta', 'patch', 'builds', 'builder'].includes(t.dataset.tab);
     // 레벨·코스트·5코스트·특수 기물 설정은 덱을 새로 짜는 탭에서만 의미가 있음 (사용자 피드백 11/15: 메타 덱에도 떠서 헷갈림)
     // 11/17: 옵션은 상징 팀 메이커 안 "시너지 계산 추천 설정" 접기로 옮김 (패널과 함께 보이고 숨음)
     $('results').innerHTML = '';
+  });
+
+  // 홈 (11/18)
+  $('homeView').addEventListener('click', e => {
+    const emb = e.target.closest('[data-home-emb]');
+    if (emb) { // 상징 하나 → 상징 팀 메이커 바로 실행
+      openTab('emblem'); state.emblems = [emb.dataset.homeEmb]; renderEmblems(); $('runEmblem').click(); return;
+    }
+    const deck = e.target.closest('[data-home-deck]');
+    if (deck) { tierSel = deck.dataset.homeDeck; tierFilter = 'all'; metaView = 'tier'; openTab('meta'); return; }
+    const go = e.target.closest('[data-home-go]');
+    if (go) {
+      const [tab, arg] = go.dataset.homeGo.split(':');
+      if (tab === 'patch' && arg) $('patchChips').dataset.chosen = arg;
+      openTab(tab); return;
+    }
+    const arrow = e.target.closest('[data-home-scroll]');
+    if (arrow) { const row = $('homeDecks'); row.scrollBy({ left: Number(arrow.dataset.homeScroll) * row.clientWidth * 0.8, behavior: 'smooth' }); }
   });
 
   // 상징
@@ -710,6 +730,82 @@ function itemHabitHtml(c, compact = false) {
     out.push(`<span class="habit few" title="랭커 경기에서 아이템 3개를 다 든 판이 ${pct(st.carryRate || 0)}뿐이에요 (아이템 없음 ${pct(st.held[0])}). 보통 아이템을 몰아주지 않는 챔피언이라 3신기 판수가 적어요">아이템 3개 든 판 ${pct(st.carryRate || 0)}${compact ? '' : ` · 템 없음 ${pct(st.held[0])}`}</span>`);
   }
   return out.length ? `<div class="habits">${out.join('')}</div>` : '';
+}
+
+// ---------------- 홈 (11/18) ----------------
+// TFT Note(큰 한 줄 소개·덱 카드 넘기기·기능 배너)와 롤체지지(검색창이 주인공·최근 패치 목록)를 참고.
+// 우리는 전적 검색이 없으니 검색창 자리에 "가진 상징 고르기"(상징 팀 메이커로 바로)를 둠.
+const openTab = name => document.querySelector(`.tab[data-tab="${name}"]`)?.click();
+function renderHome() {
+  const box = $('homeView'), d = state.data;
+  if (!box || !d) return;
+  const w = state.weights, pt = w?.patch;
+  const games = pt?.matches?.[pt.current] ?? w?.games;
+  const when = w?.generatedAt ? new Date(w.generatedAt) : null;
+  const whenTxt = when ? `${when.getMonth() + 1}월 ${when.getDate()}일 ${String(when.getHours()).padStart(2, '0')}:${String(when.getMinutes()).padStart(2, '0')} 갱신` : '';
+  const dataLine = metaAvailable()
+    ? `<p class="homeData"><b>${esc(pt?.current || '')} 패치</b> · 챌린저·그랜드마스터 랭커 <b>${Number(games || 0).toLocaleString()}경기</b>${whenTxt ? ` · ${whenTxt}` : ''}</p>`
+    : `<p class="homeData">랭커 통계가 아직 없어요 — 시너지 계산 추천과 배치툴은 쓸 수 있어요.</p>`;
+
+  // 검색창 자리: 상징 고르기 + 배치툴
+  const embs = d.emblems.map(e => `<button class="homeEmb" data-home-emb="${esc(e.trait)}" title="${esc(traitName(e.trait))} 상징 — 이 상징으로 되는 덱 찾기">${img(e.icon)}<span>${esc(traitName(e.trait))}</span></button>`).join('');
+  const start = `<section class="homeStart" aria-label="바로 시작">
+    <div class="homeStartMain"><h2>가진 상징이 있나요?</h2><p>하나를 누르면 그 상징으로 되는 랭커 메타 덱을 바로 찾아줘요. 여러 개는 상징 팀 메이커에서 골라요.</p>
+      <div class="homeEmbs">${embs}</div></div>
+    <div class="homeStartSide"><h2>보드가 이미 있나요?</h2><p>지금 보드와 남은 아이템을 넣으면 가까운 메타 덱과 아이템 배분을 추천해요.</p>
+      <button class="btn primary" data-home-go="builder">배치툴에서 다음 수 추천받기</button>
+      <button class="btn" data-home-go="emblem">상징 여러 개 고르기</button></div>
+  </section>`;
+
+  // 티어 덱 카드 (S·A)
+  let decksHtml = '';
+  if (metaAvailable()) {
+    const { tiers } = tierList(groupedDecks(), { min: Number($('metaMin').value) || 15 });
+    const all = [...tiers.S, ...tiers.A, ...tiers.B, ...tiers.C];
+    const top = [...tiers.S, ...tiers.A];
+    const card = x => {
+      const carry = carryOfDeck(x), team = [...x.team].sort((a, b) => a.cost - b.cost);
+      return `<button class="homeDeck" data-home-deck="${esc(deckName(x) + '|' + deckType(x))}" title="${esc(deckName(x))} — 티어표에서 보기">
+        <span class="homeDeckTop"><span class="tl t${x.tier}">${x.tier}</span>${hexPor(carry)}</span>
+        <b class="homeDeckName">${esc(deckName(x))}</b>
+        <span class="homeDeckType">${esc(deckType(x))}</span>
+        <span class="homeDeckStat"><b>${x.m.avgPlace.toFixed(2)}등</b> · 순방 ${Math.round(x.m.top4 * 100)}% · ${(x.tierGames || tierGames(x.m) || x.m.games).toLocaleString()}판</span>
+        <span class="homeDeckTeam">${team.slice(0, 9).map(c => hexPor(c)).join('')}</span>
+      </button>`;
+    };
+    decksHtml = `<section class="homeSec">
+      <div class="homeSecHead"><div><h2>${esc(pt?.current || '')} 패치 덱 티어</h2><p>랭커 실제 보드를 덱으로 묶어 평균 등수로 나눴어요 · S ${tiers.S.length}개 · A ${tiers.A.length}개</p></div>
+        <div class="homeSecAct"><button class="iconBtn" data-home-scroll="-1" aria-label="이전 덱">‹</button><button class="iconBtn" data-home-scroll="1" aria-label="다음 덱">›</button><button class="btn" data-home-go="meta">전체 ${all.length}개 덱 보기</button></div></div>
+      <div class="homeDecks" id="homeDecks">${top.map(card).join('')}</div>
+    </section>`;
+  }
+
+  // 패치 예측 배너 + 최근 패치
+  let patchHtml = '';
+  const plist = (patchDoc?.patches || []).filter(p => p.summary || p.changes).reverse();
+  const latest = plist.find(p => p.changes?.length);
+  if (latest) {
+    const n = dir => latest.changes.filter(c => c.dir === dir).length;
+    const live = pt?.current === latest.patch;
+    patchHtml = `<section class="homePatch">
+      <div class="homePatchMain">
+        <span class="homePatchKind">패치 예측</span>
+        <h2>${esc(latest.patch)} 패치, 어떤 덱이 오를까?</h2>
+        <p>바뀐 챔피언·시너지가 메타 덱의 어느 자리에 있는지로 성적 변화를 미리 예측하고, 패치 뒤 랭커 경기로 실제와 비교해 채점해요. ${live ? '이번 패치 경기가 쌓이는 중이에요.' : '이 패치 경기가 수집되면 채점이 시작돼요.'}</p>
+        <div class="homePatchCnt"><span class="up">▲ 버프 ${n('buff')}</span><span class="down">▼ 너프 ${n('nerf')}</span>${n('adjust') ? `<span>◆ 조정 ${n('adjust')}</span>` : ''}</div>
+        <button class="btn primary" data-home-go="patch:${esc(latest.patch)}">예측 보기</button>
+      </div>
+      <div class="homePatchList"><h3>최근 패치</h3>${plist.slice(0, 4).map(p => `<button data-home-go="patch:${esc(p.patch)}"><b>${esc(p.patch)}</b><span>${esc(p.date)}${p.balance === false ? ' · 버그 수정' : ''}</span></button>`).join('')}</div>
+    </section>`;
+  }
+
+  const diff = `<section class="homeDiff" aria-label="이 사이트가 다른 점">
+    <div><h3>정해진 공략이 아니라 실제 기록</h3><p>덱 구성·3신기·상징은 랭커가 실제로 쓴 보드 그대로예요. 판수가 적으면 "표본 적음"으로 알려요.</p></div>
+    <div><h3>내 게임에서 출발하는 추천</h3><p>가진 상징, 남은 아이템, 지금 보드에 맞춰 덱과 아이템 배분을 골라줘요.</p></div>
+    <div><h3>패치 예측을 채점</h3><p>패치 전에 예측하고, 패치 뒤 실제 성적으로 맞았는지 보여줘요.</p></div>
+  </section>`;
+
+  box.innerHTML = `<header class="homeHero"><h1>랭커의 실제 보드로,<br><span>내 게임에 맞는 덱을.</span></h1>${dataLine}</header>${start}${decksHtml}${patchHtml}${diff}`;
 }
 
 // ---------------- 도감 (11/17: 챔피언 3신기 탭 → 챔피언·아이템·시너지 + 랭커 통계) ----------------
@@ -1319,6 +1415,8 @@ function renderItemStats(btn) {
 let patchDoc = null;
 const patchDocReady = fetch('data/patches.json', { cache: 'no-cache', signal: AbortSignal.timeout(8000) })
   .then(r => (r.ok ? r.json() : null)).then(j => { patchDoc = j; }).catch(() => {});
+// 홈의 패치 배너는 patches.json 이 늦게 오면 그때 다시 그림
+patchDocReady.then(() => { if (!$('panel-home')?.hidden) renderHome(); });
 const DIR_KO = { buff: ['▲', '버프', 'up'], nerf: ['▼', '너프', 'down'], adjust: ['◆', '조정', 'same'] };
 const WHERE_KO = { carry: '핵심 캐리', tank: '메인 탱커', core: '구성원', flex: '가끔 쓰는', trait: '주력 시너지' };
 
