@@ -298,6 +298,7 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
       if (onAll < 90 || offAll < 90) continue; // 아이템 90개(3개 든 판 30판어치)는 있어야
       const items = {};
       for (const n of Object.keys(r.items)) {
+        if (/Component/i.test(n)) continue; // 재료는 비교에서 뺌
         const a = (on.items[n] || 0) / onAll, b = ((r.items[n] || 0) - (on.items[n] || 0)) / offAll;
         if (Math.abs(a - b) >= 0.05 && Math.max(a, b) >= 0.08 && Math.max(a, b) / Math.max(0.01, Math.min(a, b)) >= 1.5) items[n] = [round(a, 3), round(b, 3)];
       }
