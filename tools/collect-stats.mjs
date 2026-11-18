@@ -170,8 +170,8 @@ try {
     if (champTraits.da_lux18_base) champTraits.da_lux18_base = []; // 럭스 형태는 경기 데이터로 구분이 안 됨
     for (const e of Object.values(set.emblems)) for (const id of e.ids || [e.id]) emblemTrait[id.toLowerCase()] = e.trait;
   } catch (e) { console.log('세트 사본을 못 읽어 시너지별 아이템 집계는 건너뛰어요', e.message); }
-  const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, isCurrent: pw.isCurrent, patchLabel: m => patchOf(m, schedule), champTraits, emblemTrait });
-  stats.patch = { current: pw.current, prev: pw.prev, prevWeight: pw.prevWeight, mature: pw.mature, matches: pw.counts };
+  const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, itemWeightOf: pw.itemWeightOf, isCurrent: pw.isCurrent, patchLabel: m => patchOf(m, schedule), champTraits, emblemTrait });
+  stats.patch = { current: pw.current, prev: pw.prev, prevWeight: pw.prevWeight, itemPrevWeight: pw.itemPrevWeight, mature: pw.mature, matches: pw.counts };
   if (!pw.current) {
     const ex = matches.find(m => m?.info)?.info || {};
     console.log(`패치 버전을 못 읽었어요. 예시 game_version=${JSON.stringify(ex.game_version)} / 버전 관련 필드: ${Object.keys(ex).filter(k => /version|patch/i.test(k)).map(k => `${k}=${JSON.stringify(ex[k])}`).join(', ')}`);

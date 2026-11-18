@@ -3226,6 +3226,11 @@ function dexTraitItemsHtml(c, u) {
   }).join('');
 }
 // 도감 3신기 (11/18 사용자): 맨 위 = 가장 많이 쓴 조합(정석, 판수 1위), 그 아래 = 성적 좋은 조합(보정 평균 등수 순) 2개
+// 아이템 기록이 어느 패치까지인지 (11/18: 아이템이 안 바뀐 패치면 이전 패치 경기도 그대로 씀)
+function itemSpan() {
+  const p = state.weights?.patch;
+  return p?.prev && p.itemPrevWeight >= 1 ? `${p.prev}·${p.current} 패치 기록` : p?.current ? `${p.current} 패치 기록` : '';
+}
 function dexBuildsHtml(all) {
   const list = (all || []).filter(b => !b.items.some(i => /ThiefsGloves|Tacticians/i.test(i)) && b.games >= BUILD_MIN_GAMES);
   if (!list.length) return '<p class="muted small">아이템 3개 조합 기록이 부족해요 (5판 이상인 조합 없음)</p>';
@@ -3259,9 +3264,9 @@ function dexChampHtml(c) {
     + dexStats(u.games, u.avgPlace, u.top4, u.win)
     + (stars ? `<div class="pills">${stars}</div>` : '')
     + itemHabitHtml(c)
-    + dexSec('랭커 3신기', dexBuildsHtml(u.builds), '맨 위가 가장 많이 쓴 조합 · % = 상위 조합 중 비율')
+    + dexSec('랭커 3신기', dexBuildsHtml(u.builds), `${itemSpan() ? itemSpan() + ' · ' : ''}맨 위가 가장 많이 쓴 조합 · % = 상위 조합 중 비율`)
     + dexTraitItemsHtml(c, u)
-    + dexSec('자주 낀 아이템', items ? `<div class="dexItems">${items}</div>` : '', '이 챔피언이 나온 판 중 낀 비율')
+    + dexSec('자주 낀 아이템', items ? `<div class="dexItems">${items}</div>` : '', `이 챔피언이 나온 판 중 낀 비율${itemSpan() ? ' · ' + itemSpan() : ''}`)
     + dexSec('받은 상징', embs ? `<div class="dexItems">${embs}</div>` : '')
     + dexSec('핵심 캐리인 메타 덱', dexDeckRows(carryIn))
     + dexSec('자주 들어가는 메타 덱', dexDeckRows(inTeam), '덱에서 75% 이상 사용');
@@ -3295,7 +3300,7 @@ function dexItemHtml(id) {
   const top = builds.sort((x, y) => y.b.games - x.b.games).filter(({ c, b }) => { const k = (c.base || c.id) + b.items.join(); if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 5)
     .map(({ c, b }) => `<div class="dexBuild">${champLink(c)}${buildRow(b)}</div>`).join('');
   return head
-    + dexSec('이 아이템을 낀 챔피언', carriers ? `<div class="dexHolders">${carriers}</div>` : '', '판 = 그 챔피언이 나온 판 중 낀 비율 · 몫 = 이 아이템 전체 중 그 챔피언에게 간 비율')
+    + dexSec('이 아이템을 낀 챔피언', carriers ? `<div class="dexHolders">${carriers}</div>` : '', `판 = 그 챔피언이 나온 판 중 낀 비율 · 몫 = 이 아이템 전체 중 그 챔피언에게 간 비율${itemSpan() ? ' · ' + itemSpan() : ''}`)
     + dexSec('이 아이템이 들어간 인기 3신기', top);
 }
 
