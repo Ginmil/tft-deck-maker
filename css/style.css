@@ -1029,3 +1029,8 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 }
 .home { grid-template-columns: minmax(0, 1fr); }
 .home > * { min-width: 0; }
+
+/* 메타 덱: 티어표/덱 목록 + 패치 고르기 (11/18) */
+.metaTop { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.metaTop #metaView { margin-bottom: 0; }
+.metaPatchChips small { font-size: 11px; opacity: .7; margin-left: 2px; }

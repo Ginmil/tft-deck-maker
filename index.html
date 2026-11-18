@@ -117,9 +117,12 @@
     <!-- 0. 메타 덱 (랭커 통계) -->
     <section class="panel" id="panel-meta" hidden>
       <p class="help" id="metaHelp">티어표와 같은 덱 묶음을 카드로 보여줘요. 종류·시너지·챔피언으로 거르고, 티어·평균 등수·판수·1등률로 정렬할 수 있어요.</p>
+      <div class="metaTop">
       <div class="bdItemTabs itemMode" id="metaView" role="tablist">
         <button class="bp on" data-view="tier">티어표</button>
         <button class="bp" data-view="list">덱 목록</button>
+      </div>
+      <div class="pillFilters metaPatchChips" id="metaPatchChips" role="tablist" aria-label="패치 고르기"></div>
       </div>
       <div class="settings">
         <label id="metaSortWrap">정렬 <select id="metaSort"><option value="tier" selected>티어</option><option value="avg">평균 등수</option><option value="pick">판수</option><option value="win">1등률</option></select></label>

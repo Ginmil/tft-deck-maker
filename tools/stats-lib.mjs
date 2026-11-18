@@ -427,5 +427,5 @@ function blend(n, b, k) {
     patchGames: n.games, // 이번 패치 실제 판수 (0 이면 이전 패치 기록만 있는 덱 = 예측)
   };
 }
-const side = s => (s && s.games ? { games: s.games, avgPlace: round(s.sumPlace / s.games, 2), top4: round(s.top4 / s.games, 3),
+const side = s => (s && s.games ? { games: s.games, avgPlace: round(s.sumPlace / s.games, 2), top4: round(s.top4 / s.games, 3), win: round((s.wins || 0) / s.games, 3),
   ...(s.augs ? { augs: Object.fromEntries(Object.entries(s.augs).map(([a, n]) => [a, round(n / s.games, 3)]).filter(([, r]) => r >= 0.05).sort((x, y) => y[1] - x[1]).slice(0, 10)) } : {}) } : null);

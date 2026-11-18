@@ -586,6 +586,7 @@ function bind() {
   $('metaSort').onchange = renderMeta;
   for (const id of ['metaKind', 'metaTrait']) $(id).onchange = renderMeta;
   $('metaQ').oninput = renderMeta;
+  $('metaPatchChips').onclick = e => { const b = e.target.closest('button[data-mp]'); if (!b) return; metaPatchSel = b.dataset.mp === curPatch() ? null : b.dataset.mp; renderMeta(); };
   $('metaView').onclick = e => { const b = e.target.closest('button[data-view]'); if (!b) return; metaView = b.dataset.view; renderMeta(); };
   $('metaTiers').addEventListener('click', e => {
     const f = e.target.closest('#tierFilters button');
@@ -627,7 +628,7 @@ function bind() {
       openTab('emblem'); state.emblems = [emb.dataset.homeEmb]; renderEmblems(); $('runEmblem').click(); return;
     }
     const deck = e.target.closest('[data-home-deck]');
-    if (deck) { tierSel = deck.dataset.homeDeck; tierFilter = 'all'; metaView = 'tier'; openTab('meta'); return; }
+    if (deck) { tierSel = deck.dataset.homeDeck; tierFilter = 'all'; metaView = 'tier'; metaPatchSel = null; openTab('meta'); return; }
     const go = e.target.closest('[data-home-go]');
     if (go) {
       const [tab, arg] = go.dataset.homeGo.split(':');
@@ -1391,10 +1392,19 @@ function patchNote(m) {
   return '';
 }
 function renderPatchInfo() {
-  const p = state.weights?.patch, box = $('metaPatch');
-  if (!p?.current || !metaAvailable()) { box.hidden = true; return; }
+  const p = state.weights?.patch, box = $('metaPatch'), chips = $('metaPatchChips');
+  if (!p?.current || !metaAvailable()) { box.hidden = true; chips.hidden = true; return; }
   const cur = p.matches?.[p.current] || 0, prev = p.prev ? p.matches?.[p.prev] || 0 : 0;
+  const vs = patchViews(), view = viewPatch();
+  chips.hidden = vs.length < 2;
+  chips.innerHTML = vs.map(v => `<button role="tab" aria-pressed="${(view || p.current) === v}" data-mp="${esc(v)}">${esc(v)}${v === p.current ? ' <small>최신</small>' : ''}</button>`).join('');
   box.hidden = false;
+  if (view) {
+    const n = p.matches?.[view] || 0, before = vs[vs.indexOf(view) + 1];
+    box.innerHTML = `<b>${esc(view)} 패치</b> 기록으로 보는 중 · ${n.toLocaleString()}경기 · 지난 패치라 지금과 다를 수 있어요 (보드·3신기는 최근 기록 기준)`
+      + (before ? ` · <span class="pdelta up">▲</span><span class="pdelta down">▼</span> = ${esc(before)} 대비` : '');
+    return;
+  }
   box.innerHTML = `<b>${esc(p.current)} 패치</b> 기준 · 이번 패치 ${cur.toLocaleString()}경기`
     + (p.prev ? ` · 이전 패치(${esc(p.prev)}) ${prev.toLocaleString()}경기는 ${p.prevWeight > 0 ? '이번 패치 표본이 적어 일부만 반영' : '이번 패치 표본이 충분해 ▲▼ 비교에만 사용'}` : '')
     + ` · <span class="pdelta up">▲</span><span class="pdelta down">▼</span> = 이전 패치 대비 평균 등수 변화`;
@@ -1623,7 +1633,8 @@ function renderMeta() {
 // (예전엔 캐리 챔피언 단위 metaDecks 30개 + 고정 기준 티어 글자라 티어표와 달랐음)
 function renderMetaList(byId) {
   const box = $('metaList'), min = Number($('metaMin').value);
-  const { tiers } = tierList(groupedDecks(), { min });
+  const view = viewPatch();
+  const { tiers } = tierList(groupedDecks(view), { min });
   const rows = [...tiers.S, ...tiers.A, ...tiers.B, ...tiers.C];
   // 시너지 목록: 지금 덱들의 주력 시너지 (덱 수 많은 순)
   const sel = $('metaTrait'), cur = sel.value, cnt = {};
@@ -1644,7 +1655,7 @@ function renderMetaList(byId) {
   list.sort(sorters[$('metaSort').value] || sorters.tier);
   const pct = v => Math.round(v * 100) + '%';
   box.innerHTML = list.length
-    ? `<p class="legend">${list.length}개 덱 · 티어는 티어표와 같은 기준(이번 패치, 판수 적으면 4.5등 쪽으로 보정) · 보여 주는 보드는 가장 많이 쓰인 버전의 랭커 실제 보드</p>`
+    ? `<p class="legend">${list.length}개 덱 · 티어는 티어표와 같은 기준(${view ? esc(view) + ' 패치' : '이번 패치'}, 판수 적으면 4.5등 쪽으로 보정) · 보여 주는 보드는 가장 많이 쓰인 버전의 랭커 실제 보드</p>`
       + list.map((x, i) => {
         const vn = x.variants?.length || 0;
         const reroll = /리롤/.test(deckType(x));
@@ -1725,16 +1736,40 @@ function traitBadge(id, style = '', sm = false) {
 const hexPor = (c, extra = '') => `<span class="por" data-cost="${c?.cost || 1}"${extra}>${c?.icon ? `<img src="${esc(c.icon)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : ''}</span>`;
 
 /** 티어표와 같은 덱 묶음 (작은 버전은 큰 덱에 합침) — 티어표·다음 수 추천 공용 */
-function groupedDecks() {
-  const decks = metaDecks(1).map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games, value: d.value, trait: d.m.trait })).filter(d => d.carryChamp);
+// 지난 패치로 보기 (11/18 사용자: 새 패치 첫날엔 티어표가 휑함 → 18.6·18.7 을 눌러서 보도록)
+// 덱마다 집계 byPatch[패치] 성적(판수·평균·순방·1등)으로 바꿔서 같은 묶음·티어 계산. 보드·3신기는 최근 기록 그대로.
+let metaPatchSel = null; // null = 최신 패치
+function patchViews() {
+  const w = state.weights?.patch;
+  if (!w?.current) return [];
+  const order = (patchDoc?.patches || []).map(p => p.patch);
+  const idx = p => { const i = order.indexOf(p); return i < 0 ? -1 : i; };
+  return Object.entries(w.matches || {}).filter(([p, n]) => p === w.current || n >= 300)
+    .map(([p]) => p).sort((a, b) => idx(b) - idx(a) || b.localeCompare(a, 'en', { numeric: true }));
+}
+const viewPatch = () => (metaPatchSel && metaPatchSel !== curPatch() && patchViews().includes(metaPatchSel) ? metaPatchSel : null);
+function patchViewM(m, p, before) {
+  const s = m.byPatch?.[p];
+  if (!s?.games) return null;
+  const b = before ? m.byPatch?.[before] : null;
+  return { ...m, games: s.games, patchGames: s.games, avgPlace: s.avgPlace, top4: s.top4 ?? m.top4, win: s.win ?? m.win, now: s, before: b?.games ? b : null };
+}
+function groupedDecks(view = null) {
+  let base = metaDecks(1);
+  if (view) {
+    const vs = patchViews(), before = vs[vs.indexOf(view) + 1] || null;
+    base = base.map(d => { const m = patchViewM(d.m, view, before); return m ? { ...d, m } : null; }).filter(Boolean);
+  }
+  const decks = base.map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games, value: d.value, trait: d.m.trait })).filter(d => d.carryChamp);
   return groupDecks(decks).map(g => combineDecks(g.main, g.variants));
 }
 function renderTiers(byId) {
   const min = Number($('metaMin').value);
-  const grouped = groupedDecks();
+  const view = viewPatch();
+  const grouped = groupedDecks(view);
   const { tiers, watch, cuts } = tierList(grouped, { min });
   tierDecks = [];
-  const p = curPatch();
+  const p = view || curPatch();
   const show = x => tierFilter === 'all' || tierKind(x) === tierFilter;
   const keyOf = x => deckName(x) + '|' + deckType(x);
   const all = [...tiers.S, ...tiers.A, ...tiers.B, ...tiers.C, ...watch];
@@ -1758,7 +1793,7 @@ function renderTiers(byId) {
   const filters = [['all', '전체'], ['reroll', '리롤'], ['level', '레벨업'], ['value', '밸류']]
     .map(([k, n]) => `<button aria-pressed="${tierFilter === k}" data-f="${k}">${n}</button>`).join('');
   const bands = ['S', 'A', 'B'].map(t => row(t, tiers[t], TIER_DESC[t])).join('') + row('C', tiers.C, TIER_DESC.C, false)
-    + (watch.filter(show).length ? `<div class="tierBand" data-t="W"><div class="tmark"><span class="thex">?</span><small>지켜볼 덱</small></div><div><p class="tierNote">이번 패치 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱이에요.</p><div class="decks">${watch.filter(show).map(tile).join('')}</div></div></div>` : '');
+    + (watch.filter(show).length ? `<div class="tierBand" data-t="W"><div class="tmark"><span class="thex">?</span><small>지켜볼 덱</small></div><div><p class="tierNote">${view ? esc(view) + ' 패치' : '이번 패치'} 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱이에요.</p><div class="decks">${watch.filter(show).map(tile).join('')}</div></div></div>` : '');
   $('metaTiers').innerHTML = !ranked && !watch.length
     ? `<div class="empty">${p ? esc(p) + ' 패치에서 ' : ''}${min}판 이상 나온 메타 덱이 아직 없어요. 최소 판수를 낮춰 보세요.</div>`
     : `<div class="tierHead2">
