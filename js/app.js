@@ -889,11 +889,22 @@ function dexTraitItemsHtml(c, u) {
     const tn = state.data.traits[t]?.name || t;
     const rows = Object.entries(ti.items).sort((a, b) => Math.abs(b[1][0] - b[1][1]) - Math.abs(a[1][0] - a[1][1])).slice(0, 4)
       .map(([id, [on, off]]) => `<span class="dexItemRate">${itemLink(id)}<b>${dexPct(off)} → ${dexPct(on)}</b></span>`).join('');
-    const bs = rankBuilds(ti.builds || []);
+    const bs = (ti.builds || []).filter(b => b.games >= BUILD_MIN_GAMES);
     return dexSec(`${esc(tn)} 시너지가 켜졌을 때`,
       `<p class="muted small">켜진 판 ${ti.on.toLocaleString()} · 안 켜진 판 ${ti.off.toLocaleString()} — 든 아이템 중 그 아이템의 몫 (안 켜짐 → 켜짐)</p><div class="dexItems">${rows}</div>`
-      + (bs.length ? `<p class="muted small" style="margin-top:8px">켜진 판의 랭커 3신기</p>` + bs.map((b, i) => `<div class="${i ? 'alt' : 'best'}">${buildRow(b)}</div>`).join('') : ''));
+      + (bs.length ? `<p class="muted small" style="margin-top:8px">켜진 판의 랭커 3신기</p>` + dexBuildsHtml(ti.builds) : ''));
   }).join('');
+}
+// 도감 3신기 (11/18 사용자): 맨 위 = 가장 많이 쓴 조합(정석, 판수 1위), 그 아래 = 성적 좋은 조합(보정 평균 등수 순) 2개
+function dexBuildsHtml(all) {
+  const list = (all || []).filter(b => !b.items.some(i => /ThiefsGloves|Tacticians/i.test(i)) && b.games >= BUILD_MIN_GAMES);
+  if (!list.length) return '<p class="muted small">아이템 3개 조합 기록이 부족해요 (5판 이상인 조합 없음)</p>';
+  const total = (all || []).reduce((n, b) => n + b.games, 0);
+  const top = [...list].sort((a, b) => b.games - a.games)[0];
+  const good = rankBuilds(list).filter(b => b !== top).slice(0, 2);
+  const tag = (t, tip) => `<span class="lowconf" title="${tip}">${t}</span>`;
+  return `<div class="best">${buildRow(top).replace('<span class="bmeta">', `<span class="bmeta">${tag('가장 많이 씀', '이 챔피언이 아이템 3개를 든 판에서 가장 자주 나온 조합')} ${Math.round(top.games / total * 100)}% · `)}</div>`
+    + good.map(b => `<div class="alt">${buildRow(b).replace('<span class="bmeta">', `<span class="bmeta">${tag('성적 좋음', '판수가 적은 조합은 4.5등 쪽으로 보정해서 비교')} `)}</div>`).join('');
 }
 function dexChampHtml(c) {
   if (!c) return '';
@@ -904,7 +915,6 @@ function dexChampHtml(c) {
     ${forms.length ? `<p class="muted small">형태: ${forms.map(f => esc(f.name)).join(', ')} — 랭커 기록에는 형태 구분 없이 하나로 남아요</p>` : ''}`;
   if (!u) return head + '<div class="empty">랭커 기록이 없어요.</div>';
   const stars = Object.entries(u.stars || {}).filter(([, v]) => v.games >= 5).map(([k, v]) => `<span class="pill">${k}성 ${v.avgPlace}등 · ${v.games.toLocaleString()}판</span>`).join('');
-  const bs = buildsFor(c).slice(0, 3);
   const items = Object.entries(u.items || {}).sort((a, b) => b[1] - a[1]).slice(0, 8)
     .map(([id, n]) => `<span class="dexItemRate">${itemLink(id)}<b>${dexPct(n / u.games)}</b></span>`).join('');
   // 상징: 랭커가 이 챔피언에게 가장 많이 준 상징
@@ -919,7 +929,7 @@ function dexChampHtml(c) {
     + dexStats(u.games, u.avgPlace, u.top4, u.win)
     + (stars ? `<div class="pills">${stars}</div>` : '')
     + itemHabitHtml(c)
-    + dexSec('랭커 3신기', bs.length ? bs.map((b, i) => `<div class="${i ? 'alt' : 'best'}">${buildRow(b)}</div>`).join('') : '<p class="muted small">아이템 3개 조합 기록이 부족해요 (5판 이상인 조합 없음)</p>')
+    + dexSec('랭커 3신기', dexBuildsHtml(u.builds), '맨 위가 가장 많이 쓴 조합 · % = 상위 조합 중 비율')
     + dexTraitItemsHtml(c, u)
     + dexSec('자주 낀 아이템', items ? `<div class="dexItems">${items}</div>` : '', '이 챔피언이 나온 판 중 낀 비율')
     + dexSec('받은 상징', embs ? `<div class="dexItems">${embs}</div>` : '')
