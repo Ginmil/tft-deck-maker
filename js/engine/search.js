@@ -537,7 +537,8 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
   }
   for (const id of inventory) { const em = emblemOf(id); if (em) traitCount[em.trait] = (traitCount[em.trait] || 0) + 1; }
   const traitActive = t => (traitCount[t] || 0) >= (data.traits[t]?.breakpoints?.[0] || Infinity);
-  const traitsOnOf = u => [...u.champ.traits, ...u.held.filter(h => h.kind === 'emblem').map(h => h.trait)].filter(traitActive);
+  // planEm = 이번 배분에서 이 챔피언에게 주기로 비워 둔 상징의 시너지 (카르마 + 처형자 상징 → 보석 건틀릿 덜 필요)
+  const traitsOnOf = u => [...u.champ.traits, ...u.held.filter(h => h.kind === 'emblem').map(h => h.trait), ...(u.planEm || [])].filter(traitActive);
   const aff = (u, it) => {
     const x = it.statId ? { ...it, id: it.statId } : it;
     return isThinPick(u) ? thinAff(u, x) : itemAffinity(data, u.champ, x, traitsOnOf(u));
@@ -741,15 +742,17 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
       const h = units.filter(u => !u.champ.traits.includes(em.trait) && u.free - (reserved.get(u) || 0) > 0)
         .map(u => ({ u, r: (es.holders[/lux/i.test(u.champ.id) ? 'da_lux18_base' : u.champ.id.toLowerCase()] || 0) / es.total }))
         .sort((a, b) => b.r - a.r)[0];
-      if (h && h.r >= 0.15) reserved.set(h.u, (reserved.get(h.u) || 0) + 1);
+      if (h && h.r >= 0.15) { reserved.set(h.u, (reserved.get(h.u) || 0) + 1); (h.u.planEm ||= []).push(em.trait); }
     }
     for (const [u, n] of reserved) u.free -= n;
     const placed = place(all.filter(x => x.kind === 'item'));
     for (const [u, n] of reserved) u.free += n;
+    for (const u of reserved.keys()) delete u.planEm;
     const ems = placeEmblems(all.filter(x => x.kind === 'emblem'), placed.slots);
     const score = placed.value + ems.value;
     if (!best || score > best.score) best = { score, placed, ems, left: p.left };
   }
+  if (best) for (const e of best.ems.placed) (e.u.planEm ||= []).push(e.em.trait); // 근거 표시도 받은 상징 기준
   const reasonOf = (u, it) => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
     let rate = st && st.games >= 30 ? (st.items?.[it.statId || it.id] || 0) / st.games : null;
