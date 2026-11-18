@@ -164,9 +164,9 @@
       "patch": "18.7",
       "date": "2026-11-18",
       "balance": true,
-      "summary": "세트 18 마지막 패치(세트 19 프리즘 투어 전). 1~4코 여러 챔피언 버프, 케넨 날렵이·아이번 나무정령 시너지 추가, 나무정령(5·7)·날렵이(7)·협곡야수(7) 상위 단계 너프, 악의 여단·지옥불 상위 단계 버프, 증강 일부 조정.",
-      "source": "https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-18-7/",
-      "source_note": "공식 노트 페이지를 직접 열지 못해 tftanalytics.com/en/patch/18.7·tftips.app 정리본으로 입력(11/18). 수치는 공식 노트와 대조 필요.",
+      "summary": "세트 18 마지막 패치(세트 19 프리즘 투어 전). 1~4코 여러 챔피언 버프, 케넨 날렵이·아이번 나무정령·돌거북 소환사로 시너지 변경, 나무정령(5 이상)·날렵이(7)·협곡야수(7) 너프, 악의 여단(7)·지옥불(5·7)·원시 버프, 재조합기 같은 아이템 연속 방지, 증강 조정.",
+      "source": "https://teamfighttactics.leagueoflegends.com/ko-kr/news/game-updates/teamfight-tactics-patch-18-7/",
+      "source_note": "11/18 라이엇 공식 한국어 노트와 대조(처음엔 tftanalytics·tftips 정리본으로 입력). 코부코 4성 수치 30은 공식 노트 오기로 보여 제외.",
       "changes": [
         {
           "kind": "champion",
@@ -178,13 +178,13 @@
           "kind": "champion",
           "match": "Kobuko",
           "dir": "buff",
-          "note": "스킬 피해 80/120/180, 체력 계수 10% → 15%"
+          "note": "스킬 피해량(주문력) 70/105/150 → 80/120/180, 체력 계수 10% → 15%"
         },
         {
           "kind": "champion",
           "match": "Leona",
           "dir": "buff",
-          "note": "스킬 계수 1.5/2.7/4.06 → 1.8/3/4.36"
+          "note": "스킬 피해량 방어력 계수 1.5/2.7/4.06 → 1.8/3/4.36"
         },
         {
           "kind": "champion",
@@ -239,7 +239,7 @@
           "kind": "champion",
           "match": "Aphelios",
           "dir": "buff",
-          "note": "달빛 폭발 피해 450/675 → 500/750"
+          "note": "달빛 파동 피해량 450/675 → 500/750"
         },
         {
           "kind": "champion",
@@ -251,9 +251,8 @@
         {
           "kind": "champion",
           "match": "Krug18",
-          "dir": "nerf",
-          "note": "작은 돌거북 체력 2·3성 100/180 → 75/150",
-          "scale": 0.5
+          "dir": "adjust",
+          "note": "소환사 시너지로 변경(요릭처럼 작동, 꼬마 돌거북 소환 시 최대 체력 +15%), 꼬마 돌거북 기본 체력 50/100/180 → 50/75/150"
         },
         {
           "kind": "champion",
@@ -321,82 +320,75 @@
         },
         {
           "kind": "trait",
-          "match": "DA_18_Summoner",
-          "dir": "buff",
-          "note": "소폭 버프 (세부 수치 미확인)",
-          "scale": 0.3
-        },
-        {
-          "kind": "trait",
-          "name": "일식(햇빛+달빛)",
+          "name": "일월식",
           "dir": "adjust",
-          "note": "발동 지연 8 → 9초, 반복 처치 시간 3.5 → 3초"
+          "note": "일월식 지연 시간 8 → 9초, 처치 반복 시간 3.5 → 3초"
         },
         {
           "kind": "augment",
-          "name": "Pandora's Items II",
+          "name": "대출 선지급",
           "dir": "buff",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "골드 20 → 22"
         },
         {
           "kind": "augment",
-          "name": "Pandora's Items II++",
+          "name": "역전의 서막",
           "dir": "buff",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "잃은 체력당 공격 속도 0.3% → 0.4%"
         },
         {
           "kind": "augment",
-          "name": "Comeback Story",
+          "name": "힘을 실은 제련",
           "dir": "buff",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "조합 아이템 2 → 3"
         },
         {
           "kind": "augment",
-          "name": "Advanced Loan",
+          "name": "판도라의 아이템 II++",
           "dir": "buff",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "최초 골드 6 → 7"
         },
         {
           "kind": "augment",
-          "name": "Forged In Strength",
-          "dir": "buff",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "name": "예상된 예상 밖의 결과",
+          "dir": "adjust",
+          "note": "주사위 굴림 사이 지연 시간 감소"
         },
         {
           "kind": "augment",
-          "name": "We Stick Together",
+          "name": "부식",
           "dir": "nerf",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "2초당 방어력·마법 저항력 감소 4 → 3"
         },
         {
           "kind": "augment",
-          "name": "Focused Fire",
+          "name": "전기 충전 II",
           "dir": "nerf",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "스테이지당 피해량 80/110/140 → 65/90/120"
         },
         {
           "kind": "augment",
-          "name": "Investment Strategy I",
+          "name": "화력 집중",
           "dir": "nerf",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "5초당 공격력 5% → 4%"
         },
         {
           "kind": "augment",
-          "name": "Investment Strategy II",
+          "name": "투자 전략 I",
           "dir": "nerf",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "이자당 체력 9 → 8"
         },
         {
           "kind": "augment",
-          "name": "Corrosion",
+          "name": "투자 전략 II",
           "dir": "nerf",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "이자당 체력 12 → 10"
         },
         {
           "kind": "augment",
-          "name": "Electrocharge II",
+          "name": "하나로 뭉치는 거지",
           "dir": "nerf",
-          "note": "(영문 이름 — 한글 이름은 확인 필요)"
+          "note": "공격 속도 30% → 25%"
         }
       ]
     },
