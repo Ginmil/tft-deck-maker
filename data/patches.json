@@ -162,7 +162,7 @@
     },
     {
       "patch": "18.7",
-      "date": "2026-11-18",
+      "date": "2026-11-17",
       "balance": true,
       "summary": "세트 18 마지막 패치(세트 19 프리즘 투어 전). 1~4코 여러 챔피언 버프, 케넨 날렵이·아이번 나무정령·돌거북 소환사로 시너지 변경, 나무정령(5 이상)·날렵이(7)·협곡야수(7) 너프, 악의 여단(7)·지옥불(5·7)·원시 버프, 재조합기 같은 아이템 연속 방지, 증강 조정.",
       "source": "https://teamfighttactics.leagueoflegends.com/ko-kr/news/game-updates/teamfight-tactics-patch-18-7/",
@@ -390,7 +390,8 @@
           "dir": "nerf",
           "note": "공격 속도 30% → 25%"
         }
-      ]
+      ],
+      "date_note": "한국 서버는 11/18 적용(사용자 확인) → 경계 11/18 06:00 KST"
     },
     {
       "patch": "19.1",
