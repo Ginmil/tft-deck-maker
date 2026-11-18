@@ -12,7 +12,7 @@
    "18.7": 93
   }
  },
- "generatedAt": "2026-11-18T12:39:18.155Z",
+ "generatedAt": "2026-11-18T12:41:07.843Z",
  "method": {
   "prior": 30,
   "strength": 0.35,
@@ -1542,10 +1542,6 @@
       "DA_SpiritVisage": [
        0.106,
        0.043
-      ],
-      "DA_Component_GiantsBelt": [
-       0.032,
-       0.101
       ]
      },
      "builds": [
@@ -1920,10 +1916,6 @@
       "DA_RabadonsDeathcap": [
        0.083,
        0.029
-      ],
-      "DA_Component_RecurveBow": [
-       0.027,
-       0.093
       ],
       "DA_VoidStaff": [
        0.006,
