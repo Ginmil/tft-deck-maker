@@ -116,7 +116,7 @@ const unitStatOf = (data, champ) => {
  * 통계: 랭커 경기에서 이 챔피언이 이 아이템을 낀 비율(판당) × 3 (33% 이상이면 1)
  * 통계 없음: 역할 기반 itemFit (통계 파일은 있는데 표본이 적은 챔피언은 낮춰서)
  */
-export function itemAffinity(data, champ, item) {
+export function itemAffinity(data, champ, item, traitsOn = null) {
   // 적응가 형태를 사용자가 정했으면(배치툴) 반대 형태 아이템은 0 — 경기 데이터는 형태를 구분 못 해서 통계엔 둘 다 섞여 있음
   if (champ.form) {
     const role = item.role || data.items.find(i => i.id === item.id)?.role;
@@ -125,7 +125,15 @@ export function itemAffinity(data, champ, item) {
   const u = unitStatOf(data, champ);
   if (!u) return itemFit(champ, item) * (data.unitStats ? 0.3 : 1);
   // 낀 판 비율 × 3 (33% 이상이면 1) — 다만 77%(밤끝)와 59%(수은)가 똑같이 1이 되지 않게 비율을 조금 더함 (11/17)
-  const r = (u.items?.[item.id] || 0) / u.games;
+  let r = (u.items?.[item.id] || 0) / u.games;
+  // 내 시너지가 켜졌는지에 따라 랭커가 끼는 아이템이 달라지면 그 비율로 (처형자 켜짐 → 무한의 대검 덜 낌, 11/18)
+  // traitsOn = 이 챔피언에게 적용되는 켜진 시너지 목록 (모르면 null → 섞인 전체 비율)
+  if (traitsOn && u.traitItems) {
+    for (const [t, ti] of Object.entries(u.traitItems)) {
+      const rates = ti.items[item.id];
+      if (rates) { r = traitsOn.includes(t) ? rates[0] : rates[1]; break; }
+    }
+  }
   return Math.min(1, r * 3) * 0.85 + Math.min(1, r) * 0.15;
 }
 
@@ -508,9 +516,20 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
     const sim = sims.length ? sims.reduce((s, c) => s + itemAffinity(data, c, x), 0) / sims.length : itemFit(u.champ, x) * 0.7;
     return conf * own + (1 - conf) * sim;
   };
+  // 보드에서 켜진 시너지 (챔피언 + 낀 상징 + 남은 아이템의 상징) → 챔피언마다 자기에게 적용되는 켜진 시너지
+  const traitCount = {};
+  const seenChamp = new Set();
+  for (const u of units) {
+    const key = u.champ.id;
+    if (!seenChamp.has(key)) { seenChamp.add(key); for (const t of u.champ.traits) traitCount[t] = (traitCount[t] || 0) + 1; }
+    for (const h of u.held) if (h.kind === 'emblem' && !u.champ.traits.includes(h.trait)) traitCount[h.trait] = (traitCount[h.trait] || 0) + 1;
+  }
+  for (const id of inventory) { const em = emblemOf(id); if (em) traitCount[em.trait] = (traitCount[em.trait] || 0) + 1; }
+  const traitActive = t => (traitCount[t] || 0) >= (data.traits[t]?.breakpoints?.[0] || Infinity);
+  const traitsOnOf = u => [...u.champ.traits, ...u.held.filter(h => h.kind === 'emblem').map(h => h.trait)].filter(traitActive);
   const aff = (u, it) => {
     const x = it.statId ? { ...it, id: it.statId } : it;
-    return isThinPick(u) ? thinAff(u, x) : itemAffinity(data, u.champ, x);
+    return isThinPick(u) ? thinAff(u, x) : itemAffinity(data, u.champ, x, traitsOnOf(u));
   };
   const canHold = u => !carrySet.size || carrySet.has(u.idx);
   function isAdaptorChamp(c) { return c.traits.some(t => /Adaptor/i.test(t) || /공격력과 주문력 중 어느 쪽이 높은지/.test(data.traits[t]?.desc || '')); }
@@ -520,7 +539,13 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
   const holderBonus = u => 1 + 1.0 * (carrySet.has(u.idx) ? 2 : Math.min(2, u.held.filter(h => h.kind === 'item' && aff(u, h) >= 0.3).length));
   // 적응가(공격력·주문력 중 높은 쪽을 씀): 물리 아이템과 마법 아이템을 섞으면 한쪽은 버리는 셈
   const isAdaptor = u => isAdaptorChamp(u.champ);
-  const buildsOf = u => data.unitStats?.[u.champ.id.toLowerCase()]?.builds || [];
+  // 랭커 3신기: 내 시너지가 켜진 판의 3신기가 따로 있으면 그것 (처형자 켜진 유나라 → 죽음의 검·최후의 속삭임·쇼진)
+  const buildsOf = u => {
+    const st = data.unitStats?.[u.champ.id.toLowerCase()];
+    const on = traitsOnOf(u);
+    for (const [t, ti] of Object.entries(st?.traitItems || {})) if (on.includes(t) && ti.builds?.length) return ti.builds;
+    return st?.builds || [];
+  };
   // 아이템 홀더 가중치: 랭커 경기에서 이 챔피언이 아이템 3개를 든 비율(carryRate).
   // 롤체는 나눠 주기보다 한 챔피언에 몰아줘야 함 → 홀더가 아닌 챔피언(요릭 0.08 등)에게 준 아이템은 가치가 작음
   const unitWeight = u => {
@@ -641,9 +666,18 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
       const n = count(t) + (extra[t] || 0);
       const next = bps.find(b => b > n);
       const gain = next === n + 1 ? 1 + 0.2 * bps.indexOf(next) : next ? 0.25 : 0.05;
-      // 남은 칸이 있고 시너지가 없는 챔피언 중, 일반 아이템을 덜 받은(캐리가 아닌) 쪽
+      // 남은 칸이 있고 시너지가 없는 챔피언 중:
+      //  ① 랭커가 이 상징을 준 챔피언(받은 비율 5% 이상, 많은 순) — 처형자 상징은 카르마·자이라(스킬 치명타라 딜러에게), 요릭 X (11/18)
+      //  ② 그런 챔피언이 없으면 일반 아이템을 덜 받은(캐리가 아닌) 쪽 — 인원만 채우는 상징
+      const es = data.emblemStats?.[t];
+      const shareOf = u => {
+        if (!es || es.total < 30) return 0;
+        const k = /lux/i.test(u.champ.id) ? 'da_lux18_base' : u.champ.id.toLowerCase();
+        const r = (es.holders[k] || 0) / es.total;
+        return r >= 0.05 ? r : 0;
+      };
       const cand = units.filter(u => !u.champ.traits.includes(t) && slots.get(u).length < u.free)
-        .sort((a, b) => unitValue(a, slots.get(a)) - unitValue(b, slots.get(b)) || a.champ.cost - b.champ.cost)[0];
+        .sort((a, b) => shareOf(b) - shareOf(a) || unitValue(a, slots.get(a)) - unitValue(b, slots.get(b)) || a.champ.cost - b.champ.cost)[0];
       if (!cand) { unplaced.push({ ...em, why: units.every(u => u.champ.traits.includes(t)) ? 'nofit' : 'noslot' }); continue; }
       slots.get(cand).push(em);
       extra[t] = (extra[t] || 0) + 1;
@@ -686,14 +720,30 @@ export function assignItems(data, { board, inventory, carryIdx = null, carries =
     seenPlan.add(key);
     const crafted = p.made.map(m => ({ ...lookup(m.result.id), from: m.from }));
     const all = [...ready, ...crafted];
+    // 랭커가 이 상징을 주로 준 챔피언(15% 이상)이 보드에 있으면 그 칸을 상징용으로 먼저 비워 둠 (처형자 상징 → 카르마)
+    const reserved = new Map();
+    for (const em of all.filter(x => x.kind === 'emblem')) {
+      const es = data.emblemStats?.[em.trait];
+      if (!es || es.total < 30) continue;
+      const h = units.filter(u => !u.champ.traits.includes(em.trait) && u.free - (reserved.get(u) || 0) > 0)
+        .map(u => ({ u, r: (es.holders[/lux/i.test(u.champ.id) ? 'da_lux18_base' : u.champ.id.toLowerCase()] || 0) / es.total }))
+        .sort((a, b) => b.r - a.r)[0];
+      if (h && h.r >= 0.15) reserved.set(h.u, (reserved.get(h.u) || 0) + 1);
+    }
+    for (const [u, n] of reserved) u.free -= n;
     const placed = place(all.filter(x => x.kind === 'item'));
+    for (const [u, n] of reserved) u.free += n;
     const ems = placeEmblems(all.filter(x => x.kind === 'emblem'), placed.slots);
     const score = placed.value + ems.value;
     if (!best || score > best.score) best = { score, placed, ems, left: p.left };
   }
   const reasonOf = (u, it) => {
     const st = data.unitStats?.[u.champ.id.toLowerCase()];
-    const rate = st && st.games >= 30 ? (st.items?.[it.statId || it.id] || 0) / st.games : null;
+    let rate = st && st.games >= 30 ? (st.items?.[it.statId || it.id] || 0) / st.games : null;
+    if (rate != null && st.traitItems) { // 시너지가 켜졌는지에 따른 비율 (itemAffinity 와 같은 기준)
+      const on = traitsOnOf(u);
+      for (const [t, ti] of Object.entries(st.traitItems)) { const rs = ti.items[it.statId || it.id]; if (rs) { rate = on.includes(t) ? rs[0] : rs[1]; break; } }
+    }
     if (!isThinPick(u)) return { rate };
     const total = ownItemsTotal(u), sims = similarOf(u);
     const own = total ? (st?.items?.[it.statId || it.id] || 0) / total : 0;

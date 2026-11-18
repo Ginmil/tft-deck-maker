@@ -158,7 +158,19 @@ try {
   let schedule = null;
   try { schedule = JSON.parse(fs.readFileSync(path.join(root, 'data', 'patches.json'), 'utf8')).patches; } catch { console.log('data/patches.json 이 없어 패치 구분 없이 집계해요'); }
   const pw = patchWeights(matches, { queueId: cfg.queueId, schedule });
-  const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, isCurrent: pw.isCurrent, patchLabel: m => patchOf(m, schedule) });
+  // 챔피언 시너지·상징 → 시너지 (세트 사본에서) — 내 시너지가 켜졌을 때의 아이템 집계용
+  let champTraits = null, emblemTrait = null;
+  try {
+    const set = JSON.parse(fs.readFileSync(path.join(root, 'data', 'set-snapshot.json'), 'utf8')).data;
+    champTraits = {}; emblemTrait = {};
+    for (const c of Object.values(set.champions)) {
+      const k = (/lux/i.test(c.id) ? 'da_lux18_base' : c.id).toLowerCase(); // 경기 데이터의 럭스는 기본 럭스 하나
+      (champTraits[k] ||= []).push(...c.traits.filter(t => !(champTraits[k] || []).includes(t)));
+    }
+    if (champTraits.da_lux18_base) champTraits.da_lux18_base = []; // 럭스 형태는 경기 데이터로 구분이 안 됨
+    for (const e of Object.values(set.emblems)) for (const id of e.ids || [e.id]) emblemTrait[id.toLowerCase()] = e.trait;
+  } catch (e) { console.log('세트 사본을 못 읽어 시너지별 아이템 집계는 건너뛰어요', e.message); }
+  const stats = aggregate(matches, { queueId: cfg.queueId, setNumber: pw.setNumber, weightOf: pw.weightOf, isCurrent: pw.isCurrent, patchLabel: m => patchOf(m, schedule), champTraits, emblemTrait });
   stats.patch = { current: pw.current, prev: pw.prev, prevWeight: pw.prevWeight, mature: pw.mature, matches: pw.counts };
   if (!pw.current) {
     const ex = matches.find(m => m?.info)?.info || {};

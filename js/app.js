@@ -688,7 +688,10 @@ const BUILD_PRIOR = 15;
 const DECK_BUILD_MIN = 3;
 function buildsFor(c) {
   const st = state.data?.unitStats?.[c.id.toLowerCase()];
-  const list = (st?.builds || []).filter(b => !b.items.some(i => /ThiefsGloves|Tacticians/i.test(i))); // 예전 통계 파일 대비
+  return rankBuilds(st?.builds || []);
+}
+function rankBuilds(all) {
+  const list = all.filter(b => !b.items.some(i => /ThiefsGloves|Tacticians/i.test(i))); // 예전 통계 파일 대비
   if (!list.length) return [];
   const total = list.reduce((s, b) => s + b.games, 0);
   const min = Math.max(BUILD_MIN_GAMES, total * 0.05);
@@ -879,6 +882,19 @@ function renderBuilds() {
   el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap');
 }
 
+// 내 시너지가 켜졌을 때 아이템이 달라지는 챔피언 (11/18 사용자: 처형자가 켜지면 스킬 치명타가 생겨 무한의 대검이 덜 필요)
+// 집계 traitItems[시너지] = { on, off(판수), items: {아이템: [켜짐 비율, 안 켜짐 비율]}, builds(켜진 판 3신기) }
+function dexTraitItemsHtml(c, u) {
+  return Object.entries(u.traitItems || {}).map(([t, ti]) => {
+    const tn = state.data.traits[t]?.name || t;
+    const rows = Object.entries(ti.items).sort((a, b) => Math.abs(b[1][0] - b[1][1]) - Math.abs(a[1][0] - a[1][1])).slice(0, 4)
+      .map(([id, [on, off]]) => `<span class="dexItemRate">${itemLink(id)}<b>${dexPct(off)} → ${dexPct(on)}</b></span>`).join('');
+    const bs = rankBuilds(ti.builds || []);
+    return dexSec(`${esc(tn)} 시너지가 켜졌을 때`,
+      `<p class="muted small">켜진 판 ${ti.on.toLocaleString()} · 안 켜진 판 ${ti.off.toLocaleString()} — 낀 비율 (안 켜짐 → 켜짐)</p><div class="dexItems">${rows}</div>`
+      + (bs.length ? `<p class="muted small" style="margin-top:8px">켜진 판의 랭커 3신기</p>` + bs.map((b, i) => `<div class="${i ? 'alt' : 'best'}">${buildRow(b)}</div>`).join('') : ''));
+  }).join('');
+}
 function dexChampHtml(c) {
   if (!c) return '';
   const d = state.data, u = unitStatFor(c), base = c.base || c.id;
@@ -904,6 +920,7 @@ function dexChampHtml(c) {
     + (stars ? `<div class="pills">${stars}</div>` : '')
     + itemHabitHtml(c)
     + dexSec('랭커 3신기', bs.length ? bs.map((b, i) => `<div class="${i ? 'alt' : 'best'}">${buildRow(b)}</div>`).join('') : '<p class="muted small">아이템 3개 조합 기록이 부족해요 (5판 이상인 조합 없음)</p>')
+    + dexTraitItemsHtml(c, u)
     + dexSec('자주 낀 아이템', items ? `<div class="dexItems">${items}</div>` : '', '이 챔피언이 나온 판 중 낀 비율')
     + dexSec('받은 상징', embs ? `<div class="dexItems">${embs}</div>` : '')
     + dexSec('핵심 캐리인 메타 덱', dexDeckRows(carryIn))

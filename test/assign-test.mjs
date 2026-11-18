@@ -129,3 +129,25 @@ if (fs.existsSync(snapPath) && fs.existsSync(wPath)) {
     }
   }
 }
+
+// 처형자 상징 (11/18 사용자): 처형자는 스킬 치명타라 딜러에게 주는 상징 — 요릭(인원만 채우는 비홀더)에게 주면 안 됨.
+// 랭커는 처형자 상징을 카르마(296)·자이라(220)에게 → 햇빛 유나라·카르마 보드에선 카르마
+{
+  const sp = new URL('../data/set-snapshot.json', import.meta.url), wp = new URL('../data/weights.json', import.meta.url);
+  const rd = fs.existsSync(sp) && JSON.parse(fs.readFileSync(sp)).data, w = fs.existsSync(wp) && JSON.parse(fs.readFileSync(wp));
+  if (rd && w && w.setNumber === rd.set.number) {
+    rd.unitStats = w.units;
+    rd.emblemStats = {};
+    for (const e of rd.emblems) { const st = w.emblems?.[e.id]; if (st) rd.emblemStats[e.trait] = st; }
+    const rc = n => rd.champions.find(c => c.name === n)?.id, rp = n => rd.components.find(c => c.name === n)?.id;
+    const names = ['요릭', '세주아니', '레오나', '유나라', '르블랑', '카르마', '아지르', '케일'];
+    const exe = rd.emblems.find(e => /Executioner/.test(e.trait));
+    if (names.every(rc) && exe) {
+      const inv = [exe.id, ...['B.F. 대검', 'B.F. 대검', 'B.F. 대검', '여신의 눈물', '여신의 눈물', '여신의 눈물', '곡궁', '연습용 장갑', '연습용 장갑', '쓸데없이 큰 지팡이'].map(rp)];
+      const r = assignItems(rd, { board: names.map((n, i) => ({ idx: i, id: rc(n), star: 2, items: [] })), inventory: inv });
+      const who = r.assignments.find(a => a.item.id === exe.id)?.champ.name;
+      assert.equal(who, '카르마', `처형자 상징: ${who}`);
+      console.log('처형자 상징 → 카르마 통과 |', r.assignments.map(a => `${a.item.name}→${a.champ.name}`).join(', '));
+    }
+  }
+}

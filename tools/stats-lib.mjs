@@ -64,7 +64,7 @@ export function patchWeights(matches, { queueId = 1100, setNumber = null, target
  * @param isCurrent 최신 패치 경기인지 (메타 덱의 "이번 패치만" 기록용)
  * @returns { setNumber, games, traits: { [traitId]: { [tier]: { games, sumPlace, top4, wins } } } }
  */
-export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf = () => 1, isCurrent = () => true, patchLabel = () => null } = {}) {
+export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf = () => 1, isCurrent = () => true, patchLabel = () => null, champTraits = null, emblemTrait = null } = {}) {
   const usable = matches.filter(m => m?.info && (!queueId || m.info.queue_id === queueId));
   // 세트 번호가 정해지지 않았으면 가장 최신 세트만 사용
   const latest = setNumber ?? Math.max(...usable.map(m => m.info.tft_set_number || 0));
@@ -108,6 +108,23 @@ export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf 
         if (random) { ur.thief = (ur.thief || 0) + w; ur.thiefPlace = (ur.thiefPlace || 0) + w * place; }
         else { (ur.held ||= [0, 0, 0, 0])[Math.min(3, done.length)] += w; }
         if (!random) for (const n of done) ur.items[n] = (ur.items[n] || 0) + w; // 어떤 아이템을 끼는지 → 역할 판단
+        // 내 시너지가 켜진 판 / 안 켜진 판의 아이템 (11/18 사용자: 처형자가 켜지면 스킬 치명타가 생겨 무한의 대검이 덜 필요함)
+        // 내 시너지 = 챔피언 시너지 + 이 챔피언이 든 상징의 시너지
+        if (champTraits) {
+          const own = new Set(champTraits[id] || []);
+          for (const n of names) { const t = emblemTrait?.[n.toLowerCase()]; if (t) own.add(t); }
+          for (const t of own) {
+            if (!(p.traits || []).some(x => x.name === t && x.tier_current > 0)) continue;
+            const tr = ((ur.tr ||= {})[t] ||= { games: 0, items: {}, builds: {} });
+            tr.games += w;
+            if (random) continue;
+            for (const n of done) tr.items[n] = (tr.items[n] || 0) + w;
+            if (!tactician && done.length >= 3) {
+              const b = (tr.builds[done.slice(0, 3).sort().join('|')] ||= { games: 0, sumPlace: 0 });
+              b.games += w; b.sumPlace += w * place;
+            }
+          }
+        }
         // 아이템 3개 조합(3신기): 순서 무관하게 묶어서 판수·등수 집계
         if (!random && !tactician && done.length >= 3) {
           const k = done.slice(0, 3).sort().join('|');
@@ -270,6 +287,26 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
     }
   }
   // 챔피언: 평균 등수, 캐리율(완성 아이템 3개를 든 비율)
+  // traitItems: 내 시너지가 켜진 판과 안 켜진 판의 아이템 비율이 크게 다르면(8%p 이상) 둘 다 남김 + 켜진 판 3신기
+  //  (처형자: 이즈리얼 무한의 대검 안 켜짐 68% → 켜짐 36%)
+  const traitItemsOf = r => {
+    const out = {};
+    for (const [t, on] of Object.entries(r.tr || {})) {
+      const offGames = r.games - on.games;
+      if (on.games < 30 || offGames < 30) continue;
+      const items = {};
+      const names = new Set([...Object.entries(r.items).sort((a, b) => b[1] - a[1]).slice(0, 12).map(x => x[0]), ...Object.keys(on.items)]);
+      for (const n of names) {
+        const a = (on.items[n] || 0) / on.games, b = ((r.items[n] || 0) - (on.items[n] || 0)) / offGames;
+        if (Math.abs(a - b) >= 0.08 && Math.max(a, b) >= 0.1) items[n] = [round(a, 3), round(b, 3)];
+      }
+      if (!Object.keys(items).length) continue;
+      const builds = Object.entries(on.builds).sort((a, b) => b[1].games - a[1].games).slice(0, 6)
+        .map(([k, b]) => ({ items: k.split('|'), games: Math.round(b.games), avgPlace: round(b.sumPlace / b.games, 2) }));
+      out[t] = { on: Math.round(on.games), off: Math.round(offGames), items, builds };
+    }
+    return Object.keys(out).length ? { traitItems: out } : {};
+  };
   const units = {};
   for (const [id, r] of Object.entries(stats.units || {})) {
     if (r.games < 5) continue;
@@ -282,7 +319,8 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
       .map(([k, s]) => [k, { games: Math.round(s.games), avgPlace: round(s.sumPlace / s.games, 2), top4: round(s.top4 / s.games, 3), win: round(s.win / s.games, 3) }]));
     units[id] = { games: Math.round(r.games), avgPlace: round(r.sumPlace / r.games, 2), top4: round((r.top4 || 0) / r.games, 3), win: round((r.win || 0) / r.games, 3), carryRate: round(r.full / r.games, 3), items, builds, stars,
       ...(r.thief ? { thief: { rate: round(r.thief / r.games, 3), games: Math.round(r.thief), avgPlace: round(r.thiefPlace / r.thief, 2) } } : {}),
-      ...(r.held ? { held: r.held.map(x => round(x / r.games, 3)) } : {}) };
+      ...(r.held ? { held: r.held.map(x => round(x / r.games, 3)) } : {}),
+      ...traitItemsOf(r) };
   }
   // 상징: 어떤 챔피언에게 몇 번 장착됐는지
   const emblems = {};
