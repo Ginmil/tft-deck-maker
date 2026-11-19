@@ -3650,7 +3650,8 @@ function realBoardTeam(m, byLower) {
     for (const it of u.items || []) {
       const e = d.emblems.find(x => x.id === it || (x.ids || []).includes(it));
       if (e && (m.emblems?.[it] || 0) >= 0.3) emblems.push(e.trait);
-      else if (e) rare.push(e.trait);
+      // 15% 미만으로 쓴 상징은 그 한 판의 우연 — 대표 보드에서 뺌 (11/20 사용자: 일월식 아펠리오스 보드에 약탈자 상징 — 실제로는 8%만 씀, 달빛 상징은 89%)
+      else if (e && (m.emblems?.[it] || 0) >= 0.15) rare.push(e.trait);
     }
   }
   if (team.length < 4) return null;
