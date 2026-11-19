@@ -2197,15 +2197,29 @@ function bdRenderBoard() {
   bd$('bdGold').textContent = `${units.reduce((s, x) => s + x.c.cost * (x.u.star === 3 ? 9 : x.u.star === 2 ? 3 : 1), 0)}골드어치`;
 }
 
+// 시너지별 상징 개수 (11/20 사용자: 상징을 끼면 왼쪽 시너지 줄에 테두리 — 상징 덱인지 한눈에)
+function bdEmblemCounts() {
+  const data = bdData(), n = {};
+  for (const u of Object.values(bdState.cells)) {
+    const c = bdChamp(u.id); if (!c) continue;
+    for (const it of u.items) { const e = data.emblems.find(e => e.id === it || (e.ids || []).includes(it)); if (e && !c.traits.includes(e.trait)) n[e.trait] = (n[e.trait] || 0) + 1; }
+  }
+  return n;
+}
 function bdRenderTraits() {
-  const { esc } = bd, data = bdData(), n = bdTraitCounts();
+  const { esc } = bd, data = bdData(), n = bdTraitCounts(), emb = bdEmblemCounts();
   const rows = Object.entries(n).map(([id, k]) => {
     const t = data.traits[id]; if (!t) return null;
     const lvl = t.breakpoints.filter(b => b <= k).length;
     return { id, t, k, lvl, uniq: t.breakpoints.length === 1 && t.breakpoints[0] === 1 };
   }).filter(Boolean).sort((a, b) => (b.lvl > 0) - (a.lvl > 0) || a.uniq - b.uniq || b.lvl / b.t.breakpoints.length - a.lvl / a.t.breakpoints.length || b.k - a.k);
-  bd$('bdTraits').innerHTML = rows.length ? rows.map(r => `<div class="trow${r.lvl ? '' : ' off'}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}${bdState.bonus?.[r.id] ? (() => { const b = bdState.bonus[r.id], low = r.t.breakpoints[0], ph = r.k - b < low && r.k === low;
-      return `<span class="aug" data-rmbonus="${r.id}" role="button" title="${ph ? "증강 '환영 조합': 전투 시작 시 비활성 특성을 가장 낮은 단계로 켜 줘요 (랭커 실제 판 기준)" : '랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요 (원인은 경기 데이터에 안 남음)'}. 누르면 빼요">${ph ? '환영 조합' : `기타 +${b}`} ×</span>`; })() : ''}</span>${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`).join('')
+  // 히든 시너지 일월식: 햇빛 3 + 달빛 3 이상이면 켜짐 (11/20 사용자) — 세트 데이터 시너지 목록엔 없음
+  const eclipse = (n.DA_18_Solar || 0) >= 3 && (n.DA_18_Lunar || 0) >= 3
+    ? `<div class="trow hiddenTr" title="햇빛 3 + 달빛 3 이상이면 켜지는 숨은 시너지"><span class="tb gold"></span><span><span class="tnm">일월식</span><span class="tbp">히든 · 햇빛 3 + 달빛 3</span></span></div>` : '';
+  const rowHtml = r => `<div class="trow${r.lvl ? '' : ' off'}${emb[r.id] ? ' emb' : ''}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기${emb[r.id] ? ` · 상징 ${emb[r.id]}개 포함` : ''}">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}${bdState.bonus?.[r.id] ? (() => { const b = bdState.bonus[r.id], low = r.t.breakpoints[0], ph = r.k - b < low && r.k === low;
+      return `<span class="aug" data-rmbonus="${r.id}" role="button" title="${ph ? "증강 '환영 조합': 전투 시작 시 비활성 특성을 가장 낮은 단계로 켜 줘요 (랭커 실제 판 기준)" : '랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요 (원인은 경기 데이터에 안 남음)'}. 누르면 빼요">${ph ? '환영 조합' : `기타 +${b}`} ×</span>`; })() : ''}</span>${emb[r.id] ? `<span class="embTag">상징${emb[r.id] > 1 ? ' ' + emb[r.id] : ''}</span>` : ''}${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`;
+  const on = rows.filter(r => r.lvl), off = rows.filter(r => !r.lvl);
+  bd$('bdTraits').innerHTML = rows.length ? on.map(rowHtml).join('') + eclipse + off.map(rowHtml).join('')
     : '<p class="muted small">챔피언을 올리면 여기에 시너지가 나와요.</p>';
 }
 
@@ -2847,7 +2861,7 @@ function deckCard(d, i, byId) {
   const traits = d.traits.filter(t => t.tier > 0 || t.count >= 2).map(t => ({ ...t, st: traitStyle(t.tier, t.breakpoints.length) }))
     .sort((a, b) => (b.tier > 0) - (a.tier > 0) || (a.breakpoints.length === 1) - (b.breakpoints.length === 1) || order[a.st] - order[b.st] || b.count - a.count)
     .map(t => `<span class="tTr${t.tier ? '' : ' off'}${t.emblemOnly ? ' embOnly' : ''}" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.emblemOnly ? ' · 상징이 있어야 켜지는 단계' : ''}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등 · ${t.stat.games}판` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `${bonusLabel(t)}` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
-  const eclipse = eclipseOn(d) ? `<span class="tTr hiddenTr" title="햇빛과 달빛이 둘 다 켜지면 함께 켜지는 숨은 시너지">일월식 <small>히든</small></span>` : '';
+  const eclipse = eclipseOn(d) ? `<span class="tTr hiddenTr" title="햇빛 3 + 달빛 3 이상이면 켜지는 숨은 시너지">일월식 <small>히든</small></span>` : '';
   const builds = [carryId, tankId, ...(d.m ? holderIds(d, carryId, tankId) : [])].filter(Boolean).map(id => {
     const c = byId.get(id); const own = d.builds?.[id], b = c && (own || buildsFor(c)[0]);
     return b ? `<div class="dcBuild"><span class="who">${id === carryId ? '핵심' : id === tankId ? '탱커' : subRole(b)} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
@@ -4023,7 +4037,7 @@ const carryNames = d => (d.carries?.length ? d.carries : [carryOfDeck(d)?.name |
 // "지옥불 럭스 (지옥불)" → "럭스" 처럼 형태 챔피언 이름의 괄호 정리 (덱 이름 앞에 시너지가 이미 붙음)
 const formClean = n => n.replace(/^(.+?) \((.+)\)$/, '$1');
 // 히든 시너지 일월식(11/20 사용자): 햇빛 + 달빛이 둘 다 켜지면 켜짐 — 세트 데이터의 시너지 목록엔 없고 경기 기록엔 DA_18_Eclipse 로 남음
-const eclipseOn = d => ['DA_18_Solar', 'DA_18_Lunar'].every(id => (d.traits || []).some(t => t.id === id && t.tier > 0));
+const eclipseOn = d => ['DA_18_Solar', 'DA_18_Lunar'].every(id => (d.traits || []).some(t => t.id === id && t.count >= 3)); // 햇빛 3 + 달빛 3 이상 (11/20 사용자)
 const mainTraitLabel = d => (eclipseOn(d) && /Solar|Lunar/.test(d.m.trait || '') ? '일월식' : traitName(d.m.trait));
 const deckName = (d, sep = ' ') => (d.value ? `${formClean(carryNames(d))} 밸류` : `${mainTraitLabel(d)}${sep}${formClean(carryNames(d))}`);
 const carryOfDeck = d => { const cid = d.carryChampId?.toLowerCase() || d.m.mainCarry || d.m.carry; return d.team.find(c => c.id.toLowerCase() === cid); };
@@ -4209,7 +4223,7 @@ function tierDetailHtml(x, byId) {
     <div class="dStats"><div><b>${m.avgPlace.toFixed(2)}</b><span>평균 등수${patchDelta(m)}</span></div><div><b>${pct(m.top4)}</b><span>순방</span></div><div><b>${pct(m.win)}</b><span>1등</span></div><div><b>${(x.tierGames || m.games).toLocaleString()}</b><span>판</span></div></div>
     <div class="dSec"><h3>구성 · ${x.level || m.level}레벨</h3>${realNote}<div class="tBoard">${units}</div></div>
     ${builds ? `<div class="dSec"><h3>랭커 3신기</h3>${builds}</div>` : ''}
-    <div class="dSec"><h3>시너지</h3><div class="tTraits">${traits}${eclipseOn(x) ? `<span class="tTr hiddenTr" title="햇빛과 달빛이 둘 다 켜지면 함께 켜지는 숨은 시너지">일월식 <small>히든</small></span>` : ''}</div></div>
+    <div class="dSec"><h3>시너지</h3><div class="tTraits">${traits}${eclipseOn(x) ? `<span class="tTr hiddenTr" title="햇빛 3 + 달빛 3 이상이면 켜지는 숨은 시너지">일월식 <small>히든</small></span>` : ''}</div></div>
     ${altHtml}${vers}
     <div class="dCta"><button class="btn primary toBuilder" data-reg="${regMain}">배치툴에서 열기</button></div>`;
 }

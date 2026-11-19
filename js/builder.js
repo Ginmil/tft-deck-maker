@@ -599,15 +599,29 @@ function bdRenderBoard() {
   bd$('bdGold').textContent = `${units.reduce((s, x) => s + x.c.cost * (x.u.star === 3 ? 9 : x.u.star === 2 ? 3 : 1), 0)}골드어치`;
 }
 
+// 시너지별 상징 개수 (11/20 사용자: 상징을 끼면 왼쪽 시너지 줄에 테두리 — 상징 덱인지 한눈에)
+function bdEmblemCounts() {
+  const data = bdData(), n = {};
+  for (const u of Object.values(bdState.cells)) {
+    const c = bdChamp(u.id); if (!c) continue;
+    for (const it of u.items) { const e = data.emblems.find(e => e.id === it || (e.ids || []).includes(it)); if (e && !c.traits.includes(e.trait)) n[e.trait] = (n[e.trait] || 0) + 1; }
+  }
+  return n;
+}
 function bdRenderTraits() {
-  const { esc } = bd, data = bdData(), n = bdTraitCounts();
+  const { esc } = bd, data = bdData(), n = bdTraitCounts(), emb = bdEmblemCounts();
   const rows = Object.entries(n).map(([id, k]) => {
     const t = data.traits[id]; if (!t) return null;
     const lvl = t.breakpoints.filter(b => b <= k).length;
     return { id, t, k, lvl, uniq: t.breakpoints.length === 1 && t.breakpoints[0] === 1 };
   }).filter(Boolean).sort((a, b) => (b.lvl > 0) - (a.lvl > 0) || a.uniq - b.uniq || b.lvl / b.t.breakpoints.length - a.lvl / a.t.breakpoints.length || b.k - a.k);
-  bd$('bdTraits').innerHTML = rows.length ? rows.map(r => `<div class="trow${r.lvl ? '' : ' off'}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}${bdState.bonus?.[r.id] ? (() => { const b = bdState.bonus[r.id], low = r.t.breakpoints[0], ph = r.k - b < low && r.k === low;
-      return `<span class="aug" data-rmbonus="${r.id}" role="button" title="${ph ? "증강 '환영 조합': 전투 시작 시 비활성 특성을 가장 낮은 단계로 켜 줘요 (랭커 실제 판 기준)" : '랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요 (원인은 경기 데이터에 안 남음)'}. 누르면 빼요">${ph ? '환영 조합' : `기타 +${b}`} ×</span>`; })() : ''}</span>${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`).join('')
+  // 히든 시너지 일월식: 햇빛 3 + 달빛 3 이상이면 켜짐 (11/20 사용자) — 세트 데이터 시너지 목록엔 없음
+  const eclipse = (n.DA_18_Solar || 0) >= 3 && (n.DA_18_Lunar || 0) >= 3
+    ? `<div class="trow hiddenTr" title="햇빛 3 + 달빛 3 이상이면 켜지는 숨은 시너지"><span class="tb gold"></span><span><span class="tnm">일월식</span><span class="tbp">히든 · 햇빛 3 + 달빛 3</span></span></div>` : '';
+  const rowHtml = r => `<div class="trow${r.lvl ? '' : ' off'}${emb[r.id] ? ' emb' : ''}" data-tr="${r.id}" role="button" tabindex="0" title="${esc(r.t.name)} 챔피언 보기${emb[r.id] ? ` · 상징 ${emb[r.id]}개 포함` : ''}">${tbadge(r.id, r.lvl ? bdTraitStyle(r.lvl, r.t.breakpoints.length) : '')}<span><span class="tnm">${r.k} ${esc(r.t.name)}${bdState.bonus?.[r.id] ? (() => { const b = bdState.bonus[r.id], low = r.t.breakpoints[0], ph = r.k - b < low && r.k === low;
+      return `<span class="aug" data-rmbonus="${r.id}" role="button" title="${ph ? "증강 '환영 조합': 전투 시작 시 비활성 특성을 가장 낮은 단계로 켜 줘요 (랭커 실제 판 기준)" : '랭커 실제 판의 시너지 인원이 챔피언·상징으로 계산한 것보다 많았어요 (원인은 경기 데이터에 안 남음)'}. 누르면 빼요">${ph ? '환영 조합' : `기타 +${b}`} ×</span>`; })() : ''}</span>${emb[r.id] ? `<span class="embTag">상징${emb[r.id] > 1 ? ' ' + emb[r.id] : ''}</span>` : ''}${r.uniq ? '' : `<span class="tbp">${r.t.breakpoints.map((b, i) => i === r.lvl - 1 ? `<b>${b}</b>` : b).join(' · ')}</span>`}</span></div>`;
+  const on = rows.filter(r => r.lvl), off = rows.filter(r => !r.lvl);
+  bd$('bdTraits').innerHTML = rows.length ? on.map(rowHtml).join('') + eclipse + off.map(rowHtml).join('')
     : '<p class="muted small">챔피언을 올리면 여기에 시너지가 나와요.</p>';
 }
 
