@@ -1051,3 +1051,7 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 .dcFold[open] > summary { color: var(--text, #e6edf3); }
 .dcFold .dcBuilds { margin-top: 10px; }
 @media (prefers-reduced-motion: reduce) { .dcFold > summary::before { transition: none; } }
+
+/* 히든 시너지 (일월식) */
+.tTr.hiddenTr { border-style: dashed; border-color: var(--gold); color: var(--gold); }
+.tTr.hiddenTr small { font-size: 11px; opacity: .75; margin-left: 4px; }
