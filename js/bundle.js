@@ -1571,9 +1571,12 @@ function groupDecks(decks) {
       // ④ 주력 시너지가 같고 보드가 75% 이상 같으면 캐리가 달라도 한 덱 (11/15 사용자 피드백: 지옥불 럭스인데 애쉬도 자주 씀 —
       //    아이템을 누가 들었는지로만 갈림. 개화 아리=자이라, 햇빛 유나라=르블랑=카르마처럼 보드 100% 같은 덱이 많았음)
       const sameTrait = a.trait && a.trait === b.trait && !a.value && !b.value && s >= 0.75;
+      // ⑤ 밸류덱끼리 보드가 75% 이상 같으면 캐리가 달라도 한 덱 (11/20 사용자: 장로 드래곤 밸류와 드레이븐 밸류가 같은 9명 —
+      //    5코 캐리끼리라 ①도 안 걸렸음. 누구에게 아이템을 줬는지는 버전표에서 비교)
+      const valueBoard = a.value && b.value && s >= 0.75;
       // 캐리가 같은 덱 → 시너지가 같은 덱 순으로 우선 (전쟁기계 드레이븐이 장로 드래곤 밸류보다 드레이븐 밸류로)
       const pr = s + (same ? 1 : 0) + (a.trait && a.trait === b.trait ? 0.5 : 0);
-      if (((late5 && s >= 0.75) || (same && s >= 0.85) || value || sameTrait) && (!best || pr > best.pr)) best = { b, s, pr };
+      if (((late5 && s >= 0.75) || (same && s >= 0.85) || value || sameTrait || valueBoard) && (!best || pr > best.pr)) best = { b, s, pr };
     }
     if (best) parent.set(a, best.b);
   }
