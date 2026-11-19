@@ -2862,7 +2862,10 @@ function deckCard(d, i, byId) {
     ${d.craft ? craftNote(d.craft) : ''}
     <div class="dcUnits">${units}</div>
     ${d.board?.removed.length ? `<p class="dcRemoved">빼는 챔피언 ${d.board.removed.map(id => { const c = byId.get(id); return c ? `<span class="mini out" title="${esc(c.name)}">${hexPor(c)}<i>−</i><small>${esc(c.base && c.weights ? c.base : c.name)}</small></span>` : ''; }).join('')}</p>` : ''}
-    ${builds ? `<div class="dcBuilds">${builds}</div>` : ''}
+    ${builds ? (d.foldBuilds
+      // 덱 목록(11/20 사용자): 덱 구성 위주로 보고 아이템은 배치툴에서 보니까 평소엔 접어 둠
+      ? `<details class="dcFold"><summary>아이템 보기 <span class="muted small">${(builds.match(/class="dcBuild"/g) || []).length}명</span></summary><div class="dcBuilds">${builds}</div></details>`
+      : `<div class="dcBuilds">${builds}</div>`) : ''}
     <div class="tTraits">${traits}</div>
   </article>`;
 }
@@ -4002,7 +4005,7 @@ function renderMetaList(byId) {
         const vn = x.variants?.length || 0;
         const reroll = /리롤/.test(deckType(x));
         return deckCard({
-          ...x, noSpecialTag: true,
+          ...x, noSpecialTag: true, foldBuilds: true,
           title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x))}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${vn ? ` <span class="tag soft" title="구성·캐리가 조금 다른 버전을 합친 성적">버전 ${vn + 1}개</span>` : ''}${emblemNote(x.mainM || x.m, x)}`,
           metaInfo: `${esc(deckType(x))} · 평균 <b>${x.m.avgPlace.toFixed(2)}등</b>${patchDelta(x.m)} · 순방 ${pct(x.m.top4)} · 1등 ${pct(x.m.win)} · ${games(x).toLocaleString()}판`,
         }, i, byId);

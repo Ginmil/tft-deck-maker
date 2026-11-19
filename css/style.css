@@ -1040,3 +1040,14 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 .recSame summary { cursor: pointer; font-size: 14px; }
 .recSame summary .tier { margin: 0 4px; }
 .recSame[open] summary { margin-bottom: 10px; }
+
+/* 덱 목록: 아이템 접기 (11/20) */
+.dcFold { margin-top: 12px; }
+.dcFold > summary { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; list-style: none; font-size: 13px; color: var(--muted); padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; user-select: none; }
+.dcFold > summary::-webkit-details-marker { display: none; }
+.dcFold > summary::before { content: '▸'; font-size: 11px; transition: transform .15s; }
+.dcFold[open] > summary::before { transform: rotate(90deg); }
+.dcFold > summary:hover { color: var(--text, #e6edf3); border-color: var(--gold); }
+.dcFold[open] > summary { color: var(--text, #e6edf3); }
+.dcFold .dcBuilds { margin-top: 10px; }
+@media (prefers-reduced-motion: reduce) { .dcFold > summary::before { transition: none; } }
