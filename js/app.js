@@ -775,7 +775,7 @@ function renderHome() {
       const carry = carryOfDeck(x), team = [...x.team].sort((a, b) => a.cost - b.cost);
       return `<button class="homeDeck" data-home-deck="${esc(deckName(x) + '|' + deckType(x))}" title="${esc(deckName(x))} — 티어표에서 보기">
         <span class="homeDeckTop"><span class="tl t${x.tier}">${x.tier}</span>${hexPor(carry)}</span>
-        <b class="homeDeckName">${esc(deckName(x))}</b>
+        <b class="homeDeckName">${esc(deckName(x))}${embTag(x)}</b>
         <span class="homeDeckType">${esc(deckType(x))}</span>
         <span class="homeDeckStat"><b>${x.m.avgPlace.toFixed(2)}등</b> · 순방 ${Math.round(x.m.top4 * 100)}% · ${(x.tierGames || tierGames(x.m) || x.m.games).toLocaleString()}판</span>
         <span class="homeDeckTeam">${team.slice(0, 9).map(c => hexPor(c)).join('')}</span>
@@ -837,7 +837,7 @@ function dexDeckRows(list, why) {
   return `<div class="dexDecks">${list.map(({ x, tier, note }) => {
     const reg = deckRegistry.push({ ...x, bdName: deckName(x) }) - 1;
     return `<div class="dexDeck">${tier ? `<span class="tl t${tier}">${tier}</span>` : '<span class="tl">–</span>'}${hexPor(carryOfDeck(x))}
-      <div><b>${esc(deckName(x))}</b><div class="muted small">${esc(deckType(x))} · ${x.m.avgPlace.toFixed(2)}등 · ${(tierGames(x.m) || x.m.games).toLocaleString()}판${note ? ` · ${note}` : ''}</div></div>
+      <div><b>${esc(deckName(x))}${embTag(x)}</b><div class="muted small">${esc(deckType(x))} · ${x.m.avgPlace.toFixed(2)}등 · ${(tierGames(x.m) || x.m.games).toLocaleString()}판${note ? ` · ${note}` : ''}</div></div>
       <button class="altopen toBuilder" data-reg="${reg}" title="이 덱을 배치툴에 세우기">배치툴</button></div>`;
   }).join('')}</div>${why ? `<p class="muted small">${why}</p>` : ''}`;
 }
@@ -1671,7 +1671,7 @@ function renderMetaList(byId) {
         const reroll = /리롤/.test(deckType(x));
         return deckCard({
           ...x, noSpecialTag: true, foldBuilds: true,
-          title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x))}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${vn ? ` <span class="tag soft" title="구성·캐리가 조금 다른 버전을 합친 성적">버전 ${vn + 1}개</span>` : ''}${emblemNote(x.mainM || x.m, x)}`,
+          title: `<span class="tier t${x.tier}">${x.tier}</span> ${esc(deckName(x))}${embTag(x)}${reroll ? ' <span class="tag reroll">3성작</span>' : ''}${vn ? ` <span class="tag soft" title="구성·캐리가 조금 다른 버전을 합친 성적">버전 ${vn + 1}개</span>` : ''}${emblemNote(x.mainM || x.m, x)}`,
           metaInfo: `${esc(deckType(x))} · 평균 <b>${x.m.avgPlace.toFixed(2)}등</b>${patchDelta(x.m)} · 순방 ${pct(x.m.top4)} · 1등 ${pct(x.m.win)} · ${games(x).toLocaleString()}판`,
         }, i, byId);
       }).join('')
@@ -1689,6 +1689,19 @@ const formClean = n => n.replace(/^(.+?) \((.+)\)$/, '$1');
 // 히든 시너지 일월식(11/20 사용자): 햇빛 + 달빛이 둘 다 켜지면 켜짐 — 세트 데이터의 시너지 목록엔 없고 경기 기록엔 DA_18_Eclipse 로 남음
 const eclipseOn = d => ['DA_18_Solar', 'DA_18_Lunar'].every(id => (d.traits || []).some(t => t.id === id && t.count >= 3)); // 햇빛 3 + 달빛 3 이상 (11/20 사용자)
 const mainTraitLabel = d => (eclipseOn(d) && /Solar|Lunar/.test(d.m.trait || '') ? '일월식' : traitName(d.m.trait));
+// 상징 필수 덱 (11/20 사용자: 이름 뒤에 [상징]) — 묶음 전체(버전 판수 가중)에서 한 상징을 70% 이상 쓴 덱
+const EMB_MUST = 0.7;
+function mustEmblem(d) {
+  const vs = [d, ...(d.variants || [])].filter(v => v.m), tot = vs.reduce((s, v) => s + v.m.games, 0);
+  if (!tot) return null;
+  const rate = {};
+  for (const v of vs) for (const [k, r] of Object.entries(v.m.emblems || {})) rate[k] = (rate[k] || 0) + r * v.m.games / tot;
+  const top = Object.entries(rate).sort((a, b) => b[1] - a[1])[0];
+  if (!top || top[1] < EMB_MUST) return null;
+  const e = state.data?.emblems.find(x => x.id === top[0] || (x.ids || []).includes(top[0]));
+  return e ? { name: e.name, rate: top[1] } : null;
+}
+const embTag = d => { const e = mustEmblem(d); return e ? ` <span class="embMust" title="랭커가 이 덱에서 ${esc(e.name)}을 ${Math.round(e.rate * 100)}% 판에서 썼어요">[상징]</span>` : ''; };
 const deckName = (d, sep = ' ') => (d.value ? `${formClean(carryNames(d))} 밸류` : `${mainTraitLabel(d)}${sep}${formClean(carryNames(d))}`);
 const carryOfDeck = d => { const cid = d.carryChampId?.toLowerCase() || d.m.mainCarry || d.m.carry; return d.team.find(c => c.id.toLowerCase() === cid); };
 /** 덱 종류: 3코 이하 챔피언이 절반 이상 3성이면 "N코 리롤", 아니면 "캐리 코스트 + 레벨" */
@@ -1791,7 +1804,7 @@ function renderTiers(byId) {
     const k = tierDecks.push(x) - 1, m = x.m, carry = carryOfDeck(x), vn = x.variants?.length || 0;
     return `<button class="dk" data-k="${k}" aria-pressed="${keyOf(x) === tierSel}" title="${esc(deckName(x))} — 눌러서 덱 보기">
       ${hexPor(carry)}
-      <span><span class="nm">${esc(deckName(x))}</span><br><span class="ty">${x.value ? '' : traitBadge(m.trait, '', true)}${esc(deckType(x))}${vn ? ` · 버전 ${vn + 1}개` : ''}</span></span>
+      <span><span class="nm">${esc(deckName(x))}${embTag(x)}</span><br><span class="ty">${x.value ? '' : traitBadge(m.trait, '', true)}${esc(deckType(x))}${vn ? ` · 버전 ${vn + 1}개` : ''}</span></span>
       <span class="sc"><b>${m.avgPlace.toFixed(2)}${patchDelta(m)}</b><span>${x.tierGames.toLocaleString()}판</span></span>
     </button>`;
   };
@@ -1868,7 +1881,7 @@ function tierDetailHtml(x, byId) {
   }
   const realNote = x.realBoard && mm.board ? `<p class="real">랭커가 실제로 쓴 보드예요${mm.board.same > 1 ? ` · 똑같은 구성 ${mm.board.same}판` : ''}. 흐린 챔피언은 이 덱을 쓴 판 중 절반이 안 되게 넣은 자리고, 육각 배지는 상징이에요.</p>` : '';
   return `<div class="dTop"><span class="thex" style="background:${tierColor}">${x.tier || '?'}</span>
-      <div class="dTopMain"><h2>${esc(deckName(x))}</h2><p>${esc(deckType(x))}${x.value ? ` · 함께 켠 시너지 ${esc(traitName(m.trait))}` : ''}${emblemNote(mm, x)}</p></div>
+      <div class="dTopMain"><h2>${esc(deckName(x))}${embTag(x)}</h2><p>${esc(deckType(x))}${x.value ? ` · 함께 켠 시너지 ${esc(traitName(m.trait))}` : ''}${emblemNote(mm, x)}</p></div>
       <button class="btn small primary toBuilder dTopBd" data-reg="${regMain}" title="이 덱을 배치툴에 세우기">배치툴</button></div>
     <div class="dStats"><div><b>${m.avgPlace.toFixed(2)}</b><span>평균 등수${patchDelta(m)}</span></div><div><b>${pct(m.top4)}</b><span>순방</span></div><div><b>${pct(m.win)}</b><span>1등</span></div><div><b>${(x.tierGames || m.games).toLocaleString()}</b><span>판</span></div></div>
     <div class="dSec"><h3>구성 · ${x.level || m.level}레벨</h3>${realNote}<div class="tBoard">${units}</div></div>
@@ -1906,7 +1919,7 @@ function metaNearBoard(board, carryId) {
     return { ...d, traits: ev.traits, assignment: ev.assignment, usedEmblems: ev.usedEmblems, droppedNote: ` · <span class="tag soft" title="랭커 보드에는 있었지만 내 보드·남은 아이템에 없는 상징이라 빼고 시너지를 계산했어요">${esc(names)} 없이 계산</span>` };
   };
   // 티어표처럼 묶은 덱 기준 (11/16 사용자: 8판짜리 "햇빛 아지르"가 따로 추천됨 — 실제로는 유나라·카르마·르블랑 3성 리롤에 아지르는 시너지용인 햇빛 유나라 덱의 한 버전)
-  return groupedDecks().filter(d => d.m.games >= 8).map(onlyMyEmblems).map(d => ({ ...d, title: `<span class="tier t${d.tier}">${d.tier}</span> ${esc(deckName(d, ' · '))} <span class="tag soft">${esc(deckType(d))}</span>${d.variants?.length ? ` <span class="muted small">버전 ${d.variants.length + 1}개 · 덱 전체 평균 ${d.m.avgPlace}등 · ${d.m.games}판</span>` : ''}`, bdName: deckName(d) })).map(d => {
+  return groupedDecks().filter(d => d.m.games >= 8).map(onlyMyEmblems).map(d => ({ ...d, title: `<span class="tier t${d.tier}">${d.tier}</span> ${esc(deckName(d, ' · '))}${embTag(d)} <span class="tag soft">${esc(deckType(d))}</span>${d.variants?.length ? ` <span class="muted small">버전 ${d.variants.length + 1}개 · 덱 전체 평균 ${d.m.avgPlace}등 · ${d.m.games}판</span>` : ''}`, bdName: deckName(d) })).map(d => {
     const overlap = d.team.filter(c => bases.has(c.base || c.id)).length;
     const carryMatch = carryId && d.core?.carry === carryId;
     const ids = new Set(d.team.map(c => c.id));
