@@ -1034,3 +1034,9 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 .metaTop { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .metaTop #metaView { margin-bottom: 0; }
 .metaPatchChips small { font-size: 11px; opacity: .7; margin-left: 2px; }
+
+/* 다음 수 추천: 지금 보드와 같은 메타 덱 (11/20) */
+.recSame { margin: 10px 0 4px; padding: 10px 14px; background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; }
+.recSame summary { cursor: pointer; font-size: 14px; }
+.recSame summary .tier { margin: 0 4px; }
+.recSame[open] summary { margin-bottom: 10px; }

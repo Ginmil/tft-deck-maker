@@ -4243,8 +4243,7 @@ function metaNearBoard(board, carryId) {
     : d.board.added.length <= MAX_ADD && d.overlap * 2 >= d.team.length && d.team.length >= mine.length) // 지금보다 작은 덱(빼기만)은 다음 수가 아님
     .sort((a, b) => early ? b.rank - a.rank : a.board.added.length - b.board.added.length || b.rank - a.rank)
     // 보드에 적용했을 때 결과 구성이 같은 덱은 하나만 (예: 처형자·소라카 / 소환사·소라카 → 둘 다 같은 8명)
-    .filter((d, i, arr) => arr.findIndex(x => x.team.map(c => c.base || c.id).sort().join() === d.team.map(c => c.base || c.id).sort().join()) === i)
-    .slice(0, 3);
+    .filter((d, i, arr) => arr.findIndex(x => x.team.map(c => c.base || c.id).sort().join() === d.team.map(c => c.base || c.id).sort().join()) === i);
 }
 
 function runBoard(btn) {
@@ -4265,7 +4264,11 @@ function runBoard(btn) {
       const decks = runSearch(o => { res = decksFromBoard(withForms(state.data, board), { ...o, board, size, keepAll }); return res.decks; }, { size: lvl, maxCost: 5, max5: lvl >= 9 ? 99 : 2 });
       const { info } = res;
       const byId = new Map(state.data.champions.map(c => [c.id, c]));
-      const near = metaNearBoard(board, info.carry?.id);
+      // 11/20 사용자: 지금 보드와 똑같은 메타 덱(더할 것·뺄 것 0)은 "다음 수"가 아님 → 위에 한 줄 + 접어서, 목록은 바뀌는 덱만 3개
+      const nearAll = metaNearBoard(board, info.carry?.id);
+      const sameIdx = nearAll.findIndex(d => !d.board.added.length && !d.board.removed.length);
+      const same = sameIdx >= 0 ? nearAll[sameIdx] : null;
+      const near = nearAll.filter(d => d !== same).slice(0, 3);
       for (const d of decks) {
         const names = d.board.added.map(id => byId.get(id)?.name).filter(Boolean);
         d.title = `레벨 ${res.size} · <b>+ ${esc(names.join(', '))}</b>`;
@@ -4274,9 +4277,12 @@ function runBoard(btn) {
         + `${info.carry ? ` · 핵심 캐리 <b>${esc(info.carry.name)}</b>` : ''}`
         + `${info.emblems.length ? ` · 상징 ${info.emblems.map(traitName).map(esc).join(', ')}` : ''}`
         + ` · 점선 = 새로 넣을 챔피언</span></div>`;
-      const metaHtml = near.length
-        ? `<h3 class="recSub">내 보드와 가까운 메타 덱</h3>${near.map((d, i) => deckCard(d, i, byId)).join('')}`
-        : metaAvailable() ? `<p class="muted small">${board.length <= 5 ? '지금 챔피언을 살려서 갈 수 있는 메타 덱이 없어요.' : '3명 안으로 더해서 갈 수 있는 메타 덱이 없어요.'}</p>` : '';
+      const sameHtml = same
+        ? `<details class="recSame"><summary>지금 보드는 이미 <b>${esc(deckName(same, ' · '))}</b> 덱이에요 <span class="tier t${same.tier}">${same.tier}</span> <span class="muted small">평균 ${same.m.avgPlace}등 · ${same.m.games.toLocaleString()}판 — 아이템·3신기 보기</span></summary>${deckCard(same, 0, byId)}</details>`
+        : '';
+      const metaHtml = sameHtml + (near.length
+        ? `<h3 class="recSub">${same ? '여기서 바꿔 갈 수 있는 메타 덱' : '내 보드와 가까운 메타 덱'}</h3>${near.map((d, i) => deckCard(d, i, byId)).join('')}`
+        : metaAvailable() ? `<p class="muted small">${board.length <= 5 ? '지금 챔피언을 살려서 갈 수 있는 메타 덱이 없어요.' : '3명 안으로 더해서 갈 수 있는 메타 덱이 없어요.'}</p>` : '');
       const searchHtml = decks.length
         ? `<h3 class="recSub">보드를 이어서 완성하는 덱</h3>${decks.map((d, i) => deckCard(d, i, byId)).join('')}`
         : `<div class="empty">${keepAll && info.slots >= 10 ? '보드가 이미 꽉 찼어요 (최대 10레벨).' : '이어갈 덱을 찾지 못했어요. 목표 레벨을 바꾸거나 "바꿔도 돼요"를 켜 보세요.'}</div>`;
