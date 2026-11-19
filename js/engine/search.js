@@ -381,14 +381,19 @@ export function readBoard(data, board) {
       if (t) { if (!champ.traits.includes(t)) emblems.push(t); continue; } // 이미 가진 시너지 상징은 효과 없음
       real++;
       const r = itemRole(it);
-      if (r === 'AD' || r === 'AP') dmg++;
+      if (r === 'AD' || r === 'AP' || (r === 'FLEX' && !/Thief|Tactician|Crownguard/i.test(it))) dmg++; // FLEX(구인수 등 공용 딜템)도 딜템 (11/20: 드레이븐 구인수가 안 세져 이즈리얼이 캐리로 잡힘)
       if (r === 'TANK') tank++;
     }
     units.push({ champ, star: u.star || 2, items: u.items || [], dmg, tank, real });
   }
-  // 핵심 캐리: 딜 아이템 수 → 아이템 수 → 별 → 코스트
+  // 핵심 캐리: 딜 아이템 수 × 랭커 기록상 아이템을 몰아 받는 챔피언인지(carryRate, 30판 이상) → 아이템 수 → 별 → 코스트
+  // (11/20 사용자: 드레이븐·케넨 둘 다 딜템 3개인 보드에서 케넨이 캐리로 잡힘 — 케넨은 3개 든 판 14%, 드레이븐 71%)
+  const holdW = c => {
+    const st = data.unitStats?.[c.id.toLowerCase()];
+    return st && st.games >= 30 && st.carryRate != null ? Math.max(0.3, Math.min(1.4, 0.3 + st.carryRate * 1.5)) : 1;
+  };
   const carry = [...units].filter(u => u.dmg > 0 || (u.real > 0 && u.tank === 0))
-    .sort((a, b) => b.dmg - a.dmg || b.real - a.real || b.star - a.star || b.champ.cost - a.champ.cost)[0]?.champ || null;
+    .sort((a, b) => b.dmg * holdW(b.champ) - a.dmg * holdW(a.champ) || b.real - a.real || b.star - a.star || b.champ.cost - a.champ.cost)[0]?.champ || null;
   const slots = units.reduce((s, u) => s + (u.champ.slots || 1), 0);
   return { units, emblems, carry, slots };
 }
