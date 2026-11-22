@@ -12,4 +12,4 @@ jobs:
           path: tools/cache
           key: none
           restore-keys: matches-
-      - run: node tools/tmp/elder.mjs
+      - run: node tools/tmp/cd.mjs
