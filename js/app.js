@@ -1256,8 +1256,14 @@ function fixCarry(x) {
   const units = x.m.board?.units || [];
   const items = c => (units.find(u => u.id === c.id.toLowerCase() || (c.base && st(u.id) && x.team.find(t => t.id.toLowerCase() === u.id)?.base === c.base))?.items || []).filter(i => !/Emblem/i.test(i)).length;
   const holders = x.team.filter(c => c !== carry && items(c) >= 2 && rate(c) >= 0.3);
+  // ⓪ 11/23 사용자: 덱 이름은 메인 딜러로 — 탱커가 탱템 3개로 캐리로 잡히면(소환사 말파이트) 딜템 2개+ 든 딜러에게
+  if (carry.role === 'TANK') {
+    const dps = holders.filter(c => c.role !== 'TANK').sort((a, b) => items(b) - items(a) || rate(b) - rate(a))[0];
+    if (dps) return { ...x, carryChampId: dps.id, core: { ...(x.core || {}), carry: dps.id, tank: x.core?.tank || carry.id } };
+  }
   // ① 캐리로 잡힌 챔피언이 사실상 아이템을 안 드는 챔피언(탱커 등)이면 홀더로 바꿈
-  if (rate(carry) < 0.15 && holders.length) {
+  //  단, 이 보드에서 딜템 3칸을 든 딜러면 그대로 (11/23: 소환사 아지르가 탱템 3개 든 말파이트로 바뀌던 문제)
+  if (rate(carry) < 0.15 && holders.length && !(carry.role !== 'TANK' && items(carry) >= 3 && rate(carry) >= 0.1)) {
     const nc = holders.sort((a, b) => rate(b) - rate(a) || items(b) - items(a))[0];
     return { ...x, carryChampId: nc.id, core: { ...(x.core || {}), carry: nc.id } };
   }
@@ -1730,6 +1736,14 @@ const carryNames = d => {
   if (!d.carries?.length) return carryOfDeck(d)?.name || '';
   const [first, ...rest] = d.carries;
   const keep = rest.filter(k => { const c = d.team.find(t => (t.base || t.name) === k); return c && (d.unitInfo?.[c.id]?.rate ?? 1) >= NAME_RATE; });
+  // 11/23 사용자: "원시 니달리"(니달리는 덱 전체의 42%뿐) → "원시 니달리·시비르" — 첫 캐리를 덱 절반도 안 쓰면
+  //  대표 보드에서 아이템을 많이 들고 거의 항상 쓰는 딜러를 함께 (평균 아이템 3개 이상, 사용 70% 이상)
+  const fc = d.team.find(t => (t.base || t.name) === first);
+  if (!keep.length && fc && (d.unitInfo?.[fc.id]?.rate ?? 1) < 0.5) {
+    const ui = c => d.unitInfo?.[c.id] || {};
+    const sub = d.team.filter(c => c !== fc && c.role !== 'TANK' && (ui(c).rate ?? 1) >= 0.7 && (ui(c).held || 0) >= 3).sort((a, b) => ui(b).held - ui(a).held)[0];
+    if (sub) keep.push(sub.base || sub.name);
+  }
   return [first, ...keep].join('·');
 };
 // "지옥불 럭스 (지옥불)" → "럭스" 처럼 형태 챔피언 이름의 괄호 정리 (덱 이름 앞에 시너지가 이미 붙음)
