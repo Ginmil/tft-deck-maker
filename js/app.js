@@ -1731,7 +1731,7 @@ let tierDecks = [];
 /** 덱 이름: 밸류덱은 "드레이븐 밸류", 아니면 "주력 시너지 캐리" */
 // 캐리 여러 명이 아이템을 나눠 드는 덱(묶인 버전의 캐리가 판수 15% 이상)은 "개화 아리·자이라"
 // 11/23 사용자: 두 번째 캐리는 대표 보드에 있고 이 덱에서 거의 항상 쓰는 챔피언(묶인 버전 전체 75% 이상)만 — "알룬 50%만 사용"이 이름에 붙지 않게
-const NAME_RATE = 0.75;
+const NAME_RATE = 0.7; // 11/23: 나무정령 렝가의 카직스 74%
 const carryNames = d => {
   if (!d.carries?.length) return carryOfDeck(d)?.name || '';
   const [first, ...rest] = d.carries;
@@ -1744,7 +1744,13 @@ const carryNames = d => {
     const sub = d.team.filter(c => c !== fc && c.role !== 'TANK' && (ui(c).rate ?? 1) >= 0.7 && (ui(c).held || 0) >= 3).sort((a, b) => ui(b).held - ui(a).held)[0];
     if (sub) keep.push(sub.base || sub.name);
   }
-  return [first, ...keep].join('·');
+  // 11/23 사용자: 둘 다 쓰는 덱이면 판당 딜템이 많은 챔피언을 앞에 ("나무정령 렝가" → "카직스·렝가") — 묶인 버전 전체 기준
+  const names = [first, ...keep];
+  if (names.length > 1) {
+    const dm = k => { let off = 0, n = 0; for (const v of [d, ...(d.variants || [])]) { const c = v.team.find(t => (t.base || t.name) === k); const u = c && v.unitInfo?.[c.id]; if (u?.off != null) { off += u.off; n += (u.rate || 0) * v.m.games; } } return n ? off / n : 0; };
+    if (dm(names[1]) >= 1.3 * dm(names[0])) names.reverse();
+  }
+  return names.join('·');
 };
 // "지옥불 럭스 (지옥불)" → "럭스" 처럼 형태 챔피언 이름의 괄호 정리 (덱 이름 앞에 시너지가 이미 붙음)
 const formClean = n => n.replace(/^(.+?) \((.+)\)$/, '$1');
