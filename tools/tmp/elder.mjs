@@ -1,43 +1,23 @@
 import fs from 'fs';
 const set = JSON.parse(fs.readFileSync('data/set-snapshot.json', 'utf8')).data;
 const ct = {}; for (const c of Object.values(set.champions)) { const k = c.id.toLowerCase(); (ct[k] ||= new Set()); c.traits.forEach(t => ct[k].add(t)); }
-const EW = Object.values(set.traits).find(t => t.name === '나무정령').id;
 const embTrait = {}; for (const e of set.emblems) for (const id of e.ids || [e.id]) embTrait[id] = e.trait;
-const nm = id => (Object.values(set.champions).find(c => c.id.toLowerCase() === id)?.name) || id;
 const ms = []; for (const f of fs.readdirSync('tools/cache')) if (f.endsWith('.json')) { try { ms.push(JSON.parse(fs.readFileSync('tools/cache/' + f, 'utf8'))); } catch {} }
-const P187 = Date.UTC(2026, 10, 17, 21);
-console.log('EW', EW, 'matches', ms.length);
-// A: 나무정령 인원 기록 vs 계산
-const diffBy = {}, tot = {}; const ex = [];
-let n6 = 0, n6lil = 0;
+// 럭스 없는 판만: 시너지별 (기록 - 챔피언·상징 계산) 분포, 아이번 있음/없음
+const T = ['DA_18_Elderwood', 'DA_18_Brawler', 'DA_18_Vanguard', 'DA_Juggernaut18', 'DA_18_Riftbeast', 'DA_18_Lunar', 'DA_18_Fae', 'DA_18_Inferno'];
+const res = {};
 for (const m of ms) { if (m?.info?.queue_id !== 1100) continue;
   for (const p of m.info.participants || []) {
-    const tr = (p.traits || []).find(t => t.name === EW); if (!tr || !tr.num_units) continue;
-    const seen = new Set(); let cnt = 0; let emb = 0;
-    for (const u of p.units || []) { const id = String(u.character_id).toLowerCase(); if (!seen.has(id)) { seen.add(id); if (ct[id]?.has(EW)) cnt++; }
-      for (const it of u.itemNames || []) if (embTrait[it] === EW && !ct[id]?.has(EW)) emb++; }
-    const d = tr.num_units - cnt - emb;
-    const key = 'diff' + d; tot[key] = (tot[key] || 0) + 1;
-    for (const id of seen) { (diffBy[id] ||= {}); diffBy[id][key] = (diffBy[id][key] || 0) + 1; }
-    if (tr.num_units === 6) { n6++; if (seen.has('da_18_lillia')) n6lil++; }
-    if (d !== 0 && ex.length < 6) ex.push({ rec: tr.num_units, champs: cnt, emb, units: [...seen].map(nm).join(',') });
+    const ids = new Set((p.units || []).map(u => String(u.character_id).toLowerCase()));
+    if ([...ids].some(i => /lux/.test(i))) continue;
+    const iv = ids.has('da_18_ivern') ? 'ivern' : 'noIvern';
+    for (const t of T) {
+      const tr = (p.traits || []).find(x => x.name === t); if (!tr || !tr.num_units) continue;
+      let cnt = 0; for (const id of ids) if (ct[id]?.has(t)) cnt++;
+      for (const u of p.units || []) { const id = String(u.character_id).toLowerCase(); for (const it of u.itemNames || []) if (embTrait[it] === t && !ct[id]?.has(t)) cnt++; }
+      const d = tr.num_units - cnt; const k = t.replace(/DA_(18_)?/, '') + ' ' + iv;
+      (res[k] ||= {})[d] = (res[k][d] || 0) + 1;
+    }
   }
 }
-console.log('기록-계산 차이 분포', tot, '| 6나무정령 판', n6, '그중 릴리아', n6lil);
-const rows = Object.entries(diffBy).map(([id, o]) => { const all = Object.values(o).reduce((a, b) => a + b, 0); const plus = all - (o.diff0 || 0); return [nm(id), all, plus, (plus / all * 100).toFixed(0) + '%']; }).filter(r => r[1] >= 30).sort((a, b) => b[2] / b[1] - a[2] / a[1]).slice(0, 12);
-console.log('챔피언별 (나무정령 켜진 판, 차이 있는 판, 비율):'); for (const r of rows) console.log('  ', r.join(' | '));
-console.log('예시', JSON.stringify(ex, null, 0));
-// B: 드레이븐 캐리 + 나무정령 6+ , 18.7
-const players = {}; let g = 0, sp = 0; const boards = {};
-for (const m of ms) { if (m?.info?.queue_id !== 1100 || (m.info.game_datetime || 0) < P187) continue;
-  for (const p of m.info.participants || []) {
-    const tr = (p.traits || []).find(t => t.name === EW); if (!tr || tr.num_units < 6) continue;
-    const dr = (p.units || []).find(u => /draven/i.test(u.character_id)); if (!dr || (dr.itemNames || []).length < 2) continue;
-    g++; sp += p.placement; players[p.puuid] = (players[p.puuid] || 0) + 1;
-    const k = (p.units || []).map(u => nm(String(u.character_id).toLowerCase())).sort().join(','); (boards[k] ||= []).push(p.placement);
-  }
-}
-console.log('\n18.7 드레이븐(템2+) + 나무정령 6이상:', g, '판 평균', (sp / g).toFixed(2), '서로 다른 플레이어', Object.keys(players).length, '| 한 사람 최다', Math.max(...Object.values(players)));
-console.log('플레이어별 판수', Object.values(players).sort((a, b) => b - a).join(','));
-for (const [k, v] of Object.entries(boards).sort((a, b) => b[1].length - a[1].length).slice(0, 5)) console.log('  ', v.length + '판', v.join('/'), k);
-// 레벨
+for (const [k, v] of Object.entries(res).sort()) console.log(k, JSON.stringify(v));
