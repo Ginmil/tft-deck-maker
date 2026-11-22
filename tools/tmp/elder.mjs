@@ -6,6 +6,7 @@ const tid = n => Object.values(set.traits).find(t => t.name === n)?.id;
 const ms = []; for (const f of fs.readdirSync('tools/cache')) if (f.endsWith('.json')) { try { ms.push(JSON.parse(fs.readFileSync('tools/cache/' + f, 'utf8'))); } catch {} }
 const P187 = Date.UTC(2026, 10, 17, 21);
 const checks = [['아이번', 'da_18_ivern', '나무정령'], ['케넨', 'da_18_kennen', '날렵이'], ['돌거북', 'da_krug18', '싸움꾼'], ['돌거북', 'da_krug18', '소환사'], ['나르', 'da_18_gnar', '싸움꾼']];
+const gn = new Set(); for (const m of ms) for (const p of m.info?.participants || []) for (const u of p.units || []) if (/gnar|krug/i.test(u.character_id)) gn.add(u.character_id); console.log('기록 id', [...gn].join(','));
 const kid = Object.keys(ct).filter(k => /krug|kennen|ivern|gnar/.test(k)); console.log('ids', kid.join(','));
 for (const [nm, id0, tn] of checks) {
   const t = tid(tn); const id = Object.keys(ct).find(k => k === id0) || Object.keys(ct).find(k => k.includes(id0.replace(/da_(18_)?/, '').replace('18', '')));
