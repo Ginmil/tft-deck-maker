@@ -1262,9 +1262,9 @@ function fixCarry(x) {
     if (dps) return { ...x, carryChampId: dps.id, core: { ...(x.core || {}), carry: dps.id, tank: x.core?.tank || carry.id } };
   }
   // ① 캐리로 잡힌 챔피언이 사실상 아이템을 안 드는 챔피언(탱커 등)이면 홀더로 바꿈
-  //  단, 이 보드에서 딜템 3칸을 든 딜러면 그대로 (11/23: 소환사 아지르가 탱템 3개 든 말파이트로 바뀌던 문제)
-  if (rate(carry) < 0.15 && holders.length && !(carry.role !== 'TANK' && items(carry) >= 3 && rate(carry) >= 0.1)) {
-    const nc = holders.sort((a, b) => rate(b) - rate(a) || items(b) - items(a))[0];
+  // 11/23 사용자: 탱커(말파이트)보다 딜템을 많이 든 딜러로 — 딜러 홀더 우선(그다음은 예전처럼 carryRate — 처형자 자이라는 자이라 .52 > 소라카 .46, 사용자 확인)
+  if (rate(carry) < 0.15 && holders.length) {
+    const nc = [...holders].sort((a, b) => (a.role === 'TANK') - (b.role === 'TANK') || rate(b) - rate(a) || items(b) - items(a))[0];
     return { ...x, carryChampId: nc.id, core: { ...(x.core || {}), carry: nc.id } };
   }
   // ② 리롤 덱에서 3성 리롤 챔피언도 아이템 3개를 들면 그 챔피언을 앞에, 원래 캐리를 뒤에 ("마스터 이·니달리")
