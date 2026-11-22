@@ -4132,7 +4132,9 @@ function combineDecks(main, variants) {
   for (const x of all) { const c = carryOfDeck(x); if (!c) continue; byCarry.set(ck(c), (byCarry.get(ck(c)) || 0) + g(x)); }
   const totalG = all.reduce((s, x) => s + g(x), 0);
   const mainKey = ck(carryOfDeck(main));
-  const carries = [mainKey, ...[...byCarry].filter(([k, n]) => k !== mainKey && n >= 0.15 * totalG).sort((a, b) => b[1] - a[1]).map(([k]) => k)].slice(0, 2);
+  // 11/23 사용자: "소환사 말파이트·알룬"인데 보여 주는 대표 보드에 알룬이 없음 → 대표 보드에 있는 캐리만 이름에
+  const onBoard = new Set(main.team.map(ck));
+  const carries = [mainKey, ...[...byCarry].filter(([k, n]) => k !== mainKey && onBoard.has(k) && n >= 0.15 * totalG).sort((a, b) => b[1] - a[1]).map(([k]) => k)].slice(0, 2);
   const tw = all.reduce((s, x) => s + g(x), 0);
   const wavg = f => all.reduce((s, x) => s + f(x.m) * g(x), 0) / tw;
   const side = k => {
