@@ -4079,7 +4079,15 @@ function mustEmblem(d) {
   return e ? { name: e.name, rate: top[1] } : null;
 }
 const embTag = d => { const e = mustEmblem(d); return e ? ` <span class="embMust" title="랭커가 이 덱에서 ${esc(e.name)}을 ${Math.round(e.rate * 100)}% 판에서 썼어요">[상징]</span>` : ''; };
-const deckName = (d, sep = ' ') => (d.value ? `${formClean(carryNames(d))} 밸류` : `${mainTraitLabel(d)}${sep}${formClean(carryNames(d))}`);
+// 밸류덱 이름에 구분 붙이기 (11/23 사용자: 8레벨·9레벨 둘 다 "드레이븐 밸류" — 앞은 나무정령 밸류, 뒤는 장로 드래곤 밸류)
+//  보드에 장로 드래곤(2칸 특수 기물)이 있으면 "장로 드래곤", 없으면 주력(우연히 켜진) 시너지. 캐리 이름에 이미 있으면 생략.
+function valueLabel(d) {
+  const carries = formClean(carryNames(d));
+  const elder = d.team.find(c => /ElderDragon/i.test(c.id));
+  if (elder) return carries.includes(elder.name) ? '' : elder.name;
+  return d.m?.trait ? traitName(d.m.trait) : '';
+}
+const deckName = (d, sep = ' ') => (d.value ? `${formClean(carryNames(d))}${valueLabel(d) ? ' ' + valueLabel(d) : ''} 밸류` : `${mainTraitLabel(d)}${sep}${formClean(carryNames(d))}`);
 const carryOfDeck = d => { const cid = d.carryChampId?.toLowerCase() || d.m.mainCarry || d.m.carry; return d.team.find(c => c.id.toLowerCase() === cid); };
 /** 덱 종류: 3코 이하 챔피언이 절반 이상 3성이면 "N코 리롤", 아니면 "캐리 코스트 + 레벨" */
 function deckType(d) {
