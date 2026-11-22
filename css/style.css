@@ -1065,3 +1065,6 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 
 /* 상징 필수 덱 표시 (11/20) */
 .embMust { color: var(--gold); font-weight: 600; font-size: .85em; white-space: nowrap; }
+
+/* 배치툴: 이전 탭으로 돌아가기 (11/23) */
+.bdBack { white-space: nowrap; border-color: var(--gold); color: var(--gold); }

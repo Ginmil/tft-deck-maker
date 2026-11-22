@@ -564,7 +564,8 @@ export function bdRender() {
   bd$('bdUndo').disabled = !bdState.past.length; bd$('bdRedo').disabled = !bdState.future.length;
   bd$('bdUndo').title = bdState.past.length ? `되돌리기 (Ctrl+Z) · ${bdState.past.length}단계` : '되돌릴 것이 없어요';
   const n = Object.keys(bdState.cells).length;
-  try { history.replaceState(null, '', n ? `#b=${encodeURIComponent(bdEncode())}` : location.pathname + location.search); } catch { /* file:// 등 */ }
+  // 주소의 #b=코드 는 배치툴이 보일 때만 바꿈 (11/23: 다른 탭의 뒤로 가기 기록을 덮어쓰지 않게), 탭 기록({tab}) 유지
+  if (!bd$('panel-builder').hidden) try { history.replaceState({ tab: 'builder' }, '', n ? `#b=${encodeURIComponent(bdEncode())}` : '#builder'); } catch { /* file:// 등 */ }
 }
 
 function bdRenderBoard() {

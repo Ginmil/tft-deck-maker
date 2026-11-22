@@ -611,8 +611,17 @@ function bind() {
     useRaw(raw, '샘플 데이터 (가상 세트, 실제 게임과 다름)');
   };
 
+  // 탭 이동 기록 (11/23 사용자: 상징 팀 메이커에서 배치툴로 갔다가 돌아갈 방법이 없음 — 뒤로 가기·마우스 뒤로 버튼)
+  //  탭을 바꿀 때 history 에 남기고(#탭 이름), 뒤로 가기(popstate)면 그 탭으로. 탭마다 결과(#results)와 스크롤 위치를 기억해서 돌아오면 그대로.
   document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
-    if (!t.classList.contains('active')) window.scrollTo({ top: 0 });
+    const prev = curTab, next = t.dataset.tab;
+    if (prev !== next) {
+      tabMemory[prev] = { scroll: window.scrollY, results: $('results').innerHTML };
+      if (!tabFromHistory) history.pushState({ tab: next }, '', '#' + next);
+      prevTab = prev;
+    }
+    tabFromHistory = false;
+    curTab = next;
     document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
     document.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== `panel-${t.dataset.tab}`);
     if (t.dataset.tab === 'home') renderHome();
@@ -623,8 +632,22 @@ function bind() {
     $('results').hidden = ['home', 'meta', 'patch', 'builds', 'builder'].includes(t.dataset.tab);
     // 레벨·코스트·5코스트·특수 기물 설정은 덱을 새로 짜는 탭에서만 의미가 있음 (사용자 피드백 11/15: 메타 덱에도 떠서 헷갈림)
     // 11/17: 옵션은 상징 팀 메이커 안 "시너지 계산 추천 설정" 접기로 옮김 (패널과 함께 보이고 숨음)
-    $('results').innerHTML = '';
+    const mem = prev !== next ? tabMemory[next] : null;
+    $('results').innerHTML = mem?.results || (prev !== next ? '' : $('results').innerHTML);
+    window.scrollTo({ top: prev !== next ? (mem?.scroll || 0) : window.scrollY });
+    $('bdBack').hidden = next !== 'builder' || !prevTab || prevTab === 'builder';
+    if (next === 'builder' && prevTab) $('bdBack').textContent = `← ${document.querySelector(`.tab[data-tab="${prevTab}"]`)?.textContent || '이전'}로 돌아가기`;
   });
+  window.addEventListener('popstate', e => {
+    const h = location.hash.slice(1);
+    const tab = e.state?.tab || (h.startsWith('b=') ? 'builder' : h) || 'home';
+    const btn = document.querySelector(`.tab[data-tab="${tab}"]`);
+    if (!btn || tab === curTab) return;
+    tabFromHistory = true; btn.click();
+  });
+  history.scrollRestoration = 'manual'; // 스크롤은 tabMemory 로 직접 되돌림
+  history.replaceState({ tab: curTab }, '', location.hash || '#home'); // #b=코드(공유 링크)는 그대로 둠
+  $('bdBack').onclick = () => history.back();
 
   // 홈 (11/18)
   $('homeView').addEventListener('click', e => {
@@ -744,6 +767,8 @@ function itemHabitHtml(c, compact = false) {
 // ---------------- 홈 (11/18) ----------------
 // TFT Note(큰 한 줄 소개·덱 카드 넘기기·기능 배너)와 롤체지지(검색창이 주인공·최근 패치 목록)를 참고.
 // 우리는 전적 검색이 없으니 검색창 자리에 "가진 상징 고르기"(상징 팀 메이커로 바로)를 둠.
+let curTab = 'home', prevTab = null, tabFromHistory = false;
+const tabMemory = {};
 const openTab = name => document.querySelector(`.tab[data-tab="${name}"]`)?.click();
 function renderHome() {
   const box = $('homeView'), d = state.data;
