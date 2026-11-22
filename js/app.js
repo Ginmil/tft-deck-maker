@@ -1724,7 +1724,14 @@ const TIER_DESC = { S: '가장 강함', A: '강함', B: '할 만함', C: '비추
 let tierDecks = [];
 /** 덱 이름: 밸류덱은 "드레이븐 밸류", 아니면 "주력 시너지 캐리" */
 // 캐리 여러 명이 아이템을 나눠 드는 덱(묶인 버전의 캐리가 판수 15% 이상)은 "개화 아리·자이라"
-const carryNames = d => (d.carries?.length ? d.carries : [carryOfDeck(d)?.name || '']).join('·');
+// 11/23 사용자: 두 번째 캐리는 대표 보드에 있고 이 덱에서 거의 항상 쓰는 챔피언(묶인 버전 전체 75% 이상)만 — "알룬 50%만 사용"이 이름에 붙지 않게
+const NAME_RATE = 0.75;
+const carryNames = d => {
+  if (!d.carries?.length) return carryOfDeck(d)?.name || '';
+  const [first, ...rest] = d.carries;
+  const keep = rest.filter(k => { const c = d.team.find(t => (t.base || t.name) === k); return c && (d.unitInfo?.[c.id]?.rate ?? 1) >= NAME_RATE; });
+  return [first, ...keep].join('·');
+};
 // "지옥불 럭스 (지옥불)" → "럭스" 처럼 형태 챔피언 이름의 괄호 정리 (덱 이름 앞에 시너지가 이미 붙음)
 const formClean = n => n.replace(/^(.+?) \((.+)\)$/, '$1');
 // 히든 시너지 일월식(11/20 사용자): 햇빛 + 달빛이 둘 다 켜지면 켜짐 — 세트 데이터의 시너지 목록엔 없고 경기 기록엔 DA_18_Eclipse 로 남음
