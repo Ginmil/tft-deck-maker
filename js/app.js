@@ -1212,7 +1212,9 @@ function fitMainCount(team, info, m, byLower, carry, carryRef = {}) {
 function isValueDeck(team, m, ev) {
   const bps = state.data.traits[m.trait]?.breakpoints || [];
   const n = ev.traits.find(t => t.id === m.trait)?.count || 0;
-  return m.level >= 9 && team.filter(c => c.cost >= 5).length >= 4 && bps.filter(b => b <= n).length <= 2 && n <= 4;
+  // 8레벨이라도 5코가 5명 이상이면 밸류 (11/22 사용자: 8레벨 "나무정령 드레이븐" = 3나무정령으로 가는 드레이븐 밸류, 5코 5명)
+  const fives = team.filter(c => c.cost >= 5).length;
+  return (m.level >= 9 ? fives >= 4 : m.level >= 8 && fives >= 5) && bps.filter(b => b <= n).length <= 2 && n <= 4;
 }
 
 /**
