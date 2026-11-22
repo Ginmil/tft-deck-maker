@@ -168,13 +168,16 @@ export function groupDecks(decks) {
       const late5 = a.carryChamp.cost >= 5 && (b.carryChamp.cost < 5 || b.games >= 3 * a.games);
       const same = key(a.carryChamp) === key(b.carryChamp);
       // ③ 같은 캐리의 밸류덱끼리(드레이븐 밸류: 우연히 켜진 작은 시너지만 다름, 구성 50~89% 겹침)
-      const value = same && a.value && b.value && s >= 0.5;
+      // 밸류덱끼리는 레벨이 같을 때만 (11/22 사용자: 앞 버전 덱이 뒷 버전으로 완성해서 이긴 게 아니라 그 레벨에서 따로 이긴 덱이면 따로 —
+      //  8레벨 3나무정령 드레이븐 밸류 vs 9레벨 장로 드래곤 드레이븐 밸류)
+      const sameLv = !a.level || !b.level || a.level === b.level;
+      const value = same && a.value && b.value && sameLv && s >= 0.5;
       // ④ 주력 시너지가 같고 보드가 75% 이상 같으면 캐리가 달라도 한 덱 (11/15 사용자 피드백: 지옥불 럭스인데 애쉬도 자주 씀 —
       //    아이템을 누가 들었는지로만 갈림. 개화 아리=자이라, 햇빛 유나라=르블랑=카르마처럼 보드 100% 같은 덱이 많았음)
       const sameTrait = a.trait && a.trait === b.trait && !a.value && !b.value && s >= 0.75;
       // ⑤ 밸류덱끼리 보드가 75% 이상 같으면 캐리가 달라도 한 덱 (11/20 사용자: 장로 드래곤 밸류와 드레이븐 밸류가 같은 9명 —
       //    5코 캐리끼리라 ①도 안 걸렸음. 누구에게 아이템을 줬는지는 버전표에서 비교)
-      const valueBoard = a.value && b.value && s >= 0.75;
+      const valueBoard = a.value && b.value && sameLv && s >= 0.75;
       // 캐리가 같은 덱 → 시너지가 같은 덱 순으로 우선 (전쟁기계 드레이븐이 장로 드래곤 밸류보다 드레이븐 밸류로)
       const pr = s + (same ? 1 : 0) + (a.trait && a.trait === b.trait ? 0.5 : 0);
       if (((late5 && s >= 0.75) || (same && s >= 0.85) || value || sameTrait || valueBoard) && (!best || pr > best.pr)) best = { b, s, pr };
