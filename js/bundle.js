@@ -24,7 +24,7 @@
 function cleanAbility(s) {
   return String(s || '').replace(/\{[^}]*\}/g, '').replace(/\\r|\r/g, '').replace(/\\n|\n/g, '\n').replace(/<[^>]+>/g, '').replace(/\n{3,}/g, '\n\n').trim();
 }
-const ADAPTER_VERSION = 15; // 12: 시너지 아이콘, 13: 챔피언 스킬·기본 능력치(툴팁), 14: 시너지 단계별 수치(descFilled, 15: 대소문자·아이콘 묶음)
+const ADAPTER_VERSION = 16; // 16: 패치로 추가된 시너지(TRAIT_ADDITIONS), 12: 시너지 아이콘, 13: 챔피언 스킬·기본 능력치(툴팁), 14: 시너지 단계별 수치(descFilled, 15: 대소문자·아이콘 묶음)
 
 const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -80,10 +80,15 @@ function normalize(raw, setKey) {
   }
 
   // ---- 챔피언 ----
+  // 패치로 추가됐지만 Community Dragon 에 아직 반영 안 된 시너지 (11/22 확인: 18.7 경기 기록의 시너지 인원으로 검증 —
+  //  아이번이 있으면 나무정령 +1(680/1008판), 케넨 → 날렵이 +1(797/797판), 돌거북 → 소환사 +1(1550/1580판).
+  //  케넨의 지옥불·처형자, 돌거북의 협곡야수·싸움꾼은 그대로). 반영되면 이미 있는 시너지라 무시됨.
+  const TRAIT_ADDITIONS = { DA_18_Ivern: ['DA_18_Elderwood'], DA_18_Kennen: ['DA_18_Sprykin'], DA_Krug18: ['DA_18_Summoner'] };
   const seen = new Set();
   const champions = [];
   for (const c of set.champions || []) {
     const traitIds = (c.traits || []).map(n => traitIdByName[n]).filter(Boolean);
+    for (const t of TRAIT_ADDITIONS[c.apiName] || []) if (traits[t] && !traitIds.includes(t) && traitIds.length) traitIds.push(t);
     if (!traitIds.length || !(c.cost >= 1 && c.cost <= 5)) continue; // 소환수·특수 유닛 제외
     if (seen.has(c.name)) continue;
     seen.add(c.name);
@@ -1818,11 +1823,13 @@ function bdOpenDeck(d) {
   const carryId = d.carry?.id || d.core?.carry;
   const tankId = d.core?.tank;
   const emblemItem = t => data.emblems.find(e => e.trait === t)?.id;
+  const holdSet = d.m && bd.itemHolders ? new Set(bd.itemHolders(d, carryId)) : null;
   const units = d.team.map(c => {
     const items = [];
     for (const a of d.assignment || []) if (a.holder === c.id && emblemItem(a.trait)) items.push(emblemItem(a.trait));
-    // 핵심 캐리·탱커 + 이 덱에서 아이템을 평균 1.5개 이상 드는 챔피언(11/17 사용자: 햇빛 르블랑의 유나라·카르마)
-    const holds = c.id === carryId || c.id === tankId || (d.unitInfo?.[c.id]?.held || 0) >= 1.5;
+    // 아이템은 우선순위 높은 3~4명에게만 (11/20 사용자: 랭커가 아이템을 적게 모은 판에서 누구에게 먼저 줬는지 — app itemHolders)
+    const holds = holdSet ? holdSet.has(c.id) : (c.id === carryId || c.id === tankId || (d.unitInfo?.[c.id]?.held || 0) >= 1.5);
+    if (holdSet && !holds) return { champ: c, star: (d.unitInfo?.[c.id]?.star3 || 0) >= 0.4 ? 3 : 2, items: items.slice() }; // 상징만
     const build = d.builds?.[c.id] || (holds ? bd.buildsFor(c)[0] : null);
     for (const it of build?.items || []) if (items.length < 3) items.push(it);
     for (const it of d.items?.[c.id] || []) if (items.length < 3) items.push(it.id); // 아이템 탭 결과
@@ -2862,7 +2869,8 @@ function deckCard(d, i, byId) {
     .sort((a, b) => (b.tier > 0) - (a.tier > 0) || (a.breakpoints.length === 1) - (b.breakpoints.length === 1) || order[a.st] - order[b.st] || b.count - a.count)
     .map(t => `<span class="tTr${t.tier ? '' : ' off'}${t.emblemOnly ? ' embOnly' : ''}" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.emblemOnly ? ' · 상징이 있어야 켜지는 단계' : ''}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등 · ${t.stat.games}판` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `${bonusLabel(t)}` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
   const eclipse = eclipseOn(d) ? `<span class="tTr hiddenTr" title="햇빛 3 + 달빛 3 이상이면 켜지는 숨은 시너지">일월식 <small>히든</small></span>` : '';
-  const builds = [carryId, tankId, ...(d.m ? holderIds(d, carryId, tankId) : [])].filter(Boolean).map(id => {
+  const hold = d.m ? new Set(itemHolders(d, carryId)) : null;
+  const builds = [carryId, (!hold || hold.has(tankId)) ? tankId : null, ...(d.m ? holderIds(d, carryId, tankId) : [])].filter(Boolean).map(id => {
     const c = byId.get(id); const own = d.builds?.[id], b = c && (own || buildsFor(c)[0]);
     return b ? `<div class="dcBuild"><span class="who">${id === carryId ? '핵심' : id === tankId ? '탱커' : subRole(b)} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
   }).join('');
@@ -2924,7 +2932,7 @@ function bind() {
   });
   bindItemTips();
   initBuilder({
-    getData: () => state.data, esc, traitName, roleKo, buildsFor, itemHabitHtml, plannerCodes: () => plannerCodes,
+    getData: () => state.data, esc, traitName, roleKo, buildsFor, itemHabitHtml, plannerCodes: () => plannerCodes, itemHolders,
     openTab: name => document.querySelector(`.tab[data-tab="${name}"]`)?.click(),
   });
   $('bdRecommend').onclick = e => runBoard(e.currentTarget);
@@ -3709,8 +3717,21 @@ function withHeld(info, m) {
 /** 핵심 캐리·탱커 말고도 아이템을 드는 챔피언 (평균 1.5개 이상, 많이 드는 순 최대 2명) */
 const HOLDER_MIN = 1.5;
 function holderIds(x, carryId, tankId) {
-  return x.team.filter(c => c.id !== carryId && c.id !== tankId && (x.unitInfo?.[c.id]?.held || 0) >= HOLDER_MIN)
-    .sort((a, b) => x.unitInfo[b.id].held - x.unitInfo[a.id].held).slice(0, 2).map(c => c.id);
+  const keep = new Set(itemHolders(x, carryId));
+  return x.team.filter(c => c.id !== carryId && c.id !== tankId && keep.has(c.id)).map(c => c.id);
+}
+/** 아이템을 줄 챔피언 최대 4명, 우선순위 순 (11/20 사용자: 아이템을 많이 줘도 3~4명 — 랭커가 아이템을 적게 모은 판에서 누구에게 먼저 줬는지로)
+ * 집계 core.poor = 보드 완성 아이템 9개 이하인 판에서 그 챔피언이 든 평균 아이템 수. 없으면(옛 통계) 덱 평균 held.
+ * 캐리는 항상 포함, 나머지는 poor 0.6개 이상(held 기준이면 1.5개 이상)만 */
+const HOLDER_MAX = 4;
+function itemHolders(x, carryId) {
+  const ui = id => x.unitInfo?.[id] || {};
+  const usePoor = x.team.some(c => ui(c.id).poor != null);
+  const score = c => (usePoor ? ui(c.id).poor ?? 0 : (ui(c.id).held || 0) / 2.5);
+  const min = 0.6;
+  return x.team.filter(c => c.id === carryId || score(c) >= min)
+    .sort((a, b) => (b.id === carryId) - (a.id === carryId) || score(b) - score(a))
+    .slice(0, HOLDER_MAX).map(c => c.id);
 }
 function metaDeckFrom(m, team, info, emblems, carry, byLower, swap, isReal, bonus = {}) {
   const d = state.data;
@@ -4199,7 +4220,8 @@ function tierDetailHtml(x, byId) {
       <span class="pwrap">${hexPor(c)}${(emb[c.id] || []).map(a => `<span class="embb" title="${esc(traitName(a.trait))} 상징">${traitBadge(a.trait, 'gold', true)}</span>`).join('')}</span>
       ${esc(c.base && c.weights ? c.base : c.name)}<em>${c.id === carryId ? '핵심 캐리' : c.id === tankId ? '메인 탱커' : rate < 0.05 ? '드물게 사용' : opt ? `${pct(rate)}만 사용` : ''}</em></div>`;
   }).join('');
-  const builds = [carryId, tankId, ...holderIds(x, carryId, tankId)].filter(Boolean).map(id => {
+  const hold = new Set(itemHolders(x, carryId));
+  const builds = [carryId, hold.has(tankId) ? tankId : null, ...holderIds(x, carryId, tankId)].filter(Boolean).map(id => {
     const c = byId.get(id), own = x.builds?.[id], b = c && (own || buildsFor(c)[0]);
     return b ? `<div class="tBuild"><span class="who">${id === carryId ? '캐리' : id === tankId ? '탱커' : subRole(b)} ${esc(c.name)}</span>${buildRow(b, !own)}</div>` : '';
   }).join('');

@@ -20,7 +20,7 @@
 function cleanAbility(s) {
   return String(s || '').replace(/\{[^}]*\}/g, '').replace(/\\r|\r/g, '').replace(/\\n|\n/g, '\n').replace(/<[^>]+>/g, '').replace(/\n{3,}/g, '\n\n').trim();
 }
-export const ADAPTER_VERSION = 15; // 12: 시너지 아이콘, 13: 챔피언 스킬·기본 능력치(툴팁), 14: 시너지 단계별 수치(descFilled, 15: 대소문자·아이콘 묶음)
+export const ADAPTER_VERSION = 16; // 16: 패치로 추가된 시너지(TRAIT_ADDITIONS), 12: 시너지 아이콘, 13: 챔피언 스킬·기본 능력치(툴팁), 14: 시너지 단계별 수치(descFilled, 15: 대소문자·아이콘 묶음)
 
 export const DEFAULT_URL = 'https://raw.communitydragon.org/latest/cdragon/tft/ko_kr.json';
 const ASSET_BASE = 'https://raw.communitydragon.org/latest/game/';
@@ -76,10 +76,15 @@ export function normalize(raw, setKey) {
   }
 
   // ---- 챔피언 ----
+  // 패치로 추가됐지만 Community Dragon 에 아직 반영 안 된 시너지 (11/22 확인: 18.7 경기 기록의 시너지 인원으로 검증 —
+  //  아이번이 있으면 나무정령 +1(680/1008판), 케넨 → 날렵이 +1(797/797판), 돌거북 → 소환사 +1(1550/1580판).
+  //  케넨의 지옥불·처형자, 돌거북의 협곡야수·싸움꾼은 그대로). 반영되면 이미 있는 시너지라 무시됨.
+  const TRAIT_ADDITIONS = { DA_18_Ivern: ['DA_18_Elderwood'], DA_18_Kennen: ['DA_18_Sprykin'], DA_Krug18: ['DA_18_Summoner'] };
   const seen = new Set();
   const champions = [];
   for (const c of set.champions || []) {
     const traitIds = (c.traits || []).map(n => traitIdByName[n]).filter(Boolean);
+    for (const t of TRAIT_ADDITIONS[c.apiName] || []) if (traits[t] && !traitIds.includes(t) && traitIds.length) traitIds.push(t);
     if (!traitIds.length || !(c.cost >= 1 && c.cost <= 5)) continue; // 소환수·특수 유닛 제외
     if (seen.has(c.name)) continue;
     seen.add(c.name);

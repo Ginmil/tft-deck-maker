@@ -511,7 +511,8 @@ function deckCard(d, i, byId) {
     .sort((a, b) => (b.tier > 0) - (a.tier > 0) || (a.breakpoints.length === 1) - (b.breakpoints.length === 1) || order[a.st] - order[b.st] || b.count - a.count)
     .map(t => `<span class="tTr${t.tier ? '' : ' off'}${t.emblemOnly ? ' embOnly' : ''}" title="${esc(t.name)} ${t.breakpoints.join('/')}${t.emblemOnly ? ' · 상징이 있어야 켜지는 단계' : ''}${t.stat ? ` · 실제 경기 평균 ${t.stat.avgPlace}등 · ${t.stat.games}판` : ''}">${traitBadge(t.id, t.st)}<b>${t.count}</b>${esc(t.name)}${t.bonus ? `${bonusLabel(t)}` : ''}${t.breakpoints.length > 1 ? `<span class="bps2">${t.breakpoints.map((b, k) => k === t.tier - 1 ? `<b>${b}</b>` : b).join(' ')}</span>` : ''}</span>`).join('');
   const eclipse = eclipseOn(d) ? `<span class="tTr hiddenTr" title="햇빛 3 + 달빛 3 이상이면 켜지는 숨은 시너지">일월식 <small>히든</small></span>` : '';
-  const builds = [carryId, tankId, ...(d.m ? holderIds(d, carryId, tankId) : [])].filter(Boolean).map(id => {
+  const hold = d.m ? new Set(itemHolders(d, carryId)) : null;
+  const builds = [carryId, (!hold || hold.has(tankId)) ? tankId : null, ...(d.m ? holderIds(d, carryId, tankId) : [])].filter(Boolean).map(id => {
     const c = byId.get(id); const own = d.builds?.[id], b = c && (own || buildsFor(c)[0]);
     return b ? `<div class="dcBuild"><span class="who">${id === carryId ? '핵심' : id === tankId ? '탱커' : subRole(b)} ${esc(c.name)}</span>${buildRow(b, !own && !!d.m)}</div>` : '';
   }).join('');
@@ -573,7 +574,7 @@ function bind() {
   });
   bindItemTips();
   initBuilder({
-    getData: () => state.data, esc, traitName, roleKo, buildsFor, itemHabitHtml, plannerCodes: () => plannerCodes,
+    getData: () => state.data, esc, traitName, roleKo, buildsFor, itemHabitHtml, plannerCodes: () => plannerCodes, itemHolders,
     openTab: name => document.querySelector(`.tab[data-tab="${name}"]`)?.click(),
   });
   $('bdRecommend').onclick = e => runBoard(e.currentTarget);
@@ -1358,8 +1359,21 @@ function withHeld(info, m) {
 /** 핵심 캐리·탱커 말고도 아이템을 드는 챔피언 (평균 1.5개 이상, 많이 드는 순 최대 2명) */
 const HOLDER_MIN = 1.5;
 function holderIds(x, carryId, tankId) {
-  return x.team.filter(c => c.id !== carryId && c.id !== tankId && (x.unitInfo?.[c.id]?.held || 0) >= HOLDER_MIN)
-    .sort((a, b) => x.unitInfo[b.id].held - x.unitInfo[a.id].held).slice(0, 2).map(c => c.id);
+  const keep = new Set(itemHolders(x, carryId));
+  return x.team.filter(c => c.id !== carryId && c.id !== tankId && keep.has(c.id)).map(c => c.id);
+}
+/** 아이템을 줄 챔피언 최대 4명, 우선순위 순 (11/20 사용자: 아이템을 많이 줘도 3~4명 — 랭커가 아이템을 적게 모은 판에서 누구에게 먼저 줬는지로)
+ * 집계 core.poor = 보드 완성 아이템 9개 이하인 판에서 그 챔피언이 든 평균 아이템 수. 없으면(옛 통계) 덱 평균 held.
+ * 캐리는 항상 포함, 나머지는 poor 0.6개 이상(held 기준이면 1.5개 이상)만 */
+const HOLDER_MAX = 4;
+function itemHolders(x, carryId) {
+  const ui = id => x.unitInfo?.[id] || {};
+  const usePoor = x.team.some(c => ui(c.id).poor != null);
+  const score = c => (usePoor ? ui(c.id).poor ?? 0 : (ui(c.id).held || 0) / 2.5);
+  const min = 0.6;
+  return x.team.filter(c => c.id === carryId || score(c) >= min)
+    .sort((a, b) => (b.id === carryId) - (a.id === carryId) || score(b) - score(a))
+    .slice(0, HOLDER_MAX).map(c => c.id);
 }
 function metaDeckFrom(m, team, info, emblems, carry, byLower, swap, isReal, bonus = {}) {
   const d = state.data;
@@ -1848,7 +1862,8 @@ function tierDetailHtml(x, byId) {
       <span class="pwrap">${hexPor(c)}${(emb[c.id] || []).map(a => `<span class="embb" title="${esc(traitName(a.trait))} 상징">${traitBadge(a.trait, 'gold', true)}</span>`).join('')}</span>
       ${esc(c.base && c.weights ? c.base : c.name)}<em>${c.id === carryId ? '핵심 캐리' : c.id === tankId ? '메인 탱커' : rate < 0.05 ? '드물게 사용' : opt ? `${pct(rate)}만 사용` : ''}</em></div>`;
   }).join('');
-  const builds = [carryId, tankId, ...holderIds(x, carryId, tankId)].filter(Boolean).map(id => {
+  const hold = new Set(itemHolders(x, carryId));
+  const builds = [carryId, hold.has(tankId) ? tankId : null, ...holderIds(x, carryId, tankId)].filter(Boolean).map(id => {
     const c = byId.get(id), own = x.builds?.[id], b = c && (own || buildsFor(c)[0]);
     return b ? `<div class="tBuild"><span class="who">${id === carryId ? '캐리' : id === tankId ? '탱커' : subRole(b)} ${esc(c.name)}</span>${buildRow(b, !own)}</div>` : '';
   }).join('');

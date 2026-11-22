@@ -220,11 +220,13 @@ export function bdOpenDeck(d) {
   const carryId = d.carry?.id || d.core?.carry;
   const tankId = d.core?.tank;
   const emblemItem = t => data.emblems.find(e => e.trait === t)?.id;
+  const holdSet = d.m && bd.itemHolders ? new Set(bd.itemHolders(d, carryId)) : null;
   const units = d.team.map(c => {
     const items = [];
     for (const a of d.assignment || []) if (a.holder === c.id && emblemItem(a.trait)) items.push(emblemItem(a.trait));
-    // 핵심 캐리·탱커 + 이 덱에서 아이템을 평균 1.5개 이상 드는 챔피언(11/17 사용자: 햇빛 르블랑의 유나라·카르마)
-    const holds = c.id === carryId || c.id === tankId || (d.unitInfo?.[c.id]?.held || 0) >= 1.5;
+    // 아이템은 우선순위 높은 3~4명에게만 (11/20 사용자: 랭커가 아이템을 적게 모은 판에서 누구에게 먼저 줬는지 — app itemHolders)
+    const holds = holdSet ? holdSet.has(c.id) : (c.id === carryId || c.id === tankId || (d.unitInfo?.[c.id]?.held || 0) >= 1.5);
+    if (holdSet && !holds) return { champ: c, star: (d.unitInfo?.[c.id]?.star3 || 0) >= 0.4 ? 3 : 2, items: items.slice() }; // 상징만
     const build = d.builds?.[c.id] || (holds ? bd.buildsFor(c)[0] : null);
     for (const it of build?.items || []) if (items.length < 3) items.push(it);
     for (const it of d.items?.[c.id] || []) if (items.length < 3) items.push(it.id); // 아이템 탭 결과

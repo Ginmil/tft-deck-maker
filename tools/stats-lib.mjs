@@ -74,8 +74,14 @@ export function patchWeights(matches, { queueId = 1100, setNumber = null, target
  * @param isCurrent 최신 패치 경기인지 (메타 덱의 "이번 패치만" 기록용)
  * @returns { setNumber, games, traits: { [traitId]: { [tier]: { games, sumPlace, top4, wins } } } }
  */
+// 경기 기록의 다른 세트 id → 이 세트 챔피언 (11/22: 큰 나르가 TFT17_Gnar 로 기록돼 통계에서 빠지고 시너지 인원이 안 맞았음)
+const UNIT_ALIAS = { TFT17_Gnar: 'DA_18_GnarSmall' };
+function normalizeUnits(m) {
+  for (const p of m?.info?.participants || []) for (const u of p.units || []) if (UNIT_ALIAS[u.character_id]) u.character_id = UNIT_ALIAS[u.character_id];
+}
 export function aggregate(matches, { queueId = 1100, setNumber = null, weightOf = () => 1, itemWeightOf = null, isCurrent = () => true, patchLabel = () => null, champTraits = null, emblemTrait = null } = {}) {
   const usable = matches.filter(m => m?.info && (!queueId || m.info.queue_id === queueId));
+  usable.forEach(normalizeUnits);
   // 세트 번호가 정해지지 않았으면 가장 최신 세트만 사용
   const latest = setNumber ?? Math.max(...usable.map(m => m.info.tft_set_number || 0));
   const traits = {};
@@ -236,6 +242,10 @@ function addComp(comps, p, place, w = 1, cur = true, label = null) {
   if (label && Array.isArray(p.augments)) { const s = c.byPatch[label]; s.augs ||= {}; for (const a of p.augments) s.augs[a] = (s.augs[a] || 0) + 1; }
   if (!(w > 0)) return; // 이전 패치(가중치 0)는 비교 기록만
   const seen = new Set();
+  // 아이템을 적게 모은 판(보드 완성 아이템 9개 이하 = 3명분) — 랭커가 누구에게 먼저 주는지 (11/20 사용자: 아이템은 3~4명에게만)
+  const boardItems = units.reduce((n, u) => n + itemsOf(u).filter(x => !/Tacticians|ThiefsGloves/i.test(x)).length, 0);
+  const poor = boardItems > 0 && boardItems <= 9;
+  if (poor) c.poorGames = (c.poorGames || 0) + w;
   for (const u of units) {
     const id = String(u.character_id).toLowerCase();
     if (seen.has(id)) continue;
@@ -244,6 +254,7 @@ function addComp(comps, p, place, w = 1, cur = true, label = null) {
     r.n += w;
     if ((u.tier || 0) >= 3) r.star3 += w;
     if (!itemsOf(u).some(n => /ThiefsGloves/i.test(n))) { r.off += w * offensive(u); r.tank += w * tanky(u); }
+    if (poor) r.poor = (r.poor || 0) + w * itemsOf(u).filter(x => !/Tacticians|ThiefsGloves/i.test(x)).length;
   }
   for (const t of traits) c.traits[t.name] = (c.traits[t.name] || 0) + w;
   // 주력 시너지가 실제로 몇 명이었는지(라이엇 num_units, 상징·럭스 2명분 포함) + 이 덱에서 상징을 쓴 판 (11/15: 6개화 낭비 문제 확인용)
@@ -358,7 +369,8 @@ export function toWeights(stats, { prior = 30, strength = 0.35, min = 0.5, max =
     const level = Math.round(c.sumLevel / c.games);
     // 구성: 자주 쓰인 순으로 넉넉히 (자리 채우기는 앱에서 레벨·2칸 챔피언을 고려해서)
     const units = Object.entries(c.units).sort((a, b) => b[1].n - a[1].n).slice(0, 14);
-    const core = units.map(([id, r]) => ({ id, rate: round(r.n / c.games, 2), star3: round(r.star3 / r.n, 2), off: round(r.off, 1), tank: round(r.tank, 1) }));
+    const core = units.map(([id, r]) => ({ id, rate: round(r.n / c.games, 2), star3: round(r.star3 / r.n, 2), off: round(r.off, 1), tank: round(r.tank, 1),
+      ...(c.poorGames >= 5 ? { poor: round((r.poor || 0) / c.poorGames, 2) } : {}) })); // poor = 아이템 9개 이하 판에서 이 챔피언이 든 평균 아이템 수
     // 덱 전체에서 딜 아이템/탱커 아이템이 가장 많이 들어간 챔피언 = 핵심 캐리 / 메인 탱커
     const mainCarry = [...units].sort((a, b) => b[1].off - a[1].off)[0]?.[0] || c.carry;
     const mainTank = [...units].filter(([id]) => id !== mainCarry).sort((a, b) => b[1].tank - a[1].tank)[0];
