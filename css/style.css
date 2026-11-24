@@ -1068,3 +1068,7 @@ details.tierBand > summary::-webkit-details-marker { display: none; }
 
 /* 배치툴: 이전 탭으로 돌아가기 (11/23) */
 .bdBack { white-space: nowrap; border-color: var(--gold); color: var(--gold); }
+
+/* 구성이 판마다 다른 덱 (11/25) */
+.tierBand[data-t="L"] .thex { background: var(--line); color: var(--muted); }
+.looseNote { margin: 0 0 8px; padding: 8px 10px; border-radius: 8px; background: rgba(232,168,56,.08); border: 1px solid rgba(232,168,56,.35); color: var(--text); font-size: 13px; line-height: 1.5; }

@@ -798,7 +798,7 @@ function renderHome() {
   // 티어 덱 카드 (S·A)
   let decksHtml = '';
   if (metaAvailable()) {
-    const { tiers } = tierList(groupedDecks(), { min: Number($('metaMin').value) || 15 });
+    const { tiers } = tierList(groupedDecks().filter(g => !g.loose), { min: Number($('metaMin').value) || 15 });
     const all = [...tiers.S, ...tiers.A, ...tiers.B, ...tiers.C];
     const top = [...tiers.S, ...tiers.A];
     const card = x => {
@@ -857,7 +857,7 @@ const itemLink = id => { const it = itemObj(id); return it ? dexLink('item', it.
 // 티어표 덱 묶음 + 티어 글자 (도감의 "이 챔피언·시너지가 들어간 메타 덱")
 function dexDecks() {
   if (!metaAvailable()) return [];
-  const grouped = groupedDecks(), { tiers } = tierList(grouped, { min: Number($('metaMin').value) || 15 });
+  const grouped = groupedDecks(), { tiers } = tierList(grouped.filter(g => !g.loose), { min: Number($('metaMin').value) || 15 });
   const tierOfDeck = new Map(), key = x => deckName(x) + '|' + deckType(x);
   for (const [t, list] of Object.entries(tiers)) for (const x of list) tierOfDeck.set(key(x), t);
   return grouped.map(x => ({ x, tier: tierOfDeck.get(key(x)) || '' }));
@@ -1699,7 +1699,7 @@ function renderMeta() {
 function renderMetaList(byId) {
   const box = $('metaList'), min = Number($('metaMin').value);
   const view = viewPatch();
-  const { tiers } = tierList(groupedDecks(view), { min });
+  const { tiers } = tierList(groupedDecks(view).filter(g => !g.loose), { min });
   const rows = [...tiers.S, ...tiers.A, ...tiers.B, ...tiers.C];
   // 시너지 목록: 지금 덱들의 주력 시너지 (덱 수 많은 순)
   const sel = $('metaTrait'), cur = sel.value, cnt = {};
@@ -1873,18 +1873,44 @@ function groupedDecks(view = null) {
     base = base.map(d => { const m = patchViewM(d.m, view, before); return m ? { ...d, m } : null; }).filter(Boolean);
   }
   const decks = base.map(d => ({ ...d, carryChamp: carryOfDeck(d), games: tierGames(d.m) || d.m.games, value: d.value, trait: d.m.trait })).filter(d => d.carryChamp);
-  return groupDecks(decks).map(g => combineDecks(g.main, g.variants));
+  return groupDecks(decks).map(g => markLoose(combineDecks(g.main, g.variants)));
+}
+// 11/25 사용자: "개화 애쉬"(18판, S티어)를 배치툴로 열면 "N%만 사용"이 많아 무슨 조합인지 모름 — 실제로는 18판이 전부 다른 보드
+//  (개화 인원도 3·5·7·9 로 흩어짐) = 덱이 아니라 "개화가 주력인 애쉬 판들". 이런 덱은 티어 순위에서 빼고 따로 보여 줌.
+//  기준: 대표 보드 자리(레벨 수)만큼 많이 쓴 챔피언의 평균 사용 비율 < 0.7 이고, 똑같은 보드가 3판 이상 나온 적이 없음
+const LOOSE_FILL = 0.7, LOOSE_SAME = 3;
+function deckConsistency(g) {
+  const L = Math.max(1, g.team.length);
+  const rates = g.team.map(c => g.unitInfo?.[c.id]?.rate ?? 1);
+  const best = Object.values(g.unitInfo || {}).map(u => u.rate ?? 0).sort((a, b) => b - a).slice(0, L);
+  const fill = (best.length ? best : rates).reduce((a, b) => a + b, 0) / L;
+  const same = Math.max(0, ...[g, ...(g.variants || [])].flatMap(v => [v.m.board?.same || 0, ...(v.m.alts || []).map(a => a.games || 0)]));
+  return { fill, same };
+}
+function looseNote(x) {
+  const mc = Object.entries(x.m.mainCount || {}).filter(([, v]) => v >= 0.1).sort((a, b) => a[0] - b[0]).map(([n, v]) => `${n}명 ${Math.round(v * 100)}%`).join(' · ');
+  return `<p class="looseNote">⚠ 정해진 조합이 없는 덱이에요 — ${x.tierGames || x.m.games}판이 거의 다 다른 보드였고, ${esc(traitName(x.m.trait))} 인원도 ${mc} 로 흩어졌어요. 아래 보드는 그중 한 판이라 배치툴로 열어도 어색할 수 있어요.</p>`;
+}
+function markLoose(g) {
+  const { fill, same } = deckConsistency(g);
+  g.consistency = { fill, same };
+  const mc = Object.values(g.m.mainCount || {}), mode = mc.length ? Math.max(...mc) : 1;
+  g.consistency.mode = mode;
+  // 주력 시너지 인원도 흩어진 덱만 (개화 애쉬: 3·5·7·9 로 흩어져 최빈 30%). 지옥불 시비르(5지옥불 59%)·전쟁기계 애쉬(51%)는 남김
+  g.loose = fill < LOOSE_FILL && same < LOOSE_SAME && mode < 0.5;
+  return g;
 }
 function renderTiers(byId) {
   const min = Number($('metaMin').value);
   const view = viewPatch();
   const grouped = groupedDecks(view);
-  const { tiers, watch, cuts } = tierList(grouped, { min });
+  const { tiers, watch, cuts } = tierList(grouped.filter(g => !g.loose), { min });
+  const loose = grouped.filter(g => g.loose && tierGames(g.m) >= min).map(g => ({ ...g, tier: null, tierGames: tierGames(g.m) })).sort((a, b) => a.m.avgPlace - b.m.avgPlace);
   tierDecks = [];
   const p = view || curPatch();
   const show = x => tierFilter === 'all' || tierKind(x) === tierFilter;
   const keyOf = x => deckName(x) + '|' + deckType(x);
-  const all = [...tiers.S, ...tiers.A, ...tiers.B, ...tiers.C, ...watch];
+  const all = [...tiers.S, ...tiers.A, ...tiers.B, ...tiers.C, ...watch, ...loose];
   if (!tierSel || !all.some(x => keyOf(x) === tierSel)) tierSel = all[0] ? keyOf(all[0]) : null;
   const tile = x => {
     const k = tierDecks.push(x) - 1, m = x.m, carry = carryOfDeck(x), vn = x.variants?.length || 0;
@@ -1905,7 +1931,8 @@ function renderTiers(byId) {
   const filters = [['all', '전체'], ['reroll', '리롤'], ['level', '레벨업'], ['value', '밸류']]
     .map(([k, n]) => `<button aria-pressed="${tierFilter === k}" data-f="${k}">${n}</button>`).join('');
   const bands = ['S', 'A', 'B'].map(t => row(t, tiers[t], TIER_DESC[t])).join('') + row('C', tiers.C, TIER_DESC.C, false)
-    + (watch.filter(show).length ? `<div class="tierBand" data-t="W"><div class="tmark"><span class="thex">?</span><small>지켜볼 덱</small></div><div><p class="tierNote">${view ? esc(view) + ' 패치' : '이번 패치'} 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱이에요.</p><div class="decks">${watch.filter(show).map(tile).join('')}</div></div></div>` : '');
+    + (watch.filter(show).length ? `<div class="tierBand" data-t="W"><div class="tmark"><span class="thex">?</span><small>지켜볼 덱</small></div><div><p class="tierNote">${view ? esc(view) + ' 패치' : '이번 패치'} 판수가 아직 ${min}판이 안 되지만 성적이 좋은 덱이에요.</p><div class="decks">${watch.filter(show).map(tile).join('')}</div></div></div>` : '')
+    + (loose.filter(show).length ? `<details class="tierBand" data-t="L"><summary class="tmark"><span class="thex">~</span><small>구성이 판마다 다른 덱 · ${loose.filter(show).length}개</small></summary><div><p class="tierNote">같은 시너지·캐리로 묶였지만 랭커마다 보드가 달라서(똑같은 보드 2판 이하, 주력 시너지 인원도 흩어짐) 정해진 조합이 없는 덱이에요. 성적이 좋아도 티어 순위에서는 뺐어요.</p><div class="decks">${loose.filter(show).map(tile).join('')}</div></div></details>` : '');
   $('metaTiers').innerHTML = !ranked && !watch.length
     ? `<div class="empty">${p ? esc(p) + ' 패치에서 ' : ''}${min}판 이상 나온 메타 덱이 아직 없어요. 최소 판수를 낮춰 보세요.</div>`
     : `<div class="tierHead2">
@@ -1971,7 +1998,7 @@ function tierDetailHtml(x, byId) {
       <div class="dTopMain"><h2>${esc(deckName(x))}${embTag(x)}</h2><p>${esc(deckType(x))}${x.value ? ` · 함께 켠 시너지 ${esc(traitName(m.trait))}` : ''}${emblemNote(mm, x)}</p></div>
       <button class="btn small primary toBuilder dTopBd" data-reg="${regMain}" title="이 덱을 배치툴에 세우기">배치툴</button></div>
     <div class="dStats"><div><b>${m.avgPlace.toFixed(2)}</b><span>평균 등수${patchDelta(m)}</span></div><div><b>${pct(m.top4)}</b><span>순방</span></div><div><b>${pct(m.win)}</b><span>1등</span></div><div><b>${(x.tierGames || m.games).toLocaleString()}</b><span>판</span></div></div>
-    <div class="dSec"><h3>구성 · ${x.level || m.level}레벨</h3>${realNote}<div class="tBoard">${units}</div></div>
+    <div class="dSec"><h3>구성 · ${x.level || m.level}레벨</h3>${x.loose ? looseNote(x) : ''}${realNote}<div class="tBoard">${units}</div></div>
     ${builds ? `<div class="dSec"><h3>랭커 3신기</h3>${builds}</div>` : ''}
     <div class="dSec"><h3>시너지</h3><div class="tTraits">${traits}${eclipseOn(x) ? `<span class="tTr hiddenTr" title="햇빛 3 + 달빛 3 이상이면 켜지는 숨은 시너지">일월식 <small>히든</small></span>` : ''}</div></div>
     ${altHtml}${vers}
@@ -2159,7 +2186,7 @@ function removeOne(arr, v) { const i = arr.indexOf(v); if (i >= 0) arr.splice(i,
 // ---------------- 시작 ----------------
 bind();
 // 점검용(콘솔·테스트): 메타 덱 계산 결과를 그대로 볼 수 있게
-window.__tftDebug = { metaDecks: n => metaDecks(n), state, tiers: () => tierDecks, grouped: () => groupedDecks(), carryOfDeck: d => carryOfDeck(d), deckName: d => deckName(d), deckType: d => deckType(d) };
+window.__tftDebug = { tierList: (g, o) => tierList(g, o), metaDecks: n => metaDecks(n), state, tiers: () => tierDecks, grouped: () => groupedDecks(), carryOfDeck: d => carryOfDeck(d), deckName: d => deckName(d), deckType: d => deckType(d) };
 if (window.TFT_WEIGHTS) state.weights = window.TFT_WEIGHTS; // data/weights.js 가 있으면 자동 사용
 const cached = store.get(CACHE_KEY);
 iconMapReady.then(start);
