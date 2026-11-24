@@ -36,6 +36,7 @@ const cfg = {
   maxPlayers: 200,       // 경기를 가져올 플레이어 수
   matchesPerPlayer: 20,  // 플레이어당 최근 경기 수
   queueId: 1100,         // 1100 = 랭크 게임
+  setNumber: 18,         // 11/24 세트 18 고정 (12/1 세트 19 경기는 집계하지 않음)
   keepDays: 14,          // 캐시에 쌓인 경기 중 최근 며칠 치까지 집계에 쓸지 (이번 패치 경기는 날마다 쌓여서 표본이 커짐)
   requestIntervalMs: 1250, // 개발 키 제한(2분에 100회)을 넘지 않도록 요청 간격
   ...fileCfg,
@@ -157,7 +158,7 @@ try {
   // 패치 일정표 (경기 데이터에 패치 번호가 없을 때 경기 시각으로 패치를 정함)
   let schedule = null;
   try { schedule = JSON.parse(fs.readFileSync(path.join(root, 'data', 'patches.json'), 'utf8')).patches; } catch { console.log('data/patches.json 이 없어 패치 구분 없이 집계해요'); }
-  const pw = patchWeights(matches, { queueId: cfg.queueId, schedule });
+  const pw = patchWeights(matches, { queueId: cfg.queueId, schedule, setNumber: cfg.setNumber });
   // 챔피언 시너지·상징 → 시너지 (세트 사본에서) — 내 시너지가 켜졌을 때의 아이템 집계용
   let champTraits = null, emblemTrait = null;
   try {

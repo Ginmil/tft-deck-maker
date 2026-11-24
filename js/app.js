@@ -36,7 +36,11 @@ function setStatus(msg, error = false) {
   $('status').classList.toggle('error', error);
 }
 
+// 11/24 세트 18 고정: 시연·최종보고서는 세트 18 기준. Community Dragon latest 는 12/1 부터 세트 19라
+//  "불러오기"는 원본 대신 저장소의 세트 18 사본을 씀 (풀려면 SET_FROZEN = false)
+const SET_FROZEN = true;
 async function loadFromUrl(url) {
+  if (SET_FROZEN && await loadSnapshot('세트 18 고정 — 저장해 둔 세트 18 데이터를 쓰고 있어요')) return;
   setStatus('데이터를 받는 중이에요… (파일이 커서 몇 초 걸릴 수 있어요)');
   $('btnFetch').disabled = true;
   try {

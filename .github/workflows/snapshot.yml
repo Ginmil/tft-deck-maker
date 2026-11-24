@@ -3,12 +3,8 @@
 name: 세트 데이터 사본 갱신
 
 on:
-  schedule:
-    - cron: '17 18 * * *'   # 매일 한국시간 새벽 3시 17분
+  # 11/24 세트 18 고정: 매일 갱신·푸시 시 갱신을 끔 (Community Dragon latest 가 12/1 부터 세트 19). 필요하면 수동 실행
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ['js/adapters/cdragon.js', 'tools/snapshot-set.mjs', 'tools/planner-codes.mjs']   # 변환 규칙을 고치면 바로 다시 만듦
 
 permissions:
   contents: write

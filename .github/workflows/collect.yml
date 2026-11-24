@@ -3,8 +3,7 @@
 name: 랭커 통계 수집
 
 on:
-  schedule:
-    - cron: '0 19 * * *'   # 매일 한국시간 새벽 4시 (UTC 19시)
+  # 11/24 세트 18 고정: 매일 자동 수집은 끔 (12/1 세트 19 시작 — 시연·최종보고서는 세트 18 기준). 수동 실행만, 세트 18 경기만 집계
   workflow_dispatch:         # Actions 탭에서 "Run workflow" 버튼으로 바로 실행
     inputs:
       max_players:
