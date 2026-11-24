@@ -1239,7 +1239,11 @@ function isValueDeck(team, m, ev) {
   const n = ev.traits.find(t => t.id === m.trait)?.count || 0;
   // 8레벨이라도 5코가 5명 이상이면 밸류 (11/22 사용자: 8레벨 "나무정령 드레이븐" = 3나무정령으로 가는 드레이븐 밸류, 5코 5명)
   const fives = team.filter(c => c.cost >= 5).length;
-  return (m.level >= 9 ? fives >= 4 : m.level >= 8 && fives >= 5) && bps.filter(b => b <= n).length <= 2 && n <= 4;
+  // 11/24 재수집: 같은 8레벨 나무정령 드레이븐 대표 보드가 5코 4명(아이번·드레이븐·마오카이·케넨) + 4나무정령(첫 단계)으로 바뀜 →
+  //  8레벨은 5코 5명, 또는 5코 4명이면서 주력 시너지가 첫 단계만 켜진 덱(선봉대 5·전쟁기계 5 처럼 시너지를 올린 덱은 아님)
+  const tiers = bps.filter(b => b <= n).length;
+  const lv8 = m.level >= 8 && (fives >= 5 || (fives >= 4 && tiers <= 1));
+  return (m.level >= 9 ? fives >= 4 : lv8) && tiers <= 2 && n <= 4;
 }
 
 /**
