@@ -72,7 +72,7 @@
 - `test/` — `node test/run.mjs`, `node test/fit-test.mjs`, `node test/patch-test.mjs`, `node test/assign-test.mjs` (샘플 세트 `data/sample-cdragon.json`, `node test/make-sample.mjs > data/sample-cdragon.json` 로 재생성 후 `node build.mjs`). 샘플은 가상 세트(사슴·곰 등)지만 재료 아이템은 실제와 같은 apiName·조합식.
 
 ## 세트 18 고정 (11/24 사용자 결정)
-- 12/1 세트 19 시작 → 시연·최종보고서(12/7 제출, Word)는 세트 18 기준이라 고정: collect.yml·snapshot.yml 의 schedule/push 트리거 삭제(수동 실행만), `tools/collect-stats.mjs` cfg.setNumber 18(세트 19 경기는 집계 안 함), patches.json 에서 19.1·19.2 줄 삭제, app.js `SET_FROZEN = true`("불러오기"도 세트 18 사본). 고정 시점 git 태그 `set18-final`. 최종 데이터: 11/24 수집(18.7 1,063경기, 18.6 2,278경기).
+- 12/1 세트 19 시작 → 시연·최종보고서(12/7 제출, Word)는 세트 18 기준이라 고정: collect.yml·snapshot.yml 의 schedule/push 트리거 삭제(수동 실행만), `tools/collect-stats.mjs` cfg.setNumber 18(세트 19 경기는 집계 안 함), patches.json 에서 19.1·19.2 줄 삭제, app.js `SET_FROZEN = true`("불러오기"도 세트 18 사본). 고정 시점 브랜치 `set18-final`(태그 푸시는 이 환경 프록시가 막아서 브랜치로). 최종 데이터: 11/24 수집(18.7 1,063경기, 18.6 2,278경기).
 
 ## 상태 (2026-11-12 기준)
 - 완료: 위 탭 전부, 배포, 자동 수집(챌린저 200명 × 20판, 첫 수집 2,349판), 내 보드 기반 다음 수 추천(11/12), 재료 아이템 → 조합·덱 추천(11/14, 아이템 탭의 "재료 아이템").
