@@ -73,7 +73,9 @@ export function patchReport(comps, patch, prevPatch) {
       row.actualDelta = pRound(row.now.avgPlace - row.base.avgPlace, 2);
       // 판수가 적으면 평균 등수 자체가 흔들림: 변화가 오차(표준오차)보다 작으면 "구분 어려움"
       row.noise = pRound(PLACE_SD * Math.sqrt(1 / row.base.games + 1 / row.now.games), 2);
-      row.verdict = Math.abs(row.actualDelta) < row.noise || Math.abs(predDelta) < PRED_MIN || Math.abs(PRED_PER_POINT * score) < PRED_MIN ? 'flat'
+      // 11/27 사용자: "구분 어려움"이 너무 많음 → 방향만 봄. 오를 것 → 실제로 올랐으면 적중, 내릴 것 → 내렸으면 적중, 반대면 빗나감.
+      //  예측이 "비슷"(덱 자체 영향 0.1등 미만)인 덱만 채점하지 않음('flat' = 예측 비슷). 판수 오차(noise)는 화면 참고용으로만 남김
+      row.verdict = Math.abs(predDelta) < PRED_MIN || Math.abs(PRED_PER_POINT * score) < PRED_MIN ? 'flat'
         : Math.sign(row.actualDelta) === Math.sign(predDelta) ? 'hit' : 'miss';
     }
     rows.push(row);

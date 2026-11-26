@@ -1590,9 +1590,9 @@ function renderPatch(selected) {
   const miss = rep ? rep.judged - rep.hits : 0;
   const score = rep && rep.judged
     ? `<div class="pnScore"><span class="lbl">예측이 맞은 덱</span><div class="big">${rep.hits}<small> / ${rep.judged}</small></div>
-        <div class="pnBar" role="img" aria-label="적중 ${rep.hits}, 빗나감 ${miss}, 구분 어려움 ${rep.flat}"><i class="hit" style="flex:${rep.hits}"></i><i class="miss" style="flex:${miss}"></i><i class="flat" style="flex:${rep.flat}"></i></div>
-        <div class="pnLegend"><span><i class="hit"></i>적중 ${rep.hits}</span><span><i class="miss"></i>빗나감 ${miss}</span><span><i class="flat"></i>구분 어려움 ${rep.flat}</span></div>
-        <p>실제 변화가 판수 오차보다 큰 덱만 채점해요. 기준 패치(${esc(prev)}) 표본이 적으면 구분 어려움이 많아져요.</p></div>`
+        <div class="pnBar" role="img" aria-label="적중 ${rep.hits}, 빗나감 ${miss}, 예측 비슷 ${rep.flat}"><i class="hit" style="flex:${rep.hits}"></i><i class="miss" style="flex:${miss}"></i><i class="flat" style="flex:${rep.flat}"></i></div>
+        <div class="pnLegend"><span><i class="hit"></i>적중 ${rep.hits}</span><span><i class="miss"></i>빗나감 ${miss}</span><span><i class="flat"></i>예측 비슷 ${rep.flat}</span></div>
+        <p>오를 것이라 했는데 실제로 올랐거나, 내릴 것이라 했는데 내렸으면 적중이에요. 반대로 움직이면 빗나감이고, 덱 자체가 받는 영향이 작아 "비슷"으로 예측한 덱은 채점하지 않아요.</p></div>`
     : `<div class="pnScore"><span class="lbl">예측 채점</span><div class="big muted">—</div><p>${!changes.length ? '밸런스 변경이 없는 패치예요.' : !rep ? '패치별 경기 기록이 쌓이면 채점돼요.' : rep.rows.some(r => r.now) ? '채점할 만큼 바뀐 덱이 없어요. 변화가 판수 오차 안이거나, 덱 자체가 받은 영향이 작아요.' : '이번 패치 경기가 쌓이는 중이에요.'}</p></div>`;
   const head = `<div class="pnHero">
     <div class="pnIntro">
@@ -1630,12 +1630,12 @@ function renderPatch(selected) {
     const order = { hit: 0, miss: 0, flat: 1, wait: 2, nobase: 3 };
     const all = rep.rows.filter(r => r.base || r.now).sort((a, b) => order[status(a)] - order[status(b)] || Math.abs(b.rel) - Math.abs(a.rel));
     const counts = all.reduce((o, r) => (o[status(r)] = (o[status(r)] || 0) + 1, o), {});
-    const F = [['all', '전체', all.length], ['hit', '적중', counts.hit], ['miss', '빗나감', counts.miss], ['flat', '구분 어려움', counts.flat], ['wait', '판 쌓이는 중', (counts.wait || 0) + (counts.nobase || 0)]].filter(f => f[0] === 'all' || f[2]);
+    const F = [['all', '전체', all.length], ['hit', '적중', counts.hit], ['miss', '빗나감', counts.miss], ['flat', '예측 비슷', counts.flat], ['wait', '판 쌓이는 중', (counts.wait || 0) + (counts.nobase || 0)]].filter(f => f[0] === 'all' || f[2]);
     if (!F.some(f => f[0] === pnFilter)) pnFilter = 'all';
     const shown = all.filter(r => pnFilter === 'all' || status(r) === pnFilter || (pnFilter === 'wait' && status(r) === 'nobase')).slice(0, 24);
     // 점 그래프: 평균 등수 2.5(왼쪽, 좋음) ~ 6(오른쪽, 나쁨)
     const LO = 2.5, HI = 6, pos = v => Math.max(0, Math.min(100, (v - LO) / (HI - LO) * 100));
-    const V = { hit: ['hit', '✓ 적중'], miss: ['miss', '✗ 빗나감'], flat: ['flat', '구분 어려움'], wait: ['wait', '판 쌓이는 중'], nobase: ['wait', '비교 불가'] };
+    const V = { hit: ['hit', '✓ 적중'], miss: ['miss', '✗ 빗나감'], flat: ['flat', '예측 비슷'], wait: ['wait', '판 쌓이는 중'], nobase: ['wait', '비교 불가'] };
     const rows = shown.map(r => {
       const c = r.comp, g = c.group, carry = carryOfDeck(g) || byLower.get(c.mainCarry || c.carry);
       const why = r.hits.filter(h => (h.share ?? 1) * (h.reach ?? 1) >= 0.2).sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight)).map(h => {
@@ -1653,7 +1653,10 @@ function renderPatch(selected) {
       const span = r.base && r.now ? `<i class="span" style="left:${Math.min(pos(r.base.avgPlace), pos(r.now.avgPlace))}%;width:${Math.abs(pos(r.now.avgPlace) - pos(r.base.avgPlace))}%"></i>` : '';
       // 실제 결과도 예측과 같은 기준(이전 패치 대비)으로 색 표시 (11/17 사용자: 4.95 → 예측 4.62 → 실제 4.83 이면 "그래도 올랐다" 초록)
       const ad = r.base && r.now ? r.now.avgPlace - r.base.avgPlace : null;
-      const actWord = ad == null ? '' : Math.abs(ad) < 0.05 ? '<span class="pdir same">– 비슷</span><br>' : `<span class="pdir ${ad < 0 ? 'up' : 'down'}">${ad < 0 ? '▲' : '▼'}${Math.abs(ad).toFixed(2)} ${ad < 0 ? '올랐음' : '내렸음'}</span><br>`;
+      // 11/27 사용자: 예측과 같은 방향이지만 예측보다 덜 움직였으면 "약간 올랐음/내렸음"
+      const ownDir = Math.abs(PRED_PER_POINT * r.score) >= PRED_MIN && Math.abs(r.predDelta) >= PRED_MIN;
+      const slight = ad != null && ownDir && Math.sign(ad) === Math.sign(r.predDelta) && Math.abs(ad) < Math.abs(r.predDelta);
+      const actWord = ad == null ? '' : ad === 0 ? '<span class="pdir same">– 그대로</span><br>' : `<span class="pdir ${ad < 0 ? 'up' : 'down'}">${ad < 0 ? '▲' : '▼'}${Math.abs(ad).toFixed(2)} ${slight ? '약간 ' : ''}${ad < 0 ? '올랐음' : '내렸음'}</span><br>`;
       const gap = r.predAvg != null && r.now ? r.now.avgPlace - r.predAvg : null;
       const own = Math.abs(PRED_PER_POINT * r.score) >= PRED_MIN; // 덱 자체 영향이 있어야 오를/내릴 것
       const predWord = !own ? '<span class="pdir same" title="덱 자체가 받는 영향이 작아요 (숫자는 다른 덱 변화까지 반영한 값)">– 비슷</span>' : r.predDelta <= -PRED_MIN ? '<span class="pdir up">▲ 오를 것</span>' : r.predDelta >= PRED_MIN ? '<span class="pdir down">▼ 내릴 것</span>' : '<span class="pdir same">– 비슷</span>';
@@ -1665,13 +1668,13 @@ function renderPatch(selected) {
           <div><span class="k">${esc(p.patch)} 실제</span><b>${r.now ? r.now.avgPlace.toFixed(2) : '—'}</b><small>${actWord}${r.now ? r.now.games + '판' : '쌓이는 중'}</small></div>
         </div>
         <div class="pnTrack" aria-hidden="true">${span}${dots.join('')}</div>
-        <div class="pnRes"><span class="pnVerdict ${vc}">${vt}</span>${r.actualDelta != null ? `<small>${gap != null && Math.abs(gap) >= 0.05 ? `예측보다 ${Math.abs(gap).toFixed(2)}등 ${r.predDelta <= -PRED_MIN ? (gap > 0 ? '덜 오름' : '더 오름') : r.predDelta >= PRED_MIN ? (gap > 0 ? '더 내림' : '덜 내림') : (gap > 0 ? '나쁨' : '좋음')} · ` : ''}판수 오차 ±${r.noise}</small>` : ''}${reg >= 0 ? `<button class="altopen toBuilder" data-reg="${reg}">배치툴</button>` : ''}</div>
+        <div class="pnRes"><span class="pnVerdict ${vc}">${vt}</span>${r.actualDelta != null ? `<small>${st === 'miss' && ad != null ? `예측과 반대로 ${ad < 0 ? '올랐음' : '내렸음'} · ` : gap != null && Math.abs(gap) >= 0.05 ? `예측보다 ${Math.abs(gap).toFixed(2)}등 ${r.predDelta <= -PRED_MIN ? (gap > 0 ? '덜 오름' : '더 오름') : r.predDelta >= PRED_MIN ? (gap > 0 ? '더 내림' : '덜 내림') : (gap > 0 ? '나쁨' : '좋음')} · ` : ''}판수 오차 ±${r.noise}</small>` : ''}${reg >= 0 ? `<button class="altopen toBuilder" data-reg="${reg}">배치툴</button>` : ''}</div>
       </div>`;
     }).join('');
     predHtml = `<div class="pnFilters" id="pnFilters">${F.map(([k, l, n]) => `<button class="pill${k === pnFilter ? ' on' : ''}" data-f="${k}">${l} <span>${n}</span></button>`).join('')}</div>
       <div class="pnAxis"><span></span><span></span><span class="pnScale"><em>2.5등 · 좋음</em><em>6등 · 나쁨</em></span><span class="pnKeys"><span><i class="dot base"></i>${esc(prev)}</span><span><i class="dot pred"></i>예측</span><span><i class="dot now hit"></i>실제</span></span></div>
       <div class="pnRows">${rows || '<div class="empty">이 조건의 덱이 없어요.</div>'}</div>
-      <details class="pnHow"><summary>예측은 어떻게 하나요?</summary><p>이전 밸런스 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 그 덱의 <b>핵심 캐리</b>면 크게, <b>탱커</b>면 중간, <b>구성원</b>이면 작게, <b>주력 시너지</b>가 바뀌면 크게 반영해요. 평균 등수는 8명이 1~8등을 나눠 갖는 값이라, 메타 전체가 받은 평균 영향보다 더 받은 만큼만 오르내린다고 봐요(그래서 작은 버프를 받아도 다른 덱이 더 크게 버프받으면 예측이 내려갈 수 있어요). 덱 자체 영향이 0.1등보다 작으면 이전 패치 그대로로 예측해요. 4판 중 1판도 안 쓰는 챔피언의 변경은 빼요. 실제 변화가 판수로 생기는 오차(±)보다 작거나, 덱 자체가 받는 영향이 0.1등보다 작으면 "구분 어려움"으로 보고 채점하지 않아요. 시너지의 특정 단계만 바뀐 경우(나무정령 9단계 등)는 그 덱이 그 인원까지 간 판 비율만큼만 반영해요. 증강·수호령 변경은 예측에 넣지 않아요.</p></details>`;
+      <details class="pnHow"><summary>예측은 어떻게 하나요?</summary><p>이전 밸런스 패치(${esc(prev)}) 성적에서 출발해, 바뀐 챔피언이 그 덱의 <b>핵심 캐리</b>면 크게, <b>탱커</b>면 중간, <b>구성원</b>이면 작게, <b>주력 시너지</b>가 바뀌면 크게 반영해요. 평균 등수는 8명이 1~8등을 나눠 갖는 값이라, 메타 전체가 받은 평균 영향보다 더 받은 만큼만 오르내린다고 봐요(그래서 작은 버프를 받아도 다른 덱이 더 크게 버프받으면 예측이 내려갈 수 있어요). 덱 자체 영향이 0.1등보다 작으면 이전 패치 그대로로 예측해요. 4판 중 1판도 안 쓰는 챔피언의 변경은 빼요. 채점은 방향만 봐요: 오를 것 → 실제로 올랐으면 적중, 내릴 것 → 내렸으면 적중, 반대면 빗나감. 예측보다 덜 움직였으면 "약간 올랐음/내렸음"으로 표시해요. 덱 자체가 받는 영향이 0.1등보다 작아 "비슷"으로 예측한 덱은 채점하지 않아요. 판수가 적은 덱은 우연히 움직였을 수 있으니 오른쪽의 판수 오차(±)도 함께 보세요. 시너지의 특정 단계만 바뀐 경우(나무정령 9단계 등)는 그 덱이 그 인원까지 간 판 비율만큼만 반영해요. 증강·수호령 변경은 예측에 넣지 않아요.</p></details>`;
   }
   box.innerHTML = head + changeHtml + (changes.length ? `<section class="pnSec"><h3>메타 덱 영향 · 예측 vs 실제</h3>${predHtml}</section>` : '');
 }
