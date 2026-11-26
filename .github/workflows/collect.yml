@@ -26,6 +26,8 @@ concurrency:
 
 jobs:
   collect:
+    # 11/27 사용자: 세트 19 시작(12/1) 전에 수집을 완전히 막음 — 수동 실행해도 건너뜀. 다시 쓰려면 이 줄을 지움
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
