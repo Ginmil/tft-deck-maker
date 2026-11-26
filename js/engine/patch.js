@@ -180,7 +180,10 @@ export function groupDecks(decks) {
       const valueBoard = a.value && b.value && sameLv && s >= 0.75;
       // 캐리가 같은 덱 → 시너지가 같은 덱 순으로 우선 (전쟁기계 드레이븐이 장로 드래곤 밸류보다 드레이븐 밸류로)
       const pr = s + (same ? 1 : 0) + (a.trait && a.trait === b.trait ? 0.5 : 0);
-      if (((late5 && s >= 0.75) || (same && s >= 0.85) || value || sameTrait || valueBoard) && (!best || pr > best.pr)) best = { b, s, pr };
+      // 11/27 사용자: 전쟁기계 애쉬에 "케이틀린에게 아이템을 몰아준 판"(보드에 애쉬가 아예 없음)이 묶임 — 캐리가 다른 버전은
+      //  큰 덱의 캐리가 작은 덱 보드에도 있을 때만 (아이템만 옮긴 판). 캐리를 갈아 끼운 보드는 다른 덱
+      const keepsCarry = same || a.team.some(c => key(c) === key(b.carryChamp));
+      if (((late5 && s >= 0.75 && keepsCarry) || (same && s >= 0.85) || value || (sameTrait && keepsCarry) || valueBoard) && (!best || pr > best.pr)) best = { b, s, pr };
     }
     if (best) parent.set(a, best.b);
   }
